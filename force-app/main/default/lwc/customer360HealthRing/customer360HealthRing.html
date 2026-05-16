@@ -1,0 +1,36 @@
+<template>
+    <div class="health-ring" style={containerStyle}>
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={ringSize}
+            height={ringSize}
+            viewBox={viewBox}
+        >
+            <!-- Background track circle -->
+            <circle
+                cx={center}
+                cy={center}
+                r={radius}
+                style={trackStyle}
+            ></circle>
+
+            <!-- Foreground progress arc -->
+            <circle
+                class="health-ring__progress"
+                cx={center}
+                cy={center}
+                r={radius}
+                style={progressStyle}
+            ></circle>
+
+            <!-- Center score text -->
+            <template lwc:if={showLabel}>
+                <text
+                    x={center}
+                    y={center}
+                    style={textStyle}
+                >{scoreDisplay}</text>
+            </template>
+        </svg>
+    </div>
+</template>

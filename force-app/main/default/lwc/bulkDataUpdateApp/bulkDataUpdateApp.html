@@ -1,0 +1,75 @@
+<template>
+    <!-- ===================== VIEW 1: Landing Page (Home) ===================== -->
+    <template if:true={isHomeView}>
+        <div class="app-header">
+            <h1 class="app-header__title">Bulk Data Update App</h1>
+            <p class="app-header__subtitle">Update Salesforce records across objects quickly and easily</p>
+        </div>
+
+        <div class="card-grid">
+            <template for:each={visibleCards} for:item="card">
+                <div key={card.key}
+                     class={card.accentClass}
+                     data-section={card.key}
+                     onclick={handleCardClick}
+                     onkeydown={handleCardKeydown}
+                     role="button"
+                     tabindex="0">
+                    <div class="card-landing">
+                        <div class="card-landing__icon-container">
+                            <lightning-icon icon-name={card.icon}
+                                            size="medium"
+                                            alternative-text={card.label}>
+                            </lightning-icon>
+                        </div>
+                        <h2 class="card-landing__title">{card.label}</h2>
+                        <p class="card-landing__description">{card.description}</p>
+                        <template if:true={card.enabled}>
+                            <span class="card-landing__arrow">&rarr;</span>
+                        </template>
+                        <template if:false={card.enabled}>
+                            <span class="card-landing__badge">Coming Soon</span>
+                        </template>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </template>
+
+    <!-- ===================== VIEW 2: Section Drill-in ===================== -->
+    <template if:true={isSectionView}>
+        <!-- Breadcrumb Bar -->
+        <div class="breadcrumb-bar">
+            <button class="breadcrumb-home" onclick={handleBackToHome}>
+                <lightning-icon icon-name="utility:chevronleft"
+                                size="xx-small"
+                                alternative-text="Back">
+                </lightning-icon>
+                <span class="breadcrumb-home__label">Home</span>
+            </button>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">{activeSectionLabel}</span>
+        </div>
+
+        <!-- Sub-Tab Bar -->
+        <div class="tab-bar" role="tablist">
+            <template for:each={visibleSubTabs} for:item="subTab">
+                <button key={subTab.value}
+                        class={subTab.cssClass}
+                        role="tab"
+                        aria-selected={subTab.isActive}
+                        data-tab={subTab.value}
+                        onclick={handleTabClick}>
+                    {subTab.label}
+                </button>
+            </template>
+        </div>
+
+        <!-- Tab Panel -->
+        <div class="tab-panel" role="tabpanel">
+            <template if:true={isOpportunityUpdateActive}>
+                <c-opportunity-bulk-update></c-opportunity-bulk-update>
+            </template>
+        </div>
+    </template>
+</template>

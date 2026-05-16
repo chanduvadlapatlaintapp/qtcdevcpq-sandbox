@@ -1,0 +1,335 @@
+<template>
+    <div class="c360-cta">
+        <!-- Header -->
+        <div class="c360-cta__header">
+            <h2 class="c360-cta__title">
+                <lightning-icon icon-name="utility:task" size="small"></lightning-icon>
+                CTAs &amp; Playbooks ({totalCount})
+            </h2>
+            <lightning-button
+                label="New CTA"
+                variant="brand"
+                icon-name="utility:add"
+                onclick={handleShowCreateForm}></lightning-button>
+        </div>
+
+        <!-- Inline Create Form -->
+        <template lwc:if={showCreateForm}>
+            <div class="c360-cta__create-form">
+                <h4 class="c360-cta__create-title">Create New CTA</h4>
+                <div class="c360-cta__create-fields">
+                    <lightning-input
+                        label="CTA Name"
+                        value={_newCtaName}
+                        onchange={handleNewCtaNameChange}
+                        placeholder="e.g. Churn Prevention Outreach"
+                        required
+                        class="c360-cta__create-field"></lightning-input>
+                    <div class="c360-cta__create-row">
+                        <lightning-combobox
+                            label="Type"
+                            value={_newCtaType}
+                            options={ctaTypeOptions}
+                            onchange={handleNewCtaTypeChange}
+                            class="c360-cta__create-field"></lightning-combobox>
+                        <lightning-combobox
+                            label="Priority"
+                            value={_newCtaPriority}
+                            options={ctaPriorityOptions}
+                            onchange={handleNewCtaPriorityChange}
+                            class="c360-cta__create-field"></lightning-combobox>
+                        <lightning-combobox
+                            label="Assignee"
+                            value={_newCtaAssignee}
+                            options={assigneeOptions}
+                            onchange={handleNewCtaAssigneeChange}
+                            class="c360-cta__create-field"></lightning-combobox>
+                        <lightning-input
+                            type="date"
+                            label="Due Date"
+                            value={_newCtaDueDate}
+                            onchange={handleNewCtaDueDateChange}
+                            class="c360-cta__create-field"></lightning-input>
+                    </div>
+                </div>
+                <div class="c360-cta__create-actions">
+                    <lightning-button
+                        label="Cancel"
+                        onclick={handleHideCreateForm}
+                        class="slds-m-right_x-small"></lightning-button>
+                    <lightning-button
+                        label="Create"
+                        variant="brand"
+                        onclick={handleCreateCta}
+                        disabled={isCreateDisabled}></lightning-button>
+                </div>
+            </div>
+        </template>
+
+        <!-- Filters -->
+        <div class="c360-cta__filters">
+            <template for:each={filterButtons} for:item="filter">
+                <button
+                    key={filter.value}
+                    class={filter.cssClass}
+                    data-filter={filter.value}
+                    onclick={handleFilterClick}>
+                    {filter.label}
+                </button>
+            </template>
+        </div>
+
+        <!-- CTA Cards -->
+        <template lwc:if={hasCtas}>
+            <div class="c360-cta__list">
+                <template for:each={filteredCtas} for:item="cta">
+                    <div key={cta.id} class={cta.cardClass}>
+                        <!-- Card Header (clickable) -->
+                        <div class="c360-cta__card-header" data-id={cta.id} onclick={handleCtaClick}>
+                            <div class="c360-cta__card-left">
+                                <span class={cta.priorityBadgeClass}>{cta.priorityLabel}</span>
+                                <span class="c360-cta__type-badge"
+                                      style={cta.typeBadgeStyle}>{cta.typeLabel}</span>
+                                <h3 class="c360-cta__card-name">{cta.name}</h3>
+                            </div>
+                            <div class="c360-cta__card-right">
+                                <span class={cta.statusBadgeClass}>{cta.statusLabel}</span>
+                                <span class={cta.dueDateClass}>{cta.formattedDueDate}</span>
+                            </div>
+                        </div>
+
+                        <!-- Progress Bar -->
+                        <div class="c360-cta__progress-row">
+                            <div class="c360-cta__progress-bar">
+                                <div class={cta.progressClass} style={cta.progressWidth}></div>
+                            </div>
+                            <span class="c360-cta__progress-text">{cta.completedTasks}/{cta.totalTasks} tasks</span>
+                        </div>
+
+                        <!-- Expanded Content -->
+                        <template lwc:if={cta.isExpanded}>
+                            <div class="c360-cta__expanded">
+                                <!-- Action Bar -->
+                                <div class="c360-cta__action-bar">
+                                    <span class="c360-cta__meta-text">Assignee: <strong>{cta.assignee}</strong></span>
+                                    <div class="c360-cta__action-buttons">
+                                        <!-- Quick Status Transitions -->
+                                        <template lwc:if={cta.isCompleted}>
+                                            <lightning-button
+                                                label="Reopen"
+                                                variant="neutral"
+                                                icon-name="utility:undo"
+                                                data-id={cta.id}
+                                                data-status="open"
+                                                onclick={handleStatusChange}></lightning-button>
+                                        </template>
+                                        <template lwc:else>
+                                            <template lwc:if={cta.status}>
+                                                <lightning-button-group>
+                                                    <lightning-button
+                                                        label="Complete"
+                                                        variant="success"
+                                                        icon-name="utility:check"
+                                                        data-id={cta.id}
+                                                        data-status="completed"
+                                                        onclick={handleStatusChange}></lightning-button>
+                                                    <lightning-button
+                                                        label="Edit"
+                                                        icon-name="utility:edit"
+                                                        data-id={cta.id}
+                                                        onclick={handleEditCta}></lightning-button>
+                                                    <lightning-button
+                                                        label="Delete"
+                                                        icon-name="utility:delete"
+                                                        data-id={cta.id}
+                                                        onclick={handleDeleteCta}></lightning-button>
+                                                </lightning-button-group>
+                                            </template>
+                                        </template>
+                                    </div>
+                                </div>
+
+
+                                <!-- Tags Row -->
+                                <template lwc:if={cta.hasTags}>
+                                    <div class="c360-cta__tags-row">
+                                        <template for:each={cta.tagLabels} for:item="tag">
+                                            <span key={tag} class="c360-cta__tag-display">{tag}</span>
+                                        </template>
+                                    </div>
+                                </template>
+
+                                <!-- Tasks List -->
+                                <div class="c360-cta__tasks">
+                                    <div class="c360-cta__tasks-header">
+                                        <h4 class="c360-cta__tasks-title">Tasks</h4>
+                                        <lightning-button-icon
+                                            icon-name="utility:add"
+                                            alternative-text="Add Task"
+                                            size="small"
+                                            data-id={cta.id}
+                                            onclick={handleShowAddTask}></lightning-button-icon>
+                                    </div>
+                                    <template for:each={cta.enrichedTasks} for:item="task">
+                                        <div key={task.id} class={task.taskClass}>
+                                            <lightning-icon
+                                                icon-name={task.checkIcon}
+                                                size="xx-small"
+                                                data-task-id={task.id}
+                                                data-cta-id={cta.id}
+                                                onclick={handleTaskToggle}></lightning-icon>
+                                            <span class="c360-cta__task-name">{task.name}</span>
+                                            <span class="c360-cta__task-date">{task.formattedDueDate}</span>
+                                        </div>
+                                    </template>
+
+                                    <!-- Add Task Inline Form -->
+                                    <template lwc:if={cta.isAddingTask}>
+                                        <div class="c360-cta__add-task-form">
+                                            <lightning-input
+                                                label="Task Name"
+                                                value={_newTaskName}
+                                                onchange={handleNewTaskNameChange}
+                                                placeholder="Enter task name..."
+                                                variant="label-hidden"
+                                                class="c360-cta__add-task-input"></lightning-input>
+                                            <lightning-button
+                                                label="Add"
+                                                variant="brand"
+                                                onclick={handleAddTask}></lightning-button>
+                                            <lightning-button
+                                                label="Cancel"
+                                                onclick={handleCancelAddTask}></lightning-button>
+                                        </div>
+                                    </template>
+                                </div>
+
+                                <!-- Playbook Button -->
+                                <div class="c360-cta__pb-btn-row">
+                                    <lightning-button
+                                        label="View Playbook"
+                                        variant="neutral"
+                                        icon-name="utility:steps"
+                                        data-type={cta.type}
+                                        onclick={handleViewPlaybook}></lightning-button>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- Playbook Panel -->
+        <template lwc:if={showPlaybook}>
+            <div class="c360-cta__pb-overlay">
+                <div class="c360-cta__pb-panel">
+                    <div class="c360-cta__pb-header">
+                        <h3 class="c360-cta__pb-title">{activePlaybook.name}</h3>
+                        <lightning-button-icon
+                            icon-name="utility:close"
+                            alternative-text="Close"
+                            onclick={handleClosePlaybook}></lightning-button-icon>
+                    </div>
+                    <p class="c360-cta__pb-desc">{activePlaybook.description}</p>
+                    <div class="c360-cta__pb-steps">
+                        <template for:each={activePlaybook.steps} for:item="step">
+                            <div key={step.key} class={step.stepClass}>
+                                <lightning-icon
+                                    icon-name={step.checkIcon}
+                                    size="x-small"
+                                    data-order={step.order}
+                                    onclick={handlePlaybookStepToggle}></lightning-icon>
+                                <div class="c360-cta__pb-step-content">
+                                    <span class="c360-cta__pb-step-name">Step {step.order}: {step.name}</span>
+                                    <span class="c360-cta__pb-step-desc">{step.description}</span>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <!-- Empty State -->
+        <template lwc:if={showEmpty}>
+            <c-customer360-empty-state
+                title="No CTAs"
+                message="No active calls-to-action for this account."
+                icon="utility:task"></c-customer360-empty-state>
+        </template>
+
+        <!-- Edit CTA Modal -->
+        <template lwc:if={showEditModal}>
+            <div class="c360-cta__modal-backdrop" onclick={handleModalBackdropClick}>
+                <div class="c360-cta__modal" onclick={handleModalContentClick}>
+                    <div class="c360-cta__modal-header">
+                        <h3 class="c360-cta__modal-title">Edit CTA</h3>
+                        <lightning-button-icon
+                            icon-name="utility:close"
+                            alternative-text="Close"
+                            onclick={handleCancelEdit}></lightning-button-icon>
+                    </div>
+                    <div class="c360-cta__modal-body">
+                        <lightning-input
+                            label="CTA Name"
+                            value={_editName}
+                            onchange={handleEditNameChange}
+                            class="c360-cta__modal-field"></lightning-input>
+                        <div class="c360-cta__modal-row">
+                            <lightning-combobox
+                                label="Type"
+                                value={_editType}
+                                options={ctaTypeOptions}
+                                onchange={handleEditTypeChange}></lightning-combobox>
+                            <lightning-combobox
+                                label="Priority"
+                                value={_editPriority}
+                                options={ctaPriorityOptions}
+                                onchange={handleEditPriorityChange}></lightning-combobox>
+                        </div>
+                        <div class="c360-cta__modal-row">
+                            <lightning-combobox
+                                label="Status"
+                                value={_editStatus}
+                                options={ctaStatusOptions}
+                                onchange={handleEditStatusChange}></lightning-combobox>
+                            <lightning-combobox
+                                label="Assignee"
+                                value={_editAssignee}
+                                options={assigneeOptions}
+                                onchange={handleEditAssigneeChange}></lightning-combobox>
+                        </div>
+                        <lightning-input
+                            type="date"
+                            label="Due Date"
+                            value={_editDueDate}
+                            onchange={handleEditDueDateChange}
+                            class="c360-cta__modal-field"></lightning-input>
+                        <!-- Tags -->
+                        <div class="c360-cta__modal-tags">
+                            <span class="c360-cta__modal-tags-label">Tags</span>
+                            <div class="c360-cta__modal-tags-wrap">
+                                <template for:each={editTagOptions} for:item="tag">
+                                    <span key={tag.value}
+                                          class={tag.pillClass}
+                                          data-value={tag.value}
+                                          onclick={handleToggleTag}>{tag.label}</span>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="c360-cta__modal-footer">
+                        <lightning-button
+                            label="Cancel"
+                            onclick={handleCancelEdit}></lightning-button>
+                        <lightning-button
+                            label="Save"
+                            variant="brand"
+                            onclick={handleSaveEdit}></lightning-button>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
+</template>

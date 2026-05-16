@@ -1,0 +1,29 @@
+<template>
+    <template lwc:if={isVisible}>
+        <div class="popover">
+            <div class="popover__header">
+                <h4 class="popover__title">{title}</h4>
+                <button class="popover__close" onclick={handleClose} title="Close">
+                    <lightning-icon icon-name="utility:close" size="xx-small"
+                                   alternative-text="Close"></lightning-icon>
+                </button>
+            </div>
+            <div class="popover__body">
+                <template lwc:if={hasItems}>
+                    <ul class="popover__list">
+                        <template for:each={displayItems} for:item="item">
+                            <li key={item.key} class="popover__item">
+                                <span class="popover__dot" style={item.dotStyle}></span>
+                                <span class="popover__label">{item.label}</span>
+                                <span class="popover__value">{item.value}</span>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
+                <template lwc:else>
+                    <p class="popover__empty">No details available</p>
+                </template>
+            </div>
+        </div>
+    </template>
+</template>

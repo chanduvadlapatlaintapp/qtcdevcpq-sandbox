@@ -1,0 +1,38 @@
+/* Container: centered flex column layout */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Icon wrapper: circular background */
+.empty-state-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #F3F3F3;
+    margin-bottom: 1rem;
+}
+
+/* Title styling */
+.empty-state-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #181818;
+    margin: 0 0 0.5rem 0;
+}
+
+/* Message styling */
+.empty-state-message {
+    font-size: 0.875rem;
+    color: #706E6B;
+    max-width: 400px;
+    margin: 0 0 1rem 0;
+    line-height: 1.5;
+}

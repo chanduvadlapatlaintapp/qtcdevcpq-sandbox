@@ -1,0 +1,13 @@
+/* ─── Health Ring Container ───────────────────────────────────────────────── */
+
+.health-ring {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ─── Animated Progress Arc ──────────────────────────────────────────────── */
+
+.health-ring__progress {
+    transition: stroke-dashoffset 0.8s ease-out;
+}

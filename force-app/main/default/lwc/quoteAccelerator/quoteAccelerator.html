@@ -1,0 +1,129 @@
+<template>
+    <div class="cpq-design-container">
+        <!-- Main Container with shadow -->
+        <div class="cpq-main-container">
+            <!-- CPQ Header Section -->
+            <div class="cpq-header-section">
+                <div class="header-left">
+                    <h1 class="deal-title">{dealTitle}</h1>
+                    <div class="metrics-row">
+                        <div class="metric-item">
+                            <span class="metric-label">Deal Standard:</span>
+                            <span class="metric-value">{dealStandard}</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Approval Levels:</span>
+                            <div class="approval-indicators">
+                                <template for:each={approvalLevels} for:item="level">
+                                    <span key={level.id} class={level.class} title={level.label}></span>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="intapp-logo">
+                        <span class="logo-text">intapp</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CPQ Pricing Table -->
+            <div class="cpq-table-wrapper">
+                <table class="cpq-pricing-table">
+                    <!-- Table Header - Row 1: Main Categories -->
+                    <thead>
+                        <tr class="header-row-main">
+                            <th class="product-header" rowspan="3">Product</th>
+                            <th class="current-header" colspan="3">
+                                <div class="header-content">
+                                    <span>Current {clientName}</span>
+                                    <span>entitlement ({currentPeriod})</span>
+                                </div>
+                            </th>
+                            <th class="proposed-header" colspan="6">
+                                <span>Proposed {proposedTermYears}-year term</span>
+                            </th>
+                        </tr>
+                        <!-- Row 2: Year Headers -->
+                        <tr class="header-row-years">
+                            <th class="current-subheader" colspan="3"></th>
+                            <th class="year1-header" colspan="3">Year 1 ({year1Period})</th>
+                            <th class="year2-header" colspan="3">Year 2 ({year2Period})</th>
+                        </tr>
+                        <!-- Row 3: Column Headers -->
+                        <tr class="header-row-columns">
+                            <th class="col-header current-col">Price</th>
+                            <th class="col-header current-col">Quantity</th>
+                            <th class="col-header current-col">ACV</th>
+                            <th class="col-header year1-col">Price</th>
+                            <th class="col-header year1-col">Quantity</th>
+                            <th class="col-header year1-col">ACV</th>
+                            <th class="col-header year2-col">Price</th>
+                            <th class="col-header year2-col">Quantity</th>
+                            <th class="col-header year2-col">ACV</th>
+                        </tr>
+                    </thead>
+                    <!-- Table Body -->
+                    <tbody>
+                        <template for:each={quoteLines} for:item="line">
+                            <tr key={line.id} class="data-row">
+                                <td class="product-cell">
+                                    <span class="product-name">{line.productName}</span>
+                                </td>
+                                <td class="data-cell current-data">{line.currentPrice}</td>
+                                <td class="data-cell current-data quantity-cell">
+                                    <div class="quantity-wrapper">
+                                        <span class="quantity-value">{line.currentQuantity}</span>
+                                        <span class="quantity-unit">{line.quantityUnit}</span>
+                                    </div>
+                                </td>
+                                <td class="data-cell current-data">{line.currentACV}</td>
+                                <td class="data-cell year1-data">{line.year1Price}</td>
+                                <td class="data-cell year1-data quantity-cell">
+                                    <div class="quantity-wrapper">
+                                        <span class="quantity-value">{line.year1Quantity}</span>
+                                        <span class="quantity-unit">{line.quantityUnit}</span>
+                                    </div>
+                                </td>
+                                <td class="data-cell year1-data">{line.year1ACV}</td>
+                                <td class="data-cell year2-data">{line.year2Price}</td>
+                                <td class="data-cell year2-data quantity-cell">
+                                    <div class="quantity-wrapper">
+                                        <span class="quantity-value">{line.year2Quantity}</span>
+                                        <span class="quantity-unit">{line.quantityUnit}</span>
+                                    </div>
+                                </td>
+                                <td class="data-cell year2-data">{line.year2ACV}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                    <!-- Table Footer - Totals -->
+                    <tfoot>
+                        <tr class="footer-row">
+                            <td class="footer-empty"></td>
+                            <td class="footer-total current-footer" colspan="3">
+                                <span class="total-label">Current: {currentTotal}</span>
+                            </td>
+                            <td class="footer-total year1-footer" colspan="3">
+                                <span class="total-label">Y1: {year1Total}</span>
+                            </td>
+                            <td class="footer-total year2-footer" colspan="3">
+                                <span class="total-label">Y2: {year2Total}</span>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <!-- CPQ Summary Section -->
+            <div class="cpq-summary-section">
+                <ul class="summary-list">
+                    <template for:each={summaryNotes} for:item="note">
+                        <li key={note.id} class="summary-item">{note.text}</li>
+                    </template>
+                </ul>
+            </div>
+        </div>
+    </div>
+</template>

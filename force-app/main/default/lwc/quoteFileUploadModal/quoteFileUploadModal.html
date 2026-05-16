@@ -1,0 +1,63 @@
+<template>
+    <lightning-modal-header label="Upload Files"></lightning-modal-header>
+
+    <lightning-modal-body>
+        <!-- Document Type Selection -->
+        <div class="slds-m-bottom_medium">
+            <lightning-combobox
+                name="documentType"
+                label="Document Type"
+                value={selectedDocumentType}
+                placeholder="-- Select Document Type --"
+                options={documentTypeOptions}
+                onchange={handleDocumentTypeChange}
+                required
+                message-when-value-missing="Please select a Document Type before uploading."
+            ></lightning-combobox>
+        </div>
+
+        <!-- File Upload Area -->
+        <template if:true={isUploadEnabled}>
+            <lightning-file-upload
+                label="Upload Files"
+                name="fileUploader"
+                accept={acceptedFormats}
+                record-id={recordId}
+                onuploadfinished={handleUploadFinished}
+                multiple
+            ></lightning-file-upload>
+        </template>
+
+        <template if:false={isUploadEnabled}>
+            <div class="slds-box slds-box_x-small slds-theme_shade slds-text-align_center slds-m-top_small">
+                <p class="slds-text-color_weak">
+                    Please select a Document Type above to enable file upload.
+                </p>
+            </div>
+        </template>
+
+        <!-- Error Display with Retry -->
+        <template if:true={errorMessage}>
+            <div class="slds-notify slds-notify_alert slds-alert_error slds-m-top_medium" role="alert">
+                <span class="slds-assistive-text">error</span>
+                <h2>{errorMessage}</h2>
+            </div>
+            <div class="slds-m-top_small slds-text-align_center">
+                <lightning-button
+                    label="Retry"
+                    variant="brand"
+                    onclick={handleRetry}
+                ></lightning-button>
+            </div>
+        </template>
+
+        <!-- Spinner while stamping Document Type -->
+        <template if:true={isProcessing}>
+            <lightning-spinner alternative-text="Processing..." size="medium"></lightning-spinner>
+        </template>
+    </lightning-modal-body>
+
+    <lightning-modal-footer>
+        <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+    </lightning-modal-footer>
+</template>

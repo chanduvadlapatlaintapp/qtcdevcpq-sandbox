@@ -1,0 +1,211 @@
+<template>
+    <div class="subscription-container">
+        <!-- Header Section -->
+        <div class="header-section">
+            <div class="header-content">
+                <div class="header-title-section">
+                    <h1 class="page-title">Contract Subscriptions</h1>
+                    <p class="page-subtitle">Move the slider to view active subscriptions on any date</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer/Contract Input Section -->
+        <div class="input-section">
+            <div class="input-grid">
+                <div class="input-field">
+                    <label class="input-label">Customer Name</label>
+                    <input 
+                        type="text" 
+                        class="input-control input-customer"
+                        placeholder="Enter customer name"
+                        value={customerName}
+                        onchange={handleCustomerNameChange}
+                    />
+                </div>
+                <div class="input-field">
+                    <label class="input-label">Contract Number</label>
+                    <input 
+                        type="text" 
+                        class="input-control input-contract"
+                        placeholder="Enter contract number"
+                        value={contractNumber}
+                        onchange={handleContractNumberChange}
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- Date Slider Section -->
+        <template if:true={showContent}>
+        <div class="date-slider-card">
+            <div class="date-slider-header">
+                <div class="date-slider-icon">
+                    <lightning-icon icon-name="utility:date_input" size="medium" class="icon-white"></lightning-icon>
+                </div>
+                <div class="date-slider-info">
+                    <div class="date-label">Selected Date</div>
+                    <div class="date-value">{formattedSelectedDate}</div>
+                </div>
+            </div>
+            
+            <div class="slider-container">
+                <input 
+                    type="range" 
+                    min="0" 
+                    max={totalDays}
+                    value={currentDayOffset}
+                    onchange={handleSliderChange}
+                    class="date-range-slider"
+                />
+                <div class="slider-labels">
+                    <span class="slider-label">{formattedMinDate}</span>
+                    <span class="slider-label">{formattedMaxDate}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Stats -->
+        <div class="stats-section">
+            <h2 class="section-title">Active Subscriptions</h2>
+            <div class="stats-container">
+                <div class="stat-card stat-active">
+                    <span class="stat-label">Active</span>
+                    <span class="stat-value">{activeSubscriptions.length}</span>
+                </div>
+                <div class="stat-card stat-monthly">
+                    <span class="stat-label">Monthly Total</span>
+                    <span class="stat-value">{formattedTotalMonthlyCost}</span>
+                </div>
+                <div class="stat-card stat-acv">
+                    <span class="stat-label">Total ACV</span>
+                    <span class="stat-value">{formattedTotalACV}</span>
+                </div>
+            </div>
+        </div>
+        </template>
+
+        <!-- Subscription List -->
+        <template if:true={showContent}>
+        <div class="subscription-list-card">
+            <template if:true={isLoading}>
+                <div class="loading-container">
+                    <lightning-spinner alternative-text="Loading subscriptions" size="medium"></lightning-spinner>
+                </div>
+            </template>
+            
+            <template if:true={error}>
+                <div class="error-container">
+                    <lightning-icon icon-name="utility:error" size="small" class="error-icon"></lightning-icon>
+                    <div class="error-message">
+                        Error loading subscriptions: {errorMessage}
+                    </div>
+                </div>
+            </template>
+            
+            <template if:false={isLoading}>
+                <template if:true={hasSubscriptions}>
+                    <div class="table-container">
+                        <table class="subscription-table">
+                            <thead class="table-header">
+                                <tr>
+                                    <th class="table-header-cell">
+                                        <div class="header-content">
+                                            <lightning-icon icon-name="standard:subscription" size="xx-small"></lightning-icon>
+                                            <span>Subscription</span>
+                                        </div>
+                                    </th>
+                                    <template if:true={showContractColumn}>
+                                        <th class="table-header-cell">
+                                            <div class="header-content">
+                                                <lightning-icon icon-name="standard:contract" size="xx-small"></lightning-icon>
+                                                <span>Contract</span>
+                                            </div>
+                                        </th>
+                                    </template>
+                                    <th class="table-header-cell">
+                                        <div class="header-content">
+                                            <lightning-icon icon-name="utility:date_input" size="xx-small"></lightning-icon>
+                                            <span>Start Date</span>
+                                        </div>
+                                    </th>
+                                    <th class="table-header-cell">
+                                        <div class="header-content">
+                                            <lightning-icon icon-name="utility:number_input" size="xx-small"></lightning-icon>
+                                            <span>Qty</span>
+                                        </div>
+                                    </th>
+                                    <th class="table-header-cell">
+                                        <div class="header-content">
+                                            <lightning-icon icon-name="utility:money" size="xx-small"></lightning-icon>
+                                            <span>Monthly Cost</span>
+                                        </div>
+                                    </th>
+                                    <th class="table-header-cell">
+                                        <div class="header-content">
+                                            <lightning-icon icon-name="utility:trending" size="xx-small"></lightning-icon>
+                                            <span>ACV</span>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-body">
+                                <template for:each={activeSubscriptions} for:item="subscription">
+                                    <tr key={subscription.Id} class="table-row">
+                                        <td class="table-cell subscription-name">
+                                            <div class="name-content">
+                                                <div class="name-indicator"></div>
+                                                <span>{subscription.Name}</span>
+                                            </div>
+                                        </td>
+                                        <template if:true={showContractColumn}>
+                                            <td class="table-cell">
+                                                {subscription.ContractName}
+                                            </td>
+                                        </template>
+                                        <td class="table-cell">
+                                            {subscription.formattedStartDate}
+                                        </td>
+                                        <td class="table-cell">
+                                            <span class="quantity-badge">
+                                                {subscription.Quantity__c}
+                                            </span>
+                                        </td>
+                                        <td class="table-cell">
+                                            {subscription.formattedMonthlyCost}
+                                        </td>
+                                        <td class="table-cell">
+                                            <span class="acv-badge">
+                                                {subscription.formattedACV}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </template>
+                
+                <template if:false={hasSubscriptions}>
+                    <div class="empty-state">
+                        <lightning-icon icon-name="standard:subscription" size="large" class="empty-icon"></lightning-icon>
+                        <p class="empty-title">No active subscriptions on this date</p>
+                        <p class="empty-description">There are no subscriptions associated with this contract for the selected date.</p>
+                    </div>
+                </template>
+            </template>
+        </div>
+        </template>
+        
+        <!-- Initial State Message -->
+        <template if:false={showContent}>
+            <template if:false={recordId}>
+                <div class="empty-state">
+                    <lightning-icon icon-name="utility:search" size="large" class="empty-icon"></lightning-icon>
+                    <p class="empty-title">Enter a Contract Number</p>
+                    <p class="empty-description">Enter a contract number above to view subscriptions and related information.</p>
+                </div>
+            </template>
+        </template>
+    </div>
+</template>

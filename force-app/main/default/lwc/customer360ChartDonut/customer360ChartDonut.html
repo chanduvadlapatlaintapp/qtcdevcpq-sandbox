@@ -1,0 +1,34 @@
+<template>
+    <div class="donut-container">
+        <svg lwc:if={hasData} xmlns="http://www.w3.org/2000/svg"
+             width={chartSize} height={chartSize} viewBox={viewBox}>
+            <template for:each={arcs} for:item="arc">
+                <circle key={arc.key}
+                    class="donut-segment"
+                    data-index={arc.index}
+                    cx={center} cy={center} r={radius}
+                    fill="none"
+                    stroke={arc.color}
+                    stroke-width={strokeWidth}
+                    stroke-dasharray={arc.dashArray}
+                    stroke-dashoffset={arc.dashOffset}
+                    transform={rotateTransform}
+                    onclick={handleSegmentClick}></circle>
+            </template>
+            <text lwc:if={centerValue} x={center} y={centerValueY}
+                  text-anchor="middle" class="center-value">{centerValue}</text>
+            <text lwc:if={centerLabel} x={center} y={centerLabelY}
+                  text-anchor="middle" class="center-label">{centerLabel}</text>
+        </svg>
+        <div lwc:if={showLegend} class="donut-legend">
+            <template for:each={legendItems} for:item="item">
+                <div key={item.key} class="legend-item legend-item--clickable"
+                     data-index={item.index} onclick={handleLegendClick}>
+                    <span class="legend-dot" style={item.dotStyle}></span>
+                    <span class="legend-label">{item.label}</span>
+                    <span class="legend-value">{item.displayValue}</span>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

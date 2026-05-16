@@ -1,0 +1,77 @@
+<template>
+    <div class="c360-fm">
+        <!-- Header -->
+        <div class="c360-fm__header">
+            <h2 class="c360-fm__title">
+                <lightning-icon icon-name="utility:toggle_on" size="small"></lightning-icon>
+                Feature Enablement Map
+            </h2>
+        </div>
+
+        <!-- Summary Metrics -->
+        <template lwc:if={hasData}>
+            <div class="c360-fm__metrics">
+                <div class="c360-fm__metric">
+                    <span class="c360-fm__metric-value">{totalEntitled}</span>
+                    <span class="c360-fm__metric-label">Entitled</span>
+                </div>
+                <div class="c360-fm__metric">
+                    <span class="c360-fm__metric-value">{totalEnabled}</span>
+                    <span class="c360-fm__metric-label">Enabled</span>
+                </div>
+                <div class="c360-fm__metric">
+                    <span class="c360-fm__metric-value">{enablementRate}</span>
+                    <span class="c360-fm__metric-label">Enablement Rate</span>
+                </div>
+                <div class="c360-fm__metric c360-fm__metric--highlight">
+                    <span class="c360-fm__metric-value">{totalWhitespace}</span>
+                    <span class="c360-fm__metric-label">Whitespace</span>
+                </div>
+            </div>
+        </template>
+
+        <!-- Product Sections -->
+        <template lwc:if={hasData}>
+            <template for:each={featureData} for:item="product">
+                <div key={product.key} class="c360-fm__product">
+                    <div class="c360-fm__product-header">
+                        <span class="c360-fm__product-name">{product.product}</span>
+                        <span class="c360-fm__product-stats">
+                            {product.totalEnabled}/{product.totalEntitled} enabled ({product.enablementPercent}%)
+                        </span>
+                    </div>
+                    <div class="c360-fm__grid">
+                        <div class="c360-fm__grid-header">
+                            <span class="c360-fm__grid-col c360-fm__grid-col--feature">Feature</span>
+                            <span class="c360-fm__grid-col c360-fm__grid-col--status">Status</span>
+                            <span class="c360-fm__grid-col c360-fm__grid-col--adoption">Adoption</span>
+                        </div>
+                        <template for:each={product.features} for:item="feature">
+                            <div key={feature.key} class="c360-fm__grid-row">
+                                <span class="c360-fm__grid-col c360-fm__grid-col--feature">{feature.name}</span>
+                                <span class={feature.statusClass}>
+                                    <lightning-icon icon-name={feature.statusIcon} size="xx-small"></lightning-icon>
+                                    {feature.statusLabel}
+                                </span>
+                                <span class="c360-fm__grid-col c360-fm__grid-col--adoption">
+                                    <div class="c360-fm__bar">
+                                        <div class={feature.adoptionBarClass} style={feature.adoptionWidth}></div>
+                                    </div>
+                                    <span class="c360-fm__bar-label">{feature.adoptionLabel}</span>
+                                </span>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </template>
+        </template>
+
+        <!-- Empty -->
+        <template lwc:if={showEmpty}>
+            <c-customer360-empty-state
+                title="No Feature Data"
+                message="Feature enablement data is not available."
+                icon="utility:toggle_off"></c-customer360-empty-state>
+        </template>
+    </div>
+</template>

@@ -1,0 +1,11 @@
+<template>
+    <nav class="detail-tabs">
+        <template for:each={tabs} for:item="tab">
+            <button key={tab.key} class={tab.className} onclick={handleTabClick}
+                    data-tab={tab.key}>
+                <lightning-icon icon-name={tab.icon} size="xx-small"></lightning-icon>
+                <span>{tab.label}</span>
+            </button>
+        </template>
+    </nav>
+</template>

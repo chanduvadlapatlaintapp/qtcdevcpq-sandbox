@@ -1,0 +1,134 @@
+.line-card {
+    background: var(--color-surface, white);
+    border: 1px solid var(--color-border, #e5e5e5);
+    border-radius: var(--radius, 8px);
+    overflow: hidden;
+    transition: all 0.15s ease;
+}
+
+.line-card:hover {
+    border-color: var(--color-primary, #0176d3);
+}
+
+.line-card.locked {
+    opacity: 0.7;
+    background: var(--color-surface-hover, #fafafa);
+}
+
+.line-card.needs-approval {
+    border-left: 3px solid var(--color-warning, #fe9339);
+}
+
+.card-collapsed {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    cursor: pointer;
+}
+
+.card-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.product-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text, #181818);
+}
+
+.segment-badge {
+    font-size: 11px;
+    padding: 2px 8px;
+    background: var(--color-surface-hover, #f0f0f0);
+    border-radius: 4px;
+    color: var(--color-text-secondary, #706e6b);
+}
+
+.lock-icon {
+    color: var(--color-text-secondary, #706e6b);
+}
+
+.card-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.field-compact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.field-label {
+    font-size: 10px;
+    color: var(--color-text-secondary, #706e6b);
+    text-transform: uppercase;
+}
+
+.field-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text, #181818);
+}
+
+.expand-icon {
+    color: var(--color-text-secondary, #706e6b);
+}
+
+.card-expanded {
+    padding: 0 16px 16px;
+    border-top: 1px solid var(--color-border, #f0f0f0);
+}
+
+.expanded-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding-top: 16px;
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.field-group label {
+    font-size: 11px;
+    color: var(--color-text-secondary, #706e6b);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.readonly-value {
+    font-size: 14px;
+    color: var(--color-text, #181818);
+    padding: 6px 0;
+}
+
+.inline-input {
+    max-width: 150px;
+}
+
+.approval-badge {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.approval-badge.required {
+    background: #fef0e8;
+    color: var(--color-warning, #fe9339);
+}
+
+.approval-badge.not-required {
+    background: #e8f7ee;
+    color: var(--color-success, #2e844a);
+}

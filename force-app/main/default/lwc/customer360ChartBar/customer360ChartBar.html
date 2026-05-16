@@ -1,0 +1,23 @@
+<template>
+    <div class="chart-container">
+        <svg lwc:if={hasData} xmlns="http://www.w3.org/2000/svg"
+             width="100%" height={chartHeight} viewBox={viewBox}>
+            <template for:each={bars} for:item="bar">
+                <!-- For horizontal: label on left, bar going right -->
+                <g key={bar.key} class="bar-group" data-index={bar.index}
+                   onclick={handleBarClick}>
+                    <text x={bar.labelX} y={bar.labelY}
+                          class="bar-label" text-anchor={bar.textAnchor}
+                          dominant-baseline="middle">{bar.label}</text>
+                    <rect x={bar.x} y={bar.y}
+                          width={bar.width} height={bar.height}
+                          rx="4" fill={bar.color} class="bar-rect"></rect>
+                    <text lwc:if={showValues} x={bar.valueX} y={bar.valueY}
+                          class="bar-value" dominant-baseline="middle">{bar.displayValue}</text>
+                </g>
+            </template>
+        </svg>
+        <c-customer360-empty-state lwc:if={noData}
+            title="No Data" icon="utility:chart"></c-customer360-empty-state>
+    </div>
+</template>

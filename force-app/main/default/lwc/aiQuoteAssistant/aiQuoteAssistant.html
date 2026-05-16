@@ -1,0 +1,146 @@
+<template>
+    <div class={wrapperClass}>
+        <!-- Main Chatbot Panel -->
+        <div class={containerClass}>
+            <!-- Header -->
+            <div class="chat-header">
+                <div class="header-left">
+                    <div class="assistant-icon">
+                        <lightning-icon icon-name="standard:bot" size="small"></lightning-icon>
+                    </div>
+                    <span class="header-title">AI Quote Assistant</span>
+                </div>
+                <div class="header-actions">
+                    <lightning-button-icon 
+                        icon-name="utility:delete" 
+                        alternative-text="Clear Chat"
+                        title="Clear Chat"
+                        variant="bare"
+                        class="header-icon-btn"
+                        onclick={handleClearChat}>
+                    </lightning-button-icon>
+                    <lightning-button-icon 
+                        icon-name={collapseIcon}
+                        alternative-text="Toggle Panel"
+                        title="Toggle Panel"
+                        variant="bare"
+                        class="header-icon-btn"
+                        onclick={handleToggleCollapse}>
+                    </lightning-button-icon>
+                </div>
+            </div>
+
+            <!-- Chat Messages Container -->
+            <template if:false={isCollapsed}>
+                <div class="chat-messages" data-id="chatContainer">
+                    <template for:each={messages} for:item="message">
+                        <div key={message.id} class={message.containerClass}>
+                            <template if:true={message.isBot}>
+                                <div class="avatar bot-avatar">
+                                    <lightning-icon icon-name="standard:bot" size="x-small"></lightning-icon>
+                                </div>
+                            </template>
+                            
+                            <div class={message.messageClass}>
+                                <!-- Message Content -->
+                                <div class="message-content">
+                                    <template if:true={message.isWelcome}>
+                                        <p class="welcome-text">{message.text}</p>
+                                        <p class="try-text">Try these:</p>
+                                        <ul class="suggestion-list">
+                                            <template for:each={welcomeSuggestions} for:item="suggestion">
+                                                <li key={suggestion}>{suggestion}</li>
+                                            </template>
+                                        </ul>
+                                    </template>
+                                    <template if:false={message.isWelcome}>
+                                        <p class="message-text">{message.text}</p>
+                                    </template>
+                                </div>
+
+                                <!-- Quick Action Buttons (for welcome message) -->
+                                <template if:true={message.isWelcome}>
+                                    <div class="quick-actions">
+                                        <template for:each={quickActions} for:item="action">
+                                            <button key={action.id} class="quick-action-btn" onclick={handleQuickAction} data-action={action.text}>
+                                                {action.text}
+                                            </button>
+                                        </template>
+                                    </div>
+                                </template>
+
+                                <!-- Cart Summary (if applicable) -->
+                                <template if:true={message.hasCartSummary}>
+                                    <div class="cart-summary">
+                                        <template for:each={message.cartItems} for:item="item">
+                                            <div key={item.id} class="cart-item-row">
+                                                <span class="item-name">{item.name}</span>
+                                                <span class="item-qty">x{item.quantity}</span>
+                                                <template if:true={item.discount}>
+                                                    <span class="item-discount">-{item.discount}%</span>
+                                                </template>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </template>
+
+                                <!-- Timestamp -->
+                                <div class="message-timestamp">{message.timestamp}</div>
+                            </div>
+
+                            <template if:true={message.isUser}>
+                                <div class="avatar user-avatar">
+                                    <lightning-icon icon-name="standard:user" size="x-small"></lightning-icon>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+
+                    <!-- Typing Indicator -->
+                    <template if:true={isTyping}>
+                        <div class="message-row bot">
+                            <div class="avatar bot-avatar">
+                                <lightning-icon icon-name="standard:bot" size="x-small"></lightning-icon>
+                            </div>
+                            <div class="message bot-message typing-indicator">
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- Input Area -->
+                <div class="chat-input-area">
+                    <div class="input-wrapper">
+                        <lightning-textarea
+                            class="chat-input"
+                            placeholder="Ask me anything about quoting..."
+                            value={userInput}
+                            onkeydown={handleKeyDown}
+                            onchange={handleInputChange}
+                            variant="label-hidden"
+                            label="Chat Input"
+                            data-id="chatInput" style="color:black;">
+                        </lightning-textarea>
+                        <div class="input-actions">
+                            <lightning-button-icon 
+                                icon-name="utility:voice_recording"
+                                alternative-text="Voice Input"
+                                title="Voice Input (Coming Soon)"
+                                variant="bare"
+                                class="voice-btn"
+                                disabled>
+                            </lightning-button-icon>
+                            <button class="send-btn" onclick={handleSendMessage} disabled={isSendDisabled}>
+                                <lightning-icon icon-name="utility:right" size="x-small"></lightning-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="input-hint">Press Enter to send, Shift+Enter for new line</div>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

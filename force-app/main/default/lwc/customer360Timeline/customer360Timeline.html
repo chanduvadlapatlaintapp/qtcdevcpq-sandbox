@@ -1,0 +1,72 @@
+<template>
+    <div class="c360-tl">
+        <!-- Header -->
+        <div class="c360-tl__header">
+            <h2 class="c360-tl__title">
+                <lightning-icon icon-name="utility:clock" size="small"></lightning-icon>
+                Activity Timeline ({eventCount})
+            </h2>
+            <div class="c360-tl__search">
+                <lightning-input
+                    type="search"
+                    placeholder="Search activities..."
+                    variant="label-hidden"
+                    value={_searchTerm}
+                    onchange={handleSearch}></lightning-input>
+            </div>
+        </div>
+
+        <!-- Type Filters -->
+        <div class="c360-tl__filters">
+            <template for:each={filterButtons} for:item="filter">
+                <button
+                    key={filter.value}
+                    class={filter.cssClass}
+                    data-filter={filter.value}
+                    onclick={handleFilterClick}>
+                    {filter.label}
+                </button>
+            </template>
+        </div>
+
+        <!-- Timeline Feed -->
+        <template lwc:if={hasEvents}>
+            <div class="c360-tl__feed">
+                <template for:each={filteredEvents} for:item="evt">
+                    <div key={evt.id} class="c360-tl__item">
+                        <div class="c360-tl__item-line">
+                            <div class="c360-tl__item-dot" style={evt.iconStyle}></div>
+                        </div>
+                        <div class="c360-tl__item-content">
+                            <div class="c360-tl__item-header">
+                                <span class="c360-tl__item-type" style={evt.iconStyle}>{evt.typeLabel}</span>
+                                <span class="c360-tl__item-date" title={evt.fullDate}>{evt.formattedDate}</span>
+                            </div>
+                            <h3 class="c360-tl__item-title">{evt.title}</h3>
+                            <p class="c360-tl__item-desc">{evt.description}</p>
+                            <span class="c360-tl__item-user">{evt.user}</span>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- Show More -->
+        <template lwc:if={hasMore}>
+            <div class="c360-tl__more">
+                <lightning-button
+                    label="Show More"
+                    variant="neutral"
+                    onclick={handleShowMore}></lightning-button>
+            </div>
+        </template>
+
+        <!-- Empty State -->
+        <template lwc:if={showEmpty}>
+            <c-customer360-empty-state
+                title="No Activities"
+                message="No activities found matching your filters."
+                icon="utility:clock"></c-customer360-empty-state>
+        </template>
+    </div>
+</template>

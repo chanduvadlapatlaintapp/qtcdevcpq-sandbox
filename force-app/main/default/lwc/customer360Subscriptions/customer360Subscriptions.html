@@ -1,0 +1,138 @@
+<template>
+    <div class="c360-subs">
+        <!-- Header -->
+        <div class="c360-subs__header">
+            <div class="c360-subs__title-row">
+                <div class="c360-subs__title-left">
+                    <div class="c360-subs__icon-box">
+                        <lightning-icon icon-name="utility:contract" size="x-small" variant="inverse"></lightning-icon>
+                    </div>
+                    <h2 class="c360-subs__title">Subscriptions</h2>
+                    <span class="c360-subs__source-badge">{sourceBadge.label}</span>
+                    <span class="c360-subs__count">{recordCount}</span>
+                </div>
+                <div class="c360-subs__actions">
+                    <template lwc:if={isMockData}>
+                        <span class="c360-subs__mock-badge">Demo Data</span>
+                    </template>
+                    <button class="c360-subs__export-btn" onclick={handleExportCsv} title="Export CSV">
+                        Export CSV
+                    </button>
+                    <lightning-button-icon
+                        icon-name="utility:refresh"
+                        alternative-text="Refresh"
+                        variant="border-filled"
+                        onclick={handleRefresh}></lightning-button-icon>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Metrics -->
+        <template lwc:if={hasData}>
+            <div class="c360-subs__metrics">
+                <div class="c360-subs__metric">
+                    <span class="c360-subs__metric-value">{totalAcv}</span>
+                    <span class="c360-subs__metric-label">Total ACV</span>
+                </div>
+                <div class="c360-subs__metric">
+                    <span class="c360-subs__metric-value">{activeCount}</span>
+                    <span class="c360-subs__metric-label">Active</span>
+                </div>
+                <div class="c360-subs__metric">
+                    <span class="c360-subs__metric-value">{totalSeats}</span>
+                    <span class="c360-subs__metric-label">Total Seats</span>
+                </div>
+                <div class="c360-subs__metric">
+                    <span class="c360-subs__metric-value">{expiringSoonCount}</span>
+                    <span class="c360-subs__metric-label">Expiring (90d)</span>
+                </div>
+            </div>
+        </template>
+
+        <!-- Filter Bar -->
+        <template lwc:if={hasData}>
+            <div class="c360-subs__filters">
+                <lightning-combobox
+                    label="Status"
+                    value={_filterStatus}
+                    options={statusOptions}
+                    variant="label-hidden"
+                    onchange={handleStatusFilter}
+                    class="c360-subs__filter-combo"
+                ></lightning-combobox>
+                <lightning-combobox
+                    label="Product"
+                    value={_filterProduct}
+                    options={productOptions}
+                    variant="label-hidden"
+                    onchange={handleProductFilter}
+                    class="c360-subs__filter-combo"
+                ></lightning-combobox>
+                <template lwc:if={hasActiveFilters}>
+                    <button class="c360-subs__clear-btn" onclick={handleClearFilters}>
+                        Clear ({activeFilterCount})
+                    </button>
+                </template>
+            </div>
+        </template>
+
+        <!-- Loading -->
+        <template lwc:if={isLoading}>
+            <div class="c360-subs__loading">
+                <lightning-spinner alternative-text="Loading..." size="small"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Card Grid -->
+        <template lwc:if={hasData}>
+            <div class="c360-subs__card-grid">
+                <template for:each={displayCards} for:item="sub">
+                    <div key={sub.id} class="c360-subs__card">
+                        <div class="c360-subs__card-top">
+                            <div class="c360-subs__card-product">
+                                <span class="c360-subs__card-product-name">{sub.product}</span>
+                            </div>
+                            <span class="c360-subs__card-status" style={sub.statusPillStyle}>{sub.status}</span>
+                        </div>
+                        <div class="c360-subs__card-category">{sub.category}</div>
+                        <div class="c360-subs__card-sku">{sub.sku}</div>
+                        <div class="c360-subs__card-details">
+                            <div class="c360-subs__card-detail">
+                                <span class="c360-subs__card-detail-label">Seats</span>
+                                <span class="c360-subs__card-detail-value">{sub.seatsFormatted}</span>
+                            </div>
+                            <div class="c360-subs__card-detail">
+                                <span class="c360-subs__card-detail-label">Contract Value</span>
+                                <span class="c360-subs__card-detail-value c360-subs__card-detail-value--bold">{sub.contractValueFormatted}/yr</span>
+                            </div>
+                        </div>
+                        <div class="c360-subs__card-dates">{sub.dateRange}</div>
+                        <template lwc:if={sub.isActive}>
+                            <button
+                                class="c360-subs__card-link"
+                                data-id={sub.id}
+                                onclick={handleViewUsage}
+                            >View Usage &gt;</button>
+                        </template>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- Empty State -->
+        <template lwc:if={showEmpty}>
+            <c-customer360-empty-state
+                title="No Subscriptions"
+                message="No subscription records found for this account."
+                icon="utility:contract"></c-customer360-empty-state>
+        </template>
+
+        <!-- Error -->
+        <template lwc:if={errorMessage}>
+            <div class="c360-subs__error">
+                <lightning-icon icon-name="utility:error" variant="error" size="small"></lightning-icon>
+                <span>{errorMessage}</span>
+            </div>
+        </template>
+    </div>
+</template>

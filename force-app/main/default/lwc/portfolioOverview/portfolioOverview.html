@@ -1,0 +1,148 @@
+<template>
+    <template if:false={hasStats}>
+        <div class="po-empty">
+            <p>No subscriptions found for this account.</p>
+        </div>
+    </template>
+
+    <template if:true={hasStats}>
+        <div class="po-root">
+            <!-- Account Banner -->
+            <div class="po-banner">
+                <p class="po-banner-label">Client Account</p>
+                <h2 class="po-banner-name">{accountName}</h2>
+                <div class="po-banner-meta">
+                    <span>{currenciesLabel}</span>
+                    <span class="po-dot">&bull;</span>
+                    <span>{subscriptionLabel}</span>
+                    <span class="po-dot">&bull;</span>
+                    <span>{contractLabel}</span>
+                </div>
+            </div>
+
+            <!-- Account Metadata Grid -->
+            <div class="po-meta-grid">
+                <div class="po-meta-field">
+                    <span class="po-meta-label">GTM Tier</span>
+                    <span class="po-meta-value">{gtmTier}</span>
+                </div>
+                <div class="po-meta-field">
+                    <span class="po-meta-label">Client Since</span>
+                    <span class="po-meta-value">{clientSince}</span>
+                </div>
+                <div class="po-meta-field">
+                    <span class="po-meta-label">MSSA #</span>
+                    <span class="po-meta-value">{mssaNumber}</span>
+                </div>
+                <div class="po-meta-field">
+                    <span class="po-meta-label">MSSA Version #</span>
+                    <span class="po-meta-value">{mssaVersion}</span>
+                </div>
+                <div class="po-meta-field">
+                    <span class="po-meta-label">MSSA Uplift Cap?</span>
+                    <span class="po-meta-value">{mssaUpliftCap}</span>
+                </div>
+                <div class="po-meta-field">
+                    <span class="po-meta-label">Cloud Addendum #</span>
+                    <span class="po-meta-value">{cloudAddendum}</span>
+                </div>
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="po-cards">
+                <div class="po-card">
+                    <div class="po-card-body">
+                        <div>
+                            <p class="po-card-title">Total Contract Value</p>
+                            <p class="po-card-value">{totalContractValue}</p>
+                            <p class="po-card-subtitle">Net Price &times; Quantity across all subscriptions</p>
+                        </div>
+                        <div class="card-icon card-icon-blue">{iconMoney}</div>
+                    </div>
+                </div>
+                <div class="po-card">
+                    <div class="po-card-body">
+                        <div>
+                            <p class="po-card-title">Total ACV Change</p>
+                            <p class="po-card-value">{totalAcvChange}</p>
+                            <p class="po-card-subtitle">Sum of ACV changes</p>
+                        </div>
+                        <div class="card-icon card-icon-green">{iconChart}</div>
+                    </div>
+                </div>
+                <div class="po-card">
+                    <div class="po-card-body">
+                        <div>
+                            <p class="po-card-title">Active Contracts</p>
+                            <p class="po-card-value">{activeContractsCount}</p>
+                            <p class="po-card-subtitle">{subscriptionLinesLabel}</p>
+                        </div>
+                        <div class="card-icon card-icon-purple">{iconContracts}</div>
+                    </div>
+                </div>
+                <div class="po-card">
+                    <div class="po-card-body">
+                        <div>
+                            <p class="po-card-title">Renewing &le; 90 Days</p>
+                            <p class="po-card-value">{renewingSoonCount}</p>
+                            <p class="po-card-subtitle">{renewingSoonSubtitle}</p>
+                        </div>
+                        <div class={renewingSoonColorClass}>{iconClock}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two-Column Layout: Deployment Split + Product Mix -->
+            <div class="po-two-col">
+                <!-- Deployment Split -->
+                <div class="po-panel">
+                    <p class="po-panel-title">Deployment Split</p>
+                    <div class="po-deploy-container">
+                        <!-- Donut Chart -->
+                        <div class="po-donut-wrap">
+                            <svg viewBox="0 0 36 36" width="100" height="100">
+                                <circle cx="18" cy="18" r="14" fill="none" stroke="#E6E6E6" stroke-width="4"></circle>
+                                <circle cx="18" cy="18" r="14" fill="none" stroke="#207CEC" stroke-width="4"
+                                    stroke-dasharray={cloudStrokeDasharray}
+                                    stroke-dashoffset="22" stroke-linecap="round"></circle>
+                                <circle cx="18" cy="18" r="14" fill="none" stroke="#F3B400" stroke-width="4"
+                                    stroke-dasharray={onPremStrokeDasharray}
+                                    stroke-dashoffset={onPremStrokeDashoffset} stroke-linecap="round"></circle>
+                            </svg>
+                        </div>
+                        <div class="po-deploy-legend">
+                            <div class="po-deploy-row">
+                                <span class="po-legend-dot po-legend-blue"></span>
+                                <span class="po-legend-label">Cloud</span>
+                                <span class="po-legend-value">{cloudLabel}</span>
+                            </div>
+                            <div class="po-deploy-row">
+                                <span class="po-legend-dot po-legend-amber"></span>
+                                <span class="po-legend-label">On-Premise</span>
+                                <span class="po-legend-value">{onPremLabel}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Mix -->
+                <div class="po-panel">
+                    <p class="po-panel-title">Contract Value by Product</p>
+                    <div class="po-product-list">
+                        <template for:each={productBars} for:item="bar">
+                            <div key={bar.key} class="po-bar-item">
+                                <div class="po-bar-header">
+                                    <span class="po-bar-label">{bar.label}</span>
+                                    <span class="po-bar-value">{bar.value}</span>
+                                </div>
+                                <div class="po-bar-track">
+                                    <div class="po-bar-fill" style={bar.barStyle}></div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

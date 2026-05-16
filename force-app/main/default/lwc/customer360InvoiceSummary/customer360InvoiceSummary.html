@@ -1,0 +1,32 @@
+<template>
+    <template lwc:if={hasInvoices}>
+        <div class="c360-is">
+            <div class="c360-is__grid">
+                <div class="c360-is__stat">
+                    <span class="c360-is__stat-value">{totalInvoiced}</span>
+                    <span class="c360-is__stat-label">Total Invoiced</span>
+                </div>
+                <div class="c360-is__stat">
+                    <span class={outstandingClass}>{totalOutstanding}</span>
+                    <span class="c360-is__stat-label">Outstanding</span>
+                </div>
+                <div class="c360-is__stat">
+                    <span class={overdueClass}>{overdueCount}</span>
+                    <span class="c360-is__stat-label">Overdue</span>
+                </div>
+                <div class="c360-is__stat">
+                    <span class="c360-is__stat-value">{overdueAmount}</span>
+                    <span class="c360-is__stat-label">Overdue Amount</span>
+                </div>
+                <div class="c360-is__stat">
+                    <span class="c360-is__stat-value">{avgDaysToPay}</span>
+                    <span class="c360-is__stat-label">Avg Days to Pay</span>
+                </div>
+                <div class="c360-is__stat">
+                    <span class="c360-is__stat-value">{collectionRate}</span>
+                    <span class="c360-is__stat-label">Collection Rate</span>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

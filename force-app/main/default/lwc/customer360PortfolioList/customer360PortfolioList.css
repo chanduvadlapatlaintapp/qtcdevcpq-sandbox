@@ -1,0 +1,147 @@
+/* ─── Portfolio List Container ────────────────────────────────────────────── */
+.portfolio-list {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+}
+
+/* ─── Filter Bar ─────────────────────────────────────────────────────────── */
+.portfolio-list__filters {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.portfolio-list__search {
+    flex: 1;
+    min-width: 200px;
+}
+
+.portfolio-list__segment-filters,
+.portfolio-list__risk-filters {
+    display: flex;
+    gap: 6px;
+}
+
+/* ─── Filter Buttons ─────────────────────────────────────────────────────── */
+.filter-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid #e5e5e5;
+    background: #ffffff;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    color: var(--lwc-colorTextDefault, #181818);
+    font-family: inherit;
+    line-height: 1.4;
+}
+
+.filter-btn:hover {
+    border-color: #0176d3;
+    color: #0176d3;
+}
+
+.filter-btn--active {
+    background: #0176d3;
+    color: #ffffff;
+    border-color: #0176d3;
+}
+
+.filter-btn--active:hover {
+    background: #014486;
+    border-color: #014486;
+    color: #ffffff;
+}
+
+/* ─── Meta (Account Count) ───────────────────────────────────────────────── */
+.portfolio-list__meta {
+    font-size: 0.8rem;
+    color: #706e6b;
+    margin-bottom: 8px;
+}
+
+/* ─── Account Row ────────────────────────────────────────────────────────── */
+.account-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    border-bottom: 1px solid #f3f3f3;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.account-row:hover {
+    background: #f7f9fb;
+}
+
+.account-row:last-child {
+    border-bottom: none;
+}
+
+/* ─── Account Row — Health Ring ───────────────────────────────────────────── */
+.account-row__health {
+    flex-shrink: 0;
+}
+
+/* ─── Account Row — Info ─────────────────────────────────────────────────── */
+.account-row__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.account-row__name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #181818;
+}
+
+/* ─── Account Row — Metrics ──────────────────────────────────────────────── */
+.account-row__metrics {
+    display: flex;
+    gap: 24px;
+}
+
+.account-row__metric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.metric-label {
+    font-size: 0.7rem;
+    color: #706e6b;
+    display: block;
+}
+
+.metric-value {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.metric-value--warning {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #e3524f;
+}
+
+/* ─── Account Row — Risk Badge ───────────────────────────────────────────── */
+.account-row__risk {
+    flex-shrink: 0;
+}
+
+/* ─── Account Row — Arrow ────────────────────────────────────────────────── */
+.account-row__arrow {
+    opacity: 0.3;
+    flex-shrink: 0;
+}
+
+.account-row:hover .account-row__arrow {
+    opacity: 0.6;
+}

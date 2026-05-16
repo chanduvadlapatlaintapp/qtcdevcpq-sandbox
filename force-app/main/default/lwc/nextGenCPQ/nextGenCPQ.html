@@ -1,0 +1,165 @@
+<template>
+    <div class={containerClass}>
+        <!-- Header -->
+        <div class="cpq-header">
+            <h1 class="cpq-header-title">Next Gen CPQ By Intapp</h1>
+        </div>
+
+        <!-- Top Section: Fields and Buttons -->
+        <div class="top-section">
+            <!-- Left Side: All Three Fields -->
+            <div class="fields-left" >
+                <div class="field-group" >
+                    <div class="label-container">
+                        <label class="field-label">First Segment Months</label>
+                        <lightning-helptext 
+                            content="Number of months for the first segment"
+                            icon-name="utility:info">
+                        </lightning-helptext>
+                    </div>
+                    <lightning-input 
+                        type="number"
+                        value={firstSegmentMonths}
+                        onchange={handleFirstSegmentMonthsChange}
+                        min="0"
+                        class="field-input number-input" style="color: black;">
+                    </lightning-input>
+                </div>
+                <div class="field-group">
+                    <div class="label-container">
+                        <label class="field-label">Total Contract Months</label>
+                        <lightning-helptext 
+                            content="Total number of months for the contract"
+                            icon-name="utility:info">
+                        </lightning-helptext>
+                    </div>
+                    <lightning-input 
+                        type="number"
+                        value={totalContractMonths}
+                        onchange={handleTotalContractMonthsChange}
+                        min="0"
+                        class="field-input number-input" style="color: black;">
+                    </lightning-input>
+                </div>
+                <div class="field-group">
+                    <div class="label-container">
+                        <label class="field-label">Effective Date</label>
+                        <lightning-helptext 
+                            content="The effective start date for the contract"
+                            icon-name="utility:info">
+                        </lightning-helptext>
+                    </div>
+                    <lightning-input 
+                        type="date"
+                        value={startDate}
+                        onchange={handleStartDateChange}
+                        class="field-input" style="color: black;">
+                    </lightning-input>
+                </div>
+            </div>
+
+            <!-- Top Right: Buttons -->
+            <div class="buttons-right">
+                <lightning-button
+                    label="GUIDED SELLING"
+                    onclick={handleGuidedSelling}
+                    variant="Success"
+                    class="action-button">
+                </lightning-button>
+                <lightning-button 
+                    label="OSA Document" 
+                    onclick={handleOpenOsaDocument}
+                    variant="Success"
+                    class="action-button"
+                    disabled={isOsaDisabled}>
+                </lightning-button>
+                <lightning-button
+                    label={quoteAcceleratorButtonLabel}
+                    onclick={handleToggleQuoteAccelerator}
+                    variant="brand"
+                    class="action-button"
+                    icon-name="utility:analytics">
+                </lightning-button>
+                <!-- Dark Mode Toggle -->
+                <lightning-button-icon 
+                    icon-name={darkModeIcon}
+                    alternative-text={darkModeLabel}
+                    onclick={handleToggleDarkMode}
+                    variant="border-filled"
+                    class="dark-mode-btn action-button"
+                    title={darkModeLabel}>
+                </lightning-button-icon>
+            </div>
+        </div>
+
+        <!-- Quote Accelerator Section -->
+        <template if:true={showQuoteAccelerator}>
+            <div class="quote-accelerator-section">
+                <c-quote-accelerator 
+                    quote-id={effectiveQuoteId}
+                    data-id="quote-accelerator">
+                </c-quote-accelerator>
+            </div>
+        </template>
+
+        <!-- Cart Display Section (if quote has lines) - Use Guided Selling Cart -->
+        <template if:true={hasQuoteLines}>
+            <div class="cart-section">
+                <c-guided-selling 
+                    quote-id={effectiveQuoteId}  
+                    is-dark-mode={isDarkMode}
+                    first-segment-months={firstSegmentMonths}
+                    total-contract-months={totalContractMonths}
+                    start-date={startDate}
+                    show-cart-only
+                    onquotelinescreated={handleQuoteLinesCreated}>
+                </c-guided-selling>
+            </div>
+        </template>
+
+        <!-- Empty State - Show when no quote lines -->
+        <template if:false={hasQuoteLines}>
+            <div class="empty-state-container">
+                <div class="empty-state-content">
+                    <lightning-icon icon-name="standard:opportunity" size="large" class="empty-state-icon"></lightning-icon>
+                    <h2 class="empty-state-title">No Quote Lines Yet</h2>
+                    <p class="empty-state-message">Click "GUIDED SELLING" to start adding products to your quote.</p>
+                </div>
+            </div>
+        </template>
+
+        <!-- Guided Selling Modal - Always rendered to pre-load products -->
+        <section role="dialog" tabindex="-1" class={modalClass} aria-modal="true">
+            <div class="slds-modal__container">
+                <!-- Close Button -->
+                <button class="modal-close-btn" title="Close" onclick={handleCloseModal}>
+                    <lightning-icon icon-name="utility:close" alternative-text="close" size="small"></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <div class="slds-modal__content slds-p-around_none" id="modal-content-id-1">
+                    <c-guided-selling 
+                        quote-id={quoteId} 
+                        is-dark-mode={isDarkMode}
+                        first-segment-months={firstSegmentMonths}
+                        total-contract-months={totalContractMonths}
+                        start-date={startDate}
+                        onclose={handleGuidedSellingClose}
+                        onquotelinescreated={handleQuoteLinesCreated}
+                        data-id="modal-guided-selling"
+                        current-step="products">
+                    </c-guided-selling>
+                </div>
+            </div>
+        </section>
+        <div class={backdropClass}></div>
+
+        <!-- AI Quote Assistant - Floating Bottom Right -->
+        <div class="ai-assistant-wrapper">
+            <c-ai-quote-assistant 
+                quote-id={quoteId} 
+                is-dark-mode={isDarkMode}
+                oncartupdate={handleAICartUpdate}>
+            </c-ai-quote-assistant>
+        </div>
+    </div>
+</template>

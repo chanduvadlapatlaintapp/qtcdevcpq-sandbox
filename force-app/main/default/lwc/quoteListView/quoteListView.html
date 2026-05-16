@@ -1,0 +1,135 @@
+<template>
+    <div class={containerClass}>
+        <lightning-card title="All Quotes" icon-name="standard:quotes" class="quote-card">
+            <div slot="actions">
+                <lightning-button-icon 
+                    icon-name={darkModeIcon}
+                    alternative-text={darkModeLabel}
+                    onclick={handleToggleDarkMode}
+                    variant="border-filled"
+                    class="dark-mode-btn"
+                    title={darkModeLabel}>
+                </lightning-button-icon>
+            </div>
+            <div class="slds-m-around_medium quote-card-body">
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading quotes"></lightning-spinner>
+            </template>
+
+            <template if:true={error}>
+                <div class="slds-text-color_error">
+                    Error loading quotes: {errorMessage}
+                </div>
+            </template>
+
+            <template if:false={isLoading}>
+                <template if:true={hasQuotes}>
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Quote Name">Quote Name</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Account">Account</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Opportunity">Opportunity</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Opportunity Stage">Opp Stage</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Created Date">Created</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Quote Stage">Quote Stage</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="OP4I Deal URL">OP4I Deal URL</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Actions">Actions</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={formattedQuotes} for:item="quote">
+                                <tr key={quote.quoteId}>
+                                    <td data-label="Quote Name">
+                                        <div class="slds-truncate" title={quote.quoteName} style="color: inherit; text-decoration: none;">
+                                            {quote.quoteName}
+                                        </div>
+                                    </td>
+                                    <td data-label="Account">
+                                        <div class="slds-truncate" title={quote.accountName}>
+                                            {quote.accountName}
+                                        </div>
+                                    </td>
+                                    <td data-label="Opportunity">
+                                        <div class="slds-truncate" title={quote.opportunityName}>
+                                            {quote.opportunityName}
+                                        </div>
+                                    </td>
+                                    <td data-label="Opportunity Stage">
+                                        <div class="slds-truncate" title={quote.opportunityStage}>
+                                            {quote.opportunityStage}
+                                        </div>
+                                    </td>
+                                    <td data-label="Created">
+                                        <div class="slds-truncate" title={quote.formattedCreatedDate}>
+                                            {quote.formattedCreatedDate}
+                                        </div>
+                                    </td>
+                                    <td data-label="Quote Stage">
+                                        <div class="slds-truncate" title={quote.quoteStage}>
+                                            {quote.quoteStage}
+                                        </div>
+                                    </td>
+                                    <td data-label="OP4I Deal URL">
+                                        <template if:true={quote.op4iDealUrl}>
+                                            <a href={quote.op4iDealUrl} target="_blank" rel="noopener noreferrer" class="slds-truncate" title={quote.op4iDealUrl}>
+                                                <template if:true={quote.op4iDealId}>
+                                                    {quote.op4iDealId}
+                                                </template>
+                                                <template if:false={quote.op4iDealId}>
+                                                    Open Deal
+                                                </template>
+                                            </a>
+                                        </template>
+                                        <template if:false={quote.op4iDealUrl}>
+                                            <div class="slds-truncate">—</div>
+                                        </template>
+                                    </td>
+                                    <td data-label="Actions">
+                                        <template if:true={quote.isOpportunityOpen}>
+                                            <lightning-button
+                                                label="Configure"
+                                                variant="brand"
+                                                onclick={handleConfigure}
+                                                data-quote-id={quote.quoteId}
+                                                data-id={quote.quoteId}
+                                                class="slds-m-right_x-small"
+                                                title="Configure Quote">
+                                            </lightning-button>
+                                        </template>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </template>
+
+                <template if:false={hasQuotes}>
+                    <div class="slds-text-align_center slds-p-around_large">
+                        <p class="slds-text-heading_medium">No quotes found</p>
+                        <p class="slds-text-body_regular slds-m-top_small">
+                            You haven't created any quotes yet. Start by creating a new quote.
+                        </p>
+                    </div>
+                </template>
+            </template>
+            </div>
+        </lightning-card>
+    </div>
+</template>

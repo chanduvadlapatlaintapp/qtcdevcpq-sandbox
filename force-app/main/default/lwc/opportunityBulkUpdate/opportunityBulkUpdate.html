@@ -1,0 +1,409 @@
+<template>
+    <!-- ===== Section Header ===== -->
+    <div class="section-header">
+        <div class="section-header__icon">
+            <lightning-icon icon-name="utility:opportunity" size="medium"
+                            alternative-text="Opportunity Update">
+            </lightning-icon>
+        </div>
+        <div class="section-header__text">
+            <h2 class="section-header__title">Opportunity Update</h2>
+        </div>
+    </div>
+
+    <!-- ===== Filter Bar ===== -->
+    <div class="filter-bar">
+        <div class="filter-row">
+            <div class="filter-group">
+                <label class="filter-label">Close Date <span class="filter-hint">is on or after</span></label>
+                <lightning-input type="date"
+                                value={filterCloseDate}
+                                onchange={handleCloseDateChange}
+                                variant="label-hidden">
+                </lightning-input>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">Created Date <span class="filter-hint">is on or after</span></label>
+                <lightning-input type="date"
+                                value={filterCreatedDate}
+                                onchange={handleCreatedDateChange}
+                                variant="label-hidden">
+                </lightning-input>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">Deal Type <span class="filter-hint">is any of</span></label>
+                <div class="pill-container">
+                    <template for:each={dealTypePills} for:item="pill">
+                        <span key={pill.value} class={pill.cssClass}
+                              data-value={pill.value} onclick={handleDealTypePillClick}>
+                            {pill.label}
+                        </span>
+                    </template>
+                </div>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">Stage <span class="filter-hint">is any of</span></label>
+                <lightning-combobox
+                    value={filterStage}
+                    options={stageOptions}
+                    onchange={handleStageChange}
+                    variant="label-hidden"
+                    placeholder="All Stages">
+                </lightning-combobox>
+            </div>
+        </div>
+        <div class="filter-row">
+            <div class="filter-group filter-group--wide">
+                <label class="filter-label">Name <span class="filter-hint">contains</span></label>
+                <lightning-input type="text"
+                                value={filterName}
+                                onchange={handleNameChange}
+                                placeholder="Search by name..."
+                                variant="label-hidden">
+                </lightning-input>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">Opportunity ID <span class="filter-hint">is</span></label>
+                <lightning-input type="text"
+                                value={filterOpportunityId}
+                                onchange={handleOpportunityIdChange}
+                                placeholder="006..."
+                                variant="label-hidden">
+                </lightning-input>
+            </div>
+            <div class="filter-actions">
+                <lightning-button
+                    label="Apply Filters"
+                    variant="brand"
+                    onclick={handleApplyFilters}
+                    disabled={isLoading}>
+                </lightning-button>
+            </div>
+            <template if:true={hasResults}>
+                <div class="filter-actions">
+                    <lightning-button
+                        label="Save Changes"
+                        variant="success"
+                        icon-name="utility:save"
+                        onclick={handleSave}
+                        disabled={isSaveDisabled}>
+                    </lightning-button>
+                </div>
+                <div class="filter-actions">
+                    <lightning-button
+                        label="Export"
+                        variant="neutral"
+                        icon-name="utility:download"
+                        onclick={handleExport}>
+                    </lightning-button>
+                </div>
+                <div class="filter-actions">
+                    <lightning-button
+                        label="Import"
+                        variant="neutral"
+                        icon-name="utility:upload"
+                        onclick={handleImportClick}>
+                    </lightning-button>
+                    <input type="file" data-id="csv-import" accept=".csv"
+                           onchange={handleFileChange} class="file-input-hidden">
+                </div>
+                <div class="result-summary">
+                    <span class="result-summary__count">{totalRecordCount}</span>
+                    <span class="result-summary__label"> opportunities</span>
+                    <template if:true={hasChanges}>
+                        <span class="result-summary__changes">
+                            ({changedRowCount} modified)
+                        </span>
+                    </template>
+                </div>
+            </template>
+        </div>
+    </div>
+
+    <!-- ===== Record Limit Warning ===== -->
+    <template if:true={exceedsMaxRecords}>
+        <div class="limit-warning">
+            <lightning-icon icon-name="utility:warning" size="x-small"
+                            alternative-text="Warning">
+            </lightning-icon>
+            <span class="limit-warning__text">
+                <strong>{changedRowCount} records staged</strong> — bulk save is limited to 200 at a time.
+                Please reduce your selection before saving.
+            </span>
+        </div>
+    </template>
+
+    <!-- ===== Loading Spinner ===== -->
+    <template if:true={isLoading}>
+        <div class="loading-container">
+            <lightning-spinner alternative-text="Loading opportunities..."
+                               size="medium">
+            </lightning-spinner>
+        </div>
+    </template>
+
+    <!-- ===== Toast Notification ===== -->
+    <template if:true={showToast}>
+        <div class={toastClass}>
+            <lightning-icon icon-name={toastIconName} size="x-small"
+                            variant="inverse">
+            </lightning-icon>
+            <span class="toast__message">{toastMessage}</span>
+            <button class="toast__dismiss" onclick={handleDismissToast}
+                    aria-label="Dismiss notification">
+                &times;
+            </button>
+        </div>
+    </template>
+
+    <!-- ===== Save Results Panel ===== -->
+    <template if:true={hasSaveResults}>
+        <div class="save-results-panel">
+            <div class="save-results-panel__header">
+                <div class="save-results-panel__summary">
+                    <template if:true={hasSaveSuccesses}>
+                        <span class="save-results-panel__success-count">
+                            <lightning-icon icon-name="utility:success" size="x-small"
+                                            alternative-text="Success">
+                            </lightning-icon>
+                            {saveSuccessCount} saved
+                        </span>
+                    </template>
+                    <template if:true={hasSaveFailures}>
+                        <span class="save-results-panel__fail-count">
+                            <lightning-icon icon-name="utility:error" size="x-small"
+                                            alternative-text="Failed">
+                            </lightning-icon>
+                            {saveFailureCount} failed
+                        </span>
+                    </template>
+                </div>
+                <button class="save-results-panel__dismiss"
+                        onclick={handleDismissSaveResults}
+                        aria-label="Dismiss save results">
+                    &times;
+                </button>
+            </div>
+            <template if:true={hasSaveFailures}>
+                <ul class="save-results-panel__errors">
+                    <template for:each={saveFailedRows} for:item="failRow">
+                        <li key={failRow.recordId} class="save-results-panel__error-item">
+                            <lightning-icon icon-name="utility:error" size="xx-small"
+                                            alternative-text="Error">
+                            </lightning-icon>
+                            <span class="save-results-panel__error-name">{failRow.name}</span>
+                            <span class="save-results-panel__error-msg">{failRow.errorMessage}</span>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+        </div>
+    </template>
+
+    <!-- ===== Bulk Edit Toolbar ===== -->
+    <template if:true={hasSelectedRows}>
+        <div class="bulk-edit-bar">
+            <div class="bulk-edit-bar__info">
+                <lightning-icon icon-name="utility:check" size="x-small"></lightning-icon>
+                <span class="bulk-edit-bar__count">{selectedRowCount} rows selected</span>
+            </div>
+            <div class="bulk-edit-bar__actions">
+                <lightning-combobox
+                    value={bulkEditField}
+                    options={bulkEditFieldOptions}
+                    onchange={handleBulkFieldChange}
+                    variant="label-hidden"
+                    placeholder="Select field..."
+                    class="bulk-edit-bar__field">
+                </lightning-combobox>
+                <template if:true={isBulkFieldDate}>
+                    <lightning-input type="date"
+                                    value={bulkEditValue}
+                                    onchange={handleBulkValueChange}
+                                    variant="label-hidden"
+                                    class="bulk-edit-bar__value">
+                    </lightning-input>
+                </template>
+                <template if:true={isBulkFieldText}>
+                    <lightning-input type="text"
+                                    value={bulkEditValue}
+                                    onchange={handleBulkValueChange}
+                                    variant="label-hidden"
+                                    placeholder="Enter value..."
+                                    class="bulk-edit-bar__value">
+                    </lightning-input>
+                </template>
+                <template if:true={isBulkFieldStage}>
+                    <lightning-combobox
+                        value={bulkEditValue}
+                        options={stageEditOptions}
+                        onchange={handleBulkValueChange}
+                        variant="label-hidden"
+                        placeholder="Select stage..."
+                        class="bulk-edit-bar__value">
+                    </lightning-combobox>
+                </template>
+                <template if:true={isBulkFieldUser}>
+                    <lightning-combobox
+                        value={bulkEditValue}
+                        options={userOptions}
+                        onchange={handleBulkValueChange}
+                        variant="label-hidden"
+                        placeholder="Select user..."
+                        class="bulk-edit-bar__value">
+                    </lightning-combobox>
+                </template>
+                <lightning-button
+                    label="Apply to Selected"
+                    variant="brand"
+                    onclick={handleBulkApply}
+                    disabled={isBulkApplyDisabled}
+                    icon-name="utility:refresh">
+                </lightning-button>
+                <lightning-button
+                    label="Clear Selection"
+                    variant="neutral"
+                    onclick={handleClearSelection}
+                    icon-name="utility:close">
+                </lightning-button>
+            </div>
+        </div>
+    </template>
+
+    <!-- ===== Results Table ===== -->
+    <template if:true={hasResults}>
+        <div class="results-area">
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="th-sticky th-sticky--first th-checkbox">
+                                <input type="checkbox" checked={isAllSelected}
+                                       onchange={handleSelectAll}>
+                            </th>
+                            <th class="th-sticky th-sticky--second">Name</th>
+                            <th>Opportunity ID</th>
+                            <th>Created Date</th>
+                            <th>Deal Type</th>
+                            <th class="th-editable">Owner</th>
+                            <th class="th-editable">OP4I Deal Owner (Lookup)</th>
+                            <th class="th-editable">OP4I Deal Owner Text</th>
+                            <th class="th-editable">Close Date</th>
+                            <th class="th-editable">Stage</th>
+                            <template if:true={hasSaveResults}>
+                                <th class="th-status">Save Status</th>
+                            </template>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={displayRows} for:item="row">
+                            <tr key={row.Id} class={row.rowClass}>
+                                <td class="td-sticky td-sticky--first td-checkbox">
+                                    <input type="checkbox" checked={row.isSelected}
+                                           data-id={row.Id} onchange={handleRowSelect}>
+                                </td>
+                                <td class="td-sticky td-sticky--second opp-name">
+                                    <a href={row.recordUrl} target="_blank"
+                                       class="opp-name__link">{row.Name}</a>
+                                </td>
+                                <td class="opp-id">{row.Id}</td>
+                                <td>{row.createdDateFormatted}</td>
+                                <td>{row.Deal_Type__c}</td>
+                                <td>
+                                    <lightning-combobox
+                                        value={row.OwnerId}
+                                        options={userOptions}
+                                        data-id={row.Id}
+                                        data-field="OwnerId"
+                                        onchange={handleCellChange}
+                                        variant="label-hidden"
+                                        placeholder="Select owner..."
+                                        class="inline-edit inline-edit--lookup">
+                                    </lightning-combobox>
+                                </td>
+                                <td>
+                                    <lightning-combobox
+                                        value={row.OP4I_Deal_Owner_Id__c}
+                                        options={userOptions}
+                                        data-id={row.Id}
+                                        data-field="OP4I_Deal_Owner_Id__c"
+                                        onchange={handleCellChange}
+                                        variant="label-hidden"
+                                        placeholder="Select owner..."
+                                        class="inline-edit inline-edit--lookup">
+                                    </lightning-combobox>
+                                </td>
+                                <td>
+                                    <lightning-input type="text"
+                                                    value={row.OP4I_Deal_Owner__c}
+                                                    data-id={row.Id}
+                                                    data-field="OP4I_Deal_Owner__c"
+                                                    onchange={handleCellChange}
+                                                    variant="label-hidden"
+                                                    class="inline-edit">
+                                    </lightning-input>
+                                </td>
+                                <td>
+                                    <lightning-input type="date"
+                                                    value={row.CloseDate}
+                                                    data-id={row.Id}
+                                                    data-field="CloseDate"
+                                                    onchange={handleCellChange}
+                                                    variant="label-hidden"
+                                                    class="inline-edit">
+                                    </lightning-input>
+                                </td>
+                                <td>
+                                    <lightning-combobox
+                                        value={row.StageName}
+                                        options={stageEditOptions}
+                                        data-id={row.Id}
+                                        data-field="StageName"
+                                        onchange={handleCellChange}
+                                        variant="label-hidden"
+                                        class="inline-edit">
+                                    </lightning-combobox>
+                                </td>
+                                <template if:true={hasSaveResults}>
+                                    <td class="td-status">
+                                        <template if:true={row.isSaveSuccess}>
+                                            <span class="status-success"
+                                                  title="Saved successfully">
+                                                <lightning-icon icon-name="utility:success"
+                                                                size="x-small"
+                                                                alternative-text="Saved">
+                                                </lightning-icon>
+                                            </span>
+                                        </template>
+                                        <template if:true={row.isSaveFailed}>
+                                            <span class="status-error"
+                                                  title={row.saveErrorMessage}>
+                                                <lightning-icon icon-name="utility:error"
+                                                                size="x-small"
+                                                                alternative-text="Failed">
+                                                </lightning-icon>
+                                                <span class="status-error__text">
+                                                    {row.saveErrorMessage}
+                                                </span>
+                                            </span>
+                                        </template>
+                                    </td>
+                                </template>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </template>
+
+    <!-- ===== No Results ===== -->
+    <template if:true={showNoResults}>
+        <div class="no-results">
+            <lightning-icon icon-name="utility:search" size="large">
+            </lightning-icon>
+            <h3 class="no-results__title">No opportunities found</h3>
+            <p class="no-results__text">Try adjusting your filter criteria</p>
+        </div>
+    </template>
+</template>

@@ -1,0 +1,327 @@
+<template>
+    <!-- ===== Section Header ===== -->
+    <div class="section-header">
+        <div class="section-header__icon">
+            <lightning-icon icon-name="utility:chart" size="medium"
+                            alternative-text="Pricebook View">
+            </lightning-icon>
+        </div>
+        <div class="section-header__text">
+            <h2 class="section-header__title">Pricebook View</h2>
+            <p class="section-header__desc">
+                View Product &amp; Pricing data grouped by vertical or business unit
+            </p>
+        </div>
+    </div>
+
+    <!-- ===== Filter Mode Tabs ===== -->
+    <div class="filter-tabs">
+        <button class={verticalTabClass} data-mode="vertical"
+                onclick={handleFilterModeChange}>
+            Filter by Vertical
+        </button>
+        <button class={buTabClass} data-mode="businessUnit"
+                onclick={handleFilterModeChange}>
+            Filter by Business Unit
+        </button>
+    </div>
+
+    <!-- ===== Filter Bar ===== -->
+    <div class="filter-bar">
+        <div class="filter-group">
+            <lightning-combobox
+                label={filterLabel}
+                value={selectedFilterValue}
+                options={filterOptions}
+                onchange={handleFilterValueChange}
+                variant="label-stacked">
+            </lightning-combobox>
+        </div>
+        <div class="filter-group">
+            <lightning-combobox
+                label="Product Status"
+                value={selectedProductStatus}
+                options={productStatusOptions}
+                onchange={handleProductStatusChange}
+                variant="label-stacked">
+            </lightning-combobox>
+        </div>
+        <div class="filter-group">
+            <lightning-combobox
+                label="Product Type"
+                value={selectedProductType}
+                options={productTypeOptions}
+                onchange={handleProductTypeChange}
+                variant="label-stacked">
+            </lightning-combobox>
+        </div>
+        <div class="filter-group">
+            <lightning-combobox
+                label="Pricing Basis"
+                value={selectedPricingBasis}
+                options={pricingBasisOptions}
+                onchange={handlePricingBasisChange}
+                variant="label-stacked">
+            </lightning-combobox>
+        </div>
+        <div class="filter-actions">
+            <lightning-button
+                label="Apply Filters"
+                variant="brand"
+                onclick={handleApplyFilters}
+                disabled={isLoading}>
+            </lightning-button>
+        </div>
+        <template if:true={hasResults}>
+            <div class="filter-actions">
+                <lightning-button
+                    label="Edit Product"
+                    variant="neutral"
+                    icon-name="utility:edit"
+                    onclick={handleEditProduct}
+                    disabled={isEditDisabled}>
+                </lightning-button>
+            </div>
+        </template>
+        <template if:true={hasResults}>
+            <div class="filter-actions">
+                <lightning-button
+                    label="Export CSV"
+                    variant="neutral"
+                    icon-name="utility:download"
+                    onclick={handleExportCsv}>
+                </lightning-button>
+            </div>
+        </template>
+        <template if:true={hasResults}>
+            <div class="result-summary">
+                <span class="result-summary__count">{totalProductCount}</span>
+                <span class="result-summary__label"> products</span>
+            </div>
+        </template>
+    </div>
+
+    <!-- ===== Loading Spinner ===== -->
+    <template if:true={isLoading}>
+        <div class="loading-container">
+            <lightning-spinner alternative-text="Loading pricing data…"
+                               size="medium">
+            </lightning-spinner>
+        </div>
+    </template>
+
+    <!-- ===== Error Message ===== -->
+    <template if:true={error}>
+        <div class="error-banner">
+            <lightning-icon icon-name="utility:error" size="x-small"
+                            variant="error">
+            </lightning-icon>
+            <span class="error-banner__text">{error}</span>
+        </div>
+    </template>
+
+    <!-- ===== Results Area — Accordion Groups ===== -->
+    <template if:true={hasResults}>
+        <div class="results-area">
+            <template for:each={displayGroups} for:item="group">
+                <div key={group.groupKey} class="group-section">
+
+                    <!-- Group Header (Accordion Toggle) -->
+                    <div class="group-header" data-group-key={group.groupKey}
+                         onclick={handleGroupToggle} role="button" tabindex="0">
+                        <div class="group-header__left">
+                            <span class={group.chevronClass}>
+                                <lightning-icon icon-name="utility:chevrondown"
+                                                size="xx-small">
+                                </lightning-icon>
+                            </span>
+                            <span class="group-header__title">{group.groupName}</span>
+                            <span class="group-header__badge">
+                                {group.productCount} products
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Group Body (Expanded Content) -->
+                    <template if:true={group.isExpanded}>
+                        <div class="group-body">
+                            <template for:each={group.subGroups} for:item="subGroup">
+                                <div key={subGroup.status} class="sub-group">
+
+                                    <!-- Sub-Group Header (Pricing Basis) — hidden when flat -->
+                                    <template if:true={subGroup.status}>
+                                        <div class={subGroup.statusClass}>
+                                            <span class="sub-group-header__dot"></span>
+                                            <span>{subGroup.status}</span>
+                                        </div>
+                                    </template>
+
+                                    <!-- Pricing Table -->
+                                    <div class="table-wrapper">
+                                        <table>
+                                            <thead>
+                                                <!-- Row 1: Fixed columns + Currency group headers -->
+                                                <tr>
+                                                    <th rowspan="2" class="th-radio">&nbsp;</th>
+                                                    <th rowspan="2" class="th-sticky th-sticky--first">
+                                                        Product Code
+                                                    </th>
+                                                    <th rowspan="2" class="th-sticky th-sticky--second">
+                                                        Product Name
+                                                    </th>
+                                                    <th rowspan="2">Product Line</th>
+                                                    <th rowspan="2">Product Type</th>
+                                                    <th rowspan="2">Pricing Basis</th>
+                                                    <th rowspan="2">Default Meter Type</th>
+                                                    <th colspan="6" class="currency-hdr currency-hdr--usd">
+                                                        USD
+                                                    </th>
+                                                    <th colspan="6" class="currency-hdr currency-hdr--gbp">
+                                                        GBP
+                                                    </th>
+                                                    <th colspan="6" class="currency-hdr currency-hdr--eur">
+                                                        EUR
+                                                    </th>
+                                                    <th colspan="6" class="currency-hdr currency-hdr--aud">
+                                                        AUD
+                                                    </th>
+                                                </tr>
+                                                <!-- Row 2: Tier headers (24 total) -->
+                                                <tr>
+                                                    <template for:each={tierHeaders} for:item="th">
+                                                        <th key={th.key} class="tier-hdr">
+                                                            {th.label}
+                                                        </th>
+                                                    </template>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <template for:each={subGroup.rows} for:item="row">
+                                                    <tr key={row.rowKey} class={row.rowClass}>
+                                                        <td class="td-radio">
+                                                            <input type="radio"
+                                                                   name="productSelect"
+                                                                   data-product-id={row.productId}
+                                                                   checked={row.isSelected}
+                                                                   onchange={handleRadioSelect}>
+                                                        </td>
+                                                        <td class="td-sticky td-sticky--first product-code">
+                                                            {row.productCode}
+                                                        </td>
+                                                        <td class="td-sticky td-sticky--second product-name">
+                                                            <span class="product-name__text">{row.productName}</span>
+                                                            <template if:true={row.isSelected}>
+                                                                <lightning-button-icon
+                                                                    icon-name="utility:edit"
+                                                                    alternative-text="Edit Product"
+                                                                    variant="bare"
+                                                                    size="small"
+                                                                    onclick={handleEditProduct}
+                                                                    class="row-edit-btn">
+                                                                </lightning-button-icon>
+                                                            </template>
+                                                        </td>
+                                                        <td>{row.productLine}</td>
+                                                        <td>{row.productType}</td>
+                                                        <td>{row.pricingBasis}</td>
+                                                        <td>{row.meterType}</td>
+                                                        <template for:each={row.formattedPrices} for:item="cell">
+                                                            <td key={cell.key} class={cell.cellClass}>
+                                                                {cell.formatted}
+                                                            </td>
+                                                        </template>
+                                                    </tr>
+                                                </template>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+            </template>
+        </div>
+    </template>
+
+    <!-- ===== No Results ===== -->
+    <template if:true={showNoResults}>
+        <div class="no-results">
+            <lightning-icon icon-name="utility:search" size="large">
+            </lightning-icon>
+            <h3 class="no-results__title">No products found</h3>
+            <p class="no-results__text">Try adjusting your filter criteria</p>
+        </div>
+    </template>
+
+    <!-- ===== Product Info Drawer ===== -->
+    <template if:true={isDrawerOpen}>
+        <div class="drawer-backdrop" onclick={handleCloseDrawer}></div>
+        <div class="info-drawer">
+            <div class="info-drawer__header">
+                <div>
+                    <span class="info-drawer__code">{drawerProductCode}</span>
+                    <h3 class="info-drawer__name">{drawerProductName}</h3>
+                </div>
+                <lightning-button-icon icon-name="utility:close" variant="bare-inverse"
+                    alternative-text="Close" onclick={handleCloseDrawer}
+                    class="info-drawer__close">
+                </lightning-button-icon>
+            </div>
+
+            <template if:true={isDrawerLoading}>
+                <div class="info-drawer__loading">
+                    <lightning-spinner alternative-text="Loading..." size="small"></lightning-spinner>
+                </div>
+            </template>
+
+            <template if:false={isDrawerLoading}>
+                <div class="info-drawer__body">
+                    <!-- Verticals & Meter Types -->
+                    <div class="info-drawer__section">
+                        <h4 class="info-drawer__section-title">Verticals & Default Meter Types</h4>
+                        <table class="info-drawer__table">
+                            <thead>
+                                <tr>
+                                    <th>Vertical</th>
+                                    <th>Status</th>
+                                    <th>Meter Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={drawerVerticals} for:item="v">
+                                    <tr key={v.name}>
+                                        <td class="info-drawer__vertical-name">{v.name}</td>
+                                        <td><span class={v.statusClass}>{v.status}</span></td>
+                                        <td class="info-drawer__meter">{v.meterType}</td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Item Master Information -->
+                    <template if:true={hasItemMaster}>
+                        <div class="info-drawer__section">
+                            <h4 class="info-drawer__section-title">Item Master Information</h4>
+                            <div class="info-drawer__fields">
+                                <template for:each={drawerItemMasterFields} for:item="f">
+                                    <div key={f.label} class="info-drawer__field">
+                                        <span class="info-drawer__field-label">{f.label}</span>
+                                        <span class="info-drawer__field-value">{f.value}</span>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+
+                    <template if:false={hasItemMaster}>
+                        <div class="info-drawer__section">
+                            <p class="info-drawer__empty">No Item Master linked to this product.</p>
+                        </div>
+                    </template>
+                </div>
+            </template>
+        </div>
+    </template>
+</template>

@@ -1,0 +1,295 @@
+<template>
+    <div class="c360-usage">
+        <!-- Header -->
+        <div class="c360-usage__header">
+            <div class="c360-usage__title-row">
+                <div class="c360-usage__title-left">
+                    <div class="c360-usage__icon-box">
+                        <lightning-icon icon-name="utility:chart" size="x-small" variant="inverse"></lightning-icon>
+                    </div>
+                    <h2 class="c360-usage__title">Usage &amp; Adoption</h2>
+                    <span class="c360-usage__source-badge">{sourceBadge.label}</span>
+                </div>
+                <div class="c360-usage__actions">
+                    <template lwc:if={isMockData}>
+                        <span class="c360-usage__mock-badge">Demo Data</span>
+                    </template>
+                    <lightning-button-icon icon-name="utility:refresh" alternative-text="Refresh" variant="border-filled" onclick={handleRefresh}></lightning-button-icon>
+                </div>
+            </div>
+        </div>
+
+        <!-- Breadcrumbs -->
+        <template lwc:if={showBreadcrumbs}>
+            <div class="c360-usage__breadcrumbs">
+                <template for:each={breadcrumbs} for:item="crumb">
+                    <span key={crumb.view} class="c360-usage__crumb-item">
+                        <template lwc:if={crumb.isCurrent}>
+                            <span class="c360-usage__crumb-current">{crumb.label}</span>
+                        </template>
+                        <template lwc:else>
+                            <button class="c360-usage__crumb-link" data-view={crumb.view} onclick={handleBreadcrumbClick}>{crumb.label}</button>
+                            <span class="c360-usage__crumb-sep">&gt;</span>
+                        </template>
+                    </span>
+                </template>
+            </div>
+        </template>
+
+        <!-- Loading -->
+        <template lwc:if={isLoading}>
+            <div class="c360-usage__loading">
+                <lightning-spinner alternative-text="Loading..." size="small"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- ═══════ LEVEL 1: ACCOUNT USAGE STAT ═══════ -->
+        <template lwc:if={isAccountView}>
+            <template lwc:if={hasData}>
+                <!-- KPI Cards -->
+                <div class="c360-usage__kpis">
+                    <div class="c360-usage__kpi">
+                        <span class="c360-usage__kpi-value">{licensed}</span>
+                        <span class="c360-usage__kpi-label">Licensed</span>
+                    </div>
+                    <div class="c360-usage__kpi">
+                        <span class="c360-usage__kpi-value">{enabled}</span>
+                        <span class="c360-usage__kpi-label">Enabled</span>
+                    </div>
+                    <div class="c360-usage__kpi">
+                        <span class="c360-usage__kpi-value">{activeUsers}</span>
+                        <span class="c360-usage__kpi-label">Active Users</span>
+                    </div>
+                    <div class="c360-usage__kpi">
+                        <span class="c360-usage__kpi-value">{loginPct}</span>
+                        <span class="c360-usage__kpi-label">Login Rate</span>
+                    </div>
+                    <div class="c360-usage__kpi">
+                        <span class="c360-usage__kpi-value">{activityPct}</span>
+                        <span class="c360-usage__kpi-label">Activity Rate</span>
+                    </div>
+                </div>
+
+                <!-- Usage Rating Breakdown -->
+                <div class="c360-usage__rating-panel">
+                    <div class="c360-usage__rating-header">
+                        <span class="c360-usage__rating-score">{ratingScore}</span>
+                        <span class="c360-usage__rating-tier" style={ratingBadgeStyle}>{ratingTier}</span>
+                    </div>
+                    <div class="c360-usage__rating-factors">
+                        <template for:each={ratingFactors} for:item="factor">
+                            <div key={factor.label} class="c360-usage__factor-row">
+                                <div class="c360-usage__factor-info">
+                                    <span class="c360-usage__factor-label">{factor.label}</span>
+                                    <span class="c360-usage__factor-weight">{factor.weightPct}</span>
+                                </div>
+                                <div class="c360-usage__factor-bar-track">
+                                    <div class="c360-usage__factor-bar-fill" style={factor.barStyle}></div>
+                                </div>
+                                <span class="c360-usage__factor-value">{factor.value}</span>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Two-column: Channel Logins | Persona Adoption -->
+                <div class="c360-usage__two-col">
+                    <!-- Channel Logins -->
+                    <div class="c360-usage__panel">
+                        <div class="c360-usage__panel-title">LOGIN ACTIVITY BY CHANNEL</div>
+                        <div class="c360-usage__channel-grid">
+                            <div class="c360-usage__channel-header">
+                                <span>CHANNEL</span><span>DISTINCT</span><span>TOTAL</span>
+                            </div>
+                            <template for:each={channelLogins} for:item="ch">
+                                <div key={ch.channel} class="c360-usage__channel-row">
+                                    <span>{ch.channel}</span>
+                                    <span>{ch.distinct}</span>
+                                    <span>{ch.total}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+
+                    <!-- Persona Adoption -->
+                    <div class="c360-usage__panel">
+                        <div class="c360-usage__panel-title">PERSONA ADOPTION</div>
+                        <template for:each={personaAdoption} for:item="p">
+                            <div key={p.persona} class="c360-usage__persona-row">
+                                <div class="c360-usage__persona-info">
+                                    <span class="c360-usage__persona-name">{p.persona}</span>
+                                    <span class="c360-usage__persona-pct">{p.pctLabel}</span>
+                                </div>
+                                <div class="c360-usage__persona-bar-track">
+                                    <div class="c360-usage__persona-bar-fill" style={p.barStyle}></div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Client Sites List (drill into each site) -->
+                <div class="c360-usage__site-list">
+                    <div class="c360-usage__panel-title">CLIENT SITES</div>
+                    <template for:each={clientSiteList} for:item="site">
+                        <div key={site.id} class="c360-usage__site-card" data-id={site.id} onclick={handleSiteClick}>
+                            <div class="c360-usage__site-card-left">
+                                <lightning-icon icon-name="utility:desktop" size="x-small" class="c360-usage__site-icon"></lightning-icon>
+                                <span class="c360-usage__site-url">{site.siteUrl}</span>
+                            </div>
+                            <div class="c360-usage__site-card-stats">
+                                <span>{site.userCountLabel}</span>
+                                <span>{site.enabledLabel}</span>
+                                <span>{site.loginPctLabel} login</span>
+                            </div>
+                            <span class="c360-usage__card-arrow">&gt;</span>
+                        </div>
+                    </template>
+                </div>
+            </template>
+        </template>
+
+        <!-- ═══════ LEVEL 2: CLIENT SITE USAGE STAT ═══════ -->
+        <template lwc:if={isClientSiteView}>
+            <template lwc:if={siteDetail}>
+                <div class="c360-usage__kpis">
+                    <div class="c360-usage__kpi"><span class="c360-usage__kpi-value">{siteDetail.licensed}</span><span class="c360-usage__kpi-label">Licensed</span></div>
+                    <div class="c360-usage__kpi"><span class="c360-usage__kpi-value">{siteDetail.enabled}</span><span class="c360-usage__kpi-label">Enabled</span></div>
+                    <div class="c360-usage__kpi"><span class="c360-usage__kpi-value">{siteDetail.active}</span><span class="c360-usage__kpi-label">Active</span></div>
+                    <div class="c360-usage__kpi"><span class="c360-usage__kpi-value">{siteDetail.loginPctLabel}</span><span class="c360-usage__kpi-label">Login Rate</span></div>
+                    <div class="c360-usage__kpi"><span class="c360-usage__kpi-value">{siteDetail.activityPctLabel}</span><span class="c360-usage__kpi-label">Activity Rate</span></div>
+                </div>
+                <!-- Config Pills -->
+                <div class="c360-usage__config-pills">
+                    <template for:each={siteDetail.configPills} for:item="pill">
+                        <span key={pill.label} class="c360-usage__config-pill" data-green={pill.isGreen}>{pill.label}</span>
+                    </template>
+                </div>
+                <!-- Platform Metrics -->
+                <div class="c360-usage__platform-metrics">
+                    <template for:each={siteDetail.platformMetrics} for:item="m">
+                        <div key={m.label} class="c360-usage__platform-metric">
+                            <span class="c360-usage__platform-metric-value">{m.value}</span>
+                            <span class="c360-usage__platform-metric-label">{m.label}</span>
+                        </div>
+                    </template>
+                </div>
+                <!-- Two-col: channels + personas -->
+                <div class="c360-usage__two-col">
+                    <div class="c360-usage__panel">
+                        <div class="c360-usage__panel-title">LOGIN ACTIVITY BY CHANNEL</div>
+                        <div class="c360-usage__channel-grid">
+                            <div class="c360-usage__channel-header"><span>CHANNEL</span><span>DISTINCT</span><span>TOTAL</span></div>
+                            <template for:each={siteDetail.channelData} for:item="ch">
+                                <div key={ch.channel} class="c360-usage__channel-row"><span>{ch.channel}</span><span>{ch.distinct}</span><span>{ch.total}</span></div>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="c360-usage__panel">
+                        <div class="c360-usage__panel-title">PERSONA ADOPTION</div>
+                        <template for:each={siteDetail.personaData} for:item="p">
+                            <div key={p.persona} class="c360-usage__persona-row">
+                                <div class="c360-usage__persona-info"><span class="c360-usage__persona-name">{p.persona}</span><span class="c360-usage__persona-pct">{p.pctLabel}</span></div>
+                                <div class="c360-usage__persona-bar-track"><div class="c360-usage__persona-bar-fill" style={p.barStyle}></div></div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+                <!-- Users Table -->
+                <div class="c360-usage__users-section">
+                    <div class="c360-usage__panel-title">USERS ({siteDetail.totalUsers})</div>
+                    <div class="c360-usage__users-grid c360-usage__users-grid-header">
+                        <span>NAME</span><span>EMAIL</span><span>PORTAL</span><span>EXCEL</span><span>MOBILE</span><span>LOGINS</span><span>STATUS</span>
+                    </div>
+                    <template for:each={siteDetail.usersDisplay} for:item="u">
+                        <div key={u.userId} class="c360-usage__users-grid c360-usage__users-grid-row" data-id={u.userId} onclick={handleUserClick}>
+                            <span class="c360-usage__user-name">{u.name}</span>
+                            <span class="c360-usage__user-email">{u.email}</span>
+                            <span>{u.portalLoginsL4W}</span>
+                            <span>{u.excelLoginsL4W}</span>
+                            <span>{u.mobileLoginsL4W}</span>
+                            <span>{u.loginTotal}</span>
+                            <span class={u.statusClass}>{u.statusLabel}</span>
+                        </div>
+                    </template>
+                </div>
+            </template>
+        </template>
+
+        <!-- ═══════ LEVEL 3: USER USAGE STAT ═══════ -->
+        <template lwc:if={isUserView}>
+            <template lwc:if={userDetail}>
+                <!-- Profile Header -->
+                <div class="c360-usage__user-header">
+                    <div class="c360-usage__avatar">{userDetail.initials}</div>
+                    <div class="c360-usage__user-header-info">
+                        <span class="c360-usage__user-header-name">{userDetail.name}</span>
+                        <span class="c360-usage__user-header-email">{userDetail.email}</span>
+                        <div class="c360-usage__user-header-badges">
+                            <span class="c360-usage__user-status-badge" data-active={userDetail.isActive}>{userDetail.statusLabel}</span>
+                            <span class="c360-usage__user-group-badge">{userDetail.userGroups}</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- User KPIs -->
+                <div class="c360-usage__kpis c360-usage__kpis--4">
+                    <div class="c360-usage__kpi"><span class="c360-usage__kpi-value">{userDetail.totalLogins}</span><span class="c360-usage__kpi-label">Total Logins (L4W)</span></div>
+                    <div class="c360-usage__kpi"><span class="c360-usage__kpi-value">{userDetail.totalActivity}</span><span class="c360-usage__kpi-label">Total Activity</span></div>
+                    <div class="c360-usage__kpi"><span class="c360-usage__kpi-value">{userDetail.adoptedCount}</span><span class="c360-usage__kpi-label">Personas Adopted</span></div>
+                    <div class="c360-usage__kpi"><span class="c360-usage__kpi-value">{userDetail.isBillableLabel}</span><span class="c360-usage__kpi-label">Billable</span></div>
+                </div>
+                <!-- Two-col: Login Bars | Activity Meta -->
+                <div class="c360-usage__two-col">
+                    <div class="c360-usage__panel">
+                        <div class="c360-usage__panel-title">LOGINS BY CHANNEL</div>
+                        <template for:each={userDetail.channelBars} for:item="bar">
+                            <div key={bar.channel} class="c360-usage__bar-row">
+                                <span class="c360-usage__bar-label">{bar.channel}</span>
+                                <div class="c360-usage__bar-track">
+                                    <div class="c360-usage__bar-fill" style={bar.barStyle}></div>
+                                </div>
+                                <span class="c360-usage__bar-count">{bar.count}</span>
+                            </div>
+                        </template>
+                    </div>
+                    <div class="c360-usage__panel">
+                        <div class="c360-usage__panel-title">ACTIVITY &amp; METADATA</div>
+                        <div class="c360-usage__meta-grid">
+                            <span class="c360-usage__meta-label">Entries Added</span><span class="c360-usage__meta-value">{userDetail.entriesAdded}</span>
+                            <span class="c360-usage__meta-label">Entries Modified</span><span class="c360-usage__meta-value">{userDetail.entriesModified}</span>
+                            <span class="c360-usage__meta-label">Entries Deleted</span><span class="c360-usage__meta-value">{userDetail.entriesDeleted}</span>
+                            <span class="c360-usage__meta-label">Last Login</span><span class="c360-usage__meta-value">{userDetail.lastLoginFormatted}</span>
+                            <span class="c360-usage__meta-label">Client ID</span><span class="c360-usage__meta-value">{userDetail.clientId}</span>
+                            <span class="c360-usage__meta-label">Site</span><span class="c360-usage__meta-value">{userDetail.siteUrl}</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Persona Adoption Pills -->
+                <div class="c360-usage__panel" style="margin: 0 20px 20px;">
+                    <div class="c360-usage__panel-title">PERSONA ADOPTION</div>
+                    <div class="c360-usage__persona-pills-wrap">
+                        <template for:each={userDetail.personas} for:item="p">
+                            <span key={p.key} class={p.pillClass}>{p.name}</span>
+                        </template>
+                    </div>
+                </div>
+            </template>
+        </template>
+
+        <!-- Empty State -->
+        <template lwc:if={showEmpty}>
+            <c-customer360-empty-state
+                title="No Usage Data"
+                message="No usage data available for this account."
+                icon="utility:chart"></c-customer360-empty-state>
+        </template>
+
+        <!-- Error -->
+        <template lwc:if={errorMessage}>
+            <div class="c360-usage__error">
+                <lightning-icon icon-name="utility:error" variant="error" size="small"></lightning-icon>
+                <span>{errorMessage}</span>
+            </div>
+        </template>
+    </div>
+</template>

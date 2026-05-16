@@ -1,0 +1,24 @@
+<template>
+    <header class="c360-header">
+        <div class="c360-header__left">
+            <button class="c360-header__logo-btn" onclick={handleLogoClick}>
+                <lightning-icon icon-name="standard:customer_360" size="small" class="c360-header__logo-icon"></lightning-icon>
+                <span class="c360-header__title">Customer 360</span>
+            </button>
+        </div>
+        <div class="c360-header__right">
+            <div class="c360-header__user">
+                <lightning-icon icon-name="standard:avatar" size="x-small"></lightning-icon>
+                <span class="c360-header__user-name">{userName}</span>
+            </div>
+            <span class="c360-header__date">{currentDate}</span>
+            <button class="c360-header__info-btn" onclick={handleInfoClick} title="About this app">
+                <lightning-icon icon-name="utility:info" size="small" class="info-icon"></lightning-icon>
+            </button>
+            <button class="c360-header__bell" onclick={handleBellClick}>
+                <lightning-icon icon-name="utility:notification" size="small" class="bell-icon"></lightning-icon>
+                <span lwc:if={hasNotifications} class="c360-header__badge">{notificationCount}</span>
+            </button>
+        </div>
+    </header>
+</template>

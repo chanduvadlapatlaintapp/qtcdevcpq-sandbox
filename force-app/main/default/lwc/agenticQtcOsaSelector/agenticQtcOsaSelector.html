@@ -1,0 +1,137 @@
+<template>
+    <div class="osa-container">
+        <!-- Selected Account Pill -->
+        <div class="account-pill">
+            <div class="account-pill-left">
+                <lightning-icon icon-name="utility:check" size="x-small" class="pill-check-icon"></lightning-icon>
+                <span class="account-pill-name">{accountName}</span>
+            </div>
+            <button class="account-pill-clear" onclick={handleBack}>
+                <lightning-icon icon-name="utility:close" size="xx-small"></lightning-icon>
+                <span>Clear</span>
+            </button>
+        </div>
+
+        <template if:true={isLoading}>
+            <c-agentic-qtc-loading message="Loading contracts"></c-agentic-qtc-loading>
+        </template>
+
+        <template if:true={hasContracts}>
+            <div class="contracts-section">
+                <div class="section-header">
+                    <div class="section-header-text">
+                        <h2>Active Contracts</h2>
+                        <p class="section-subtitle">{accountName}</p>
+                    </div>
+                    <template if:true={showContractStats}>
+                        <span class="contract-count-badge">{contractCountLabel}</span>
+                    </template>
+                </div>
+                <div class="contracts-table-scroll">
+                <table class="contracts-table">
+                    <thead>
+                        <tr>
+                            <th>Contract Number</th>
+                            <th>Contract Name</th>
+                            <th>OSA Number</th><!-- VK-change: replaced Lines column with OSA Number, moved before Start Date -->
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Products</th><!-- VK-change: removed Lines column -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={contracts} for:item="contract">
+                            <tr key={contract.id} class="contract-row"
+                                onclick={handleContractClick}
+                                data-id={contract.id}
+                                data-number={contract.contractNumber}>
+                                <td><span class="contract-number-text">{contract.contractNumber}</span></td>
+                                <td class="contract-name-cell">{contract.contractName}</td>
+                                <td>{contract.osaNumber}</td><!-- VK-change: OSA_Number__c value from Apex DTO -->
+                                <td class="date-cell">{contract.startDateFormatted}</td>
+                                <td class="date-cell">{contract.endDateFormatted}</td>
+                                <td class="products-cell" onclick={handleProductCellClick}>
+                                    <template if:true={contract.isProductExpanded}>
+                                        <span class="product-names-text">{contract.allProductsDisplay}</span>
+                                        <button class="product-toggle-btn"
+                                                data-id={contract.id}
+                                                onclick={handleProductToggle}>Show less</button>
+                                    </template>
+                                    <template if:false={contract.isProductExpanded}>
+                                        <span class="product-names-text">{contract.productDisplay}</span>
+                                        <template if:true={contract.hasMoreProducts}>
+                                            <button class="product-toggle-btn product-more-btn"
+                                                    data-id={contract.id}
+                                                    onclick={handleProductToggle}>+{contract.moreCount} more</button>
+                                        </template>
+                                    </template>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </template>
+
+        <template if:true={noContracts}>
+            <div class="contracts-section">
+                <div class="section-header">
+                    <div class="section-header-text">
+                        <h2>Active Contracts</h2>
+                        <p class="section-subtitle">{accountName}</p>
+                    </div>
+                </div>
+                <div class="no-results">
+                    <lightning-icon icon-name="utility:contract" size="large"></lightning-icon>
+                    <p>No active contracts found for this account</p>
+                </div>
+            </div>
+        </template>
+
+        <template if:true={isLoadingQuotes}>
+            <c-agentic-qtc-loading message="Checking for existing draft quotes"></c-agentic-qtc-loading>
+        </template>
+
+        <template if:true={showQuotesModal}>
+            <div class="quotes-modal-backdrop" onclick={handleCloseQuotesModal}>
+                <div class="quotes-modal" role="dialog" aria-modal="true"
+                    aria-labelledby="quotes-modal-title" onclick={handleModalStop}>
+                    <div class="quotes-modal-header">
+                        <div class="quotes-modal-title-block">
+                            <h3 id="quotes-modal-title" class="quotes-modal-title">Existing Draft Quotes</h3>
+                            <p class="quotes-modal-subtitle">Select a draft amendment quote to continue editing</p>
+                        </div>
+                        <div class="quotes-modal-actions">
+                            <button type="button" class="quotes-modal-close"
+                                onclick={handleCloseQuotesModal} aria-label="Close">
+                                <lightning-icon icon-name="utility:close" size="x-small"></lightning-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="quotes-modal-table-scroll">
+                        <table class="quotes-modal-table">
+                            <thead>
+                                <tr>
+                                    <th>Quote Name</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={draftQuotes} for:item="quote">
+                                    <tr key={quote.id} class="quote-row"
+                                        data-id={quote.id} onclick={handleQuoteRowClick}>
+                                        <td class="quote-name-cell">{quote.name}</td>
+                                        <td class="quote-date-cell">{quote.startDateFormatted}</td>
+                                        <td class="quote-date-cell">{quote.endDateFormatted}</td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
+</template>

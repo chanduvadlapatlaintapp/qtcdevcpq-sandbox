@@ -1,0 +1,442 @@
+:host {
+    display: block;
+    font-family: 'Manrope', Arial, sans-serif;
+}
+
+/* =========================================================================
+   APP HEADER (Dark Banner)
+   ========================================================================= */
+
+.app-header {
+    background: linear-gradient(135deg, #003C80 0%, #0E54A9 100%);
+    padding: 2.5rem 2rem 2rem 2rem;
+    text-align: center;
+}
+
+.app-header__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 0.25rem 0;
+    letter-spacing: 0.01em;
+}
+
+.app-header__subtitle {
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: #A4B9D7;
+    margin: 0;
+}
+
+/* =========================================================================
+   CARD GRID (Landing Page)
+   ========================================================================= */
+
+.card-grid {
+    display: flex;
+    gap: 1.5rem;
+    padding: 2.5rem 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #F4F7FA;
+    min-height: 320px;
+    align-items: stretch;
+}
+
+/* =========================================================================
+   CARD LANDING (Base)
+   ========================================================================= */
+
+.card-landing {
+    background: #ffffff;
+    border-radius: 0.625rem;
+    padding: 1.75rem 1.5rem 1.5rem;
+    width: 280px;
+    cursor: pointer;
+    border: 2px solid #E6E6E6;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.card-landing__icon-container {
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.card-landing__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #073C7D;
+    margin: 0 0 0.5rem 0;
+}
+
+.card-landing__description {
+    font-size: 0.8125rem;
+    color: #536E8D;
+    margin: 0 0 1.25rem 0;
+    line-height: 1.55;
+    flex-grow: 1;
+}
+
+.card-landing__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    justify-content: center;
+    padding-top: 0.75rem;
+    border-top: 1px solid #E6E6E6;
+    width: 100%;
+}
+
+.card-landing__pill {
+    display: inline-block;
+    padding: 0.2rem 0.625rem;
+    background-color: #FAFAF9;
+    border-radius: 1rem;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: #536E8D;
+}
+
+.card-landing__arrow {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1rem;
+    color: #A4B9D7;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+/* =========================================================================
+   CARD — Coming Soon Badge
+   ========================================================================= */
+
+.card-landing__badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 1rem;
+    background-color: #F4F7FA;
+    color: #A4B9D7;
+}
+
+/* =========================================================================
+   CARD — Disabled State
+   ========================================================================= */
+
+.card-disabled {
+    cursor: default;
+}
+
+.card-disabled .card-landing {
+    cursor: default;
+    opacity: 0.65;
+}
+
+.card-disabled:hover .card-landing {
+    border-color: #E6E6E6;
+    box-shadow: none;
+    transform: none;
+}
+
+/* =========================================================================
+   CARD ACCENT COLORS — Update (Purple)
+   ========================================================================= */
+
+.card-update .card-landing__icon-container {
+    background-color: #EDE8FF;
+}
+
+.card-update .card-landing__icon-container lightning-icon {
+    --sds-c-icon-color-foreground-default: #501AFF;
+}
+
+.card-update:hover .card-landing {
+    border-color: #501AFF;
+    box-shadow: 0 8px 25px rgba(80, 26, 255, 0.15);
+    transform: translateY(-4px);
+}
+
+.card-update:hover .card-landing__arrow {
+    color: #501AFF;
+    transform: translateX(2px);
+}
+
+.card-update:focus {
+    outline: none;
+}
+
+.card-update:focus .card-landing {
+    outline: 2px solid #501AFF;
+    outline-offset: 2px;
+}
+
+/* =========================================================================
+   CARD ACCENT COLORS — New SKU (Blue)
+   ========================================================================= */
+
+.card-newSku .card-landing__icon-container {
+    background-color: #eff6ff;
+}
+
+.card-newSku .card-landing__icon-container lightning-icon {
+    --sds-c-icon-color-foreground-default: #2563EB;
+}
+
+.card-newSku:hover .card-landing {
+    border-color: #2563EB;
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.15);
+    transform: translateY(-4px);
+}
+
+.card-newSku:hover .card-landing__arrow {
+    color: #2563EB;
+    transform: translateX(2px);
+}
+
+.card-newSku:focus {
+    outline: none;
+}
+
+.card-newSku:focus .card-landing {
+    outline: 2px solid #2563EB;
+    outline-offset: 2px;
+}
+
+/* =========================================================================
+   CARD ACCENT COLORS — Pricebook (Green)
+   ========================================================================= */
+
+.card-pricebook .card-landing__icon-container {
+    background-color: #ecfdf5;
+}
+
+.card-pricebook .card-landing__icon-container lightning-icon {
+    --sds-c-icon-color-foreground-default: #059669;
+}
+
+.card-pricebook:hover .card-landing {
+    border-color: #059669;
+    box-shadow: 0 8px 25px rgba(5, 150, 105, 0.15);
+    transform: translateY(-4px);
+}
+
+.card-pricebook:hover .card-landing__arrow {
+    color: #059669;
+    transform: translateX(2px);
+}
+
+.card-pricebook:focus {
+    outline: none;
+}
+
+.card-pricebook:focus .card-landing {
+    outline: 2px solid #059669;
+    outline-offset: 2px;
+}
+
+/* =========================================================================
+   CARD ACCENT COLORS — Pricebook View (Amber)
+   ========================================================================= */
+
+.card-pricebookView .card-landing__icon-container {
+    background-color: #fef3c7;
+}
+
+.card-pricebookView .card-landing__icon-container lightning-icon {
+    --sds-c-icon-color-foreground-default: #d97706;
+}
+
+.card-pricebookView:hover .card-landing {
+    border-color: #d97706;
+    box-shadow: 0 8px 25px rgba(217, 119, 6, 0.15);
+    transform: translateY(-4px);
+}
+
+.card-pricebookView:hover .card-landing__arrow {
+    color: #d97706;
+    transform: translateX(2px);
+}
+
+.card-pricebookView:focus {
+    outline: none;
+}
+
+.card-pricebookView:focus .card-landing {
+    outline: 2px solid #d97706;
+    outline-offset: 2px;
+}
+
+/* =========================================================================
+   CARD ACCENT COLORS — Quote Term Update (Sky Blue)
+   ========================================================================= */
+
+.card-quoteTermUpdate .card-landing__icon-container {
+    background-color: #e0f2fe;
+}
+
+.card-quoteTermUpdate .card-landing__icon-container lightning-icon {
+    --sds-c-icon-color-foreground-default: #0369a1;
+}
+
+.card-quoteTermUpdate:hover .card-landing {
+    border-color: #0369a1;
+    box-shadow: 0 8px 25px rgba(3, 105, 161, 0.15);
+    transform: translateY(-4px);
+}
+
+.card-quoteTermUpdate:hover .card-landing__arrow {
+    color: #0369a1;
+    transform: translateX(2px);
+}
+
+.card-quoteTermUpdate:focus {
+    outline: none;
+}
+
+.card-quoteTermUpdate:focus .card-landing {
+    outline: 2px solid #0369a1;
+    outline-offset: 2px;
+}
+
+/* =========================================================================
+   BREADCRUMB BAR
+   ========================================================================= */
+
+.breadcrumb-bar {
+    display: flex;
+    align-items: center;
+    padding: 0.625rem 1rem;
+    background-color: #FAFAF9;
+    border-bottom: 1px solid #E6E6E6;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.breadcrumb-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #501AFF;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.15s ease;
+}
+
+.breadcrumb-home:hover {
+    background-color: #EDE8FF;
+}
+
+.breadcrumb-home__label {
+    line-height: 1;
+}
+
+.breadcrumb-home lightning-icon {
+    --sds-c-icon-color-foreground-default: #501AFF;
+}
+
+.breadcrumb-separator {
+    color: #A4B9D7;
+    font-weight: 400;
+}
+
+.breadcrumb-link {
+    display: inline-flex;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #501AFF;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.15s ease;
+}
+
+.breadcrumb-link:hover {
+    background-color: #EDE8FF;
+    text-decoration: underline;
+}
+
+.breadcrumb-current {
+    color: #073C7D;
+    font-weight: 600;
+}
+
+/* =========================================================================
+   TAB BAR (Sub-tabs in drill-in view — reused from original design)
+   ========================================================================= */
+
+.tab-bar {
+    display: flex;
+    align-items: stretch;
+    padding: 0 1rem;
+    background-color: #ffffff;
+    border-bottom: 1px solid #E6E6E6;
+    gap: 0;
+}
+
+.tab-item {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #536E8D;
+    background: none;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s ease;
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+}
+
+.tab-item:hover {
+    color: #073C7D;
+}
+
+.tab-item.tab-active {
+    color: #501AFF;
+    font-weight: 600;
+}
+
+.tab-item.tab-active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0.75rem;
+    right: 0.75rem;
+    height: 3px;
+    background-color: #501AFF;
+    border-radius: 3px 3px 0 0;
+}
+
+/* =========================================================================
+   TAB PANEL
+   ========================================================================= */
+
+.tab-panel {
+    background-color: #ffffff;
+}

@@ -1,0 +1,157 @@
+<template>
+    <div class="c360-support">
+        <!-- Header -->
+        <div class="c360-support__header">
+            <div class="c360-support__title-row">
+                <div class="c360-support__title-left">
+                    <div class="c360-support__icon-box">
+                        <lightning-icon icon-name="utility:headset" size="x-small" variant="inverse"></lightning-icon>
+                    </div>
+                    <h2 class="c360-support__title">Support Tickets</h2>
+                    <span class="c360-support__source-badge" style={sourceBadgeStyle}>
+                        {sourceBadge.label}
+                    </span>
+                    <span class="c360-support__count">{recordCount}</span>
+                </div>
+                <div class="c360-support__actions">
+                    <template lwc:if={isMockData}>
+                        <span class="c360-support__mock-badge">Demo Data</span>
+                    </template>
+                    <button class="c360-support__export-btn" onclick={handleExportCsv} title="Export CSV">
+                        Export CSV
+                    </button>
+                    <lightning-button-icon
+                        icon-name="utility:refresh"
+                        alternative-text="Refresh"
+                        variant="border-filled"
+                        onclick={handleRefresh}></lightning-button-icon>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Bar -->
+        <template lwc:if={hasData}>
+            <div class="c360-support__stats">
+                <div class="c360-support__stat">
+                    <span class="c360-support__stat-value c360-support__stat-value--warn">{openCount}</span>
+                    <span class="c360-support__stat-label">Open</span>
+                </div>
+                <div class="c360-support__stat">
+                    <span class="c360-support__stat-value c360-support__stat-value--good">{resolvedCount}</span>
+                    <span class="c360-support__stat-label">Resolved</span>
+                </div>
+                <div class="c360-support__stat">
+                    <span class="c360-support__stat-value">{avgResolution}</span>
+                    <span class="c360-support__stat-label">Avg Resolution</span>
+                </div>
+                <div class="c360-support__stat">
+                    <span class="c360-support__stat-value c360-support__stat-value--danger">{critHighCount}</span>
+                    <span class="c360-support__stat-label">Critical/High Open</span>
+                </div>
+            </div>
+        </template>
+
+        <!-- Filter Bar -->
+        <template lwc:if={hasData}>
+            <div class="c360-support__filters">
+                <lightning-combobox
+                    label="Priority"
+                    value={_filterPriority}
+                    options={priorityOptions}
+                    variant="label-hidden"
+                    onchange={handlePriorityFilter}
+                    class="c360-support__filter-combo"
+                ></lightning-combobox>
+                <lightning-combobox
+                    label="Status"
+                    value={_filterStatus}
+                    options={statusOptions}
+                    variant="label-hidden"
+                    onchange={handleStatusFilter}
+                    class="c360-support__filter-combo"
+                ></lightning-combobox>
+                <lightning-combobox
+                    label="Assignee"
+                    value={_filterAssignee}
+                    options={assigneeOptions}
+                    variant="label-hidden"
+                    onchange={handleAssigneeFilter}
+                    class="c360-support__filter-combo"
+                ></lightning-combobox>
+                <template lwc:if={hasActiveFilters}>
+                    <button class="c360-support__clear-btn" onclick={handleClearFilters}>
+                        Clear ({activeFilterCount})
+                    </button>
+                </template>
+            </div>
+        </template>
+
+        <!-- Loading -->
+        <template lwc:if={isLoading}>
+            <div class="c360-support__loading">
+                <lightning-spinner alternative-text="Loading..." size="small"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Custom Grid Table -->
+        <template lwc:if={hasData}>
+            <div class="c360-support__table-wrap">
+                <!-- Table Header -->
+                <div class="c360-support__grid c360-support__grid-header">
+                    <span>PRIORITY</span>
+                    <span>TICKET ID</span>
+                    <span>SUBJECT</span>
+                    <span>STATUS</span>
+                    <span>ASSIGNEE</span>
+                    <span>CREATED</span>
+                </div>
+                <!-- Table Rows -->
+                <template for:each={displayData} for:item="ticket">
+                    <div
+                        key={ticket.id}
+                        class="c360-support__grid c360-support__grid-row"
+                        data-id={ticket.id}
+                        onclick={handleTicketClick}
+                    >
+                        <span class="c360-support__cell-priority">
+                            <span class="c360-support__priority-dot" style={ticket.priorityDotStyle}></span>
+                            {ticket.priority}
+                        </span>
+                        <span class="c360-support__cell-ticket-id">{ticket.ticketNumber}</span>
+                        <span class="c360-support__cell-subject" title={ticket.subject}>{ticket.subject}</span>
+                        <span>
+                            <span class="c360-support__status-pill" style={ticket.statusPillStyle}>{ticket.status}</span>
+                        </span>
+                        <span class="c360-support__cell-assignee">{ticket.assignee}</span>
+                        <span class="c360-support__cell-date">{ticket.createdFormatted}</span>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Pagination -->
+            <template lwc:if={showPagination}>
+                <div class="c360-support__pagination">
+                    <button class="c360-support__show-all-btn" onclick={handleShowAll}>
+                        {showAllLabel}
+                    </button>
+                </div>
+            </template>
+        </template>
+
+        <!-- Empty State -->
+        <template lwc:if={showEmpty}>
+            <c-customer360-empty-state
+                title="No Support Tickets"
+                message="No support tickets found for this account."
+                icon="utility:case"></c-customer360-empty-state>
+        </template>
+
+        <!-- Error -->
+        <template lwc:if={errorMessage}>
+            <div class="c360-support__error">
+                <lightning-icon icon-name="utility:error" variant="error" size="small"></lightning-icon>
+                <span>{errorMessage}</span>
+            </div>
+        </template>
+    </div>
+</template>

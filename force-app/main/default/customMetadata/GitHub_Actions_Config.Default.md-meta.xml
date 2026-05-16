@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Default</label>
+    <protected>false</protected>
+    <values>
+        <field>PAT__c</field>
+        <!-- DO NOT commit the actual PAT value here.
+             After deploying, set this field via:
+             Setup → Custom Metadata Types → GitHub Actions Config → Manage Records → Default
+             The PAT must have the "workflow" scope on GitHub. -->
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Repository_Owner__c</field>
+        <!-- Set to your GitHub org or username, e.g. "intapp" -->
+        <value xsi:type="xsd:string"></value>
+    </values>
+    <values>
+        <field>Repository_Name__c</field>
+        <!-- Set to your repo name, e.g. "qtcdevcpq-sandbox" -->
+        <value xsi:type="xsd:string"></value>
+    </values>
+    <values>
+        <field>Branch__c</field>
+        <value xsi:type="xsd:string">main</value>
+    </values>
+    <values>
+        <field>Workflow_File__c</field>
+        <value xsi:type="xsd:string">playwright.yml</value>
+    </values>
+</CustomMetadata>

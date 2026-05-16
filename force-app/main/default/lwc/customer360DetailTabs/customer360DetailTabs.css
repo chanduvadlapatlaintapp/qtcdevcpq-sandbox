@@ -1,0 +1,43 @@
+/* ─── Tab Navigation Container ────────────────────────────────────────────── */
+
+.detail-tabs {
+    display: flex;
+    gap: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 4px;
+    margin: 16px 0;
+    overflow-x: auto;
+}
+
+/* ─── Tab Buttons ────────────────────────────────────────────────────────── */
+
+.detail-tab {
+    padding: 10px 16px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #706E6B;
+    border-radius: 8px;
+    transition: all 0.15s;
+    white-space: nowrap;
+}
+
+.detail-tab:hover {
+    background: #F7F9FB;
+    color: #181818;
+}
+
+/* ─── Active Tab ─────────────────────────────────────────────────────────── */
+
+.detail-tab--active {
+    background: #EEF4FF;
+    color: #0176D3;
+    font-weight: 600;
+}

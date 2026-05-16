@@ -1,0 +1,278 @@
+:host {
+    display: block;
+}
+
+/* ===== Page Header ===== */
+.page-header {
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 1.25rem;
+    background: linear-gradient(135deg, #f0f4f8 0%, #e8ecf2 100%);
+    border-radius: 0.5rem;
+    border-left: 4px solid #207CEC;
+    margin-bottom: 1rem;
+}
+
+.header-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    background: linear-gradient(135deg, #207CEC 0%, #003C80 100%);
+    border-radius: 0.5rem;
+    margin-right: 0.875rem;
+    flex-shrink: 0;
+}
+
+.header-icon lightning-icon {
+    --lwc-colorTextIconDefault: #ffffff;
+}
+
+.header-title {
+    color: #1a1a2e;
+    font-weight: 700;
+    font-size: 1.0625rem;
+}
+
+.header-subtitle {
+    color: #5a6072;
+    font-size: 0.8125rem;
+    margin-top: 0.125rem;
+}
+
+/* ===== Filter Card ===== */
+.filter-card {
+    padding: 1rem 1.25rem;
+    background-color: #ffffff;
+    border: 1px solid #dfe3e8;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* ===== Save Bar ===== */
+.save-bar {
+    display: flex;
+    align-items: center;
+    padding: 0.625rem 1rem;
+    background-color: #fff9e6;
+    border: 1px solid #F3B400;
+    border-left: 4px solid #F3B400;
+    border-radius: 0.375rem;
+    margin-bottom: 0.75rem;
+}
+
+.save-bar-text {
+    font-size: 0.8125rem;
+    color: #5a6072;
+    font-weight: 500;
+}
+
+/* ===== Toolbar ===== */
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background-color: #f8f9fb;
+    border: 1px solid #dfe3e8;
+    border-radius: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+/* ===== Table Container ===== */
+.table-container {
+    overflow-x: auto;
+    width: 100%;
+    min-height: 20rem;
+    padding-bottom: 2rem;
+}
+
+/* ===== Branded Table Base ===== */
+.branded-table th {
+    background: linear-gradient(180deg, #003C80 0%, #002a5c 100%) !important;
+    color: #ffffff !important;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    padding: 0.5rem 0.5rem;
+    border-color: #002244 !important;
+}
+
+.branded-table tbody tr:hover {
+    background-color: #f0f6ff !important;
+}
+
+/* ===== Pricing Matrix Specific ===== */
+.pricing-matrix {
+    min-width: max-content;
+    border-collapse: collapse;
+}
+
+/* Group header row */
+.th-group {
+    text-align: center !important;
+    vertical-align: middle !important;
+    font-size: 0.8125rem !important;
+    letter-spacing: 0.02em !important;
+}
+
+/* Pricebook group header – amber/orange */
+.th-pricebook {
+    background: linear-gradient(180deg, #C05A00 0%, #A34A00 100%) !important;
+    border-color: #8C3D00 !important;
+}
+
+/* Currency group headers – distinct shades of blue */
+.th-usd {
+    background: linear-gradient(180deg, #0A5798 0%, #073D6B 100%) !important;
+    border-color: #052E52 !important;
+}
+
+.th-gbp {
+    background: linear-gradient(180deg, #145F8E 0%, #0D4268 100%) !important;
+    border-color: #092F4D !important;
+}
+
+.th-eur {
+    background: linear-gradient(180deg, #1A6680 0%, #124557 100%) !important;
+    border-color: #0D3341 !important;
+}
+
+.th-aud {
+    background: linear-gradient(180deg, #206878 0%, #174C57 100%) !important;
+    border-color: #113A44 !important;
+}
+
+/* Meter type column */
+.th-meter-type {
+    min-width: 150px;
+    width: 150px;
+    vertical-align: middle !important;
+    text-align: left !important;
+}
+
+/* Checkbox columns */
+.th-check {
+    min-width: 85px;
+    width: 85px;
+    font-size: 0.6875rem !important;
+    text-align: center !important;
+}
+
+/* Price columns */
+.th-price {
+    min-width: 72px;
+    width: 72px;
+    text-align: center !important;
+}
+
+/* Body cells */
+.td-meter-type {
+    font-weight: 600;
+    white-space: nowrap;
+    vertical-align: middle;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+}
+
+.td-check {
+    text-align: center;
+    vertical-align: middle;
+    padding: 0.25rem 0.5rem !important;
+}
+
+.td-price {
+    padding: 0.2rem 0.25rem !important;
+    vertical-align: middle;
+}
+
+/* ===== Native Price Input (for Excel paste support) ===== */
+.price-input {
+    width: 100%;
+    height: 1.875rem;
+    padding: 0 0.5rem;
+    border: 1px solid #d8dde6;
+    border-radius: 0.25rem;
+    font-size: 0.8125rem;
+    color: #181818;
+    background-color: #fff;
+    text-align: right;
+    box-sizing: border-box;
+    -moz-appearance: textfield;
+}
+
+.price-input::-webkit-outer-spin-button,
+.price-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.price-input:focus {
+    outline: none;
+    border-color: #1b96ff;
+    box-shadow: 0 0 3px 0 #1b96ff;
+}
+
+.price-input::placeholder {
+    color: #c9c9c9;
+}
+
+/* ===== Paste Hint ===== */
+.paste-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: #706e6b;
+    font-style: italic;
+}
+
+/* ===== New Row Highlight ===== */
+.td-new-row {
+    background-color: #f0fff0 !important;
+    min-width: 220px;
+    width: 220px;
+}
+
+.td-new-row lightning-combobox {
+    flex: 1;
+    min-width: 0;
+}
+
+.remove-row-btn {
+    color: #c23934;
+    flex-shrink: 0;
+}
+
+/* ===== Empty State ===== */
+.empty-state {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.empty-state-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    background-color: #f0f2f5;
+    border-radius: 50%;
+    margin-bottom: 0.75rem;
+}
+
+.empty-state-heading {
+    color: #1a1a2e;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.empty-state-text {
+    color: #8e95a5;
+    font-size: 0.875rem;
+}

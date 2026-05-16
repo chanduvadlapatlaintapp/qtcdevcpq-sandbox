@@ -1,0 +1,61 @@
+/* quoteFileList.css - Match standard related list styling (e.g. OSAs) */
+
+:host {
+    display: block;
+}
+
+/* Card background matches standard related list */
+.slds-card_boundary {
+    background-color: var(--lwc-colorBackground, #ffffff);
+    border: 1px solid var(--lwc-colorBorder, #e5e5e5);
+    border-radius: 0.25rem;
+}
+
+/* Header padding to match standard related list */
+.slds-card__header {
+    padding: 0.75rem 1rem;
+}
+
+/* Ensure icon aligns vertically with title */
+.slds-media__figure {
+    margin-right: 0.5rem;
+    align-self: center;
+}
+
+/* Title styling to match standard related list header */
+.slds-card__header-title .slds-text-heading_small {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--lwc-colorTextDefault, #080707);
+}
+
+/* Remove extra padding around datatable */
+.slds-card__body lightning-datatable {
+    width: 100%;
+}
+
+/* Footer styling */
+.slds-card__footer {
+    padding: 0.5rem 1rem;
+    text-align: center;
+    border-top: 1px solid var(--lwc-colorBorder, #e5e5e5);
+}
+
+/* View All link matching standard related list style */
+.slds-card__footer .view-all-link {
+    color: var(--lwc-colorTextLink, #0070d2);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.slds-card__footer .view-all-link:hover {
+    text-decoration: underline;
+}
+
+/* Error banner */
+.slds-notify_toast {
+    border-radius: 0.25rem;
+    padding: 0.75rem 1rem;
+}

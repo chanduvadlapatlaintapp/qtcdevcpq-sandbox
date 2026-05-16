@@ -1,0 +1,117 @@
+<template>
+    <!-- ===================== VIEW 1: Landing Page (Home) ===================== -->
+    <template if:true={isHomeView}>
+        <div class="app-header">
+            <h1 class="app-header__title">SKU Management App</h1>
+            <p class="app-header__subtitle">Manage products, pricing, and pricebooks</p>
+        </div>
+
+        <div class="card-grid">
+            <template for:each={visibleCards} for:item="card">
+                <div key={card.key}
+                     class={card.accentClass}
+                     data-section={card.key}
+                     onclick={handleCardClick}
+                     onkeydown={handleCardKeydown}
+                     role="button"
+                     tabindex="0">
+                    <div class="card-landing">
+                        <div class="card-landing__icon-container">
+                            <lightning-icon icon-name={card.icon}
+                                            size="medium"
+                                            alternative-text={card.label}>
+                            </lightning-icon>
+                        </div>
+                        <h2 class="card-landing__title">{card.label}</h2>
+                        <p class="card-landing__description">{card.description}</p>
+                        <div class="card-landing__pills">
+                            <template for:each={card.pills} for:item="pill">
+                                <span key={pill} class="card-landing__pill">{pill}</span>
+                            </template>
+                        </div>
+                        <template if:true={card.enabled}>
+                            <span class="card-landing__arrow">&rarr;</span>
+                        </template>
+                        <template if:false={card.enabled}>
+                            <span class="card-landing__badge">Coming Soon</span>
+                        </template>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </template>
+
+    <!-- ===================== VIEW 2: Section Drill-in ===================== -->
+    <template if:true={isSectionView}>
+        <!-- Breadcrumb Bar -->
+        <div class="breadcrumb-bar">
+            <button class="breadcrumb-home" onclick={handleBackToHome}>
+                <lightning-icon icon-name="utility:chevronleft"
+                                size="xx-small"
+                                alternative-text="Back">
+                </lightning-icon>
+                <span class="breadcrumb-home__label">Home</span>
+            </button>
+            <template if:true={showPricebookBreadcrumb}>
+                <span class="breadcrumb-separator">/</span>
+                <button class="breadcrumb-link" onclick={handleBackToPricebook}>Pricebook View</button>
+            </template>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">{activeSectionLabel}</span>
+        </div>
+
+        <!-- Sub-Tab Bar -->
+        <div class="tab-bar" role="tablist">
+            <template for:each={visibleSubTabs} for:item="subTab">
+                <button key={subTab.value}
+                        class={subTab.cssClass}
+                        role="tab"
+                        aria-selected={subTab.isActive}
+                        data-tab={subTab.value}
+                        onclick={handleTabClick}>
+                    {subTab.label}
+                </button>
+            </template>
+        </div>
+
+        <!-- Tab Panel -->
+        <div class="tab-panel" role="tabpanel">
+            <template if:true={isPricebookViewActive}>
+                <c-pricebook-view
+                    restore-context={pricebookViewContext}
+                    onnavigatetotab={handleNavigateToTab}>
+                </c-pricebook-view>
+            </template>
+            <template if:true={isSkuNewLaunchActive}>
+                <c-sku-new-launch onnavigatetotab={handleNavigateToTab}></c-sku-new-launch>
+            </template>
+            <template if:true={isCreateStandaloneActive}>
+                <c-sku-create-standalone
+                    onnavigatetotab={handleNavigateToTab}>
+                </c-sku-create-standalone>
+            </template>
+            <template if:true={isCreateBundleActive}>
+                <c-sku-create-bundle
+                    onnavigatetotab={handleNavigateToTab}>
+                </c-sku-create-bundle>
+            </template>
+            <template if:true={isUnifiedUpdateActive}>
+                <c-sku-unified-update
+                    preselected-product-id={preselectedProductId}>
+                </c-sku-unified-update>
+            </template>
+            <template if:true={isUpdateProductLineActive}>
+                <c-sku-update-product-line></c-sku-update-product-line>
+            </template>
+            <template if:true={isUpdateProductRollupActive}>
+                <c-sku-update-product-rollup></c-sku-update-product-rollup>
+            </template>
+            <template if:true={isPricebookWizardActive}>
+                <c-pricebook-wizard></c-pricebook-wizard>
+            </template>
+            <template if:true={isQuoteTermUpdateActive}>
+                <c-quote-term-manager></c-quote-term-manager>
+            </template>
+        </div>
+    </template>
+</template>

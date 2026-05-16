@@ -1,0 +1,124 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 08-04-2023
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+  <header class="slds-modal__header">
+    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Account and Address Governance</h2>
+</header>
+  <lightning-layout>
+    <lightning-layout-item size="12" padding="around-small">
+    <lightning-card>
+        <lightning-record-view-form record-id={recordId} object-api-name="SBQQ__Quote__c">
+          <div>
+          <table class="slds-table slds-table_bordered slds-border_left slds-border_right">
+           
+            <thead>
+              <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                  <div class="slds-truncate slds-text-heading_small" title="Name" >Record Type</div>
+                </th>
+                <th class="" scope="col">
+                  <div class="slds-truncate slds-text-heading_small" title="Some Custom Column">Name</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate slds-text-heading_small" title="Some Custom Column">Current Status</div>
+                  </th>
+              </tr>
+            </thead>
+
+            <tbody>
+                <tr class="slds-line-height_reset">
+                  <th class="" scope="col">
+                    <div class="slds-truncate slds-text-heading_small" title="Name">Sold-To Account</div>
+                  </th>
+                  <th class="" scope="col">                    
+                    <div class="slds-grid slds-text-heading_small">
+                      <div class="slds-col slds-size_1-of-2 slds-text-heading_small">
+                          <lightning-output-field variant="label-hidden" field-name="SBQQ__Account__c"></lightning-output-field>
+                      </div>
+                      </div>
+                  </th>
+                  <th class="" scope="col">
+                      <div class="slds-truncate slds-text-heading_small" title="Some Custom Column"><p>{accountStatus}</p></div>
+                    </th>
+                </tr>
+               
+                <tr class="slds-line-height_reset">
+                  <th class="" scope="col">
+                    <div class="slds-truncate slds-text-heading_small" title="Name">Bill-To Account</div>
+                  </th>
+                  <th class="" scope="col">
+                    <div class="slds-grid slds-text-heading_small">
+                      <div class="slds-col slds-size_1-of-2 slds-text-heading_small">
+                          <lightning-output-field variant="label-hidden" field-name="Bill_To_Account__c"></lightning-output-field>
+                      </div>
+                      </div>
+                  </th>
+                  <th class="" scope="col">
+                      <div class="slds-truncate slds-text-heading_small" title="Some Custom Column"><p>{billToAccountStatus}</p></div>
+                    </th>
+                </tr>
+
+                <tr class="slds-line-height_reset">
+                  <th class="" scope="col">
+                    <div class="slds-truncate slds-text-heading_small" title="Name">Ship-To Account</div>
+                  </th>
+                  <th class="" scope="col">
+                    <div class="slds-grid slds-text-heading_small">
+                      <div class="slds-col slds-size_1-of-2 slds-text-heading_small">
+                          <lightning-output-field variant="label-hidden" field-name="Ship_To_Account__c"></lightning-output-field>
+                      </div>
+                      </div>
+                  </th>
+                  <th class="" scope="col">
+                      <div class="slds-truncate slds-text-heading_small" title="Some Custom Column"><p>{shipToAccountStatus}</p></div>
+                    </th>
+                </tr>
+
+                <tr class="slds-line-height_reset">
+                  <th class="" scope="col">
+                    <div class="slds-truncate slds-text-heading_small" title="Name">Bill-To Address</div>
+                  </th>
+                  <th class="" scope="col">
+                    <div class="slds-grid slds-text-heading_small">
+                      <div class="slds-col slds-size_1-of-2 slds-text-heading_small">
+                          <lightning-output-field variant="label-hidden" field-name="Bill_To_Address__c"></lightning-output-field>
+                      </div>
+                      </div>
+                  </th>
+                  <th class="" scope="col">
+                      <div class="slds-truncate slds-text-heading_small" title="Some Custom Column"><p>{billToAddressStatus}</p></div>
+                    </th>
+                </tr>
+
+              <tr class="slds-line-height_reset">
+                  <th class="" scope="col">
+                    <div class="slds-truncate slds-text-heading_small" title="Name">Ship-To Address</div>
+                  </th>
+                  <th class="" scope="col">
+                    <div class="slds-grid slds-text-heading_small">
+                      <div class="slds-col slds-size_1-of-2 slds-text-heading_small">
+                          <lightning-output-field variant="label-hidden" field-name="Ship_To_Address__c"></lightning-output-field>
+                      </div>
+                      </div>
+                  </th>
+                  <th class="" scope="col">
+                      <div class="slds-truncate slds-text-heading_small" title="Some Custom Column"><p>{shipToAddressStatus}</p></div>
+                    </th>
+                </tr>
+              </tbody>
+             
+        </table>
+      </div>
+    </lightning-record-view-form>        
+    </lightning-card>
+  </lightning-layout-item>
+  </lightning-layout>
+<!-- <footer class="slds-modal__footer">
+    <button class="slds-button slds-button_brand" onclick={handleFinish} title="Finish">Finish</button>
+</footer> -->
+</template>

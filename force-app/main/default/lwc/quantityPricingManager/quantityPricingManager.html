@@ -1,0 +1,141 @@
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+    </template>
+
+    <div class="slds-p-around_medium">
+
+        <!-- Save Bar (shown when dirty) -->
+        <template if:true={isDirty}>
+            <div class="save-bar">
+                <span class="save-bar-text">You have unsaved changes.</span>
+                <lightning-button
+                    label="Save All"
+                    variant="brand"
+                    icon-name="utility:save"
+                    onclick={handleSave}
+                    class="slds-m-left_small">
+                </lightning-button>
+            </div>
+        </template>
+
+        <!-- Toolbar -->
+        <template if:true={hasGroups}>
+            <div class="toolbar">
+                <lightning-button
+                    label="Save All"
+                    variant="brand"
+                    icon-name="utility:save"
+                    onclick={handleSave}>
+                </lightning-button>
+                <span class="paste-hint">
+                    <lightning-icon icon-name="utility:info" size="xx-small"></lightning-icon>
+                    Tip: Copy from Excel and paste directly into price cells
+                </span>
+            </div>
+        </template>
+
+        <!-- Meter Type Groups -->
+        <template if:true={hasGroups}>
+            <template for:each={meterTypeGroups} for:item="group">
+                <div key={group.groupKey} class="meter-block">
+                    <!-- Meter Type Header -->
+                    <div class="meter-header">
+                        <span class="meter-label">Meter Type: {group.meterType}</span>
+                        <lightning-button-icon
+                            icon-name="utility:delete"
+                            alternative-text="Delete meter type pricing"
+                            data-groupkey={group.groupKey}
+                            onclick={handleDeleteMeterType}
+                            variant="bare"
+                            size="small"
+                            class="remove-row-btn">
+                        </lightning-button-icon>
+                    </div>
+
+                    <!-- Compact Pricing Table -->
+                    <div class="table-container">
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered branded-table quantity-table">
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th class="th-band">Quantity Band</th>
+                                    <th class="th-currency th-usd">USD</th>
+                                    <th class="th-currency th-gbp">GBP</th>
+                                    <th class="th-currency th-eur">EUR</th>
+                                    <th class="th-currency th-aud">AUD</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={group.bands} for:item="band">
+                                    <tr key={band.bandKey}>
+                                        <td class="td-band">{band.bandLabel}</td>
+                                        <template for:each={band.cells} for:item="cell">
+                                            <td key={cell.cellKey} class="td-price">
+                                                <input type="number" value={cell.price}
+                                                    aria-label={cell.currencyCode}
+                                                    data-groupkey={group.groupKey}
+                                                    data-bandkey={band.bandKey}
+                                                    data-cellidx={cell.cellIndex}
+                                                    oninput={handlePriceInput}
+                                                    onchange={handlePriceChange}
+                                                    onpaste={handlePricePaste}
+                                                    class="price-input"
+                                                    step="0.01" min="0">
+                                            </td>
+                                        </template>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </template>
+        </template>
+
+        <!-- Empty State -->
+        <template if:false={hasGroups}>
+            <div class="empty-state">
+                <div class="empty-state-icon">
+                    <lightning-icon icon-name="utility:table" size="small"></lightning-icon>
+                </div>
+                <h3 class="empty-state-heading">No quantity-based pricing records found</h3>
+                <p class="empty-state-text">No Employee Compliance pricing records exist for this product.</p>
+            </div>
+        </template>
+
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <template if:true={showDeleteConfirm}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small"
+            aria-modal="true" aria-labelledby="qtyDeleteModalHeader">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header slds-theme_error">
+                    <h2 id="qtyDeleteModalHeader" class="slds-text-heading_medium">
+                        <lightning-icon icon-name="utility:warning" size="small"
+                            variant="inverse" class="slds-m-right_small"></lightning-icon>
+                        Confirm Delete
+                    </h2>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <p class="slds-text-body_regular">
+                        Are you sure you want to delete <strong>all quantity pricing records</strong> for meter type
+                        <strong>"{deleteTargetMeterType}"</strong>?
+                    </p>
+                    <p class="slds-m-top_small slds-text-color_weak">
+                        This will permanently remove all Employee Compliance Block Pricing records
+                        for this meter type. This action cannot be undone.
+                    </p>
+                </div>
+                <div class="slds-modal__footer">
+                    <lightning-button label="Cancel" variant="neutral"
+                        onclick={handleDeleteCancel}></lightning-button>
+                    <lightning-button label="Delete" variant="destructive"
+                        onclick={handleDeleteConfirm}
+                        class="slds-m-left_small"></lightning-button>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

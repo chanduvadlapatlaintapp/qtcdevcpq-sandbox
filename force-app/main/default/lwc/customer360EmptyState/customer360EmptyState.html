@@ -1,0 +1,10 @@
+<template>
+    <div class="empty-state">
+        <div class="empty-state-icon">
+            <lightning-icon icon-name={icon} size="large"></lightning-icon>
+        </div>
+        <h3 class="empty-state-title">{title}</h3>
+        <p lwc:if={message} class="empty-state-message">{message}</p>
+        <slot></slot>
+    </div>
+</template>

@@ -1,0 +1,201 @@
+:host {
+    display: block;
+    font-family: 'Manrope', Arial, sans-serif;
+}
+
+/* ===== Page Header ===== */
+.page-header {
+    padding: 0.875rem 1.25rem;
+    background: linear-gradient(135deg, #f0f4f8 0%, #e8ecf2 100%);
+    border-radius: 0.5rem;
+    border-left: 4px solid #207CEC;
+}
+
+.header-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    background: linear-gradient(135deg, #207CEC 0%, #003C80 100%);
+    border-radius: 0.5rem;
+    margin-right: 0.875rem;
+    flex-shrink: 0;
+}
+
+.header-icon lightning-icon {
+    --lwc-colorTextIconDefault: #ffffff;
+}
+
+.header-title {
+    color: #073C7D;
+    font-weight: 700;
+    font-size: 1.0625rem;
+}
+
+.header-subtitle {
+    color: #536E8D;
+    font-size: 0.8125rem;
+    margin-top: 0.125rem;
+}
+
+/* ===== Branded Table ===== */
+.create-table {
+    min-width: 2400px;
+}
+
+.branded-table th {
+    background: linear-gradient(180deg, #003C80 0%, #002a5c 100%) !important;
+    color: #ffffff !important;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    padding: 0.625rem 0.75rem;
+    border-color: #002244 !important;
+}
+
+.branded-table td {
+    vertical-align: middle;
+    padding: 0.375rem 0.5rem;
+}
+
+.branded-table tbody tr:hover {
+    background-color: #f0f6ff !important;
+}
+
+/* Column widths */
+.col-row-num {
+    min-width: 50px;
+    width: 50px;
+    text-align: center;
+}
+
+.col-name {
+    min-width: 200px;
+    width: 200px;
+}
+
+.col-code {
+    min-width: 140px;
+    width: 140px;
+}
+
+.col-im-name {
+    min-width: 180px;
+    width: 180px;
+}
+
+.col-desc {
+    min-width: 200px;
+    width: 200px;
+}
+
+.col-checkbox {
+    min-width: 80px;
+    width: 80px;
+    text-align: center;
+}
+
+.col-picklist {
+    min-width: 170px;
+    width: 170px;
+}
+
+.col-action {
+    min-width: 70px;
+    width: 70px;
+    text-align: center;
+}
+
+.cell-center {
+    text-align: center;
+}
+
+/* Row number styling */
+.row-num {
+    font-weight: 600;
+    color: #536E8D;
+    font-size: 0.8125rem;
+}
+
+/* ===== Validation Error Highlighting ===== */
+.cell-error {
+    background-color: #fce8ee !important;
+}
+
+.row-error {
+    border-left: 3px solid #AC1A47;
+}
+
+/* ===== Validation Error Banner ===== */
+.validation-banner {
+    padding: 0.625rem 1rem;
+    background-color: #fce8ee;
+    border: 1px solid #AC1A47;
+    border-left: 4px solid #AC1A47;
+    border-radius: 0.375rem;
+    color: #7a1236;
+    font-size: 0.8125rem;
+}
+
+/* ===== Success Card ===== */
+.success-card {
+    background: linear-gradient(135deg, #e6faf7 0%, #f0fdfb 100%);
+    border: 1px solid #a3e8d8;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px rgba(34, 236, 207, 0.1);
+}
+
+.success-icon {
+    display: inline-block;
+    padding: 0.75rem;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.success-subtitle {
+    color: #536E8D;
+}
+
+/* ===== Toolbar / Action Bar ===== */
+.toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 1rem;
+    background-color: #FAFAF9;
+    border: 1px solid #E6E6E6;
+    border-radius: 0.5rem;
+}
+
+/* ===== Empty State ===== */
+.empty-state {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.empty-state-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    background-color: #F4F7FA;
+    border-radius: 50%;
+    margin-bottom: 0.75rem;
+}
+
+.empty-state-heading {
+    color: #073C7D;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.empty-state-text {
+    color: #A4B9D7;
+    font-size: 0.875rem;
+}

@@ -1,0 +1,183 @@
+/* ─── Container ───────────────────────────────────────────────────────────── */
+.overview {
+    padding: 0;
+}
+
+/* ─── KPI Row ─────────────────────────────────────────────────────────────── */
+.overview__kpis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+/* ─── Two Column Layout ───────────────────────────────────────────────────── */
+.overview__content {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 24px;
+}
+
+/* ─── Card ────────────────────────────────────────────────────────────────── */
+.overview__card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.overview__card-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0 0 14px 0;
+}
+
+/* ─── Health Factor Rows ──────────────────────────────────────────────────── */
+.overview__factor-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+}
+
+.overview__factor-name {
+    font-size: 0.85rem;
+    min-width: 120px;
+}
+
+.overview__factor-bar {
+    flex: 1;
+    height: 6px;
+    background: #F3F3F3;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.overview__factor-fill {
+    height: 100%;
+    border-radius: 3px;
+}
+
+.overview__factor-score {
+    font-size: 0.85rem;
+    font-weight: 600;
+    min-width: 28px;
+    text-align: right;
+}
+
+/* ─── Timeline Events ─────────────────────────────────────────────────────── */
+.overview__event {
+    display: flex;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #F3F3F3;
+}
+
+.overview__event:last-child {
+    border-bottom: none;
+}
+
+.overview__event-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.overview__event-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.overview__event-title {
+    font-size: 0.85rem;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.overview__event-time {
+    font-size: 0.75rem;
+    color: #706E6B;
+}
+
+/* ─── CTA Summary ─────────────────────────────────────────────────────────── */
+.overview__cta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0;
+}
+
+.overview__cta-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.overview__cta-label {
+    flex: 1;
+    font-size: 0.85rem;
+    margin-left: 8px;
+}
+
+.overview__cta-count {
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.overview__cta-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0 0 0;
+    margin-top: 6px;
+    border-top: 1px solid #F3F3F3;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.overview__cta-total-count {
+    font-weight: 700;
+}
+
+/* ─── Renewal Countdown ───────────────────────────────────────────────────── */
+.overview__renewal {
+    text-align: center;
+    padding: 16px 0;
+}
+
+.overview__renewal-days {
+    font-size: 2.5rem;
+    font-weight: 700;
+    display: block;
+    line-height: 1;
+}
+
+.overview__renewal-label {
+    font-size: 0.85rem;
+    color: #706E6B;
+    display: block;
+    margin-top: 4px;
+}
+
+.overview__renewal-date {
+    font-size: 0.8rem;
+    color: #706E6B;
+    display: block;
+    margin-top: 8px;
+}
+
+/* ─── Product Badges ──────────────────────────────────────────────────────── */
+.overview__products {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}

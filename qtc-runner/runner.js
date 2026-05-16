@@ -1,0 +1,242 @@
+/**
+ * runner.js  —  Invokes Playwright for a given test suite and collects results.
+ *
+ * Returns a structured result object that agent.js feeds into uploader.js.
+ *
+ * Playwright is run as a child process (via `npx playwright test`) so this
+ * module has no compile-time dependency on @playwright/test — that package
+ * lives in the parent project (qtcdevcpq-sandbox), NOT in qtc-runner.
+ */
+
+'use strict';
+
+const { spawnSync } = require('child_process');
+const path          = require('path');
+const fs            = require('fs');
+const os            = require('os');
+
+// ─── Locate the Playwright project root ──────────────────────────────────────
+
+// When running from the installed location (~/.qtc-runner/), __dirname is NOT
+// the project root. The installer writes the real project path to .project_root.
+// Fall back to the parent directory only when running directly from source.
+function resolveProjectRoot() {
+    const dotFile = path.join(__dirname, '.project_root');
+    if (fs.existsSync(dotFile)) {
+        return fs.readFileSync(dotFile, 'utf8').trim();
+    }
+    // Running from source (qtcdevcpq-sandbox/qtc-runner/) — go up one level
+    return path.resolve(__dirname, '..');
+}
+
+const PROJECT_ROOT = resolveProjectRoot();
+const RESULTS_DIR  = path.join(PROJECT_ROOT, 'test-results');
+
+// ─── Suite → spec file mapping ───────────────────────────────────────────────
+
+const SUITE_MAP = {
+    agenticQtcQuantityIncrease : 'tests/e2e/agenticQtcQuantityIncrease.spec.js',
+    demoPdfGeneration          : 'tests/e2e/demo-pdf-generation.spec.js',
+};
+
+// ─── Main export ─────────────────────────────────────────────────────────────
+
+/**
+ * Run a Playwright suite and return a result object.
+ *
+ * @param {string} suiteName  - One of the keys in SUITE_MAP
+ * @param {string} testRunId  - Salesforce Test_Run__c Id (used for result folder naming)
+ * @returns {{
+ *   status       : 'PASSED'|'FAILED'|'ERROR',
+ *   passed       : number,
+ *   failed       : number,
+ *   durationMs   : number,
+ *   logOutput    : string,
+ *   errorMessage : string|null,
+ *   tests        : Array<{title,status,durationMs,suiteName,errorMessage,retryCount}>,
+ *   screenshots  : Array<string>,   // absolute file paths
+ *   videoPath    : string|null,
+ * }}
+ */
+async function runSuite(suiteName, testRunId) {
+    const specFile = SUITE_MAP[suiteName];
+    if (!specFile) {
+        return _errorResult(`Unknown suite: "${suiteName}". Valid: ${Object.keys(SUITE_MAP).join(', ')}`);
+    }
+
+    const specPath = path.join(PROJECT_ROOT, specFile);
+    if (!fs.existsSync(specPath)) {
+        return _errorResult(`Spec file not found: ${specPath}`);
+    }
+
+    // Output dir for this run's artifacts
+    const outputDir = path.join(RESULTS_DIR, testRunId);
+    fs.mkdirSync(outputDir, { recursive: true });
+
+    const jsonReporter = path.join(outputDir, 'results.json');
+
+    const args = [
+        'playwright', 'test',
+        specPath,
+        '--reporter=json',
+        `--output=${outputDir}`,
+    ];
+
+    const env = {
+        ...process.env,
+        PLAYWRIGHT_JSON_OUTPUT_NAME : jsonReporter,
+        // Headed Chrome: never run headless
+        HEADED: '1',
+    };
+
+    console.log(`[runner] Starting Playwright: npx ${args.join(' ')}`);
+    const start   = Date.now();
+
+    // spawnSync is fine — the agent loop runs one job at a time
+    const result = spawnSync('npx', args, {
+        cwd   : PROJECT_ROOT,
+        env,
+        stdio : 'pipe',
+        timeout: 10 * 60 * 1000, // 10 min hard cap
+    });
+
+    const durationMs = Date.now() - start;
+    const stdout     = result.stdout ? result.stdout.toString() : '';
+    const stderr     = result.stderr ? result.stderr.toString() : '';
+    const logOutput  = stdout + (stderr ? '\n--- STDERR ---\n' + stderr : '');
+
+    if (result.error) {
+        return _errorResult(`Playwright spawn error: ${result.error.message}`, logOutput);
+    }
+
+    // Parse JSON reporter output
+    let tests = [];
+    if (fs.existsSync(jsonReporter)) {
+        try {
+            const raw  = JSON.parse(fs.readFileSync(jsonReporter, 'utf8'));
+            tests      = _parsePlaywrightJson(raw);
+        } catch (e) {
+            console.error('[runner] Could not parse Playwright JSON:', e);
+        }
+    }
+
+    const passed = tests.filter(t => t.status === 'PASSED').length;
+    const failed = tests.filter(t => t.status === 'FAILED').length;
+    const status = result.status === 0 ? 'PASSED' : 'FAILED';
+
+    // Collect screenshots
+    const screenshots = _collectScreenshots(outputDir);
+
+    // Collect video (Playwright saves as webm inside test-results/<hash>/video.webm)
+    const videoPath = _findVideo(outputDir);
+
+    return {
+        status,
+        passed,
+        failed,
+        durationMs,
+        logOutput,
+        errorMessage : status === 'FAILED' ? `${failed} test(s) failed` : null,
+        tests,
+        screenshots,
+        videoPath,
+    };
+}
+
+// ─── Parse Playwright JSON reporter output ───────────────────────────────────
+
+function _parsePlaywrightJson(json) {
+    const results = [];
+    for (const suite of (json.suites || [])) {
+        _walkSuite(suite, results);
+    }
+    return results;
+}
+
+function _walkSuite(suite, results) {
+    for (const spec of (suite.specs || [])) {
+        for (const test of (spec.tests || [])) {
+            const status = _mapStatus(test.status);
+            const lastResult = test.results && test.results[test.results.length - 1];
+            results.push({
+                title       : spec.title,
+                suiteName   : suite.title || '',
+                status,
+                durationMs  : lastResult ? lastResult.duration : 0,
+                retryCount  : (test.results || []).length - 1,
+                errorMessage: (lastResult && lastResult.error)
+                    ? (lastResult.error.message || lastResult.error.value || '')
+                    : null,
+            });
+        }
+    }
+    for (const child of (suite.suites || [])) {
+        _walkSuite(child, results);
+    }
+}
+
+function _mapStatus(pw) {
+    switch ((pw || '').toLowerCase()) {
+        case 'passed':    return 'PASSED';
+        case 'failed':    return 'FAILED';
+        case 'timedout':  return 'FAILED';
+        case 'skipped':   return 'SKIPPED';
+        default:          return 'FAILED';
+    }
+}
+
+// ─── Collect artifacts ───────────────────────────────────────────────────────
+
+function _collectScreenshots(dir) {
+    const files = [];
+    if (!fs.existsSync(dir)) return files;
+
+    function walk(d) {
+        for (const entry of fs.readdirSync(d, { withFileTypes: true })) {
+            const full = path.join(d, entry.name);
+            if (entry.isDirectory()) {
+                walk(full);
+            } else if (/\.(png|jpg|jpeg)$/i.test(entry.name)) {
+                files.push(full);
+            }
+        }
+    }
+    walk(dir);
+    return files;
+}
+
+function _findVideo(dir) {
+    if (!fs.existsSync(dir)) return null;
+    const found = [];
+    function walk(d) {
+        for (const entry of fs.readdirSync(d, { withFileTypes: true })) {
+            const full = path.join(d, entry.name);
+            if (entry.isDirectory()) walk(full);
+            else if (/\.(webm|mp4)$/i.test(entry.name)) found.push(full);
+        }
+    }
+    walk(dir);
+    // Return the largest video file (most likely to be the full recording)
+    if (!found.length) return null;
+    return found.sort((a, b) =>
+        fs.statSync(b).size - fs.statSync(a).size
+    )[0];
+}
+
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+
+function _errorResult(errorMessage, logOutput = '') {
+    return {
+        status: 'ERROR',
+        passed: 0,
+        failed: 0,
+        durationMs: 0,
+        logOutput,
+        errorMessage,
+        tests: [],
+        screenshots: [],
+        videoPath: null,
+    };
+}
+
+module.exports = { runSuite };

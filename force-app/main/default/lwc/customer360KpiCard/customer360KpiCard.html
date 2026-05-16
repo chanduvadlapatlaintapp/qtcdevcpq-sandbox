@@ -1,0 +1,21 @@
+<template>
+    <div class="kpi-card" onclick={handleCardClick}>
+        <div class="kpi-icon-wrapper">
+            <lightning-icon icon-name={icon} size="small"></lightning-icon>
+        </div>
+        <div class="kpi-content">
+            <p class="kpi-value">{value}</p>
+            <p class="kpi-label">{label}</p>
+        </div>
+        <div class={trendClass}>
+            <!-- show up/down arrow icon based on trend -->
+            <template lwc:if={isUp}>
+                <lightning-icon icon-name="utility:arrowup" size="xx-small"></lightning-icon>
+            </template>
+            <template lwc:if={isDown}>
+                <lightning-icon icon-name="utility:arrowdown" size="xx-small"></lightning-icon>
+            </template>
+            <span lwc:if={trendValue}>{trendValue}</span>
+        </div>
+    </div>
+</template>

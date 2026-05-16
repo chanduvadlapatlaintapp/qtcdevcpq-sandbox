@@ -1,0 +1,328 @@
+<template>
+    <div class="c360-about">
+        <!-- Back Button -->
+        <div class="c360-about__back">
+            <button class="c360-about__back-btn" onclick={handleBackClick}>
+                <lightning-icon icon-name="utility:back" size="x-small"></lightning-icon>
+                <span>Back to Dashboard</span>
+            </button>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="c360-about__hero">
+            <div class="c360-about__hero-icon">
+                <lightning-icon icon-name="standard:customer_360" size="large"></lightning-icon>
+            </div>
+            <h1 class="c360-about__hero-title">Customer 360 CS Platform Lite</h1>
+            <p class="c360-about__hero-subtitle">A Gainsight-like Customer Success platform built on Salesforce Lightning Web Components</p>
+            <p class="c360-about__hero-jira">BIZ-80363</p>
+        </div>
+
+        <!-- Stats Row -->
+        <div class="c360-about__stats">
+            <template for:each={stats} for:item="stat">
+                <div key={stat.label} class="c360-about__stat-card">
+                    <lightning-icon icon-name={stat.icon} size="small" class="c360-about__stat-icon"></lightning-icon>
+                    <span class="c360-about__stat-value">{stat.value}</span>
+                    <span class="c360-about__stat-label">{stat.label}</span>
+                </div>
+            </template>
+        </div>
+
+        <!-- Architecture Section -->
+        <div class="c360-about__section">
+            <h2 class="c360-about__section-title">
+                <lightning-icon icon-name="utility:layout" size="x-small"></lightning-icon>
+                Architecture: Two-View App
+            </h2>
+            <div class="c360-about__arch-grid">
+                <div class="c360-about__arch-card c360-about__arch-card--dashboard">
+                    <h3>View 1: Portfolio Dashboard</h3>
+                    <p>Default landing page</p>
+                    <ul>
+                        <li>Header bar (CSM info, notification bell, logo)</li>
+                        <li>6 KPI cards (Total Clients, At-Risk, Healthy %, Total ARR, Avg Health, Open CTAs)</li>
+                        <li>Filterable/sortable client list with health indicators</li>
+                        <li>Alerts panel (churn risk, usage decline, health changes)</li>
+                        <li>Health distribution charts (donut + bar)</li>
+                    </ul>
+                </div>
+                <div class="c360-about__arch-card c360-about__arch-card--detail">
+                    <h3>View 2: Customer 360 Detail</h3>
+                    <p>On account select</p>
+                    <ul>
+                        <li>Customer banner (name, health ring, stat pills, quick actions)</li>
+                        <li>9-tab navigation bar</li>
+                        <template for:each={detailTabs} for:item="tab">
+                            <li key={tab.name}><strong>{tab.name}</strong> &mdash; {tab.description}</li>
+                        </template>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service Modules -->
+        <div class="c360-about__section">
+            <h2 class="c360-about__section-title">
+                <lightning-icon icon-name="utility:settings" size="x-small"></lightning-icon>
+                Service Modules (3 JS-only, no UI)
+            </h2>
+            <div class="c360-about__table-wrap">
+                <table class="c360-about__table">
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={serviceModules} for:item="item">
+                            <tr key={item.name}>
+                                <td><code>{item.name}</code></td>
+                                <td>{item.purpose}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Reusable Atoms -->
+        <div class="c360-about__section">
+            <h2 class="c360-about__section-title">
+                <lightning-icon icon-name="utility:builder" size="x-small"></lightning-icon>
+                Reusable Atom Components (7)
+            </h2>
+            <div class="c360-about__table-wrap">
+                <table class="c360-about__table">
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={atomComponents} for:item="item">
+                            <tr key={item.name}>
+                                <td><code>{item.name}</code></td>
+                                <td>{item.purpose}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Dashboard Components -->
+        <div class="c360-about__section">
+            <h2 class="c360-about__section-title">
+                <lightning-icon icon-name="utility:dashboard" size="x-small"></lightning-icon>
+                Dashboard Components (4)
+            </h2>
+            <div class="c360-about__table-wrap">
+                <table class="c360-about__table">
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={dashboardComponents} for:item="item">
+                            <tr key={item.name}>
+                                <td><code>{item.name}</code></td>
+                                <td>{item.purpose}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Detail Components -->
+        <div class="c360-about__section">
+            <h2 class="c360-about__section-title">
+                <lightning-icon icon-name="utility:user" size="x-small"></lightning-icon>
+                Customer Detail Components (15)
+            </h2>
+            <div class="c360-about__table-wrap">
+                <table class="c360-about__table">
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Tab / Area</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={detailComponents} for:item="item">
+                            <tr key={item.name}>
+                                <td><code>{item.name}</code></td>
+                                <td><span class="c360-about__tab-badge">{item.tab}</span></td>
+                                <td>{item.purpose}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Enhanced Components -->
+        <div class="c360-about__section">
+            <h2 class="c360-about__section-title">
+                <lightning-icon icon-name="utility:refresh" size="x-small"></lightning-icon>
+                Enhanced Existing Components (5)
+            </h2>
+            <div class="c360-about__table-wrap">
+                <table class="c360-about__table">
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Enhancement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={enhancedComponents} for:item="item">
+                            <tr key={item.name}>
+                                <td><code>{item.name}</code></td>
+                                <td>{item.purpose}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Supporting Metadata -->
+        <div class="c360-about__section">
+            <h2 class="c360-about__section-title">
+                <lightning-icon icon-name="utility:package" size="x-small"></lightning-icon>
+                Supporting Metadata
+            </h2>
+            <div class="c360-about__table-wrap">
+                <table class="c360-about__table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Name</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={supportingMetadata} for:item="item">
+                            <tr key={item.name}>
+                                <td>{item.type}</td>
+                                <td><code>{item.name}</code></td>
+                                <td>{item.purpose}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Requirements Coverage -->
+        <div class="c360-about__section">
+            <h2 class="c360-about__section-title">
+                <lightning-icon icon-name="utility:check" size="x-small"></lightning-icon>
+                Gainsight Requirements Coverage (27 / 31)
+            </h2>
+
+            <h3 class="c360-about__subsection-title">Priority 1 (14 requirements)</h3>
+            <div class="c360-about__table-wrap">
+                <table class="c360-about__table c360-about__table--requirements">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>Requirement</th>
+                            <th>Component(s)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={priority1Requirements} for:item="req">
+                            <tr key={req.requirement}>
+                                <td><span class="c360-about__status c360-about__status--done">&#x2705;</span></td>
+                                <td>{req.requirement}</td>
+                                <td>{req.components}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="c360-about__subsection-title">Priority 2 (7 requirements)</h3>
+            <div class="c360-about__table-wrap">
+                <table class="c360-about__table c360-about__table--requirements">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>Requirement</th>
+                            <th>Component(s)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={priority2Requirements} for:item="req">
+                            <tr key={req.requirement}>
+                                <td><span class="c360-about__status c360-about__status--done">&#x2705;</span></td>
+                                <td>{req.requirement}</td>
+                                <td>{req.components}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="c360-about__subsection-title">Deferred (4 requirements)</h3>
+            <div class="c360-about__table-wrap">
+                <table class="c360-about__table c360-about__table--requirements">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>Requirement</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={deferredRequirements} for:item="req">
+                            <tr key={req.requirement}>
+                                <td><span class="c360-about__status c360-about__status--deferred">&#x23F3;</span></td>
+                                <td>{req.requirement}</td>
+                                <td>Roadmap item</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Data Strategy -->
+        <div class="c360-about__section">
+            <h2 class="c360-about__section-title">
+                <lightning-icon icon-name="utility:database" size="x-small"></lightning-icon>
+                Data Strategy
+            </h2>
+            <div class="c360-about__data-grid">
+                <div class="c360-about__data-card">
+                    <h3>New Features</h3>
+                    <p>Health, timeline, CTAs, playbooks, tasks, success plans</p>
+                    <span class="c360-about__data-tag c360-about__data-tag--mock">Mock Data via JS Modules</span>
+                </div>
+                <div class="c360-about__data-card">
+                    <h3>Existing Tabs</h3>
+                    <p>Subscriptions, usage, invoices, support</p>
+                    <span class="c360-about__data-tag c360-about__data-tag--apex">Apex Controllers + Mock Fallback</span>
+                </div>
+                <div class="c360-about__data-card">
+                    <h3>Charts</h3>
+                    <p>Health ring, trend lines, bar charts, donut charts</p>
+                    <span class="c360-about__data-tag c360-about__data-tag--svg">SVG (No External Libraries)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="c360-about__footer">
+            <p>Built with Lightning Web Components &bull; No external dependencies &bull; All SVG charts &bull; Deterministic mock data</p>
+        </div>
+    </div>
+</template>

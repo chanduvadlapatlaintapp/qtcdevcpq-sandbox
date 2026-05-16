@@ -1,0 +1,100 @@
+<template>
+    <div class="overview">
+        <!-- KPI Row -->
+        <div class="overview__kpis">
+            <c-customer360-kpi-card
+                label="Health Score" value={healthScoreStr} icon="utility:heartbeat"
+                trend={healthTrend} variant={healthVariant}></c-customer360-kpi-card>
+            <c-customer360-kpi-card
+                label="ARR" value={formattedArr} icon="utility:moneybag"></c-customer360-kpi-card>
+            <c-customer360-kpi-card
+                label="NPS" value={npsStr} icon="utility:sentiment_positive"
+                variant={npsVariant}></c-customer360-kpi-card>
+            <c-customer360-kpi-card
+                label="Days Since Contact" value={contactDaysStr} icon="utility:clock"
+                variant={contactVariant}></c-customer360-kpi-card>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="overview__content">
+            <!-- Left Column -->
+            <div class="overview__left">
+                <!-- Health Scorecard Summary (compact, top 3 factors) -->
+                <div class="overview__card">
+                    <h3 class="overview__card-title">Health Factors</h3>
+                    <div class="overview__factors">
+                        <template for:each={topFactors} for:item="factor">
+                            <div key={factor.key} class="overview__factor-row">
+                                <lightning-icon icon-name={factor.icon} size="xx-small"></lightning-icon>
+                                <span class="overview__factor-name">{factor.name}</span>
+                                <div class="overview__factor-bar">
+                                    <div class="overview__factor-fill" style={factor.barStyle}></div>
+                                </div>
+                                <span class="overview__factor-score" style={factor.scoreStyle}>{factor.score}</span>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Recent Timeline -->
+                <div class="overview__card">
+                    <h3 class="overview__card-title">Recent Activity</h3>
+                    <div class="overview__timeline">
+                        <template for:each={recentTimeline} for:item="event">
+                            <div key={event.id} class="overview__event">
+                                <div class="overview__event-icon" style={event.iconBgStyle}>
+                                    <lightning-icon icon-name={event.icon} size="xx-small"></lightning-icon>
+                                </div>
+                                <div class="overview__event-info">
+                                    <span class="overview__event-title">{event.title}</span>
+                                    <span class="overview__event-time">{event.relativeTime}</span>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="overview__right">
+                <!-- Active CTAs Summary -->
+                <div class="overview__card">
+                    <h3 class="overview__card-title">Active CTAs</h3>
+                    <div class="overview__cta-summary">
+                        <template for:each={ctaSummary} for:item="cta">
+                            <div key={cta.type} class="overview__cta-row">
+                                <span class="overview__cta-dot" style={cta.dotStyle}></span>
+                                <span class="overview__cta-label">{cta.label}</span>
+                                <span class="overview__cta-count">{cta.count}</span>
+                            </div>
+                        </template>
+                        <div class="overview__cta-total">
+                            <span>Total</span>
+                            <span class="overview__cta-total-count">{totalCtas}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Renewal Countdown -->
+                <div class="overview__card overview__card--renewal">
+                    <h3 class="overview__card-title">Next Renewal</h3>
+                    <div class="overview__renewal">
+                        <span class="overview__renewal-days" style={renewalStyle}>{daysToRenewal}</span>
+                        <span class="overview__renewal-label">days</span>
+                        <span class="overview__renewal-date">{formattedRenewalDate}</span>
+                    </div>
+                </div>
+
+                <!-- Product Summary -->
+                <div class="overview__card">
+                    <h3 class="overview__card-title">Products</h3>
+                    <div class="overview__products">
+                        <template for:each={productList} for:item="product">
+                            <c-customer360-badge key={product} label={product} variant="info"></c-customer360-badge>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

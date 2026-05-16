@@ -1,0 +1,263 @@
+:host {
+    display: block;
+    font-family: 'Manrope', Arial, sans-serif;
+}
+
+/* ===== Page Header ===== */
+.page-header {
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 1.25rem;
+    background: linear-gradient(135deg, #f0f4f8 0%, #e8ecf2 100%);
+    border-radius: 0.5rem;
+    border-left: 4px solid #0B7B6D;
+}
+
+.header-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    background: linear-gradient(135deg, #0B7B6D 0%, #096558 100%);
+    border-radius: 0.5rem;
+    margin-right: 0.875rem;
+    flex-shrink: 0;
+}
+
+.header-icon lightning-icon {
+    --lwc-colorTextIconDefault: #ffffff;
+}
+
+.header-title {
+    color: #073C7D;
+    font-weight: 700;
+    font-size: 1.0625rem;
+}
+
+.header-subtitle {
+    color: #536E8D;
+    font-size: 0.8125rem;
+    margin-top: 0.125rem;
+}
+
+.header-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.record-count {
+    color: #536E8D;
+    font-size: 0.8125rem;
+    font-weight: 500;
+}
+
+/* ===== Filter Card ===== */
+.filter-card {
+    padding: 1rem 1.25rem;
+    background-color: #ffffff;
+    border: 1px solid #E6E6E6;
+    border-radius: 0.5rem;
+}
+
+/* ===== Save Bar ===== */
+.save-bar {
+    display: flex;
+    align-items: center;
+    padding: 0.625rem 1rem;
+    background-color: #fff9e6;
+    border: 1px solid #F3B400;
+    border-left: 4px solid #F3B400;
+    border-radius: 0.375rem;
+    margin-bottom: 0.75rem;
+}
+
+.save-bar-text {
+    font-size: 0.8125rem;
+    color: #536E8D;
+    font-weight: 500;
+}
+
+/* ===== Cell Changed ===== */
+.cell-changed {
+    background-color: #fff9e6 !important;
+}
+
+/* ===== Read-only formula field value ===== */
+.cell-readonly {
+    display: block;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8125rem;
+    color: #536E8D;
+    font-style: italic;
+}
+
+/* ===== Read-only formula field value ===== */
+.cell-readonly {
+    display: block;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8125rem;
+    color: #536E8D;
+    font-style: italic;
+}
+
+/* ===== Branded Table ===== */
+.branded-table th {
+    background: linear-gradient(180deg, #0B7B6D 0%, #096558 100%) !important;
+    color: #ffffff !important;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    padding: 0.625rem 0.75rem;
+    border-color: #085A4E !important;
+}
+
+.branded-table tbody tr:hover {
+    background-color: #f0f9f7 !important;
+}
+
+/* Remove input borders and fill with darker gray background */
+.branded-table td lightning-input,
+.branded-table td lightning-combobox {
+    --sds-c-input-color-border: transparent;
+    --slds-c-input-color-border: transparent;
+    --sds-c-input-color-background: #E6E6E6;
+    --slds-c-input-color-background: #E6E6E6;
+    --sds-c-input-shadow: none;
+    --slds-c-input-shadow: none;
+}
+
+/* Also target the filter card inputs */
+.filter-card lightning-input,
+.filter-card lightning-combobox {
+    --sds-c-input-color-border: transparent;
+    --slds-c-input-color-border: transparent;
+    --sds-c-input-color-background: #E6E6E6;
+    --slds-c-input-color-background: #E6E6E6;
+    --sds-c-input-shadow: none;
+    --slds-c-input-shadow: none;
+}
+
+/* Column widths */
+.col-name {
+    min-width: 200px;
+    width: 200px;
+}
+
+.col-code {
+    min-width: 140px;
+    width: 140px;
+}
+
+.col-desc {
+    min-width: 200px;
+    width: 200px;
+}
+
+.col-checkbox {
+    min-width: 80px;
+    width: 80px;
+    text-align: center;
+}
+
+/* Center checkbox inputs within data cells */
+.cell-checkbox {
+    text-align: center;
+}
+
+.cell-checkbox lightning-input {
+    display: inline-flex;
+}
+
+.cell-checkbox.cell-changed {
+    text-align: center;
+    background-color: #fff9e6 !important;
+}
+
+.col-checkbox-wide {
+    min-width: 130px;
+    width: 130px;
+    text-align: center;
+}
+
+.col-picklist {
+    min-width: 170px;
+    width: 170px;
+}
+
+.col-readonly {
+    min-width: 160px;
+    width: 160px;
+}
+
+.col-lookup {
+    min-width: 180px;
+    width: 180px;
+}
+
+.col-number {
+    min-width: 120px;
+    width: 120px;
+}
+
+.col-text {
+    min-width: 160px;
+    width: 160px;
+}
+
+/* Separator between Product2 and Item Master sections */
+.col-separator {
+    min-width: 6px !important;
+    width: 6px !important;
+    max-width: 6px !important;
+    background: linear-gradient(180deg, #F3B400 0%, #e0a500 100%) !important;
+    padding: 0 !important;
+    border-left: none !important;
+    border-right: none !important;
+}
+
+/* Item Master header styling */
+.im-header {
+    background: linear-gradient(180deg, #096558 0%, #074E43 100%) !important;
+}
+
+/* ===== Table Scrollable Container ===== */
+/* Use overflow visible so combobox dropdowns are not clipped by the container */
+.table-container {
+    overflow-x: auto;
+    width: 100%;
+    min-height: 30rem;
+}
+
+/* ===== Empty State ===== */
+.empty-state {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.empty-state-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    background-color: #F4F7FA;
+    border-radius: 50%;
+    margin-bottom: 0.75rem;
+}
+
+.empty-state-heading {
+    color: #073C7D;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.empty-state-text {
+    color: #A4B9D7;
+    font-size: 0.875rem;
+}

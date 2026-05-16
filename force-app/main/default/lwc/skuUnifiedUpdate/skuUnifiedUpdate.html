@@ -1,0 +1,790 @@
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+    </template>
+
+    <div class="slds-p-around_medium">
+        <!-- Page Header -->
+        <div class="page-header slds-m-bottom_medium">
+            <div class="header-icon">
+                <lightning-icon icon-name="utility:edit" size="x-small"></lightning-icon>
+            </div>
+            <div>
+                <h2 class="header-title">Update Product</h2>
+                <p class="header-subtitle">Search for a product to update all related records</p>
+            </div>
+        </div>
+
+        <!-- Product Lookup -->
+        <div class="filter-card slds-m-bottom_medium">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-2">
+                    <c-lookup
+                        data-id="unifiedProductLookup"
+                        label="Select Product"
+                        placeholder="Search by name or code..."
+                        is-multi-entry={isNotMultiEntry}
+                        onsearch={handleProductSearch}
+                        onselectionchange={handleProductSelected}>
+                    </c-lookup>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Selected State -->
+        <template if:true={isProductSelected}>
+            <!-- Product Banner -->
+            <div class="product-banner slds-m-bottom_medium">
+                <lightning-icon icon-name="standard:product" size="small" class="slds-m-right_small"></lightning-icon>
+                <span class="product-banner__name">{product.Name}</span>
+                <span class="product-banner__code">{product.ProductCode}</span>
+                <span class={productBannerStatusClass}>{productBannerStatusLabel}</span>
+            </div>
+
+            <!-- Save Bar -->
+            <template if:true={hasProductChanges}>
+                <div class="save-bar slds-m-bottom_medium">
+                    <lightning-button label="Save Product &amp; Item Master" variant="brand"
+                        icon-name="utility:save" onclick={handleSaveProductFields}
+                        class="slds-m-right_small"></lightning-button>
+                    <span class="save-bar-text">Unsaved changes in Product / Item Master fields</span>
+                    <lightning-button label="Discard" variant="neutral"
+                        onclick={handleDiscardChanges} class="slds-m-left_small"></lightning-button>
+                </div>
+            </template>
+
+            <!-- Accordion Sections -->
+            <lightning-accordion allow-multiple-sections-open active-section-name={activeSections}>
+
+                <!-- ======================= Section 1: Product Fields ======================= -->
+                <lightning-accordion-section name="productFields" label="Product Fields">
+                    <!-- Verticals & Meter Types -->
+                    <h4 class="section-subheading">Verticals &amp; Default Meter Types</h4>
+                    <template if:false={hasMeterTypeRecord}>
+                        <div class="empty-state-inline slds-m-bottom_x-small">
+                            <p class="empty-state-text">No Meter Type record found — meter type fields are unavailable.</p>
+                        </div>
+                    </template>
+                    <div class="v-card-grid">
+                        <!-- Legal -->
+                        <div class={legalCardClass}>
+                            <div class="v-card__title">Legal</div>
+                            <div class="v-card__fields">
+                                <div class="v-card__row">
+                                    <span class="v-card__label">Flag</span>
+                                    <lightning-combobox label="Flag" value={product.Is_Legal__c}
+                                        options={legalOptions} data-field="Is_Legal__c"
+                                        onchange={handleProductFieldChange} variant="label-hidden"
+                                        class="v-card__combo"></lightning-combobox>
+                                </div>
+                                <template if:true={hasMeterTypeRecord}>
+                                    <div class="v-card__row">
+                                        <span class="v-card__label">Meter Type (GBP/EUR)</span>
+                                        <lightning-combobox label="Meter Type (GBP/EUR)" value={meterTypeRecord.Legal__c}
+                                            options={mtLegalGbpEurOptions} data-field="Legal__c"
+                                            onchange={handleMeterTypeFieldChange} variant="label-hidden"
+                                            class="v-card__combo"></lightning-combobox>
+                                    </div>
+                                    <div class="v-card__row">
+                                        <span class="v-card__label">Meter Type (USD/AUD)</span>
+                                        <lightning-combobox label="Meter Type (USD/AUD)" value={meterTypeRecord.Legal_meter_type_USD_AUD__c}
+                                            options={mtLegalUsdAudOptions} data-field="Legal_meter_type_USD_AUD__c"
+                                            onchange={handleMeterTypeFieldChange} variant="label-hidden"
+                                            class="v-card__combo"></lightning-combobox>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                        <!-- Accounting -->
+                        <div class={accountingCardClass}>
+                            <div class="v-card__title">Accounting</div>
+                            <div class="v-card__fields">
+                                <div class="v-card__row">
+                                    <span class="v-card__label">Flag</span>
+                                    <lightning-combobox label="Flag" value={product.Is_Accounting__c}
+                                        options={accountingOptions} data-field="Is_Accounting__c"
+                                        onchange={handleProductFieldChange} variant="label-hidden"
+                                        class="v-card__combo"></lightning-combobox>
+                                </div>
+                                <template if:true={hasMeterTypeRecord}>
+                                    <div class="v-card__row">
+                                        <span class="v-card__label">Meter Type</span>
+                                        <lightning-combobox label="Meter Type" value={meterTypeRecord.meter_type_Accounting__c}
+                                            options={mtAccountingOptions} data-field="meter_type_Accounting__c"
+                                            onchange={handleMeterTypeFieldChange} variant="label-hidden"
+                                            class="v-card__combo"></lightning-combobox>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                        <!-- Consulting -->
+                        <div class={consultingCardClass}>
+                            <div class="v-card__title">Consulting</div>
+                            <div class="v-card__fields">
+                                <div class="v-card__row">
+                                    <span class="v-card__label">Flag</span>
+                                    <lightning-combobox label="Flag" value={product.Is_Consulting__c}
+                                        options={consultingOptions} data-field="Is_Consulting__c"
+                                        onchange={handleProductFieldChange} variant="label-hidden"
+                                        class="v-card__combo"></lightning-combobox>
+                                </div>
+                                <template if:true={hasMeterTypeRecord}>
+                                    <div class="v-card__row">
+                                        <span class="v-card__label">Meter Type</span>
+                                        <lightning-combobox label="Meter Type" value={meterTypeRecord.meter_type_Consulting__c}
+                                            options={mtConsultingOptions} data-field="meter_type_Consulting__c"
+                                            onchange={handleMeterTypeFieldChange} variant="label-hidden"
+                                            class="v-card__combo"></lightning-combobox>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                        <!-- IBA -->
+                        <div class={ibaCardClass}>
+                            <div class="v-card__title">IBA</div>
+                            <div class="v-card__fields">
+                                <div class="v-card__row">
+                                    <span class="v-card__label">Flag</span>
+                                    <lightning-combobox label="Flag" value={product.Is_IBA__c}
+                                        options={ibaOptions} data-field="Is_IBA__c"
+                                        onchange={handleProductFieldChange} variant="label-hidden"
+                                        class="v-card__combo"></lightning-combobox>
+                                </div>
+                                <template if:true={hasMeterTypeRecord}>
+                                    <div class="v-card__row">
+                                        <span class="v-card__label">Meter Type</span>
+                                        <lightning-combobox label="Meter Type" value={meterTypeRecord.meter_type_IBA__c}
+                                            options={mtIbaOptions} data-field="meter_type_IBA__c"
+                                            onchange={handleMeterTypeFieldChange} variant="label-hidden"
+                                            class="v-card__combo"></lightning-combobox>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                        <!-- PCM -->
+                        <div class={pcmCardClass}>
+                            <div class="v-card__title">PCM</div>
+                            <div class="v-card__fields">
+                                <div class="v-card__row">
+                                    <span class="v-card__label">Flag</span>
+                                    <lightning-combobox label="Flag" value={product.Is_PCM__c}
+                                        options={pcmOptions} data-field="Is_PCM__c"
+                                        onchange={handleProductFieldChange} variant="label-hidden"
+                                        class="v-card__combo"></lightning-combobox>
+                                </div>
+                                <template if:true={hasMeterTypeRecord}>
+                                    <div class="v-card__row">
+                                        <span class="v-card__label">Meter Type</span>
+                                        <lightning-combobox label="Meter Type" value={meterTypeRecord.meter_type_PCM__c}
+                                            options={mtPcmOptions} data-field="meter_type_PCM__c"
+                                            onchange={handleMeterTypeFieldChange} variant="label-hidden"
+                                            class="v-card__combo"></lightning-combobox>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                        <!-- Real Assets -->
+                        <div class={realAssetsCardClass}>
+                            <div class="v-card__title">Real Assets</div>
+                            <div class="v-card__fields">
+                                <div class="v-card__row">
+                                    <span class="v-card__label">Flag</span>
+                                    <lightning-combobox label="Flag" value={product.Is_Real_Assets__c}
+                                        options={realAssetsOptions} data-field="Is_Real_Assets__c"
+                                        onchange={handleProductFieldChange} variant="label-hidden"
+                                        class="v-card__combo"></lightning-combobox>
+                                </div>
+                                <template if:true={hasMeterTypeRecord}>
+                                    <div class="v-card__row">
+                                        <span class="v-card__label">Meter Type</span>
+                                        <lightning-combobox label="Meter Type" value={meterTypeRecord.meter_type_RealAssets__c}
+                                            options={mtRealAssetsOptions} data-field="meter_type_RealAssets__c"
+                                            onchange={handleMeterTypeFieldChange} variant="label-hidden"
+                                            class="v-card__combo"></lightning-combobox>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                        <!-- Corporate -->
+                        <div class={corporateCardClass}>
+                            <div class="v-card__title">Corporate</div>
+                            <div class="v-card__fields">
+                                <div class="v-card__row">
+                                    <span class="v-card__label">Flag</span>
+                                    <lightning-combobox label="Flag" value={product.Iss_Corporate__c}
+                                        options={corporateOptions} data-field="Iss_Corporate__c"
+                                        onchange={handleProductFieldChange} variant="label-hidden"
+                                        class="v-card__combo"></lightning-combobox>
+                                </div>
+                                <template if:true={hasMeterTypeRecord}>
+                                    <div class="v-card__row">
+                                        <span class="v-card__label">Meter Type</span>
+                                        <lightning-combobox label="Meter Type" value={meterTypeRecord.meter_type_Corporate__c}
+                                            options={mtCorporateOptions} data-field="meter_type_Corporate__c"
+                                            onchange={handleMeterTypeFieldChange} variant="label-hidden"
+                                            class="v-card__combo"></lightning-combobox>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Information -->
+                    <h4 class="section-subheading">Product Information</h4>
+                    <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_small">
+                        <!-- Row 1: Product Name | Product Type | Bundle product -->
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input variant="label-inline" label="Product Name" value={product.Name}
+                                data-field="Name" onchange={handleProductFieldChange} field-level-help={productHelpText.Name}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-combobox variant="label-inline" label="Product Type" value={product.Product_Type__c}
+                                options={productTypeOptions} data-field="Product_Type__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.Product_Type__c}></lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input type="checkbox" variant="label-inline" label="Bundle product"
+                                checked={product.Bundle_product__c}
+                                data-field="Bundle_product__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.Bundle_product__c}></lightning-input>
+                        </div>
+                        <!-- Row 2: Product Code | Product Line | Includes Assist? -->
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input variant="label-inline" label="Product Code" value={product.ProductCode}
+                                data-field="ProductCode" onchange={handleProductFieldChange} field-level-help={productHelpText.ProductCode}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-combobox variant="label-inline" label="Product Line" value={product.Product_LineNew__c}
+                                options={productLineOptions} data-field="Product_LineNew__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.Product_LineNew__c}></lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input type="checkbox" variant="label-inline" label="Includes Assist?"
+                                checked={product.Includes_Assist__c}
+                                data-field="Includes_Assist__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.Includes_Assist__c}></lightning-input>
+                        </div>
+                        <!-- Row 3: Active | Business Unit (ro) | Eligible For Premium -->
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input type="checkbox" variant="label-inline" label="Active" checked={product.IsActive}
+                                data-field="IsActive" onchange={handleProductFieldChange} field-level-help={productHelpText.IsActive}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input variant="label-inline" label="Business Unit" value={product.Business_Unit_New__c}
+                                read-only field-level-help={productHelpText.Business_Unit_New__c}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input type="checkbox" variant="label-inline" label="Eligible For Premium"
+                                checked={product.Eligible_For_Premium__c}
+                                data-field="Eligible_For_Premium__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.Eligible_For_Premium__c}></lightning-input>
+                        </div>
+                        <!-- Row 4: Product Description | Product Rollup -->
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input variant="label-inline" label="Product Description" value={product.Description}
+                                data-field="Description" onchange={handleProductFieldChange} field-level-help={productHelpText.Description}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-combobox variant="label-inline" label="Product Rollup" value={product.ProductRollup__c}
+                                options={productRollupOptions} data-field="ProductRollup__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.ProductRollup__c}></lightning-combobox>
+                        </div>
+                    </div>
+
+                    <!-- Services Product Fields -->
+                    <h4 class="section-subheading">Services Product Fields</h4>
+                    <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_small">
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-combobox variant="label-inline" label="Services Product Type" value={product.Services_Product_Type__c}
+                                options={servicesProductTypeOptions} data-field="Services_Product_Type__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.Services_Product_Type__c}></lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input type="checkbox" variant="label-inline" label="Is Prime"
+                                checked={product.Is_Prime__c}
+                                data-field="Is_Prime__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.Is_Prime__c}></lightning-input>
+                        </div>
+                    </div>
+
+                    <!-- Pricing -->
+                    <h4 class="section-subheading">Pricing</h4>
+                    <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_small">
+                        <!-- Row 1: Pricing Basis | Product Revenue Type (formula, ro) | Default Pricing Table -->
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-combobox variant="label-inline" label="Pricing Basis" value={product.Pricing_Basis__c}
+                                options={pricingBasisOptions} data-field="Pricing_Basis__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.Pricing_Basis__c}></lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input variant="label-inline" label="Product Revenue Type"
+                                value={product.Product_Revenue_Type__c}
+                                read-only field-level-help={productHelpText.Product_Revenue_Type__c}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input variant="label-inline" label="Default Pricing Table"
+                                value={product.SBQQ__DefaultPricingTable__c}
+                                data-field="SBQQ__DefaultPricingTable__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.SBQQ__DefaultPricingTable__c}></lightning-input>
+                        </div>
+                        <!-- Row 2: Percentage of ACV | Subscription Type | Subscription Term -->
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input type="number" variant="label-inline" label="Percentage of ACV"
+                                value={product.Percentage_of_ACV__c}
+                                data-field="Percentage_of_ACV__c"
+                                onchange={handleProductFieldChange} step="0.01" field-level-help={productHelpText.Percentage_of_ACV__c}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-combobox variant="label-inline" label="Subscription Type"
+                                value={product.SBQQ__SubscriptionType__c}
+                                options={subTypeOptions} data-field="SBQQ__SubscriptionType__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.SBQQ__SubscriptionType__c}></lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input type="number" variant="label-inline" label="Subscription Term"
+                                value={product.SBQQ__SubscriptionTerm__c}
+                                data-field="SBQQ__SubscriptionTerm__c"
+                                onchange={handleProductFieldChange} step="1" field-level-help={productHelpText.SBQQ__SubscriptionTerm__c}></lightning-input>
+                        </div>
+                        <!-- Row 3: Price Editable | Subscription Pricing | Optional -->
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input type="checkbox" variant="label-inline" label="Price Editable"
+                                checked={product.SBQQ__PriceEditable__c}
+                                data-field="SBQQ__PriceEditable__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.SBQQ__PriceEditable__c}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-combobox variant="label-inline" label="Subscription Pricing"
+                                value={product.SBQQ__SubscriptionPricing__c}
+                                options={subPricingOptions} data-field="SBQQ__SubscriptionPricing__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.SBQQ__SubscriptionPricing__c}></lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input type="checkbox" variant="label-inline" label="Optional"
+                                checked={product.SBQQ__Optional__c}
+                                data-field="SBQQ__Optional__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.SBQQ__Optional__c}></lightning-input>
+                        </div>
+                        <!-- Row 4: Software License Term -->
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-combobox variant="label-inline" label="Software License Term" value={product.Product_License_Type__c}
+                                options={productLicenseTypeOptions} data-field="Product_License_Type__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.Product_License_Type__c}></lightning-combobox>
+                        </div>
+                    </div>
+
+                    <!-- Salesforce CPQ Configuration -->
+                    <h4 class="section-subheading">Salesforce CPQ Configuration</h4>
+                    <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_small">
+                        <!-- Row 1: Configuration Type | Charge Type | Parent Of Bundle -->
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-combobox variant="label-inline" label="Configuration Type" value={product.SBQQ__ConfigurationType__c}
+                                options={configTypeOptions} data-field="SBQQ__ConfigurationType__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.SBQQ__ConfigurationType__c}></lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-combobox variant="label-inline" label="Charge Type" value={product.SBQQ__ChargeType__c}
+                                options={chargeTypeOptions} data-field="SBQQ__ChargeType__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.SBQQ__ChargeType__c}></lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input type="checkbox" variant="label-inline" label="Parent Of Bundle"
+                                checked={product.Parent_Of_Bundle__c}
+                                data-field="Parent_Of_Bundle__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.Parent_Of_Bundle__c}></lightning-input>
+                        </div>
+                        <!-- Row 2: Configuration Event | Billing Type | Component -->
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-combobox variant="label-inline" label="Configuration Event" value={product.SBQQ__ConfigurationEvent__c}
+                                options={configEventOptions} data-field="SBQQ__ConfigurationEvent__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.SBQQ__ConfigurationEvent__c}></lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-combobox variant="label-inline" label="Billing Type" value={product.SBQQ__BillingType__c}
+                                options={billingTypeOptions} data-field="SBQQ__BillingType__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.SBQQ__BillingType__c}></lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input type="checkbox" variant="label-inline" label="Component"
+                                checked={product.SBQQ__Component__c}
+                                data-field="SBQQ__Component__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.SBQQ__Component__c}></lightning-input>
+                        </div>
+                        <!-- Row 3: Default Pricing Table | Guided Selling -->
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input variant="label-inline" label="Default Pricing Table"
+                                value={product.SBQQ__DefaultPricingTable__c}
+                                data-field="SBQQ__DefaultPricingTable__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.SBQQ__DefaultPricingTable__c}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-combobox variant="label-inline" label="Guided Selling" value={product.Guided_Selling_Type__c}
+                                options={guidedSellingTypeOptions} data-field="Guided_Selling_Type__c"
+                                onchange={handleProductFieldChange} field-level-help={productHelpText.Guided_Selling_Type__c}></lightning-combobox>
+                        </div>
+                    </div>
+
+                    <!-- System Information -->
+                    <h4 class="section-subheading">System Information</h4>
+                    <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_small">
+                        <!-- Row 1: Created By | Last Modified By -->
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input variant="label-inline" label="Created By" value={productCreatedByName}
+                                read-only></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input variant="label-inline" label="Last Modified By" value={productLastModifiedByName}
+                                read-only></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small"></div>
+                        <!-- Row 2: Created Date | Last Modified Date -->
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input variant="label-inline" label="Created Date" value={productCreatedDate}
+                                read-only></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input variant="label-inline" label="Last Modified Date" value={productLastModifiedDate}
+                                read-only></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small"></div>
+                    </div>
+
+                </lightning-accordion-section>
+
+                <!-- ======================= Section 2: Item Master Fields ======================= -->
+                <lightning-accordion-section name="itemMasterFields" label="Item Master Fields">
+                    <template if:true={hasItemMaster}>
+                        <!-- Item Master Information -->
+                        <h4 class="section-subheading">Item Master Information</h4>
+                        <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_small">
+                            <!-- Row 1: Product Item Name (ro) | Intapp Item Master Number (ro) | Intapp Item Master Number (Text) -->
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input variant="label-inline" label="Product Item Name" value={itemMaster.Name}
+                                    read-only field-level-help={itemMasterHelpText.Name}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input variant="label-inline" label="Intapp Item Master Number"
+                                    value={itemMaster.Intapp_Item_Master_Number__c}
+                                    read-only field-level-help={itemMasterHelpText.Intapp_Item_Master_Number__c}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input variant="label-inline" label="Intapp Item Master Number (Text)"
+                                    value={itemMaster.Intapp_Item_Master_Number_Text__c}
+                                    data-field="Intapp_Item_Master_Number_Text__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.Intapp_Item_Master_Number_Text__c}></lightning-input>
+                            </div>
+                            <!-- Row 2: Item Name | Product Line | Item Master Product ID (ro) -->
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input variant="label-inline" label="Item Name" value={itemMaster.Item_Name__c}
+                                    data-field="Item_Name__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.Item_Name__c}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-combobox variant="label-inline" label="Product Line"
+                                    value={itemMaster.Product_LineNew__c}
+                                    options={productLineOptions} data-field="Product_LineNew__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.Product_LineNew__c}></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input variant="label-inline" label="Item Master Product ID"
+                                    value={itemMaster.Item_Master_Product_ID__c}
+                                    read-only field-level-help={itemMasterHelpText.Item_Master_Product_ID__c}></lightning-input>
+                            </div>
+                            <!-- Row 3: Active | Business Unit (ro) -->
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input type="checkbox" variant="label-inline" label="Active"
+                                    checked={itemMaster.Active__c}
+                                    data-field="Active__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.Active__c}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input variant="label-inline" label="Business Unit" value={itemMaster.Business_Unit__c}
+                                    read-only field-level-help={itemMasterHelpText.Business_Unit__c}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small"></div>
+                            <!-- Row 4: Description | Revenue Type -->
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input variant="label-inline" label="Description" value={itemMaster.Description__c}
+                                    data-field="Description__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.Description__c}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-combobox variant="label-inline" label="Revenue Type"
+                                    value={itemMaster.Revenue_Type__c}
+                                    options={imRevenueTypeOptions} data-field="Revenue_Type__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.Revenue_Type__c}></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small"></div>
+                        </div>
+
+                        <!-- Netsuite Fields -->
+                        <h4 class="section-subheading">Netsuite Fields</h4>
+                        <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_small">
+                            <!-- Row 1: NetSuite Internal Id | Exempt from Magic Script | Avalara Tax Code -->
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input variant="label-inline" label="NetSuite Internal Id"
+                                    value={itemMaster.NetSuite_Internal_Id__c}
+                                    data-field="NetSuite_Internal_Id__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.NetSuite_Internal_Id__c}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input type="checkbox" variant="label-inline" label="Exempt from Magic Script"
+                                    checked={itemMaster.Exempt_from_Magic_Script__c}
+                                    data-field="Exempt_from_Magic_Script__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.Exempt_from_Magic_Script__c}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input variant="label-inline" label="Avalara Tax Code" value={itemMaster.TaxCode__c}
+                                    data-field="TaxCode__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.TaxCode__c}></lightning-input>
+                            </div>
+                            <!-- Row 2: NetSuite Type | NetSuite Item Revenue Category | NetSuite Tax Schedule -->
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-combobox variant="label-inline" label="NetSuite Type" value={itemMaster.NetSuite_Type__c}
+                                    options={imNsTypeOptions} data-field="NetSuite_Type__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.NetSuite_Type__c}></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-combobox variant="label-inline" label="NetSuite Item Revenue Category"
+                                    value={itemMaster.Item_Revenue_Category__c}
+                                    options={imItemRevCategoryOptions} data-field="Item_Revenue_Category__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.Item_Revenue_Category__c}></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-combobox variant="label-inline" label="NetSuite Tax Schedule"
+                                    value={itemMaster.NetSuite_Tax_Schedule__c}
+                                    options={imNsTaxSchedOptions}
+                                    data-field="NetSuite_Tax_Schedule__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.NetSuite_Tax_Schedule__c}></lightning-combobox>
+                            </div>
+                            <!-- Row 3: NetSuite SubType | NetSuite Income Account -->
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-combobox variant="label-inline" label="NetSuite SubType" value={itemMaster.NetSuite_SubType__c}
+                                    options={imNsSubTypeOptions} data-field="NetSuite_SubType__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.NetSuite_SubType__c}></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-combobox variant="label-inline" label="NetSuite Income Account"
+                                    value={itemMaster.Income_Account__c}
+                                    options={imIncomeAccountOptions}
+                                    data-field="Income_Account__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.Income_Account__c}></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small"></div>
+                            <!-- Row 4: NetSuite Item Type For Invoicing | NetSuite Direct Revenue Posting | Netsuite Description (ro) -->
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-combobox variant="label-inline" label="NetSuite Item Type For Invoicing"
+                                    value={itemMaster.NetSuite_Item_Type_For_Invoicing__c}
+                                    options={imNsItemTypeInvOptions}
+                                    data-field="NetSuite_Item_Type_For_Invoicing__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.NetSuite_Item_Type_For_Invoicing__c}></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input type="checkbox" variant="label-inline" label="NetSuite Direct Revenue Posting"
+                                    checked={itemMaster.NetSuite_Direct_Revenue_Posting__c}
+                                    data-field="NetSuite_Direct_Revenue_Posting__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.NetSuite_Direct_Revenue_Posting__c}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input variant="label-inline" label="Netsuite Description"
+                                    value={itemMaster.Netsuite_Description__c}
+                                    read-only field-level-help={itemMasterHelpText.Netsuite_Description__c}></lightning-input>
+                            </div>
+                            <!-- Row 5: NetSuite Include Children | NetSuite Deferred Revenue Account | NetSuite Product Line ID (ro) -->
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input type="checkbox" variant="label-inline" label="NetSuite Include Children"
+                                    checked={itemMaster.NetSuite_Include_Children__c}
+                                    data-field="NetSuite_Include_Children__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.NetSuite_Include_Children__c}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-combobox variant="label-inline" label="NetSuite Deferred Revenue Account"
+                                    value={itemMaster.Deferred_Revenue_Account__c}
+                                    options={imDeferredRevAccountOptions}
+                                    data-field="Deferred_Revenue_Account__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.Deferred_Revenue_Account__c}></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input variant="label-inline" label="NetSuite Product Line ID"
+                                    value={itemMaster.NetSuite_Product_Line_ID__c}
+                                    read-only field-level-help={itemMasterHelpText.NetSuite_Product_Line_ID__c}></lightning-input>
+                            </div>
+                            <!-- Row 6: NetSuite Can be fulfilled | NetSuite Revenue Recognition Rule | NS Error -->
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input type="checkbox" variant="label-inline" label="NetSuite Can be fulfilled"
+                                    checked={itemMaster.NetSuite_Can_be_fulfilled__c}
+                                    data-field="NetSuite_Can_be_fulfilled__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.NetSuite_Can_be_fulfilled__c}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-combobox variant="label-inline" label="NetSuite Revenue Recognition Rule"
+                                    value={itemMaster.Revenue_Recognition_Rule__c}
+                                    options={imRevRecRuleOptions}
+                                    data-field="Revenue_Recognition_Rule__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.Revenue_Recognition_Rule__c}></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input variant="label-inline" label="NS Error" value={itemMaster.NS_Error__c}
+                                    data-field="NS_Error__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.NS_Error__c}></lightning-input>
+                            </div>
+                            <!-- Row 7: OpenAir Billing Rule | NetSuite Rev Rec Forecast Rule -->
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-combobox variant="label-inline" label="OpenAir Billing Rule"
+                                    value={itemMaster.OpenAir_Billing_Rule__c}
+                                    options={imOaBillingRuleOptions}
+                                    data-field="OpenAir_Billing_Rule__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.OpenAir_Billing_Rule__c}></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-combobox variant="label-inline" label="NetSuite Rev Rec Forecast Rule"
+                                    value={itemMaster.Rev_Rec_Forecast_Rule__c}
+                                    options={imRevRecForecastOptions}
+                                    data-field="Rev_Rec_Forecast_Rule__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.Rev_Rec_Forecast_Rule__c}></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small"></div>
+                            <!-- Row 8: NetSuite Billing Schedule | NetSuite Revenue Recognition Template | Trigger to NS -->
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-combobox variant="label-inline" label="NetSuite Billing Schedule"
+                                    value={itemMaster.NetSuite_Billing_Schedule__c}
+                                    options={imNsBillingSchedOptions}
+                                    data-field="NetSuite_Billing_Schedule__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.NetSuite_Billing_Schedule__c}></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-combobox variant="label-inline" label="NetSuite Revenue Recognition Template"
+                                    value={itemMaster.NetSuite_Revenue_Recognition_Template__c}
+                                    options={imNsRevRecTmplOptions}
+                                    data-field="NetSuite_Revenue_Recognition_Template__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.NetSuite_Revenue_Recognition_Template__c}></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input type="checkbox" variant="label-inline" label="Trigger to NS"
+                                    checked={itemMaster.Trigger_to_NS__c}
+                                    data-field="Trigger_to_NS__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.Trigger_to_NS__c}></lightning-input>
+                            </div>
+                            <!-- Row 9: NetSuite Export to OpenAir | NetSuite Create Revenue Plans On | Sync NetSuite -->
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input type="checkbox" variant="label-inline" label="NetSuite Export to OpenAir"
+                                    checked={itemMaster.NetSuite_Export_to_OpenAir__c}
+                                    data-field="NetSuite_Export_to_OpenAir__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.NetSuite_Export_to_OpenAir__c}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-combobox variant="label-inline" label="NetSuite Create Revenue Plans On"
+                                    value={itemMaster.Create_Revenue_Plans_On__c}
+                                    options={imCreateRevPlansOptions}
+                                    data-field="Create_Revenue_Plans_On__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.Create_Revenue_Plans_On__c}></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input type="checkbox" variant="label-inline" label="Sync NetSuite"
+                                    checked={itemMaster.Sync_NetSuite__c}
+                                    data-field="Sync_NetSuite__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.Sync_NetSuite__c}></lightning-input>
+                            </div>
+                            <!-- Row 10: NetSuite Revenue Allocation Group | NetSuite Allocation Type -->
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-combobox variant="label-inline" label="NetSuite Revenue Allocation Group"
+                                    value={itemMaster.Revenue_Allocation_Group__c}
+                                    options={imRevAllocGroupOptions}
+                                    data-field="Revenue_Allocation_Group__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.Revenue_Allocation_Group__c}></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-combobox variant="label-inline" label="NetSuite Allocation Type"
+                                    value={itemMaster.NetSuite_Allocation_Type__c}
+                                    options={imNsAllocTypeOptions}
+                                    data-field="NetSuite_Allocation_Type__c"
+                                    onchange={handleItemMasterFieldChange} field-level-help={itemMasterHelpText.NetSuite_Allocation_Type__c}></lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small"></div>
+                        </div>
+
+                        <!-- System Information -->
+                        <h4 class="section-subheading">System Information</h4>
+                        <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_small">
+                            <!-- Row 1: Created By | Last Modified By -->
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input variant="label-inline" label="Created By" value={imCreatedByName}
+                                    read-only></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input variant="label-inline" label="Last Modified By" value={imLastModifiedByName}
+                                    read-only></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small"></div>
+                            <!-- Row 2: Created Date | Last Modified Date -->
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input variant="label-inline" label="Created Date" value={imCreatedDate}
+                                    read-only></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                                <lightning-input variant="label-inline" label="Last Modified Date" value={imLastModifiedDate}
+                                    read-only></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3 slds-p-bottom_small"></div>
+                        </div>
+                    </template>
+                    <template if:false={hasItemMaster}>
+                        <div class="empty-state-inline">
+                            <p class="empty-state-text">No Item Master record linked to this product.</p>
+                        </div>
+                    </template>
+                </lightning-accordion-section>
+
+                <!-- ======================= Section 3: Quantity Based Pricing ======================= -->
+                <template if:true={isQuantityBased}>
+                    <lightning-accordion-section name="quantityPricing" label="Quantity Based Pricing">
+                        <c-quantity-pricing-manager
+                            key={selectedProductId}
+                            preselected-product-id={selectedProductId}
+                            hide-lookup>
+                        </c-quantity-pricing-manager>
+                    </lightning-accordion-section>
+                </template>
+
+                <!-- ======================= Section 4: Pricing ======================= -->
+                <lightning-accordion-section name="pricing" label="Pricing">
+                    <c-pricing-manager
+                        key={selectedProductId}
+                        preselected-product-id={selectedProductId}
+                        hide-lookup>
+                    </c-pricing-manager>
+                </lightning-accordion-section>
+
+                <!-- ======================= Section 5: Quote Terms ======================= -->
+                <lightning-accordion-section name="quoteTerms" label="Quote Terms">
+                    <template if:true={productCode}>
+                        <c-sku-product-quote-terms
+                            key={productCode}
+                            product-code={productCode}>
+                        </c-sku-product-quote-terms>
+                    </template>
+                    <template if:false={productCode}>
+                        <div class="empty-state-inline">
+                            <p class="empty-state-text">Loading quote terms...</p>
+                        </div>
+                    </template>
+                </lightning-accordion-section>
+
+            </lightning-accordion>
+        </template>
+
+        <!-- Empty State (no product selected) -->
+        <template if:false={isProductSelected}>
+            <div class="empty-state">
+                <div class="empty-state-icon">
+                    <lightning-icon icon-name="utility:search" size="small"></lightning-icon>
+                </div>
+                <h3 class="empty-state-heading">Select a product</h3>
+                <p class="empty-state-text">
+                    Search and select a product above to view and update its details,
+                    meter types, pricing, and quote terms.
+                </p>
+            </div>
+        </template>
+    </div>
+</template>

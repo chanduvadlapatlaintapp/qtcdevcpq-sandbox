@@ -1,0 +1,45 @@
+<template>
+    <div class="scorecard">
+        <div class="scorecard__header">
+            <h3 class="scorecard__title">Health Scorecard</h3>
+            <div class="scorecard__overall">
+                <span class="scorecard__overall-label">Overall</span>
+                <span class="scorecard__overall-score" style={overallStyle}>{overallScore}</span>
+            </div>
+        </div>
+        <table class="scorecard__table">
+            <thead>
+                <tr>
+                    <th>Factor</th>
+                    <th>Score</th>
+                    <th>Weight</th>
+                    <th>Weighted</th>
+                    <th>Trend</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={factors} for:item="factor">
+                    <tr key={factor.key}>
+                        <td class="scorecard__factor-name">
+                            <lightning-icon icon-name={factor.icon} size="xx-small"></lightning-icon>
+                            <span>{factor.name}</span>
+                        </td>
+                        <td>
+                            <div class="scorecard__score-bar">
+                                <div class="scorecard__score-fill" style={factor.barStyle}></div>
+                            </div>
+                            <span class="scorecard__score-value" style={factor.scoreStyle}>{factor.score}</span>
+                        </td>
+                        <td class="scorecard__weight">{factor.weightLabel}</td>
+                        <td class="scorecard__weighted">{factor.weightedScore}</td>
+                        <td>
+                            <lightning-icon lwc:if={factor.isUp} icon-name="utility:arrowup" size="xx-small" class="trend-up"></lightning-icon>
+                            <lightning-icon lwc:if={factor.isDown} icon-name="utility:arrowdown" size="xx-small" class="trend-down"></lightning-icon>
+                            <lightning-icon lwc:if={factor.isStable} icon-name="utility:dash" size="xx-small" class="trend-stable"></lightning-icon>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+</template>

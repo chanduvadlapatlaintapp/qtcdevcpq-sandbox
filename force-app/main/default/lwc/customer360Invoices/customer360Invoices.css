@@ -1,0 +1,308 @@
+:host {
+    display: block;
+}
+
+.c360-inv {
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* ─── Header ─────────────────────────────────────────────────────────────── */
+.c360-inv__header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.c360-inv__title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.c360-inv__title-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.c360-inv__icon-box {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #207CEC, #22ECCF);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.c360-inv__title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1C2B40;
+    margin: 0;
+}
+
+.c360-inv__source-badge {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: #E8EEF1;
+    color: #1B3A4B;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.c360-inv__count {
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    background: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.c360-inv__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.c360-inv__mock-badge {
+    background: #EEF2FF;
+    color: #6366F1;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.c360-inv__export-btn {
+    background: none;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.c360-inv__export-btn:hover {
+    background: #f8fafc;
+    color: #1C2B40;
+    border-color: #cbd5e1;
+}
+
+/* ─── Filter Bar ─────────────────────────────────────────────────────────── */
+.c360-inv__filters {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #fafbfc;
+}
+
+.c360-inv__filter-combo {
+    max-width: 160px;
+}
+
+.c360-inv__clear-btn {
+    background: none;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #ef4444;
+    cursor: pointer;
+}
+
+.c360-inv__clear-btn:hover {
+    background: #fef2f2;
+    border-color: #fecaca;
+}
+
+/* ─── Grid Table ─────────────────────────────────────────────────────────── */
+.c360-inv__table-wrap {
+    overflow-x: auto;
+}
+
+.c360-inv__grid {
+    display: grid;
+    grid-template-columns: 120px 110px 110px 110px 80px 110px;
+    align-items: center;
+    padding: 0 20px;
+    min-width: 640px;
+}
+
+.c360-inv__grid-header {
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.c360-inv__grid-header span {
+    font-size: 10px;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.c360-inv__grid-row {
+    border-bottom: 1px solid #f1f5f9;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Cell styles */
+.c360-inv__cell-number {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: #207CEC;
+}
+
+.c360-inv__cell-date {
+    font-size: 12px;
+    color: #1C2B40;
+}
+
+.c360-inv__cell-muted {
+    color: #94a3b8;
+}
+
+.c360-inv__cell-amount {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1C2B40;
+}
+
+.c360-inv__status-pill {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* ─── Summary Row ────────────────────────────────────────────────────────── */
+.c360-inv__grid-summary {
+    background: #f8fafc;
+    border-top: 2px solid #e2e8f0;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.c360-inv__summary-label {
+    font-size: 11px;
+    font-weight: 800;
+    color: #1C2B40;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.c360-inv__summary-amount {
+    font-size: 14px;
+    font-weight: 800;
+}
+
+/* ─── Summary Cards ──────────────────────────────────────────────────────── */
+.c360-inv__summary-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 16px 20px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.c360-inv__summary-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 16px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.c360-inv__summary-card--navy {
+    background: #f1f5f9;
+}
+
+.c360-inv__summary-card--navy .c360-inv__summary-card-value {
+    color: #1C2B40;
+}
+
+.c360-inv__summary-card--green {
+    background: #ecfdf5;
+}
+
+.c360-inv__summary-card--green .c360-inv__summary-card-value {
+    color: #10b981;
+}
+
+.c360-inv__summary-card--warn {
+    background: #fffbeb;
+}
+
+.c360-inv__summary-card--warn .c360-inv__summary-card-value {
+    color: #f59e0b;
+}
+
+.c360-inv__summary-card--good {
+    background: #ecfdf5;
+}
+
+.c360-inv__summary-card--good .c360-inv__summary-card-value {
+    color: #10b981;
+}
+
+.c360-inv__summary-card-value {
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.c360-inv__summary-card-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ─── States ─────────────────────────────────────────────────────────────── */
+.c360-inv__loading {
+    padding: 48px;
+    display: flex;
+    justify-content: center;
+}
+
+.c360-inv__error {
+    padding: 12px 20px;
+    background: #FEF2F2;
+    color: #DC2626;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .c360-inv__summary-cards {
+        grid-template-columns: 1fr;
+    }
+}

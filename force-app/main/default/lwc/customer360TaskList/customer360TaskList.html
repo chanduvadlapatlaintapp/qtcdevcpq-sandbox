@@ -1,0 +1,220 @@
+<template>
+    <div class="c360-task">
+        <!-- Header -->
+        <div class="c360-task__header">
+            <h2 class="c360-task__title">
+                <lightning-icon icon-name="utility:task2" size="small"></lightning-icon>
+                CTA Tasks ({pendingCount} pending)
+            </h2>
+            <lightning-button
+                label="Add Task"
+                variant="brand"
+                icon-name="utility:add"
+                onclick={handleShowAdd}></lightning-button>
+        </div>
+
+        <!-- Add Task Form -->
+        <template lwc:if={showAddForm}>
+            <div class="c360-task__add-form">
+                <div class="c360-task__add-row-top">
+                    <lightning-input
+                        label="Task Name"
+                        placeholder="Enter task name..."
+                        value={_newTaskName}
+                        onchange={handleTaskNameChange}
+                        class="c360-task__add-name"></lightning-input>
+                    <lightning-combobox
+                        label="Parent CTA"
+                        value={_newTaskCtaId}
+                        options={ctaPickerOptions}
+                        onchange={handleTaskCtaChange}
+                        placeholder="Select CTA..."
+                        required
+                        class="c360-task__add-cta"></lightning-combobox>
+                </div>
+                <div class="c360-task__add-row-bottom">
+                    <lightning-combobox
+                        label="Priority"
+                        value={_newTaskPriority}
+                        options={priorityOptions}
+                        onchange={handleTaskPriorityChange}
+                        class="c360-task__add-priority"></lightning-combobox>
+                    <lightning-combobox
+                        label="Assignee"
+                        value={_newTaskAssignee}
+                        options={assigneeOptions}
+                        onchange={handleTaskAssigneeChange}
+                        class="c360-task__add-assignee"></lightning-combobox>
+                    <lightning-input
+                        type="date"
+                        label="Due Date"
+                        value={_newTaskDueDate}
+                        onchange={handleTaskDueDateChange}
+                        class="c360-task__add-date"></lightning-input>
+                </div>
+                <div class="c360-task__add-actions">
+                    <lightning-button
+                        label="Cancel"
+                        onclick={handleShowAdd}></lightning-button>
+                    <lightning-button
+                        label="Add"
+                        variant="brand"
+                        disabled={isAddDisabled}
+                        onclick={handleAddTask}></lightning-button>
+                </div>
+            </div>
+        </template>
+
+        <!-- CTA Filter -->
+        <div class="c360-task__cta-filter">
+            <lightning-combobox
+                label="Filter by CTA"
+                value={_selectedCtaFilter}
+                options={ctaFilterOptions}
+                onchange={handleCtaFilterChange}
+                variant="label-hidden"
+                class="c360-task__cta-filter-select"></lightning-combobox>
+            <template lwc:if={hasCtaFilter}>
+                <lightning-button-icon
+                    icon-name="utility:close"
+                    alternative-text="Clear filter"
+                    size="small"
+                    onclick={handleClearCtaFilter}
+                    class="c360-task__cta-filter-clear"></lightning-button-icon>
+            </template>
+        </div>
+
+        <!-- Filters -->
+        <div class="c360-task__filters">
+            <template for:each={filterButtons} for:item="filter">
+                <button
+                    key={filter.value}
+                    class={filter.cssClass}
+                    data-filter={filter.value}
+                    onclick={handleFilterClick}>
+                    {filter.label}
+                </button>
+            </template>
+        </div>
+
+        <!-- Task List -->
+        <template lwc:if={hasTasks}>
+            <div class="c360-task__list">
+                <template for:each={filteredTasks} for:item="task">
+                    <div key={task.id} class={task.taskClass}>
+                        <lightning-icon
+                            icon-name={task.checkIcon}
+                            size="x-small"
+                            data-id={task.id}
+                            onclick={handleToggleTask}
+                            class="c360-task__check"></lightning-icon>
+                        <div class="c360-task__info">
+                            <span class="c360-task__name">{task.name}</span>
+                            <div class="c360-task__meta">
+                                <span class="c360-task__cta-badge"
+                                      style={task.ctaBadgeStyle}>{task.ctaTypeDisplay}</span>
+                                <span class="c360-task__cta-name" title={task.ctaLabel}>{task.ctaLabel}</span>
+                                <span class={task.priorityClass}>{task.priority}</span>
+                                <template lwc:if={task.isEditingAssignee}>
+                                    <lightning-combobox
+                                        value={_editingTaskAssignee}
+                                        options={assigneeOptions}
+                                        onchange={handleEditAssigneeChange}
+                                        variant="label-hidden"
+                                        dropdown-alignment="right"
+                                        class="c360-task__assignee-edit"></lightning-combobox>
+                                </template>
+                                <template lwc:else>
+                                    <span class="c360-task__assignee"
+                                          data-id={task.id}
+                                          onclick={handleAssigneeClick}
+                                          title="Click to reassign">{task.assignee}</span>
+                                </template>
+                                <span class={task.dueDateClass}>{task.formattedDueDate}</span>
+                            </div>
+                        </div>
+                        <div class="c360-task__actions">
+                            <lightning-button-icon
+                                icon-name="utility:edit"
+                                alternative-text="Edit"
+                                size="small"
+                                data-id={task.id}
+                                onclick={handleEditTask}
+                                class="c360-task__edit-btn"></lightning-button-icon>
+                            <lightning-button-icon
+                                icon-name="utility:delete"
+                                alternative-text="Delete"
+                                size="small"
+                                data-id={task.id}
+                                onclick={handleDeleteTask}
+                                class="c360-task__delete"></lightning-button-icon>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- Empty State -->
+        <template lwc:if={showEmpty}>
+            <c-customer360-empty-state
+                title="No Tasks"
+                message="No tasks matching your filter."
+                icon="utility:task2"></c-customer360-empty-state>
+        </template>
+
+        <!-- Edit Task Modal -->
+        <template lwc:if={showEditModal}>
+            <div class="c360-task__modal-backdrop" onclick={handleModalBackdropClick}>
+                <div class="c360-task__modal" onclick={handleModalContentClick}>
+                    <div class="c360-task__modal-header">
+                        <h3 class="c360-task__modal-title">Edit Task</h3>
+                        <lightning-button-icon
+                            icon-name="utility:close"
+                            alternative-text="Close"
+                            onclick={handleCancelEditTask}></lightning-button-icon>
+                    </div>
+                    <div class="c360-task__modal-body">
+                        <lightning-input
+                            label="Task Name"
+                            value={_editTaskName}
+                            onchange={handleEditTaskNameChange}
+                            class="c360-task__modal-field"></lightning-input>
+                        <lightning-combobox
+                            label="Parent CTA"
+                            value={_editTaskCtaId}
+                            options={ctaPickerOptions}
+                            onchange={handleEditTaskCtaChange}
+                            class="c360-task__modal-field"></lightning-combobox>
+                        <div class="c360-task__modal-row">
+                            <lightning-combobox
+                                label="Priority"
+                                value={_editTaskPriority}
+                                options={priorityOptions}
+                                onchange={handleEditTaskPriorityChange}></lightning-combobox>
+                            <lightning-combobox
+                                label="Assignee"
+                                value={_editTaskAssignee}
+                                options={assigneeOptions}
+                                onchange={handleEditTaskAssigneeChange}></lightning-combobox>
+                        </div>
+                        <lightning-input
+                            type="date"
+                            label="Due Date"
+                            value={_editTaskDueDate}
+                            onchange={handleEditTaskDueDateChange}
+                            class="c360-task__modal-field"></lightning-input>
+                    </div>
+                    <div class="c360-task__modal-footer">
+                        <lightning-button
+                            label="Cancel"
+                            onclick={handleCancelEditTask}></lightning-button>
+                        <lightning-button
+                            label="Save"
+                            variant="brand"
+                            onclick={handleSaveEditTask}></lightning-button>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
+</template>

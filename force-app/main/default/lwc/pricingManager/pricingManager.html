@@ -1,0 +1,256 @@
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+    </template>
+
+    <div class="slds-p-around_medium">
+
+        <template if:false={hideLookup}>
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="header-icon">
+                    <lightning-icon icon-name="utility:moneybag" size="x-small"></lightning-icon>
+                </div>
+                <div>
+                    <h2 class="header-title">Update Pricing</h2>
+                    <p class="header-subtitle">Manage FY26 Intapp and Block pricing records</p>
+                </div>
+            </div>
+
+            <!-- Product Lookup -->
+            <div class="filter-card">
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_1-of-2">
+                        <c-lookup
+                            data-id="pricingProductLookup"
+                            label="Select Product"
+                            placeholder="Search products..."
+                            is-multi-entry={isNotMultiEntry}
+                            onsearch={handleProductSearch}
+                            onselectionchange={handleProductSelected}>
+                        </c-lookup>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template if:true={isProductSelected}>
+
+            <!-- Save Bar (shown when dirty) -->
+            <template if:true={isDirty}>
+                <div class="save-bar">
+                    <span class="save-bar-text">You have unsaved changes.</span>
+                    <lightning-button
+                        label="Save All"
+                        variant="brand"
+                        icon-name="utility:save"
+                        onclick={handleSave}
+                        class="slds-m-left_small">
+                    </lightning-button>
+                </div>
+            </template>
+
+            <!-- Toolbar -->
+            <div class="toolbar">
+                <lightning-button
+                    label="Save All"
+                    variant="brand"
+                    icon-name="utility:save"
+                    onclick={handleSave}>
+                </lightning-button>
+                <lightning-button
+                    label="Add Row"
+                    variant="neutral"
+                    icon-name="utility:add"
+                    onclick={handleAddRow}
+                    class="slds-m-left_small">
+                </lightning-button>
+                <span class="paste-hint">
+                    <lightning-icon icon-name="utility:info" size="xx-small"></lightning-icon>
+                    Tip: Copy from Excel and paste directly into price cells
+                </span>
+            </div>
+
+            <!-- Pricing Matrix Table -->
+            <template if:true={hasRows}>
+                <div class="table-container">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered branded-table pricing-matrix">
+                        <thead>
+                            <!-- Row 1: group headers -->
+                            <tr class="slds-line-height_reset">
+                                <th rowspan="2" class="th-meter-type">Meter Type</th>
+                                <th colspan="5" class="th-group th-pricebook">Put an &quot;x&quot; in appropriate OP4i pricebook(s)</th>
+                                <th colspan="6" class="th-group th-currency th-usd">USD</th>
+                                <th colspan="6" class="th-group th-currency th-gbp">GBP</th>
+                                <th colspan="6" class="th-group th-currency th-eur">EUR</th>
+                                <th colspan="6" class="th-group th-currency th-aud">AUD</th>
+                            </tr>
+                            <!-- Row 2: individual column labels -->
+                            <tr class="slds-line-height_reset">
+                                <th class="th-check">FY26 Legal Sales</th>
+                                <th class="th-check">FY26 A&amp;C Sales</th>
+                                <th class="th-check">FY26 FS Sales</th>
+                                <th class="th-check">FY26 Corporate Sales</th>
+                                <th class="th-check">FY26 Ops Only</th>
+                                <th class="th-price">EM1</th><th class="th-price">EM2</th><th class="th-price">EM3</th><th class="th-price">EM4</th><th class="th-price">EM5</th><th class="th-price">None</th>
+                                <th class="th-price">EM1</th><th class="th-price">EM2</th><th class="th-price">EM3</th><th class="th-price">EM4</th><th class="th-price">EM5</th><th class="th-price">None</th>
+                                <th class="th-price">EM1</th><th class="th-price">EM2</th><th class="th-price">EM3</th><th class="th-price">EM4</th><th class="th-price">EM5</th><th class="th-price">None</th>
+                                <th class="th-price">EM1</th><th class="th-price">EM2</th><th class="th-price">EM3</th><th class="th-price">EM4</th><th class="th-price">EM5</th><th class="th-price">None</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={rows} for:item="row">
+                                <tr key={row.rowKey}>
+                                    <template if:true={row.isNew}>
+                                        <td class="td-meter-type td-new-row">
+                                            <div class="slds-grid slds-grid_vertical-align-center">
+                                                <lightning-combobox
+                                                    value={row.meterType}
+                                                    options={meterTypeOptions}
+                                                    data-tempid={row.tempId}
+                                                    onchange={handleMeterTypeChange}
+                                                    variant="label-hidden"
+                                                    label="Meter Type"
+                                                    placeholder="Select...">
+                                                </lightning-combobox>
+                                                <lightning-button-icon
+                                                    icon-name="utility:delete"
+                                                    alternative-text="Remove row"
+                                                    data-tempid={row.tempId}
+                                                    onclick={handleRemoveRow}
+                                                    variant="bare"
+                                                    size="small"
+                                                    class="slds-m-left_xx-small remove-row-btn">
+                                                </lightning-button-icon>
+                                            </div>
+                                        </td>
+                                    </template>
+                                    <template if:false={row.isNew}>
+                                        <td class="td-meter-type">
+                                            <div class="slds-grid slds-grid_vertical-align-center">
+                                                <span class="slds-truncate">{row.meterType}</span>
+                                                <lightning-button-icon
+                                                    icon-name="utility:delete"
+                                                    alternative-text="Delete meter type pricing"
+                                                    data-rowkey={row.rowKey}
+                                                    onclick={handleDeleteMeterTypeRow}
+                                                    variant="bare"
+                                                    size="small"
+                                                    class="slds-m-left_xx-small remove-row-btn">
+                                                </lightning-button-icon>
+                                            </div>
+                                        </td>
+                                    </template>
+                                    <td class="td-check">
+                                        <lightning-input type="checkbox" checked={row.legalSales}
+                                            data-rowkey={row.rowKey} data-field="legalSales"
+                                            onchange={handleCheckboxChange} variant="label-hidden"
+                                            label="Legal Sales">
+                                        </lightning-input>
+                                    </td>
+                                    <td class="td-check">
+                                        <lightning-input type="checkbox" checked={row.acSales}
+                                            data-rowkey={row.rowKey} data-field="acSales"
+                                            onchange={handleCheckboxChange} variant="label-hidden"
+                                            label="A&amp;C Sales">
+                                        </lightning-input>
+                                    </td>
+                                    <td class="td-check">
+                                        <lightning-input type="checkbox" checked={row.fsSales}
+                                            data-rowkey={row.rowKey} data-field="fsSales"
+                                            onchange={handleCheckboxChange} variant="label-hidden"
+                                            label="FS Sales">
+                                        </lightning-input>
+                                    </td>
+                                    <td class="td-check">
+                                        <lightning-input type="checkbox" checked={row.corporateSales}
+                                            data-rowkey={row.rowKey} data-field="corporateSales"
+                                            onchange={handleCheckboxChange} variant="label-hidden"
+                                            label="Corporate Sales">
+                                        </lightning-input>
+                                    </td>
+                                    <td class="td-check">
+                                        <lightning-input type="checkbox" checked={row.opsOnly}
+                                            data-rowkey={row.rowKey} data-field="opsOnly"
+                                            onchange={handleCheckboxChange} variant="label-hidden"
+                                            label="Ops Only">
+                                        </lightning-input>
+                                    </td>
+                                    <!-- 24 price cells: 4 currencies x 6 tiers (native input for Excel paste support) -->
+                                    <template for:each={row.cells} for:item="cell">
+                                        <td key={cell.cellKey} class="td-price">
+                                            <input type="number" value={cell.price}
+                                                aria-label={cell.cellKey}
+                                                data-rowkey={row.rowKey} data-idx={cell.cellIndex}
+                                                oninput={handlePriceInput}
+                                                onchange={handlePriceChange}
+                                                onpaste={handlePricePaste}
+                                                class="price-input"
+                                                step="0.01" min="0">
+                                        </td>
+                                    </template>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </template>
+
+            <template if:false={hasRows}>
+                <div class="empty-state">
+                    <div class="empty-state-icon">
+                        <lightning-icon icon-name="utility:table" size="small"></lightning-icon>
+                    </div>
+                    <h3 class="empty-state-heading">No FY26 pricing records found</h3>
+                    <p class="empty-state-text">No FY26 All Products pricing records exist for this product. Click "Add Row" to create new pricing records.</p>
+                </div>
+            </template>
+
+        </template>
+
+        <template if:false={isProductSelected}>
+            <div class="empty-state">
+                <div class="empty-state-icon">
+                    <lightning-icon icon-name="utility:search" size="small"></lightning-icon>
+                </div>
+                <h3 class="empty-state-heading">Select a product</h3>
+                <p class="empty-state-text">Search and select a product to view and update its pricing.</p>
+            </div>
+        </template>
+
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <template if:true={showDeleteConfirm}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small"
+            aria-modal="true" aria-labelledby="deleteModalHeader">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header slds-theme_error">
+                    <h2 id="deleteModalHeader" class="slds-text-heading_medium">
+                        <lightning-icon icon-name="utility:warning" size="small"
+                            variant="inverse" class="slds-m-right_small"></lightning-icon>
+                        Confirm Delete
+                    </h2>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <p class="slds-text-body_regular">
+                        Are you sure you want to delete <strong>all pricing records</strong> for meter type
+                        <strong>"{deleteTargetMeterType}"</strong>?
+                    </p>
+                    <p class="slds-m-top_small slds-text-color_weak">
+                        This will permanently remove all Intapp Pricing and Block Pricing records
+                        for this meter type. This action cannot be undone.
+                    </p>
+                </div>
+                <div class="slds-modal__footer">
+                    <lightning-button label="Cancel" variant="neutral"
+                        onclick={handleDeleteCancel}></lightning-button>
+                    <lightning-button label="Delete" variant="destructive"
+                        onclick={handleDeleteConfirm}
+                        class="slds-m-left_small"></lightning-button>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

@@ -1,0 +1,457 @@
+/* Quote Accelerator - CPQ Quote Comparison UI */
+/* Based on Figma Design: New Quote UI */
+
+:host {
+    display: block;
+    font-family: 'Arimo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Main Container */
+.cpq-design-container {
+    background-color: #f9fafb;
+    padding: 32px;
+    min-height: 100vh;
+}
+
+.cpq-main-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.1), 
+                0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* ===== CPQ Header Section ===== */
+.cpq-header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 32px;
+    gap: 32px;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.deal-title {
+    font-size: 30px;
+    font-weight: 400;
+    color: #0a0a0a;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.metrics-row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.metric-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.metric-label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #364153;
+}
+
+.metric-value {
+    font-size: 16px;
+    font-weight: 400;
+    color: #0a0a0a;
+}
+
+/* Approval Indicators */
+.approval-indicators {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.approval-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.approval-dot.approved {
+    background-color: #10b981;
+}
+
+.approval-dot.pending {
+    background-color: #f59e0b;
+}
+
+.approval-dot.not-required {
+    background-color: #d1d5db;
+}
+
+/* Intapp Logo */
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.intapp-logo {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+/* ===== CPQ Pricing Table ===== */
+.cpq-table-wrapper {
+    padding: 0 32px;
+    overflow-x: auto;
+}
+
+.cpq-pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+/* Table Headers */
+.cpq-pricing-table th {
+    text-align: center;
+    vertical-align: middle;
+    border: 0.89px solid #d1d5dc;
+    padding: 12px 16px;
+    font-weight: 700;
+}
+
+/* Product Header - Gray */
+.product-header {
+    background-color: #e5e7eb;
+    color: #0a0a0a;
+    text-align: left !important;
+    min-width: 300px;
+}
+
+/* Current Entitlement Header - Dark Slate */
+.current-header {
+    background-color: #2c3e50;
+    color: #ffffff;
+}
+
+.current-header .header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.current-subheader {
+    background-color: #2c3e50;
+}
+
+/* Proposed Header - Blue */
+.proposed-header {
+    background-color: #4a7baf;
+    color: #ffffff;
+}
+
+/* Year Headers */
+.year1-header {
+    background-color: #4a7baf;
+    color: #ffffff;
+}
+
+.year2-header {
+    background-color: #5b8cc4;
+    color: #ffffff;
+}
+
+/* Column Sub-headers */
+.col-header {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.col-header.current-col {
+    background-color: #d1d5dc;
+    color: #0a0a0a;
+}
+
+.col-header.year1-col {
+    background-color: #a8c9e8;
+    color: #0a0a0a;
+}
+
+.col-header.year2-col {
+    background-color: #b8d4eb;
+    color: #0a0a0a;
+}
+
+/* Table Body */
+.cpq-pricing-table tbody td {
+    border: 0.89px solid #d1d5dc;
+    padding: 16px;
+    vertical-align: middle;
+}
+
+/* Product Cell */
+.product-cell {
+    background-color: #f9fafb;
+    text-align: left;
+    min-width: 300px;
+}
+
+.product-name {
+    font-size: 14px;
+    font-weight: 400;
+    color: #0a0a0a;
+    line-height: 1.43;
+}
+
+/* Data Cells */
+.data-cell {
+    text-align: right;
+    font-size: 14px;
+    font-weight: 400;
+    color: #0a0a0a;
+}
+
+.data-cell.current-data {
+    background-color: #f3f4f6;
+}
+
+.data-cell.year1-data {
+    background-color: #eff6ff;
+}
+
+.data-cell.year2-data {
+    background-color: #dbeafe;
+}
+
+/* Quantity Cell */
+.quantity-cell {
+    text-align: center;
+}
+
+.quantity-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.quantity-value {
+    font-size: 14px;
+    font-weight: 400;
+    color: #0a0a0a;
+}
+
+.quantity-unit {
+    font-size: 12px;
+    font-weight: 400;
+    color: #4a5565;
+}
+
+/* Table Footer */
+.cpq-pricing-table tfoot td {
+    border: 0.89px solid #d1d5dc;
+    padding: 16px;
+}
+
+.footer-empty {
+    background-color: transparent;
+    border-color: transparent !important;
+}
+
+.footer-total {
+    text-align: center;
+}
+
+.footer-total.current-footer {
+    background-color: #ffffff;
+}
+
+.footer-total.year1-footer {
+    background-color: #eff6ff;
+}
+
+.footer-total.year2-footer {
+    background-color: #dbeafe;
+}
+
+.total-label {
+    font-size: 16px;
+    font-weight: 400;
+    color: #1b5c9f;
+}
+
+/* ===== CPQ Summary Section ===== */
+.cpq-summary-section {
+    background-color: #1b3a57;
+    padding: 24px;
+    margin-top: 0;
+    border-radius: 0 0 10px 10px;
+}
+
+.summary-list {
+    list-style: disc;
+    margin: 0;
+    padding: 0 0 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.summary-item {
+    font-size: 16px;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1.5;
+}
+
+/* ===== Deal Standard Indicator ===== */
+.deal-standard {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 28px;
+    padding: 0 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.deal-standard.excellent {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.deal-standard.good {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.deal-standard.needs-review {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 1400px) {
+    .cpq-design-container {
+        padding: 16px;
+    }
+    
+    .cpq-header-section {
+        padding: 24px;
+    }
+    
+    .cpq-table-wrapper {
+        padding: 0 16px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .deal-title {
+        font-size: 24px;
+    }
+    
+    .metrics-row {
+        flex-wrap: wrap;
+    }
+    
+    .cpq-pricing-table {
+        font-size: 12px;
+    }
+    
+    .product-cell {
+        min-width: 200px;
+    }
+    
+    .cpq-pricing-table th,
+    .cpq-pricing-table tbody td,
+    .cpq-pricing-table tfoot td {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cpq-header-section {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .header-right {
+        align-self: flex-end;
+    }
+    
+    .deal-title {
+        font-size: 20px;
+    }
+    
+    .metric-label,
+    .metric-value {
+        font-size: 14px;
+    }
+    
+    .summary-item {
+        font-size: 14px;
+    }
+}
+
+/* ===== Print Styles ===== */
+@media print {
+    .cpq-design-container {
+        padding: 0;
+        background: white;
+    }
+    
+    .cpq-main-container {
+        box-shadow: none;
+        border: 1px solid #d1d5dc;
+    }
+    
+    .cpq-pricing-table {
+        font-size: 10px;
+    }
+    
+    .cpq-pricing-table th,
+    .cpq-pricing-table td {
+        padding: 4px 8px;
+    }
+}
+
+/* ===== Animation for data updates ===== */
+@keyframes highlightUpdate {
+    0% {
+        background-color: #fef3c7;
+    }
+    100% {
+        background-color: inherit;
+    }
+}
+
+.data-cell.updated {
+    animation: highlightUpdate 1s ease-out;
+}
+
+/* ===== Hover Effects ===== */
+.data-row:hover .product-cell,
+.data-row:hover .data-cell {
+    filter: brightness(0.97);
+}
+
+.data-row:hover .product-name {
+    color: #1b5c9f;
+}

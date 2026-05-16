@@ -1,0 +1,81 @@
+<template>
+    <article class="slds-card slds-card_boundary">
+        <!-- Header matching standard related list style -->
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <lightning-icon icon-name="standard:note" size="small"></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <span class="slds-truncate slds-text-heading_small" title="Notes and Attachments">
+                            Notes and Attachments ({fileCount})
+                        </span>
+                    </h2>
+                </div>
+            </header>
+            <div class="slds-no-flex">
+                <lightning-button
+                    label="Upload"
+                    icon-name="utility:upload"
+                    onclick={handleUploadClick}
+                ></lightning-button>
+            </div>
+        </div>
+
+        <!-- Card Body -->
+        <div class="slds-card__body">
+            <!-- Loading Spinner -->
+            <template if:true={isLoading}>
+                <div class="slds-is-relative slds-p-around_large">
+                    <lightning-spinner alternative-text="Loading files..." size="small"></lightning-spinner>
+                </div>
+            </template>
+
+            <!-- File Table -->
+            <template if:false={isLoading}>
+                <template if:true={hasFiles}>
+                    <lightning-datatable
+                        key-field="Id"
+                        data={displayData}
+                        columns={columns}
+                        hide-checkbox-column
+                        onrowaction={handleRowAction}
+                        sorted-by={sortedBy}
+                        sorted-direction={sortDirection}
+                        onsort={handleSort}
+                    ></lightning-datatable>
+                </template>
+
+                <template if:false={hasFiles}>
+                    <div class="slds-p-around_medium slds-text-align_center slds-text-color_weak">
+                        No files found. Click <strong>Upload</strong> to add files.
+                    </div>
+                </template>
+            </template>
+        </div>
+
+        <!-- Footer with View All link or file count -->
+        <template if:true={hasFiles}>
+            <footer class="slds-card__footer">
+                <template if:true={showViewAll}>
+                    <a class="view-all-link" onclick={handleViewAll}>
+                        View All ({fileCount})
+                    </a>
+                </template>
+                <template if:false={showViewAll}>
+                    <span class="slds-text-body_small">{fileCount} file(s)</span>
+                </template>
+            </footer>
+        </template>
+    </article>
+
+    <!-- Error Display -->
+    <template if:true={errorMessage}>
+        <div class="slds-notify slds-notify_toast slds-theme_error slds-m-top_small" role="status">
+            <div class="slds-notify__content">
+                <h2 class="slds-text-heading_small">{errorMessage}</h2>
+            </div>
+        </div>
+    </template>
+</template>

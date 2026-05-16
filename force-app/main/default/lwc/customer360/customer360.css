@@ -1,0 +1,126 @@
+/* ─── App Shell ───────────────────────────────────────────────────────────── */
+
+:host {
+    display: block;
+    --c360-color-health-good: #04844B;
+    --c360-color-health-fair: #FFB75D;
+    --c360-color-health-poor: #E3524F;
+    --c360-color-health-critical: #C23934;
+    --c360-color-bg-dark: #1B2A4A;
+    --c360-color-bg-page: #F4F6F9;
+    --c360-color-bg-white: #FFFFFF;
+    --c360-color-text-primary: #181818;
+    --c360-color-text-muted: #706E6B;
+    --c360-color-border: #E5E5E5;
+    --c360-color-primary: #0176D3;
+    --c360-color-error: #EA001E;
+    --c360-radius-sm: 8px;
+    --c360-radius-md: 12px;
+    --c360-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --c360-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.c360-app {
+    min-height: 100vh;
+    background: var(--c360-color-bg-page);
+}
+
+/* ─── Header Wrapper (for notification panel positioning) ────────────── */
+
+.c360-header-wrapper {
+    position: relative;
+    z-index: 100;
+}
+
+/* ─── Error State ─────────────────────────────────────────────────────────── */
+
+.c360-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 24px;
+}
+
+.c360-error__card {
+    background: var(--c360-color-bg-white);
+    border-radius: var(--c360-radius-md);
+    box-shadow: var(--c360-shadow-md);
+    padding: 48px;
+    text-align: center;
+    max-width: 500px;
+}
+
+.c360-error__card h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--c360-color-text-primary);
+    margin: 16px 0 8px 0;
+}
+
+.c360-error__card p {
+    color: var(--c360-color-text-muted);
+    font-size: 0.9rem;
+    margin: 4px 0;
+}
+
+.c360-error__hint {
+    margin-top: 16px;
+    font-size: 0.8rem;
+    color: var(--c360-color-primary);
+}
+
+/* ─── Detail View ─────────────────────────────────────────────────────────── */
+
+.c360-detail {
+    padding: 24px;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.c360-detail__content {
+    margin-top: 0;
+}
+
+/* ─── Health Tab Grid ─────────────────────────────────────────────────────── */
+
+.c360-detail__health-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.c360-detail__health-left,
+.c360-detail__health-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ─── CTAs Grid ──────────────────────────────────────────────────────────── */
+
+.c360-detail__ctas-grid {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: 24px;
+}
+
+/* ─── Coming Soon Placeholder ─────────────────────────────────────────────── */
+
+.c360-detail__coming-soon {
+    background: var(--c360-color-bg-white);
+    border-radius: var(--c360-radius-md);
+    box-shadow: var(--c360-shadow-sm);
+    padding: 48px 24px;
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+    .c360-detail__health-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .c360-detail__ctas-grid {
+        grid-template-columns: 1fr;
+    }
+}

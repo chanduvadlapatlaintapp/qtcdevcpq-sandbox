@@ -1,0 +1,189 @@
+<template>
+    <section class="modal-overlay" onclick={handleOverlayClick}>
+        <div class="modal-content" onclick={stopPropagation}>
+
+            <!-- Header -->
+            <div class="modal-header">
+                <h3>Preview &amp; Send OSA</h3>
+                <lightning-button-icon icon-name="utility:close" onclick={handleClose} variant="bare-inverse"></lightning-button-icon>
+            </div>
+
+            <!-- Progress Indicator -->
+            <div class="progress-wrapper">
+                <lightning-progress-indicator
+                    current-step={currentStep}
+                    type="path"
+                    has-error={hasError}>
+                    <lightning-progress-step label="Generate OSA" value="step1"></lightning-progress-step>
+                    <lightning-progress-step label="Additional Documents" value="step2"></lightning-progress-step>
+                    <lightning-progress-step label="Review &amp; Send" value="step3"></lightning-progress-step>
+                </lightning-progress-indicator>
+            </div>
+
+            <!-- Step 1: Generate OSA -->
+            <template if:true={isStep1}>
+                <div class="modal-body">
+
+                    <!-- Polling / waiting state -->
+                    <template if:true={isWaitingForDoc}>
+                        <div class="step-center">
+                            <lightning-spinner alternative-text="Waiting for OSA..." size="medium"></lightning-spinner>
+                            <p class="step-message">Generating OSA&hellip; The Conga tab will close automatically when done.</p>
+                        </div>
+                    </template>
+
+                    <template if:false={isWaitingForDoc}>
+
+                        <!-- Error state -->
+                        <template if:true={hasError}>
+                            <div class="status-box status-error">
+                                <lightning-icon icon-name="utility:error" variant="error" size="small"></lightning-icon>
+                                <span>{errorMessage}</span>
+                            </div>
+                            <div class="step-center">
+                                <lightning-button label="Retry" variant="brand" onclick={handleOpenConga}></lightning-button>
+                            </div>
+                        </template>
+
+                        <template if:false={hasError}>
+
+                            <!-- Success state -->
+                            <template if:true={generatedDoc}>
+                                <div class="status-box status-success">
+                                    <lightning-icon icon-name="utility:success" variant="success" size="small"></lightning-icon>
+                                    <span>OSA generated successfully: <strong>{generatedDoc.title}</strong></span>
+                                </div>
+                            </template>
+
+                            <!-- Initial state: prompt user to open Conga -->
+                            <template if:false={generatedDoc}>
+                                <div class="step-center">
+                                    <p class="step-message">Click the button below to open Conga and generate the OSA. The document will be automatically saved to this quote when Conga finishes.</p>
+                                    <lightning-button
+                                        label="Open Conga to Generate OSA"
+                                        variant="brand"
+                                        icon-name="utility:new_window"
+                                        onclick={handleOpenConga}>
+                                    </lightning-button>
+                                </div>
+                            </template>
+
+                        </template>
+                    </template>
+
+                </div>
+                <div class="modal-footer">
+                    <lightning-button label="Close" onclick={handleClose}></lightning-button>
+                    <lightning-button label="Next" variant="brand" onclick={handleNextToStep2}
+                        disabled={step1NextDisabled}></lightning-button>
+                </div>
+            </template>
+
+            <!-- Step 2: Additional Documents -->
+            <template if:true={isStep2}>
+                <div class="modal-body">
+                    <h4 class="section-title">Select Additional Documents</h4>
+                    <p class="section-desc">Choose any related documents to include, or upload a new PDF.</p>
+
+                    <template if:true={isLoadingDocs}>
+                        <div class="step-center">
+                            <lightning-spinner alternative-text="Loading documents..." size="small"></lightning-spinner>
+                        </div>
+                    </template>
+
+                    <template if:false={isLoadingDocs}>
+                        <template if:true={hasRelatedDocs}>
+                            <div class="doc-list">
+                                <template for:each={relatedDocsWithSelection} for:item="doc">
+                                    <div key={doc.key} class="doc-check-row" data-id={doc.id} onclick={handleDocToggle}>
+                                        <input type="checkbox" checked={doc.isSelected} class="doc-checkbox" />
+                                        <lightning-icon icon-name="doctype:pdf" size="x-small"></lightning-icon>
+                                        <span class="doc-name">{doc.name}</span>
+                                        <template if:true={doc.documentType}>
+                                            <span class="doc-type-chip">{doc.documentType}</span>
+                                        </template>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                        <template if:false={hasRelatedDocs}>
+                            <p class="empty-state">No related documents found for this quote.</p>
+                        </template>
+                    </template>
+
+                    <div class="upload-section">
+                        <h4>Upload Additional PDF</h4>
+                        <lightning-file-upload
+                            label="Upload PDF"
+                            name="additionalDocs"
+                            record-id={quoteId}
+                            accept=".pdf"
+                            onuploadfinished={handleUploadFinished}>
+                        </lightning-file-upload>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <lightning-button label="Back" onclick={handleBackToStep1}></lightning-button>
+                    <lightning-button label="Close" onclick={handleClose}></lightning-button>
+                    <lightning-button label="Next" variant="brand" onclick={handleNextToStep3}></lightning-button>
+                </div>
+            </template>
+
+            <!-- Step 3: Review & Send -->
+            <template if:true={isStep3}>
+                <div class="modal-body">
+                    <h4 class="section-title">Review Documents</h4>
+
+                    <!-- Generated OSA -->
+                    <template if:true={generatedDoc}>
+                        <div class="review-section">
+                            <h5 class="review-label">Generated OSA</h5>
+                            <div class="doc-row">
+                                <lightning-icon icon-name="doctype:pdf" size="small"></lightning-icon>
+                                <span class="doc-title">{generatedDoc.title}</span>
+                                <lightning-button-icon
+                                    icon-name="utility:preview"
+                                    variant="bare"
+                                    onclick={handlePreviewOsa}
+                                    title="Preview OSA">
+                                </lightning-button-icon>
+                                <lightning-button-icon
+                                    icon-name="utility:download"
+                                    variant="bare"
+                                    onclick={handleDownloadOsa}
+                                    title="Download OSA">
+                                </lightning-button-icon>
+                            </div>
+                        </div>
+                    </template>
+
+                    <!-- Selected Additional Docs -->
+                    <template if:true={selectedDocs.length}>
+                        <div class="review-section">
+                            <h5 class="review-label">Additional Documents</h5>
+                            <template for:each={selectedDocs} for:item="doc">
+                                <div key={doc.key} class="doc-row">
+                                    <lightning-icon icon-name="doctype:pdf" size="small"></lightning-icon>
+                                    <span class="doc-title">{doc.name}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+
+                    <!-- DocuSign placeholder -->
+                    <div class="docusign-placeholder">
+                        <lightning-icon icon-name="utility:info" size="x-small" class="info-icon"></lightning-icon>
+                        <span>Send via DocuSign — coming soon</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <lightning-button label="Back" onclick={handleBackToStep2}></lightning-button>
+                    <lightning-button label="Close" onclick={handleClose}></lightning-button>
+                    <lightning-button label="Download OSA" variant="brand" icon-name="utility:download"
+                        onclick={handleDownloadOsa}></lightning-button>
+                </div>
+            </template>
+
+        </div>
+    </section>
+</template>

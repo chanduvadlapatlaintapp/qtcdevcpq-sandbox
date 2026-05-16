@@ -1,0 +1,95 @@
+/* ─── Dashboard Container ────────────────────────────────────────────────── */
+.dashboard {
+    padding: 24px;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+/* ─── KPI Row ────────────────────────────────────────────────────────────── */
+.dashboard__kpis {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+/* ─── Main Content Grid ──────────────────────────────────────────────────── */
+.dashboard__content {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 24px;
+}
+
+.dashboard__main {
+    min-width: 0;
+}
+
+/* ─── Sidebar ────────────────────────────────────────────────────────────── */
+.dashboard__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ─── Chart Card ─────────────────────────────────────────────────────────── */
+.dashboard__chart-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.chart-card__title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #181818;
+    margin-bottom: 16px;
+}
+
+/* ─── Filter Badge ──────────────────────────────────────────────────────── */
+.dashboard__filter-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #1B2A4A;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.filter-badge__clear {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 4px;
+}
+
+.filter-badge__clear:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ─── Responsive: Tablet (max-width 1200px) ──────────────────────────────── */
+@media (max-width: 1200px) {
+    .dashboard__kpis {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .dashboard__content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ─── Responsive: Mobile (max-width 768px) ───────────────────────────────── */
+@media (max-width: 768px) {
+    .dashboard__kpis {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

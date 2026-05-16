@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>AI Quote Assistant Chatbot</masterLabel>
+    <description>A beautiful AI-powered CPQ chatbot integrated with Google Gemini. Allows users to build quotes using natural language commands with real-time cart management.</description>
+    
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__RecordPage</target>
+        <target>lightning__HomePage</target>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="quoteId" type="String" label="Quote Record ID" description="The ID of the Quote record to add products to. Leave empty to auto-detect from record page." />
+            <property name="isDarkMode" type="Boolean" label="Enable Dark Mode" default="true" description="Toggle between dark and light theme." />
+            <objects>
+                <object>SBQQ__Quote__c</object>
+                <object>Quote</object>
+                <object>Opportunity</object>
+            </objects>
+        </targetConfig>
+        
+        <targetConfig targets="lightning__AppPage,lightning__HomePage">
+            <property name="quoteId" type="String" label="Quote Record ID" description="The ID of the Quote record to add products to." />
+            <property name="isDarkMode" type="Boolean" label="Enable Dark Mode" default="true" description="Toggle between dark and light theme." />
+        </targetConfig>
+        
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="quoteId" type="String" label="Quote Record ID" description="The ID of the Quote record to add products to." />
+            <property name="isDarkMode" type="Boolean" label="Enable Dark Mode" default="true" description="Toggle between dark and light theme." />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

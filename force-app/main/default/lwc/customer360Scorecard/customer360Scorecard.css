@@ -1,0 +1,119 @@
+/* ─── Scorecard Container ─────────────────────────────────────────────────── */
+
+.scorecard {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* ─── Header ──────────────────────────────────────────────────────────────── */
+
+.scorecard__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.scorecard__title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0;
+    color: #181818;
+}
+
+.scorecard__overall {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.scorecard__overall-label {
+    font-size: 0.8rem;
+    color: #706E6B;
+}
+
+.scorecard__overall-score {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+/* ─── Table ───────────────────────────────────────────────────────────────── */
+
+.scorecard__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.scorecard__table th {
+    text-align: left;
+    padding: 8px 12px;
+    color: #706E6B;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    border-bottom: 2px solid #E5E5E5;
+    font-weight: 600;
+}
+
+.scorecard__table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #F3F3F3;
+}
+
+/* ─── Factor Name ─────────────────────────────────────────────────────────── */
+
+.scorecard__factor-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+/* ─── Score Bar ───────────────────────────────────────────────────────────── */
+
+.scorecard__score-bar {
+    width: 80px;
+    height: 6px;
+    background: #F3F3F3;
+    border-radius: 3px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+    overflow: hidden;
+}
+
+.scorecard__score-fill {
+    height: 100%;
+    border-radius: 3px;
+}
+
+.scorecard__score-value {
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+/* ─── Weight & Weighted ───────────────────────────────────────────────────── */
+
+.scorecard__weight {
+    color: #706E6B;
+}
+
+.scorecard__weighted {
+    font-weight: 600;
+}
+
+/* ─── Trend Icons ─────────────────────────────────────────────────────────── */
+
+.trend-up {
+    --sds-c-icon-color-foreground-default: #04844B;
+}
+
+.trend-down {
+    --sds-c-icon-color-foreground-default: #EA001E;
+}
+
+.trend-stable {
+    --sds-c-icon-color-foreground-default: #706E6B;
+}

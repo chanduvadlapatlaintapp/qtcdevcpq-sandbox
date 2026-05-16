@@ -1,0 +1,255 @@
+/* Fill Lightning app region (avoid narrow centered column) */
+:host {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* Dark theme (default) */
+.app-container,
+.app-container.dark-theme {
+    color-scheme: dark;
+    --color-bg: #0b1120;
+    --color-surface: #131b2d;
+    --color-surface-hover: #1a2540;
+    --color-surface-active: #203050;
+    --color-surface-alt: #0e1929;
+    --color-primary: #2b7fff;
+    --color-primary-dark: #080d18;
+    --color-text: #ececf1;
+    --color-text-secondary: #8fa3c0;
+    --color-border: #1e2d45;
+    --color-success: #19c37d;
+    --color-warning: #f5a623;
+    --color-error: #ef4444;
+    --color-input-bg: #1a2540;
+    --color-disabled-bg: #1a2540;
+    /* In dark mode, editable text stays white (var(--color-text)) and
+       non-editable text becomes muted blue-grey so users can tell at a
+       glance which fields they can interact with. */
+    --color-text-disabled: #8fa3c0;
+    --color-text-readonly: #8fa3c0;
+    /* ── Editable vs. read-only field treatment (dark mode) ──
+       Editable inputs sit visibly *above* the card surface with a brighter
+       fill + accent border. Read-only chips sit *below* the surface (darker)
+       so they read as static. Keeps the Figma feel of "this is a control,
+       that is not". */
+    --color-input-editable-bg: #1f2c4a;
+    --color-input-editable-border: #3a527e;
+    --color-input-editable-cell-tint: #172238;
+    --color-readonly-chip-bg: #0e1828;
+    /* Dark mode needs a brighter green for the +N delta and a more visible
+       grid divider — the default --color-border is too close to the card
+       surface to register as a separator. */
+    --color-eff-qty-positive: #2dd47b;
+    --color-card-divider: #324663;
+    --color-header-bg: #080d18;
+    --color-header-text: #ffffff;
+    --color-chat-bg: #131b2d;
+    --color-chat-user-bubble: #1a2540;
+    --color-chat-ai-bubble: #162035;
+    --color-chat-ai-text: #d1d5db;
+    --color-chat-input-bg: #1a2540;
+    /* Table header banner colors */
+    --color-table-banner-bg: #2a5a9b;
+    --color-table-banner-text: #ffffff;
+    --color-table-year-bg: #1e4a82;
+    /* Account pill border */
+    --color-pill-border: #2b7fff;
+    /* Search input tint */
+    --color-search-input-bg: #1a2540;
+    --radius: 8px;
+    --page-gutter: clamp(22px, 4.4vw, 53px);
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: var(--color-bg);
+    font-family: 'Salesforce Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--color-text);
+}
+
+/* Light theme overrides */
+.app-container.light-theme {
+    color-scheme: light;
+    --color-bg: #f3f4f8;
+    --color-surface: #ffffff;
+    --color-surface-hover: #eef2f7;
+    --color-surface-active: #e4eaf2;
+    --color-surface-alt: #eef2f7;
+    --color-primary: #0176d3;
+    --color-primary-dark: #014486;
+    --color-text: #1a1a2e;
+    --color-text-secondary: #5e6c84;
+    --color-border: #dde0e6;
+    --color-success: #2e7d32;
+    --color-warning: #e65100;
+    --color-error: #c62828;
+    --color-input-bg: #ffffff;
+    --color-disabled-bg: #f3f4f6;
+    --color-text-disabled: #9ca3af;
+    /* Light mode keeps the existing dark text on read-only cell values
+       (matches today's `.cell-value { color: var(--color-text) }` rendering). */
+    --color-text-readonly: #1a1a2e;
+    /* Light-mode values that match the term-group's existing fallbacks
+       so the light theme is visually unchanged. */
+    --color-input-editable-bg: #ffffff;
+    --color-input-editable-border: #c8d3e0;
+    --color-input-editable-cell-tint: #f4f8fc;
+    --color-readonly-chip-bg: #eef2f7;
+    /* Light mode keeps existing values — green stays the standard
+       success-dark, divider matches today's --color-border. */
+    --color-eff-qty-positive: #2e844a;
+    --color-card-divider: #dde0e6;
+    --color-header-bg: #ffffff;
+    --color-header-text: #1a1a2e;
+    --color-chat-bg: #ffffff;
+    --color-chat-user-bubble: #eef2f7;
+    --color-chat-ai-bubble: #e3f0ff;
+    --color-chat-ai-text: #1a1a2e;
+    --color-chat-input-bg: #ffffff;
+    /* Table header banner colors — neutral in light mode */
+    --color-table-banner-bg: #e4eaf2;
+    --color-table-banner-text: #1a1a2e;
+    --color-table-year-bg: #dde0e6;
+    /* Account pill border — darker blue for better contrast on white */
+    --color-pill-border: #0057a8;
+    /* Search input tint — subtle blue matching contract row hover */
+    --color-search-input-bg: rgba(1, 118, 211, 0.09);
+}
+
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px var(--page-gutter);
+    background: var(--color-header-bg);
+    color: var(--color-header-text);
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #8e8ea0, #acacbe);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.header-title h1 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.header-subtitle {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+}
+
+.breadcrumb-item.clickable {
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: rgba(128,128,128,0.15);
+}
+
+.breadcrumb-item.clickable:hover {
+    background: rgba(128,128,128,0.25);
+}
+
+.breadcrumb-separator {
+    opacity: 0.5;
+}
+
+.theme-toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-hover);
+    color: var(--color-header-text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+}
+
+.theme-toggle:hover {
+    background: var(--color-surface-active);
+}
+
+.dark-mode-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-hover);
+    color: var(--color-header-text);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background 0.15s;
+    white-space: nowrap;
+}
+
+.dark-mode-toggle:hover {
+    background: var(--color-surface-active);
+}
+
+.theme-icon {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+}
+
+.main-layout {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.content-area {
+    flex: 1;
+    min-width: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 16px var(--page-gutter);
+    background: var(--color-bg);
+    box-sizing: border-box;
+}
