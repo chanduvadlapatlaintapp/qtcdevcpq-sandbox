@@ -39,11 +39,12 @@ public with sharing class AgenticQTC_TestRunnerController {
     }
 
     public class AttachmentWrapper {
-        @AuraEnabled public String id          { get; set; }
-        @AuraEnabled public String title       { get; set; }
-        @AuraEnabled public String fileType    { get; set; }
-        @AuraEnabled public String versionId   { get; set; }
-        @AuraEnabled public String downloadUrl { get; set; }
+        @AuraEnabled public String id             { get; set; }
+        @AuraEnabled public String title          { get; set; }
+        @AuraEnabled public String fileType       { get; set; }
+        @AuraEnabled public String fileExtension  { get; set; }  // e.g. 'webm', 'png'
+        @AuraEnabled public String versionId      { get; set; }
+        @AuraEnabled public String downloadUrl    { get; set; }
     }
 
     // ─── LWC-callable methods ────────────────────────────────────────────────
@@ -171,13 +172,14 @@ public with sharing class AgenticQTC_TestRunnerController {
         List<AttachmentWrapper> results = new List<AttachmentWrapper>();
         for (ContentDocumentLink link : links) {
             AttachmentWrapper w = new AttachmentWrapper();
-            w.id          = link.ContentDocumentId;
-            w.title       = link.ContentDocument.Title;
-            w.fileType    = link.ContentDocument.FileType;
-            w.versionId   = link.ContentDocument.LatestPublishedVersionId;
-            w.downloadUrl = '/sfc/servlet.shepherd/version/download/'
-                          + link.ContentDocument.LatestPublishedVersionId
-                          + '?operationContext=CHATTER';
+            w.id            = link.ContentDocumentId;
+            w.title         = link.ContentDocument.Title;
+            w.fileType      = link.ContentDocument.FileType;
+            w.fileExtension = link.ContentDocument.FileExtension;
+            w.versionId     = link.ContentDocument.LatestPublishedVersionId;
+            w.downloadUrl   = '/sfc/servlet.shepherd/version/download/'
+                            + link.ContentDocument.LatestPublishedVersionId
+                            + '?operationContext=CHATTER';
             results.add(w);
         }
         return results;

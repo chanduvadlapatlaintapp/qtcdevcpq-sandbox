@@ -269,10 +269,8 @@
                                     <span>🎬 Test Recording</span>
                                     <a class="video-dl-btn" href={videoSrc} target="_blank">⬇ Download</a>
                                 </div>
-                                <video class="test-video" controls preload="metadata">
-                                    <source src={videoSrc} type="video/webm" />
-                                    <source src={videoSrc} type="video/mp4" />
-                                </video>
+                                <!-- LWC requires src on <video> itself, not on <source> children -->
+                                <video class="test-video" controls preload="metadata" src={videoSrc}></video>
                             </div>
                         </template>
 

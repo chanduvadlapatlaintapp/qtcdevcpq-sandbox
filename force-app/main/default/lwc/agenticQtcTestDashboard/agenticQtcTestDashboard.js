@@ -140,10 +140,12 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     // ── computed getters: video ─────────────────────────────────────────────
 
     get activeRunVideo() {
-        // Match by FileType (Salesforce assigns 'WEBM'/'MP4') or by title extension
+        // Salesforce assigns FileType='UNKNOWN' for .webm — use fileExtension first
+        // (now exposed by Apex), then fall back to title scan
         return this.activeRunFiles.find(f =>
-            /^(WEBM|MP4)$/i.test(f.fileType || '') ||
-            /\.(webm|mp4)$/i.test(f.title || '')
+            /^(webm|mp4)$/i.test(f.fileExtension || '') ||
+            /^(WEBM|MP4)$/i.test(f.fileType     || '') ||
+            /\.(webm|mp4)$/i.test(f.title        || '')
         ) || null;
     }
 
