@@ -52,30 +52,34 @@ public with sharing class AgenticQTC_TestRunnerController {
      * Creates a new Test_Run__c record with PENDING status.
      */
     @AuraEnabled
-    public static String createTestRun(String testSuite) {
+    public static String createTestRun(String testSuite, String runner) {
         if (String.isBlank(testSuite)) {
             throw new AuraHandledException('testSuite is required.');
         }
 
-        // Mark as CLAIMED immediately so the local polling agent (if running)
-        // does not pick it up — GitHub Actions will be the runner.
+        // runner = 'github'  → CLAIMED immediately, trigger GitHub Actions workflow.
+        // runner = 'local'   → PENDING, local agent picks it up via polling.
+        // null / anything else → default to 'local' for backward compatibility.
+        Boolean useGitHub = 'github'.equalsIgnoreCase(runner);
+
         Test_Run__c run = new Test_Run__c(
             Test_Suite__c    = testSuite,
-            Status__c        = 'CLAIMED',
-            Agent_Id__c      = 'github-actions',
+            Status__c        = useGitHub ? 'CLAIMED' : 'PENDING',
+            Agent_Id__c      = useGitHub ? 'github-actions' : null,
             Requested_By__c  = UserInfo.getUserId()
         );
 
         insert run;
 
-        // Trigger the GitHub Actions workflow asynchronously.
-        // @future(callout=true) is required because callouts are not allowed
-        // in the same transaction as DML.
-        AgenticQTC_GitHubActionsService.triggerWorkflowAsync(
-            run.Id,
-            testSuite,
-            URL.getOrgDomainUrl().toExternalForm()
-        );
+        if (useGitHub) {
+            // Trigger GitHub Actions asynchronously.
+            // @future(callout=true) is required: no callouts allowed in same DML transaction.
+            AgenticQTC_GitHubActionsService.triggerWorkflowAsync(
+                run.Id,
+                testSuite,
+                URL.getOrgDomainUrl().toExternalForm()
+            );
+        }
 
         return run.Id;
     }

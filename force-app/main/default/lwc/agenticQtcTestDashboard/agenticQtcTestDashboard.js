@@ -16,11 +16,17 @@ const SUITE_OPTIONS = [
     { label: 'PDF Generation Demo',            value: 'demoPdfGeneration' },
 ];
 
+const RUNNER_OPTIONS = [
+    { label: '☁️ GitHub', value: 'github', title: 'Run on GitHub Actions (cloud, headless)' },
+    { label: '🖥 Local',  value: 'local',  title: 'Run on local agent (this machine)' },
+];
+
 export default class AgenticQtcTestDashboard extends LightningElement {
 
     // ── reactive state ──────────────────────────────────────────────────────
 
     @track selectedSuite      = SUITE_OPTIONS[0].value;
+    @track selectedRunner     = 'github';
     @track activeRunId        = null;
     @track activeRun          = null;
     @track recentRuns         = [];
@@ -58,6 +64,17 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     // ── computed getters: layout ────────────────────────────────────────────
 
     get suiteOptions()       { return SUITE_OPTIONS; }
+
+    get runnerOptions() {
+        return RUNNER_OPTIONS.map(r => ({
+            ...r,
+            btnClass: this.selectedRunner === r.value
+                ? 'runner-btn runner-btn-active'
+                : 'runner-btn',
+        }));
+    }
+    get isGitHubRunner() { return this.selectedRunner === 'github'; }
+    get isLocalRunner()  { return this.selectedRunner === 'local'; }
 
     get containerClass() {
         return `runner-container ${this.isDarkMode ? 'dark-theme' : 'light-theme'}`;
@@ -415,6 +432,11 @@ export default class AgenticQtcTestDashboard extends LightningElement {
         this.selectedSuite = event.target.value;
     }
 
+    handleRunnerChange(event) {
+        const runner = event.currentTarget.dataset.runner;
+        if (runner && !this.isRunning) this.selectedRunner = runner;
+    }
+
     handleToggleTheme() {
         this.isDarkMode = !this.isDarkMode;
         try {
@@ -470,7 +492,7 @@ export default class AgenticQtcTestDashboard extends LightningElement {
         const placeholder = {
             id:             this._placeholderId,
             name:           '…',
-            status:         'PENDING',
+            status:         this.selectedRunner === 'github' ? 'CLAIMED' : 'PENDING',
             testSuite:      suiteLabel,
             testsPassed:    null,
             testsFailed:    null,
@@ -488,7 +510,7 @@ export default class AgenticQtcTestDashboard extends LightningElement {
 
         try {
             // ── Step 2: create the SF record (takes ~1-2s) ──────────────────
-            const runId = await createTestRun({ testSuite: this.selectedSuite });
+            const runId = await createTestRun({ testSuite: this.selectedSuite, runner: this.selectedRunner });
             this.activeRunId        = runId;
             this.activeSidebarRunId = runId;
             this.isCreating  = false;

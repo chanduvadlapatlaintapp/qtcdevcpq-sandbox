@@ -209,6 +209,59 @@
     flex-shrink: 0;
 }
 
+/* ── Runner toggle ────────────────────────────────────────────────────────── */
+
+.runner-select-wrap {
+    margin-top: 10px;
+}
+
+.runner-toggle {
+    display: flex;
+    gap: 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border-2);
+    margin-top: 4px;
+}
+
+.runner-btn {
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 12px;
+    font-weight: 500;
+    border: none;
+    background: var(--surface-2);
+    color: var(--text-2);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+}
+.runner-btn:hover:not(:disabled) {
+    background: var(--surface-3);
+    color: var(--text);
+}
+.runner-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.runner-btn-active {
+    background: var(--primary);
+    color: #fff;
+}
+.runner-btn-active:hover:not(:disabled) {
+    background: var(--primary);
+    color: #fff;
+}
+
+.runner-container.light-theme .runner-btn {
+    background: var(--surface-2);
+    color: var(--text-2);
+}
+.runner-container.light-theme .runner-btn-active {
+    background: var(--primary);
+    color: #fff;
+}
+
 .sidebar-actions {
     display: flex;
     gap: 8px;
