@@ -981,6 +981,51 @@
 
 /* ── Screenshot gallery ────────────────────────────────────────────────────── */
 
+/* ── Video player ─────────────────────────────────────────────────────────── */
+
+.video-section {
+    padding: 16px 20px 0;
+}
+
+.video-section-hdr {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-2);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.video-dl-btn {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+    padding: 3px 10px;
+    border: 1px solid var(--primary-dim);
+    border-radius: 4px;
+    background: var(--primary-dim);
+    transition: background 0.15s;
+}
+.video-dl-btn:hover {
+    background: rgba(43,127,255,0.25);
+}
+
+.test-video {
+    width: 100%;
+    max-height: 480px;
+    border-radius: var(--radius);
+    background: #000;
+    display: block;
+    border: 1px solid var(--border);
+}
+
+/* ── Screenshots ──────────────────────────────────────────────────────────── */
+
 .screenshot-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));

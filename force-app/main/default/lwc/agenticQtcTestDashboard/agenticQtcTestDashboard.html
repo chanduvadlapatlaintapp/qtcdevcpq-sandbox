@@ -261,6 +261,22 @@
 
                     <!-- ── Screenshots ───────────────────────────────────── -->
                     <template if:true={activeTabIsScreenshots}>
+
+                        <!-- ── Video player (shown above screenshots if available) ── -->
+                        <template if:true={hasVideo}>
+                            <div class="video-section">
+                                <div class="video-section-hdr">
+                                    <span>🎬 Test Recording</span>
+                                    <a class="video-dl-btn" href={videoSrc} target="_blank">⬇ Download</a>
+                                </div>
+                                <video class="test-video" controls preload="metadata">
+                                    <source src={videoSrc} type="video/webm" />
+                                    <source src={videoSrc} type="video/mp4" />
+                                </video>
+                            </div>
+                        </template>
+
+                        <!-- ── Screenshot grid ──────────────────────────────────── -->
                         <template if:true={hasImages}>
                             <div class="screenshot-grid">
                                 <template for:each={activeRunImages} for:item="img" for:index="idx">

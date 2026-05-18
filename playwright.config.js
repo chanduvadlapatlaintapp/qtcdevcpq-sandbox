@@ -12,7 +12,7 @@ module.exports = defineConfig({
     headless: !!process.env.CI,    // false locally (headed), true on GitHub Actions (CI=true)
     viewport: { width: 1920, height: 1080 }, // large viewport → more content visible
     screenshot: 'on',
-    video: 'retain-on-failure',
+    video: 'on',                   // always record — uploaded to Salesforce after each run
     trace: 'retain-on-failure',
     actionTimeout: 30_000,
     navigationTimeout: 60_000,

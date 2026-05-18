@@ -58,6 +58,23 @@ function collectScreenshots(dir) {
     return files;
 }
 
+/** Walk a directory recursively and return the largest .webm/.mp4 (Playwright video) */
+function findVideo(dir) {
+    if (!fs.existsSync(dir)) return null;
+    const found = [];
+    function walk(d) {
+        for (const entry of fs.readdirSync(d, { withFileTypes: true })) {
+            const full = path.join(d, entry.name);
+            if (entry.isDirectory())                       walk(full);
+            else if (/\.(webm|mp4)$/i.test(entry.name))   found.push(full);
+        }
+    }
+    walk(dir);
+    if (!found.length) return null;
+    // Return the largest file — Playwright's full recording is the biggest
+    return found.sort((a, b) => fs.statSync(b).size - fs.statSync(a).size)[0];
+}
+
 /** Parse Playwright JSON reporter output into a flat test array */
 function parsePlaywrightJson(json) {
     const results = [];
@@ -204,7 +221,21 @@ async function main() {
         }
     }
 
-    // ── 6. Patch Test_Run__c with final status ────────────────────────────────
+    // ── 6. Upload video recording ─────────────────────────────────────────────
+    const videoPath = findVideo(path.join(REPO_ROOT, 'test-results', testRunId));
+    if (videoPath) {
+        log(`Uploading video: ${path.basename(videoPath)} (${(fs.statSync(videoPath).size / 1024 / 1024).toFixed(1)} MB)`);
+        try {
+            await uploadFile(videoPath, `video-${testRunId}.webm`, testRunId);
+            log('Video uploaded');
+        } catch (e) {
+            log(`Warning: video upload failed: ${e.message}`);
+        }
+    } else {
+        log('No video file found (video recording may not be enabled)');
+    }
+
+    // ── 7. Patch Test_Run__c with final status ────────────────────────────────
     log(`Patching Test_Run__c ${testRunId} → ${finalStatus}`);
     await patchTestRun(testRunId, {
         status      : finalStatus,

@@ -137,6 +137,27 @@ export default class AgenticQtcTestDashboard extends LightningElement {
 
     get hasImages()          { return this.activeRunImages.length > 0; }
 
+    // ── computed getters: video ─────────────────────────────────────────────
+
+    get activeRunVideo() {
+        // Match by FileType (Salesforce assigns 'WEBM'/'MP4') or by title extension
+        return this.activeRunFiles.find(f =>
+            /^(WEBM|MP4)$/i.test(f.fileType || '') ||
+            /\.(webm|mp4)$/i.test(f.title || '')
+        ) || null;
+    }
+
+    get hasVideo() { return this.activeRunVideo !== null; }
+
+    get videoSrc() {
+        return this.activeRunVideo ? this.activeRunVideo.downloadUrl : '';
+    }
+
+    get videoSizeMb() {
+        // title is "video-<runId>.webm" — size not stored, just label it
+        return this.activeRunVideo ? this.activeRunVideo.title : '';
+    }
+
     // ── computed getters: lightbox ──────────────────────────────────────────
 
     get lightboxOpen()    { return this.lightboxIndex !== null; }
