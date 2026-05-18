@@ -124,8 +124,47 @@ async function runSuite(suiteName, testRunId) {
     const failed = tests.filter(t => t.status === 'FAILED').length;
     const status = result.status === 0 ? 'PASSED' : 'FAILED';
 
-    // Collect screenshots
-    const screenshots = _collectScreenshots(outputDir);
+    // ── Collect richResults + spec screenshots from the spec's run directory ──
+    // The spec writes to tests/e2e/results/runs/<timestamp>/ — pick the newest.
+    let richResults  = null;
+    let screenshots  = _collectScreenshots(outputDir); // fallback: Playwright artifacts
+
+    const specRunsDir = path.join(PROJECT_ROOT, 'tests', 'e2e', 'results', 'runs');
+    if (fs.existsSync(specRunsDir)) {
+        try {
+            const entries = fs.readdirSync(specRunsDir, { withFileTypes: true })
+                .filter(e => e.isDirectory())
+                .map(e => {
+                    const full = path.join(specRunsDir, e.name);
+                    return { full, mtime: fs.statSync(full).mtimeMs };
+                })
+                .sort((a, b) => b.mtime - a.mtime); // newest first
+
+            if (entries.length > 0) {
+                const newestDir = entries[0].full;
+
+                // Load richResults JSON
+                const richPath = path.join(newestDir, 'results.json');
+                if (fs.existsSync(richPath)) {
+                    try {
+                        richResults = JSON.parse(fs.readFileSync(richPath, 'utf8'));
+                        console.log(`[runner] Loaded richResults from ${path.basename(newestDir)}`);
+                    } catch (e) {
+                        console.warn('[runner] Could not parse spec results.json:', e.message);
+                    }
+                }
+
+                // Prefer spec screenshots (higher quality, named) over Playwright artifacts
+                const specShots = _collectScreenshots(newestDir);
+                if (specShots.length > 0) {
+                    screenshots = specShots;
+                    console.log(`[runner] Using ${specShots.length} spec screenshot(s) from run dir`);
+                }
+            }
+        } catch (e) {
+            console.warn('[runner] Could not scan spec runs dir:', e.message);
+        }
+    }
 
     // Collect video (Playwright saves as webm inside test-results/<hash>/video.webm)
     const videoPath = _findVideo(outputDir);
@@ -139,6 +178,7 @@ async function runSuite(suiteName, testRunId) {
         errorMessage : status === 'FAILED' ? `${failed} test(s) failed` : null,
         tests,
         screenshots,
+        richResults,
         videoPath,
     };
 }
@@ -176,12 +216,18 @@ function _walkSuite(suite, results) {
 }
 
 function _mapStatus(pw) {
+    // Playwright JSON reporter sets test.status to:
+    //   'expected'   — test passed as expected
+    //   'unexpected' — test failed
+    //   'flaky'      — failed then passed on retry (still counts as PASSED)
+    //   'skipped'    — skipped
+    // NOT 'passed'/'failed' — those only appear on individual test.results[n].status
     switch ((pw || '').toLowerCase()) {
-        case 'passed':    return 'PASSED';
-        case 'failed':    return 'FAILED';
-        case 'timedout':  return 'FAILED';
-        case 'skipped':   return 'SKIPPED';
-        default:          return 'FAILED';
+        case 'expected':    return 'PASSED';
+        case 'flaky':       return 'PASSED';   // passed after retry
+        case 'skipped':     return 'SKIPPED';
+        case 'unexpected':  return 'FAILED';
+        default:            return 'FAILED';
     }
 }
 

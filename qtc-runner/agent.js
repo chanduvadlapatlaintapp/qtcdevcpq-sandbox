@@ -207,6 +207,7 @@ async function pollOnce() {
         durationMs  : playwrightResult.durationMs,
         errorMessage: playwrightResult.errorMessage,
         logOutput   : playwrightResult.logOutput,
+        richResults : playwrightResult.richResults,
         completedAt : new Date().toISOString(),
     });
 

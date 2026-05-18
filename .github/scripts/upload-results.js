@@ -64,8 +64,14 @@ function parsePlaywrightJson(json) {
     function walkSuite(suite) {
         for (const spec of (suite.specs || [])) {
             for (const test of (spec.tests || [])) {
+                // Playwright JSON sets test.status to:
+                //   'expected'   → test passed as expected
+                //   'unexpected' → test failed
+                //   'flaky'      → failed then passed on retry (count as PASSED)
+                //   'skipped'    → skipped
+                // NOT 'passed'/'failed' — those only appear on individual results[n].status
                 const pw     = (test.status || '').toLowerCase();
-                const status = pw === 'passed' ? 'PASSED'
+                const status = (pw === 'expected' || pw === 'flaky') ? 'PASSED'
                              : pw === 'skipped' ? 'SKIPPED'
                              : 'FAILED';
                 const last   = test.results && test.results[test.results.length - 1];
@@ -108,6 +114,7 @@ async function main() {
             passed     = tests.filter(t => t.status === 'PASSED').length;
             failed     = tests.filter(t => t.status === 'FAILED').length;
             durationMs = raw.stats ? (raw.stats.duration || 0) : 0;
+            log(`Playwright JSON parsed: ${passed} passed, ${failed} failed, ${durationMs}ms`);
         } catch (e) {
             log(`Warning: could not parse Playwright JSON: ${e.message}`);
         }
@@ -165,10 +172,12 @@ async function main() {
     }
 
     // ── 3. Determine final status ─────────────────────────────────────────────
-    // Honour PLAYWRIGHT_EXIT_CODE env var set by the workflow step outcome.
+    // Primary signal: PLAYWRIGHT_EXIT_CODE set by the workflow (0 = all passed).
+    // Secondary guard: if we parsed any failures from the JSON, mark FAILED even
+    // if the exit code is somehow 0 (defensive — shouldn't happen in practice).
     const playwrightExitCode = parseInt(process.env.PLAYWRIGHT_EXIT_CODE || '0', 10);
     const finalStatus = playwrightExitCode === 0 && failed === 0 ? 'PASSED' : 'FAILED';
-    log(`Final status: ${finalStatus} (${passed}✓ ${failed}✗, ${durationMs}ms)`);
+    log(`Exit code: ${playwrightExitCode} | parsed: ${passed}✓ ${failed}✗ → ${finalStatus} (${durationMs}ms)`);
 
     // ── 4. Insert Test_Result__c records ──────────────────────────────────────
     if (tests.length > 0) {

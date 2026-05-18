@@ -179,6 +179,13 @@ async function patchTestRun(testRunId, fields) {
     if (fields.logOutput) {
         body.Log_Output__c = fields.logOutput.slice(0, 131000);
     }
+    if (fields.richResults) {
+        // Salesforce Long Text Area max = 131072 chars
+        const richStr = typeof fields.richResults === 'string'
+            ? fields.richResults
+            : JSON.stringify(fields.richResults);
+        body.Rich_Results__c = richStr.slice(0, 131072);
+    }
 
     await sfRequest('PATCH', `/services/data/v62.0/sobjects/Test_Run__c/${testRunId}`, body);
     console.log(`[uploader] Patched Test_Run__c ${testRunId} → ${fields.status}`);
