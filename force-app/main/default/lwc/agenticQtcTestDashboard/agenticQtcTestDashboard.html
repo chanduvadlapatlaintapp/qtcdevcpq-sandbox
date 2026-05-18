@@ -31,10 +31,10 @@
                     </div>
                 </div>
 
-                <!-- Runner selector -->
-                <div class="runner-select-wrap">
-                    <label class="field-label">Run On</label>
-                    <div class="runner-toggle">
+                <!-- Runner selector — compact segmented control -->
+                <div class="runner-row">
+                    <span class="runner-via-lbl">via</span>
+                    <div class="runner-seg">
                         <template for:each={runnerOptions} for:item="r">
                             <button key={r.value}
                                     class={r.btnClass}
@@ -48,6 +48,7 @@
                     </div>
                 </div>
 
+                <!-- Primary action row -->
                 <div class="sidebar-actions">
                     <button class={runBtnClass} onclick={handleRunTests} disabled={runButtonDisabled}>
                         <template if:true={isCreating}>
@@ -67,11 +68,13 @@
                     </button>
 
                     <template if:true={activeRunId}>
-                        <button class="btn btn-cancel" onclick={handleCancel} disabled={cancelButtonDisabled}>
+                        <button class="btn btn-cancel-compact"
+                                onclick={handleCancel}
+                                disabled={cancelButtonDisabled}
+                                title="Cancel run">
                             <svg class="btn-icon-svg" viewBox="0 0 16 16" fill="currentColor">
                                 <rect x="3" y="3" width="10" height="10" rx="1"/>
                             </svg>
-                            Cancel
                         </button>
                     </template>
                 </div>

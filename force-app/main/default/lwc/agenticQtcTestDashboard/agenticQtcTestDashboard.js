@@ -68,9 +68,7 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     get runnerOptions() {
         return RUNNER_OPTIONS.map(r => ({
             ...r,
-            btnClass: this.selectedRunner === r.value
-                ? 'runner-btn runner-btn-active'
-                : 'runner-btn',
+            btnClass: this.selectedRunner === r.value ? 'runner-btn runner-btn-active' : 'runner-btn',
         }));
     }
     get isGitHubRunner() { return this.selectedRunner === 'github'; }
@@ -89,7 +87,11 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     }
 
     get runBtnClass()        { return (this.isRunning || this.isCreating) ? 'btn btn-run running' : 'btn btn-run'; }
-    get runButtonLabel()     { return this.isCreating ? 'Creating…' : this.isRunning ? 'Running…' : 'Run Tests'; }
+    get runButtonLabel() {
+        if (this.isCreating) return 'Creating…';
+        if (this.isRunning)  return 'Running…';
+        return this.selectedRunner === 'github' ? 'Run on GitHub' : 'Run Local';
+    }
     get runButtonDisabled()  { return this.isRunning || this.isCreating || !this.selectedSuite; }
 
     get cancelButtonDisabled() {

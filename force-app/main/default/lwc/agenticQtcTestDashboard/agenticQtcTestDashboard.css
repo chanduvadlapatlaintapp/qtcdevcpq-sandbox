@@ -142,7 +142,7 @@
 /* ── Sidebar controls (suite selector + buttons) ──────────────────────────── */
 
 .sidebar-controls {
-    padding: 12px 12px 10px;
+    padding: 10px 12px 12px;
     border-bottom: 1px solid var(--border);
     flex-shrink: 0;
 }
@@ -151,7 +151,7 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
-    margin-bottom: 10px;
+    margin-bottom: 0;
 }
 
 .field-label {
@@ -209,63 +209,89 @@
     flex-shrink: 0;
 }
 
-/* ── Runner toggle ────────────────────────────────────────────────────────── */
+/* ── Runner segmented control ─────────────────────────────────────────────── */
 
-.runner-select-wrap {
-    margin-top: 10px;
+/* Inline row: "via  [☁ GitHub] [🖥 Local]" */
+.runner-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 8px;
 }
 
-.runner-toggle {
-    display: flex;
-    gap: 0;
-    border-radius: var(--radius);
-    overflow: hidden;
-    border: 1px solid var(--border-2);
-    margin-top: 4px;
+.runner-via-lbl {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    flex-shrink: 0;
+}
+
+/* Track */
+.runner-seg {
+    display: inline-flex;
+    background: var(--surface-3);
+    border-radius: 6px;
+    padding: 2px;
+    gap: 2px;
 }
 
 .runner-btn {
-    flex: 1;
-    padding: 6px 10px;
-    font-size: 12px;
-    font-weight: 500;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: inherit;
     border: none;
-    background: var(--surface-2);
+    border-radius: 4px;
+    background: transparent;
     color: var(--text-2);
     cursor: pointer;
-    transition: background 0.15s, color 0.15s;
+    transition: background 0.12s, color 0.12s, box-shadow 0.12s;
     white-space: nowrap;
+    line-height: 1.4;
 }
 .runner-btn:hover:not(:disabled) {
-    background: var(--surface-3);
+    background: var(--surface-2);
     color: var(--text);
 }
 .runner-btn:disabled {
-    opacity: 0.5;
+    opacity: 0.45;
     cursor: not-allowed;
 }
 .runner-btn-active {
     background: var(--primary);
     color: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.35);
 }
 .runner-btn-active:hover:not(:disabled) {
     background: var(--primary);
     color: #fff;
 }
 
-.runner-container.light-theme .runner-btn {
-    background: var(--surface-2);
-    color: var(--text-2);
-}
-.runner-container.light-theme .runner-btn-active {
-    background: var(--primary);
-    color: #fff;
-}
-
+/* Action row */
 .sidebar-actions {
     display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+    flex-wrap: nowrap;
+    align-items: stretch;
+}
+
+/* Cancel — compact icon-only square, never stretches */
+.btn-cancel-compact {
+    background: var(--error-dim);
+    color: var(--error);
+    border-color: rgba(239,68,68,0.3);
+    flex-shrink: 0;
+    padding: 7px 10px;
+    justify-content: center;
+}
+.btn-cancel-compact:hover:not(:disabled) {
+    background: rgba(239,68,68,0.22);
+}
+.btn-cancel-compact:disabled {
+    opacity: 0.3;
 }
 
 /* ── Pass rate ────────────────────────────────────────────────────────────── */
