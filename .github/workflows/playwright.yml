@@ -95,13 +95,27 @@ jobs:
         run: npm install --global @salesforce/cli@latest
 
       # ── 6. Authenticate to Salesforce ───────────────────────────────────────
-      - name: Authenticate to Salesforce (qtcmock)
+      # Detects which org triggered the run from sf_instance_url:
+      #   - URL contains "uat"  → uses SF_SFDX_AUTH_URL_UAT  secret, alias qtcuat
+      #   - anything else       → uses SF_SFDX_AUTH_URL       secret, alias qtcmock
+      - name: Authenticate to Salesforce
+        id: sf-auth
         run: |
-          printf '%s' "$SF_SFDX_AUTH_URL" > /tmp/sf-auth.txt
-          sf org login sfdx-url --sfdx-url-file /tmp/sf-auth.txt --alias qtcmock --set-default
+          INSTANCE_URL="${{ inputs.sf_instance_url }}"
+          if [[ "$INSTANCE_URL" == *"uat"* ]]; then
+            printf '%s' "$SF_AUTH_UAT" > /tmp/sf-auth.txt
+            ORG_ALIAS="qtcuat"
+          else
+            printf '%s' "$SF_AUTH_MOCK" > /tmp/sf-auth.txt
+            ORG_ALIAS="qtcmock"
+          fi
+          sf org login sfdx-url --sfdx-url-file /tmp/sf-auth.txt --alias "$ORG_ALIAS" --set-default
           rm /tmp/sf-auth.txt
+          echo "org_alias=$ORG_ALIAS" >> $GITHUB_OUTPUT
+          echo "Authenticated to: $INSTANCE_URL (alias: $ORG_ALIAS)"
         env:
-          SF_SFDX_AUTH_URL: ${{ secrets.SF_SFDX_AUTH_URL }}
+          SF_AUTH_MOCK: ${{ secrets.SF_SFDX_AUTH_URL }}
+          SF_AUTH_UAT:  ${{ secrets.SF_SFDX_AUTH_URL_UAT }}
 
       # ── 7. Resolve or create Test_Run__c ─────────────────────────────────────
       # workflow_dispatch: use the ID + suite supplied by the Salesforce LWC.
@@ -138,6 +152,7 @@ jobs:
           echo "| **Trigger** | ${{ github.event_name }} |" >> $GITHUB_STEP_SUMMARY
           echo "| **Branch** | ${{ github.ref_name }} |" >> $GITHUB_STEP_SUMMARY
           echo "| **Commit** | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **SF Org** | ${{ steps.sf-auth.outputs.org_alias }} |" >> $GITHUB_STEP_SUMMARY
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             echo "| **PR** | #${{ github.event.pull_request.number }} — ${{ github.event.pull_request.title }} |" >> $GITHUB_STEP_SUMMARY
           fi
