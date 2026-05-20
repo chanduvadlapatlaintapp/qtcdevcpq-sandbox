@@ -45,6 +45,9 @@ public with sharing class AgenticQTC_TestRunnerController {
         @AuraEnabled public String fileExtension  { get; set; }  // e.g. 'webm', 'png'
         @AuraEnabled public String versionId      { get; set; }
         @AuraEnabled public String downloadUrl    { get; set; }
+        // Base64-encoded text content for small files (rich-results.json, log-output.txt).
+        // LWC decodes with atob() — avoids CSP/fetch issues entirely.
+        @AuraEnabled public String textContentB64 { get; set; }
     }
 
     // ─── LWC-callable methods ────────────────────────────────────────────────
@@ -169,6 +172,23 @@ public with sharing class AgenticQTC_TestRunnerController {
             ORDER BY ContentDocument.CreatedDate ASC
         ];
 
+        // Collect version IDs for small text files so we can fetch their content in one query
+        Set<Id> textVersionIds = new Set<Id>();
+        for (ContentDocumentLink link : links) {
+            String t = link.ContentDocument.Title;
+            if (t == 'rich-results.json' || t == 'log-output.txt') {
+                textVersionIds.add(link.ContentDocument.LatestPublishedVersionId);
+            }
+        }
+        Map<Id, ContentVersion> textVersionMap = new Map<Id, ContentVersion>();
+        if (!textVersionIds.isEmpty()) {
+            for (ContentVersion cv : [
+                SELECT Id, VersionData FROM ContentVersion WHERE Id IN :textVersionIds WITH SYSTEM_MODE
+            ]) {
+                textVersionMap.put(cv.Id, cv);
+            }
+        }
+
         List<AttachmentWrapper> results = new List<AttachmentWrapper>();
         for (ContentDocumentLink link : links) {
             AttachmentWrapper w = new AttachmentWrapper();
@@ -180,6 +200,12 @@ public with sharing class AgenticQTC_TestRunnerController {
             w.downloadUrl   = '/sfc/servlet.shepherd/version/download/'
                             + link.ContentDocument.LatestPublishedVersionId
                             + '?operationContext=CHATTER';
+            // Inline text content for rich-results.json and log-output.txt
+            if (textVersionMap.containsKey((Id)w.versionId)) {
+                w.textContentB64 = EncodingUtil.base64Encode(
+                    textVersionMap.get((Id)w.versionId).VersionData
+                );
+            }
             results.add(w);
         }
         return results;

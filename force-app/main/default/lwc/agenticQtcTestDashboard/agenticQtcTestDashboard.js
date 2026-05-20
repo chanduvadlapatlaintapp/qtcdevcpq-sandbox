@@ -697,33 +697,34 @@ export default class AgenticQtcTestDashboard extends LightningElement {
                 if (this.activeRunImages.length > 0) this.activeTab = 'screenshots';
 
                 // ── Fallback for orgs where Rich_Results__c / Log_Output__c fields
-                //    don't exist: fetch the ContentVersion files uploaded by the runner.
+                //    don't exist: read textContentB64 returned inline by Apex (base64-encoded).
+                //    This avoids CSP/fetch issues — Apex serves the content directly.
                 const richFile = (files || []).find(f => f.title === 'rich-results.json');
                 const logFile  = (files || []).find(f => f.title === 'log-output.txt');
 
-                if (richFile && !this.parsedRichResults) {
-                    fetch(richFile.downloadUrl, { credentials: 'include' })
-                        .then(r => r.ok ? r.json() : null)
-                        .then(json => {
-                            if (!json) return;
-                            this.parsedRichResults = json;
-                            // Re-run tab auto-select now that rich results are available
-                            if (this.activeRunImages.length > 0)                    { this.activeTab = 'screenshots'; }
-                            else if (this.hasMismatchRows)                          { this.activeTab = 'crosscheck'; }
-                            else if (this.hasRichDbRows)                            { this.activeTab = 'db'; }
-                            else if (this.hasRichMetrics || this.hasRichLineRows)   { this.activeTab = 'metrics'; }
-                            else if (this.hasRichAnomalies)                         { this.activeTab = 'anomalies'; }
-                            else if (this.hasTestResults)                           { this.activeTab = 'spec'; }
-                            else if (this.hasLogOutput)                             { this.activeTab = 'log'; }
-                        })
-                        .catch(e => console.warn('[agenticQtcTestDashboard] rich-results.json fetch failed:', e));
+                if (richFile && richFile.textContentB64 && !this.parsedRichResults) {
+                    try {
+                        const json = JSON.parse(atob(richFile.textContentB64));
+                        this.parsedRichResults = json;
+                        // Re-run tab auto-select now that rich results are available
+                        if (this.activeRunImages.length > 0)                    { this.activeTab = 'screenshots'; }
+                        else if (this.hasMismatchRows)                          { this.activeTab = 'crosscheck'; }
+                        else if (this.hasRichDbRows)                            { this.activeTab = 'db'; }
+                        else if (this.hasRichMetrics || this.hasRichLineRows)   { this.activeTab = 'metrics'; }
+                        else if (this.hasRichAnomalies)                         { this.activeTab = 'anomalies'; }
+                        else if (this.hasTestResults)                           { this.activeTab = 'spec'; }
+                        else if (this.hasLogOutput)                             { this.activeTab = 'log'; }
+                    } catch (e) {
+                        console.warn('[agenticQtcTestDashboard] rich-results.json parse failed:', e);
+                    }
                 }
 
-                if (logFile && !this._logFromFile) {
-                    fetch(logFile.downloadUrl, { credentials: 'include' })
-                        .then(r => r.ok ? r.text() : null)
-                        .then(text => { if (text) this._logFromFile = text; })
-                        .catch(e => console.warn('[agenticQtcTestDashboard] log-output.txt fetch failed:', e));
+                if (logFile && logFile.textContentB64 && !this._logFromFile) {
+                    try {
+                        this._logFromFile = atob(logFile.textContentB64);
+                    } catch (e) {
+                        console.warn('[agenticQtcTestDashboard] log-output.txt decode failed:', e);
+                    }
                 }
             })
             .catch(err  => console.error('Error loading run files:', err));
