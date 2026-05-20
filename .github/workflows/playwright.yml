@@ -162,6 +162,7 @@ jobs:
         run: node .github/scripts/update-run.js "$TR_ID" RUNNING
         env:
           TR_ID: ${{ steps.run-setup.outputs.test_run_id }}
+          QTC_SF_ORG: ${{ steps.sf-auth.outputs.org_alias }}
 
       # ── 10. Run Playwright ───────────────────────────────────────────────────
       # CI=true → playwright.config.js sets headless: true
@@ -199,6 +200,7 @@ jobs:
         env:
           TR_ID: ${{ steps.run-setup.outputs.test_run_id }}
           PLAYWRIGHT_EXIT_CODE: ${{ steps.playwright.outcome == 'success' && '0' || '1' }}
+          QTC_SF_ORG: ${{ steps.sf-auth.outputs.org_alias }}
 
       # ── 12. Update GitHub Step Summary with result ────────────────────────────
       - name: Update step summary with result
