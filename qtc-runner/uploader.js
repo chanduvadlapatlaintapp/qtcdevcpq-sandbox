@@ -187,7 +187,17 @@ async function patchTestRun(testRunId, fields) {
         body.Rich_Results__c = richStr.slice(0, 131072);
     }
 
-    await sfRequest('PATCH', `/services/data/v62.0/sobjects/Test_Run__c/${testRunId}`, body);
+    try {
+        await sfRequest('PATCH', `/services/data/v62.0/sobjects/Test_Run__c/${testRunId}`, body);
+    } catch (err) {
+        // If optional fields don't exist in this org, fall back to Status only
+        if (err.message && err.message.includes('INVALID_FIELD')) {
+            console.warn('[uploader] Optional fields missing on Test_Run__c, falling back to Status only');
+            await sfRequest('PATCH', `/services/data/v62.0/sobjects/Test_Run__c/${testRunId}`, { Status__c: fields.status });
+        } else {
+            throw err;
+        }
+    }
     console.log(`[uploader] Patched Test_Run__c ${testRunId} → ${fields.status}`);
 }
 
