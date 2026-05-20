@@ -235,7 +235,31 @@ async function main() {
         log('No video file found (video recording may not be enabled)');
     }
 
-    // ── 7. Patch Test_Run__c with final status ────────────────────────────────
+    // ── 7. Upload rich-results.json as a Salesforce File ─────────────────────
+    // This is a fallback for orgs where Rich_Results__c / Log_Output__c fields
+    // don't exist yet. The LWC reads this file when the field is blank.
+    if (richResults) {
+        const richFilePath = path.join(REPO_ROOT, 'test-results', testRunId, 'rich-results.json');
+        try {
+            fs.writeFileSync(richFilePath, JSON.stringify(richResults));
+            await uploadFile(richFilePath, 'rich-results.json', testRunId);
+            log('rich-results.json uploaded as ContentVersion');
+        } catch (e) {
+            log(`Warning: rich-results.json upload failed: ${e.message}`);
+        }
+    }
+    if (logOutput) {
+        const logFilePath = path.join(REPO_ROOT, 'test-results', testRunId, 'log-output.txt');
+        try {
+            fs.writeFileSync(logFilePath, logOutput);
+            await uploadFile(logFilePath, 'log-output.txt', testRunId);
+            log('log-output.txt uploaded as ContentVersion');
+        } catch (e) {
+            log(`Warning: log-output.txt upload failed: ${e.message}`);
+        }
+    }
+
+    // ── 8. Patch Test_Run__c with final status ────────────────────────────────
     log(`Patching Test_Run__c ${testRunId} → ${finalStatus}`);
     await patchTestRun(testRunId, {
         status      : finalStatus,

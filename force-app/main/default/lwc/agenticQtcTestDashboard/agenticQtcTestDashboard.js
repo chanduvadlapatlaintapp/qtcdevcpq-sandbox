@@ -36,6 +36,7 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     @track isDarkMode         = true;
     @track activeRunFiles       = [];       // AttachmentWrapper[]
     @track parsedRichResults    = null;     // parsed richResults JSON
+    @track _logFromFile         = null;     // log text fetched from log-output.txt ContentVersion
     @track showLogOutput        = false;
     @track lightboxIndex        = null;     // null = closed, number = open
     @track activeTab            = 'screenshots';
@@ -442,8 +443,8 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     get activeRunCompletedAt() { return this.activeRun ? (this.activeRun.completedAtDisplay || '—') : '—'; }
     get activeRunCreatedAt()   { return this.activeRun ? (this.activeRun.createdDateDisplay || '—') : '—'; }
 
-    get hasLogOutput()  { return !!(this.activeRun && this.activeRun.logOutput); }
-    get logOutputText() { return (this.activeRun && this.activeRun.logOutput) || ''; }
+    get hasLogOutput()  { return !!(this.activeRun && (this.activeRun.logOutput || this._logFromFile)); }
+    get logOutputText() { return (this.activeRun && this.activeRun.logOutput) || this._logFromFile || ''; }
     get showLogLabel()  { return this.showLogOutput ? 'Hide Log' : 'Show Log'; }
 
     // ── event handlers ──────────────────────────────────────────────────────
@@ -510,6 +511,7 @@ export default class AgenticQtcTestDashboard extends LightningElement {
         this.isCreating        = true;
         this.activeRunFiles    = [];
         this.parsedRichResults = null;
+        this._logFromFile      = null;
         this.showLogOutput     = false;
         this.lightboxIndex     = null;
 
@@ -585,6 +587,7 @@ export default class AgenticQtcTestDashboard extends LightningElement {
         this.activeSidebarRunId = runId;
         this.activeRunFiles    = [];
         this.parsedRichResults = null;
+        this._logFromFile      = null;
         this.showLogOutput     = false;
         getTestRun({ testRunId: runId })
             .then(run => {
@@ -692,6 +695,36 @@ export default class AgenticQtcTestDashboard extends LightningElement {
             .then(files => {
                 this.activeRunFiles = files || [];
                 if (this.activeRunImages.length > 0) this.activeTab = 'screenshots';
+
+                // ── Fallback for orgs where Rich_Results__c / Log_Output__c fields
+                //    don't exist: fetch the ContentVersion files uploaded by the runner.
+                const richFile = (files || []).find(f => f.title === 'rich-results.json');
+                const logFile  = (files || []).find(f => f.title === 'log-output.txt');
+
+                if (richFile && !this.parsedRichResults) {
+                    fetch(richFile.downloadUrl, { credentials: 'include' })
+                        .then(r => r.ok ? r.json() : null)
+                        .then(json => {
+                            if (!json) return;
+                            this.parsedRichResults = json;
+                            // Re-run tab auto-select now that rich results are available
+                            if (this.activeRunImages.length > 0)                    { this.activeTab = 'screenshots'; }
+                            else if (this.hasMismatchRows)                          { this.activeTab = 'crosscheck'; }
+                            else if (this.hasRichDbRows)                            { this.activeTab = 'db'; }
+                            else if (this.hasRichMetrics || this.hasRichLineRows)   { this.activeTab = 'metrics'; }
+                            else if (this.hasRichAnomalies)                         { this.activeTab = 'anomalies'; }
+                            else if (this.hasTestResults)                           { this.activeTab = 'spec'; }
+                            else if (this.hasLogOutput)                             { this.activeTab = 'log'; }
+                        })
+                        .catch(e => console.warn('[agenticQtcTestDashboard] rich-results.json fetch failed:', e));
+                }
+
+                if (logFile && !this._logFromFile) {
+                    fetch(logFile.downloadUrl, { credentials: 'include' })
+                        .then(r => r.ok ? r.text() : null)
+                        .then(text => { if (text) this._logFromFile = text; })
+                        .catch(e => console.warn('[agenticQtcTestDashboard] log-output.txt fetch failed:', e));
+                }
             })
             .catch(err  => console.error('Error loading run files:', err));
     }
@@ -699,6 +732,7 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     _parseRichResults(run) {
         if (!run || !run.richResults) {
             this.parsedRichResults = null;
+            // Don't clear _logFromFile here — it may still be fetching
             return;
         }
         try {
