@@ -151,7 +151,22 @@ async function insertTestResults(testRunId, tests) {
         };
         if (t.errorMessage) record.Error_Message__c = t.errorMessage.slice(0, 32000);
 
-        await sfRequest('POST', '/services/data/v62.0/sobjects/Test_Result__c', record);
+        try {
+            await sfRequest('POST', '/services/data/v62.0/sobjects/Test_Result__c', record);
+        } catch (err) {
+            if (err.message && err.message.includes('INVALID_FIELD')) {
+                // Org missing optional fields — insert with minimal fields only
+                console.warn('[uploader] Optional Test_Result__c fields missing, retrying with minimal fields');
+                const minimal = {
+                    Test_Run__c: testRunId,
+                    Name: record.Name,
+                    Status__c: record.Status__c,
+                };
+                await sfRequest('POST', '/services/data/v62.0/sobjects/Test_Result__c', minimal);
+            } else {
+                throw err;
+            }
+        }
     }
     console.log(`[uploader] Inserted ${tests.length} Test_Result__c records`);
 }

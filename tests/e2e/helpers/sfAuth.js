@@ -44,7 +44,7 @@ const SF = findSfCli();
 
 function getSfCredentials() {
   const raw = execSync(
-    `"${SF}" org display --target-org qtcmock --json 2>/dev/null`,
+    `"${SF}" org display --target-org ${process.env.QTC_SF_ORG || 'qtcmock'} --json 2>/dev/null`,
     { env: { ...process.env, NO_COLOR: '1', FORCE_COLOR: '0' } }
   ).toString().replace(/\x1B\[[0-9;]*m/g, '');
   const result = JSON.parse(raw).result;

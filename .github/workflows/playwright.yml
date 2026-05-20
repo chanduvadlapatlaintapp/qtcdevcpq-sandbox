@@ -191,6 +191,7 @@ jobs:
         env:
           CI: 'true'
           PLAYWRIGHT_JSON_OUTPUT_NAME: "test-results/${{ steps.run-setup.outputs.test_run_id }}/results.json"
+          QTC_SF_ORG: ${{ steps.sf-auth.outputs.org_alias }}
         continue-on-error: true
 
       # ── 11. Upload results to Salesforce ─────────────────────────────────────
