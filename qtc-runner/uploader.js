@@ -160,6 +160,7 @@ async function insertTestResults(testRunId, tests) {
                 const minimal = {
                     Test_Run__c: testRunId,
                     Name: record.Name,
+                    Test_Name__c: record.Test_Name__c,
                     Status__c: record.Status__c,
                 };
                 await sfRequest('POST', '/services/data/v62.0/sobjects/Test_Result__c', minimal);
