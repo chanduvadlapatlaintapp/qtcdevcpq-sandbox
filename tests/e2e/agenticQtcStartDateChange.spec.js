@@ -122,13 +122,47 @@ async function runStartDateChange(ctx) {
   const yearOneBad  = yearOneRows.filter(r => !r.match);
   const allYearOnePass = yearOneBad.length === 0;
 
+  // Populate dbComparison so the dashboard's DB Lines tab renders. For a date
+  // change we don't have qty/price data — the meaningful DB fields are
+  // start/end dates per line.
+  const dbComparison = lineComparison.map(r => ({
+    index:    r.index,
+    product:  r.product,
+    segKey:   r.segmentKey || '—',
+    segIndex: r.segmentIndex,
+    priorQty: null, dbQty: null, dbPrice: null, dbListPrice: null,
+    dbDiscount: null, dbNetTotal: null, dbAcv: null, dbTcv: null,
+    isBundle: false,
+    startDate: r.dbStartDate, endDate: r.dbEndDate,
+    pricingMethod: null, term: null, regularPrice: null,
+  }));
+
+  // UI ↔ DB cross-check shows, for every Year-1 anchor, the UI's intended
+  // new Start Date vs the DB's actual persisted Start Date. Other segments
+  // are non-anchors (their startDate is intentionally != quote startDate) so
+  // we mark them hasData:false to render as informational rows.
+  const uiDbCrossCheck = lineComparison.map(r => ({
+    uiIndex:  r.index,
+    product:  r.product + (r.segmentIndex != null ? ` · Y${r.segmentIndex}` : ''),
+    segOcc:   r.segmentIndex,
+    uiBefore: initialISO,
+    uiAfter:  r.isYearOne ? uiISOAfter : '(not anchor)',
+    dbPrior:  initialISO,
+    dbAfter:  r.dbStartDate,
+    match:    r.isYearOne ? r.match : true,
+    hasData:  r.isYearOne,
+  }));
+  const crossCheckMismatches = uiDbCrossCheck.filter(r => r.hasData && !r.match).length;
+
   buildRichResults({
     kind: KIND, runTs, runDir, testStartMs,
     accountName: ACCOUNT_FULL_NAME,
     scenarioNumber, scenarioLabel,
     contract: contract.number,
     quoteName, quoteId: dbHeader?.Id || null,
-    passed: allYearOnePass,
+    dbLineCount: dbLines.length,
+    dbComparison, uiDbCrossCheck, crossCheckMismatches,
+    passed: allYearOnePass && crossCheckMismatches === 0,
     extra: {
       daysDelta: DATE_DELTA_DAYS,
       oldUIDateDisplay: initialDisplay,

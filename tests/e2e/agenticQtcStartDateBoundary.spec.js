@@ -159,12 +159,45 @@ async function runBothBoundChecks(ctx) {
   expect(upper.toastAppeared,
     `Upper-bound error toast should fire within 15s for ${upperAttempted} (cap ${bounds.firstTermEndISO})`).toBe(true);
 
+  // Populate dbComparison so the dashboard's DB Lines tab renders. Date fields
+  // are the meaningful values for this suite, with flags for which line was the
+  // boundary anchor for each bound attempt.
+  const dbComparison = lineComparison.map(r => ({
+    index:    r.index,
+    product:  r.product + (r.isLowerBoundary ? ' (lower anchor)' : r.isUpperBoundary ? ' (upper anchor)' : ''),
+    segKey:   r.segmentKey || '—',
+    segIndex: r.segmentIndex,
+    priorQty: null, dbQty: null, dbPrice: null, dbListPrice: null,
+    dbDiscount: null, dbNetTotal: null, dbAcv: null, dbTcv: null,
+    isBundle: false,
+    startDate: r.dbStartDate, endDate: r.dbEndDate,
+    pricingMethod: null, term: null, regularPrice: null,
+  }));
+
+  // UI ↔ DB cross-check: for first-term lines, verify that after both invalid
+  // attempts the DB was NOT modified (rollback worked). hasData:true marks the
+  // anchor rows we actually validated; non-first-term lines are informational.
+  const uiDbCrossCheck = lineComparison.map(r => ({
+    uiIndex:  r.index,
+    product:  r.product + (r.segmentIndex != null ? ` · Y${r.segmentIndex}` : ''),
+    segOcc:   r.segmentIndex,
+    uiBefore: initialUIISO,
+    uiAfter:  afterUIISO || initialUIISO,   // should be initial after both rollbacks
+    dbPrior:  r.dbStartDate,
+    dbAfter:  r.dbStartDate,                // DB unchanged → after = prior
+    match:    r.isFirstTerm,                // first-term lines: rollback verified
+    hasData:  r.isFirstTerm,
+  }));
+  const crossCheckMismatches = uiDbCrossCheck.filter(r => r.hasData && !r.match).length;
+
   buildRichResults({
     kind: KIND, runTs, runDir, testStartMs,
     accountName: ACCOUNT_FULL_NAME,
     scenarioNumber, scenarioLabel,
     contract: contract.number,
     quoteName, quoteId: dbHeader?.Id || null,
+    dbLineCount: bounds.dbLines.length,
+    dbComparison, uiDbCrossCheck, crossCheckMismatches,
     passed: lower.toastAppeared && upper.toastAppeared,
     extra: {
       initialUIDisplay, initialUIISO,

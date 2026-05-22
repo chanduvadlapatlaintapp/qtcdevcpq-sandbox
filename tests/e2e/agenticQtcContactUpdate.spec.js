@@ -98,13 +98,42 @@ async function runContactUpdate(ctx) {
     expect(c.changed,     `${c.slot}: DB id should differ from pre-save baseline`).toBe(true);
   }
 
+  // Surface the per-slot comparison via the standard dbComparison + uiDbCrossCheck
+  // shape so the dashboard's DB Lines + UI-DB tabs render meaningful rows even
+  // though this suite is contact-slot based, not line-based.
+  const dbComparison = comparison.map((c, i) => ({
+    index:    i + 1,
+    product:  c.slot,
+    segKey:   c.dbAfterId || '—',
+    segIndex: null,
+    priorQty: null, dbQty: null, dbPrice: null, dbListPrice: null,
+    dbDiscount: null, dbNetTotal: null, dbAcv: null, dbTcv: null,
+    isBundle: false,
+    startDate: null, endDate: null,
+    pricingMethod: null, term: null, regularPrice: null,
+  }));
+  const uiDbCrossCheck = comparison.map((c, i) => ({
+    uiIndex:  i + 1,
+    product:  c.slot,
+    segOcc:   null,
+    uiBefore: c.uiBeforeName,
+    uiAfter:  c.uiAfterName,
+    dbPrior:  c.dbBeforeName,
+    dbAfter:  c.dbAfterName,
+    match:    c.uiMatch && c.dbMatch,
+    hasData:  true,
+  }));
+  const crossCheckMismatches = uiDbCrossCheck.filter(r => !r.match).length;
+
   buildRichResults({
     kind: KIND, runTs, runDir, testStartMs,
     accountName: ACCOUNT_FULL_NAME,
     scenarioNumber, scenarioLabel,
     contract: contract.number,
     quoteName, quoteId: dbAfter?.quoteId || null,
-    passed: true,
+    dbLineCount: dbComparison.length,
+    dbComparison, uiDbCrossCheck, crossCheckMismatches,
+    passed: crossCheckMismatches === 0,
     extra: { comparison },
   });
 }

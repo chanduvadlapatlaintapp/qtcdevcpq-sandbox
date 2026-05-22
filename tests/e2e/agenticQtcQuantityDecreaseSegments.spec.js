@@ -248,6 +248,40 @@ async function runSegmentsDecrease(ctx) {
     })),
   ];
 
+  // Populate dbComparison + uiDbCrossCheck so the dashboard's DB Lines and UI-DB
+  // tabs render. Segment line IDs give us an exact 1:1 UI↔DB mapping, so we can
+  // build both directly without the product-name heuristic.
+  const dbComparison = [
+    ...lineIdsA.map((id, i) => ({
+      index: i + 1, product: productA.productName,
+      segIndex: i + 1, segKey: id,
+      priorQty: priorA[i], dbQty: dbQtysA[i],
+      dbPrice: null, dbListPrice: null, dbDiscount: null, dbNetTotal: null,
+      dbAcv: null, dbTcv: null, isBundle: false,
+      startDate: null, endDate: null,
+    })),
+    ...lineIdsB.map((id, i) => ({
+      index: lineIdsA.length + i + 1, product: productB.productName,
+      segIndex: i + 1, segKey: id,
+      priorQty: priorB[i], dbQty: dbQtysB[i],
+      dbPrice: null, dbListPrice: null, dbDiscount: null, dbNetTotal: null,
+      dbAcv: null, dbTcv: null, isBundle: false,
+      startDate: null, endDate: null,
+    })),
+  ];
+  const uiDbCrossCheck = lineResults.map((line, i) => ({
+    uiIndex:  line.index,
+    product:  dbComparison[i].product,
+    segOcc:   dbComparison[i].segIndex,
+    uiBefore: line.before,
+    uiAfter:  line.actual,
+    dbPrior:  dbComparison[i].priorQty,
+    dbAfter:  dbComparison[i].dbQty,
+    match:    Math.abs(line.actual - dbComparison[i].dbQty) < 0.001,
+    hasData:  true,
+  }));
+  const crossCheckMismatches = uiDbCrossCheck.filter(r => !r.match).length;
+
   buildRichResults({
     kind: KIND, runTs, runDir, testStartMs,
     accountName: ACCOUNT_FULL_NAME,
@@ -260,7 +294,8 @@ async function runSegmentsDecrease(ctx) {
     dbLineCount: lineResults.length,
     deltaApplied: -DELTA,
     lineResults,
-    passed: lineResults.every(r => r.pass),
+    dbComparison, uiDbCrossCheck, crossCheckMismatches,
+    passed: lineResults.every(r => r.pass) && crossCheckMismatches === 0,
     extra: {
       productA: { name: productA.productName, prior: priorA, before: beforeA, expected: expectedA, actualDb: dbQtysA, rule: 'Year 1 propagates' },
       productB: { name: productB.productName, prior: priorB, before: beforeB, expected: expectedBFloor, actualDb: dbQtysB, rule: `Year ${TARGET_SEGMENT} isolated + floor at priorQuantity` },
