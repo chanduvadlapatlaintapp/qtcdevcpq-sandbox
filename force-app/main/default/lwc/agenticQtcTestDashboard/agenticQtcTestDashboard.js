@@ -12,8 +12,15 @@ const IN_PROGRESS_STATUSES    = new Set(['PENDING', 'CLAIMED', 'RUNNING']);
 const MAX_POLL_MS             = 22 * 60 * 1000;
 
 const SUITE_OPTIONS = [
-    { label: 'Quantity Increase (Full Flow)',  value: 'agenticQtcQuantityIncrease' },
-    { label: 'PDF Generation Demo',            value: 'demoPdfGeneration' },
+    { label: 'Quantity Increase (Full Flow)',         value: 'agenticQtcQuantityIncrease' },
+    { label: 'Quantity Decrease (Full Flow)',         value: 'agenticQtcQuantityDecrease' },
+    { label: 'Quantity Increase — MDQ Segments',      value: 'agenticQtcQuantityIncreaseSegments' },
+    { label: 'Quantity Decrease — MDQ Segments',      value: 'agenticQtcQuantityDecreaseSegments' },
+    { label: 'Start Date Change',                     value: 'agenticQtcStartDateChange' },
+    { label: 'Start Date Boundary Rejection',         value: 'agenticQtcStartDateBoundary' },
+    { label: 'Contact Update (Invoicing & Delivery)', value: 'agenticQtcContactUpdate' },
+    { label: 'Preview & Send OSA Wizard',             value: 'agenticQtcPreviewSendOsa' },
+    { label: 'PDF Generation Demo',                   value: 'demoPdfGeneration' },
 ];
 
 const RUNNER_OPTIONS = [
