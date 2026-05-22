@@ -117,10 +117,18 @@ async function runQuantityIncrease(ctx) {
     const sb  = spinbuttons.nth(i);
     const val = await sb.inputValue().catch(() => '0');
     const row = sb.locator('xpath=ancestor::tr').first();
-    const rt  = await row.innerText().catch(() => '');
+    // Prefer the clean product name from .product-label (MDQ rows). It matches
+    // SBQQ__ProductName__c exactly, which is what dbComparison stores — so the
+    // product-keyed cross-check joins UI rows to DB rows correctly.
+    // Fall back to the first line of innerText for non-MDQ rows that don't
+    // have a .product-label span.
+    const productName = await row.locator('.product-label').first()
+      .innerText({ timeout: 1_000 }).catch(() => '');
+    const rt          = productName.trim()
+      || (await row.innerText().catch(() => '')).split('\n')[0].trim().substring(0, 60);
     preSave.push({
       index: i, initial: parseFloat(val) || 0, filled: 0,
-      rowText: rt.split('\n')[0].trim().substring(0, 60),
+      rowText: rt,
     });
   }
 
