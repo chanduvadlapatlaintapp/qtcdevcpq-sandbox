@@ -2,7 +2,7 @@
 /**
  * DEMO: PDF Generation via "Preview and Send OSA"
  *
- * Focused demo test — navigates to Baker McKenzie, opens the first
+ * Focused demo test — navigates to Bates White, opens the first
  * contract with editable lines, then exercises the full PDF flow:
  *   1. Click "Preview and Send OSA"
  *   2. Click "Generate OSA Document"  →  Apex renders Visualforce → ContentVersion
@@ -16,7 +16,7 @@ const fs   = require('fs');
 const path = require('path');
 const { getSfCredentials, loginViaCookie } = require('./helpers/sfAuth');
 
-const ACCOUNT_FULL_NAME = 'Baker McKenzie LLP';
+const ACCOUNT_FULL_NAME = 'Bates White';
 const APP_PATH          = '/lightning/n/Agentic_QTC';
 const RESULTS_DIR       = path.join(__dirname, 'results');
 const DEMO_DIR          = path.join(RESULTS_DIR, 'demo-pdf');
@@ -53,11 +53,11 @@ test('DEMO — PDF generation via Preview & Send OSA', async ({ page }) => {
   console.log('  ✅ App loaded\n');
   await pause(page);
 
-  // ── Step 2: Search & select Baker McKenzie LLP ──────────────────────────────
-  console.log('► Step 2 — Searching for Baker McKenzie...');
+  // ── Step 2: Search & select Bates White ──────────────────────────────
+  console.log('► Step 2 — Searching for Bates White...');
 
   const input = page.getByPlaceholder('Start typing an account name...');
-  await input.fill('Baker McKenzie');
+  await input.fill('Bates White');
   await page.getByText(ACCOUNT_FULL_NAME).first().waitFor({ state: 'visible', timeout: 20_000 });
   await page.screenshot({ path: `${DEMO_DIR}/02-search-results.png`, fullPage: true });
   await pause(page);
@@ -65,7 +65,7 @@ test('DEMO — PDF generation via Preview & Send OSA', async ({ page }) => {
   await page.getByText(ACCOUNT_FULL_NAME).first().click();
   await page.getByRole('heading', { name: /Active Contracts/i }).waitFor({ state: 'visible', timeout: 30_000 });
   await page.screenshot({ path: `${DEMO_DIR}/03-contracts-list.png`, fullPage: true });
-  console.log('  ✅ Baker McKenzie LLP selected — contracts loaded\n');
+  console.log('  ✅ Bates White selected — contracts loaded\n');
   await pause(page);
 
   // ── Step 3: Find a contract with editable lines ──────────────────────────────
@@ -129,7 +129,7 @@ test('DEMO — PDF generation via Preview & Send OSA', async ({ page }) => {
     // Fallback: full fresh navigation
     await page.goto(`${lightningUrl}${APP_PATH}`, { waitUntil: 'domcontentloaded' });
     await page.getByPlaceholder('Start typing an account name...').waitFor({ state: 'visible', timeout: 60_000 });
-    await page.getByPlaceholder('Start typing an account name...').fill('Baker McKenzie');
+    await page.getByPlaceholder('Start typing an account name...').fill('Bates White');
     await page.getByText(ACCOUNT_FULL_NAME).first().waitFor({ state: 'visible', timeout: 20_000 });
     await page.getByText(ACCOUNT_FULL_NAME).first().click();
     await page.getByRole('heading', { name: /Active Contracts/i }).waitFor({ state: 'visible', timeout: 30_000 });

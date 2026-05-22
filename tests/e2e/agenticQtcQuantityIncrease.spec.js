@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 const path = require('path');
 const { getSfCredentials } = require('./helpers/sfAuth');
 const u = require('./utils/playwrightUtils');
-const { buildRichResults } = require('./utils/richResults');
+const { buildRichResults, buildUiDbCrossCheck } = require('./utils/richResults');
 const { discoverContractByScenarios, openEditorByScenario } = require('./utils/scenarioContracts');
 
 const KIND              = 'quantityIncrease';
@@ -307,7 +307,11 @@ async function runQuantityIncrease(ctx) {
   const hasSendBtn  = await page.getByRole('button', { name: 'Preview and Send OSA' }).isVisible().catch(() => false);
 
   const dbHighCount = dbAnomalies.filter(a => a.severity === 'HIGH').length;
-  const allPass = allQtyPass && metricResults.every(m => m.pass) && dbHighCount === 0;
+  // Product-keyed UI↔DB join so the dashboard's UI-DB tab doesn't false-positive
+  // mismatches caused by SOQL ordering ≠ UI render order.
+  const uiDbCrossCheck = buildUiDbCrossCheck(lineResults, dbComparison);
+  const crossCheckMismatches = uiDbCrossCheck.filter(r => r.hasData && !r.match).length;
+  const allPass = allQtyPass && metricResults.every(m => m.pass) && dbHighCount === 0 && crossCheckMismatches === 0;
 
   buildRichResults({
     kind: KIND, runTs, runDir, testStartMs,
@@ -324,6 +328,7 @@ async function runQuantityIncrease(ctx) {
     metricsBeforeSave, metricsAfterSave,
     lineResults, metricResults,
     dbComparison, dbAnomalies,
+    uiDbCrossCheck, crossCheckMismatches,
     passed: allPass,
     extra: { dbHeader, dbError },
   });

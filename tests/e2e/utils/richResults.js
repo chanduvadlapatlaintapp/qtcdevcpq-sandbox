@@ -30,7 +30,7 @@ const path = require('path');
  * @property {Array<Object>}       [lineResults]
  * @property {Array<Object>}       [metricResults]
  * @property {Array<Object>}       [dbComparison]
- * @property {Array<Object>}       [dbAnomalies]
+ * @property {Array<{severity:string, type?:string, detail?:string}>}       [dbAnomalies]
  * @property {Array<Object>}       [uiDbCrossCheck]
  * @property {number}              [crossCheckMismatches]
  * @property {number}              testStartMs
@@ -87,4 +87,69 @@ function buildRichResults(input) {
   return payload;
 }
 
-module.exports = { buildRichResults };
+/**
+ * Build a product-keyed UI ↔ DB cross-check so the dashboard's "UI-DB" tab
+ * joins each UI spinbutton to its corresponding QuoteLine by (product name,
+ * segment occurrence) — not by sequential index.
+ *
+ * Why: the UI displays spinbuttons in LWC-render order, while the SOQL DB
+ * results come back in (ProductName, SegmentIndex NULLS LAST) order and may
+ * include bundle-parent rows the UI never shows. Joining by position is
+ * unreliable; joining by (product, occurrence) is robust.
+ *
+ * Returns rows shaped to match what the LWC's `richMismatchRows` getter
+ * expects (lines 263-310 of agenticQtcTestDashboard.js).
+ *
+ * @param {Array<{index:number, label:string, before:number, actual:number}>} lineResults
+ * @param {Array<{product:string, segIndex:number|null, priorQty:number|null, dbQty:number|null, isBundle?:boolean}>} dbComparison
+ */
+function buildUiDbCrossCheck(lineResults, dbComparison) {
+  /** @param {string|null|undefined} label */
+  const productFromLabel = (label) => (label || '').split('\n')[0].trim();
+  /** @param {string|null|undefined} s */
+  const norm = (s) => (s || '').toLowerCase().trim();
+
+  // Group non-bundle DB rows by product name, sorted by segment index so the
+  // i-th UI occurrence of "Foo" maps to the i-th DB segment of "Foo".
+  /** @type {Map<string, Array<any>>} */
+  const dbByProduct = new Map();
+  for (const d of dbComparison) {
+    if (d.isBundle) continue;
+    const key = norm(d.product);
+    let arr = dbByProduct.get(key);
+    if (!arr) { arr = []; dbByProduct.set(key, arr); }
+    arr.push(d);
+  }
+  for (const arr of dbByProduct.values()) {
+    arr.sort((a, b) => (a.segIndex ?? 1) - (b.segIndex ?? 1));
+  }
+
+  /** @type {Map<string, number>} */
+  const seen = new Map();
+  return lineResults.map(line => {
+    const product = productFromLabel(line.label);
+    const key     = norm(product);
+    const occ     = (seen.get(key) || 0) + 1;
+    seen.set(key, occ);
+
+    const db      = (dbByProduct.get(key) || [])[occ - 1];
+    const hasData = db != null;
+    const uiAfter = line.actual ?? null;
+    const dbAfter = db ? (db.dbQty ?? null) : null;
+    const match   = hasData && uiAfter != null && dbAfter != null
+                  && Math.abs(uiAfter - dbAfter) < 0.001;
+
+    return {
+      uiIndex:  line.index,
+      product,
+      segOcc:   occ,
+      uiBefore: line.before ?? null,
+      uiAfter,
+      dbPrior:  db ? (db.priorQty ?? null) : null,
+      dbAfter,
+      match, hasData,
+    };
+  });
+}
+
+module.exports = { buildRichResults, buildUiDbCrossCheck };

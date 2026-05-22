@@ -11,6 +11,8 @@ const ACCOUNT_SEARCH    = process.env.QTC_ACCOUNT_SEARCH    || 'Bates White';
 const ACCOUNT_FULL_NAME = process.env.QTC_ACCOUNT_FULL_NAME || 'Bates White';
 const RESULTS_DIR       = path.join(__dirname, 'results');
 
+test.use({ viewport: null });
+
 /** @type {import('./utils/scenarioContracts').SfCtx & { accountSearch:string, accountFullName:string }} */
 let sfCtx;
 /** @type {import('./utils/scenarioContracts').ContractCache|null} */
@@ -107,6 +109,40 @@ async function runScenario(page, contract, branch, scenarioNumber, scenarioLabel
 
   const wizard  = await walkPreviewSendWizard(page, runDir);
   const allPass = wizard.wizardOpened && wizard.step1Verified && wizard.step2Verified && wizard.closedCleanly;
+
+  // No DB data for a UI-only wizard test — emit step-verification rows in the
+  // standard shape so the dashboard's DB Lines + UI-DB tabs surface the wizard
+  // step outcomes (expected ✓ vs actual ✓) instead of rendering empty.
+  const steps = [
+    { name: 'Wizard opened',        expected: true, actual: wizard.wizardOpened },
+    { name: 'Step 1 verified',      expected: true, actual: wizard.step1Verified },
+    { name: 'Step 2 verified',      expected: true, actual: wizard.step2Verified },
+    { name: 'Closed cleanly',       expected: true, actual: wizard.closedCleanly },
+  ];
+  const dbComparison = steps.map((s, i) => ({
+    index:    i + 1,
+    product:  s.name,
+    segKey:   s.actual ? '✓' : '✗',
+    segIndex: null,
+    priorQty: null, dbQty: null, dbPrice: null, dbListPrice: null,
+    dbDiscount: null, dbNetTotal: null, dbAcv: null, dbTcv: null,
+    isBundle: false,
+    startDate: null, endDate: null,
+    pricingMethod: null, term: null, regularPrice: null,
+  }));
+  const uiDbCrossCheck = steps.map((s, i) => ({
+    uiIndex:  i + 1,
+    product:  s.name,
+    segOcc:   null,
+    uiBefore: '—',
+    uiAfter:  String(s.expected),
+    dbPrior:  '—',
+    dbAfter:  String(s.actual),
+    match:    s.expected === s.actual,
+    hasData:  true,
+  }));
+  const crossCheckMismatches = uiDbCrossCheck.filter(r => !r.match).length;
+
   buildRichResults({
     kind: KIND, runTs, runDir, testStartMs,
     accountName: ACCOUNT_FULL_NAME,
@@ -114,6 +150,8 @@ async function runScenario(page, contract, branch, scenarioNumber, scenarioLabel
     contract: contract.number, quoteName,
     hasApproval, hasSendBtn,
     pdfSkipped: true,
+    dbLineCount: dbComparison.length,
+    dbComparison, uiDbCrossCheck, crossCheckMismatches,
     passed: allPass,
     extra: { wizard },
   });
