@@ -122,45 +122,71 @@ async function runSegmentsDecrease(ctx) {
   const { page, qtc, runDir, runTs, testStartMs, contract, scenarioNumber, scenarioLabel, quoteName } = ctx;
   await u.screenshot(page, runDir, '02-editor-loaded');
 
+  // Snapshot every candidate's quantities + priorQuantity + headroom up front,
+  // then pick the row with the largest min-headroom as Product A (so Year-1
+  // propagation has room to apply uniformly) and a different row with the
+  // largest Year-N headroom as Product B (so the isolated edit has room).
+  // Each row uses an adaptive delta capped at DELTA — this lets the suite run
+  // on tight contracts (first amendment, low headroom) where a hard delta of
+  // DELTA would skip the whole flow.
+  const idxB       = TARGET_SEGMENT - 1;
   const candidates = await pickProductRows(page, TARGET_SEGMENT, 8);
-  /** @type {(typeof candidates)[number] | undefined} */ let productA;
-  /** @type {(typeof candidates)[number] | undefined} */ let productB;
-  /** @type {number[]|undefined} */ let priorA;
-  /** @type {number[]|undefined} */ let priorB;
+  /** @type {Array<typeof candidates[number] & { qs:number[], prior:number[], headroom:number[], minHeadroom:number }>} */
+  const enriched = [];
   for (const c of candidates) {
     const qs    = await readSegmentQuantities(c.row);
     const effs  = await readSegmentEffQuantities(c.row);
     const prior = qs.map((q, i) => q - (effs[i] || 0));
     const headroom = qs.map((q, i) => q - prior[i]);
-    const minHeadroom = Math.min(...headroom);
-    if (!productA && minHeadroom >= DELTA) { productA = c; priorA = prior; continue; }
-    if (productA && c.rowIndex !== productA.rowIndex && headroom[TARGET_SEGMENT - 1] > DELTA) {
-      productB = c; priorB = prior; break;
-    }
+    enriched.push({ ...c, qs, prior, headroom, minHeadroom: Math.min(...headroom) });
   }
-  if (!productA || !productB || !priorA || !priorB) {
+
+  const aCandidates = enriched
+    .filter(c => c.minHeadroom > 0)
+    .sort((a, b) => b.minHeadroom - a.minHeadroom);
+  if (aCandidates.length === 0) {
     test.skip(true,
-      `Need 2 MDQ rows where Product A's min (current − priorQuantity) ≥ ${DELTA} ` +
-      `AND Product B's Year ${TARGET_SEGMENT} (current − priorQuantity) > ${DELTA}`);
+      `No MDQ row has positive min-headroom (every segment ≥ priorQuantity) — ` +
+      `cannot exercise Y1 propagation without crossing the priorQuantity floor.`);
     return;
   }
+  const productA = aCandidates[0];
+  const priorA   = productA.prior;
+  const deltaA   = Math.min(DELTA, productA.minHeadroom);
+
+  const bCandidates = enriched
+    .filter(c => c.rowIndex !== productA.rowIndex && c.headroom[idxB] > 0)
+    .sort((a, b) => b.headroom[idxB] - a.headroom[idxB]);
+  if (bCandidates.length === 0) {
+    test.skip(true,
+      `No second MDQ row has positive Year ${TARGET_SEGMENT} headroom — ` +
+      `cannot exercise isolated Year-${TARGET_SEGMENT} decrease for Product B.`);
+    return;
+  }
+  const productB = bCandidates[0];
+  const priorB   = productB.prior;
+  const deltaB   = Math.min(DELTA, productB.headroom[idxB]);
+
+  console.log(
+    `[adaptive delta] Product A "${productA.productName}" min-headroom=${productA.minHeadroom} → deltaA=${deltaA}; ` +
+    `Product B "${productB.productName}" Y${TARGET_SEGMENT} headroom=${productB.headroom[idxB]} → deltaB=${deltaB}`
+  );
 
   const beforeA   = await readSegmentQuantities(productA.row);
   const lineIdsA  = await readSegmentLineIds(productA.row);
-  const expectedA = beforeA.map(v => v - DELTA);
+  const expectedA = beforeA.map(v => v - deltaA);
   expect(lineIdsA.length, 'Product A: one line Id per segment input').toBe(beforeA.length);
 
   const beforeB   = await readSegmentQuantities(productB.row);
   const lineIdsB  = await readSegmentLineIds(productB.row);
-  const idxB      = TARGET_SEGMENT - 1;
   const expectedB = beforeB.slice();
-  expectedB[idxB] = beforeB[idxB] - DELTA;
+  expectedB[idxB] = beforeB[idxB] - deltaB;
   expect(lineIdsB.length, 'Product B: one line Id per segment input').toBe(beforeB.length);
 
   // Product A: Year 1 decrease propagates to all segments
-  await setSegmentQuantity(productA.row, 0, beforeA[0] - DELTA);
+  await setSegmentQuantity(productA.row, 0, beforeA[0] - deltaA);
   await expect.poll(() => readSegmentQuantities(productA.row), {
-    message: `Product A: all ${productA.segmentCount} segments should reflect -${DELTA} after Year 1 edit`,
+    message: `Product A: all ${productA.segmentCount} segments should reflect -${deltaA} after Year 1 edit`,
     timeout: 10_000,
     intervals: [200, 400, 600, 800, 1000],
   }).toEqual(expectedA);
@@ -214,7 +240,7 @@ async function runSegmentsDecrease(ctx) {
   }
 
   // Product B: Year 3 decrease is isolated
-  await setSegmentQuantity(productB.row, idxB, beforeB[idxB] - DELTA);
+  await setSegmentQuantity(productB.row, idxB, beforeB[idxB] - deltaB);
   await page.waitForTimeout(QUIESCE_MS);
   await u.screenshot(page, runDir, '04-after-B-edit');
   expect(await readSegmentQuantities(productB.row), `Only Year ${TARGET_SEGMENT} should have changed on B`).toEqual(expectedB);
@@ -338,13 +364,13 @@ async function runSegmentsDecrease(ctx) {
     uiQtyTotal:  [...finalExpectedA, ...expectedBFloor].reduce((s, v) => s + v, 0),
     dbQtyTotal:  [...dbQtysA,  ...dbQtysB].reduce((s, v) => s + v, 0),
     dbLineCount: lineResults.length,
-    deltaApplied: -DELTA,
+    deltaApplied: -deltaA,
     lineResults,
     dbComparison, uiDbCrossCheck, crossCheckMismatches,
     passed: lineResults.every(r => r.pass) && crossCheckMismatches === 0,
     extra: {
-      productA: { name: productA.productName, prior: priorA, before: beforeA, expected: finalExpectedA, actualDb: dbQtysA, rule: 'Year 1 propagates + per-segment floor at priorQuantity' },
-      productB: { name: productB.productName, prior: priorB, before: beforeB, expected: expectedBFloor, actualDb: dbQtysB, rule: `Year ${TARGET_SEGMENT} isolated + floor at priorQuantity` },
+      productA: { name: productA.productName, prior: priorA, before: beforeA, expected: finalExpectedA, actualDb: dbQtysA, deltaApplied: -deltaA, rule: 'Year 1 propagates + per-segment floor at priorQuantity' },
+      productB: { name: productB.productName, prior: priorB, before: beforeB, expected: expectedBFloor, actualDb: dbQtysB, deltaApplied: -deltaB, rule: `Year ${TARGET_SEGMENT} isolated + floor at priorQuantity` },
       floor:    { segment: TARGET_SEGMENT, priorYear3 },
     },
   });
