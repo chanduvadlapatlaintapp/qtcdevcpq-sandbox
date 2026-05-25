@@ -11,8 +11,6 @@ const ACCOUNT_SEARCH    = process.env.QTC_ACCOUNT_SEARCH    || 'Bates White';
 const ACCOUNT_FULL_NAME = process.env.QTC_ACCOUNT_FULL_NAME || 'Bates White';
 const RESULTS_DIR       = path.join(__dirname, 'results');
 
-test.use({ viewport: null });
-
 /** @type {import('./utils/scenarioContracts').SfCtx & { accountSearch:string, accountFullName:string }} */
 let sfCtx;
 /** @type {import('./utils/scenarioContracts').ContractCache|null} */
