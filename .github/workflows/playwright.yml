@@ -176,7 +176,6 @@ jobs:
           # Map suite name → spec file (mirrors SUITE_MAP in qtc-runner/runner.js)
           case "$SUITE" in
             agenticQtcQuantityIncrease) SPEC="tests/e2e/agenticQtcQuantityIncrease.spec.js" ;;
-            demoPdfGeneration)          SPEC="tests/e2e/demo-pdf-generation.spec.js" ;;
             *)                          SPEC="tests/e2e/${SUITE}.spec.js" ;;
           esac
 

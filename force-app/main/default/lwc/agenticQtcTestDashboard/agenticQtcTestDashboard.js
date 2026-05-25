@@ -19,8 +19,8 @@ const SUITE_OPTIONS = [
     { label: 'Start Date Change',                     value: 'agenticQtcStartDateChange' },
     { label: 'Start Date Boundary Rejection',         value: 'agenticQtcStartDateBoundary' },
     { label: 'Contact Update (Invoicing & Delivery)', value: 'agenticQtcContactUpdate' },
-    { label: 'Preview & Send OSA Wizard',             value: 'agenticQtcPreviewSendOsa' },
-    { label: 'PDF Generation Demo',                   value: 'demoPdfGeneration' },
+    { label: 'Preview & Send OSA — Using Conga',      value: 'agenticQtcPreviewSendOSAUsingConga' },
+    { label: 'Preview & Send OSA — Using Salesforce', value: 'agenticQtcPreviewSendOSAUsingSalesforce' },
 ];
 
 const RUNNER_OPTIONS = [
