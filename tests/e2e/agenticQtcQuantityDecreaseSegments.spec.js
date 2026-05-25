@@ -167,12 +167,58 @@ async function runSegmentsDecrease(ctx) {
   await u.screenshot(page, runDir, '03-after-A-propagation');
   expect(await readSegmentQuantities(productB.row), 'Cross-product isolation: B unchanged after A').toEqual(beforeB);
 
+  // Floor-aware Y1 propagation on Product A: push Y1 down by just enough that
+  // the non-Y1 segment with the smallest remaining headroom would land 1 below
+  // its priorQuantity. Expected behavior — that segment clamps at its prior
+  // while segments with headroom continue to decrease in lockstep with Y1.
+  // Same caveat as the per-segment floor check on Product B below: not yet
+  // enforced in agenticQtcMdqTermGroup.js, so this assertion will FAIL until
+  // the LWC consults each segment's priorQuantity during propagation.
+  /** @type {number[]} */ let finalExpectedA = expectedA;
+  const headroomAfterStep1 = expectedA.map((v, i) => v - priorA[i]);
+  let floorIdxA = -1;
+  let minRemainingA = Infinity;
+  for (let i = 1; i < expectedA.length; i++) {
+    if (priorA[i] > 0 && headroomAfterStep1[i] >= 0 && headroomAfterStep1[i] < minRemainingA) {
+      minRemainingA = headroomAfterStep1[i];
+      floorIdxA = i;
+    }
+  }
+  if (floorIdxA !== -1) {
+    const additionalDeltaA = minRemainingA + 1;
+    const newY1ForFloor    = expectedA[0] - additionalDeltaA;
+    if (newY1ForFloor > priorA[0]) {
+      const expectedAStep2 = expectedA.map((v, i) => {
+        if (i === 0) return v - additionalDeltaA;
+        return headroomAfterStep1[i] < additionalDeltaA ? priorA[i] : v - additionalDeltaA;
+      });
+      await setSegmentQuantity(productA.row, 0, newY1ForFloor);
+      await page.waitForTimeout(QUIESCE_MS);
+      await u.screenshot(page, runDir, '03b-A-floor-aware-propagation');
+      expect(
+        await readSegmentQuantities(productA.row),
+        `Product A: Y1 propagation should pin segment ${floorIdxA + 1} at priorQuantity ${priorA[floorIdxA]} while other segments continue to decrease with Y1`
+      ).toEqual(expectedAStep2);
+      expect(
+        await readSegmentQuantities(productB.row),
+        'Cross-product isolation: B still unchanged after A floor-aware edit'
+      ).toEqual(beforeB);
+      finalExpectedA = expectedAStep2;
+    } else {
+      console.log(
+        `[Floor-aware propagation] Skipped on Product A — additional delta ${additionalDeltaA} would drive Y1 (${expectedA[0]}) at or below its own prior ${priorA[0]}.`
+      );
+    }
+  } else {
+    console.log('[Floor-aware propagation] Skipped on Product A — no non-Y1 segment has a positive priorQuantity to floor against.');
+  }
+
   // Product B: Year 3 decrease is isolated
   await setSegmentQuantity(productB.row, idxB, beforeB[idxB] - DELTA);
   await page.waitForTimeout(QUIESCE_MS);
   await u.screenshot(page, runDir, '04-after-B-edit');
   expect(await readSegmentQuantities(productB.row), `Only Year ${TARGET_SEGMENT} should have changed on B`).toEqual(expectedB);
-  expect(await readSegmentQuantities(productA.row), 'A propagation intact after B edit').toEqual(expectedA);
+  expect(await readSegmentQuantities(productA.row), 'A propagation intact after B edit').toEqual(finalExpectedA);
 
   // Floor at priorQuantity (Eff. Qty 0). NOTE: this is the intended business
   // behavior but is NOT yet enforced in agenticQtcMdqTermGroup.js — until the
@@ -194,14 +240,14 @@ async function runSegmentsDecrease(ctx) {
   expect(await readSegmentQuantities(productB.row), `Year ${TARGET_SEGMENT} must not go below priorQuantity`).toEqual(expectedBAtPrior);
   const effsAfterFloor = await readSegmentEffQuantities(productB.row);
   expect(effsAfterFloor[idxB], 'Eff. Qty must stay at 0 after floor attempt').toBe(0);
-  expect(await readSegmentQuantities(productA.row), 'A propagation intact after floor attempt').toEqual(expectedA);
+  expect(await readSegmentQuantities(productA.row), 'A propagation intact after floor attempt').toEqual(finalExpectedA);
 
   const expectedBFloor = expectedBAtPrior;
 
   // Save and verify CPQ persistence
   await qtc.save(120_000);
   await u.screenshot(page, runDir, '07-after-save');
-  expect(await readSegmentQuantities(productA.row), 'Post-save: A still at -DELTA').toEqual(expectedA);
+  expect(await readSegmentQuantities(productA.row), 'Post-save: A reflects Y1 propagation (with per-segment floor when applied)').toEqual(finalExpectedA);
   expect(await readSegmentQuantities(productB.row), 'Post-save: B reflects isolated edit + floor').toEqual(expectedBFloor);
 
   // DB verification
@@ -220,9 +266,9 @@ async function runSegmentsDecrease(ctx) {
   const dbQtysA = lineIdsA.map(id => dbById.get(id) ?? NaN);
   const dbQtysB = lineIdsB.map(id => dbById.get(id) ?? NaN);
 
-  expect(dbQtysA.length, 'DB: one row per Product A segment').toBe(expectedA.length);
-  for (let i = 0; i < expectedA.length; i++) {
-    expect(dbQtysA[i], `Product A DB segment ${i + 1} (line ${lineIdsA[i]})`).toBe(expectedA[i]);
+  expect(dbQtysA.length, 'DB: one row per Product A segment').toBe(finalExpectedA.length);
+  for (let i = 0; i < finalExpectedA.length; i++) {
+    expect(dbQtysA[i], `Product A DB segment ${i + 1} (line ${lineIdsA[i]})`).toBe(finalExpectedA[i]);
   }
   expect(dbQtysB.length, 'DB: one row per Product B segment').toBe(expectedBFloor.length);
   for (let i = 0; i < expectedBFloor.length; i++) {
@@ -238,8 +284,8 @@ async function runSegmentsDecrease(ctx) {
   const lineResults = [
     ...lineIdsA.map((_id, i) => ({
       index: i + 1, label: `${productA.productName} · Y${i + 1}`,
-      before: beforeA[i], expected: expectedA[i], actual: dbQtysA[i],
-      pass: dbQtysA[i] === expectedA[i],
+      before: beforeA[i], expected: finalExpectedA[i], actual: dbQtysA[i],
+      pass: dbQtysA[i] === finalExpectedA[i],
     })),
     ...lineIdsB.map((_id, i) => ({
       index: lineIdsA.length + i + 1, label: `${productB.productName} · Y${i + 1}`,
@@ -289,7 +335,7 @@ async function runSegmentsDecrease(ctx) {
     contract: contract.number,
     quoteName,
     spinbuttonCount: lineResults.length,
-    uiQtyTotal:  [...expectedA, ...expectedBFloor].reduce((s, v) => s + v, 0),
+    uiQtyTotal:  [...finalExpectedA, ...expectedBFloor].reduce((s, v) => s + v, 0),
     dbQtyTotal:  [...dbQtysA,  ...dbQtysB].reduce((s, v) => s + v, 0),
     dbLineCount: lineResults.length,
     deltaApplied: -DELTA,
@@ -297,7 +343,7 @@ async function runSegmentsDecrease(ctx) {
     dbComparison, uiDbCrossCheck, crossCheckMismatches,
     passed: lineResults.every(r => r.pass) && crossCheckMismatches === 0,
     extra: {
-      productA: { name: productA.productName, prior: priorA, before: beforeA, expected: expectedA, actualDb: dbQtysA, rule: 'Year 1 propagates' },
+      productA: { name: productA.productName, prior: priorA, before: beforeA, expected: finalExpectedA, actualDb: dbQtysA, rule: 'Year 1 propagates + per-segment floor at priorQuantity' },
       productB: { name: productB.productName, prior: priorB, before: beforeB, expected: expectedBFloor, actualDb: dbQtysB, rule: `Year ${TARGET_SEGMENT} isolated + floor at priorQuantity` },
       floor:    { segment: TARGET_SEGMENT, priorYear3 },
     },
