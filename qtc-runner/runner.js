@@ -34,9 +34,11 @@ const RESULTS_DIR  = path.join(PROJECT_ROOT, 'test-results');
 
 // ─── Suite → spec file mapping ───────────────────────────────────────────────
 
+// Overrides for suites whose spec filename doesn't follow the default
+// convention `tests/e2e/${suiteName}.spec.js`. Add an entry here only when
+// the spec name diverges from the suite key.
 const SUITE_MAP = {
     agenticQtcQuantityIncrease : 'tests/e2e/agenticQtcQuantityIncrease.spec.js',
-    demoPdfGeneration          : 'tests/e2e/demo-pdf-generation.spec.js',
 };
 
 // ─── Main export ─────────────────────────────────────────────────────────────
@@ -59,11 +61,9 @@ const SUITE_MAP = {
  * }}
  */
 async function runSuite(suiteName, testRunId) {
-    const specFile = SUITE_MAP[suiteName];
-    if (!specFile) {
-        return _errorResult(`Unknown suite: "${suiteName}". Valid: ${Object.keys(SUITE_MAP).join(', ')}`);
-    }
-
+    // Resolve spec file: explicit override in SUITE_MAP, else default convention.
+    // Mirrors the case statement in .github/workflows/playwright.yml.
+    const specFile = SUITE_MAP[suiteName] || `tests/e2e/${suiteName}.spec.js`;
     const specPath = path.join(PROJECT_ROOT, specFile);
     if (!fs.existsSync(specPath)) {
         return _errorResult(`Spec file not found: ${specPath}`);
