@@ -193,6 +193,31 @@ async function waitForGeneratedPdf(sfCtx, linkedEntityIds, sinceTs, opts = {}) {
 }
 
 /**
+ * Resolve a ContentVersion Id by exact Title. Use when you already know the
+ * filename (e.g. read from the wizard's `.doc-title` after Conga finishes).
+ * Latest version only — handy when the same title was used by an earlier run.
+ *
+ * @param {{instanceUrl:string, accessToken:string}} sfCtx
+ * @param {string} title
+ * @returns {Promise<{contentVersionId:string, contentDocumentId:string, title:string} | null>}
+ */
+async function findContentVersionByTitle(sfCtx, title) {
+  const apiBase = `${sfCtx.instanceUrl}/services/data/${SF_API_VER}`;
+  const headers = { Authorization: `Bearer ${sfCtx.accessToken}`, 'Content-Type': 'application/json' };
+  // Escape single quotes for SOQL
+  const safe = title.replace(/'/g, "\\'");
+  const soql = `SELECT Id, ContentDocumentId, Title
+                FROM ContentVersion
+                WHERE Title = '${safe}' AND IsLatest = true
+                ORDER BY CreatedDate DESC
+                LIMIT 1`;
+  const json = await fetch(`${apiBase}/query?q=${encodeURIComponent(soql)}`, { headers }).then(r => r.json());
+  const rec = json.records?.[0];
+  if (!rec) return null;
+  return { contentVersionId: rec.Id, contentDocumentId: rec.ContentDocumentId, title: rec.Title };
+}
+
+/**
  * Download a ContentVersion's binary data and extract plain text via pdf-parse.
  *
  * @param {{instanceUrl:string, accessToken:string}} sfCtx
@@ -319,6 +344,7 @@ function _dateAnyFormat(iso, text) {
 module.exports = {
   snapshotForOsa,
   waitForGeneratedPdf,
+  findContentVersionByTitle,
   downloadPdfText,
   comparePdfToSnapshot,
 };
