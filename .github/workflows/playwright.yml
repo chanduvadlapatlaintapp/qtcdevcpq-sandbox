@@ -197,6 +197,7 @@ jobs:
           # Other suites stay fast; the Conga suite needs ~2-3 min/scenario to
           # poll Salesforce for the generated PDF and parse it.
           QTC_OSA_WAIT_FOR_DOC: ${{ steps.run-setup.outputs.test_suite == 'agenticQtcPreviewSendOSAUsingConga' && '1' || '' }}
+          QTC_OSA_DOC_TIMEOUT_MS: '300000'  # 5 min (instead of default 3 min) for slower CI orgs
         continue-on-error: true
 
       # ── 11. Upload results to Salesforce ─────────────────────────────────────
