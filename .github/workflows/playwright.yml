@@ -68,7 +68,9 @@ jobs:
       github.event.pull_request.merged == true
 
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    # 45 min covers the Conga OSA suite (~3 min/scenario × 3 scenarios) when
+    # QTC_OSA_WAIT_FOR_DOC=1 polls for the generated PDF.
+    timeout-minutes: 45
 
     steps:
       # ── 1. Checkout ─────────────────────────────────────────────────────────
@@ -191,6 +193,10 @@ jobs:
           CI: 'true'
           PLAYWRIGHT_JSON_OUTPUT_NAME: "test-results/${{ steps.run-setup.outputs.test_run_id }}/results.json"
           QTC_SF_ORG: ${{ steps.sf-auth.outputs.org_alias }}
+          # Auto-enable Conga PDF wait + UI/PDF compare ONLY for the OSA suite.
+          # Other suites stay fast; the Conga suite needs ~2-3 min/scenario to
+          # poll Salesforce for the generated PDF and parse it.
+          QTC_OSA_WAIT_FOR_DOC: ${{ steps.run-setup.outputs.test_suite == 'agenticQtcPreviewSendOSAUsingConga' && '1' || '' }}
         continue-on-error: true
 
       # ── 11. Upload results to Salesforce ─────────────────────────────────────
