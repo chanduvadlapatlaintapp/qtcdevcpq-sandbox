@@ -117,10 +117,13 @@ async function walkPreviewSendWizard(page, runDir) {
     return result;
   }
 
-  // ── Step 3: trigger Conga generation, swallow the popup, leave wizard open ─
-  // The Conga popup opens in a new tab. We don't drive it — Conga auto-generates
-  // and writes the PDF back to Salesforce. We just need to capture the popup so
-  // it doesn't leak, then poll SF for the new ContentDocument.
+  // ── Step 3: trigger Conga generation, capture popup, leave it open ─────────
+  // Earlier we closed the popup immediately, assuming "Conga continues server-side".
+  // That turned out to be wrong — the PDF never appeared in CI. Hypothesis:
+  // Conga's popup is itself the client driver (it talks to the Conga template
+  // service, then posts the result back to Salesforce). Closing it aborts the flow.
+  // New behavior: leave the popup OPEN during the PDF wait; the caller closes it
+  // via `closePopup()` after the wait resolves (success or timeout).
   const popupPromise = page.context().waitForEvent('page', { timeout: 15_000 }).catch(() => null);
   await openCongaBtn.click();
   result.congaTriggered   = true;
@@ -128,13 +131,24 @@ async function walkPreviewSendWizard(page, runDir) {
 
   const popup = await popupPromise;
   if (popup) {
-    console.log(`[OSA] Conga popup captured: ${popup.url()}. Closing — generation continues server-side.`);
-    await popup.close().catch(() => {});
+    console.log(`[OSA] Conga popup captured (kept open): ${popup.url()}`);
+    // Take a screenshot of the popup so we can see what Conga is doing.
+    try {
+      await popup.waitForLoadState('domcontentloaded', { timeout: 10_000 }).catch(() => {});
+      await popup.screenshot({ path: require('path').join(runDir, '03c-conga-popup.png'), fullPage: true }).catch(() => {});
+    } catch (_) { /* best effort */ }
   } else {
-    console.log('[OSA] No popup detected within 15s — Conga may have inlined the flow. Continuing.');
+    console.log('[OSA] No popup detected within 15s — Conga may have inlined the flow, or popup was blocked.');
   }
   await u.screenshot(page, runDir, '03b-after-open-conga');
 
+  result.popup = popup;
+  result.closePopup = async () => {
+    if (popup && !popup.isClosed()) {
+      console.log(`[OSA] Closing Conga popup now (post-PDF-wait): ${popup.url()}`);
+      await popup.close().catch(() => {});
+    }
+  };
   result.closeWizard = closeWizard;
   return result;
 }
@@ -199,11 +213,19 @@ async function runScenario(page, contract, branch, scenarioNumber, scenarioLabel
   let pdfFound = false, pdfTitle = null, pdfError = null;
 
   if (WAIT_FOR_DOC && wizard.congaTriggered && snapshot) {
-    console.log(`[OSA] Waiting up to ${DOC_TIMEOUT_MS / 1000}s for Conga PDF…`);
+    // Poll on every plausible LinkedEntityId — Conga may attach to the quote,
+    // the contract, the opportunity, or the account depending on the template.
+    const linkedIds = [
+      snapshot.quoteId,
+      contract.id,
+      snapshot.opportunityId,
+      snapshot.accountId,
+    ].filter(Boolean);
+    console.log(`[OSA] Waiting up to ${DOC_TIMEOUT_MS / 1000}s for Conga PDF on entities: ${linkedIds.join(', ')}`);
     try {
       const pdfRef = await waitForGeneratedPdf(
         sfCtx,
-        [snapshot.quoteId, contract.id],
+        /** @type {string[]} */ (linkedIds),
         wizard.congaTriggeredAt,
         { timeoutMs: DOC_TIMEOUT_MS, pollMs: 5_000, logger: msg => console.log(msg) },
       );
@@ -227,7 +249,10 @@ async function runScenario(page, contract, branch, scenarioNumber, scenarioLabel
       console.log(`[OSA] ${pdfError}`);
     }
 
-    // Close the wizard now that we're done with Conga
+    // Now that the PDF wait is done (success or timeout), close the Conga popup
+    // and then the wizard. Order matters — close popup before wizard so any
+    // last-second postMessage from the popup can reach the wizard if needed.
+    if (wizard.closePopup) await wizard.closePopup();
     if (wizard.closeWizard) await wizard.closeWizard();
   }
 

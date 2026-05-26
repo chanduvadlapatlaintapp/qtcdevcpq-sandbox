@@ -21,6 +21,8 @@ const SF_API_VER = process.env.QTC_SF_API_VERSION || 'v62.0';
  * @property {string|null}            contractNumber
  * @property {string}                 quoteName
  * @property {string}                 quoteId
+ * @property {string|null}            accountId       — for ContentDocumentLink polling
+ * @property {string|null}            opportunityId   — for ContentDocumentLink polling
  * @property {string|null}            startDate     YYYY-MM-DD
  * @property {string|null}            endDate       YYYY-MM-DD
  * @property {number|null}            netAmount
@@ -55,7 +57,8 @@ async function snapshotForOsa(sfCtx, info) {
   // Header
   const headerSoql = `SELECT Id, Name, SBQQ__Status__c, SBQQ__NetAmount__c,
                              SBQQ__SubscriptionTerm__c, SBQQ__StartDate__c, SBQQ__EndDate__c,
-                             SBQQ__Account__r.Name
+                             SBQQ__Account__c, SBQQ__Account__r.Name,
+                             SBQQ__Opportunity2__c
                       FROM SBQQ__Quote__c WHERE Name = '${info.quoteName}' LIMIT 1`;
   const headerJson = await fetch(`${apiBase}/query?q=${encodeURIComponent(headerSoql)}`, { headers }).then(r => r.json());
   const header = headerJson.records?.[0];
@@ -87,6 +90,8 @@ async function snapshotForOsa(sfCtx, info) {
     contractNumber:   info.contractNumber ?? null,
     quoteName:        info.quoteName,
     quoteId:          header.Id,
+    accountId:        header.SBQQ__Account__c     ?? null,
+    opportunityId:    header.SBQQ__Opportunity2__c ?? null,
     startDate:        header.SBQQ__StartDate__c ?? null,
     endDate:          header.SBQQ__EndDate__c   ?? null,
     netAmount:        header.SBQQ__NetAmount__c ?? null,
@@ -156,6 +161,34 @@ async function waitForGeneratedPdf(sfCtx, linkedEntityIds, sinceTs, opts = {}) {
   }
 
   log(`[congaDoc] Timed out waiting for PDF after ${timeoutMs}ms (${pollCount} polls)`);
+
+  // Diagnostic dump: what files did appear, on what entities, in this window?
+  // Helps distinguish "Conga never ran" from "PDF went somewhere we're not polling".
+  try {
+    const diagSoql = `SELECT ContentDocumentId, LinkedEntityId,
+                             ContentDocument.Title,
+                             ContentDocument.FileType,
+                             ContentDocument.CreatedDate,
+                             ContentDocument.CreatedBy.Name
+                      FROM ContentDocumentLink
+                      WHERE ContentDocument.CreatedDate > ${sinceIso}
+                      ORDER BY ContentDocument.CreatedDate DESC
+                      LIMIT 20`;
+    const diag = await fetch(`${apiBase}/query?q=${encodeURIComponent(diagSoql)}`, { headers }).then(r => r.json());
+    const rows = diag.records || [];
+    if (rows.length === 0) {
+      log(`[congaDoc] DIAG: zero ContentDocuments created in this window — Conga likely never ran.`);
+    } else {
+      log(`[congaDoc] DIAG: ${rows.length} recent ContentDocument(s) (showing newest first):`);
+      for (const r of rows) {
+        log(`           - "${r.ContentDocument?.Title}" (${r.ContentDocument?.FileType}) linked→${r.LinkedEntityId} by ${r.ContentDocument?.CreatedBy?.Name} @ ${r.ContentDocument?.CreatedDate}`);
+      }
+      log(`[congaDoc] DIAG: was polling on LinkedEntityId IN (${inClause}) — if the PDF above shows a different entity, widen the poll list.`);
+    }
+  } catch (e) {
+    log(`[congaDoc] DIAG query failed: ${e instanceof Error ? e.message : String(e)}`);
+  }
+
   return null;
 }
 
