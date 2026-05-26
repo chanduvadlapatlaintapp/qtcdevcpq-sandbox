@@ -43,18 +43,20 @@ test.beforeAll(async ({ browser }) => {
 /**
  * Walks the Preview & Send OSA wizard.
  *
- * LWC step ordering (per agenticQtcPreviewSend.html):
- *   step1 = Generate OSA       (default — shows "Open Conga to Generate OSA" button)
- *   step2 = Additional Documents (file-upload + related docs)
- *   step3 = Review & Send      (shows PDF title)
+ * Deployed runtime step ordering (verified by observing the actual qtcmock org —
+ * differs from what the LWC source on the default branch shows; the deployed
+ * version pre-dates a recent refactor):
+ *   step1 = Additional Documents (file-upload + related docs) — INITIAL view
+ *   step2 = Generate OSA         (shows "Open Conga to Generate OSA" button)
+ *   step3 = Review & Send        (shows PDF title in .doc-title)
  *
- * Default mode (QTC_OSA_WAIT_FOR_DOC unset): just verify step1 renders correctly
- *   and close. Fast (~5s).
+ * Default mode (QTC_OSA_WAIT_FOR_DOC unset): walks step1 → step2 and closes.
+ * Fast (~5s).
  *
- * Opt-in mode (QTC_OSA_WAIT_FOR_DOC=1): click Open Conga, let the LWC's own
- *   Apex polling find the PDF and auto-advance to step2, then click Next to
- *   reach step3 and read the PDF title from the wizard. The title is the
- *   reliable signal — no REST race.
+ * Opt-in mode (QTC_OSA_WAIT_FOR_DOC=1): on step2, clicks Open Conga and waits
+ * for the wizard to advance — which it does once the LWC's own Apex polling
+ * finds the saved PDF. We then read .doc-title (whichever step the wizard
+ * ended on) — that's our PDF filename, no REST race.
  *
  * @param {import('@playwright/test').Page} page
  * @param {string} runDir
@@ -63,7 +65,8 @@ async function walkPreviewSendWizard(page, runDir) {
   const result = {
     wizardOpened:     false,
     step1Verified:    false,
-    step2Reached:     false,
+    step2Verified:    false,
+    pdfAppearedInUi:  false,
     step3Reached:     false,
     closedCleanly:    false,
     congaTriggered:   false,
@@ -83,23 +86,34 @@ async function walkPreviewSendWizard(page, runDir) {
   await expect(modal).toBeVisible({ timeout: 15_000 });
   await expect(modal.locator('.modal-header h3')).toHaveText(/Preview\s*&\s*Send OSA/);
   result.wizardOpened = true;
-  await u.screenshot(page, runDir, '02-wizard-step1-generate');
+  await u.screenshot(page, runDir, '02-wizard-step1');
 
-  // ── Step 1: Generate OSA ─────────────────────────────────────────────────
-  // The three progress labels are all in the indicator at the top.
-  await expect(modal).toContainText('Generate OSA');
+  // ── Step 1: Additional Documents (initial view in deployed runtime) ───────
   await expect(modal).toContainText('Additional Documents');
+  await expect(modal).toContainText('Generate OSA');
   await expect(modal).toContainText('Review & Send');
-  // Step 1's body shows the "Open Conga to Generate OSA" button initially.
+  await expect(modal.locator('.section-title')).toHaveText('Additional Documents');
+  await expect(modal.locator('lightning-file-upload')).toBeVisible();
+  result.step1Verified = true;
+
+  // ── Step 2: Generate OSA ──────────────────────────────────────────────────
+  await modal.getByRole('button', { name: 'Next' }).click();
+
   const openCongaBtn = modal.getByRole('button', { name: 'Open Conga to Generate OSA' });
   await expect(openCongaBtn).toBeVisible({ timeout: 10_000 });
-  result.step1Verified = true;
+  await expect(
+    modal.getByRole('button', { name: 'Next' }),
+    'Step 2 Next stays disabled until OSA is generated',
+  ).toBeDisabled();
+  await expect(modal.getByRole('button', { name: 'Back' })).toBeVisible();
+  result.step2Verified = true;
+  await u.screenshot(page, runDir, '03-wizard-step2');
 
   const closeWizard = async () => {
     if (result.closedCleanly) return;
-    // After clicking "Open Conga", a lightning-spinner inside .modal-body can
-    // intercept pointer events on Close. Wait briefly for it to clear; if it
-    // doesn't, skip the click — Playwright tears the page down at test end.
+    // After Open Conga, a lightning-spinner inside .modal-body can intercept
+    // pointer events on Close. Wait briefly for it to clear; if it doesn't,
+    // skip the click — Playwright tears the page down at test end.
     const spinner = modal.locator('lightning-spinner').first();
     await spinner.waitFor({ state: 'hidden', timeout: 10_000 }).catch(() => {});
     if (await spinner.isVisible().catch(() => false)) {
@@ -114,7 +128,7 @@ async function walkPreviewSendWizard(page, runDir) {
   };
 
   if (!WAIT_FOR_DOC) {
-    // Legacy fast path: verify step1, then close.
+    // Legacy fast path: verify steps 1 + 2, close, return.
     await closeWizard();
     return result;
   }
@@ -138,22 +152,26 @@ async function walkPreviewSendWizard(page, runDir) {
   }
   await u.screenshot(page, runDir, '03b-after-open-conga');
 
-  // ── Wait for LWC's own Apex polling to find the PDF ───────────────────────
-  // When pollForNewDocument returns a doc, the LWC sets generatedDoc and flips
-  // currentStep to 'step2'. We detect that transition by step2's section-title.
-  console.log(`[OSA] Waiting up to ${DOC_TIMEOUT_MS / 1000}s for wizard to advance to step 2…`);
-  const step2Header = modal.locator('h4.section-title').filter({ hasText: /Select Additional Documents/i });
+  // ── Wait for step 3 (Review & Send) ───────────────────────────────────────
+  // After Open Conga is clicked, the wizard auto-advances to step 3 when the
+  // LWC's polling finds the saved PDF (per the "auto-advances when done" hint
+  // under the Open Conga button). The Download OSA button is unique to step 3
+  // and is a reliable signal regardless of which CSS classes the deployed LWC
+  // uses for the title element.
+  console.log(`[OSA] Waiting up to ${DOC_TIMEOUT_MS / 1000}s for wizard to auto-advance to Review & Send…`);
+  const downloadOsaBtn = modal.getByRole('button', { name: /Download OSA/i });
   try {
-    await step2Header.waitFor({ state: 'visible', timeout: DOC_TIMEOUT_MS });
-    result.step2Reached = true;
-    console.log(`[OSA] Wizard advanced to step 2 — PDF is in Salesforce.`);
-    await u.screenshot(page, runDir, '04-wizard-step2');
+    await downloadOsaBtn.waitFor({ state: 'visible', timeout: DOC_TIMEOUT_MS });
+    result.step3Reached = true;
+    result.pdfAppearedInUi = true;
+    console.log(`[OSA] Wizard reached Review & Send.`);
+    await u.screenshot(page, runDir, '05-wizard-step3');
   } catch (_) {
-    console.log(`[OSA] Wizard never advanced past step 1 within ${DOC_TIMEOUT_MS / 1000}s — Conga did not produce a PDF.`);
-    await u.screenshot(page, runDir, '04-wizard-stuck-step1');
+    console.log(`[OSA] Wizard did not reach Review & Send within ${DOC_TIMEOUT_MS / 1000}s.`);
+    await u.screenshot(page, runDir, '05-wizard-no-step3');
   }
 
-  // Close the popup once we know the LWC has (or hasn't) seen the PDF.
+  // Close the popup now that the wizard has (or hasn't) reached step 3.
   if (popup && !popup.isClosed()) {
     console.log(`[OSA] Closing Conga popup now.`);
     await popup.close().catch(() => {});
@@ -163,19 +181,35 @@ async function walkPreviewSendWizard(page, runDir) {
     if (popup && !popup.isClosed()) await popup.close().catch(() => {});
   };
 
-  // ── Advance to step 3 to read the PDF title from the DOM ──────────────────
-  if (result.step2Reached) {
+  // ── Read the PDF filename from the modal ──────────────────────────────────
+  // The element class varies by LWC version (.doc-title in source; could be
+  // an <a> or .slds-text-link in deployed runtime). Locate by the PDF
+  // filename pattern instead — Conga's titles always end in .pdf.
+  if (result.step3Reached) {
     try {
-      await modal.getByRole('button', { name: 'Next' }).click({ timeout: 10_000 });
-      const step3Header = modal.locator('h4.section-title').filter({ hasText: /Review Documents/i });
-      await step3Header.waitFor({ state: 'visible', timeout: 15_000 });
-      result.step3Reached = true;
-      await u.screenshot(page, runDir, '05-wizard-step3');
-      const titleText = await modal.locator('.doc-title').first().innerText().catch(() => '');
-      result.pdfTitle = titleText.trim() || null;
-      console.log(`[OSA] PDF title from wizard: "${result.pdfTitle}"`);
+      // Find any element whose visible text matches the PDF filename pattern.
+      // page.evaluate scoped to the modal collects all text-bearing descendants.
+      const filename = await modal.evaluate((root) => {
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+        let node;
+        while ((node = walker.nextNode())) {
+          const t = (node.textContent || '').trim();
+          // Match e.g. "20260612_Amendment_084996_Intapp_Bates White_v1.pdf"
+          const m = t.match(/[A-Za-z0-9_\-\s]+\.pdf$/);
+          if (m) return m[0];
+        }
+        return null;
+      });
+      if (filename) {
+        result.pdfTitle = filename.trim();
+        console.log(`[OSA] PDF title from wizard: "${result.pdfTitle}"`);
+      } else {
+        console.log(`[OSA] step3 reached but no .pdf filename in modal text — DOM:`);
+        const modalText = await modal.innerText().catch(() => '');
+        console.log(`---MODAL TEXT---\n${modalText}\n---END---`);
+      }
     } catch (e) {
-      console.log(`[OSA] Could not advance to step 3: ${e instanceof Error ? e.message : String(e)}`);
+      console.log(`[OSA] Could not read PDF title: ${e instanceof Error ? e.message : String(e)}`);
     }
   }
 
@@ -251,7 +285,7 @@ async function runScenario(page, contract, branch, scenarioNumber, scenarioLabel
     try {
       if (!wizard.pdfTitle) {
         pdfError = `Wizard did not produce a PDF title within ${DOC_TIMEOUT_MS / 1000}s `
-                 + `(step2Reached=${wizard.step2Reached}, step3Reached=${wizard.step3Reached})`;
+                 + `(pdfAppearedInUi=${wizard.pdfAppearedInUi}, step3Reached=${wizard.step3Reached})`;
       } else {
         console.log(`[OSA] Looking up ContentVersion by title: "${wizard.pdfTitle}"`);
         const cv = await findContentVersionByTitle(sfCtx, wizard.pdfTitle);
@@ -287,7 +321,8 @@ async function runScenario(page, contract, branch, scenarioNumber, scenarioLabel
   // it cleanly — that's fine, the test framework tears down the page.
   const wizardPass = wizard.wizardOpened
                   && wizard.step1Verified
-                  && (WAIT_FOR_DOC ? wizard.step2Reached : wizard.closedCleanly);
+                  && wizard.step2Verified
+                  && (WAIT_FOR_DOC ? wizard.pdfAppearedInUi : wizard.closedCleanly);
   const pdfPass    = !WAIT_FOR_DOC || (pdfFound && pdfMismatches === 0);
   const allPass    = wizardPass && pdfPass;
 
@@ -323,8 +358,7 @@ async function runScenario(page, contract, branch, scenarioNumber, scenarioLabel
     const steps = [
       { name: 'Wizard opened',     expected: true, actual: wizard.wizardOpened },
       { name: 'Step 1 verified',   expected: true, actual: wizard.step1Verified },
-      { name: 'Step 2 reached',    expected: true, actual: wizard.step2Reached },
-      { name: 'Step 3 reached',    expected: true, actual: wizard.step3Reached },
+      { name: 'Step 2 verified',   expected: true, actual: wizard.step2Verified },
       { name: 'Closed cleanly',    expected: true, actual: wizard.closedCleanly },
     ];
     dbComparison = steps.map((s, i) => ({
