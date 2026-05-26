@@ -152,40 +152,26 @@ async function walkPreviewSendWizard(page, runDir) {
   }
   await u.screenshot(page, runDir, '03b-after-open-conga');
 
-  // ── Wait for .doc-title to appear anywhere in the modal ───────────────────
-  // The wizard's own Apex polling (pollForNewDocument) finds the saved PDF and
-  // updates `generatedDoc`. Once that happens the title appears in the DOM —
-  // step varies by deployed-LWC version (could be on Generate OSA's success
-  // box, or on Review & Send). Watch the DOM directly for the title element.
-  console.log(`[OSA] Waiting up to ${DOC_TIMEOUT_MS / 1000}s for PDF title to appear in the wizard…`);
-  const docTitleLoc = modal.locator('.doc-title');
+  // ── Wait for step 3 (Review & Send) ───────────────────────────────────────
+  // After Open Conga is clicked, the wizard auto-advances to step 3 when the
+  // LWC's polling finds the saved PDF (per the "auto-advances when done" hint
+  // under the Open Conga button). The Download OSA button is unique to step 3
+  // and is a reliable signal regardless of which CSS classes the deployed LWC
+  // uses for the title element.
+  console.log(`[OSA] Waiting up to ${DOC_TIMEOUT_MS / 1000}s for wizard to auto-advance to Review & Send…`);
+  const downloadOsaBtn = modal.getByRole('button', { name: /Download OSA/i });
   try {
-    await docTitleLoc.first().waitFor({ state: 'visible', timeout: DOC_TIMEOUT_MS });
+    await downloadOsaBtn.waitFor({ state: 'visible', timeout: DOC_TIMEOUT_MS });
+    result.step3Reached = true;
     result.pdfAppearedInUi = true;
-    const title = await docTitleLoc.first().innerText().catch(() => '');
-    result.pdfTitle = title.trim() || null;
-    console.log(`[OSA] PDF title from wizard: "${result.pdfTitle}"`);
-    await u.screenshot(page, runDir, '04-wizard-pdf-visible');
+    console.log(`[OSA] Wizard reached Review & Send.`);
+    await u.screenshot(page, runDir, '05-wizard-step3');
   } catch (_) {
-    // Fallback: try the success-box variant ("OSA generated successfully: <title>")
-    const successBox = modal.locator('.status-box.status-success').filter({ hasText: /OSA generated successfully/i });
-    if (await successBox.isVisible().catch(() => false)) {
-      const txt = await successBox.innerText().catch(() => '');
-      const m = txt.match(/OSA generated successfully:\s*(.+?)\s*$/);
-      if (m) {
-        result.pdfAppearedInUi = true;
-        result.pdfTitle = m[1].trim();
-        console.log(`[OSA] PDF title from success box: "${result.pdfTitle}"`);
-        await u.screenshot(page, runDir, '04-wizard-success-box');
-      }
-    }
-    if (!result.pdfTitle) {
-      console.log(`[OSA] No PDF title appeared in the wizard within ${DOC_TIMEOUT_MS / 1000}s.`);
-      await u.screenshot(page, runDir, '04-wizard-no-pdf');
-    }
+    console.log(`[OSA] Wizard did not reach Review & Send within ${DOC_TIMEOUT_MS / 1000}s.`);
+    await u.screenshot(page, runDir, '05-wizard-no-step3');
   }
 
-  // Close the popup now that we have (or don't have) the PDF title.
+  // Close the popup now that the wizard has (or hasn't) reached step 3.
   if (popup && !popup.isClosed()) {
     console.log(`[OSA] Closing Conga popup now.`);
     await popup.close().catch(() => {});
@@ -195,25 +181,35 @@ async function walkPreviewSendWizard(page, runDir) {
     if (popup && !popup.isClosed()) await popup.close().catch(() => {});
   };
 
-  // ── If we're not already on step 3, try to advance there for a final screenshot ─
-  if (result.pdfTitle) {
-    const reviewHdr = modal.locator('h4.section-title').filter({ hasText: /Review Documents/i });
-    if (await reviewHdr.isVisible().catch(() => false)) {
-      result.step3Reached = true;
-    } else {
-      // Try clicking Next once or twice to reach Review & Send
-      for (let i = 0; i < 2 && !result.step3Reached; i++) {
-        const nextBtn = modal.getByRole('button', { name: 'Next' });
-        if (await nextBtn.isVisible().catch(() => false) && await nextBtn.isEnabled().catch(() => false)) {
-          await nextBtn.click({ timeout: 5_000 }).catch(() => {});
-          if (await reviewHdr.waitFor({ state: 'visible', timeout: 5_000 }).then(() => true).catch(() => false)) {
-            result.step3Reached = true;
-            await u.screenshot(page, runDir, '05-wizard-step3');
-          }
-        } else {
-          break;
+  // ── Read the PDF filename from the modal ──────────────────────────────────
+  // The element class varies by LWC version (.doc-title in source; could be
+  // an <a> or .slds-text-link in deployed runtime). Locate by the PDF
+  // filename pattern instead — Conga's titles always end in .pdf.
+  if (result.step3Reached) {
+    try {
+      // Find any element whose visible text matches the PDF filename pattern.
+      // page.evaluate scoped to the modal collects all text-bearing descendants.
+      const filename = await modal.evaluate((root) => {
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+        let node;
+        while ((node = walker.nextNode())) {
+          const t = (node.textContent || '').trim();
+          // Match e.g. "20260612_Amendment_084996_Intapp_Bates White_v1.pdf"
+          const m = t.match(/[A-Za-z0-9_\-\s]+\.pdf$/);
+          if (m) return m[0];
         }
+        return null;
+      });
+      if (filename) {
+        result.pdfTitle = filename.trim();
+        console.log(`[OSA] PDF title from wizard: "${result.pdfTitle}"`);
+      } else {
+        console.log(`[OSA] step3 reached but no .pdf filename in modal text — DOM:`);
+        const modalText = await modal.innerText().catch(() => '');
+        console.log(`---MODAL TEXT---\n${modalText}\n---END---`);
       }
+    } catch (e) {
+      console.log(`[OSA] Could not read PDF title: ${e instanceof Error ? e.message : String(e)}`);
     }
   }
 
