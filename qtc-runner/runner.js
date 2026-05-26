@@ -122,7 +122,12 @@ async function runSuite(suiteName, testRunId) {
 
     const passed = tests.filter(t => t.status === 'PASSED').length;
     const failed = tests.filter(t => t.status === 'FAILED').length;
-    const status = result.status === 0 ? 'PASSED' : 'FAILED';
+    // Status must reflect BOTH the process exit code and the per-test failure
+    // count. Trusting exit code alone (was: `result.status === 0 ? 'PASSED' : 'FAILED'`)
+    // produced a "PASSED" badge with failed=1 when Playwright exits 0 despite
+    // a failure in its JSON output — observed on TR-0742 with a skipped+failed
+    // mix. Counting any failure as a failure keeps the badge honest.
+    const status = (result.status === 0 && failed === 0) ? 'PASSED' : 'FAILED';
 
     // ── Collect richResults + spec screenshots from the spec's run directory ──
     // The spec writes to tests/e2e/results/runs/<timestamp>/ — pick the newest.
