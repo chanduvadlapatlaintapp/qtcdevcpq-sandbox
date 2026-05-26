@@ -113,13 +113,18 @@ async function walkPreviewSendWizard(page, runDir) {
     if (result.closedCleanly) return;
     // After Open Conga, a lightning-spinner inside .modal-body can intercept
     // pointer events on Close. Wait briefly for it to clear; if it doesn't,
-    // skip the click — Playwright tears the page down at test end.
-    const spinner = modal.locator('lightning-spinner').first();
-    await spinner.waitFor({ state: 'hidden', timeout: 10_000 }).catch(() => {});
-    if (await spinner.isVisible().catch(() => false)) {
-      console.log('[OSA] Spinner still up; skipping clean Close — page teardown will handle it.');
-      await u.screenshot(page, runDir, '06-close-skipped-spinner-up');
-      return;
+    // skip the click — Playwright tears the page down at test end. Only do
+    // this in the post-Open-Conga path; in the default fast path the spinner
+    // workaround would mis-fire on transient step-2 spinners that don't
+    // actually block Close.
+    if (result.congaTriggered) {
+      const spinner = modal.locator('lightning-spinner').first();
+      await spinner.waitFor({ state: 'hidden', timeout: 10_000 }).catch(() => {});
+      if (await spinner.isVisible().catch(() => false)) {
+        console.log('[OSA] Spinner still up; skipping clean Close — page teardown will handle it.');
+        await u.screenshot(page, runDir, '06-close-skipped-spinner-up');
+        return;
+      }
     }
     await modal.getByRole('button', { name: 'Close' }).first().click({ timeout: 5_000 }).catch(() => {});
     await expect(modal).toBeHidden({ timeout: 5_000 }).catch(() => {});
