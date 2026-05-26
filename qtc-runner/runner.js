@@ -92,11 +92,15 @@ async function runSuite(suiteName, testRunId) {
     console.log(`[runner] Starting Playwright: npx ${args.join(' ')}`);
     const start   = Date.now();
 
-    // spawnSync is fine — the agent loop runs one job at a time
+    // shell:true required on Windows / Node 20+ to spawn npx.cmd (CVE-2024-27980).
+    // Without it: spawnSync('npx', ...) throws ENOENT because Node refuses to
+    // spawn .cmd files via the direct execve path. Harmless on Linux/Mac.
+    const isWin = process.platform === 'win32';
     const result = spawnSync('npx', args, {
         cwd   : PROJECT_ROOT,
         env,
         stdio : 'pipe',
+        shell : isWin,
         timeout: 10 * 60 * 1000, // 10 min hard cap
     });
 
