@@ -15,11 +15,11 @@ const path       = require('path');
 const https      = require('https');
 const http       = require('http');
 const { URL }    = require('url');
-const { getSfCredentials } = require('./auth');
+const { getSfCredentials, refreshCredentials } = require('./auth');
 
-// ─── REST helpers ────────────────────────────────────────────────────────────
+// ─── REST helpers ───────────────────────────────────────────────────────
 
-async function sfRequest(method, path, body) {
+async function sfRequest(method, path, body, _retried = false) {
     const { instanceUrl, accessToken } = getSfCredentials();
     const url = new URL(path, instanceUrl);
 
@@ -40,6 +40,13 @@ async function sfRequest(method, path, body) {
             let data = '';
             res.on('data', chunk => { data += chunk; });
             res.on('end', () => {
+                // Salesforce session token expired (~2hr) — refresh and retry once.
+                if (res.statusCode === 401 && !_retried) {
+                    console.log(`[uploader] Got 401 on ${method} ${path}; refreshing SF credentials and retrying once.`);
+                    refreshCredentials();
+                    sfRequest(method, path, body, true).then(resolve, reject);
+                    return;
+                }
                 try {
                     const parsed = data ? JSON.parse(data) : null;
                     if (res.statusCode >= 400) {
@@ -60,16 +67,16 @@ async function sfRequest(method, path, body) {
     });
 }
 
-// ─── Upload binary file as ContentVersion ────────────────────────────────────
+// ─── Upload binary file as ContentVersion ───────────────────────────────
 
 /**
  * Uploads a local file to Salesforce Files (ContentVersion) and links it
  * to a parent record via ContentDocumentLink.
  *
- * @param {string} filePath     - Absolute path to the file on disk
- * @param {string} title        - File title shown in Salesforce
- * @param {string} parentId     - Salesforce record Id to link the file to
- * @returns {string}            - ContentDocumentId
+ * @param {string} filePath    - Absolute path to the file on disk
+ * @param {string} title       - File title shown in Salesforce
+ * @param {string} parentId    - Salesforce record Id to link the file to
+ * @returns {string}           - ContentDocumentId
  */
 async function uploadFile(filePath, title, parentId) {
     if (!fs.existsSync(filePath)) {
@@ -82,19 +89,11 @@ async function uploadFile(filePath, title, parentId) {
     const base64Data  = fileBuffer.toString('base64');
     const ext         = path.extname(filePath).slice(1).toLowerCase();
     const mimeType    = ext === 'png'  ? 'image/png'
-                      : ext === 'webm' ? 'video/webm'
-                      : ext === 'mp4'  ? 'video/mp4'
-                      : 'application/octet-stream';
+                     : ext === 'webm' ? 'video/webm'
+                     : ext === 'mp4'  ? 'video/mp4'
+                     : 'application/octet-stream';
 
     // ContentVersion insert via multipart/form-data
-    const boundary = `----QtcBoundary${Date.now()}`;
-    const metaJson = JSON.stringify({
-        Title         : title,
-        PathOnClient  : path.basename(filePath),
-        VersionData   : base64Data,
-        IsMajorVersion: true,
-    });
-
     const cv = await sfRequest(
         'POST',
         `/services/data/v62.0/sobjects/ContentVersion`,
@@ -115,7 +114,7 @@ async function uploadFile(filePath, title, parentId) {
         `SELECT ContentDocumentId FROM ContentVersion WHERE Id = '${cv.id}'`
     )}`;
     const queryRes  = await sfRequest('GET', query);
-    const docId     = queryRes.records[0].ContentDocumentId;
+    const docId = queryRes.records[0].ContentDocumentId;
 
     // Link to parent record
     await sfRequest('POST', '/services/data/v62.0/sobjects/ContentDocumentLink', {
@@ -129,14 +128,11 @@ async function uploadFile(filePath, title, parentId) {
     return docId;
 }
 
-// ─── Insert Test_Result__c records ───────────────────────────────────────────
+// ─── Insert Test_Result__c records ───────────────────────────────────────
 
 /**
  * @param {string} testRunId
- * @param {Array<{
- *   title: string, status: string, durationMs: number,
- *   suiteName: string, errorMessage: string, retryCount: number
- * }>} tests
+ * @param {Array<{title: string, status: string, durationMs: number, suiteName: string, errorMessage: string, retryCount: number}>} tests
  */
 async function insertTestResults(testRunId, tests) {
     for (const t of tests) {
@@ -145,75 +141,34 @@ async function insertTestResults(testRunId, tests) {
             Name          : t.title.slice(0, 80),
             Test_Name__c  : t.title,
             Suite_Name__c : t.suiteName || '',
-            Status__c     : t.status,   // PASSED | FAILED | SKIPPED
+            Status__c     : t.status,
             Duration_Ms__c: t.durationMs || 0,
             Retry_Count__c: t.retryCount || 0,
         };
         if (t.errorMessage) record.Error_Message__c = t.errorMessage.slice(0, 32000);
-
-        try {
-            await sfRequest('POST', '/services/data/v62.0/sobjects/Test_Result__c', record);
-        } catch (err) {
-            if (err.message && err.message.includes('INVALID_FIELD')) {
-                // Org missing optional fields — insert with minimal fields only
-                console.warn('[uploader] Optional Test_Result__c fields missing, retrying with minimal fields');
-                const minimal = {
-                    Test_Run__c: testRunId,
-                    Name: record.Name,
-                    Test_Name__c: record.Test_Name__c,
-                    Status__c: record.Status__c,
-                };
-                await sfRequest('POST', '/services/data/v62.0/sobjects/Test_Result__c', minimal);
-            } else {
-                throw err;
-            }
-        }
+        await sfRequest('POST', '/services/data/v62.0/sobjects/Test_Result__c', record);
     }
     console.log(`[uploader] Inserted ${tests.length} Test_Result__c records`);
 }
 
-// ─── Patch the Test_Run__c record ────────────────────────────────────────────
+// ─── Patch the Test_Run__c record ───────────────────────────────────────
 
 /**
  * @param {string} testRunId
- * @param {{
- *   status: string, passed: number, failed: number, durationMs: number,
- *   errorMessage: string, logOutput: string, completedAt: string
- * }} fields
+ * @param {{ status: string, passed: number, failed: number, durationMs: number, errorMessage: string, logOutput: string, completedAt: string }} fields
  */
 async function patchTestRun(testRunId, fields) {
     const body = {
         Status__c       : fields.status,
-        Tests_Passed__c : fields.passed    || 0,
-        Tests_Failed__c : fields.failed    || 0,
+        Tests_Passed__c : fields.passed || 0,
+        Tests_Failed__c : fields.failed || 0,
         Duration_Ms__c  : fields.durationMs || 0,
         Completed_At__c : fields.completedAt || new Date().toISOString(),
     };
-    if (fields.errorMessage) {
-        body.Error_Message__c = fields.errorMessage.slice(0, 32000);
-    }
-    if (fields.logOutput) {
-        body.Log_Output__c = fields.logOutput.slice(0, 131000);
-    }
-    if (fields.richResults) {
-        // Salesforce Long Text Area max = 131072 chars
-        const richStr = typeof fields.richResults === 'string'
-            ? fields.richResults
-            : JSON.stringify(fields.richResults);
-        body.Rich_Results__c = richStr.slice(0, 131072);
-    }
+    if (fields.errorMessage) body.Error_Message__c = fields.errorMessage.slice(0, 32000);
+    if (fields.logOutput)    body.Log_Output__c   = fields.logOutput.slice(0, 131000);
 
-    try {
-        await sfRequest('PATCH', `/services/data/v62.0/sobjects/Test_Run__c/${testRunId}`, body);
-    } catch (err) {
-        // If optional fields don't exist in this org, fall back to Status only
-        if (err.message && err.message.includes('INVALID_FIELD')) {
-            console.warn('[uploader] Optional fields missing on Test_Run__c, falling back to Status only');
-            await sfRequest('PATCH', `/services/data/v62.0/sobjects/Test_Run__c/${testRunId}`, { Status__c: fields.status });
-        } else {
-            throw err;
-        }
-    }
+    await sfRequest('PATCH', `/services/data/v62.0/sobjects/Test_Run__c/${testRunId}`, body);
     console.log(`[uploader] Patched Test_Run__c ${testRunId} → ${fields.status}`);
 }
 
