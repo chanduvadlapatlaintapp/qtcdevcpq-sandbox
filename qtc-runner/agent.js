@@ -213,6 +213,20 @@ async function pollOnce() {
         }
     }
 
+    // ── Step 6.5: Upload rich-results.json ───────────────────────────────
+    // The dashboard's UI↔DB / DB Lines / Anomalies / Metrics tabs are
+    // populated by parsing a ContentDocumentLink whose title is exactly
+    // 'rich-results.json' (see agenticQtcTestDashboard.js _loadRunFiles).
+    // Without this upload those tabs stay empty even when the spec wrote
+    // a valid results.json under tests/e2e/results/runs/<ts>/.
+    if (playwrightResult.richResultsPath) {
+        try {
+            await uploadFile(playwrightResult.richResultsPath, 'rich-results.json', run.Id);
+        } catch (e) {
+            log(`Warning: rich-results.json upload failed: ${e.message}`);
+        }
+    }
+
     // ── Step 7: Finalise the Test_Run__c record ──────────────────────────
     // Wrap in try/catch so a final-patch failure (e.g. transient SF outage
     // even after the 401-retry) is loud in the agent log instead of just

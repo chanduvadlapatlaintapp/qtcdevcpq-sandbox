@@ -32,21 +32,12 @@ function resolveProjectRoot() {
 const PROJECT_ROOT = resolveProjectRoot();
 const RESULTS_DIR  = path.join(PROJECT_ROOT, 'test-results');
 
-// ─── Suite → spec file mapping ───────────────────────────────────────────────
-
-// Overrides for suites whose spec filename doesn't follow the default
-// convention `tests/e2e/${suiteName}.spec.js`. Add an entry here only when
-// the spec name diverges from the suite key.
-const SUITE_MAP = {
-    agenticQtcQuantityIncrease : 'tests/e2e/agenticQtcQuantityIncrease.spec.js',
-};
-
 // ─── Main export ─────────────────────────────────────────────────────────────
 
 /**
  * Run a Playwright suite and return a result object.
  *
- * @param {string} suiteName  - One of the keys in SUITE_MAP
+ * @param {string} suiteName  - Test suite name (maps to tests/e2e/{suiteName}.spec.js)
  * @param {string} testRunId  - Salesforce Test_Run__c Id (used for result folder naming)
  * @returns {{
  *   status       : 'PASSED'|'FAILED'|'ERROR',
@@ -61,9 +52,8 @@ const SUITE_MAP = {
  * }}
  */
 async function runSuite(suiteName, testRunId) {
-    // Resolve spec file: explicit override in SUITE_MAP, else default convention.
-    // Mirrors the case statement in .github/workflows/playwright.yml.
-    const specFile = SUITE_MAP[suiteName] || `tests/e2e/${suiteName}.spec.js`;
+    // Build the spec file path from suite name
+    const specFile = `tests/e2e/${suiteName}.spec.js`;
     const specPath = path.join(PROJECT_ROOT, specFile);
     if (!fs.existsSync(specPath)) {
         return _errorResult(`Spec file not found: ${specPath}`);
@@ -77,7 +67,7 @@ async function runSuite(suiteName, testRunId) {
 
     const args = [
         'playwright', 'test',
-        specPath,
+        specFile,
         '--reporter=json',
         `--output=${outputDir}`,
     ];
@@ -133,10 +123,11 @@ async function runSuite(suiteName, testRunId) {
     // mix. Counting any failure as a failure keeps the badge honest.
     const status = (result.status === 0 && failed === 0) ? 'PASSED' : 'FAILED';
 
-    // ── Collect richResults + spec screenshots from the spec's run directory ──
+    // Collect richResults + spec screenshots from the spec's run directory
     // The spec writes to tests/e2e/results/runs/<timestamp>/ — pick the newest.
-    let richResults  = null;
-    let screenshots  = _collectScreenshots(outputDir); // fallback: Playwright artifacts
+    let richResults     = null;
+    let richResultsPath = null;
+    let screenshots     = _collectScreenshots(outputDir); // fallback: Playwright artifacts
 
     const specRunsDir = path.join(PROJECT_ROOT, 'tests', 'e2e', 'results', 'runs');
     if (fs.existsSync(specRunsDir)) {
@@ -155,6 +146,7 @@ async function runSuite(suiteName, testRunId) {
                 // Load richResults JSON
                 const richPath = path.join(newestDir, 'results.json');
                 if (fs.existsSync(richPath)) {
+                    richResultsPath = richPath;
                     try {
                         richResults = JSON.parse(fs.readFileSync(richPath, 'utf8'));
                         console.log(`[runner] Loaded richResults from ${path.basename(newestDir)}`);
@@ -188,6 +180,7 @@ async function runSuite(suiteName, testRunId) {
         tests,
         screenshots,
         richResults,
+        richResultsPath,
         videoPath,
     };
 }

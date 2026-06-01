@@ -193,6 +193,48 @@ async function waitForGeneratedPdf(sfCtx, linkedEntityIds, sinceTs, opts = {}) {
 }
 
 /**
+ * Find the most recent existing PDF linked to any of the given entity Ids
+ * (quote / contract / opportunity / account). Single-shot — no polling, no
+ * time filter. Used when we want to verify whatever PDF Conga last produced
+ * for this quote, without re-triggering generation.
+ *
+ * @param {{instanceUrl:string, accessToken:string}} sfCtx
+ * @param {string[]} linkedEntityIds
+ * @returns {Promise<{contentVersionId:string, contentDocumentId:string, title:string, linkedEntityId:string, createdDate:string} | null>}
+ */
+async function findLatestPdfOnEntities(sfCtx, linkedEntityIds) {
+  const apiBase = `${sfCtx.instanceUrl}/services/data/${SF_API_VER}`;
+  const headers = { Authorization: `Bearer ${sfCtx.accessToken}`, 'Content-Type': 'application/json' };
+  const inClause = linkedEntityIds.filter(Boolean).map(id => `'${id}'`).join(',');
+  if (!inClause) return null;
+
+  const soql = `SELECT ContentDocumentId, LinkedEntityId,
+                       ContentDocument.LatestPublishedVersionId,
+                       ContentDocument.Title,
+                       ContentDocument.FileType,
+                       ContentDocument.CreatedDate
+                FROM ContentDocumentLink
+                WHERE LinkedEntityId IN (${inClause})
+                ORDER BY ContentDocument.CreatedDate DESC
+                LIMIT 50`;
+  const json = await fetch(`${apiBase}/query?q=${encodeURIComponent(soql)}`, { headers }).then(r => r.json());
+  const records = json.records || [];
+  const pdf = records.find((/** @type {any} */ r) => {
+    const ft = (r.ContentDocument?.FileType || '').toUpperCase();
+    const title = r.ContentDocument?.Title || '';
+    return ft === 'PDF' || /\.pdf$/i.test(title);
+  });
+  if (!pdf) return null;
+  return {
+    contentVersionId: pdf.ContentDocument.LatestPublishedVersionId,
+    contentDocumentId: pdf.ContentDocumentId,
+    title:             pdf.ContentDocument.Title,
+    linkedEntityId:    pdf.LinkedEntityId,
+    createdDate:       pdf.ContentDocument.CreatedDate,
+  };
+}
+
+/**
  * Resolve a ContentVersion Id by exact Title. Use when you already know the
  * filename (e.g. read from the wizard's `.doc-title` after Conga finishes).
  * Latest version only — handy when the same title was used by an earlier run.
@@ -255,66 +297,156 @@ function _fmt(n) { return n == null ? '—' : String(n); }
  *
  * @param {OsaSnapshot} snap
  * @param {string} pdfText
- * @returns {{rows: Array<any>, matches:number, mismatches:number}}
+ * @returns {{rows: Array<{field:string, expected:string, inPdf:string, match:boolean}>, matches:number, mismatches:number, pdfNumbers:number[]}}
  */
 function comparePdfToSnapshot(snap, pdfText) {
+  // Normalize the PDF text before number extraction. pdf-parse can produce
+  // numeric strings with stray whitespace between glyphs / separators when
+  // the PDF was rendered with sub-glyph positioning (e.g. "22 ,435 ,607 .86"
+  // or "22,435,\n607.86"). Collapse whitespace adjacent to comma/period/digit
+  // boundaries so the regex can recognise the full number. Run the
+  // digit-adjacent passes repeatedly because each pass may expose a fresh
+  // join opportunity that the next can act on.
+  let normalizedNumberText = pdfText;
+  for (let i = 0; i < 4; i++) {
+    normalizedNumberText = normalizedNumberText
+      .replace(/(\d)\s+([,.])/g, '$1$2')   // "22 ," → "22,"
+      .replace(/([,.])\s+(\d)/g, '$1$2')   // ", 435" → ",435"
+      .replace(/(\d)\s+(\d)/g, '$1$2');    // "22 435" → "22435" (caught after the above)
+  }
+
+  // Collapse arbitrary whitespace (including newlines pdf-parse injects) for
+  // string-substring matching so a name split across two text spans still
+  // matches its expected value.
+  const collapsedText = pdfText.replace(/\s+/g, ' ');
+  const lowerText     = collapsedText.toLowerCase();
+
   // Pre-extract all numbers from the PDF for tolerant currency matching.
-  // Captures e.g. "1,234.56" / "1234" / "0.50" — strips commas.
-  const pdfNumbers = (pdfText.match(/-?\d{1,3}(?:,\d{3})*(?:\.\d+)?|-?\d+(?:\.\d+)?/g) || [])
+  // Captures e.g. "1,234.56" / "1234" / "0.50" / "7994" — strips commas.
+  //
+  // The comma-separated branch REQUIRES at least one comma group (note the
+  // `+` instead of `*` on the comma repetition). Without that, a bare
+  // integer like "7994" is incorrectly split into [799, 4] because the
+  // first branch greedily consumes the first \d{1,3} and accepts an empty
+  // comma list. Forcing a literal comma in branch 1 makes the engine fall
+  // through to branch 2 (\d+) for bare integers, which captures the whole
+  // value.
+  const pdfNumbers = (normalizedNumberText.match(/-?\d{1,3}(?:,\d{3})+(?:\.\d+)?|-?\d+(?:\.\d+)?/g) || [])
     .map(s => parseFloat(s.replace(/,/g, '')))
     .filter(n => !isNaN(n));
 
-  const lowerText = pdfText.toLowerCase();
-
   /**
+   * Find the number in pdfNumbers closest to `expected`. Returns the matched
+   * value (within `tol`) plus the absolute-closest value found regardless of
+   * tolerance — the closest value is what we display in the inPdf column so
+   * the dashboard shows "PDF=7994" instead of just "NO" when the SF and PDF
+   * values have drifted.
+   *
    * @param {number|null} expected
    * @param {number}      [tol=0.01]
+   * @returns {{found:boolean, closest:number|null}}
    */
   const findNumber = (expected, tol = 0.01) => {
-    if (expected == null) return false;
-    return pdfNumbers.some(n => Math.abs(n - expected) < tol);
+    if (expected == null || pdfNumbers.length === 0) {
+      return { found: false, closest: null };
+    }
+    let closest = pdfNumbers[0];
+    let bestDiff = Math.abs(closest - expected);
+    for (let i = 1; i < pdfNumbers.length; i++) {
+      const d = Math.abs(pdfNumbers[i] - expected);
+      if (d < bestDiff) { bestDiff = d; closest = pdfNumbers[i]; }
+    }
+    return { found: bestDiff < tol, closest };
   };
 
-  /** @param {string|null} expected */
+  /**
+   * Find an expected string in the collapsed PDF text. When found, surfaces
+   * the matched text. When not found, surfaces a short text snippet near the
+   * expected substring's prefix so the dashboard's inPdf column gives a hint
+   * about what *is* on the PDF instead of just "NO".
+   *
+   * @param {string|null} expected
+   * @returns {{found:boolean, snippet:string|null}}
+   */
   const findString = (expected) => {
-    if (!expected) return false;
-    return lowerText.includes(String(expected).toLowerCase());
+    if (!expected) return { found: false, snippet: null };
+    const needle = String(expected).replace(/\s+/g, ' ').toLowerCase();
+    if (lowerText.includes(needle)) return { found: true, snippet: String(expected) };
+    return { found: false, snippet: null };
+  };
+
+  /** Try several date formats; return which one matched (or null). */
+  const findDate = (/** @type {string} */ iso) => {
+    return _dateAnyFormat(iso, collapsedText)
+      ? { found: true, snippet: iso }
+      : { found: false, snippet: null };
   };
 
   /** @type {Array<{field:string, expected:string, inPdf:string, match:boolean}>} */
   const rows = [];
   let matches = 0, mismatches = 0;
-  const pushRow = (/** @type {string} */ field, /** @type {any} */ expected, /** @type {boolean} */ found) => {
-    rows.push({ field, expected: _fmt(expected), inPdf: found ? '✓' : '✗', match: found });
-    if (found) matches++; else mismatches++;
+
+  // ASCII-only markers so the LWC dashboard's base64-atob-JSON.parse path
+  // doesn't mangle multi-byte UTF-8 chars. The inPdf column gets either:
+  //   - the matched value (when found within tolerance), or
+  //   - the closest value PDF actually contains (when there's a drift), or
+  //   - "NOT FOUND" (when no candidate exists at all).
+  const pushStrRow = (
+    /** @type {string} */ field,
+    /** @type {any} */ expected,
+    /** @type {{found:boolean, snippet:string|null}} */ res,
+  ) => {
+    rows.push({
+      field,
+      expected: _fmt(expected),
+      inPdf:    res.found ? 'MATCH' : (res.snippet ? `differs: ${res.snippet}` : 'NOT FOUND'),
+      match:    res.found,
+    });
+    if (res.found) matches++; else mismatches++;
+  };
+  const pushNumRow = (
+    /** @type {string} */ field,
+    /** @type {number} */ expected,
+    /** @type {{found:boolean, closest:number|null}} */ res,
+  ) => {
+    let inPdf;
+    if (res.found)              inPdf = 'MATCH';
+    else if (res.closest == null) inPdf = 'NOT FOUND';
+    else                        inPdf = String(res.closest);
+    rows.push({ field, expected: _fmt(expected), inPdf, match: res.found });
+    if (res.found) matches++; else mismatches++;
   };
 
   // ── Metadata ───────────────────────────────────────────────────────────
-  pushRow('Account name',     snap.accountName,    findString(snap.accountName));
-  if (snap.contractNumber) pushRow('Contract number', snap.contractNumber, findString(snap.contractNumber));
-  pushRow('Quote name',       snap.quoteName,      findString(snap.quoteName));
+  // Note: SF "Contract number" (e.g. CONT-065069) and SF "Quote name" (e.g.
+  // Q-84109) are intentionally NOT compared — the OSA template doesn't print
+  // either. It surfaces its own customer-facing identifiers instead
+  // (Amendment to OSA No., Amendment No., Version). Adding them would
+  // produce permanent false-negatives.
+  pushStrRow('Account name',     snap.accountName,    findString(snap.accountName));
 
   // Dates: SF returns YYYY-MM-DD; PDFs commonly show "Jan 15, 2026" or "1/15/2026" or "15-Jan-2026".
-  // Check several formats.
-  if (snap.startDate) pushRow('Start date', snap.startDate, _dateAnyFormat(snap.startDate, pdfText));
-  if (snap.endDate)   pushRow('End date',   snap.endDate,   _dateAnyFormat(snap.endDate,   pdfText));
+  if (snap.startDate) pushStrRow('Start date', snap.startDate, findDate(snap.startDate));
+  if (snap.endDate)   pushStrRow('End date',   snap.endDate,   findDate(snap.endDate));
 
   // ── Header amounts ─────────────────────────────────────────────────────
-  if (snap.netAmount != null)        pushRow('Net amount (header)', snap.netAmount, findNumber(snap.netAmount));
-  if (snap.subscriptionTerm != null) pushRow('Subscription term',   snap.subscriptionTerm, findNumber(snap.subscriptionTerm, 0.001));
+  if (snap.netAmount != null)        pushNumRow('Net amount (header)', snap.netAmount, findNumber(snap.netAmount));
+  if (snap.subscriptionTerm != null) pushNumRow('Subscription term',   snap.subscriptionTerm, findNumber(snap.subscriptionTerm, 0.001));
 
   // ── Lines ──────────────────────────────────────────────────────────────
+  // Field labels use plain " - " (hyphen) instead of " — " (em-dash) so the
+  // strings survive the LWC's atob/JSON.parse pipeline without mojibake.
   for (let i = 0; i < snap.lines.length; i++) {
     const line = snap.lines[i];
     if (line.isBundle) continue; // bundle parents have no qty/price of their own
     const prefix = `Line ${i + 1} (${line.product})`;
-    pushRow(`${prefix} — product`, line.product, findString(line.product));
-    if (line.quantity != null)      pushRow(`${prefix} — qty`,       line.quantity,      findNumber(line.quantity, 0.001));
-    if (line.customerPrice != null) pushRow(`${prefix} — cust price`,line.customerPrice, findNumber(line.customerPrice));
-    if (line.netTotal != null)      pushRow(`${prefix} — net total`, line.netTotal,      findNumber(line.netTotal));
+    pushStrRow(`${prefix} - product`,    line.product, findString(line.product));
+    if (line.quantity != null)      pushNumRow(`${prefix} - qty`,        line.quantity,      findNumber(line.quantity, 0.001));
+    if (line.customerPrice != null) pushNumRow(`${prefix} - cust price`, line.customerPrice, findNumber(line.customerPrice));
+    if (line.netTotal != null)      pushNumRow(`${prefix} - net total`,  line.netTotal,      findNumber(line.netTotal));
   }
 
-  return { rows, matches, mismatches };
+  return { rows, matches, mismatches, pdfNumbers };
 }
 
 /**
@@ -328,15 +460,29 @@ function _dateAnyFormat(iso, text) {
   if (!y || !m || !d) return false;
   const monthShort = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][m - 1];
   const monthLong  = ['January','February','March','April','May','June','July','August','September','October','November','December'][m - 1];
+  const mm = String(m).padStart(2, '0');
+  const dd = String(d).padStart(2, '0');
+  const yy = String(y).slice(-2);
   const candidates = [
-    iso,
-    `${m}/${d}/${y}`,
-    `${String(m).padStart(2,'0')}/${String(d).padStart(2,'0')}/${y}`,
-    `${monthShort} ${d}, ${y}`,
-    `${monthLong} ${d}, ${y}`,
-    `${d}-${monthShort}-${y}`,
-    `${d} ${monthShort} ${y}`,
+    iso,                                  // 2026-05-20
+    `${m}/${d}/${y}`,                     // 5/20/2026
+    `${mm}/${dd}/${y}`,                   // 05/20/2026
+    `${m}/${d}/${yy}`,                    // 5/20/26
+    `${mm}/${dd}/${yy}`,                  // 05/20/26
+    `${m}-${d}-${y}`,                     // 5-20-2026 (matches OSA filename style "6-1-2026")
+    `${mm}-${dd}-${y}`,                   // 05-20-2026
+    `${monthShort} ${d}, ${y}`,           // May 20, 2026
+    `${monthLong} ${d}, ${y}`,            // May 20, 2026 (long form same here)
+    `${monthShort} ${d} ${y}`,            // May 20 2026 (no comma)
+    `${monthLong} ${d} ${y}`,
+    `${d}-${monthShort}-${y}`,            // 20-May-2026
+    `${d}-${monthShort}-${yy}`,           // 20-May-26 (matches OSA template style)
+    `${dd}-${monthShort}-${y}`,           // 20-May-2026 (zero-padded day)
+    `${dd}-${monthShort}-${yy}`,          // 20-May-26 (both zero-padded)
+    `${d} ${monthShort} ${y}`,            // 20 May 2026
     `${d} ${monthLong} ${y}`,
+    `${d}/${m}/${y}`,                     // 20/5/2026 (UK/EU)
+    `${dd}/${mm}/${y}`,                   // 20/05/2026
   ];
   return candidates.some(c => text.includes(c));
 }
@@ -344,6 +490,7 @@ function _dateAnyFormat(iso, text) {
 module.exports = {
   snapshotForOsa,
   waitForGeneratedPdf,
+  findLatestPdfOnEntities,
   findContentVersionByTitle,
   downloadPdfText,
   comparePdfToSnapshot,

@@ -14,8 +14,8 @@ const { discoverContractByScenarios, openEditorByScenario } = require('./utils/s
  */
 
 const KIND              = 'previewSendOsaInstant';
-const ACCOUNT_SEARCH    = process.env.QTC_ACCOUNT_SEARCH    || 'Bates White';
-const ACCOUNT_FULL_NAME = process.env.QTC_ACCOUNT_FULL_NAME || 'Bates White';
+const ACCOUNT_SEARCH    = process.env.QTC_ACCOUNT_SEARCH    || 'Jacobs Holding AG';
+const ACCOUNT_FULL_NAME = process.env.QTC_ACCOUNT_FULL_NAME || 'Jacobs Holding AG';
 const RESULTS_DIR       = path.join(__dirname, 'results');
 
 /** @type {import('./utils/scenarioContracts').SfCtx & { accountSearch:string, accountFullName:string }} */
@@ -140,12 +140,23 @@ async function runScenario(page, contract, branch, scenarioNumber, scenarioLabel
   const { quoteName } = await openEditorByScenario(page, sfCtx, contract, branch);
   console.log(`[Instant][Scenario ${scenarioNumber}] Editor open on quote ${quoteName}`);
 
-  const hasApproval = await page.getByText('Approvals required').isVisible().catch(() => false);
-  const hasSendBtn  = await u.isVisibleSafe(page.getByRole('button', { name: 'Preview and Send OSA' }), 3_000);
-  console.log(`[Instant][Scenario ${scenarioNumber}] hasApproval=${hasApproval}  hasSendBtn=${hasSendBtn}`);
+  const hasApproval    = await page.getByText('Approvals required').isVisible().catch(() => false);
+  const sendBtn        = page.getByRole('button', { name: 'Preview and Send OSA' });
+  const hasSendBtn     = await u.isVisibleSafe(sendBtn, 3_000);
+  // CPQ disables Preview & Send OSA when the quote has pending approvals; the
+  // button is still rendered but `disabled`/`aria-disabled="true"`. Clicking
+  // it would block Playwright for the actionTimeout before failing — surface
+  // it as a clean SKIP with the gate condition in the rich results instead.
+  const sendBtnEnabled = hasSendBtn && await sendBtn.isEnabled().catch(() => false);
+  console.log(`[Instant][Scenario ${scenarioNumber}] hasApproval=${hasApproval}  hasSendBtn=${hasSendBtn}  sendBtnEnabled=${sendBtnEnabled}`);
 
-  if (!hasSendBtn) {
-    console.log(`[Instant][Scenario ${scenarioNumber}] SKIP — wizard button not rendered`);
+  if (!hasSendBtn || !sendBtnEnabled) {
+    const reason = !hasSendBtn
+      ? '"Preview and Send OSA" button not rendered on quote'
+      : hasApproval
+        ? '"Preview and Send OSA" is disabled because the quote has pending approvals'
+        : '"Preview and Send OSA" is disabled (unknown gate)';
+    console.log(`[Instant][Scenario ${scenarioNumber}] SKIP — ${reason}`);
     buildRichResults({
       kind: KIND, runTs, runDir, testStartMs,
       accountName: ACCOUNT_FULL_NAME,
@@ -153,15 +164,21 @@ async function runScenario(page, contract, branch, scenarioNumber, scenarioLabel
       contract: contract.number, quoteName,
       hasApproval, hasSendBtn,
       passed: true,
-      extra: { skipped: true, reason: '"Preview and Send OSA" button not rendered on quote' },
+      extra: { skipped: true, reason, sendBtnEnabled },
     });
-    test.skip(true, `"Preview and Send OSA" button not rendered on ${quoteName}`);
+    test.skip(true, `${reason} (${quoteName})`);
     return;
   }
 
   const wizard  = await walkInstantPdfWizard(page, runDir);
+  // popupCaptured is intentionally NOT in the pass criteria: the deployed LWC
+  // no longer opens a popup for the Instant PDF path (it generates inline and
+  // advances the wizard directly). "Reached Step 3" is the authoritative
+  // signal that the PDF was generated and saved. Keep popupCaptured in the
+  // dashboard steps list as informational only — green when the LWC version
+  // still pops a window, gray-mismatch when it doesn't.
   const allPass = wizard.wizardOpened && wizard.step1Verified && wizard.step2Verified
-               && wizard.instantBtnClicked && wizard.popupCaptured && wizard.closedCleanly;
+               && wizard.instantBtnClicked && wizard.reachedStep3 && wizard.closedCleanly;
 
   const steps = [
     { name: 'Wizard opened',            expected: true, actual: wizard.wizardOpened      },
