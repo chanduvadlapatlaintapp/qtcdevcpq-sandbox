@@ -6,11 +6,14 @@ const u = require('./utils/playwrightUtils');
 const { buildRichResults, buildUiDbCrossCheck } = require('./utils/richResults');
 const { discoverContractByScenarios, openEditorByScenario } = require('./utils/scenarioContracts');
 
-const KIND              = 'quantityIncrease';
+const KIND              = 'quantityDecrease';
 const ACCOUNT_SEARCH    = process.env.QTC_ACCOUNT_SEARCH    || 'Bates White';
 const ACCOUNT_FULL_NAME = process.env.QTC_ACCOUNT_FULL_NAME || 'Bates White';
 const RESULTS_DIR       = path.join(__dirname, 'results');
-const QTY_DELTA         = 5;
+// Each scenario decreases every line by this amount; CPQ price rules typically
+// reject qty=0, so the typed value is floored at 1 (any line whose current qty
+// ≤ |QTY_DELTA| lands at 1 and the per-line assertion expects 1 too).
+const QTY_DELTA         = -5;
 
 /** @type {import('./utils/scenarioContracts').SfCtx & { accountSearch:string, accountFullName:string }} */
 let sfCtx;
@@ -80,19 +83,16 @@ async function captureMetrics(page) {
 
 const dirCheck = (/** @type {number|null} */ b, /** @type {number|null} */ a) => {
   if (b === null || a === null) return true;
-  return a >= b;
+  return a <= b;     // decrease: post should be ≤ pre
 };
 
 /**
- * Inner feature: from a mounted editor, snapshot every editable line, type
- * +QTY_DELTA on each, save, capture post-save state, query SF REST for the
- * persisted QuoteLine values, build a product-keyed UI↔DB cross-check,
- * surface anomalies, and assert per-line deltas.
+ * Inner feature: snapshot every line, apply QTY_DELTA (floored at 1) to each,
+ * save, capture post-save, query DB, run anomaly detection, assert per-line.
  *
- * Note: preSave[i].initial is re-anchored to the value read RIGHT BEFORE
- * typing — CPQ tier/bundle rules can cascade-adjust adjacent lines as you
- * edit, so pinning to the upfront snapshot would diverge from what was
- * actually typed.
+ * preSave[i].initial is re-anchored to the value read RIGHT BEFORE typing —
+ * CPQ tier/bundle rules can cascade-adjust adjacent lines as we edit, so
+ * pinning to the upfront snapshot would diverge from what was typed.
  *
  * @param {{
  *   page: import('@playwright/test').Page,
@@ -103,7 +103,7 @@ const dirCheck = (/** @type {number|null} */ b, /** @type {number|null} */ a) =>
  *   quoteName: string,
  * }} ctx
  */
-async function runQuantityIncrease(ctx) {
+async function runQuantityDecrease(ctx) {
   const { page, qtc, runDir, runTs, testStartMs, contract, scenarioNumber, scenarioLabel, quoteName } = ctx;
 
   const spinbuttonCount = await qtc.waitForLines(120_000);
@@ -131,13 +131,12 @@ async function runQuantityIncrease(ctx) {
       rowText: rt,
     });
   }
-
   const metricsBeforeSave = await captureMetrics(page);
 
   for (let i = 0; i < spinbuttonCount; i++) {
     const sb      = spinbuttons.nth(i);
     const current = parseFloat(await sb.inputValue().catch(() => '0')) || 0;
-    const newVal  = current + QTY_DELTA;
+    const newVal  = Math.max(1, current + QTY_DELTA);
     await sb.click({ clickCount: 3 });
     await sb.fill(String(newVal));
     await sb.press('Tab');
@@ -158,7 +157,7 @@ async function runQuantityIncrease(ctx) {
   const metricsAfterSave = await captureMetrics(page);
   await u.screenshot(page, runDir, '05-final');
 
-  // DB verification — discover available fields first, then build SOQL.
+  // DB verification — discover available fields first.
   /** @type {string|null} */ let soql = null;
   /** @type {string|null} */ let headerSoql = null;
   if (quoteName) {
@@ -286,7 +285,7 @@ async function runQuantityIncrease(ctx) {
   const lineResults = [];
   let allQtyPass = true;
   for (let i = 0; i < spinbuttonCount; i++) {
-    const expected = preSave[i].initial + QTY_DELTA;
+    const expected = Math.max(1, preSave[i].initial + QTY_DELTA);
     const actual   = postSave[i];
     const pass     = Math.abs(actual - expected) < 0.001;
     if (!pass) allQtyPass = false;
@@ -338,7 +337,7 @@ async function runQuantityIncrease(ctx) {
     dbComparison, dbAnomalies,
     uiDbCrossCheck, crossCheckMismatches,
     passed: allPass,
-    extra: { dbHeader, dbError },
+    extra: { dbHeader, dbError, floor: 1 },
   });
 
   expect(allQtyPass, 'All line quantity assertions should pass').toBe(true);
@@ -360,25 +359,25 @@ async function runScenario(page, contract, branch, scenarioNumber, scenarioLabel
   const { qtc, quoteName } = await openEditorByScenario(page, sfCtx, contract, branch);
   console.log(`[Scenario ${scenarioNumber}] Editor open on quote ${quoteName}`);
 
-  await runQuantityIncrease({
+  await runQuantityDecrease({
     page, qtc, runDir, runTs, testStartMs,
     contract, scenarioNumber, scenarioLabel, quoteName,
   });
 }
 
-test('Scenario 1: contract with 0 amendments — creates new amendment, then qty change', async ({ page }) => {
+test('Scenario 1: contract with 0 amendments — creates new amendment, then qty decrease', async ({ page }) => {
   const c = contractCache?.byScenario.zero;
   test.skip(!c, `No contract on ${ACCOUNT_FULL_NAME} currently has 0 draft amendments`);
   await runScenario(page, /** @type {any} */ (c), 'zero', 1, 'Contract with 0 amendments → new amendment');
 });
 
-test('Scenario 2: contract with 1 amendment — opens existing amendment, then qty change', async ({ page }) => {
+test('Scenario 2: contract with 1 amendment — opens existing amendment, then qty decrease', async ({ page }) => {
   const c = contractCache?.byScenario.one;
   test.skip(!c, `No contract on ${ACCOUNT_FULL_NAME} currently has exactly 1 draft amendment`);
   await runScenario(page, /** @type {any} */ (c), 'one', 2, 'Contract with 1 amendment → existing draft');
 });
 
-test('Scenario 3: contract with multiple amendments — picks from modal, then qty change', async ({ page }) => {
+test('Scenario 3: contract with multiple amendments — picks from modal, then qty decrease', async ({ page }) => {
   const c = contractCache?.byScenario.many;
   test.skip(!c, `No contract on ${ACCOUNT_FULL_NAME} currently has 2+ draft amendments`);
   await runScenario(page, /** @type {any} */ (c), 'many', 3, 'Contract with 2+ amendments → modal pick');

@@ -22,25 +22,27 @@ const https             = require('https');
 const http              = require('http');
 const { URL }           = require('url');
 const os                = require('os');
-const { getSfCredentials } = require('./auth');
+
+const { getSfCredentials, refreshCredentials } = require('./auth');
 const { runSuite }         = require('./runner');
 const { uploadFile, insertTestResults, patchTestRun } = require('./uploader');
 
-// ─── Config ──────────────────────────────────────────────────────────────────
+// ─── Config ──────────────────────────────────────────────────────────────
 
 const POLL_INTERVAL_MS = parseInt(process.env.QTC_POLL_INTERVAL || '3000', 10);
 const AGENT_ID         = `${os.hostname()}-${process.pid}`;
 const SF_API_VER       = process.env.QTC_SF_API_VERSION || '62.0';
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
+// ─── Helpers ─────────────────────────────────────────────────────────────
 
 function log(msg) {
     console.log(`[${new Date().toISOString()}] ${msg}`);
 }
 
-async function sfGet(path) {
+async function sfGet(path, _retried = false) {
     const { instanceUrl, accessToken } = getSfCredentials();
     const url = new URL(path, instanceUrl);
+
     return new Promise((resolve, reject) => {
         const options = {
             hostname : url.hostname,
@@ -53,6 +55,13 @@ async function sfGet(path) {
             let data = '';
             res.on('data', c => { data += c; });
             res.on('end', () => {
+                // Salesforce session token expired (~2hr) — refresh and retry once.
+                if (res.statusCode === 401 && !_retried) {
+                    log(`Got 401 on GET ${path}; refreshing SF credentials and retrying once.`);
+                    refreshCredentials();
+                    sfGet(path, true).then(resolve, reject);
+                    return;
+                }
                 if (res.statusCode >= 400) {
                     reject(new Error(`GET ${path} → ${res.statusCode}: ${data}`));
                 } else {
@@ -65,7 +74,7 @@ async function sfGet(path) {
     });
 }
 
-async function sfPatch(path, body) {
+async function sfPatch(path, body, _retried = false) {
     const { instanceUrl, accessToken } = getSfCredentials();
     const url     = new URL(path, instanceUrl);
     const bodyStr = JSON.stringify(body);
@@ -75,8 +84,8 @@ async function sfPatch(path, body) {
             path     : url.pathname + url.search,
             method   : 'PATCH',
             headers  : {
-                Authorization  : `Bearer ${accessToken}`,
-                'Content-Type' : 'application/json',
+                Authorization   : `Bearer ${accessToken}`,
+                'Content-Type'  : 'application/json',
                 'Content-Length': Buffer.byteLength(bodyStr),
             },
         };
@@ -85,6 +94,13 @@ async function sfPatch(path, body) {
             let data = '';
             res.on('data', c => { data += c; });
             res.on('end', () => {
+                // Salesforce session token expired (~2hr) — refresh and retry once.
+                if (res.statusCode === 401 && !_retried) {
+                    log(`Got 401 on PATCH ${path}; refreshing SF credentials and retrying once.`);
+                    refreshCredentials();
+                    sfPatch(path, body, true).then(resolve, reject);
+                    return;
+                }
                 if (res.statusCode >= 400) {
                     reject(new Error(`PATCH ${path} → ${res.statusCode}: ${data}`));
                 } else {
@@ -98,7 +114,7 @@ async function sfPatch(path, body) {
     });
 }
 
-// ─── Core loop ────────────────────────────────────────────────────────────────
+// ─── Core loop ────────────────────────────────────────────────────────────
 
 async function pollOnce() {
     const { apiBase } = getSfCredentials();
@@ -115,13 +131,9 @@ async function pollOnce() {
     const run = result.records[0];
     log(`Found PENDING run: ${run.Name} (${run.Id}) suite="${run.Test_Suite__c}"`);
 
-    // ── Step 1: Claim the run (PENDING → CLAIMED) ────────────────────────────
+    // ── Step 1: Claim the run (PENDING → CLAIMED) ────────────────────────
     // Two agents running simultaneously both see the record as PENDING.
-    // We PATCH with a conditional filter — Salesforce rejects the PATCH
-    // if the record no longer matches (i.e. another agent already claimed it).
-    // We use a raw REST call with If-Modified-Since? No — SF doesn't support
-    // conditional PATCHes. Instead we just do the PATCH and re-query to
-    // confirm we own it (cheap and reliable in practice for QA workloads).
+    // We PATCH and re-query to confirm we own it (cheap and reliable).
     try {
         await sfPatch(
             `/services/data/v${SF_API_VER}/sobjects/Test_Run__c/${run.Id}`,
@@ -142,36 +154,38 @@ async function pollOnce() {
         return;
     }
 
-    // ── Step 2: Set RUNNING ──────────────────────────────────────────────────
+    // ── Step 2: Set RUNNING ──────────────────────────────────────────────
     await sfPatch(
         `/services/data/v${SF_API_VER}/sobjects/Test_Run__c/${run.Id}`,
         {
-            Status__c    : 'RUNNING',
-            Started_At__c: new Date().toISOString(),
-            Agent_Last_Heartbeat__c: new Date().toISOString(),
+            Status__c                : 'RUNNING',
+            Started_At__c            : new Date().toISOString(),
+            Agent_Last_Heartbeat__c  : new Date().toISOString(),
         }
     );
     log(`Claimed and set RUNNING: ${run.Id}`);
 
-    // ── Step 3: Run Playwright ───────────────────────────────────────────────
+    // ── Step 3: Run Playwright ───────────────────────────────────────────
     let playwrightResult;
     try {
         playwrightResult = await runSuite(run.Test_Suite__c, run.Id);
     } catch (e) {
         playwrightResult = {
-            status: 'ERROR',
-            passed: 0, failed: 0, durationMs: 0,
-            logOutput: '',
-            errorMessage: `Runner threw: ${e.message}`,
-            tests: [], screenshots: [], videoPath: null,
+            status       : 'ERROR',
+            passed       : 0,
+            failed       : 0,
+            durationMs   : 0,
+            logOutput    : '',
+            errorMessage : `Runner threw: ${e.message}`,
+            tests        : [],
+            screenshots  : [],
+            videoPath    : null,
         };
     }
 
-    log(`Playwright finished: ${playwrightResult.status} ` +
-        `(${playwrightResult.passed}✓ ${playwrightResult.failed}✗ ` +
-        `${playwrightResult.durationMs}ms)`);
+    log(`Playwright finished: ${playwrightResult.status} (${playwrightResult.passed}✓ ${playwrightResult.failed}✗ ${playwrightResult.durationMs}ms)`);
 
-    // ── Step 4: Upload Test_Result__c records ────────────────────────────────
+    // ── Step 4: Upload Test_Result__c records ────────────────────────────
     if (playwrightResult.tests.length > 0) {
         try {
             await insertTestResults(run.Id, playwrightResult.tests);
@@ -180,7 +194,7 @@ async function pollOnce() {
         }
     }
 
-    // ── Step 5: Upload screenshots ───────────────────────────────────────────
+    // ── Step 5: Upload screenshots ───────────────────────────────────────
     for (const screenshotPath of playwrightResult.screenshots) {
         try {
             const title = require('path').basename(screenshotPath);
@@ -190,7 +204,7 @@ async function pollOnce() {
         }
     }
 
-    // ── Step 6: Upload video ─────────────────────────────────────────────────
+    // ── Step 6: Upload video ─────────────────────────────────────────────
     if (playwrightResult.videoPath) {
         try {
             await uploadFile(playwrightResult.videoPath, `video-${run.Name}.webm`, run.Id);
@@ -199,18 +213,52 @@ async function pollOnce() {
         }
     }
 
-    // ── Step 7: Finalise the Test_Run__c record ──────────────────────────────
-    await patchTestRun(run.Id, {
-        status      : playwrightResult.status,
-        passed      : playwrightResult.passed,
-        failed      : playwrightResult.failed,
-        durationMs  : playwrightResult.durationMs,
-        errorMessage: playwrightResult.errorMessage,
-        logOutput   : playwrightResult.logOutput,
-        completedAt : new Date().toISOString(),
-    });
+    // ── Step 6.5: Upload rich-results.json ───────────────────────────────
+    // The dashboard's UI↔DB / DB Lines / Anomalies / Metrics tabs are
+    // populated by parsing a ContentDocumentLink whose title is exactly
+    // 'rich-results.json' (see agenticQtcTestDashboard.js _loadRunFiles).
+    // Without this upload those tabs stay empty even when the spec wrote
+    // a valid results.json under tests/e2e/results/runs/<ts>/.
+    if (playwrightResult.richResultsPath) {
+        try {
+            await uploadFile(playwrightResult.richResultsPath, 'rich-results.json', run.Id);
+        } catch (e) {
+            log(`Warning: rich-results.json upload failed: ${e.message}`);
+        }
+    }
 
-    log(`Run ${run.Id} complete → ${playwrightResult.status}`);
+    // ── Step 7: Finalise the Test_Run__c record ──────────────────────────
+    // Wrap in try/catch so a final-patch failure (e.g. transient SF outage
+    // even after the 401-retry) is loud in the agent log instead of just
+    // bubbling up to the loop's generic "Poll error" catch — which would
+    // leave the dashboard stuck on RUNNING with no indication of why.
+    try {
+        await patchTestRun(run.Id, {
+            status       : playwrightResult.status,
+            passed       : playwrightResult.passed,
+            failed       : playwrightResult.failed,
+            durationMs   : playwrightResult.durationMs,
+            errorMessage : playwrightResult.errorMessage,
+            logOutput    : playwrightResult.logOutput,
+            completedAt  : new Date().toISOString(),
+        });
+        log(`Run ${run.Id} complete → ${playwrightResult.status}`);
+    } catch (e) {
+        log(`ERROR: final patchTestRun for ${run.Id} failed — dashboard will stay on RUNNING. Cause: ${e.message}`);
+        // Last-ditch: try once more with only the status field so at least the
+        // dashboard moves off RUNNING. Body size limits / field-level security
+        // could be the cause of the original failure.
+        try {
+            await patchTestRun(run.Id, {
+                status      : playwrightResult.status,
+                completedAt : new Date().toISOString(),
+                errorMessage: 'Result upload partially failed — see agent log',
+            });
+            log(`Fallback patch succeeded — ${run.Id} marked ${playwrightResult.status}`);
+        } catch (e2) {
+            log(`ERROR: fallback patch also failed for ${run.Id}: ${e2.message}`);
+        }
+    }
 }
 
 async function startAgent() {
@@ -238,7 +286,7 @@ async function startAgent() {
     loop();
 }
 
-// ─── Entry point ─────────────────────────────────────────────────────────────
+// ─── Entry point ─────────────────────────────────────────────────────────
 
 startAgent().catch(e => {
     console.error('[agent] Unhandled error:', e);

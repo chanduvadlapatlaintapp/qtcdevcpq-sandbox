@@ -32,19 +32,12 @@ function resolveProjectRoot() {
 const PROJECT_ROOT = resolveProjectRoot();
 const RESULTS_DIR  = path.join(PROJECT_ROOT, 'test-results');
 
-// ─── Suite → spec file mapping ───────────────────────────────────────────────
-
-const SUITE_MAP = {
-    agenticQtcQuantityIncrease : 'tests/e2e/agenticQtcQuantityIncrease.spec.js',
-    demoPdfGeneration          : 'tests/e2e/demo-pdf-generation.spec.js',
-};
-
 // ─── Main export ─────────────────────────────────────────────────────────────
 
 /**
  * Run a Playwright suite and return a result object.
  *
- * @param {string} suiteName  - One of the keys in SUITE_MAP
+ * @param {string} suiteName  - Test suite name (maps to tests/e2e/{suiteName}.spec.js)
  * @param {string} testRunId  - Salesforce Test_Run__c Id (used for result folder naming)
  * @returns {{
  *   status       : 'PASSED'|'FAILED'|'ERROR',
@@ -59,11 +52,8 @@ const SUITE_MAP = {
  * }}
  */
 async function runSuite(suiteName, testRunId) {
-    const specFile = SUITE_MAP[suiteName];
-    if (!specFile) {
-        return _errorResult(`Unknown suite: "${suiteName}". Valid: ${Object.keys(SUITE_MAP).join(', ')}`);
-    }
-
+    // Build the spec file path from suite name
+    const specFile = `tests/e2e/${suiteName}.spec.js`;
     const specPath = path.join(PROJECT_ROOT, specFile);
     if (!fs.existsSync(specPath)) {
         return _errorResult(`Spec file not found: ${specPath}`);
@@ -77,7 +67,7 @@ async function runSuite(suiteName, testRunId) {
 
     const args = [
         'playwright', 'test',
-        specPath,
+        specFile,
         '--reporter=json',
         `--output=${outputDir}`,
     ];
@@ -92,11 +82,15 @@ async function runSuite(suiteName, testRunId) {
     console.log(`[runner] Starting Playwright: npx ${args.join(' ')}`);
     const start   = Date.now();
 
-    // spawnSync is fine — the agent loop runs one job at a time
+    // shell:true required on Windows / Node 20+ to spawn npx.cmd (CVE-2024-27980).
+    // Without it: spawnSync('npx', ...) throws ENOENT because Node refuses to
+    // spawn .cmd files via the direct execve path. Harmless on Linux/Mac.
+    const isWin = process.platform === 'win32';
     const result = spawnSync('npx', args, {
         cwd   : PROJECT_ROOT,
         env,
         stdio : 'pipe',
+        shell : isWin,
         timeout: 10 * 60 * 1000, // 10 min hard cap
     });
 
@@ -122,10 +116,56 @@ async function runSuite(suiteName, testRunId) {
 
     const passed = tests.filter(t => t.status === 'PASSED').length;
     const failed = tests.filter(t => t.status === 'FAILED').length;
-    const status = result.status === 0 ? 'PASSED' : 'FAILED';
+    // Status must reflect BOTH the process exit code and the per-test failure
+    // count. Trusting exit code alone (was: `result.status === 0 ? 'PASSED' : 'FAILED'`)
+    // produced a "PASSED" badge with failed=1 when Playwright exits 0 despite
+    // a failure in its JSON output — observed on TR-0742 with a skipped+failed
+    // mix. Counting any failure as a failure keeps the badge honest.
+    const status = (result.status === 0 && failed === 0) ? 'PASSED' : 'FAILED';
 
-    // Collect screenshots
-    const screenshots = _collectScreenshots(outputDir);
+    // Collect richResults + spec screenshots from the spec's run directory
+    // The spec writes to tests/e2e/results/runs/<timestamp>/ — pick the newest.
+    let richResults     = null;
+    let richResultsPath = null;
+    let screenshots     = _collectScreenshots(outputDir); // fallback: Playwright artifacts
+
+    const specRunsDir = path.join(PROJECT_ROOT, 'tests', 'e2e', 'results', 'runs');
+    if (fs.existsSync(specRunsDir)) {
+        try {
+            const entries = fs.readdirSync(specRunsDir, { withFileTypes: true })
+                .filter(e => e.isDirectory())
+                .map(e => {
+                    const full = path.join(specRunsDir, e.name);
+                    return { full, mtime: fs.statSync(full).mtimeMs };
+                })
+                .sort((a, b) => b.mtime - a.mtime); // newest first
+
+            if (entries.length > 0) {
+                const newestDir = entries[0].full;
+
+                // Load richResults JSON
+                const richPath = path.join(newestDir, 'results.json');
+                if (fs.existsSync(richPath)) {
+                    richResultsPath = richPath;
+                    try {
+                        richResults = JSON.parse(fs.readFileSync(richPath, 'utf8'));
+                        console.log(`[runner] Loaded richResults from ${path.basename(newestDir)}`);
+                    } catch (e) {
+                        console.warn('[runner] Could not parse spec results.json:', e.message);
+                    }
+                }
+
+                // Prefer spec screenshots (higher quality, named) over Playwright artifacts
+                const specShots = _collectScreenshots(newestDir);
+                if (specShots.length > 0) {
+                    screenshots = specShots;
+                    console.log(`[runner] Using ${specShots.length} spec screenshot(s) from run dir`);
+                }
+            }
+        } catch (e) {
+            console.warn('[runner] Could not scan spec runs dir:', e.message);
+        }
+    }
 
     // Collect video (Playwright saves as webm inside test-results/<hash>/video.webm)
     const videoPath = _findVideo(outputDir);
@@ -139,6 +179,8 @@ async function runSuite(suiteName, testRunId) {
         errorMessage : status === 'FAILED' ? `${failed} test(s) failed` : null,
         tests,
         screenshots,
+        richResults,
+        richResultsPath,
         videoPath,
     };
 }
@@ -176,12 +218,18 @@ function _walkSuite(suite, results) {
 }
 
 function _mapStatus(pw) {
+    // Playwright JSON reporter sets test.status to:
+    //   'expected'   — test passed as expected
+    //   'unexpected' — test failed
+    //   'flaky'      — failed then passed on retry (still counts as PASSED)
+    //   'skipped'    — skipped
+    // NOT 'passed'/'failed' — those only appear on individual test.results[n].status
     switch ((pw || '').toLowerCase()) {
-        case 'passed':    return 'PASSED';
-        case 'failed':    return 'FAILED';
-        case 'timedout':  return 'FAILED';
-        case 'skipped':   return 'SKIPPED';
-        default:          return 'FAILED';
+        case 'expected':    return 'PASSED';
+        case 'flaky':       return 'PASSED';   // passed after retry
+        case 'skipped':     return 'SKIPPED';
+        case 'unexpected':  return 'FAILED';
+        default:            return 'FAILED';
     }
 }
 

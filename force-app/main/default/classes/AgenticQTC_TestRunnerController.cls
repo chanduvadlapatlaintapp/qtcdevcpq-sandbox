@@ -39,11 +39,15 @@ public with sharing class AgenticQTC_TestRunnerController {
     }
 
     public class AttachmentWrapper {
-        @AuraEnabled public String id          { get; set; }
-        @AuraEnabled public String title       { get; set; }
-        @AuraEnabled public String fileType    { get; set; }
-        @AuraEnabled public String versionId   { get; set; }
-        @AuraEnabled public String downloadUrl { get; set; }
+        @AuraEnabled public String id             { get; set; }
+        @AuraEnabled public String title          { get; set; }
+        @AuraEnabled public String fileType       { get; set; }
+        @AuraEnabled public String fileExtension  { get; set; }  // e.g. 'webm', 'png'
+        @AuraEnabled public String versionId      { get; set; }
+        @AuraEnabled public String downloadUrl    { get; set; }
+        // Base64-encoded text content for small files (rich-results.json, log-output.txt).
+        // LWC decodes with atob() — avoids CSP/fetch issues entirely.
+        @AuraEnabled public String textContentB64 { get; set; }
     }
 
     // ─── LWC-callable methods ────────────────────────────────────────────────
@@ -52,30 +56,34 @@ public with sharing class AgenticQTC_TestRunnerController {
      * Creates a new Test_Run__c record with PENDING status.
      */
     @AuraEnabled
-    public static String createTestRun(String testSuite) {
+    public static String createTestRun(String testSuite, String runner) {
         if (String.isBlank(testSuite)) {
             throw new AuraHandledException('testSuite is required.');
         }
 
-        // Mark as CLAIMED immediately so the local polling agent (if running)
-        // does not pick it up — GitHub Actions will be the runner.
+        // runner = 'github'  → CLAIMED immediately, trigger GitHub Actions workflow.
+        // runner = 'local'   → PENDING, local agent picks it up via polling.
+        // null / anything else → default to 'local' for backward compatibility.
+        Boolean useGitHub = 'github'.equalsIgnoreCase(runner);
+
         Test_Run__c run = new Test_Run__c(
             Test_Suite__c    = testSuite,
-            Status__c        = 'CLAIMED',
-            Agent_Id__c      = 'github-actions',
+            Status__c        = useGitHub ? 'CLAIMED' : 'PENDING',
+            Agent_Id__c      = useGitHub ? 'github-actions' : null,
             Requested_By__c  = UserInfo.getUserId()
         );
 
         insert run;
 
-        // Trigger the GitHub Actions workflow asynchronously.
-        // @future(callout=true) is required because callouts are not allowed
-        // in the same transaction as DML.
-        AgenticQTC_GitHubActionsService.triggerWorkflowAsync(
-            run.Id,
-            testSuite,
-            URL.getOrgDomainUrl().toExternalForm()
-        );
+        if (useGitHub) {
+            // Trigger GitHub Actions asynchronously.
+            // @future(callout=true) is required: no callouts allowed in same DML transaction.
+            AgenticQTC_GitHubActionsService.triggerWorkflowAsync(
+                run.Id,
+                testSuite,
+                URL.getOrgDomainUrl().toExternalForm()
+            );
+        }
 
         return run.Id;
     }
@@ -164,16 +172,40 @@ public with sharing class AgenticQTC_TestRunnerController {
             ORDER BY ContentDocument.CreatedDate ASC
         ];
 
+        // Collect version IDs for small text files so we can fetch their content in one query
+        Set<Id> textVersionIds = new Set<Id>();
+        for (ContentDocumentLink link : links) {
+            String t = link.ContentDocument.Title;
+            if (t == 'rich-results.json' || t == 'log-output.txt') {
+                textVersionIds.add(link.ContentDocument.LatestPublishedVersionId);
+            }
+        }
+        Map<Id, ContentVersion> textVersionMap = new Map<Id, ContentVersion>();
+        if (!textVersionIds.isEmpty()) {
+            for (ContentVersion cv : [
+                SELECT Id, VersionData FROM ContentVersion WHERE Id IN :textVersionIds WITH SYSTEM_MODE
+            ]) {
+                textVersionMap.put(cv.Id, cv);
+            }
+        }
+
         List<AttachmentWrapper> results = new List<AttachmentWrapper>();
         for (ContentDocumentLink link : links) {
             AttachmentWrapper w = new AttachmentWrapper();
-            w.id          = link.ContentDocumentId;
-            w.title       = link.ContentDocument.Title;
-            w.fileType    = link.ContentDocument.FileType;
-            w.versionId   = link.ContentDocument.LatestPublishedVersionId;
-            w.downloadUrl = '/sfc/servlet.shepherd/version/download/'
-                          + link.ContentDocument.LatestPublishedVersionId
-                          + '?operationContext=CHATTER';
+            w.id            = link.ContentDocumentId;
+            w.title         = link.ContentDocument.Title;
+            w.fileType      = link.ContentDocument.FileType;
+            w.fileExtension = link.ContentDocument.FileExtension;
+            w.versionId     = link.ContentDocument.LatestPublishedVersionId;
+            w.downloadUrl   = '/sfc/servlet.shepherd/version/download/'
+                            + link.ContentDocument.LatestPublishedVersionId
+                            + '?operationContext=CHATTER';
+            // Inline text content for rich-results.json and log-output.txt
+            if (textVersionMap.containsKey((Id)w.versionId)) {
+                w.textContentB64 = EncodingUtil.base64Encode(
+                    textVersionMap.get((Id)w.versionId).VersionData
+                );
+            }
             results.add(w);
         }
         return results;

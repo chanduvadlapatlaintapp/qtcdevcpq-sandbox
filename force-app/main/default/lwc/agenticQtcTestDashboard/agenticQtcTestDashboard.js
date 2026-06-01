@@ -12,8 +12,20 @@ const IN_PROGRESS_STATUSES    = new Set(['PENDING', 'CLAIMED', 'RUNNING']);
 const MAX_POLL_MS             = 22 * 60 * 1000;
 
 const SUITE_OPTIONS = [
-    { label: 'Quantity Increase (Full Flow)',  value: 'agenticQtcQuantityIncrease' },
-    { label: 'PDF Generation Demo',            value: 'demoPdfGeneration' },
+    { label: 'Quantity Increase (Full Flow)',         value: 'agenticQtcQuantityIncrease' },
+    { label: 'Quantity Decrease (Full Flow)',         value: 'agenticQtcQuantityDecrease' },
+    { label: 'Quantity Increase — MDQ Segments',      value: 'agenticQtcQuantityIncreaseSegments' },
+    { label: 'Quantity Decrease — MDQ Segments',      value: 'agenticQtcQuantityDecreaseSegments' },
+    { label: 'Start Date Change',                     value: 'agenticQtcStartDateChange' },
+    { label: 'Start Date Boundary Rejection',         value: 'agenticQtcStartDateBoundary' },
+    { label: 'Contact Update (Invoicing & Delivery)', value: 'agenticQtcContactUpdate' },
+    { label: 'Preview & Send OSA — Using Conga',      value: 'agenticQtcPreviewSendOSAUsingConga' },
+    { label: 'Preview & Send OSA — Using Salesforce', value: 'agenticQtcPreviewSendOSAUsingSalesforce' },
+];
+
+const RUNNER_OPTIONS = [
+    { label: '☁️ GitHub', value: 'github', title: 'Run on GitHub Actions (cloud, headless)' },
+    { label: '🖥 Local',  value: 'local',  title: 'Run on local agent (this machine)' },
 ];
 
 export default class AgenticQtcTestDashboard extends LightningElement {
@@ -21,6 +33,7 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     // ── reactive state ──────────────────────────────────────────────────────
 
     @track selectedSuite      = SUITE_OPTIONS[0].value;
+    @track selectedRunner     = 'github';
     @track activeRunId        = null;
     @track activeRun          = null;
     @track recentRuns         = [];
@@ -30,6 +43,7 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     @track isDarkMode         = true;
     @track activeRunFiles       = [];       // AttachmentWrapper[]
     @track parsedRichResults    = null;     // parsed richResults JSON
+    @track _logFromFile         = null;     // log text fetched from log-output.txt ContentVersion
     @track showLogOutput        = false;
     @track lightboxIndex        = null;     // null = closed, number = open
     @track activeTab            = 'screenshots';
@@ -59,6 +73,15 @@ export default class AgenticQtcTestDashboard extends LightningElement {
 
     get suiteOptions()       { return SUITE_OPTIONS; }
 
+    get runnerOptions() {
+        return RUNNER_OPTIONS.map(r => ({
+            ...r,
+            btnClass: this.selectedRunner === r.value ? 'runner-btn runner-btn-active' : 'runner-btn',
+        }));
+    }
+    get isGitHubRunner() { return this.selectedRunner === 'github'; }
+    get isLocalRunner()  { return this.selectedRunner === 'local'; }
+
     get containerClass() {
         return `runner-container ${this.isDarkMode ? 'dark-theme' : 'light-theme'}`;
     }
@@ -72,7 +95,11 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     }
 
     get runBtnClass()        { return (this.isRunning || this.isCreating) ? 'btn btn-run running' : 'btn btn-run'; }
-    get runButtonLabel()     { return this.isCreating ? 'Creating…' : this.isRunning ? 'Running…' : 'Run Tests'; }
+    get runButtonLabel() {
+        if (this.isCreating) return 'Creating…';
+        if (this.isRunning)  return 'Running…';
+        return this.selectedRunner === 'github' ? 'Run on GitHub' : 'Run Local';
+    }
     get runButtonDisabled()  { return this.isRunning || this.isCreating || !this.selectedSuite; }
 
     get cancelButtonDisabled() {
@@ -117,6 +144,29 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     }
 
     get hasImages()          { return this.activeRunImages.length > 0; }
+
+    // ── computed getters: video ─────────────────────────────────────────────
+
+    get activeRunVideo() {
+        // Salesforce assigns FileType='UNKNOWN' for .webm — use fileExtension first
+        // (now exposed by Apex), then fall back to title scan
+        return this.activeRunFiles.find(f =>
+            /^(webm|mp4)$/i.test(f.fileExtension || '') ||
+            /^(WEBM|MP4)$/i.test(f.fileType     || '') ||
+            /\.(webm|mp4)$/i.test(f.title        || '')
+        ) || null;
+    }
+
+    get hasVideo() { return this.activeRunVideo !== null; }
+
+    get videoSrc() {
+        return this.activeRunVideo ? this.activeRunVideo.downloadUrl : '';
+    }
+
+    get videoSizeMb() {
+        // title is "video-<runId>.webm" — size not stored, just label it
+        return this.activeRunVideo ? this.activeRunVideo.title : '';
+    }
 
     // ── computed getters: lightbox ──────────────────────────────────────────
 
@@ -400,8 +450,8 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     get activeRunCompletedAt() { return this.activeRun ? (this.activeRun.completedAtDisplay || '—') : '—'; }
     get activeRunCreatedAt()   { return this.activeRun ? (this.activeRun.createdDateDisplay || '—') : '—'; }
 
-    get hasLogOutput()  { return !!(this.activeRun && this.activeRun.logOutput); }
-    get logOutputText() { return (this.activeRun && this.activeRun.logOutput) || ''; }
+    get hasLogOutput()  { return !!(this.activeRun && (this.activeRun.logOutput || this._logFromFile)); }
+    get logOutputText() { return (this.activeRun && this.activeRun.logOutput) || this._logFromFile || ''; }
     get showLogLabel()  { return this.showLogOutput ? 'Hide Log' : 'Show Log'; }
 
     // ── event handlers ──────────────────────────────────────────────────────
@@ -413,6 +463,11 @@ export default class AgenticQtcTestDashboard extends LightningElement {
 
     handleSuiteChange(event) {
         this.selectedSuite = event.target.value;
+    }
+
+    handleRunnerChange(event) {
+        const runner = event.currentTarget.dataset.runner;
+        if (runner && !this.isRunning) this.selectedRunner = runner;
     }
 
     handleToggleTheme() {
@@ -463,6 +518,7 @@ export default class AgenticQtcTestDashboard extends LightningElement {
         this.isCreating        = true;
         this.activeRunFiles    = [];
         this.parsedRichResults = null;
+        this._logFromFile      = null;
         this.showLogOutput     = false;
         this.lightboxIndex     = null;
 
@@ -470,7 +526,7 @@ export default class AgenticQtcTestDashboard extends LightningElement {
         const placeholder = {
             id:             this._placeholderId,
             name:           '…',
-            status:         'PENDING',
+            status:         this.selectedRunner === 'github' ? 'CLAIMED' : 'PENDING',
             testSuite:      suiteLabel,
             testsPassed:    null,
             testsFailed:    null,
@@ -488,7 +544,7 @@ export default class AgenticQtcTestDashboard extends LightningElement {
 
         try {
             // ── Step 2: create the SF record (takes ~1-2s) ──────────────────
-            const runId = await createTestRun({ testSuite: this.selectedSuite });
+            const runId = await createTestRun({ testSuite: this.selectedSuite, runner: this.selectedRunner });
             this.activeRunId        = runId;
             this.activeSidebarRunId = runId;
             this.isCreating  = false;
@@ -538,6 +594,7 @@ export default class AgenticQtcTestDashboard extends LightningElement {
         this.activeSidebarRunId = runId;
         this.activeRunFiles    = [];
         this.parsedRichResults = null;
+        this._logFromFile      = null;
         this.showLogOutput     = false;
         getTestRun({ testRunId: runId })
             .then(run => {
@@ -645,6 +702,37 @@ export default class AgenticQtcTestDashboard extends LightningElement {
             .then(files => {
                 this.activeRunFiles = files || [];
                 if (this.activeRunImages.length > 0) this.activeTab = 'screenshots';
+
+                // ── Fallback for orgs where Rich_Results__c / Log_Output__c fields
+                //    don't exist: read textContentB64 returned inline by Apex (base64-encoded).
+                //    This avoids CSP/fetch issues — Apex serves the content directly.
+                const richFile = (files || []).find(f => f.title === 'rich-results.json');
+                const logFile  = (files || []).find(f => f.title === 'log-output.txt');
+
+                if (richFile && richFile.textContentB64 && !this.parsedRichResults) {
+                    try {
+                        const json = JSON.parse(atob(richFile.textContentB64));
+                        this.parsedRichResults = json;
+                        // Re-run tab auto-select now that rich results are available
+                        if (this.activeRunImages.length > 0)                    { this.activeTab = 'screenshots'; }
+                        else if (this.hasMismatchRows)                          { this.activeTab = 'crosscheck'; }
+                        else if (this.hasRichDbRows)                            { this.activeTab = 'db'; }
+                        else if (this.hasRichMetrics || this.hasRichLineRows)   { this.activeTab = 'metrics'; }
+                        else if (this.hasRichAnomalies)                         { this.activeTab = 'anomalies'; }
+                        else if (this.hasTestResults)                           { this.activeTab = 'spec'; }
+                        else if (this.hasLogOutput)                             { this.activeTab = 'log'; }
+                    } catch (e) {
+                        console.warn('[agenticQtcTestDashboard] rich-results.json parse failed:', e);
+                    }
+                }
+
+                if (logFile && logFile.textContentB64 && !this._logFromFile) {
+                    try {
+                        this._logFromFile = atob(logFile.textContentB64);
+                    } catch (e) {
+                        console.warn('[agenticQtcTestDashboard] log-output.txt decode failed:', e);
+                    }
+                }
             })
             .catch(err  => console.error('Error loading run files:', err));
     }
@@ -652,6 +740,7 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     _parseRichResults(run) {
         if (!run || !run.richResults) {
             this.parsedRichResults = null;
+            // Don't clear _logFromFile here — it may still be fetching
             return;
         }
         try {

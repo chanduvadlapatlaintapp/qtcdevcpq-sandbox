@@ -83,8 +83,22 @@ async function main() {
         body.Completed_At__c = now;
     }
 
+    const urlPath = `/services/data/v${SF_API_VER}/sobjects/Test_Run__c/${testRunId}`;
     console.log(`[update-run] Patching ${testRunId} → ${status}`);
-    await sfPatch(`/services/data/v${SF_API_VER}/sobjects/Test_Run__c/${testRunId}`, body);
+
+    try {
+        await sfPatch(urlPath, body);
+    } catch (err) {
+        // If the PATCH failed due to missing optional fields (e.g. org missing
+        // Started_At__c / Completed_At__c), fall back to updating Status only.
+        if (err.message && err.message.includes('INVALID_FIELD')) {
+            console.warn('[update-run] Optional fields missing, retrying with Status__c only');
+            await sfPatch(urlPath, { Status__c: status });
+        } else {
+            throw err;
+        }
+    }
+
     console.log(`[update-run] Done.`);
 }
 

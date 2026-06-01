@@ -13,12 +13,12 @@ const { execSync } = require('child_process');
 const path         = require('path');
 const os           = require('os');
 
-// ─── Constants ──────────────────────────────────────────────────────────────
+// ─── Constants ───────────────────────────────────────────────────────────
 
 const SF_ORG_ALIAS = process.env.QTC_SF_ORG || 'qtcmock';
 const SF_API_VER   = process.env.QTC_SF_API_VERSION || '62.0';
 
-// ─── Locate the `sf` binary ──────────────────────────────────────────────────
+// ─── Locate the `sf` binary ───────────────────────────────────────────────
 
 function findSfCli() {
     // 1. Honour explicit env override
@@ -26,8 +26,7 @@ function findSfCli() {
 
     // 2. Try PATH first
     try {
-        const p = execSync('which sf', { stdio: ['pipe','pipe','pipe'] })
-            .toString().trim();
+        const p = execSync('which sf', { stdio: ['pipe','pipe','pipe'] }).toString().trim();
         if (p) return p;
     } catch (_) {}
 
@@ -46,18 +45,26 @@ function findSfCli() {
         } catch (_) {}
     }
 
-    throw new Error(
-        '`sf` CLI not found. Install from https://developer.salesforce.com/tools/salesforcecli'
-    );
+    throw new Error('`sf` CLI not found. Install from https://developer.salesforce.com/tools/salesforcecli');
 }
 
-// ─── Public API ──────────────────────────────────────────────────────────────
+// ─── Public API ──────────────────────────────────────────────────────────
 
 let _cached = null;
 
 /**
+ * Clears the cached credentials so the next getSfCredentials() call re-runs
+ * `sf org display` and picks up a fresh access token. Call this after a 401
+ * from any REST request — Salesforce session tokens expire (~2 hours), and
+ * without this the agent's REST writes silently fail forever after expiry.
+ */
+function refreshCredentials() {
+    _cached = null;
+}
+
+/**
  * Returns { instanceUrl, accessToken, apiBase } for the target org.
- * Result is cached for the lifetime of the process (token is session-scoped).
+ * Result is cached until refreshCredentials() is called.
  */
 function getSfCredentials() {
     if (_cached) return _cached;
@@ -78,8 +85,7 @@ function getSfCredentials() {
 
     if (!accessToken) {
         throw new Error(
-            `No access token found for org "${SF_ORG_ALIAS}". ` +
-            `Run: sf org login web --target-org ${SF_ORG_ALIAS}`
+            `No access token found for org "${SF_ORG_ALIAS}". Run: sf org login web --target-org ${SF_ORG_ALIAS}`
         );
     }
 
@@ -99,4 +105,4 @@ function authHeader() {
     return { Authorization: `Bearer ${accessToken}` };
 }
 
-module.exports = { getSfCredentials, authHeader, SF_ORG_ALIAS };
+module.exports = { getSfCredentials, refreshCredentials, authHeader, SF_ORG_ALIAS };

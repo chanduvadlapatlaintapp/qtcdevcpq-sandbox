@@ -58,14 +58,37 @@ function collectScreenshots(dir) {
     return files;
 }
 
+/** Walk a directory recursively and return the largest .webm/.mp4 (Playwright video) */
+function findVideo(dir) {
+    if (!fs.existsSync(dir)) return null;
+    const found = [];
+    function walk(d) {
+        for (const entry of fs.readdirSync(d, { withFileTypes: true })) {
+            const full = path.join(d, entry.name);
+            if (entry.isDirectory())                       walk(full);
+            else if (/\.(webm|mp4)$/i.test(entry.name))   found.push(full);
+        }
+    }
+    walk(dir);
+    if (!found.length) return null;
+    // Return the largest file — Playwright's full recording is the biggest
+    return found.sort((a, b) => fs.statSync(b).size - fs.statSync(a).size)[0];
+}
+
 /** Parse Playwright JSON reporter output into a flat test array */
 function parsePlaywrightJson(json) {
     const results = [];
     function walkSuite(suite) {
         for (const spec of (suite.specs || [])) {
             for (const test of (spec.tests || [])) {
+                // Playwright JSON sets test.status to:
+                //   'expected'   → test passed as expected
+                //   'unexpected' → test failed
+                //   'flaky'      → failed then passed on retry (count as PASSED)
+                //   'skipped'    → skipped
+                // NOT 'passed'/'failed' — those only appear on individual results[n].status
                 const pw     = (test.status || '').toLowerCase();
-                const status = pw === 'passed' ? 'PASSED'
+                const status = (pw === 'expected' || pw === 'flaky') ? 'PASSED'
                              : pw === 'skipped' ? 'SKIPPED'
                              : 'FAILED';
                 const last   = test.results && test.results[test.results.length - 1];
@@ -108,6 +131,7 @@ async function main() {
             passed     = tests.filter(t => t.status === 'PASSED').length;
             failed     = tests.filter(t => t.status === 'FAILED').length;
             durationMs = raw.stats ? (raw.stats.duration || 0) : 0;
+            log(`Playwright JSON parsed: ${passed} passed, ${failed} failed, ${durationMs}ms`);
         } catch (e) {
             log(`Warning: could not parse Playwright JSON: ${e.message}`);
         }
@@ -165,10 +189,12 @@ async function main() {
     }
 
     // ── 3. Determine final status ─────────────────────────────────────────────
-    // Honour PLAYWRIGHT_EXIT_CODE env var set by the workflow step outcome.
+    // Primary signal: PLAYWRIGHT_EXIT_CODE set by the workflow (0 = all passed).
+    // Secondary guard: if we parsed any failures from the JSON, mark FAILED even
+    // if the exit code is somehow 0 (defensive — shouldn't happen in practice).
     const playwrightExitCode = parseInt(process.env.PLAYWRIGHT_EXIT_CODE || '0', 10);
     const finalStatus = playwrightExitCode === 0 && failed === 0 ? 'PASSED' : 'FAILED';
-    log(`Final status: ${finalStatus} (${passed}✓ ${failed}✗, ${durationMs}ms)`);
+    log(`Exit code: ${playwrightExitCode} | parsed: ${passed}✓ ${failed}✗ → ${finalStatus} (${durationMs}ms)`);
 
     // ── 4. Insert Test_Result__c records ──────────────────────────────────────
     if (tests.length > 0) {
@@ -195,7 +221,45 @@ async function main() {
         }
     }
 
-    // ── 6. Patch Test_Run__c with final status ────────────────────────────────
+    // ── 6. Upload video recording ─────────────────────────────────────────────
+    const videoPath = findVideo(path.join(REPO_ROOT, 'test-results', testRunId));
+    if (videoPath) {
+        log(`Uploading video: ${path.basename(videoPath)} (${(fs.statSync(videoPath).size / 1024 / 1024).toFixed(1)} MB)`);
+        try {
+            await uploadFile(videoPath, `video-${testRunId}.webm`, testRunId);
+            log('Video uploaded');
+        } catch (e) {
+            log(`Warning: video upload failed: ${e.message}`);
+        }
+    } else {
+        log('No video file found (video recording may not be enabled)');
+    }
+
+    // ── 7. Upload rich-results.json as a Salesforce File ─────────────────────
+    // This is a fallback for orgs where Rich_Results__c / Log_Output__c fields
+    // don't exist yet. The LWC reads this file when the field is blank.
+    if (richResults) {
+        const richFilePath = path.join(REPO_ROOT, 'test-results', testRunId, 'rich-results.json');
+        try {
+            fs.writeFileSync(richFilePath, JSON.stringify(richResults));
+            await uploadFile(richFilePath, 'rich-results.json', testRunId);
+            log('rich-results.json uploaded as ContentVersion');
+        } catch (e) {
+            log(`Warning: rich-results.json upload failed: ${e.message}`);
+        }
+    }
+    if (logOutput) {
+        const logFilePath = path.join(REPO_ROOT, 'test-results', testRunId, 'log-output.txt');
+        try {
+            fs.writeFileSync(logFilePath, logOutput);
+            await uploadFile(logFilePath, 'log-output.txt', testRunId);
+            log('log-output.txt uploaded as ContentVersion');
+        } catch (e) {
+            log(`Warning: log-output.txt upload failed: ${e.message}`);
+        }
+    }
+
+    // ── 8. Patch Test_Run__c with final status ────────────────────────────────
     log(`Patching Test_Run__c ${testRunId} → ${finalStatus}`);
     await patchTestRun(testRunId, {
         status      : finalStatus,

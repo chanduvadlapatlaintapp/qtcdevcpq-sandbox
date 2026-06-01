@@ -31,8 +31,26 @@
                     </div>
                 </div>
 
-                <div class="sidebar-actions">
-                    <button class={runBtnClass} onclick={handleRunTests} disabled={runButtonDisabled}>
+                <!-- Runner selector row -->
+                <div class="runner-row">
+                    <span class="runner-via-lbl">via</span>
+                    <div class="runner-seg">
+                        <template for:each={runnerOptions} for:item="r">
+                            <button key={r.value}
+                                    class={r.btnClass}
+                                    data-runner={r.value}
+                                    onclick={handleRunnerChange}
+                                    disabled={isRunning}
+                                    title={r.title}>
+                                {r.label}
+                            </button>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Primary action row: run + cancel -->
+                <div class="run-action-row">
+                    <button class={runBtnClass} onclick={handleRunTests} disabled={runButtonDisabled} title={runButtonLabel}>
                         <template if:true={isCreating}>
                             <span class="btn-spinner"></span>
                         </template>
@@ -50,11 +68,13 @@
                     </button>
 
                     <template if:true={activeRunId}>
-                        <button class="btn btn-cancel" onclick={handleCancel} disabled={cancelButtonDisabled}>
+                        <button class="btn btn-cancel-compact"
+                                onclick={handleCancel}
+                                disabled={cancelButtonDisabled}
+                                title="Cancel run">
                             <svg class="btn-icon-svg" viewBox="0 0 16 16" fill="currentColor">
                                 <rect x="3" y="3" width="10" height="10" rx="1"/>
                             </svg>
-                            Cancel
                         </button>
                     </template>
                 </div>
@@ -64,7 +84,7 @@
             <div class="pass-rate-section">
                 <div class="pass-rate-header">
                     <span class="pass-rate-title">PASS RATE</span>
-                    <span class="pass-rate-pct">{runPassRate.label}  {runPassRate.percent}%</span>
+                    <span class="pass-rate-pct">{runPassRate.label} &nbsp; {runPassRate.percent}%</span>
                 </div>
                 <div class="pass-rate-bar">
                     <div class={passRateClass} style={passRateBarStyle}></div>
@@ -153,35 +173,55 @@
             <!-- Run detail -->
             <template if:true={activeRunId}>
 
-                <!-- ── Run identity bar (sticky) ──────────────────────────── -->
-                <div class="run-id-bar-wrap">
-                    <div class="run-identity-bar">
-                        <div class="run-badge-row">
+                <!-- ── Run header (sticky, single horizontal row) ────────── -->
+                <div class="run-header-wrap">
+                    <div class="run-header">
+
+                        <!-- Left: ID chip + status badge + live indicator -->
+                        <div class="rh-id-group">
                             <span class="run-id-chip">{activeRun.name}</span>
                             <span class={statusBadgeClass}>{activeRun.status}</span>
                             <template if:true={isRunning}>
-                                <span class="live-dot" title="Running"></span>
+                                <span class="live-dot" title="In progress"></span>
                             </template>
                         </div>
-                        <div class="run-meta-row">
+
+                        <!-- Center: suite + agent -->
+                        <div class="rh-suite-group">
                             <span class="run-suite-tag">{activeRun.testSuite}</span>
-                            <span class="run-ts-sep">·</span>
-                            <span class="run-ts-label">Queued:</span>
-                            <span class="run-ts-val">{activeRunCreatedAt}</span>
+                            <template if:true={activeRun.agentId}>
+                                <span class="rh-agent-badge">{activeRun.agentId}</span>
+                            </template>
+                            <template if:true={activeRun.requestedByName}>
+                                <span class="rh-requester">by {activeRun.requestedByName}</span>
+                            </template>
+                        </div>
+
+                        <!-- Right: Q → S → F timeline -->
+                        <div class="rh-ts-group">
+                            <span class="rh-ts">
+                                <span class="rh-ts-lbl">Q</span>
+                                <span class="rh-ts-val">{activeRunCreatedAt}</span>
+                            </span>
                             <template if:true={activeRun.startedAt}>
-                                <span class="run-ts-sep">·</span>
-                                <span class="run-ts-label">Started:</span>
-                                <span class="run-ts-val">{activeRunStartedAt}</span>
+                                <span class="rh-ts-arr">›</span>
+                                <span class="rh-ts">
+                                    <span class="rh-ts-lbl">S</span>
+                                    <span class="rh-ts-val">{activeRunStartedAt}</span>
+                                </span>
                             </template>
                             <template if:true={activeRun.completedAt}>
-                                <span class="run-ts-sep">·</span>
-                                <span class="run-ts-label">Finished:</span>
-                                <span class="run-ts-val run-ts-finished">{activeRunCompletedAt}</span>
+                                <span class="rh-ts-arr">›</span>
+                                <span class="rh-ts rh-ts-done">
+                                    <span class="rh-ts-lbl">F</span>
+                                    <span class="rh-ts-val">{activeRunCompletedAt}</span>
+                                </span>
                             </template>
                         </div>
+
                     </div>
 
-                    <!-- Status pills -->
+                    <!-- Status pills (info / warn / error) -->
                     <template if:true={waitingForAgent}>
                         <div class="run-pill run-pill-info">
                             <svg class="msg-icon" viewBox="0 0 16 16" fill="currentColor">
@@ -208,7 +248,7 @@
                     </template>
                 </div>
 
-                <!-- ── Metric strip ────────────────────────────────────────── -->
+                <!-- ── Metric strip (spans full width) ──────────────────── -->
                 <template if:true={hasMetricStrip}>
                     <div class="metric-strip">
                         <template for:each={metricStripItems} for:item="ms">
@@ -220,7 +260,7 @@
                     </div>
                 </template>
 
-                <!-- ── Tab bar ─────────────────────────────────────────────── -->
+                <!-- ── Tab bar ─────────────────────────────────────────── -->
                 <div class="tab-bar">
                     <template for:each={tabs} for:item="tab">
                         <button key={tab.id}
@@ -236,11 +276,22 @@
                     </template>
                 </div>
 
-                <!-- ── Tab panel ───────────────────────────────────────────── -->
+                <!-- ── Tab panel ────────────────────────────────────────── -->
                 <div class="tab-panel">
 
-                    <!-- ── Screenshots ───────────────────────────────────── -->
+                    <!-- ── Screenshots ──────────────────────────────────── -->
                     <template if:true={activeTabIsScreenshots}>
+
+                        <template if:true={hasVideo}>
+                            <div class="video-section">
+                                <div class="video-section-hdr">
+                                    <span>🎬 Test Recording</span>
+                                    <a class="video-dl-btn" href={videoSrc} target="_blank">⬇ Download</a>
+                                </div>
+                                <video class="test-video" controls preload="metadata" src={videoSrc}></video>
+                            </div>
+                        </template>
+
                         <template if:true={hasImages}>
                             <div class="screenshot-grid">
                                 <template for:each={activeRunImages} for:item="img" for:index="idx">
@@ -251,8 +302,10 @@
                                          role="button"
                                          tabindex="0">
                                         <img class="screenshot-img" src={img.downloadUrl} alt={img.title} />
-                                        <span class="screenshot-lbl">{img.title}</span>
-                                        <span class="screenshot-zoom-hint">🔍 Click to view</span>
+                                        <div class="screenshot-footer">
+                                            <span class="screenshot-lbl">{img.title}</span>
+                                            <span class="screenshot-zoom-hint">🔍</span>
+                                        </div>
                                     </div>
                                 </template>
                             </div>
@@ -268,31 +321,31 @@
                     <!-- ── UI↔DB Cross-Check ─────────────────────────────── -->
                     <template if:true={activeTabIsCrosscheck}>
                         <template if:true={hasMismatchRows}>
-                            <div class="results-table-wrap">
-                                <table class="results-table">
+                            <div class="tbl-wrap">
+                                <table class="data-table">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Product</th>
-                                            <th class="th-r th-occ">Seg</th>
-                                            <th class="th-r">UI Before</th>
-                                            <th class="th-r">UI After</th>
-                                            <th class="th-r">DB Prior</th>
-                                            <th class="th-r">DB After</th>
-                                            <th>Match</th>
+                                            <th class="col-idx">#</th>
+                                            <th class="col-product">Product</th>
+                                            <th class="col-num">Seg</th>
+                                            <th class="col-num">UI Before</th>
+                                            <th class="col-num">UI After</th>
+                                            <th class="col-num">DB Prior</th>
+                                            <th class="col-num">DB After</th>
+                                            <th class="col-match">Match</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <template for:each={richMismatchRows} for:item="mx">
                                             <tr key={mx.keyId} class={mx.rowClass}>
-                                                <td>{mx.idx}</td>
-                                                <td class="mx-product">{mx.product}</td>
-                                                <td class="td-r mx-seg-occ">{mx.segOcc}</td>
-                                                <td class="td-r">{mx.uiBefore}</td>
-                                                <td class="td-r mx-ui-after">{mx.uiAfter}</td>
-                                                <td class="td-r">{mx.dbPrior}</td>
-                                                <td class="td-r mx-db-after">{mx.dbAfter}</td>
-                                                <td class="mx-status">{mx.statusIcon}</td>
+                                                <td class="td-idx">{mx.idx}</td>
+                                                <td class="td-product">{mx.product}</td>
+                                                <td class="td-num td-muted">{mx.segOcc}</td>
+                                                <td class="td-num">{mx.uiBefore}</td>
+                                                <td class="td-num td-bold">{mx.uiAfter}</td>
+                                                <td class="td-num td-muted">{mx.dbPrior}</td>
+                                                <td class="td-num td-bold">{mx.dbAfter}</td>
+                                                <td class="td-match">{mx.statusIcon}</td>
                                             </tr>
                                         </template>
                                     </tbody>
@@ -304,39 +357,39 @@
                         </template>
                     </template>
 
-                    <!-- ── DB Lines ──────────────────────────────────────── -->
+                    <!-- ── DB Lines ─────────────────────────────────────── -->
                     <template if:true={activeTabIsDb}>
                         <template if:true={hasRichDbRows}>
-                            <div class="results-table-wrap">
-                                <table class="results-table db-table-sm">
+                            <div class="tbl-wrap">
+                                <table class="data-table data-table-sm">
                                     <thead>
                                         <tr>
-                                            <th class="th-idx">#</th>
-                                            <th>Product</th>
-                                            <th class="th-r">Seg#</th>
-                                            <th class="th-r">Prior Qty</th>
-                                            <th class="th-r">DB Qty</th>
-                                            <th class="th-r">Cust Price</th>
-                                            <th class="th-r">Discount</th>
-                                            <th class="th-r">Net Total</th>
+                                            <th class="col-idx">#</th>
+                                            <th class="col-product">Product</th>
+                                            <th class="col-num">Seg</th>
+                                            <th class="col-num">Prior Qty</th>
+                                            <th class="col-num">DB Qty</th>
+                                            <th class="col-num">Cust Price</th>
+                                            <th class="col-num">Discount</th>
+                                            <th class="col-num">Net Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <template for:each={richDbRows} for:item="row">
                                             <tr key={row.keyId}>
                                                 <td class="td-idx">{row.index}</td>
-                                                <td class="td-lbl">
+                                                <td class="td-product">
                                                     {row.product}
                                                     <template if:true={row.isBundleBool}>
                                                         <span class="bundle-tag">bundle</span>
                                                     </template>
                                                 </td>
-                                                <td class="td-mono td-r">{row.segIndexFmt}</td>
-                                                <td class="td-mono td-r td-prior">{row.priorQtyFmt}</td>
-                                                <td class="td-mono td-r td-qty-bold">{row.dbQty}</td>
-                                                <td class="td-mono td-r">{row.custPriceFmt}</td>
-                                                <td class="td-mono td-r">{row.discountFmt}</td>
-                                                <td class="td-mono td-r">{row.netTotalFmt}</td>
+                                                <td class="td-num td-mono">{row.segIndexFmt}</td>
+                                                <td class="td-num td-mono td-muted">{row.priorQtyFmt}</td>
+                                                <td class="td-num td-mono td-bold td-blue">{row.dbQty}</td>
+                                                <td class="td-num td-mono">{row.custPriceFmt}</td>
+                                                <td class="td-num td-mono">{row.discountFmt}</td>
+                                                <td class="td-num td-mono">{row.netTotalFmt}</td>
                                             </tr>
                                         </template>
                                     </tbody>
@@ -348,71 +401,69 @@
                         </template>
                     </template>
 
-                    <!-- ── Metrics ───────────────────────────────────────── -->
+                    <!-- ── Metrics ─────────────────────────────────────── -->
                     <template if:true={activeTabIsMetrics}>
-                        <!-- Summary KPI grid -->
                         <template if:true={hasRichResults}>
-                            <div class="rich-kpi-grid">
+                            <div class="kpi-grid">
                                 <template for:each={richSummaryKpis} for:item="kpi">
-                                    <div key={kpi.id} class="rich-kpi">
-                                        <div class="rich-kpi-lbl">{kpi.label}</div>
+                                    <div key={kpi.id} class="kpi-card">
+                                        <div class="kpi-lbl">{kpi.label}</div>
                                         <div class={kpi.valClass}>{kpi.value}</div>
                                     </div>
                                 </template>
                             </div>
                         </template>
-                        <!-- Header metrics before/after -->
                         <template if:true={hasRichMetrics}>
-                            <div class="tab-section-hdr">💰 Header Metrics — Before / After Save</div>
-                            <div class="results-table-wrap">
-                                <table class="results-table">
+                            <div class="section-hdr">💰 Header Metrics — Before / After Save</div>
+                            <div class="tbl-wrap">
+                                <table class="data-table">
                                     <thead>
                                         <tr>
-                                            <th>Metric</th>
-                                            <th class="th-r">Before Save</th>
-                                            <th class="th-r">After Save</th>
+                                            <th class="col-product">Metric</th>
+                                            <th class="col-num">Before Save</th>
+                                            <th class="col-num">After Save</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <template for:each={richMetrics} for:item="m">
                                             <tr key={m.id}>
-                                                <td class="td-metric-lbl">{m.label}</td>
-                                                <td class="td-mono td-r">{m.before}</td>
-                                                <td class="td-mono td-r td-after">{m.after}</td>
+                                                <td class="td-product td-bold">{m.label}</td>
+                                                <td class="td-num td-mono">{m.before}</td>
+                                                <td class="td-num td-mono td-green">{m.after}</td>
                                             </tr>
                                         </template>
                                     </tbody>
                                 </table>
                             </div>
                         </template>
-                        <!-- Line quantity assertions -->
                         <template if:true={hasRichLineRows}>
-                            <div class="tab-section-hdr">✅ Line Quantity Assertions
-                                <span class="tab-section-count">{richLineRows.length} lines</span>
+                            <div class="section-hdr">
+                                ✅ Line Quantity Assertions
+                                <span class="section-count">{richLineRows.length} lines</span>
                             </div>
-                            <div class="results-table-wrap">
-                                <table class="results-table">
+                            <div class="tbl-wrap">
+                                <table class="data-table">
                                     <thead>
                                         <tr>
-                                            <th class="th-idx">#</th>
-                                            <th>Product / Segment</th>
-                                            <th class="th-r">Before</th>
-                                            <th class="th-r">Expected</th>
-                                            <th class="th-r">Actual</th>
-                                            <th class="th-r">Delta</th>
-                                            <th>Result</th>
+                                            <th class="col-idx">#</th>
+                                            <th class="col-product">Product / Segment</th>
+                                            <th class="col-num">Before</th>
+                                            <th class="col-num">Expected</th>
+                                            <th class="col-num">Actual</th>
+                                            <th class="col-num">Delta</th>
+                                            <th class="col-match">Result</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <template for:each={richLineRows} for:item="row">
                                             <tr key={row.keyId} class={row.rowClass}>
                                                 <td class="td-idx">{row.index}</td>
-                                                <td class="td-lbl">{row.label}</td>
-                                                <td class="td-mono td-r">{row.before}</td>
-                                                <td class="td-mono td-r">{row.expected}</td>
-                                                <td class="td-mono td-r">{row.actual}</td>
-                                                <td class="td-mono td-r td-delta">{row.deltaStr}</td>
-                                                <td>{row.statusText}</td>
+                                                <td class="td-product">{row.label}</td>
+                                                <td class="td-num td-mono">{row.before}</td>
+                                                <td class="td-num td-mono">{row.expected}</td>
+                                                <td class="td-num td-mono">{row.actual}</td>
+                                                <td class="td-num td-mono td-green">{row.deltaStr}</td>
+                                                <td class="td-match">{row.statusText}</td>
                                             </tr>
                                         </template>
                                     </tbody>
@@ -427,12 +478,12 @@
                     <!-- ── Anomalies ─────────────────────────────────────── -->
                     <template if:true={activeTabIsAnomalies}>
                         <template if:true={hasRichAnomalies}>
-                            <div class="results-table-wrap">
-                                <table class="results-table">
+                            <div class="tbl-wrap">
+                                <table class="data-table">
                                     <thead>
                                         <tr>
-                                            <th class="th-sev">Severity</th>
-                                            <th class="th-type">Type</th>
+                                            <th class="col-sev">Severity</th>
+                                            <th class="col-type">Type</th>
                                             <th>Detail</th>
                                         </tr>
                                     </thead>
@@ -440,8 +491,8 @@
                                         <template for:each={richAnomalyRows} for:item="row">
                                             <tr key={row.keyId}>
                                                 <td><span class={row.badgeClass}>{row.severity}</span></td>
-                                                <td class="td-anom-type">{row.type}</td>
-                                                <td class="td-anom-detail">{row.detail}</td>
+                                                <td class="td-type">{row.type}</td>
+                                                <td class="td-detail">{row.detail}</td>
                                             </tr>
                                         </template>
                                     </tbody>
@@ -456,21 +507,21 @@
                     <!-- ── Spec (Playwright test results) ────────────────── -->
                     <template if:true={activeTabIsSpec}>
                         <template if:true={hasTestResults}>
-                            <div class="results-table-wrap">
-                                <table class="results-table">
+                            <div class="tbl-wrap">
+                                <table class="data-table">
                                     <thead>
                                         <tr>
-                                            <th class="th-test">Test Name</th>
-                                            <th class="th-status">Status</th>
-                                            <th class="th-duration">Duration</th>
+                                            <th class="col-product">Test Name</th>
+                                            <th class="col-status">Status</th>
+                                            <th class="col-dur">Duration</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <template for:each={activeRun.testResults} for:item="tr">
                                             <tr key={tr.id} class={tr.rowClass}>
-                                                <td class="td-test">{tr.testName}</td>
+                                                <td class="td-product">{tr.testName}</td>
                                                 <td><span class={tr.statusClass}>{tr.status}</span></td>
-                                                <td class="td-duration">{tr.durationDisplay}</td>
+                                                <td class="td-dur td-mono">{tr.durationDisplay}</td>
                                             </tr>
                                             <template if:true={tr.hasError}>
                                                 <tr key={tr.id} class="tr-error-row">
@@ -513,7 +564,7 @@
     </div>
 
     <!-- ══════════════════════════════════════════════════════════════════
-         Screenshot Lightbox (outside the flex container so it overlays all)
+         Screenshot Lightbox
          ══════════════════════════════════════════════════════════════════ -->
     <template if:true={lightboxOpen}>
         <!-- eslint-disable-next-line -->
