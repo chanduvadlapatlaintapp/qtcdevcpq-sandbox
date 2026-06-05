@@ -39,6 +39,9 @@ const RESULTS_DIR  = path.join(PROJECT_ROOT, 'test-results');
  *
  * @param {string} suiteName  - Test suite name (maps to tests/e2e/{suiteName}.spec.js)
  * @param {string} testRunId  - Salesforce Test_Run__c Id (used for result folder naming)
+ * @param {string} [accountName] - Target Account name chosen on the dashboard.
+ *                                 Passed to the spec via QTC_ACCOUNT_* env vars;
+ *                                 when blank the spec uses its hard-coded fallback.
  * @returns {{
  *   status       : 'PASSED'|'FAILED'|'ERROR',
  *   passed       : number,
@@ -51,7 +54,7 @@ const RESULTS_DIR  = path.join(PROJECT_ROOT, 'test-results');
  *   videoPath    : string|null,
  * }}
  */
-async function runSuite(suiteName, testRunId) {
+async function runSuite(suiteName, testRunId, accountName) {
     // Build the spec file path from suite name
     const specFile = `tests/e2e/${suiteName}.spec.js`;
     const specPath = path.join(PROJECT_ROOT, specFile);
@@ -78,6 +81,17 @@ async function runSuite(suiteName, testRunId) {
         // Headed Chrome: never run headless
         HEADED: '1',
     };
+
+    // Target account chosen on the dashboard. Specs read these three env vars
+    // (QTC_ACCOUNT_NAME / _SEARCH / _FULL_NAME) and fall back to their own
+    // hard-coded default only when unset, so we add them only when provided.
+    if (accountName && String(accountName).trim()) {
+        const acct = String(accountName).trim();
+        env.QTC_ACCOUNT_NAME      = acct;
+        env.QTC_ACCOUNT_SEARCH    = acct;
+        env.QTC_ACCOUNT_FULL_NAME = acct;
+        console.log(`[runner] Target account: "${acct}"`);
+    }
 
     console.log(`[runner] Starting Playwright: npx ${args.join(' ')}`);
     const start   = Date.now();
