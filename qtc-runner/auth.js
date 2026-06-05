@@ -70,6 +70,9 @@ function getSfCredentials() {
     if (_cached) return _cached;
 
     const sf  = findSfCli();
+
+    // instanceUrl comes from `org display` — it is not a secret and is never
+    // redacted, so this call stays as-is.
     const raw = execSync(`"${sf}" org display --target-org ${SF_ORG_ALIAS} --json`, {
         stdio: ['pipe', 'pipe', 'pipe'],
     }).toString();
@@ -81,11 +84,27 @@ function getSfCredentials() {
 
     const result      = parsed.result;
     const instanceUrl = result.instanceUrl.replace(/\/$/, '');
-    const accessToken = result.accessToken;
 
-    if (!accessToken) {
+    // The access token must NOT be read from `org display --json`: modern
+    // Salesforce CLI redacts secrets there, returning the literal placeholder
+    // "[REDACTED] Use 'sf org auth show-access-token' to view". That string is
+    // truthy, so the old `result.accessToken` guard passed and we sent
+    // `Authorization: Bearer [REDACTED] …` — which Salesforce rejects with a
+    // 401 INVALID_AUTH_HEADER. Use the dedicated, unredacted command instead.
+    const tokRaw = execSync(`"${sf}" org auth show-access-token --target-org ${SF_ORG_ALIAS} --json`, {
+        stdio: ['pipe', 'pipe', 'pipe'],
+    }).toString();
+
+    const tokParsed = JSON.parse(tokRaw);
+    if (tokParsed.status !== 0) {
+        throw new Error(`sf org auth show-access-token failed: ${JSON.stringify(tokParsed.message)}`);
+    }
+
+    const accessToken = tokParsed.result && tokParsed.result.accessToken;
+
+    if (!accessToken || /REDACTED/.test(accessToken)) {
         throw new Error(
-            `No access token found for org "${SF_ORG_ALIAS}". Run: sf org login web --target-org ${SF_ORG_ALIAS}`
+            `No usable access token for org "${SF_ORG_ALIAS}". Run: sf org login web --target-org ${SF_ORG_ALIAS}`
         );
     }
 
