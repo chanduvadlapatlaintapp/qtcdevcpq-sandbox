@@ -94,7 +94,7 @@ jobs:
 
       # ── 5. Salesforce CLI ───────────────────────────────────────────────────
       - name: Install Salesforce CLI
-        run: npm install --global @salesforce/cli@latest
+        run: npm install --global @salesforce/cli@2.137.7
 
       # ── 6. Authenticate to Salesforce ───────────────────────────────────────
       # Detects which org triggered the run from sf_instance_url:
