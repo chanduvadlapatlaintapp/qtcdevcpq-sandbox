@@ -32,6 +32,10 @@ on:
       sf_instance_url:
         description: 'Salesforce instance URL (provided by the LWC)'
         required: true
+      account_name:
+        description: 'Target Account name (provided by the LWC account search). Blank → spec uses its hard-coded default.'
+        required: false
+        default: ''
 
   # ── 2. Auto: push to main ──────────────────────────────────────────────────
   push:
@@ -127,8 +131,9 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             # Salesforce already created the record — just echo the inputs
-            echo "test_run_id=${{ inputs.test_run_id }}" >> $GITHUB_OUTPUT
-            echo "test_suite=${{ inputs.test_suite }}"   >> $GITHUB_OUTPUT
+            echo "test_run_id=${{ inputs.test_run_id }}"   >> $GITHUB_OUTPUT
+            echo "test_suite=${{ inputs.test_suite }}"     >> $GITHUB_OUTPUT
+            echo "account_name=${{ inputs.account_name }}" >> $GITHUB_OUTPUT
           else
             # Auto-triggered by GitHub — create the record now.
             # Suite comes from the repo variable DEFAULT_TEST_SUITE (set in
@@ -151,6 +156,7 @@ jobs:
           echo "|-|-|" >> $GITHUB_STEP_SUMMARY
           echo "| **Test Run ID** | \`${{ steps.run-setup.outputs.test_run_id }}\` |" >> $GITHUB_STEP_SUMMARY
           echo "| **Suite** | ${{ steps.run-setup.outputs.test_suite }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Account** | ${{ steps.run-setup.outputs.account_name || '(spec default)' }} |" >> $GITHUB_STEP_SUMMARY
           echo "| **Trigger** | ${{ github.event_name }} |" >> $GITHUB_STEP_SUMMARY
           echo "| **Branch** | ${{ github.ref_name }} |" >> $GITHUB_STEP_SUMMARY
           echo "| **Commit** | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
@@ -193,6 +199,12 @@ jobs:
           CI: 'true'
           PLAYWRIGHT_JSON_OUTPUT_NAME: "test-results/${{ steps.run-setup.outputs.test_run_id }}/results.json"
           QTC_SF_ORG: ${{ steps.sf-auth.outputs.org_alias }}
+          # Target account chosen on the dashboard. Specs read these and fall
+          # back to their own hard-coded default only when blank (auto-triggered
+          # push/PR runs supply no account).
+          QTC_ACCOUNT_NAME:      ${{ steps.run-setup.outputs.account_name }}
+          QTC_ACCOUNT_SEARCH:    ${{ steps.run-setup.outputs.account_name }}
+          QTC_ACCOUNT_FULL_NAME: ${{ steps.run-setup.outputs.account_name }}
           # Auto-enable Conga PDF wait + UI/PDF compare ONLY for the OSA suite.
           # Other suites stay fast; the Conga suite needs ~2-3 min/scenario to
           # poll Salesforce for the generated PDF and parse it.
