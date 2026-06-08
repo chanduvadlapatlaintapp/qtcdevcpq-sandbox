@@ -2,127 +2,73 @@
     <div class={containerClass}>
 
         <!-- ══════════════════════════════════════════════════════════════════
-             SIDEBAR
+             TOP HEADER — full width, always visible
              ══════════════════════════════════════════════════════════════════ -->
-        <div class="sidebar">
+        <div class="top-header">
 
-            <!-- Branding -->
-            <div class="sidebar-brand">
-                <div class="logo-badge">QTC</div>
-                <div class="sidebar-title-block">
-                    <span class="sidebar-title">Test Runner</span>
-                    <span class="sidebar-sub">Playwright CI/CD</span>
+            <!-- Brand -->
+            <div class="th-brand">
+                <div class="th-logo">QTC</div>
+                <div class="th-brand-text">
+                    <span class="th-brand-title">QTC Test Runner</span>
+                    <span class="th-brand-sub">Playwright CI/CD</span>
                 </div>
             </div>
 
-            <!-- Suite selector + action buttons -->
-            <div class="sidebar-controls">
-                <div class="suite-select-wrap">
-                    <label class="field-label">Test Suite</label>
-                    <div class="custom-select-outer">
-                        <select class="custom-select" onchange={handleSuiteChange} disabled={isRunning}>
-                            <template for:each={suiteOptions} for:item="opt">
-                                <option key={opt.value} value={opt.value}>{opt.label}</option>
-                            </template>
-                        </select>
-                        <svg class="select-chevron" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M1 1l4 4 4-4"></path>
-                        </svg>
-                    </div>
-                </div>
-
-                <!-- Runner selector row -->
-                <div class="runner-row">
-                    <span class="runner-via-lbl">via</span>
-                    <div class="runner-seg">
-                        <template for:each={runnerOptions} for:item="r">
-                            <button key={r.value}
-                                    class={r.btnClass}
-                                    data-runner={r.value}
-                                    onclick={handleRunnerChange}
-                                    disabled={isRunning}
-                                    title={r.title}>
-                                {r.label}
-                            </button>
-                        </template>
-                    </div>
-                </div>
-
-                <!-- Primary action row: run + cancel -->
-                <div class="run-action-row">
-                    <button class={runBtnClass} onclick={handleRunTests} disabled={runButtonDisabled} title={runButtonLabel}>
-                        <template if:true={isCreating}>
-                            <span class="btn-spinner"></span>
-                        </template>
-                        <template if:false={isCreating}>
-                            <template if:true={isRunning}>
-                                <span class="btn-pulse-ring"></span>
-                            </template>
-                            <template if:false={isRunning}>
-                                <svg class="btn-icon-svg" viewBox="0 0 16 16" fill="currentColor">
-                                    <path d="M3 2.5l10 5.5-10 5.5z"/>
-                                </svg>
-                            </template>
-                        </template>
-                        {runButtonLabel}
-                    </button>
-
-                    <template if:true={activeRunId}>
-                        <button class="btn btn-cancel-compact"
-                                onclick={handleCancel}
-                                disabled={cancelButtonDisabled}
-                                title="Cancel run">
-                            <svg class="btn-icon-svg" viewBox="0 0 16 16" fill="currentColor">
-                                <rect x="3" y="3" width="10" height="10" rx="1"/>
-                            </svg>
-                        </button>
+            <!-- Run info (only when a run is selected) -->
+            <template if:true={activeRunId}>
+                <span class="th-sep"></span>
+                <div class="th-run-info">
+                    <span class="run-id-chip">{activeRun.name}</span>
+                    <span class={headerStatusClass}>
+                        <span class="rh-status-icon">{headerStatusIcon}</span>
+                        {headerStatusLabel}
+                    </span>
+                    <template if:true={isRunning}>
+                        <span class="live-dot" title="In progress"></span>
+                    </template>
+                    <span class="run-suite-tag">{activeRun.testSuite}</span>
+                    <template if:true={activeRun.accountName}>
+                        <span class="rh-account-badge" title={activeRun.accountName}>🏢 {activeRun.accountName}</span>
+                    </template>
+                    <template if:true={activeRun.agentId}>
+                        <span class="rh-agent-badge">{activeRun.agentId}</span>
+                    </template>
+                    <template if:true={activeRun.requestedByName}>
+                        <span class="rh-requester">by {activeRun.requestedByName}</span>
                     </template>
                 </div>
-            </div>
+            </template>
 
-            <!-- Pass rate bar -->
-            <div class="pass-rate-section">
-                <div class="pass-rate-header">
-                    <span class="pass-rate-title">PASS RATE</span>
-                    <span class="pass-rate-pct">{runPassRate.label} &nbsp; {runPassRate.percent}%</span>
-                </div>
-                <div class="pass-rate-bar">
-                    <div class={passRateClass} style={passRateBarStyle}></div>
-                </div>
-            </div>
+            <!-- Spacer pushes timestamps + actions to the right -->
+            <div class="th-spacer"></div>
 
-            <!-- Recent runs list -->
-            <div class="history-list-header">
-                <span class="history-list-title">RECENT RUNS</span>
-                <template if:true={isLoadingHistory}>
-                    <span class="loading-dots">
-                        <span></span><span></span><span></span>
+            <!-- Q → S → F timeline -->
+            <template if:true={activeRunId}>
+                <div class="th-ts-group">
+                    <span class="rh-ts">
+                        <span class="rh-ts-lbl">Q</span>
+                        <span class="rh-ts-val">{activeRunCreatedAt}</span>
                     </span>
-                </template>
-            </div>
+                    <template if:true={activeRun.startedAt}>
+                        <span class="rh-ts-arr">›</span>
+                        <span class="rh-ts">
+                            <span class="rh-ts-lbl">S</span>
+                            <span class="rh-ts-val">{activeRunStartedAt}</span>
+                        </span>
+                    </template>
+                    <template if:true={activeRun.completedAt}>
+                        <span class="rh-ts-arr">›</span>
+                        <span class="rh-ts rh-ts-done">
+                            <span class="rh-ts-lbl">F</span>
+                            <span class="rh-ts-val">{activeRunCompletedAt}</span>
+                        </span>
+                    </template>
+                </div>
+            </template>
 
-            <ul class="history-list">
-                <template for:each={sidebarRuns} for:item="run">
-                    <li key={run.id}
-                        class={run.historyItemClass}
-                        data-id={run.id}
-                        onclick={handleHistoryRowClick}>
-                        <template if:true={run.isPlaceholder}>
-                            <span class="row-spinner"></span>
-                        </template>
-                        <span class={run.dotClass}></span>
-                        <span class="hi-name">{run.name}</span>
-                        <span class="hi-dur">{run.durationDisplay}</span>
-                        <span class="hi-date">{run.createdDateDisplay}</span>
-                    </li>
-                </template>
-                <template if:false={hasHistory}>
-                    <li class="history-empty">No runs yet</li>
-                </template>
-            </ul>
-
-            <!-- Footer -->
-            <div class="sidebar-footer">
+            <!-- Actions: theme + refresh -->
+            <div class="th-actions">
                 <button class="btn btn-ghost btn-sm" onclick={handleToggleTheme} title={themeLabel}>
                     <template if:true={isDarkMode}>
                         <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -146,7 +92,7 @@
                     </template>
                     {themeLabel}
                 </button>
-                <button class="btn btn-ghost btn-sm" onclick={handleRefreshHistory}>
+                <button class="btn btn-ghost btn-sm" onclick={handleRefreshHistory} title="Refresh history">
                     <svg class="btn-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
                         <path d="M13.5 8A5.5 5.5 0 1 1 8 2.5" stroke-linecap="round"/>
                         <path d="M8 .5L11 3 8 5.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -154,7 +100,245 @@
                     Refresh
                 </button>
             </div>
+        </div>
 
+        <!-- ══════════════════════════════════════════════════════════════════
+             CONTROL BAR — full width, always visible
+             ══════════════════════════════════════════════════════════════════ -->
+        <div class="control-bar">
+
+            <!-- Account search (typeahead) -->
+            <div class="cb-field-block">
+                <label class="cb-label">Search Account</label>
+                <div class={acctSelectWrapClass}>
+                    <template if:true={hasSelectedAccount}>
+                        <div class="acct-selected" title={selectedAccountName}>
+                            <svg class="acct-selected-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1.5c-2.7 0-5 1.4-5 3.2V14h10v-1.3c0-1.8-2.3-3.2-5-3.2z"/>
+                            </svg>
+                            <span class="acct-selected-name">{selectedAccountName}</span>
+                            <button class="acct-clear-btn"
+                                    onclick={handleClearAccount}
+                                    disabled={isRunning}
+                                    title="Change account">✕</button>
+                        </div>
+                    </template>
+
+                    <template if:false={hasSelectedAccount}>
+                        <div class="acct-search-outer">
+                            <svg class="acct-search-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                                <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.6"></circle>
+                                <line x1="12.5" y1="12.5" x2="17.5" y2="17.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></line>
+                            </svg>
+                            <input type="text"
+                                   class="acct-search-input"
+                                   placeholder="Search account…"
+                                   value={accountSearchTerm}
+                                   oninput={handleAccountSearchChange}
+                                   onkeydown={handleAccountKeydown}
+                                   onfocus={handleAccountFocus}
+                                   onblur={handleAccountBlur}
+                                   disabled={isRunning}
+                                   autocomplete="off" />
+                            <template if:true={isSearchingAccounts}>
+                                <span class="acct-search-spinner"></span>
+                            </template>
+                        </div>
+
+                        <template if:true={showAccountResults}>
+                            <ul class="acct-results">
+                                <template for:each={accountResultRows} for:item="acct">
+                                    <li key={acct.id}
+                                        class={acct.itemClass}
+                                        data-id={acct.id}
+                                        data-name={acct.name}
+                                        onmousedown={handleAccountSelect}>
+                                        <span class="acct-result-name">{acct.name}</span>
+                                        <template if:true={acct.location}>
+                                            <span class="acct-result-loc">{acct.location}</span>
+                                        </template>
+                                    </li>
+                                </template>
+                            </ul>
+                        </template>
+
+                        <template if:true={showAccountNoResults}>
+                            <div class="acct-no-results">No accounts found for "{accountSearchTerm}"</div>
+                        </template>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Suite selector -->
+            <div class="cb-field-block">
+                <label class="cb-label">Select Spec</label>
+                <div class="suite-select-wrap">
+                    <div class="custom-select-outer">
+                        <select class="custom-select" onchange={handleSuiteChange} disabled={isRunning}>
+                            <option value="" disabled hidden selected={noSpecSelected}>Select Spec</option>
+                            <template for:each={suiteOptions} for:item="opt">
+                                <option key={opt.value} value={opt.value} selected={opt.selected}>{opt.label}</option>
+                            </template>
+                        </select>
+                        <svg class="select-chevron" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M1 1l4 4 4-4"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Runner selector -->
+            <div class="runner-row">
+                <span class="runner-via-lbl">via</span>
+                <div class="runner-seg">
+                    <template for:each={runnerOptions} for:item="r">
+                        <button key={r.value}
+                                class={r.btnClass}
+                                data-runner={r.value}
+                                onclick={handleRunnerChange}
+                                disabled={isRunning}
+                                title={r.title}>
+                            {r.label}
+                        </button>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Run + cancel -->
+            <div class="run-action-row">
+                <button class={runBtnClass} onclick={handleRunTests} disabled={runButtonDisabled} title={runButtonLabel}>
+                    <template if:true={isCreating}>
+                        <span class="btn-spinner"></span>
+                    </template>
+                    <template if:false={isCreating}>
+                        <template if:true={isRunning}>
+                            <span class="btn-pulse-ring"></span>
+                        </template>
+                        <template if:false={isRunning}>
+                            <svg class="btn-icon-svg" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M3 2.5l10 5.5-10 5.5z"/>
+                            </svg>
+                        </template>
+                    </template>
+                    {runButtonLabel}
+                </button>
+
+                <template if:true={activeRunId}>
+                    <button class="btn btn-cancel"
+                            onclick={handleCancel}
+                            disabled={cancelButtonDisabled}
+                            title="Cancel run">
+                        <svg class="btn-icon-svg" viewBox="0 0 16 16" fill="currentColor">
+                            <rect x="3" y="3" width="10" height="10" rx="1.5"/>
+                        </svg>
+                        Cancel
+                    </button>
+                </template>
+            </div>
+
+            <!-- Spacer -->
+            <div class="cb-spacer"></div>
+
+            <!-- Pass rate (inline) -->
+            <div class="cb-passrate">
+                <div class="cb-pr-top">
+                    <span class="cb-pr-lbl">Pass Rate</span>
+                    <span class="cb-pr-runs">{runPassRate.label}</span>
+                </div>
+                <div class="cb-pr-mid">
+                    <span class={passRatePctClass}>{runPassRate.percent}%</span>
+                    <div class="pass-rate-bar">
+                        <div class={passRateClass} style={passRateBarStyle}></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Re-run + Export (beside the Recent Runs picker) -->
+            <template if:true={activeRunId}>
+                <button class="btn btn-ghost cb-rerun-btn" onclick={handleReRun} disabled={reRunDisabled} title="Re-run this suite on the same account">
+                    <svg class="btn-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M13.5 8A5.5 5.5 0 1 1 8 2.5" stroke-linecap="round"/>
+                        <path d="M8 .5L11 3 8 5.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Re-run
+                </button>
+            </template>
+            <template if:true={hasRichResults}>
+                <button class="btn btn-ghost cb-rerun-btn" onclick={handleExportJson} title="Download results as JSON">
+                    <svg class="btn-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M8 1.5v8M5 7l3 3 3-3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2.5 11.5v2h11v-2" stroke-linecap="round"/>
+                    </svg>
+                    Export
+                </button>
+            </template>
+
+            <!-- Recent runs dropdown -->
+            <div class="cb-history">
+                <button class="history-dd-btn" onclick={handleToggleRunDropdown} title="Recent runs">
+                    <svg class="btn-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
+                        <circle cx="8" cy="8" r="6.5"/>
+                        <path d="M8 4.5V8l2.5 1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="history-dd-text">
+                        <span class="history-dd-label">{runDropdownLabel}</span>
+                        <template if:true={runDropdownSub}>
+                            <span class="history-dd-sub">{runDropdownSub}</span>
+                        </template>
+                    </span>
+                    <template if:true={isLoadingHistory}>
+                        <span class="loading-dots"><span></span><span></span><span></span></span>
+                    </template>
+                    <svg class="history-dd-chev" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M1 1l4 4 4-4"></path>
+                    </svg>
+                </button>
+
+                <template if:true={showRunDropdown}>
+                    <div class="history-dd-panel" onclick={handleDropdownPanelClick}>
+                        <div class="history-dd-hdr">
+                            <span class="history-list-title">RECENT RUNS</span>
+                        </div>
+                        <div class="history-filter-wrap">
+                            <svg class="history-filter-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                                <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.6"></circle>
+                                <line x1="12.5" y1="12.5" x2="17.5" y2="17.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></line>
+                            </svg>
+                            <input type="text"
+                                   class="history-filter-input"
+                                   placeholder="Filter by name, spec and account"
+                                   value={historyFilter}
+                                   oninput={handleHistoryFilterChange}
+                                   onclick={handleDropdownPanelClick}
+                                   autocomplete="off" />
+                        </div>
+                        <ul class="history-list">
+                            <template for:each={sidebarRuns} for:item="run">
+                                <li key={run.id}
+                                    class={run.historyItemClass}
+                                    data-id={run.id}
+                                    onclick={handleHistoryRowClick}>
+                                    <div class="hi-line1">
+                                        <template if:true={run.isPlaceholder}>
+                                            <span class="row-spinner"></span>
+                                        </template>
+                                        <span class={run.dotClass}></span>
+                                        <span class="hi-name">{run.name}</span>
+                                        <span class={run.statusTextClass}>{run.statusLabel}</span>
+                                    </div>
+                                    <div class="hi-line2">
+                                        <span class="hi-date">{run.createdDateDisplay}</span>
+                                        <span class="hi-dur">{run.durationDisplay}</span>
+                                    </div>
+                                </li>
+                            </template>
+                            <template if:false={hasFilteredRuns}>
+                                <li class="history-empty">{noRunsMessage}</li>
+                            </template>
+                        </ul>
+                    </div>
+                </template>
+            </div>
         </div>
 
         <!-- ══════════════════════════════════════════════════════════════════
@@ -165,96 +349,94 @@
             <!-- No run selected -->
             <template if:false={activeRunId}>
                 <div class="no-run-state">
-                    <div class="no-run-icon">🧪</div>
-                    <p class="no-run-text">Select a suite and click <strong>Run Tests</strong>, or pick a run from the sidebar.</p>
+                    <div class="no-run-card">
+                        <div class="no-run-icon">🧪</div>
+                        <p class="no-run-title">No run selected</p>
+                        <p class="no-run-text">Search an account, select a suite, and click <strong>Run</strong> — or pick a past run from <strong>Recent Runs</strong>.</p>
+                    </div>
                 </div>
             </template>
 
             <!-- Run detail -->
             <template if:true={activeRunId}>
 
-                <!-- ── Run header (sticky, single horizontal row) ────────── -->
-                <div class="run-header-wrap">
-                    <div class="run-header">
-
-                        <!-- Left: ID chip + status badge + live indicator -->
-                        <div class="rh-id-group">
-                            <span class="run-id-chip">{activeRun.name}</span>
-                            <span class={statusBadgeClass}>{activeRun.status}</span>
-                            <template if:true={isRunning}>
-                                <span class="live-dot" title="In progress"></span>
-                            </template>
-                        </div>
-
-                        <!-- Center: suite + agent -->
-                        <div class="rh-suite-group">
-                            <span class="run-suite-tag">{activeRun.testSuite}</span>
-                            <template if:true={activeRun.agentId}>
-                                <span class="rh-agent-badge">{activeRun.agentId}</span>
-                            </template>
-                            <template if:true={activeRun.requestedByName}>
-                                <span class="rh-requester">by {activeRun.requestedByName}</span>
-                            </template>
-                        </div>
-
-                        <!-- Right: Q → S → F timeline -->
-                        <div class="rh-ts-group">
-                            <span class="rh-ts">
-                                <span class="rh-ts-lbl">Q</span>
-                                <span class="rh-ts-val">{activeRunCreatedAt}</span>
-                            </span>
-                            <template if:true={activeRun.startedAt}>
-                                <span class="rh-ts-arr">›</span>
-                                <span class="rh-ts">
-                                    <span class="rh-ts-lbl">S</span>
-                                    <span class="rh-ts-val">{activeRunStartedAt}</span>
-                                </span>
-                            </template>
-                            <template if:true={activeRun.completedAt}>
-                                <span class="rh-ts-arr">›</span>
-                                <span class="rh-ts rh-ts-done">
-                                    <span class="rh-ts-lbl">F</span>
-                                    <span class="rh-ts-val">{activeRunCompletedAt}</span>
-                                </span>
-                            </template>
-                        </div>
-
+                <!-- Status pills (info / warn / error) -->
+                <template if:true={waitingForAgent}>
+                    <div class="run-pill run-pill-info">
+                        <svg class="msg-icon" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 3.5a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zm0 2.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V7.5A.5.5 0 0 1 8 7z"/>
+                        </svg>
+                        Waiting for the local qtc-runner agent to pick up this job…
                     </div>
+                </template>
+                <template if:true={showStuckWarning}>
+                    <div class="run-pill run-pill-warn">
+                        <svg class="msg-icon" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M8 1L15 14H1L8 1zm0 3.5v4.25h-.5l-.5.25v.75h2v-.75l-.5-.25H8V4.5h.001zm-1 7.25a1 1 0 1 0 2 0 1 1 0 0 0-2 0z"/>
+                        </svg>
+                        <strong>Agent not responding.</strong> Runner in-progress for over 22 min. Check agent logs or restart.
+                    </div>
+                </template>
+                <template if:true={activeRun.errorMessage}>
+                    <div class="run-pill run-pill-error">
+                        <svg class="msg-icon" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm-.75 3.5h1.5v5h-1.5v-5zm.75 7.5a.875.875 0 1 1 0-1.75.875.875 0 0 1 0 1.75z"/>
+                        </svg>
+                        {activeRun.errorMessage}
+                    </div>
+                </template>
 
-                    <!-- Status pills (info / warn / error) -->
-                    <template if:true={waitingForAgent}>
-                        <div class="run-pill run-pill-info">
-                            <svg class="msg-icon" viewBox="0 0 16 16" fill="currentColor">
-                                <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 3.5a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zm0 2.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V7.5A.5.5 0 0 1 8 7z"/>
-                            </svg>
-                            Waiting for the local qtc-runner agent to pick up this job…
-                        </div>
-                    </template>
-                    <template if:true={showStuckWarning}>
-                        <div class="run-pill run-pill-warn">
-                            <svg class="msg-icon" viewBox="0 0 16 16" fill="currentColor">
-                                <path d="M8 1L15 14H1L8 1zm0 3.5v4.25h-.5l-.5.25v.75h2v-.75l-.5-.25H8V4.5h.001zm-1 7.25a1 1 0 1 0 2 0 1 1 0 0 0-2 0z"/>
-                            </svg>
-                            <strong>Agent not responding.</strong> Runner in-progress for over 22 min. Check agent logs or restart.
-                        </div>
-                    </template>
-                    <template if:true={activeRun.errorMessage}>
-                        <div class="run-pill run-pill-error">
-                            <svg class="msg-icon" viewBox="0 0 16 16" fill="currentColor">
-                                <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm-.75 3.5h1.5v5h-1.5v-5zm.75 7.5a.875.875 0 1 1 0-1.75.875.875 0 0 1 0 1.75z"/>
-                            </svg>
-                            {activeRun.errorMessage}
-                        </div>
-                    </template>
-                </div>
+                <!-- ── Running spinner — in progress with no results yet ── -->
+                <template if:true={showRunningSpinner}>
+                    <div class="running-state">
+                        <div class="running-spinner"></div>
+                        <p class="running-text">{runningStateText}</p>
+                    </div>
+                </template>
+
+                <!-- ── Result section — only when the run produced output ── -->
+                <template if:true={hasResults}>
 
                 <!-- ── Metric strip (spans full width) ──────────────────── -->
                 <template if:true={hasMetricStrip}>
                     <div class="metric-strip">
                         <template for:each={metricStripItems} for:item="ms">
-                            <div key={ms.id} class="ms-item">
-                                <div class={ms.valueClass}>{ms.value}</div>
-                                <div class="ms-lbl">{ms.label}</div>
+                            <div key={ms.id} class={ms.cardClass}>
+                                <div class="ms-card-lbl">{ms.label}</div>
+
+                                <!-- Primary value: external link or value parts -->
+                                <template if:true={ms.isLink}>
+                                    <a class="ms-card-primary ms-card-link" href={ms.href} target="_blank">
+                                        <span class="ms-num ms-num-link">{ms.primary}</span>
+                                        <svg class="ms-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <path d="M6 3.5H3.5v9h9V10" stroke-linecap="round"/>
+                                            <path d="M9.5 3.5h3v3M12.5 3.5L7 9" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                </template>
+                                <template if:false={ms.isLink}>
+                                    <div class="ms-card-primary">
+                                        <template for:each={ms.parts} for:item="p">
+                                            <span key={p.id} class={p.cls}>{p.text}</span>
+                                        </template>
+                                    </div>
+                                </template>
+
+                                <!-- Optional progress bar -->
+                                <template if:true={ms.showProgress}>
+                                    <div class="ms-bar">
+                                        <div class={ms.progressClass} style={ms.progressStyle}></div>
+                                    </div>
+                                </template>
+
+                                <!-- Sub-line: plain text and/or pills -->
+                                <template if:true={ms.subParts.length}>
+                                    <div class="ms-card-sub">
+                                        <template for:each={ms.subParts} for:item="sp">
+                                            <span key={sp.id} class={sp.cls}>{sp.text}</span>
+                                        </template>
+                                    </div>
+                                </template>
                             </div>
                         </template>
                     </div>
@@ -282,18 +464,39 @@
                     <!-- ── Screenshots ──────────────────────────────────── -->
                     <template if:true={activeTabIsScreenshots}>
 
-                        <template if:true={hasVideo}>
-                            <div class="video-section">
-                                <div class="video-section-hdr">
-                                    <span>🎬 Test Recording</span>
-                                    <a class="video-dl-btn" href={videoSrc} target="_blank">⬇ Download</a>
-                                </div>
-                                <video class="test-video" controls preload="metadata" src={videoSrc}></video>
+                        <template if:true={videoLoadError}>
+                            <div class="media-error">
+                                <span class="media-error-icon">⚠️</span>
+                                <span>Couldn't load the recording.
+                                    <a href={videoSrc} target="_blank">Open it directly</a>.
+                                </span>
                             </div>
                         </template>
 
-                        <template if:true={hasImages}>
+                        <template if:true={hasScreenshotGrid}>
                             <div class="screenshot-grid">
+
+                                <!-- Video tile (first in the grid) -->
+                                <template if:true={showVideoTile}>
+                                    <div class="screenshot-wrap video-tile"
+                                         onclick={handleOpenVideo}
+                                         role="button"
+                                         tabindex="0"
+                                         title="Play recording">
+                                        <div class="video-tile-media">
+                                            <video class="video-tile-vid" preload="metadata" src={videoSrc} muted onerror={handleVideoError}></video>
+                                            <div class="video-thumb-overlay">
+                                                <span class="video-thumb-play">▶</span>
+                                            </div>
+                                        </div>
+                                        <div class="screenshot-footer">
+                                            <span class="screenshot-lbl">🎬 Test Recording</span>
+                                            <span class="screenshot-zoom-hint">▶</span>
+                                        </div>
+                                    </div>
+                                </template>
+
+                                <!-- Screenshots -->
                                 <template for:each={activeRunImages} for:item="img" for:index="idx">
                                     <div key={img.id}
                                          class="screenshot-wrap"
@@ -301,7 +504,7 @@
                                          onclick={handleImageClick}
                                          role="button"
                                          tabindex="0">
-                                        <img class="screenshot-img" src={img.downloadUrl} alt={img.title} />
+                                        <img class="screenshot-img" src={img.downloadUrl} alt={img.title} onerror={handleImageError} />
                                         <div class="screenshot-footer">
                                             <span class="screenshot-lbl">{img.title}</span>
                                             <span class="screenshot-zoom-hint">🔍</span>
@@ -310,7 +513,8 @@
                                 </template>
                             </div>
                         </template>
-                        <template if:false={hasImages}>
+
+                        <template if:false={hasScreenshotGrid}>
                             <div class="tab-empty">
                                 <span>📷</span>
                                 <p>No screenshots yet for this run.</p>
@@ -555,6 +759,9 @@
                 </div>
                 <!-- /tab-panel -->
 
+                </template>
+                <!-- /if:true={hasResults} -->
+
             </template>
             <!-- /if:true={activeRunId} -->
 
@@ -562,6 +769,24 @@
         <!-- /main-panel -->
 
     </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         Video Popup
+         ══════════════════════════════════════════════════════════════════ -->
+    <template if:true={showVideoModal}>
+        <div class="lb-overlay" onclick={handleVideoOverlayClick} role="dialog" aria-modal="true" aria-label="Test recording">
+            <div class="lb-box video-modal-box">
+                <div class="lb-header">
+                    <span class="lb-title">🎬 Test Recording</span>
+                    <a class="video-dl-btn" href={videoSrc} target="_blank">⬇ Download</a>
+                    <button class="lb-close" onclick={handleCloseVideo} title="Close (Esc)">✕</button>
+                </div>
+                <div class="video-modal-body">
+                    <video class="video-modal-vid" controls autoplay preload="metadata" src={videoSrc}></video>
+                </div>
+            </div>
+        </div>
+    </template>
 
     <!-- ══════════════════════════════════════════════════════════════════
          Screenshot Lightbox

@@ -14,6 +14,8 @@ public with sharing class AgenticQTC_TestRunnerController {
         @AuraEnabled public String  name            { get; set; }
         @AuraEnabled public String  status          { get; set; }
         @AuraEnabled public String  testSuite       { get; set; }
+        @AuraEnabled public String  accountId       { get; set; }
+        @AuraEnabled public String  accountName     { get; set; }
         @AuraEnabled public String  agentId         { get; set; }
         @AuraEnabled public Integer testsPassed     { get; set; }
         @AuraEnabled public Integer testsFailed     { get; set; }
@@ -50,15 +52,59 @@ public with sharing class AgenticQTC_TestRunnerController {
         @AuraEnabled public String textContentB64 { get; set; }
     }
 
+    public class SuiteOption {
+        @AuraEnabled public String label { get; set; }
+        @AuraEnabled public String value { get; set; }
+    }
+
     // ─── LWC-callable methods ────────────────────────────────────────────────
 
     /**
+     * Returns the list of Playwright suites available in the dashboard dropdown.
+     * Sourced from the agenticQTC_TestSuite__mdt CMDT so the catalogue can be
+     * extended without redeploying the LWC.
+     */
+    @AuraEnabled(cacheable=true)
+    public static List<SuiteOption> getSuiteOptions() {
+        List<SuiteOption> options = new List<SuiteOption>();
+        for (agenticQTC_TestSuite__mdt rec : [
+            SELECT MasterLabel, Suite_Value__c, Sort_Order__c
+            FROM   agenticQTC_TestSuite__mdt
+            WHERE  Is_Active__c = true
+            WITH   SYSTEM_MODE
+            ORDER BY Sort_Order__c ASC NULLS LAST, MasterLabel ASC
+        ]) {
+            SuiteOption opt = new SuiteOption();
+            opt.label = rec.MasterLabel;
+            opt.value = rec.Suite_Value__c;
+            options.add(opt);
+        }
+        return options;
+    }
+
+    /**
+     * Searches Accounts by name for the dashboard's account typeahead.
+     * Delegates to AgenticQTC_AccountSearchService, which restricts results to
+     * accounts that have at least one eligible (activated, in-force) contract —
+     * the same accounts the Playwright specs can actually run amendments against.
+     */
+    @AuraEnabled(cacheable=true)
+    public static List<AgenticQTC_AccountSearchService.AccountResult> searchAccounts(String searchTerm) {
+        return AgenticQTC_AccountSearchService.searchAccounts(searchTerm);
+    }
+
+    /**
      * Creates a new Test_Run__c record with PENDING status.
+     * accountName is required: the dashboard forces an account selection so the
+     * target account flows through to the specs instead of their hard-coded fallback.
      */
     @AuraEnabled
-    public static String createTestRun(String testSuite, String runner) {
+    public static String createTestRun(String testSuite, String runner, String accountId, String accountName) {
         if (String.isBlank(testSuite)) {
             throw new AuraHandledException('testSuite is required.');
+        }
+        if (String.isBlank(accountName)) {
+            throw new AuraHandledException('An account is required. Search for and select an account before running.');
         }
 
         // runner = 'github'  → CLAIMED immediately, trigger GitHub Actions workflow.
@@ -70,6 +116,8 @@ public with sharing class AgenticQTC_TestRunnerController {
             Test_Suite__c    = testSuite,
             Status__c        = useGitHub ? 'CLAIMED' : 'PENDING',
             Agent_Id__c      = useGitHub ? 'github-actions' : null,
+            Account__c       = String.isNotBlank(accountId) ? (Id) accountId : null,
+            Account_Name__c  = accountName,
             Requested_By__c  = UserInfo.getUserId()
         );
 
@@ -81,7 +129,8 @@ public with sharing class AgenticQTC_TestRunnerController {
             AgenticQTC_GitHubActionsService.triggerWorkflowAsync(
                 run.Id,
                 testSuite,
-                URL.getOrgDomainUrl().toExternalForm()
+                URL.getOrgDomainUrl().toExternalForm(),
+                accountName
             );
         }
 
@@ -101,6 +150,7 @@ public with sharing class AgenticQTC_TestRunnerController {
         List<Test_Run__c> runs = [
             SELECT
                 Id, Name, Status__c, Test_Suite__c, Agent_Id__c,
+                Account__c, Account_Name__c,
                 Tests_Passed__c, Tests_Failed__c, Duration_Ms__c,
                 Error_Message__c, Log_Output__c, Rich_Results__c,
                 Started_At__c, Completed_At__c, CreatedDate,
@@ -133,6 +183,7 @@ public with sharing class AgenticQTC_TestRunnerController {
         List<Test_Run__c> runs = [
             SELECT
                 Id, Name, Status__c, Test_Suite__c, Agent_Id__c,
+                Account__c, Account_Name__c,
                 Tests_Passed__c, Tests_Failed__c, Duration_Ms__c,
                 Error_Message__c, Log_Output__c, Rich_Results__c,
                 Started_At__c, Completed_At__c, CreatedDate,
@@ -234,9 +285,12 @@ public with sharing class AgenticQTC_TestRunnerController {
 
         Test_Run__c run = runs[0];
 
-        if (run.Status__c != 'PENDING') {
+        // Allow cancelling any in-progress run (PENDING waiting for an agent,
+        // CLAIMED stuck without a heartbeat, or actively RUNNING).
+        Set<String> cancellable = new Set<String>{ 'PENDING', 'CLAIMED', 'RUNNING' };
+        if (!cancellable.contains(run.Status__c)) {
             throw new AuraHandledException(
-                'Can only cancel PENDING runs. Current status: ' + run.Status__c
+                'Can only cancel in-progress runs. Current status: ' + run.Status__c
             );
         }
 
@@ -257,6 +311,8 @@ public with sharing class AgenticQTC_TestRunnerController {
         w.name                  = r.Name;
         w.status                = r.Status__c;
         w.testSuite             = r.Test_Suite__c;
+        w.accountId             = r.Account__c;
+        w.accountName           = r.Account_Name__c;
         w.agentId               = r.Agent_Id__c;
         w.testsPassed           = r.Tests_Passed__c != null ? Integer.valueOf(r.Tests_Passed__c) : 0;
         w.testsFailed           = r.Tests_Failed__c != null ? Integer.valueOf(r.Tests_Failed__c) : 0;
