@@ -53,6 +53,69 @@ class AgenticQtcPage {
     return this.page.locator('input.native-search-input');
   }
 
+  /** All account-result cards currently shown in the search dropdown. */
+  accountCards() {
+    return this.page.locator('div.account-card');
+  }
+
+  /** The "No accounts found for …" empty-state dropdown. */
+  noResultsDropdown() {
+    return this.page.locator('.no-results-dropdown');
+  }
+
+  /**
+   * Type a term into the account search box WITHOUT selecting anything.
+   * Mirrors the LWC's 300ms input debounce by settling briefly after the
+   * keystrokes so the Apex round-trip has fired by the time the caller reads
+   * the dropdown. Use this for behavior assertions; use searchAndSelectAccount
+   * when the goal is to drill into a contract.
+   * @param {string} term
+   * @param {number} [settleMs=1200]
+   */
+  async typeAccountSearch(term, settleMs = 1_200) {
+    await this.accountSearchInput().fill(term);
+    if (settleMs > 0) await this.page.waitForTimeout(settleMs);
+  }
+
+  /**
+   * Read every account card in the open dropdown:
+   *   [{ id, name, location }]
+   * Single page.evaluate so a full dropdown costs one CDP round-trip.
+   */
+  async readAccountCards() {
+    return this.accountCards().evaluateAll((els) =>
+      els.map((el) => ({
+        id:       el.getAttribute('data-id'),
+        name:     (el.querySelector('.account-name')?.textContent || '').trim(),
+        location: (el.querySelector('.account-location')?.textContent || '').trim(),
+      }))
+    );
+  }
+
+  /**
+   * Count eligible contracts for an account using the SAME semi-join the
+   * account search Apex applies (see AgenticQTC_AccountSearchService.cls):
+   *   Status IN ('In Force','Partially Cancelled or superseded')
+   *   AND EndDate >= today
+   *   AND has ≥1 Software subscription line.
+   * Any account returned by the search must satisfy this (count >= 1).
+   * @param {string} accountId
+   * @returns {Promise<number>}
+   */
+  async countEligibleContracts(accountId) {
+    const soql = `SELECT COUNT() FROM Contract
+                  WHERE AccountId = '${accountId}'
+                  AND Status IN ('In Force', 'Partially Cancelled or superseded')
+                  AND EndDate >= TODAY
+                  AND Id IN (
+                    SELECT SBQQ__Contract__c FROM SBQQ__Subscription__c
+                    WHERE SBQQ__Contract__c != null
+                    AND SBQQ__Product__r.Product_Type__c = 'Software'
+                  )`;
+    const result = await u.sfQuery(this.page, this.instanceUrl, this.accessToken, soql);
+    return result.totalSize ?? 0;
+  }
+
   /**
    * Click the account-card whose data-name attribute (or visible name)
    * matches `fullName`.
@@ -106,6 +169,31 @@ class AgenticQtcPage {
     return this.page.locator('tr.contract-row');
   }
 
+  /** The "N active contract(s)" count badge shown beside the section header. */
+  contractCountBadge() {
+    return this.page.locator('.contract-count-badge');
+  }
+
+  /** The "No active contracts found" empty-state inside the contracts section. */
+  noContractsState() {
+    return this.page.locator('.contracts-section .no-results');
+  }
+
+  /** "Clear" pill that returns from the contracts list to account search. */
+  accountPillClear() {
+    return this.page.locator('button.account-pill-clear');
+  }
+
+  /** All "+N more" product-expand buttons across the visible contract rows. */
+  productMoreButtons() {
+    return this.page.locator('button.product-more-btn');
+  }
+
+  /** The single "Show less" button visible inside an expanded products cell. */
+  productShowLessButton() {
+    return this.page.locator('button.product-toggle-btn', { hasText: /Show less/i });
+  }
+
   /**
    * Read all visible contract rows and return their { id, number, index }
    * pairs. `id` comes from data-id (the SF Contract Id), `number` from
@@ -124,10 +212,12 @@ class AgenticQtcPage {
   }
 
   /**
-   * Count draft amendment quotes for a contract using the same SOQL
-   * filter the LWC uses (see AgenticQTC_QuoteAmendmentService.cls
-   * getDraftQuotesForContract):
-   *   status = 'Draft' AND endDate >= today
+   * Count draft amendment quotes for a contract using the EXACT SOQL filter
+   * the LWC's picker uses (see AgenticQTC_QuoteAmendmentService.cls
+   * getDraftQuotesForContract, lines 817-828). The OSA selector branches on
+   * this count: 0 → new amendment, 1 → opens that draft, ≥2 → picker modal.
+   * The filter is stricter than "Draft + future end date": it also requires
+   * Type='Amendment', Deal_Type='Add-On', and an open opportunity stage.
    * @param {string} contractId
    * @returns {Promise<number>}
    */
@@ -135,6 +225,9 @@ class AgenticQtcPage {
     const soql = `SELECT COUNT() FROM SBQQ__Quote__c
                   WHERE SBQQ__MasterContract__c = '${contractId}'
                   AND SBQQ__Status__c = 'Draft'
+                  AND SBQQ__Type__c = 'Amendment'
+                  AND Deal_Type__c = 'Add-On'
+                  AND (NOT Opportunity_Stage__c LIKE '%Closed%')
                   AND SBQQ__EndDate__c >= TODAY`;
     const result = await u.sfQuery(this.page, this.instanceUrl, this.accessToken, soql);
     return result.totalSize ?? 0;
@@ -151,6 +244,9 @@ class AgenticQtcPage {
                   FROM SBQQ__Quote__c
                   WHERE SBQQ__MasterContract__c = '${contractId}'
                   AND SBQQ__Status__c = 'Draft'
+                  AND SBQQ__Type__c = 'Amendment'
+                  AND Deal_Type__c = 'Add-On'
+                  AND (NOT Opportunity_Stage__c LIKE '%Closed%')
                   AND SBQQ__EndDate__c >= TODAY
                   ORDER BY CreatedDate DESC`;
     const result = await u.sfQuery(this.page, this.instanceUrl, this.accessToken, soql);
@@ -247,6 +343,22 @@ class AgenticQtcPage {
 
   draftQuotesModal() {
     return this.page.locator('.quotes-modal');
+  }
+
+  /** The semi-transparent backdrop behind the draft-quotes modal. */
+  draftModalBackdrop() {
+    return this.page.locator('.quotes-modal-backdrop');
+  }
+
+  /** The X / close button in the draft-quotes modal header. */
+  draftModalClose() {
+    return this.page.locator('button.quotes-modal-close');
+  }
+
+  /** The draft-quotes modal title ("Existing Draft Quotes") — a safe in-panel
+   *  click target for the "clicking inside doesn't dismiss" assertion. */
+  draftModalTitle() {
+    return this.page.locator('.quotes-modal-title');
   }
 
   draftQuoteRows() {
@@ -470,14 +582,52 @@ class AgenticQtcPage {
   }
 
   /**
+   * Read the editor header title links (`a.header-title-link`) as
+   * [{ text, href }]. The account link comes first, the quote (Q-NNNNN) link
+   * second; callers match on the href path rather than position.
+   */
+  async readHeaderLinks() {
+    return this.page.locator('a.header-title-link').evaluateAll((els) =>
+      els.map((el) => ({
+        text: (el.textContent || '').trim(),
+        href: el.getAttribute('href') || '',
+      }))
+    );
+  }
+
+  /**
+   * Read the metric tiles in the editor's metrics bar as [{ label, value }].
+   * Each `.metric-item` carries a `.metric-label` and a trailing value span
+   * (ACV / TCV / YoY Uplift / Deal Quality Score).
+   */
+  async readMetricTiles() {
+    return this.page.locator('.metric-item').evaluateAll((els) =>
+      els.map((el) => ({
+        label: (el.querySelector('.metric-label')?.textContent || '').trim(),
+        value: (el.lastElementChild?.textContent || '').trim(),
+      }))
+    );
+  }
+
+  /** True when the Save button is present AND disabled (the dirty-state gate). */
+  async isSaveDisabled() {
+    const btn = this.saveButton();
+    await btn.waitFor({ state: 'visible', timeout: 30_000 });
+    return btn.isDisabled();
+  }
+
+  /**
    * Navigate back from the quote editor to the contracts list using the
-   * back button in the editor header (utility:back icon).
+   * back button in the editor header. It's an icon-only
+   * `lightning-button-icon` (utility:back) with no visible text, so we anchor
+   * on its position as the first button-icon in the editor header rather than
+   * an accessible name.
    */
   async backToContracts() {
-    const backBtn = this.page.getByRole('button').filter({ hasText: /back/i }).first();
-    if (await u.clickIfVisible(backBtn, 3_000)) {
-      await this.activeContractsHeading().waitFor({ state: 'visible', timeout: 20_000 });
-    }
+    const backBtn = this.page.locator('.editor-header lightning-button-icon').first();
+    await backBtn.waitFor({ state: 'visible', timeout: 10_000 });
+    await backBtn.click();
+    await this.activeContractsHeading().waitFor({ state: 'visible', timeout: 20_000 });
   }
 
   /**
