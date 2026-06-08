@@ -111,7 +111,7 @@ async function runQuantityIncrease(ctx) {
   await u.screenshot(page, runDir, '02-editor-loaded');
 
   const spinbuttons = page.getByRole('spinbutton');
-  /** @type {Array<{index:number,initial:number,filled:number,rowText:string}>} */
+  /** @type {Array<{index:number,initial:number,filled:number,rowText:string,costBefore:string}>} */
   const preSave = [];
   for (let i = 0; i < spinbuttonCount; i++) {
     const sb  = spinbuttons.nth(i);
@@ -126,9 +126,11 @@ async function runQuantityIncrease(ctx) {
       .innerText({ timeout: 1_000 }).catch(() => '');
     const rt          = productName.trim()
       || (await row.innerText().catch(() => '')).split('\n')[0].trim().substring(0, 60);
+    // UI "Cost" cell (SBQQ__NetTotal__c) before any quantity edit.
+    const costBefore = await qtc.readLineCost(sb);
     preSave.push({
       index: i, initial: parseFloat(val) || 0, filled: 0,
-      rowText: rt,
+      rowText: rt, costBefore,
     });
   }
 
@@ -151,9 +153,13 @@ async function runQuantityIncrease(ctx) {
   await u.screenshot(page, runDir, '04-after-save');
 
   /** @type {number[]} */ const postSave = [];
+  /** @type {string[]} */ const costAfter = [];
   for (let i = 0; i < spinbuttonCount; i++) {
-    const val = await spinbuttons.nth(i).inputValue().catch(() => '0');
+    const sb  = spinbuttons.nth(i);
+    const val = await sb.inputValue().catch(() => '0');
     postSave.push(parseFloat(val) || 0);
+    // UI "Cost" cell (SBQQ__NetTotal__c) after save — reflects the new quantity.
+    costAfter.push(await qtc.readLineCost(sb));
   }
   const metricsAfterSave = await captureMetrics(page);
   await u.screenshot(page, runDir, '05-final');
@@ -282,7 +288,7 @@ async function runQuantityIncrease(ctx) {
     }
   }
 
-  /** @type {Array<{index:number,label:string,before:number,expected:number,actual:number,pass:boolean}>} */
+  /** @type {Array<{index:number,label:string,before:number,expected:number,actual:number,pass:boolean,costBefore:string,costAfter:string}>} */
   const lineResults = [];
   let allQtyPass = true;
   for (let i = 0; i < spinbuttonCount; i++) {
@@ -293,6 +299,7 @@ async function runQuantityIncrease(ctx) {
     lineResults.push({
       index: i + 1, label: preSave[i].rowText || `Line ${i + 1}`,
       before: preSave[i].initial, expected, actual, pass,
+      costBefore: preSave[i].costBefore, costAfter: costAfter[i],
     });
   }
 

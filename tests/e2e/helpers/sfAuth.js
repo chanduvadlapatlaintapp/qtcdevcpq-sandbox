@@ -64,11 +64,15 @@ function findSfCli() {
 
 const SF = findSfCli();
 
+// Target org alias. Defaults to qtcmock; override with QTC_SF_ORG so the agent
+// and the Playwright specs it spawns all target the same org (e.g. uat-agenticqtc).
+const SF_ORG = process.env.QTC_SF_ORG || 'qtcmock';
+
 function getSfCredentials() {
   // Don't redirect stderr in the command string — `2>/dev/null` is Unix-only and
   // breaks on cmd.exe. Use stdio:'pipe' so stderr is captured (and silent) instead.
   const raw = execSync(
-    `"${SF}" org display --target-org qtcmock --json`,
+    `"${SF}" org display --target-org ${SF_ORG} --json`,
     {
       env: { ...process.env, NO_COLOR: '1', FORCE_COLOR: '0' },
       stdio: ['ignore', 'pipe', 'pipe'],
@@ -84,7 +88,7 @@ function getSfCredentials() {
   // produces an invalid session and dumps the test on the SF login page. Fetch
   // the real token from the dedicated, unredacted command instead.
   const tokRaw = execSync(
-    `"${SF}" org auth show-access-token --target-org qtcmock --json`,
+    `"${SF}" org auth show-access-token --target-org ${SF_ORG} --json`,
     {
       env: { ...process.env, NO_COLOR: '1', FORCE_COLOR: '0' },
       stdio: ['ignore', 'pipe', 'pipe'],
@@ -94,7 +98,7 @@ function getSfCredentials() {
 
   if (!accessToken || /REDACTED/.test(accessToken)) {
     throw new Error(
-      'No usable access token for org "qtcmock". Run: sf org login web --alias qtcmock'
+      `No usable access token for org "${SF_ORG}". Run: sf org login web --alias ${SF_ORG}`
     );
   }
 

@@ -492,6 +492,56 @@ class AgenticQtcPage {
     return ok ? spinbuttons.count() : 0;
   }
 
+  /**
+   * Read the rendered "Cost" cell (SBQQ__NetTotal__c, formatted by the term
+   * group's _fmtCurrency) for the MDQ quote-line row that owns a given quantity
+   * spinbutton. In agenticQtcMdqTermGroup each editable year cell is four
+   * columns — Quantity | Eff. Qty | Monthly Sale Price | Cost — so the Cost
+   * cell is the 3rd <td> sibling after the quantity input's <td>.
+   *
+   * Returns the raw display string (e.g. 'USD 1,234.00' / 'USD 1.20M') or ''
+   * when it can't be read (e.g. a non-term-group layout). The value is shown as
+   * informational before/after context on the dashboard, never asserted.
+   *
+   * @param {Locator} spinbutton  a quantity input from getByRole('spinbutton')
+   * @returns {Promise<string>}
+   */
+  async readLineCost(spinbutton) {
+    const costCell = spinbutton.locator('xpath=ancestor::td[1]/following-sibling::td[3]');
+    return (await costCell.innerText({ timeout: 1_000 }).catch(() => '')).trim();
+  }
+
+  // ─── Header metric tiles ─────────────────────────────────────────────────────
+
+  /**
+   * Read the four header metric tiles (ACV, TCV, YoY Uplift, Deal Quality Score)
+   * from the quote editor's metrics bar and return their raw display strings
+   * keyed by the visible label, e.g.
+   *   { 'ACV': '$1,234.00', 'TCV': '$10,000.00',
+   *     'YoY Uplift': '+5.00%', 'Deal Quality Score': '95' }
+   *
+   * Anchored to `.metrics-bar .metric-item` (label span + value span) so it
+   * survives tile reordering and doesn't depend on column position. Single
+   * page.locator().evaluateAll() call — one CDP round-trip for all tiles. The
+   * locator pierces the editor's shadow root to resolve the matching elements.
+   *
+   * @param {number} [timeout=15000]
+   * @returns {Promise<Record<string,string>>}
+   */
+  async readHeaderMetrics(timeout = 15_000) {
+    await this.page.locator('.metrics-bar').waitFor({ state: 'visible', timeout });
+    const items = await this.page.locator('.metrics-bar .metric-item').evaluateAll((els) =>
+      els.map((el) => ({
+        label: (el.querySelector('.metric-label')?.textContent || '').trim(),
+        value: (el.querySelector('.metric-value')?.textContent || '').trim(),
+      }))
+    );
+    /** @type {Record<string,string>} */
+    const map = {};
+    for (const it of items) if (it.label) map[it.label] = it.value;
+    return map;
+  }
+
   // ─── DB verification ───────────────────────────────────────────────────────
 
   /**
