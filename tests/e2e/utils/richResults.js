@@ -100,7 +100,7 @@ function buildRichResults(input) {
  * Returns rows shaped to match what the LWC's `richMismatchRows` getter
  * expects (lines 263-310 of agenticQtcTestDashboard.js).
  *
- * @param {Array<{index:number, label:string, before:number, actual:number}>} lineResults
+ * @param {Array<{index:number, label:string, before:number, actual:number, costBefore?:string|null, costAfter?:string|null}>} lineResults
  * @param {Array<{product:string, segIndex:number|null, priorQty:number|null, dbQty:number|null, isBundle?:boolean}>} dbComparison
  */
 function buildUiDbCrossCheck(lineResults, dbComparison) {
@@ -147,6 +147,10 @@ function buildUiDbCrossCheck(lineResults, dbComparison) {
       uiAfter,
       dbPrior:  db ? (db.priorQty ?? null) : null,
       dbAfter,
+      // UI "Cost" cell (SBQQ__NetTotal__c) before the edit and after save — raw
+      // display strings, carried straight through to the dashboard's UI↔DB tab.
+      costBefore: line.costBefore ?? null,
+      costAfter:  line.costAfter  ?? null,
       match, hasData,
     };
   });
