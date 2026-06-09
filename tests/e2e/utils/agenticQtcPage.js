@@ -661,6 +661,30 @@ class AgenticQtcPage {
     return (await costCell.innerText({ timeout: 1_000 }).catch(() => '')).trim();
   }
 
+  // ─── App shell: theme + breadcrumb ───────────────────────────────────────────
+
+  /** The dark/light toggle button in the app header (present on every page). */
+  themeToggleButton() {
+    return this.page.locator('button.dark-mode-toggle');
+  }
+
+  /**
+   * Current app theme, read from the root container class
+   * (agenticQtcApp.appContainerClass → 'app-container dark-theme' | 'light-theme').
+   * @returns {Promise<'dark'|'light'|'unknown'>}
+   */
+  async currentTheme() {
+    const cls = (await this.page.locator('.app-container').first().getAttribute('class').catch(() => '')) || '';
+    if (cls.includes('dark-theme'))  return 'dark';
+    if (cls.includes('light-theme')) return 'light';
+    return 'unknown';
+  }
+
+  /** Breadcrumb items in the app header (account = first, contract = second). */
+  breadcrumbItems() {
+    return this.page.locator('.breadcrumb-item.clickable');
+  }
+
   // ─── Header metric tiles ─────────────────────────────────────────────────────
 
   /**
