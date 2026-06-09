@@ -102,6 +102,30 @@ async function runAppNavigation(ctx) {
   const t3 = await checkThemeToggle(page, qtc, 'Quote editor');
   record('Theme · Quote editor', `${t3.before} → ${t3.after}`, t3.pass);
 
+  // ── 3b. Product dropdown reveals extra details (ACV) ─────────────────────
+  // Each MDQ product row has a chevron toggle (.product-toggle) that expands a
+  // .detail-row showing extra metrics like ACV (agenticQtcMdqTermGroup). Only
+  // run when the editor actually has product rows.
+  /** @type {boolean|null} */ let dropdownPass = null;   // null = N/A (no products)
+  let dropdownDetail = 'no product rows on this quote';
+  const productToggle = page.locator('.product-toggle').first();
+  if (await u.isVisibleSafe(productToggle, 5_000)) {
+    const acvDetail = page.locator('.detail-row .detail-label').filter({ hasText: /ACV/i }).first();
+    const visBefore = await u.isVisibleSafe(acvDetail, 1_500);
+    await productToggle.click();
+    await page.waitForTimeout(600);
+    const visAfter = await u.isVisibleSafe(acvDetail, 3_000);
+    dropdownPass   = visBefore !== visAfter;   // clicking toggles the ACV detail row
+    dropdownDetail = `ACV detail ${visBefore ? 'shown' : 'hidden'} → ${visAfter ? 'shown' : 'hidden'}`;
+    await u.screenshot(page, runDir, '03b-product-dropdown');
+    console.log(`[appNav] product dropdown: ${dropdownDetail} (${dropdownPass ? 'OK' : 'FAIL'})`);
+    record('Product dropdown · ACV detail', dropdownDetail, dropdownPass);
+    // Re-open it so a screenshot of the editor shows the expanded detail.
+    if (!visAfter) { await productToggle.click().catch(() => {}); }
+  } else {
+    console.log('[appNav] product dropdown: no product rows — skipped');
+  }
+
   // ── 4. Editor header record links open a record page in a NEW tab ────────
   const links = page.locator('a.header-title-link');
   const linkCount = await links.count();
@@ -188,6 +212,9 @@ async function runAppNavigation(ctx) {
   expect(t1.pass, 'Theme toggle should work on the Account search page').toBe(true);
   expect(t2.pass, 'Theme toggle should work on the Contract selector page').toBe(true);
   expect(t3.pass, 'Theme toggle should work on the Quote editor page').toBe(true);
+  if (dropdownPass !== null) {
+    expect(dropdownPass, 'Product dropdown should toggle the ACV detail row').toBe(true);
+  }
   for (const lr of linkResults) {
     expect(lr.ok, `Header link "${lr.label}" should open a record page in a new tab (got: ${lr.url})`).toBe(true);
   }
