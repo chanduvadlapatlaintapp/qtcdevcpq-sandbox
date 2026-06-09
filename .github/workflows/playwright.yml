@@ -192,15 +192,24 @@ jobs:
 
           mkdir -p "test-results/$TR_ID"
 
-          # Capture the console output to stdout.log so the dashboard's Log tab is
-          # populated on EVERY run — pass OR fail (upload-results.js reads this file).
-          # The 'list' reporter prints progress + spec console.logs to stdout; the
-          # 'json' reporter still writes the machine-readable file via
-          # PLAYWRIGHT_JSON_OUTPUT_NAME. bash's default `pipefail` preserves
-          # Playwright's exit code through the tee, so failures still flip the step.
+          # Capture console output so the dashboard's Log tab is populated on EVERY
+          # run — pass OR fail (upload-results.js reads test-results/<id>/stdout.log).
+          # IMPORTANT: Playwright CLEARS the --output dir at startup, so a log written
+          # directly inside it gets wiped. Capture to /tmp during the run, then copy
+          # it into the run dir AFTER Playwright finishes. `set +e` + PIPESTATUS keep
+          # Playwright's real exit code (so failures still flip the step) despite the
+          # tee and the post-run copy. The 'list' reporter prints progress + the specs'
+          # console.logs to stdout; 'json' still writes the machine file via
+          # PLAYWRIGHT_JSON_OUTPUT_NAME.
+          STDOUT_LOG="/tmp/pw-stdout-$TR_ID.log"
+          set +e
           npx playwright test "$SPEC" \
             --reporter=list,json \
-            --output="test-results/$TR_ID" 2>&1 | tee "test-results/$TR_ID/stdout.log"
+            --output="test-results/$TR_ID" 2>&1 | tee "$STDOUT_LOG"
+          PW_EXIT=${PIPESTATUS[0]}
+          set -e
+          cp "$STDOUT_LOG" "test-results/$TR_ID/stdout.log" 2>/dev/null || true
+          exit "$PW_EXIT"
         env:
           CI: 'true'
           PLAYWRIGHT_JSON_OUTPUT_NAME: "test-results/${{ steps.run-setup.outputs.test_run_id }}/results.json"
