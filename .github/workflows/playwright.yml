@@ -192,9 +192,15 @@ jobs:
 
           mkdir -p "test-results/$TR_ID"
 
+          # Capture the console output to stdout.log so the dashboard's Log tab is
+          # populated on EVERY run — pass OR fail (upload-results.js reads this file).
+          # The 'list' reporter prints progress + spec console.logs to stdout; the
+          # 'json' reporter still writes the machine-readable file via
+          # PLAYWRIGHT_JSON_OUTPUT_NAME. bash's default `pipefail` preserves
+          # Playwright's exit code through the tee, so failures still flip the step.
           npx playwright test "$SPEC" \
-            --reporter=json \
-            --output="test-results/$TR_ID"
+            --reporter=list,json \
+            --output="test-results/$TR_ID" 2>&1 | tee "test-results/$TR_ID/stdout.log"
         env:
           CI: 'true'
           PLAYWRIGHT_JSON_OUTPUT_NAME: "test-results/${{ steps.run-setup.outputs.test_run_id }}/results.json"
