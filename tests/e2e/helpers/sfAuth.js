@@ -131,11 +131,14 @@ async function loginViaCookie(page, instanceUrl, accessToken) {
   // After hitting this URL, Salesforce sets the real `sid` session cookie and redirects.
   const frontdoorUrl = `${lightningBase}/secur/frontdoor.jsp?sid=${encodeURIComponent(accessToken)}&retURL=%2F`;
 
-  await page.goto(frontdoorUrl, { waitUntil: 'domcontentloaded' });
-  // Salesforce can chain frontdoor → contentDoor (file.force.com) → lightning.force.com.
-  // Wait for the URL to actually land on the Lightning host before returning, so the
-  // caller's next page.goto() doesn't race an in-flight redirect.
-  await page.waitForURL(/\.lightning\.force\.com\//, { timeout: 60_000 });
+  await page.goto(frontdoorUrl, { waitUntil: 'commit' }).catch(() => { /* swallow nav-interrupt from the redirect chain */ });
+  // Salesforce can chain frontdoor → contentDoor (file.force.com) → lightning.force.com,
+  // and may briefly land on the classic App Launcher (appLauncher.apexp) whose `load`
+  // event is slow/unreliable. Wait only for the URL to COMMIT on the Lightning host
+  // (waitUntil:'commit') instead of a full `load` — otherwise a slow redirect page
+  // makes waitForURL hang for the full 60s. The caller's next page.goto() does its own
+  // load wait, so we don't need a settled page here.
+  await page.waitForURL(/\.lightning\.force\.com\//, { timeout: 60_000, waitUntil: 'commit' });
   await page.waitForLoadState('domcontentloaded').catch(() => {});
   await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
 
