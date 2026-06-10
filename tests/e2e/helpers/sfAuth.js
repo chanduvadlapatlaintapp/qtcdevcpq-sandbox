@@ -135,7 +135,10 @@ async function loginViaCookie(page, instanceUrl, accessToken) {
       `"${SF}" org open --url-only --target-org ${SF_ORG} --path /`,
       { env: { ...process.env, NO_COLOR: '1', FORCE_COLOR: '0' }, stdio: ['ignore', 'pipe', 'pipe'] }
     ).toString().replace(/\x1B\[[0-9;]*m/g, '');
-    frontdoorUrl = raw.split('\n').map(l => l.trim()).find(l => l.startsWith('https://'));
+    // Output format: "Access org <id> as user <u> with the following URL: https://..."
+    // The URL is at the end of a sentence, not on its own line — match it anywhere.
+    const m = raw.match(/https:\/\/[^\s]*frontdoor\.jsp[^\s]*/);
+    frontdoorUrl = m ? m[0] : null;
   } catch { /* fall through */ }
 
   if (!frontdoorUrl) {
