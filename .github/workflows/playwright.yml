@@ -127,8 +127,6 @@ jobs:
             "JSON.parse(process.env.SF_JWT_ORG_CONFIG)[process.env.ORG_KEY].username")
           INSTANCE=$(ORG_KEY="$ORG_KEY" node -p \
             "JSON.parse(process.env.SF_JWT_ORG_CONFIG)[process.env.ORG_KEY].instanceUrl")
-          LOGIN_URL=$(ORG_KEY="$ORG_KEY" node -p \
-            "JSON.parse(process.env.SF_JWT_ORG_CONFIG)[process.env.ORG_KEY].loginUrl")
 
           printf '%s' "$SF_JWT_PRIVATE_KEY" > /tmp/server.key
           sf org login jwt \
@@ -136,7 +134,6 @@ jobs:
             --jwt-key-file /tmp/server.key \
             --username     "$USERNAME" \
             --instance-url "$INSTANCE" \
-            --login-url    "$LOGIN_URL" \
             --alias        "$ORG_ALIAS" \
             --set-default
           rm -f /tmp/server.key
