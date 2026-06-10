@@ -127,9 +127,13 @@ async function runEditorButtons(ctx) {
   //                      no approval ⇒ not rendered.
   const submitPass = approvalPresent ? (submitEnabledOnOpen === true) : (approvalPresent === false);
 
-  // Preview & Send OSA: clickable iff a delivery contact exists AND there is no
-  // PENDING approval (no approval required, or the required approval is Approved).
-  const expectedPreviewEnabled = deliveryPresent && (!approvalPresent || approvalApproved);
+  // Preview & Send OSA: clickable iff a delivery contact exists AND the quote's
+  // ApprovalStatus__c is not blocking (null = no approval ever set, or 'Approved').
+  // The LWC checks ApprovalStatus__c directly — even when the Submit for Approval
+  // button is not rendered (approvalPresent=false), a status of 'Pending Submission'
+  // still disables Preview & Send.
+  const approvalBlocking = approvalStatus != null && !approvalApproved;
+  const expectedPreviewEnabled = deliveryPresent && !approvalBlocking;
   const previewPass = previewEnabledOnOpen === expectedPreviewEnabled;
 
   const allPass = savePass && submitPass && previewPass;
