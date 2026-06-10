@@ -125,11 +125,22 @@ async function loginViaCookie(page, instanceUrl, accessToken) {
     .replace(/\.my\.salesforce\.com$/, '.lightning.force.com')
     .replace(/\/+$/, '');
 
-  // Use frontdoor.jsp — the official SF mechanism to exchange an OAuth Bearer token
-  // for a browser session cookie. This avoids manual cookie injection which can fail
-  // when Salesforce changes their cookie/domain requirements.
-  // After hitting this URL, Salesforce sets the real `sid` session cookie and redirects.
-  const frontdoorUrl = `${lightningBase}/secur/frontdoor.jsp?sid=${encodeURIComponent(accessToken)}&retURL=%2F`;
+  // sf org open --url-only generates a properly signed frontdoor URL via the SF CLI,
+  // which works with JWT Bearer Flow tokens (those lack the 'web' OAuth scope required
+  // to use a raw access token as a frontdoor sid directly).
+  // Falls back to the manual construction only if sf org open fails.
+  let frontdoorUrl;
+  try {
+    const raw = execSync(
+      `"${SF}" org open --url-only --target-org ${SF_ORG} --path /`,
+      { env: { ...process.env, NO_COLOR: '1', FORCE_COLOR: '0' }, stdio: ['ignore', 'pipe', 'pipe'] }
+    ).toString().replace(/\x1B\[[0-9;]*m/g, '');
+    frontdoorUrl = raw.split('\n').map(l => l.trim()).find(l => l.startsWith('https://'));
+  } catch { /* fall through */ }
+
+  if (!frontdoorUrl) {
+    frontdoorUrl = `${lightningBase}/secur/frontdoor.jsp?sid=${encodeURIComponent(accessToken)}&retURL=%2F`;
+  }
 
   await page.goto(frontdoorUrl, { waitUntil: 'commit' }).catch(() => { /* swallow nav-interrupt from the redirect chain */ });
   // Salesforce can chain frontdoor → contentDoor (file.force.com) → lightning.force.com,
