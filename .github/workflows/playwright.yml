@@ -101,27 +101,48 @@ jobs:
         run: npm install --global @salesforce/cli@2.137.7
 
       # ── 6. Authenticate to Salesforce ───────────────────────────────────────
-      # Detects which org triggered the run from sf_instance_url:
-      #   - URL contains "uat"  → uses SF_SFDX_AUTH_URL_UAT  secret, alias qtcuat
-      #   - anything else       → uses SF_SFDX_AUTH_URL       secret, alias qtcmock
+      # JWT Bearer Flow — private key never expires, no manual token rotation.
+      # Org-specific config (clientId, username, instanceUrl) lives in the
+      # SF_JWT_ORG_CONFIG JSON secret. To add a new org, update that JSON and
+      # add an elif here — no other changes needed.
       - name: Authenticate to Salesforce
         id: sf-auth
         run: |
           INSTANCE_URL="${{ inputs.sf_instance_url }}"
           if [[ "$INSTANCE_URL" == *"uat"* ]]; then
-            printf '%s' "$SF_AUTH_UAT" > /tmp/sf-auth.txt
+            ORG_KEY="uat"
             ORG_ALIAS="qtcuat"
           else
-            printf '%s' "$SF_AUTH_MOCK" > /tmp/sf-auth.txt
+            ORG_KEY="qtcmock"
             ORG_ALIAS="qtcmock"
           fi
-          sf org login sfdx-url --sfdx-url-file /tmp/sf-auth.txt --alias "$ORG_ALIAS" --set-default
-          rm /tmp/sf-auth.txt
+
+          # Extract org credentials from the JSON config using Node (already installed)
+          CLIENT_ID=$(ORG_KEY="$ORG_KEY" node -p \
+            "const c=JSON.parse(process.env.SF_JWT_ORG_CONFIG); \
+             const o=c[process.env.ORG_KEY]; \
+             if(!o){process.stderr.write('No JWT config for org: '+process.env.ORG_KEY+'\n');process.exit(1);} \
+             o.clientId")
+          USERNAME=$(ORG_KEY="$ORG_KEY" node -p \
+            "JSON.parse(process.env.SF_JWT_ORG_CONFIG)[process.env.ORG_KEY].username")
+          INSTANCE=$(ORG_KEY="$ORG_KEY" node -p \
+            "JSON.parse(process.env.SF_JWT_ORG_CONFIG)[process.env.ORG_KEY].instanceUrl")
+
+          printf '%s' "$SF_JWT_PRIVATE_KEY" > /tmp/server.key
+          sf org login jwt \
+            --client-id    "$CLIENT_ID" \
+            --jwt-key-file /tmp/server.key \
+            --username     "$USERNAME" \
+            --instance-url "$INSTANCE" \
+            --alias        "$ORG_ALIAS" \
+            --set-default
+          rm -f /tmp/server.key
+
           echo "org_alias=$ORG_ALIAS" >> $GITHUB_OUTPUT
           echo "Authenticated to: $INSTANCE_URL (alias: $ORG_ALIAS)"
         env:
-          SF_AUTH_MOCK: ${{ secrets.SF_SFDX_AUTH_URL }}
-          SF_AUTH_UAT:  ${{ secrets.SF_SFDX_AUTH_URL_UAT }}
+          SF_JWT_PRIVATE_KEY: ${{ secrets.SF_JWT_PRIVATE_KEY }}
+          SF_JWT_ORG_CONFIG:  ${{ secrets.SF_JWT_ORG_CONFIG }}
 
       # ── 7. Resolve or create Test_Run__c ─────────────────────────────────────
       # workflow_dispatch: use the ID + suite supplied by the Salesforce LWC.
