@@ -72,9 +72,8 @@ jobs:
       github.event.pull_request.merged == true
 
     runs-on: ubuntu-latest
-    # 45 min covers the Conga OSA suite (~3 min/scenario × 3 scenarios) when
-    # QTC_OSA_WAIT_FOR_DOC=1 polls for the generated PDF.
-    timeout-minutes: 45
+    # 45 min covers individual suites; 120 min for agenticQtcFullSuite (14 specs × ~5 min avg).
+    timeout-minutes: ${{ inputs.test_suite == 'agenticQtcFullSuite' && 120 || 45 }}
 
     steps:
       # ── 1. Checkout ─────────────────────────────────────────────────────────
