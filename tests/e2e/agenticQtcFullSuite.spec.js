@@ -828,9 +828,26 @@ async function runStartDateBoundary(page, contract, branch) {
     .then((r) => r.records || []).catch(() => []);
   const first    = dbLines.filter((/** @type {any} */ d) => d.SBQQ__SegmentKey__c == null || d.SBQQ__SegmentIndex__c === 1);
   const ends     = first.map((/** @type {any} */ d) => d.SBQQ__EndDate__c  ).filter(Boolean).sort();
-  const starts   = first.map((/** @type {any} */ d) => d.SBQQ__StartDate__c).filter(Boolean).sort();
   const capISO   = ends.length   > 0 ? ends[0]                   : null;
-  const floorISO = starts.length > 0 ? starts[starts.length - 1] : null;
+  // Lower bound mirrors the editor's _getLowerBoundStartDate(): the start of the
+  // upgraded-subscription SEGMENT that contains the quote's current start date.
+  // Do NOT derive it from quote-line start dates — those shift forward whenever an
+  // earlier scenario ([7.3] Start Date Change) moves the quote start on this shared
+  // quote, which would make floor−1 a still-valid date and suppress the toast.
+  const curStartISO = u.parseLongDateToISO(await qtc.getStartDate());
+  const subSegs = await u.sfQuery(page, sfCtx.instanceUrl, sfCtx.accessToken,
+    `SELECT SBQQ__SegmentStartDate__c, SBQQ__SegmentEndDate__c FROM SBQQ__Subscription__c WHERE SBQQ__Contract__c = '${contract.id}' AND SBQQ__SegmentStartDate__c != null ORDER BY SBQQ__SegmentStartDate__c`)
+    .then((/** @type {any} */ r) => r.records || []).catch(() => []);
+  const containingSeg = subSegs.find((/** @type {any} */ s) =>
+    (!curStartISO || s.SBQQ__SegmentStartDate__c <= curStartISO) &&
+    (!s.SBQQ__SegmentEndDate__c || !curStartISO || curStartISO <= s.SBQQ__SegmentEndDate__c));
+  let floorISO = (containingSeg || subSegs[0])?.SBQQ__SegmentStartDate__c || null;
+  if (!floorISO) {
+    // Non-segmented contract — fall back to the contract term start.
+    const contractRows = await u.sfQuery(page, sfCtx.instanceUrl, sfCtx.accessToken,
+      `SELECT StartDate FROM Contract WHERE Id = '${contract.id}'`).then((/** @type {any} */ r) => r.records || []).catch(() => []);
+    floorISO = contractRows[0]?.StartDate || null;
+  }
   if (!capISO || !floorISO) throw new Error('Could not determine first-term bounds');
   const lower = await attemptDateAndCaptureToast(page, qtc, u.formatDateISO(u.addDays(new Date(`${floorISO}T00:00:00`), -1)), LOWER_TOAST_RE);
   const upper = await attemptDateAndCaptureToast(page, qtc, u.formatDateISO(u.addDays(new Date(`${capISO}T00:00:00`), 1)),   UPPER_TOAST_RE);
