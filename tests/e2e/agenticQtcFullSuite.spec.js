@@ -439,8 +439,12 @@ test('[1.1] Account Search: min-length gate (1 char shows no dropdown)', async (
   await runSafe('[1.1] Account Search: min-length gate', async () => {
     const qtc = await openApp(page);
     await qtc.typeAccountSearch(ACCOUNT_SEARCH.charAt(0));
-    expect(await qtc.accountCards().count()).toBe(0);
-    expect(await u.isVisibleSafe(qtc.noResultsDropdown(), 1_000)).toBe(false);
+    const cardCount = await qtc.accountCards().count();
+    const dropdown  = await u.isVisibleSafe(qtc.noResultsDropdown(), 1_000);
+    pushCrossRow(currentLabel, 'Cards shown (1-char query)',   { uiAfter: cardCount,        dbAfter: 'expected 0',     match: cardCount === 0 });
+    pushCrossRow(currentLabel, 'No-results dropdown shown',    { uiAfter: String(dropdown), dbAfter: 'expected false', match: dropdown === false });
+    expect(cardCount).toBe(0);
+    expect(dropdown).toBe(false);
   });
 });
 
@@ -449,8 +453,12 @@ test('[1.2] Account Search: nonsense term shows empty-state', async ({ page }) =
     const qtc = await openApp(page);
     await qtc.typeAccountSearch(NONSENSE_TERM);
     await expect(qtc.noResultsDropdown()).toBeVisible();
+    const emptyText = (await qtc.noResultsDropdown().innerText().catch(() => '')).trim();
+    const cardCount = await qtc.accountCards().count();
+    pushCrossRow(currentLabel, 'Empty-state contains term', { uiAfter: emptyText.includes(NONSENSE_TERM) ? `“${NONSENSE_TERM}” shown` : emptyText, dbAfter: `expected “${NONSENSE_TERM}”`, match: emptyText.includes(NONSENSE_TERM) });
+    pushCrossRow(currentLabel, 'Cards shown (nonsense term)', { uiAfter: cardCount, dbAfter: 'expected 0', match: cardCount === 0 });
     await expect(qtc.noResultsDropdown()).toContainText(NONSENSE_TERM);
-    expect(await qtc.accountCards().count()).toBe(0);
+    expect(cardCount).toBe(0);
   });
 });
 
@@ -460,8 +468,11 @@ test('[1.3] Account Search: known term returns cards and navigates to contracts'
     await qtc.typeAccountSearch(ACCOUNT_SEARCH);
     await qtc.accountCards().first().waitFor({ state: 'visible', timeout: 20_000 });
     const cards = await qtc.readAccountCards();
+    const matchByName = cards.some(c => (c.name || '').toLowerCase().includes(ACCOUNT_SEARCH.toLowerCase()));
+    pushCrossRow(currentLabel, `Account cards for “${ACCOUNT_SEARCH}”`, { uiAfter: cards.length, dbAfter: 'expected >0', match: cards.length > 0 });
+    pushCrossRow(currentLabel, 'Result matches search term', { uiAfter: String(matchByName), dbAfter: 'expected true', match: matchByName });
     expect(cards.length).toBeGreaterThan(0);
-    expect(cards.some(c => (c.name || '').toLowerCase().includes(ACCOUNT_SEARCH.toLowerCase()))).toBe(true);
+    expect(matchByName).toBe(true);
     await qtc.accountCards().first().click();
     await qtc.activeContractsHeading().waitFor({ state: 'visible', timeout: 30_000 });
   });
@@ -479,6 +490,8 @@ test('[2.1] OSA Selector: contracts grid renders with correct count badge', asyn
     await expect(qtc.contractCountBadge()).toBeVisible();
     const badge = (await qtc.contractCountBadge().innerText()).trim();
     const expected = rowCount === 1 ? '1 active contract' : `${rowCount} active contracts`;
+    pushCrossRow(currentLabel, 'Contracts rendered', { uiAfter: rowCount, dbAfter: 'expected >0', match: rowCount > 0 });
+    pushCrossRow(currentLabel, 'Count badge text', { uiAfter: badge, dbAfter: expected, match: badge === expected });
     expect(badge).toBe(expected);
   });
 });
@@ -487,13 +500,19 @@ test('[2.2] OSA Selector: products +N more toggle expands without navigating awa
   const qtc = await openContracts(page);
   if ((await qtc.productMoreButtons().count()) === 0) {
     record('[2.2] OSA Selector: +N more toggle', 'SKIP', 'No contract has >3 products');
-    return;
+    test.skip(true, 'No contract has >3 products');
   }
   await runSafe('[2.2] OSA Selector: +N more toggle', async () => {
     await qtc.productMoreButtons().first().click();
+    const showLess = await qtc.productShowLessButton().isVisible().catch(() => false);
+    const stayed   = await qtc.activeContractsHeading().isVisible().catch(() => false);
+    const navigated = await u.isVisibleSafe(qtc.saveButton(), 1_500);
+    pushCrossRow(currentLabel, 'Show-less appears on expand', { uiAfter: String(showLess), dbAfter: 'expected true', match: showLess });
+    pushCrossRow(currentLabel, 'Stayed on contracts page',    { uiAfter: String(stayed),   dbAfter: 'expected true', match: stayed });
+    pushCrossRow(currentLabel, 'Did NOT navigate to editor',  { uiAfter: String(navigated), dbAfter: 'expected false', match: navigated === false });
     await expect(qtc.productShowLessButton()).toBeVisible();
     await expect(qtc.activeContractsHeading()).toBeVisible();
-    expect(await u.isVisibleSafe(qtc.saveButton(), 1_500)).toBe(false);
+    expect(navigated).toBe(false);
     await qtc.productShowLessButton().first().click();
     await expect(qtc.productMoreButtons().first()).toBeVisible();
   });
@@ -504,6 +523,8 @@ test('[2.3] OSA Selector: clear pill returns to account search', async ({ page }
     const qtc = await openContracts(page);
     await expect(qtc.accountPillClear()).toBeVisible();
     await qtc.accountPillClear().click();
+    const backToSearch = await qtc.accountSearchInput().isVisible().catch(() => false);
+    pushCrossRow(currentLabel, 'Clear pill → account search', { uiAfter: backToSearch ? 'search shown' : 'not shown', dbAfter: 'expected search shown', match: backToSearch });
     await expect(qtc.accountSearchInput()).toBeVisible();
   });
 });
@@ -516,13 +537,17 @@ test('[2.4] OSA Selector: draft-quotes modal open / close / pick row', async ({ 
   }
   if (!manyDraft) {
     record('[2.4] OSA Selector: draft-quotes modal', 'SKIP', 'No contract with ≥2 drafts');
-    return;
+    test.skip(true, 'No contract with ≥2 drafts');
   }
   await runSafe('[2.4] OSA Selector: draft-quotes modal', async () => {
     await qtc.clickContractById(manyDraft.id);
-    expect(await qtc.waitForContractClickOutcome(120_000)).toBe('modal');
+    const outcome = await qtc.waitForContractClickOutcome(120_000);
+    pushCrossRow(currentLabel, 'Click outcome (≥2 drafts)', { uiAfter: outcome, dbAfter: 'expected modal', match: outcome === 'modal' });
+    expect(outcome).toBe('modal');
     await expect(qtc.draftQuotesModal()).toBeVisible();
-    expect(await qtc.draftQuoteCountInModal()).toBeGreaterThanOrEqual(2);
+    const modalDrafts = await qtc.draftQuoteCountInModal();
+    pushCrossRow(currentLabel, 'Drafts listed in modal', { uiAfter: modalDrafts, dbAfter: 'expected ≥2', match: modalDrafts >= 2 });
+    expect(modalDrafts).toBeGreaterThanOrEqual(2);
     await qtc.draftModalClose().click();
     await expect(qtc.draftQuotesModal()).toBeHidden();
     await qtc.clickContractById(manyDraft.id);
@@ -547,21 +572,27 @@ test('[3.1] App Navigation: theme toggles + record links + breadcrumb nav', asyn
     await toggle.waitFor({ state: 'visible', timeout: 15_000 });
     const b1 = await qtc.currentTheme(); await toggle.click(); await page.waitForTimeout(400);
     const a1 = await qtc.currentTheme(); await toggle.click(); await page.waitForTimeout(300);
-    expect(b1 !== 'unknown' && a1 !== 'unknown' && a1 !== b1, 'Theme must flip on account-search page').toBe(true);
+    const flip1 = b1 !== 'unknown' && a1 !== 'unknown' && a1 !== b1;
+    pushCrossRow(currentLabel, 'Theme flip · account-search', { uiAfter: `${b1} → ${a1}`, dbAfter: 'expected flip', match: flip1 });
+    expect(flip1, 'Theme must flip on account-search page').toBe(true);
 
     // Navigate to contracts, theme there
     await qtc.searchAndSelectAccount(sfCtx.accountSearch, sfCtx.accountFullName);
     await qtc.activeContractsHeading().waitFor({ state: 'visible', timeout: 30_000 });
     const b2 = await qtc.currentTheme(); await toggle.click(); await page.waitForTimeout(400);
     const a2 = await qtc.currentTheme(); await toggle.click(); await page.waitForTimeout(300);
-    expect(b2 !== 'unknown' && a2 !== 'unknown' && a2 !== b2, 'Theme must flip on contracts page').toBe(true);
+    const flip2 = b2 !== 'unknown' && a2 !== 'unknown' && a2 !== b2;
+    pushCrossRow(currentLabel, 'Theme flip · contracts', { uiAfter: `${b2} → ${a2}`, dbAfter: 'expected flip', match: flip2 });
+    expect(flip2, 'Theme must flip on contracts page').toBe(true);
 
     // Open editor, theme there
     expect(await qtc.openContractByIndex(0, 120_000)).toBe(true);
     await qtc.waitForLines(120_000);
     const b3 = await qtc.currentTheme(); await toggle.click(); await page.waitForTimeout(400);
     const a3 = await qtc.currentTheme(); await toggle.click(); await page.waitForTimeout(300);
-    expect(b3 !== 'unknown' && a3 !== 'unknown' && a3 !== b3, 'Theme must flip on editor page').toBe(true);
+    const flip3 = b3 !== 'unknown' && a3 !== 'unknown' && a3 !== b3;
+    pushCrossRow(currentLabel, 'Theme flip · editor', { uiAfter: `${b3} → ${a3}`, dbAfter: 'expected flip', match: flip3 });
+    expect(flip3, 'Theme must flip on editor page').toBe(true);
 
     // Breadcrumb: contract → back to contracts, then account → back to search
     const crumbs = qtc.breadcrumbItems();
@@ -582,11 +613,18 @@ test('[3.1] App Navigation: theme toggles + record links + breadcrumb nav', asyn
 async function runEditorCore(page, contract, branch) {
   const { qtc } = await openEditorByScenario(page, sfCtx, contract, branch);
   const spinCount = await qtc.waitForLines(120_000);
+  pushCrossRow(currentLabel, 'Editable lines in editor', { uiAfter: spinCount, dbAfter: 'expected ≥1', match: spinCount > 0 });
   expect(spinCount, 'Editor must expose ≥1 editable line').toBeGreaterThan(0);
   const links = await qtc.readHeaderLinks();
-  expect(links.some((/** @type {any} */ l) => /\/lightning\/r\/Account\//.test(l.href)), 'Account link in header').toBe(true);
-  expect(links.some((/** @type {any} */ l) => /\/lightning\/r\/SBQQ__Quote__c\//.test(l.href)), 'Quote link in header').toBe(true);
-  expect(await qtc.isSaveDisabled(), 'Save must be disabled on fresh load').toBe(true);
+  const hasAccount = links.some((/** @type {any} */ l) => /\/lightning\/r\/Account\//.test(l.href));
+  const hasQuote   = links.some((/** @type {any} */ l) => /\/lightning\/r\/SBQQ__Quote__c\//.test(l.href));
+  const saveDisabled = await qtc.isSaveDisabled();
+  pushCrossRow(currentLabel, 'Account link in header', { uiAfter: String(hasAccount), dbAfter: 'expected true', match: hasAccount });
+  pushCrossRow(currentLabel, 'Quote link in header',   { uiAfter: String(hasQuote),   dbAfter: 'expected true', match: hasQuote });
+  pushCrossRow(currentLabel, 'Save disabled on load',  { uiAfter: String(saveDisabled), dbAfter: 'expected true', match: saveDisabled });
+  expect(hasAccount, 'Account link in header').toBe(true);
+  expect(hasQuote, 'Quote link in header').toBe(true);
+  expect(saveDisabled, 'Save must be disabled on fresh load').toBe(true);
   const sb = page.getByRole('spinbutton').first();
   const cur = parseFloat(await sb.inputValue().catch(() => '0')) || 0;
   await sb.click({ clickCount: 3 }); await sb.fill(String(cur + 5)); await sb.press('Tab');
@@ -638,14 +676,23 @@ async function runEditorButtons(page, contract, branch) {
     : null;
   const approvalBlocking = approvalStatus != null && approvalStatus !== 'Approved';
   const expectedPreview  = deliveryPresent && !approvalBlocking;
-  expect(await prevBtn.isEnabled().catch(() => false), `Preview & Send enabled should be ${expectedPreview}`).toBe(expectedPreview);
+  const prevEnabled = await prevBtn.isEnabled().catch(() => false);
+  pushCrossRow(currentLabel, 'Preview & Send enabled', {
+    uiAfter: String(prevEnabled), dbAfter: `expected ${expectedPreview} (delivery=${deliveryPresent}, approval=${approvalStatus ?? 'none'})`,
+    match: prevEnabled === expectedPreview,
+  });
+  expect(prevEnabled, `Preview & Send enabled should be ${expectedPreview}`).toBe(expectedPreview);
   const sb = page.getByRole('spinbutton').first();
   const cur = parseFloat(await sb.inputValue().catch(() => '0')) || 0;
   await sb.click({ clickCount: 3 }); await sb.fill(String(cur + 1)); await sb.press('Tab');
   await page.waitForTimeout(1_000);
-  expect(await saveBtn.isEnabled().catch(() => false), 'Save must be clickable after qty change').toBe(true);
+  const saveEnabled = await saveBtn.isEnabled().catch(() => false);
+  pushCrossRow(currentLabel, 'Save enabled after qty change', { uiAfter: String(saveEnabled), dbAfter: 'expected true', match: saveEnabled });
+  expect(saveEnabled, 'Save must be clickable after qty change').toBe(true);
   if (approvalPresent) {
-    expect(await submitBtn.isEnabled().catch(() => false), 'Submit for Approval must be clickable').toBe(true);
+    const submitEnabled = await submitBtn.isEnabled().catch(() => false);
+    pushCrossRow(currentLabel, 'Submit for Approval enabled', { uiAfter: String(submitEnabled), dbAfter: 'expected true', match: submitEnabled });
+    expect(submitEnabled, 'Submit for Approval must be clickable').toBe(true);
   }
 }
 
@@ -787,6 +834,8 @@ async function runStartDateBoundary(page, contract, branch) {
   if (!capISO || !floorISO) throw new Error('Could not determine first-term bounds');
   const lower = await attemptDateAndCaptureToast(page, qtc, u.formatDateISO(u.addDays(new Date(`${floorISO}T00:00:00`), -1)), LOWER_TOAST_RE);
   const upper = await attemptDateAndCaptureToast(page, qtc, u.formatDateISO(u.addDays(new Date(`${capISO}T00:00:00`), 1)),   UPPER_TOAST_RE);
+  pushCrossRow(currentLabel, `Lower-bound toast (before ${floorISO})`, { uiAfter: lower ? 'toast shown' : 'no toast', dbAfter: 'expected toast', match: lower });
+  pushCrossRow(currentLabel, `Upper-bound toast (after ${capISO})`,    { uiAfter: upper ? 'toast shown' : 'no toast', dbAfter: 'expected toast', match: upper });
   expect(lower, 'Lower-bound toast should appear').toBe(true);
   expect(upper, 'Upper-bound toast should appear').toBe(true);
 }
