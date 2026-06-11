@@ -674,25 +674,49 @@ async function runEditorButtons(page, contract, branch) {
         return (await r.json()).records?.[0]?.ApprovalStatus__c ?? null;
       }, { token: sfCtx.accessToken, base: sfCtx.instanceUrl, q: quoteName }).catch(() => null)
     : null;
-  const approvalBlocking = approvalStatus != null && approvalStatus !== 'Approved';
-  const expectedPreview  = deliveryPresent && !approvalBlocking;
+  // Preview & Send (isPreviewSendDisabled): the approval gate was REMOVED — the
+  // OSA can be previewed before approval. Enabled iff a Software Delivery Contact
+  // (id + email) is present. Approval status is irrelevant now.
+  const expectedPreview = deliveryPresent;
   const prevEnabled = await prevBtn.isEnabled().catch(() => false);
   pushCrossRow(currentLabel, 'Preview & Send enabled', {
-    uiAfter: String(prevEnabled), dbAfter: `expected ${expectedPreview} (delivery=${deliveryPresent}, approval=${approvalStatus ?? 'none'})`,
+    uiAfter: String(prevEnabled), dbAfter: `expected ${expectedPreview} (delivery contact present=${deliveryPresent})`,
     match: prevEnabled === expectedPreview,
   });
-  expect(prevEnabled, `Preview & Send enabled should be ${expectedPreview}`).toBe(expectedPreview);
+  expect(prevEnabled, `Preview & Send enabled should be ${expectedPreview} (delivery contact present=${deliveryPresent})`).toBe(expectedPreview);
+
+  // Submit for Approval (isSubmitForApprovalDisabled), checked on the FRESH quote
+  // before any edit (no unsaved changes yet): rendered only when an approval is
+  // required; enabled iff the quote isn't already Approved.
+  if (approvalPresent) {
+    const expectedSubmitFresh = approvalStatus !== 'Approved';
+    const submitFresh = await submitBtn.isEnabled().catch(() => false);
+    pushCrossRow(currentLabel, 'Submit enabled (no unsaved changes)', {
+      uiAfter: String(submitFresh), dbAfter: `expected ${expectedSubmitFresh} (approvalStatus=${approvalStatus ?? 'none'})`,
+      match: submitFresh === expectedSubmitFresh,
+    });
+    expect(submitFresh, `Submit for Approval (fresh) should be ${expectedSubmitFresh} (approvalStatus=${approvalStatus ?? 'none'})`).toBe(expectedSubmitFresh);
+  }
+
+  // Make an unsaved quantity edit.
   const sb = page.getByRole('spinbutton').first();
   const cur = parseFloat(await sb.inputValue().catch(() => '0')) || 0;
   await sb.click({ clickCount: 3 }); await sb.fill(String(cur + 1)); await sb.press('Tab');
   await page.waitForTimeout(1_000);
+
+  // Save (isSaveDisabled): enabled once the UI differs from the saved state.
   const saveEnabled = await saveBtn.isEnabled().catch(() => false);
   pushCrossRow(currentLabel, 'Save enabled after qty change', { uiAfter: String(saveEnabled), dbAfter: 'expected true', match: saveEnabled });
   expect(saveEnabled, 'Save must be clickable after qty change').toBe(true);
+
+  // Submit must now be BLOCKED while there are unsaved changes (BIZ-83431) — a
+  // quote can't be sent for approval until the edit is saved.
   if (approvalPresent) {
-    const submitEnabled = await submitBtn.isEnabled().catch(() => false);
-    pushCrossRow(currentLabel, 'Submit for Approval enabled', { uiAfter: String(submitEnabled), dbAfter: 'expected true', match: submitEnabled });
-    expect(submitEnabled, 'Submit for Approval must be clickable').toBe(true);
+    const submitAfterEdit = await submitBtn.isEnabled().catch(() => false);
+    pushCrossRow(currentLabel, 'Submit blocked with unsaved changes', {
+      uiAfter: String(submitAfterEdit), dbAfter: 'expected false', match: submitAfterEdit === false,
+    });
+    expect(submitAfterEdit, 'Submit for Approval must be blocked while there are unsaved changes (BIZ-83431)').toBe(false);
   }
 }
 
