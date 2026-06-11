@@ -72,7 +72,7 @@ jobs:
       github.event.pull_request.merged == true
 
     runs-on: ubuntu-latest
-    # 45 min covers individual suites; 120 min for agenticQtcFullSuite (14 specs × ~5 min avg).
+    # 45 min covers individual suites; 120 min for agenticQtcFullSuite (19 groups / 56 scenarios; many SKIP fast).
     timeout-minutes: ${{ inputs.test_suite == 'agenticQtcFullSuite' && 120 || 45 }}
 
     steps:
