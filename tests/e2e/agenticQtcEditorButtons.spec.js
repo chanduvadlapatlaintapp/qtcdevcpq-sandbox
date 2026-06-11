@@ -11,24 +11,21 @@
  *   │ Save                   │ isSaveDisabled = loading || !hasUnsavedChanges.    │
  *   │                        │ → disabled on open, CLICKABLE after a qty change.  │
  *   │ Submit for Approval    │ Rendered only when an approval is required         │
- *   │                        │ (approvalItems.length > 0). When present it's      │
- *   │                        │ clickable (saved, not yet submitted).              │
- *   │                        │ → approval present ⇒ present & clickable;          │
- *   │                        │   no approval     ⇒ not rendered.                  │
- *   │ Preview and Send OSA   │ isPreviewSendDisabled = no delivery contact, OR    │
- *   │                        │ (approvalRequired && status != 'Approved').        │
- *   │                        │ → clickable iff delivery contact set AND no        │
- *   │                        │   pending approval.                                │
+ *   │                        │ (approvalItems.length > 0). On open (no unsaved    │
+ *   │                        │ changes) it's clickable UNLESS already Approved.   │
+ *   │                        │ → approval present & not Approved ⇒ clickable;     │
+ *   │                        │   already Approved ⇒ disabled; no approval ⇒ not   │
+ *   │                        │   rendered.                                        │
+ *   │ Preview and Send OSA   │ isPreviewSendDisabled = no delivery contact.       │
+ *   │                        │ Approval gate REMOVED — OSA can be previewed       │
+ *   │                        │ before approval. → clickable iff delivery contact  │
+ *   │                        │   (id + email) is set.                             │
  *   └────────────────────────┴──────────────────────────────────────────────────┘
  *
  * The test reads the editor on open (no unsaved changes), evaluates the
  * approval-gated buttons, then makes a quantity change and asserts Save becomes
  * clickable. Results are written to results.json in the canonical shape the
  * agenticQtcTestDashboard LWC consumes (UI↔DB tab + Metrics tab).
- *
- * Caveat: the "Approved" state for Preview & Send can't be read from the UI, so
- * a contract whose approvals are already Approved would be treated as "pending"
- * here. Flag that if you hit it.
  */
 const path = require('path');
 const { test, expect } = require('@playwright/test');
@@ -123,17 +120,18 @@ async function runEditorButtons(ctx) {
   // Save: must be clickable after the quantity change.
   const savePass = saveClickableAfterChange === true;
 
-  // Submit for Approval: approval present ⇒ present & clickable (on open);
-  //                      no approval ⇒ not rendered.
-  const submitPass = approvalPresent ? (submitEnabledOnOpen === true) : (approvalPresent === false);
+  // Submit for Approval (isSubmitForApprovalDisabled): rendered only when an
+  // approval is required. On open (no unsaved changes) it's clickable UNLESS the
+  // quote is already Approved — there's nothing left to submit once Approved.
+  const expectedSubmitOnOpen = approvalPresent && !approvalApproved;
+  const submitPass = approvalPresent
+    ? (submitEnabledOnOpen === expectedSubmitOnOpen)
+    : (approvalPresent === false);
 
-  // Preview & Send OSA: clickable iff a delivery contact exists AND the quote's
-  // ApprovalStatus__c is not blocking (null = no approval ever set, or 'Approved').
-  // The LWC checks ApprovalStatus__c directly — even when the Submit for Approval
-  // button is not rendered (approvalPresent=false), a status of 'Pending Submission'
-  // still disables Preview & Send.
-  const approvalBlocking = approvalStatus != null && !approvalApproved;
-  const expectedPreviewEnabled = deliveryPresent && !approvalBlocking;
+  // Preview & Send OSA (isPreviewSendDisabled): the approval gate was REMOVED —
+  // the OSA can be previewed before approval. Clickable iff a Software Delivery
+  // Contact (id + email) exists. ApprovalStatus__c no longer affects this button.
+  const expectedPreviewEnabled = deliveryPresent;
   const previewPass = previewEnabledOnOpen === expectedPreviewEnabled;
 
   const allPass = savePass && submitPass && previewPass;
@@ -171,9 +169,9 @@ async function runEditorButtons(ctx) {
     { metric: 'Save',                 before: saveEnabledOnOpen ? 'clickable' : 'disabled', after: yn(saveClickableAfterChange), pass: savePass,
       note: 'Should become clickable after a quantity change' },
     { metric: 'Submit for Approval',  before: approvalPresent ? 'approval required' : 'no approval', after: approvalPresent ? yn(submitEnabledOnOpen) : 'not rendered', pass: submitPass,
-      note: approvalPresent ? 'Clickable when an approval is required' : 'Hidden when no approval is required' },
-    { metric: 'Preview and Send OSA', before: `delivery=${deliveryPresent}, approval=${approvalPresent ? (approvalApproved ? 'approved' : 'pending') : 'none'}`, after: yn(previewEnabledOnOpen), pass: previewPass,
-      note: `Expected ${yn(expectedPreviewEnabled)} (clickable only with a delivery contact and no pending approval)` },
+      note: approvalPresent ? (approvalApproved ? 'Disabled — already Approved' : 'Clickable when an approval is required and not yet Approved') : 'Hidden when no approval is required' },
+    { metric: 'Preview and Send OSA', before: `delivery=${deliveryPresent}`, after: yn(previewEnabledOnOpen), pass: previewPass,
+      note: `Expected ${yn(expectedPreviewEnabled)} (clickable iff a delivery contact is set — approval gate removed)` },
   ];
 
   /** @type {Array<{type:string,severity:string,detail:string}>} */
@@ -204,14 +202,15 @@ async function runEditorButtons(ctx) {
   // ── Assertions (each named so the Spec tab shows what failed) ──
   expect(savePass, 'Save should be clickable after a quantity change').toBe(true);
   if (approvalPresent) {
-    expect(submitEnabledOnOpen, 'Submit for Approval should be clickable when an approval is required').toBe(true);
+    expect(submitEnabledOnOpen,
+      `Submit for Approval (on open) should be ${expectedSubmitOnOpen} (approvalStatus=${approvalStatus})`).toBe(expectedSubmitOnOpen);
   } else {
     expect(await u.isVisibleSafe(submitBtn, 500),
       'Submit for Approval should NOT render when no approval is required').toBe(false);
   }
   expect(previewEnabledOnOpen,
     `Preview & Send OSA clickable should be ${expectedPreviewEnabled} ` +
-    `(deliveryContact=${deliveryPresent}, approvalRequired=${approvalPresent}, approvalStatus=${approvalStatus})`).toBe(expectedPreviewEnabled);
+    `(deliveryContact=${deliveryPresent})`).toBe(expectedPreviewEnabled);
 }
 
 /**
