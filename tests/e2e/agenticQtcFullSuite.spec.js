@@ -50,6 +50,94 @@ const PASS_THRESHOLD    = 75; // percent
 /** @type {Array<{name:string, status:'PASS'|'FAIL'|'SKIP', detail:string}>} */
 const SUITE_RESULTS = [];
 
+// ── Real UI↔DB cross-check rows, aggregated across ALL data-bearing scenarios ──
+// Each scenario that compares a UI value against the database (quantities,
+// contacts, start date, metrics, …) appends real rows here. The SUITE SUMMARY
+// feeds this into richResults.uiDbCrossCheck so the dashboard's UI↔DB tab shows
+// actual before/after values for every scenario type — not just qty inc/dec.
+/** @type {Array<any>} */
+const CROSS_CHECK = [];
+let crossIdx = 0;
+/** Current scenario label, set by runSafe — tags cross-check rows. @type {string} */
+let currentLabel = '';
+
+/**
+ * Append one UI↔DB comparison row.
+ * @param {string} label   scenario label, e.g. '[6.3] Contact Update'
+ * @param {string} product field/product name shown in the Product column
+ * @param {{uiBefore?:any, uiAfter?:any, dbPrior?:any, dbAfter?:any, segOcc?:any, match?:boolean, hasData?:boolean}} row
+ */
+function pushCrossRow(label, product, row) {
+  crossIdx++;
+  const uiAfter = row.uiAfter ?? null;
+  const dbAfter = row.dbAfter ?? null;
+  const match = row.match != null
+    ? row.match
+    : (uiAfter != null && dbAfter != null && String(uiAfter).trim() === String(dbAfter).trim());
+  CROSS_CHECK.push({
+    uiIndex:  crossIdx,
+    product:  `${label} · ${product}`,
+    segOcc:   row.segOcc   ?? null,
+    uiBefore: row.uiBefore ?? null,
+    uiAfter,
+    dbPrior:  row.dbPrior  ?? null,
+    dbAfter,
+    match,
+    hasData:  row.hasData ?? (uiAfter != null || dbAfter != null),
+  });
+}
+
+/**
+ * Capture per-line UI↔DB quantity rows for a scenario. Queries the DB once for
+ * the given line IDs and appends a row per entry.
+ * @param {string} label
+ * @param {Array<{lineId:string|null, before:number, after:number, product?:string, segOcc?:any}>} entries
+ */
+async function captureQtyCross(label, entries) {
+  const withId = entries.filter(e => e.lineId);
+  /** @type {Map<string, any>} */
+  let dbById = new Map();
+  if (withId.length) {
+    const soql = `SELECT Id, SBQQ__ProductName__c, SBQQ__Quantity__c, SBQQ__PriorQuantity__c FROM SBQQ__QuoteLine__c WHERE Id IN (${withId.map(e => `'${e.lineId}'`).join(',')})`;
+    const res  = await u.sfQueryNode(sfCtx.instanceUrl, sfCtx.accessToken, soql).catch(() => ({ records: [] }));
+    dbById = new Map((res.records || []).map((/** @type {any} */ r) => [r.Id, r]));
+  }
+  entries.forEach((e, i) => {
+    const db      = e.lineId ? dbById.get(e.lineId) : null;
+    const dbAfter = db ? Number(db.SBQQ__Quantity__c) : null;
+    const product = e.product || db?.SBQQ__ProductName__c || `Line ${i + 1}`;
+    pushCrossRow(label, product, {
+      segOcc:   e.segOcc ?? null,
+      uiBefore: e.before,
+      uiAfter:  e.after,
+      dbPrior:  db ? (db.SBQQ__PriorQuantity__c ?? null) : null,
+      dbAfter,
+      match:    dbAfter != null && Math.abs(dbAfter - e.after) < 0.001,
+      hasData:  dbAfter != null,
+    });
+  });
+}
+
+/**
+ * Capture per-segment UI↔DB rows for one MDQ product row (each segment input
+ * carries its own data-line-id).
+ * @param {string} label
+ * @param {{row:import('@playwright/test').Locator, productName:string}} mdqRow
+ * @param {number[]} before  per-segment UI quantities before the edit
+ */
+async function captureSegmentCross(label, mdqRow, before) {
+  const inputs = mdqRow.row.locator('input.qty-input');
+  const n = await inputs.count();
+  /** @type {Array<{lineId:string|null, before:number, after:number, product:string, segOcc:number}>} */
+  const entries = [];
+  for (let i = 0; i < n; i++) {
+    const lineId = await inputs.nth(i).getAttribute('data-line-id').catch(() => null);
+    const after  = parseFloat(await inputs.nth(i).inputValue().catch(() => '0')) || 0;
+    entries.push({ lineId, before: before[i] ?? 0, after, product: `${mdqRow.productName || 'MDQ'} · Y${i + 1}`, segOcc: i + 1 });
+  }
+  await captureQtyCross(label, entries);
+}
+
 // ── Single shared setup ───────────────────────────────────────────────────────
 test.beforeAll(async ({ browser }) => {
   const creds = getSfCredentials();
@@ -103,6 +191,7 @@ function skipScenario(reason) { throw new SkipSignal(reason); }
  * @param {() => Promise<void>} fn
  */
 async function runSafe(name, fn) {
+  currentLabel = name;   // so run* helpers can tag their UI↔DB cross-check rows
   try {
     await fn();
     record(name, 'PASS');
@@ -258,7 +347,7 @@ async function findBundleSegmentRows(page) {
  *
  * @param {import('@playwright/test').Page} page
  * @param {any} qtc
- * @param {Array<{input:import('@playwright/test').Locator, initial:number}>} lines
+ * @param {Array<{input:import('@playwright/test').Locator, initial:number, lineId?:string|null}>} lines
  * @param {number} delta
  */
 async function editSaveVerifyInputs(page, qtc, lines, delta) {
@@ -274,11 +363,17 @@ async function editSaveVerifyInputs(page, qtc, lines, delta) {
   }
   await qtc.save(120_000);
   let allPass = true;
+  /** @type {Array<{lineId:string|null, before:number, after:number, product?:string}>} */
+  const entries = [];
   for (let i = 0; i < lines.length; i++) {
     const actual   = parseFloat(await lines[i].input.inputValue().catch(() => '0')) || 0;
     const expected = delta >= 0 ? initials[i] + delta : Math.max(1, initials[i] + delta);
     if (Math.abs(actual - expected) >= 0.001) allPass = false;
+    const lineId  = lines[i].lineId ?? await lines[i].input.getAttribute('data-line-id').catch(() => null);
+    const product = (await lines[i].input.locator('xpath=ancestor::tr').first().locator('.product-label').first().innerText().catch(() => '')).trim();
+    entries.push({ lineId, before: initials[i], after: actual, product });
   }
+  await captureQtyCross(currentLabel, entries);
   return allPass;
 }
 
@@ -587,6 +682,14 @@ async function runContactUpdate(page, contract, branch) {
   if (!newDel) throw new Error('No alternative delivery contact available');
   await qtc.save(90_000, 300);
   const dbAfter = await qtc.fetchContactsFromDb(quoteName);
+  pushCrossRow(currentLabel, 'Invoicing Contact', {
+    uiBefore: dbBefore?.invoicing.id ?? null, uiAfter: newInv.id,
+    dbAfter:  dbAfter?.invoicing.id ?? null, match: (dbAfter?.invoicing.id ?? null) === newInv.id,
+  });
+  pushCrossRow(currentLabel, 'Delivery Contact', {
+    uiBefore: dbBefore?.delivery.id ?? null, uiAfter: newDel.id,
+    dbAfter:  dbAfter?.delivery.id ?? null, match: (dbAfter?.delivery.id ?? null) === newDel.id,
+  });
   expect(dbAfter?.invoicing.id, 'Invoicing contact should be updated in DB').toBe(newInv.id);
   expect(dbAfter?.delivery.id,  'Delivery contact should be updated in DB').toBe(newDel.id);
 }
@@ -623,6 +726,10 @@ async function runStartDateChange(page, contract, branch) {
   const uiAfterISO = u.parseLongDateToISO(await qtc.getStartDate());
   expect(uiAfterISO, 'Start date should change after save').not.toBe(initialISO);
   const dbHeader = await qtc.fetchQuoteFromDb(quoteName);
+  pushCrossRow(currentLabel, 'Quote Start Date', {
+    uiBefore: initialISO, uiAfter: uiAfterISO,
+    dbAfter:  dbHeader?.SBQQ__StartDate__c ?? null,
+  });
   expect(dbHeader?.SBQQ__StartDate__c, 'DB start date should match UI').toBe(uiAfterISO);
 }
 
@@ -723,10 +830,16 @@ async function runQuantityIncrease(page, contract, branch) {
   }
   await qtc.save(120_000);
   let allPass = true;
+  /** @type {Array<{lineId:string|null, before:number, after:number, product?:string}>} */
+  const entries = [];
   for (let i = 0; i < spinCount; i++) {
     const actual = parseFloat(await sbs.nth(i).inputValue().catch(() => '0')) || 0;
     if (Math.abs(actual - (initials[i] + QTY_INC)) >= 0.001) allPass = false;
+    const lineId  = await sbs.nth(i).getAttribute('data-line-id').catch(() => null);
+    const product = (await sbs.nth(i).locator('xpath=ancestor::tr').first().locator('.product-label').first().innerText().catch(() => '')).trim();
+    entries.push({ lineId, before: initials[i], after: actual, product });
   }
+  await captureQtyCross(currentLabel, entries);
   expect(allPass, `All ${spinCount} quantities should have increased by ${QTY_INC}`).toBe(true);
 }
 
@@ -770,11 +883,17 @@ async function runQuantityDecrease(page, contract, branch) {
   }
   await qtc.save(120_000);
   let allPass = true;
+  /** @type {Array<{lineId:string|null, before:number, after:number, product?:string}>} */
+  const entries = [];
   for (let i = 0; i < spinCount; i++) {
     const actual   = parseFloat(await sbs.nth(i).inputValue().catch(() => '0')) || 0;
     const expected = Math.max(1, initials[i] - QTY_DEC);
     if (Math.abs(actual - expected) >= 0.001) allPass = false;
+    const lineId  = await sbs.nth(i).getAttribute('data-line-id').catch(() => null);
+    const product = (await sbs.nth(i).locator('xpath=ancestor::tr').first().locator('.product-label').first().innerText().catch(() => '')).trim();
+    entries.push({ lineId, before: initials[i], after: actual, product });
   }
+  await captureQtyCross(currentLabel, entries);
   expect(allPass, `All ${spinCount} quantities should have decreased by ${QTY_DEC} (floor 1)`).toBe(true);
 }
 
@@ -832,6 +951,7 @@ async function runQtyIncreaseSegments(page, contract, branch) {
   expect(Math.abs(qtysB_after[segIdx] - newB) < 0.001, `Year-${segIdx + 1} should equal ${newB}`).toBe(true);
 
   await qtc.save(120_000);
+  await captureSegmentCross(currentLabel, mdq[0], qtysA_before);
 }
 
 test('[11.1] Qty Increase Segments (MDQ): 0 draft amendments', async ({ page }) => {
@@ -884,6 +1004,7 @@ async function runQtyDecreaseSegments(page, contract, branch) {
   expect(Math.abs(qtysB_after[segIdx] - newB) < 0.001, `Year-${segIdx + 1} should equal ${newB} after decrease`).toBe(true);
 
   await qtc.save(120_000);
+  await captureSegmentCross(currentLabel, mdq[0], qtysA_before);
 }
 
 test('[12.1] Qty Decrease Segments (MDQ): 0 draft amendments', async ({ page }) => {
@@ -929,6 +1050,11 @@ async function runMetricsVerification(page, contract, branch) {
   const uiTcv   = parseMetric(uiAfter['TCV']);
   const uiYoy   = parseMetric(uiAfter['YoY Uplift']);
   const uiDqs   = parseMetric(uiAfter['Deal Quality Score']);
+  const round2  = (/** @type {number|null} */ v) => (v == null ? null : Math.round(v * 100) / 100);
+  pushCrossRow(currentLabel, 'ACV', { uiAfter: round2(uiAcv), dbAfter: round2(db.expectedAcv), match: within(uiAcv, db.expectedAcv, CURRENCY_TOL) });
+  pushCrossRow(currentLabel, 'TCV', { uiAfter: round2(uiTcv), dbAfter: round2(db.expectedTcv), match: within(uiTcv, db.expectedTcv, CURRENCY_TOL) });
+  if (db.expectedYoy != null) pushCrossRow(currentLabel, 'YoY Uplift',         { uiAfter: round2(uiYoy), dbAfter: round2(db.expectedYoy), match: within(uiYoy, db.expectedYoy, PCT_TOL) });
+  if (db.expectedDqs != null) pushCrossRow(currentLabel, 'Deal Quality Score', { uiAfter: round2(uiDqs), dbAfter: round2(db.expectedDqs), match: within(uiDqs, db.expectedDqs, PCT_TOL) });
   expect(within(uiAcv, db.expectedAcv, CURRENCY_TOL), `ACV mismatch: UI=${uiAcv} DB=${db.expectedAcv}`).toBe(true);
   expect(within(uiTcv, db.expectedTcv, CURRENCY_TOL), `TCV mismatch: UI=${uiTcv} DB=${db.expectedTcv}`).toBe(true);
   if (db.expectedYoy != null) expect(within(uiYoy, db.expectedYoy, PCT_TOL), `YoY mismatch: UI=${uiYoy} DB=${db.expectedYoy}`).toBe(true);
@@ -1024,6 +1150,7 @@ async function runBundleSegmentQty(page, contract, branch, delta) {
   expect(Math.abs(afterB[segIdx] - newB) < 0.001, `Bundle Year-${segIdx + 1} should equal ${newB}`).toBe(true);
 
   await qtc.save(120_000);
+  await captureSegmentCross(currentLabel, bundle, beforeA);
 }
 
 test('[15.1] Qty Increase Bundle Segments: 0 draft amendments', async ({ page }) => {
@@ -1183,6 +1310,22 @@ test('SUITE SUMMARY — pass rate must be ≥75%', async () => {
   console.log(verdict);
   console.log(LINE + '\n');
 
+  // UI↔DB comparison: real per-line rows captured across every data-bearing
+  // scenario (qty, segments, bundle, non-segment, contact, start date, metrics),
+  // followed by a status row for each scenario that has no UI/DB value to compare
+  // (account search, OSA, app nav, editor core/buttons, start-date boundary).
+  const dataLabels = new Set(CROSS_CHECK.map(r => String(r.product).split(' · ')[0]));
+  const statusRows = SUITE_RESULTS
+    .filter(r => !dataLabels.has(r.name))
+    .map(r => ({
+      product: r.name, segOcc: null,
+      uiBefore: null, uiAfter: r.status,
+      dbPrior: null,  dbAfter: r.detail || (r.status === 'PASS' ? 'OK' : ''),
+      match: r.status !== 'FAIL', hasData: r.status !== 'SKIP',
+    }));
+  const uiDbCrossCheck = [...CROSS_CHECK, ...statusRows].map((r, i) => ({ ...r, uiIndex: i + 1 }));
+  const crossCheckMismatches = uiDbCrossCheck.filter(r => r.hasData && !r.match).length;
+
   // Write a summary richResult so the dashboard's Metrics tab shows the numbers
   buildRichResults({
     kind: 'fullSuite', runTs, runDir,
@@ -1197,13 +1340,8 @@ test('SUITE SUMMARY — pass rate must be ≥75%', async () => {
       { metric: 'Failed',      before: '—',              after: String(failed),           pass: failed === 0,  note: '' },
       { metric: 'Skipped',     before: '—',              after: String(skipped),          pass: true,          note: 'Pre-condition not met — excluded from rate' },
     ],
-    uiDbCrossCheck: SUITE_RESULTS.map((r, i) => ({
-      uiIndex: i + 1, product: r.name, segOcc: null,
-      uiBefore: null,  uiAfter: r.status,
-      dbPrior: null,   dbAfter: r.detail || (r.status === 'PASS' ? 'OK' : ''),
-      match: r.status !== 'FAIL', hasData: r.status !== 'SKIP',
-    })),
-    crossCheckMismatches: failed,
+    uiDbCrossCheck,
+    crossCheckMismatches,
     dbAnomalies: SUITE_RESULTS
       .filter(r => r.status === 'FAIL')
       .map(r => ({ type: r.name, severity: 'HIGH', detail: r.detail })),
