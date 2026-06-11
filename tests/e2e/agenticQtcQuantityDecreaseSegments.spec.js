@@ -33,14 +33,22 @@ test.beforeAll(async ({ browser }) => {
   contractCache = await discoverContractByScenarios(browser, sfCtx);
 });
 
-/** @param {import('@playwright/test').Page} page @param {number} minSegments @param {number} count */
-async function pickProductRows(page, minSegments, count) {
+/**
+ * Collect up to `maxCount` MDQ product rows that have ≥ minSegments editable
+ * qty inputs, in DOM order. Returns whatever was found — callers decide whether
+ * enough rows exist to proceed (no throw).
+ *
+ * @param {import('@playwright/test').Page} page
+ * @param {number} minSegments
+ * @param {number} [maxCount=8]
+ */
+async function pickProductRows(page, minSegments, maxCount = 8) {
   const rows = page.locator('tr.product-row');
   await rows.first().waitFor({ state: 'visible', timeout: 60_000 });
   const total = await rows.count();
   /** @type {Array<{row:import('@playwright/test').Locator, productName:string, segmentCount:number, rowIndex:number}>} */
   const picked = [];
-  for (let i = 0; i < total && picked.length < count; i++) {
+  for (let i = 0; i < total && picked.length < maxCount; i++) {
     const row    = rows.nth(i);
     const inputs = row.locator('input.qty-input');
     const n      = await inputs.count();
@@ -48,9 +56,6 @@ async function pickProductRows(page, minSegments, count) {
       const name = (await row.locator('.product-label').first().innerText().catch(() => '')).trim();
       picked.push({ row, productName: name, segmentCount: n, rowIndex: i });
     }
-  }
-  if (picked.length < 2) {
-    throw new Error(`Needed at least 2 MDQ rows with ≥${minSegments} segments; found ${picked.length}`);
   }
   return picked;
 }
@@ -103,11 +108,20 @@ async function setSegmentQuantity(row, index, value) {
 }
 
 /**
- * Inner feature: pick two MDQ products with enough headroom above priorQty,
- * verify Year-1 decrease propagates on A, Year-3 decrease is isolated on B,
- * and decrement below priorQty is floored (still expected to FAIL until the
- * LWC adds the priorQuantity guard — handleQuantityChange only enforces ≥ 0
- * today).
+ * Inner feature: find MDQ products with ≥ TARGET_SEGMENT segments and enough
+ * effective quantity (headroom above priorQty), then:
+ *
+ *   • 0 qualifying rows  → skip
+ *   • 1 qualifying row   → use it for both A (Year-1 propagation) and B
+ *                          (Year-TARGET_SEGMENT isolation) only if Year-N
+ *                          headroom remains positive after A's Year-1 delta
+ *   • 2+ qualifying rows → use first for A, best different row for B
+ *
+ * Effective-quantity rule: a segment's quantity can never decrease below its
+ * priorQuantity (Eff. Qty = 0 is the hard floor). This is enforced by:
+ *   1. Only selecting candidates whose effective qty is > 0
+ *   2. Capping deltaA / deltaB at the available headroom
+ *   3. Asserting the LWC rejects an input below priorQty (floor clamp)
  *
  * @param {{
  *   page: import('@playwright/test').Page,
@@ -122,68 +136,93 @@ async function runSegmentsDecrease(ctx) {
   const { page, qtc, runDir, runTs, testStartMs, contract, scenarioNumber, scenarioLabel, quoteName } = ctx;
   await u.screenshot(page, runDir, '02-editor-loaded');
 
-  // Snapshot every candidate's quantities + priorQuantity + headroom up front,
-  // then pick the row with the largest min-headroom as Product A (so Year-1
-  // propagation has room to apply uniformly) and a different row with the
-  // largest Year-N headroom as Product B (so the isolated edit has room).
-  // Each row uses an adaptive delta capped at DELTA — this lets the suite run
-  // on tight contracts (first amendment, low headroom) where a hard delta of
-  // DELTA would skip the whole flow.
-  const idxB       = TARGET_SEGMENT - 1;
-  const candidates = await pickProductRows(page, TARGET_SEGMENT, 8);
-  /** @type {Array<typeof candidates[number] & { qs:number[], prior:number[], headroom:number[], minHeadroom:number }>} */
+  // Require only ≥2 segments so 2-segment products qualify. idxB is resolved
+  // after productA is selected: last segment of the product, capped at TARGET_SEGMENT-1.
+  const picked = await pickProductRows(page, 2);
+
+  if (picked.length === 0) {
+    console.log(`[Scenario ${scenarioNumber}] Quote ${quoteName}: no MDQ product with ≥2 segments — skipping`);
+    test.skip(true, `Quote ${quoteName}: no MDQ product with ≥2 segments`);
+    return;
+  }
+
+  // Enrich every candidate: snapshot quantities, derive prior (= qty − effQty)
+  // and headroom (= effQty). headroom > 0 means the segment can be decreased.
+  /** @type {Array<typeof picked[number] & { qs:number[], prior:number[], headroom:number[], minHeadroom:number }>} */
   const enriched = [];
-  for (const c of candidates) {
-    const qs    = await readSegmentQuantities(c.row);
-    const effs  = await readSegmentEffQuantities(c.row);
-    const prior = qs.map((q, i) => q - (effs[i] || 0));
+  for (const c of picked) {
+    const qs       = await readSegmentQuantities(c.row);
+    const effs     = await readSegmentEffQuantities(c.row);
+    const prior    = qs.map((q, i) => q - (effs[i] || 0));
     const headroom = qs.map((q, i) => q - prior[i]);
     enriched.push({ ...c, qs, prior, headroom, minHeadroom: Math.min(...headroom) });
   }
 
+  // ── Product A: needs positive headroom on ALL segments ───────────────────
   const aCandidates = enriched
     .filter(c => c.minHeadroom > 0)
     .sort((a, b) => b.minHeadroom - a.minHeadroom);
   if (aCandidates.length === 0) {
     test.skip(true,
-      `No MDQ row has positive min-headroom (every segment ≥ priorQuantity) — ` +
+      `No MDQ row has positive min-headroom (every segment already at priorQuantity) — ` +
       `cannot exercise Y1 propagation without crossing the priorQuantity floor.`);
     return;
   }
   const productA = aCandidates[0];
   const priorA   = productA.prior;
   const deltaA   = Math.min(DELTA, productA.minHeadroom);
+  // Last segment of the chosen product, capped at TARGET_SEGMENT-1.
+  const idxB     = Math.min(TARGET_SEGMENT - 1, productA.segmentCount - 1);
 
-  const bCandidates = enriched
+  // ── Product B: prefer a different row; fall back to same row ─────────────
+  // For same-product fallback: after A's Year-1 edit all segments drop by
+  // deltaA, so remaining headroom at idxB = headroom[idxB] − deltaA.
+  let productB, priorB, deltaB, sameProduct;
+
+  const bDifferent = enriched
     .filter(c => c.rowIndex !== productA.rowIndex && c.headroom[idxB] > 0)
     .sort((a, b) => b.headroom[idxB] - a.headroom[idxB]);
-  if (bCandidates.length === 0) {
-    test.skip(true,
-      `No second MDQ row has positive Year ${TARGET_SEGMENT} headroom — ` +
-      `cannot exercise isolated Year-${TARGET_SEGMENT} decrease for Product B.`);
-    return;
+
+  if (bDifferent.length > 0) {
+    productB    = bDifferent[0];
+    priorB      = productB.prior;
+    deltaB      = Math.min(DELTA, productB.headroom[idxB]);
+    sameProduct = false;
+  } else {
+    const remainingIdxB = productA.headroom[idxB] - deltaA;
+    if (remainingIdxB <= 0) {
+      test.skip(true,
+        `Only 1 MDQ product and Year ${idxB + 1} effective qty (${productA.headroom[idxB]}) ` +
+        `would be exhausted by the Year-1 delta (${deltaA}) — cannot test Year-${idxB + 1} isolation.`);
+      return;
+    }
+    productB    = productA;
+    priorB      = priorA;
+    deltaB      = Math.min(DELTA, remainingIdxB);
+    sameProduct = true;
   }
-  const productB = bCandidates[0];
-  const priorB   = productB.prior;
-  const deltaB   = Math.min(DELTA, productB.headroom[idxB]);
 
   console.log(
     `[adaptive delta] Product A "${productA.productName}" min-headroom=${productA.minHeadroom} → deltaA=${deltaA}; ` +
-    `Product B "${productB.productName}" Y${TARGET_SEGMENT} headroom=${productB.headroom[idxB]} → deltaB=${deltaB}`
+    `Product B "${productB.productName}" Y${idxB + 1} eff.qty (after A)=${sameProduct ? productA.headroom[idxB] - deltaA : productB.headroom[idxB]} → deltaB=${deltaB}; ` +
+    `sameProduct=${sameProduct}`
   );
 
-  const beforeA   = await readSegmentQuantities(productA.row);
-  const lineIdsA  = await readSegmentLineIds(productA.row);
+  // ── Snapshot ─────────────────────────────────────────────────────────────
+  const beforeA  = await readSegmentQuantities(productA.row);
+  const lineIdsA = await readSegmentLineIds(productA.row);
   const expectedA = beforeA.map(v => v - deltaA);
   expect(lineIdsA.length, 'Product A: one line Id per segment input').toBe(beforeA.length);
 
-  const beforeB   = await readSegmentQuantities(productB.row);
-  const lineIdsB  = await readSegmentLineIds(productB.row);
-  const expectedB = beforeB.slice();
-  expectedB[idxB] = beforeB[idxB] - deltaB;
-  expect(lineIdsB.length, 'Product B: one line Id per segment input').toBe(beforeB.length);
+  // B's pre-edit snapshot is used for cross-product isolation (different rows)
+  // and lineResults.before. When same product we re-read after A's edits.
+  const beforeBPreEdit = sameProduct ? null : await readSegmentQuantities(productB.row);
+  const lineIdsB       = sameProduct ? lineIdsA : await readSegmentLineIds(productB.row);
+  if (!sameProduct) {
+    expect(lineIdsB.length, 'Product B: one line Id per segment input').toBe(/** @type {number[]} */ (beforeBPreEdit).length);
+  }
 
-  // Product A: Year 1 decrease propagates to all segments
+  // ── Step 1: Product A Year-1 decrease — propagates to all segments ───────
   await setSegmentQuantity(productA.row, 0, beforeA[0] - deltaA);
   await expect.poll(() => readSegmentQuantities(productA.row), {
     message: `Product A: all ${productA.segmentCount} segments should reflect -${deltaA} after Year 1 edit`,
@@ -191,15 +230,12 @@ async function runSegmentsDecrease(ctx) {
     intervals: [200, 400, 600, 800, 1000],
   }).toEqual(expectedA);
   await u.screenshot(page, runDir, '03-after-A-propagation');
-  expect(await readSegmentQuantities(productB.row), 'Cross-product isolation: B unchanged after A').toEqual(beforeB);
 
-  // Floor-aware Y1 propagation on Product A: push Y1 down by just enough that
-  // the non-Y1 segment with the smallest remaining headroom would land 1 below
-  // its priorQuantity. Expected behavior — that segment clamps at its prior
-  // while segments with headroom continue to decrease in lockstep with Y1.
-  // Same caveat as the per-segment floor check on Product B below: not yet
-  // enforced in agenticQtcMdqTermGroup.js, so this assertion will FAIL until
-  // the LWC consults each segment's priorQuantity during propagation.
+  if (!sameProduct) {
+    expect(await readSegmentQuantities(productB.row), 'Cross-product isolation: B unchanged after A').toEqual(beforeBPreEdit);
+  }
+
+  // ── Step 2 (optional): floor-aware propagation on A ──────────────────────
   /** @type {number[]} */ let finalExpectedA = expectedA;
   const headroomAfterStep1 = expectedA.map((v, i) => v - priorA[i]);
   let floorIdxA = -1;
@@ -225,59 +261,101 @@ async function runSegmentsDecrease(ctx) {
         await readSegmentQuantities(productA.row),
         `Product A: Y1 propagation should pin segment ${floorIdxA + 1} at priorQuantity ${priorA[floorIdxA]} while other segments continue to decrease with Y1`
       ).toEqual(expectedAStep2);
-      expect(
-        await readSegmentQuantities(productB.row),
-        'Cross-product isolation: B still unchanged after A floor-aware edit'
-      ).toEqual(beforeB);
+      if (!sameProduct) {
+        expect(
+          await readSegmentQuantities(productB.row),
+          'Cross-product isolation: B still unchanged after A floor-aware edit'
+        ).toEqual(beforeBPreEdit);
+      }
       finalExpectedA = expectedAStep2;
     } else {
-      console.log(
-        `[Floor-aware propagation] Skipped on Product A — additional delta ${additionalDeltaA} would drive Y1 (${expectedA[0]}) at or below its own prior ${priorA[0]}.`
-      );
+      console.log(`[Floor-aware propagation] Skipped on Product A — additional delta ${additionalDeltaA} would drive Y1 at or below its own prior ${priorA[0]}.`);
     }
   } else {
     console.log('[Floor-aware propagation] Skipped on Product A — no non-Y1 segment has a positive priorQuantity to floor against.');
   }
 
-  // Product B: Year 3 decrease is isolated
+  // ── Snapshot B after all of A's edits ─────────────────────────────────────
+  // When same product the row now reflects A's changes — re-read so B's
+  // isolation baseline is the post-A state, not the original.
+  const beforeB  = await readSegmentQuantities(productB.row);
+
+  // Guard: B's Year-TARGET_SEGMENT effective qty must be > 0 before the edit.
+  // (Verified analytically above via remainingIdxB, but re-confirm from live UI.)
+  const effBIdxB = beforeB[idxB] - priorB[idxB];
+  expect(
+    effBIdxB,
+    `Product B Year ${idxB + 1}: effective quantity must be > 0 — cannot decrease when Eff. Qty is 0 (got ${effBIdxB})`,
+  ).toBeGreaterThan(0);
+
+  const expectedB  = beforeB.slice();
+  expectedB[idxB]  = beforeB[idxB] - deltaB;
+
+  // ── Step 3: Product B Year-TARGET_SEGMENT decrease — isolated ────────────
   await setSegmentQuantity(productB.row, idxB, beforeB[idxB] - deltaB);
   await page.waitForTimeout(QUIESCE_MS);
   await u.screenshot(page, runDir, '04-after-B-edit');
-  expect(await readSegmentQuantities(productB.row), `Only Year ${TARGET_SEGMENT} should have changed on B`).toEqual(expectedB);
-  expect(await readSegmentQuantities(productA.row), 'A propagation intact after B edit').toEqual(finalExpectedA);
 
-  // Floor at priorQuantity (Eff. Qty 0). NOTE: this is the intended business
-  // behavior but is NOT yet enforced in agenticQtcMdqTermGroup.js — until the
-  // LWC adds a priorQuantity guard the second floor assertion will FAIL.
-  const priorYear3 = priorB[idxB];
-  await setSegmentQuantity(productB.row, idxB, priorYear3);
+  expect(
+    await readSegmentQuantities(productB.row),
+    `Only Year ${idxB + 1} should have changed on B`,
+  ).toEqual(expectedB);
+
+  // When same product A's row IS B's row — its state is now expectedB.
+  expect(
+    await readSegmentQuantities(productA.row),
+    sameProduct
+      ? `Same-product: non-Year-${idxB + 1} segments unchanged after Year ${idxB + 1} edit`
+      : 'A propagation intact after B edit',
+  ).toEqual(sameProduct ? expectedB : finalExpectedA);
+
+  // ── Floor test: set B's Year-N to priorQty → Eff. Qty must show 0 ────────
+  const priorYearN = priorB[idxB];
+  await setSegmentQuantity(productB.row, idxB, priorYearN);
   await page.waitForTimeout(QUIESCE_MS);
   await u.screenshot(page, runDir, '05-at-prior-quantity');
 
-  const expectedBAtPrior = expectedB.slice();
-  expectedBAtPrior[idxB] = priorYear3;
-  expect(await readSegmentQuantities(productB.row), `Year ${TARGET_SEGMENT} should land at priorQuantity ${priorYear3}`).toEqual(expectedBAtPrior);
-  const effsAtPrior = await readSegmentEffQuantities(productB.row);
-  expect(effsAtPrior[idxB], `Eff. Qty for Year ${TARGET_SEGMENT} should be 0 at priorQuantity`).toBe(0);
+  const expectedBAtPrior  = expectedB.slice();
+  expectedBAtPrior[idxB]  = priorYearN;
+  expect(
+    await readSegmentQuantities(productB.row),
+    `Year ${idxB + 1} should land at priorQuantity ${priorYearN}`,
+  ).toEqual(expectedBAtPrior);
 
-  await setSegmentQuantity(productB.row, idxB, priorYear3 - 1);
+  const effsAtPrior = await readSegmentEffQuantities(productB.row);
+  expect(effsAtPrior[idxB], `Eff. Qty for Year ${idxB + 1} must be 0 at priorQuantity`).toBe(0);
+
+  // ── Floor clamp: typing below priorQty must be rejected ──────────────────
+  await setSegmentQuantity(productB.row, idxB, priorYearN - 1);
   await page.waitForTimeout(QUIESCE_MS);
   await u.screenshot(page, runDir, '06-after-floor-attempt');
-  expect(await readSegmentQuantities(productB.row), `Year ${TARGET_SEGMENT} must not go below priorQuantity`).toEqual(expectedBAtPrior);
+
+  expect(
+    await readSegmentQuantities(productB.row),
+    `Year ${idxB + 1} must not go below priorQuantity — Eff. Qty cannot be negative`,
+  ).toEqual(expectedBAtPrior);
   const effsAfterFloor = await readSegmentEffQuantities(productB.row);
   expect(effsAfterFloor[idxB], 'Eff. Qty must stay at 0 after floor attempt').toBe(0);
-  expect(await readSegmentQuantities(productA.row), 'A propagation intact after floor attempt').toEqual(finalExpectedA);
 
   const expectedBFloor = expectedBAtPrior;
+  // A's row final state: when same product it shares the row with B so its
+  // final state is expectedBFloor; when different rows finalExpectedA stands.
+  const expectedAFinal = sameProduct ? expectedBFloor : finalExpectedA;
 
-  // Save and verify CPQ persistence
+  expect(
+    await readSegmentQuantities(productA.row),
+    'A propagation intact after floor attempt',
+  ).toEqual(expectedAFinal);
+
+  // ── Save and verify CPQ persistence ──────────────────────────────────────
   await qtc.save(120_000);
   await u.screenshot(page, runDir, '07-after-save');
-  expect(await readSegmentQuantities(productA.row), 'Post-save: A reflects Y1 propagation (with per-segment floor when applied)').toEqual(finalExpectedA);
+
+  expect(await readSegmentQuantities(productA.row), 'Post-save: A intact').toEqual(expectedAFinal);
   expect(await readSegmentQuantities(productB.row), 'Post-save: B reflects isolated edit + floor').toEqual(expectedBFloor);
 
-  // DB verification
-  const allLineIds = [...lineIdsA, ...lineIdsB];
+  // ── DB verification ───────────────────────────────────────────────────────
+  const allLineIds = sameProduct ? [...lineIdsA] : [...lineIdsA, ...lineIdsB];
   for (const id of allLineIds) {
     expect(id, `Line Id should match Salesforce Id pattern, got ${id}`).toMatch(/^[a-zA-Z0-9]{15,18}$/);
   }
@@ -290,57 +368,58 @@ async function runSegmentsDecrease(ctx) {
   for (const r of (result.records || [])) dbById.set(r.Id, Number(r.SBQQ__Quantity__c) || 0);
 
   const dbQtysA = lineIdsA.map(id => dbById.get(id) ?? NaN);
-  const dbQtysB = lineIdsB.map(id => dbById.get(id) ?? NaN);
+  const dbQtysB = sameProduct ? dbQtysA : lineIdsB.map(id => dbById.get(id) ?? NaN);
 
-  expect(dbQtysA.length, 'DB: one row per Product A segment').toBe(finalExpectedA.length);
-  for (let i = 0; i < finalExpectedA.length; i++) {
-    expect(dbQtysA[i], `Product A DB segment ${i + 1} (line ${lineIdsA[i]})`).toBe(finalExpectedA[i]);
+  expect(dbQtysA.length, 'DB: one row per Product A segment').toBe(expectedAFinal.length);
+  for (let i = 0; i < expectedAFinal.length; i++) {
+    expect(dbQtysA[i], `Product A DB segment ${i + 1} (line ${lineIdsA[i]})`).toBe(expectedAFinal[i]);
   }
-  expect(dbQtysB.length, 'DB: one row per Product B segment').toBe(expectedBFloor.length);
-  for (let i = 0; i < expectedBFloor.length; i++) {
-    expect(dbQtysB[i], `Product B DB segment ${i + 1} (line ${lineIdsB[i]})`).toBe(expectedBFloor[i]);
+  if (!sameProduct) {
+    expect(dbQtysB.length, 'DB: one row per Product B segment').toBe(expectedBFloor.length);
+    for (let i = 0; i < expectedBFloor.length; i++) {
+      expect(dbQtysB[i], `Product B DB segment ${i + 1} (line ${lineIdsB[i]})`).toBe(expectedBFloor[i]);
+    }
   }
 
-  const allPriors = [...priorA, ...priorB];
+  // Every persisted quantity must be ≥ its priorQuantity (Eff. Qty ≥ 0).
+  const allPriors = sameProduct ? [...priorA] : [...priorA, ...priorB];
   for (let i = 0; i < allLineIds.length; i++) {
     const q = dbById.get(allLineIds[i]);
     expect(q ?? 0, `Line ${allLineIds[i]}: persisted qty (${q}) must be ≥ priorQuantity (${allPriors[i]})`).toBeGreaterThanOrEqual(allPriors[i]);
   }
 
-  const lineResults = [
-    ...lineIdsA.map((_id, i) => ({
-      index: i + 1, label: `${productA.productName} · Y${i + 1}`,
-      before: beforeA[i], expected: finalExpectedA[i], actual: dbQtysA[i],
-      pass: dbQtysA[i] === finalExpectedA[i],
-    })),
-    ...lineIdsB.map((_id, i) => ({
-      index: lineIdsA.length + i + 1, label: `${productB.productName} · Y${i + 1}`,
-      before: beforeB[i], expected: expectedBFloor[i], actual: dbQtysB[i],
-      pass: dbQtysB[i] === expectedBFloor[i],
-    })),
-  ];
+  // ── Rich results ─────────────────────────────────────────────────────────
+  const lineResultsA = lineIdsA.map((_id, i) => ({
+    index: i + 1, label: `${productA.productName} · Y${i + 1}`,
+    before: beforeA[i], expected: expectedAFinal[i], actual: dbQtysA[i],
+    pass: dbQtysA[i] === expectedAFinal[i],
+  }));
+  const lineResultsB = sameProduct ? [] : lineIdsB.map((_id, i) => ({
+    index: lineIdsA.length + i + 1, label: `${productB.productName} · Y${i + 1}`,
+    before: /** @type {number[]} */ (beforeBPreEdit)[i] ?? 0,
+    expected: expectedBFloor[i], actual: dbQtysB[i],
+    pass: dbQtysB[i] === expectedBFloor[i],
+  }));
+  const lineResults = [...lineResultsA, ...lineResultsB];
 
-  // Populate dbComparison + uiDbCrossCheck so the dashboard's DB Lines and UI-DB
-  // tabs render. Segment line IDs give us an exact 1:1 UI↔DB mapping, so we can
-  // build both directly without the product-name heuristic.
-  const dbComparison = [
-    ...lineIdsA.map((id, i) => ({
-      index: i + 1, product: productA.productName,
-      segIndex: i + 1, segKey: id,
-      priorQty: priorA[i], dbQty: dbQtysA[i],
-      dbPrice: null, dbListPrice: null, dbDiscount: null, dbNetTotal: null,
-      dbAcv: null, dbTcv: null, isBundle: false,
-      startDate: null, endDate: null,
-    })),
-    ...lineIdsB.map((id, i) => ({
-      index: lineIdsA.length + i + 1, product: productB.productName,
-      segIndex: i + 1, segKey: id,
-      priorQty: priorB[i], dbQty: dbQtysB[i],
-      dbPrice: null, dbListPrice: null, dbDiscount: null, dbNetTotal: null,
-      dbAcv: null, dbTcv: null, isBundle: false,
-      startDate: null, endDate: null,
-    })),
-  ];
+  const dbComparisonA = lineIdsA.map((id, i) => ({
+    index: i + 1, product: productA.productName,
+    segIndex: i + 1, segKey: id,
+    priorQty: priorA[i], dbQty: dbQtysA[i],
+    dbPrice: null, dbListPrice: null, dbDiscount: null, dbNetTotal: null,
+    dbAcv: null, dbTcv: null, isBundle: false,
+    startDate: null, endDate: null,
+  }));
+  const dbComparisonB = sameProduct ? [] : lineIdsB.map((id, i) => ({
+    index: lineIdsA.length + i + 1, product: productB.productName,
+    segIndex: i + 1, segKey: id,
+    priorQty: priorB[i], dbQty: dbQtysB[i],
+    dbPrice: null, dbListPrice: null, dbDiscount: null, dbNetTotal: null,
+    dbAcv: null, dbTcv: null, isBundle: false,
+    startDate: null, endDate: null,
+  }));
+  const dbComparison = [...dbComparisonA, ...dbComparisonB];
+
   const uiDbCrossCheck = lineResults.map((line, i) => ({
     uiIndex:  line.index,
     product:  dbComparison[i].product,
@@ -361,17 +440,18 @@ async function runSegmentsDecrease(ctx) {
     contract: contract.number,
     quoteName,
     spinbuttonCount: lineResults.length,
-    uiQtyTotal:  [...finalExpectedA, ...expectedBFloor].reduce((s, v) => s + v, 0),
-    dbQtyTotal:  [...dbQtysA,  ...dbQtysB].reduce((s, v) => s + v, 0),
+    uiQtyTotal:  [...expectedAFinal, ...(sameProduct ? [] : expectedBFloor)].reduce((s, v) => s + v, 0),
+    dbQtyTotal:  [...dbQtysA, ...(sameProduct ? [] : dbQtysB)].reduce((s, v) => s + v, 0),
     dbLineCount: lineResults.length,
     deltaApplied: -deltaA,
     lineResults,
     dbComparison, uiDbCrossCheck, crossCheckMismatches,
     passed: lineResults.every(r => r.pass) && crossCheckMismatches === 0,
     extra: {
-      productA: { name: productA.productName, prior: priorA, before: beforeA, expected: finalExpectedA, actualDb: dbQtysA, deltaApplied: -deltaA, rule: 'Year 1 propagates + per-segment floor at priorQuantity' },
-      productB: { name: productB.productName, prior: priorB, before: beforeB, expected: expectedBFloor, actualDb: dbQtysB, deltaApplied: -deltaB, rule: `Year ${TARGET_SEGMENT} isolated + floor at priorQuantity` },
-      floor:    { segment: TARGET_SEGMENT, priorYear3 },
+      sameProduct,
+      productA: { name: productA.productName, prior: priorA, before: beforeA, expected: expectedAFinal, actualDb: dbQtysA, deltaApplied: -deltaA, rule: 'Year 1 propagates + per-segment floor at priorQuantity' },
+      productB: { name: productB.productName, prior: priorB, before: beforeB, expected: expectedBFloor, actualDb: dbQtysB, deltaApplied: -deltaB, rule: `Year ${idxB + 1} isolated + floor at priorQuantity` },
+      floor:    { segment: idxB + 1, priorYearN },
     },
   });
 }
