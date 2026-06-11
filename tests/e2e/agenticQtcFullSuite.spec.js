@@ -87,10 +87,17 @@ class SkipSignal extends Error {}
 function skipScenario(reason) { throw new SkipSignal(reason); }
 
 /**
- * Wrap a scenario body: catch all errors (including expect() throws), record
- * PASS / FAIL / SKIP, and NEVER rethrow — so the Playwright test always resolves
- * cleanly. A thrown SkipSignal → SKIP (not applicable). Any other throw → FAIL.
- * Only the SUITE SUMMARY test fails the run via the 75% threshold.
+ * Wrap a scenario body, record its outcome into SUITE_RESULTS, AND reflect that
+ * outcome in Playwright's own per-test status so the terminal/dashboard counts
+ * are honest (no more "everything passed"):
+ *   • SkipSignal      → record SKIP + test.skip()  → reported as SKIPPED
+ *   • any other throw → record FAIL + re-throw      → reported as FAILED
+ *   • success         → record PASS                 → reported as PASSED
+ *
+ * A single failed scenario therefore shows red, but it does NOT decide the
+ * overall run: the 75%-pass-rate gate (SUITE SUMMARY → richResults.passed) is
+ * what upload-results.js uses for the Test_Run status. So the suite can have
+ * visible per-scenario failures and still finish PASSED when ≥75% pass.
  *
  * @param {string} name
  * @param {() => Promise<void>} fn
@@ -102,10 +109,12 @@ async function runSafe(name, fn) {
   } catch (e) {
     if (e instanceof SkipSignal) {
       record(name, 'SKIP', e.message);
+      test.skip(true, e.message);   // mark this Playwright test as skipped
       return;
     }
     const msg = e instanceof Error ? e.message.split('\n')[0].substring(0, 150) : String(e);
     record(name, 'FAIL', msg);
+    throw e;                        // mark this Playwright test as failed (visible)
   }
 }
 
@@ -495,19 +504,19 @@ async function runEditorCore(page, contract, branch) {
 
 test('[4.1] Editor Core: 0 draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.zero;
-  if (!c) { record('[4.1] Editor Core: 0 amendments', 'SKIP', 'No 0-draft contract found'); return; }
+  if (!c) { record('[4.1] Editor Core: 0 amendments', 'SKIP', 'No 0-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[4.1] Editor Core: 0 amendments', () => runEditorCore(page, c, 'zero'));
 });
 
 test('[4.2] Editor Core: 1 draft amendment', async ({ page }) => {
   const c = contractCache?.byScenario.one;
-  if (!c) { record('[4.2] Editor Core: 1 amendment', 'SKIP', 'No 1-draft contract found'); return; }
+  if (!c) { record('[4.2] Editor Core: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[4.2] Editor Core: 1 amendment', () => runEditorCore(page, c, 'one'));
 });
 
 test('[4.3] Editor Core: 2+ draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.many;
-  if (!c) { record('[4.3] Editor Core: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
+  if (!c) { record('[4.3] Editor Core: 2+ amendments', 'SKIP', 'No many-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[4.3] Editor Core: 2+ amendments', () => runEditorCore(page, c, 'many'));
 });
 
@@ -547,19 +556,19 @@ async function runEditorButtons(page, contract, branch) {
 
 test('[5.1] Editor Buttons: 0 draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.zero;
-  if (!c) { record('[5.1] Editor Buttons: 0 amendments', 'SKIP', 'No 0-draft contract found'); return; }
+  if (!c) { record('[5.1] Editor Buttons: 0 amendments', 'SKIP', 'No 0-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[5.1] Editor Buttons: 0 amendments', () => runEditorButtons(page, c, 'zero'));
 });
 
 test('[5.2] Editor Buttons: 1 draft amendment', async ({ page }) => {
   const c = contractCache?.byScenario.one;
-  if (!c) { record('[5.2] Editor Buttons: 1 amendment', 'SKIP', 'No 1-draft contract found'); return; }
+  if (!c) { record('[5.2] Editor Buttons: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[5.2] Editor Buttons: 1 amendment', () => runEditorButtons(page, c, 'one'));
 });
 
 test('[5.3] Editor Buttons: 2+ draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.many;
-  if (!c) { record('[5.3] Editor Buttons: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
+  if (!c) { record('[5.3] Editor Buttons: 2+ amendments', 'SKIP', 'No many-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[5.3] Editor Buttons: 2+ amendments', () => runEditorButtons(page, c, 'many'));
 });
 
@@ -584,19 +593,19 @@ async function runContactUpdate(page, contract, branch) {
 
 test('[6.1] Contact Update: 0 draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.zero;
-  if (!c) { record('[6.1] Contact Update: 0 amendments', 'SKIP', 'No 0-draft contract found'); return; }
+  if (!c) { record('[6.1] Contact Update: 0 amendments', 'SKIP', 'No 0-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[6.1] Contact Update: 0 amendments', () => runContactUpdate(page, c, 'zero'));
 });
 
 test('[6.2] Contact Update: 1 draft amendment', async ({ page }) => {
   const c = contractCache?.byScenario.one;
-  if (!c) { record('[6.2] Contact Update: 1 amendment', 'SKIP', 'No 1-draft contract found'); return; }
+  if (!c) { record('[6.2] Contact Update: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[6.2] Contact Update: 1 amendment', () => runContactUpdate(page, c, 'one'));
 });
 
 test('[6.3] Contact Update: 2+ draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.many;
-  if (!c) { record('[6.3] Contact Update: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
+  if (!c) { record('[6.3] Contact Update: 2+ amendments', 'SKIP', 'No many-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[6.3] Contact Update: 2+ amendments', () => runContactUpdate(page, c, 'many'));
 });
 
@@ -619,19 +628,19 @@ async function runStartDateChange(page, contract, branch) {
 
 test('[7.1] Start Date Change: 0 draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.zero;
-  if (!c) { record('[7.1] Start Date Change: 0 amendments', 'SKIP', 'No 0-draft contract found'); return; }
+  if (!c) { record('[7.1] Start Date Change: 0 amendments', 'SKIP', 'No 0-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[7.1] Start Date Change: 0 amendments', () => runStartDateChange(page, c, 'zero'));
 });
 
 test('[7.2] Start Date Change: 1 draft amendment', async ({ page }) => {
   const c = contractCache?.byScenario.one;
-  if (!c) { record('[7.2] Start Date Change: 1 amendment', 'SKIP', 'No 1-draft contract found'); return; }
+  if (!c) { record('[7.2] Start Date Change: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[7.2] Start Date Change: 1 amendment', () => runStartDateChange(page, c, 'one'));
 });
 
 test('[7.3] Start Date Change: 2+ draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.many;
-  if (!c) { record('[7.3] Start Date Change: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
+  if (!c) { record('[7.3] Start Date Change: 2+ amendments', 'SKIP', 'No many-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[7.3] Start Date Change: 2+ amendments', () => runStartDateChange(page, c, 'many'));
 });
 
@@ -677,19 +686,19 @@ async function runStartDateBoundary(page, contract, branch) {
 
 test('[8.1] Start Date Boundary: 0 draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.zero;
-  if (!c) { record('[8.1] Start Date Boundary: 0 amendments', 'SKIP', 'No 0-draft contract found'); return; }
+  if (!c) { record('[8.1] Start Date Boundary: 0 amendments', 'SKIP', 'No 0-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[8.1] Start Date Boundary: 0 amendments', () => runStartDateBoundary(page, c, 'zero'));
 });
 
 test('[8.2] Start Date Boundary: 1 draft amendment', async ({ page }) => {
   const c = contractCache?.byScenario.one;
-  if (!c) { record('[8.2] Start Date Boundary: 1 amendment', 'SKIP', 'No 1-draft contract found'); return; }
+  if (!c) { record('[8.2] Start Date Boundary: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[8.2] Start Date Boundary: 1 amendment', () => runStartDateBoundary(page, c, 'one'));
 });
 
 test('[8.3] Start Date Boundary: 2+ draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.many;
-  if (!c) { record('[8.3] Start Date Boundary: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
+  if (!c) { record('[8.3] Start Date Boundary: 2+ amendments', 'SKIP', 'No many-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[8.3] Start Date Boundary: 2+ amendments', () => runStartDateBoundary(page, c, 'many'));
 });
 
@@ -723,19 +732,19 @@ async function runQuantityIncrease(page, contract, branch) {
 
 test('[9.1] Qty Increase: 0 draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.zero;
-  if (!c) { record('[9.1] Qty Increase: 0 amendments', 'SKIP', 'No 0-draft contract found'); return; }
+  if (!c) { record('[9.1] Qty Increase: 0 amendments', 'SKIP', 'No 0-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[9.1] Qty Increase: 0 amendments', () => runQuantityIncrease(page, c, 'zero'));
 });
 
 test('[9.2] Qty Increase: 1 draft amendment', async ({ page }) => {
   const c = contractCache?.byScenario.one;
-  if (!c) { record('[9.2] Qty Increase: 1 amendment', 'SKIP', 'No 1-draft contract found'); return; }
+  if (!c) { record('[9.2] Qty Increase: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[9.2] Qty Increase: 1 amendment', () => runQuantityIncrease(page, c, 'one'));
 });
 
 test('[9.3] Qty Increase: 2+ draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.many;
-  if (!c) { record('[9.3] Qty Increase: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
+  if (!c) { record('[9.3] Qty Increase: 2+ amendments', 'SKIP', 'No many-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[9.3] Qty Increase: 2+ amendments', () => runQuantityIncrease(page, c, 'many'));
 });
 
@@ -771,19 +780,19 @@ async function runQuantityDecrease(page, contract, branch) {
 
 test('[10.1] Qty Decrease: 0 draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.zero;
-  if (!c) { record('[10.1] Qty Decrease: 0 amendments', 'SKIP', 'No 0-draft contract found'); return; }
+  if (!c) { record('[10.1] Qty Decrease: 0 amendments', 'SKIP', 'No 0-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[10.1] Qty Decrease: 0 amendments', () => runQuantityDecrease(page, c, 'zero'));
 });
 
 test('[10.2] Qty Decrease: 1 draft amendment', async ({ page }) => {
   const c = contractCache?.byScenario.one;
-  if (!c) { record('[10.2] Qty Decrease: 1 amendment', 'SKIP', 'No 1-draft contract found'); return; }
+  if (!c) { record('[10.2] Qty Decrease: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[10.2] Qty Decrease: 1 amendment', () => runQuantityDecrease(page, c, 'one'));
 });
 
 test('[10.3] Qty Decrease: 2+ draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.many;
-  if (!c) { record('[10.3] Qty Decrease: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
+  if (!c) { record('[10.3] Qty Decrease: 2+ amendments', 'SKIP', 'No many-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[10.3] Qty Decrease: 2+ amendments', () => runQuantityDecrease(page, c, 'many'));
 });
 
@@ -827,19 +836,19 @@ async function runQtyIncreaseSegments(page, contract, branch) {
 
 test('[11.1] Qty Increase Segments (MDQ): 0 draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.zero;
-  if (!c) { record('[11.1] Qty Increase Segments: 0 amendments', 'SKIP', 'No 0-draft contract found'); return; }
+  if (!c) { record('[11.1] Qty Increase Segments: 0 amendments', 'SKIP', 'No 0-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[11.1] Qty Increase Segments: 0 amendments', () => runQtyIncreaseSegments(page, c, 'zero'));
 });
 
 test('[11.2] Qty Increase Segments (MDQ): 1 draft amendment', async ({ page }) => {
   const c = contractCache?.byScenario.one;
-  if (!c) { record('[11.2] Qty Increase Segments: 1 amendment', 'SKIP', 'No 1-draft contract found'); return; }
+  if (!c) { record('[11.2] Qty Increase Segments: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[11.2] Qty Increase Segments: 1 amendment', () => runQtyIncreaseSegments(page, c, 'one'));
 });
 
 test('[11.3] Qty Increase Segments (MDQ): 2+ draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.many;
-  if (!c) { record('[11.3] Qty Increase Segments: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
+  if (!c) { record('[11.3] Qty Increase Segments: 2+ amendments', 'SKIP', 'No many-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[11.3] Qty Increase Segments: 2+ amendments', () => runQtyIncreaseSegments(page, c, 'many'));
 });
 
@@ -879,19 +888,19 @@ async function runQtyDecreaseSegments(page, contract, branch) {
 
 test('[12.1] Qty Decrease Segments (MDQ): 0 draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.zero;
-  if (!c) { record('[12.1] Qty Decrease Segments: 0 amendments', 'SKIP', 'No 0-draft contract found'); return; }
+  if (!c) { record('[12.1] Qty Decrease Segments: 0 amendments', 'SKIP', 'No 0-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[12.1] Qty Decrease Segments: 0 amendments', () => runQtyDecreaseSegments(page, c, 'zero'));
 });
 
 test('[12.2] Qty Decrease Segments (MDQ): 1 draft amendment', async ({ page }) => {
   const c = contractCache?.byScenario.one;
-  if (!c) { record('[12.2] Qty Decrease Segments: 1 amendment', 'SKIP', 'No 1-draft contract found'); return; }
+  if (!c) { record('[12.2] Qty Decrease Segments: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[12.2] Qty Decrease Segments: 1 amendment', () => runQtyDecreaseSegments(page, c, 'one'));
 });
 
 test('[12.3] Qty Decrease Segments (MDQ): 2+ draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.many;
-  if (!c) { record('[12.3] Qty Decrease Segments: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
+  if (!c) { record('[12.3] Qty Decrease Segments: 2+ amendments', 'SKIP', 'No many-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[12.3] Qty Decrease Segments: 2+ amendments', () => runQtyDecreaseSegments(page, c, 'many'));
 });
 
@@ -928,19 +937,19 @@ async function runMetricsVerification(page, contract, branch) {
 
 test('[13.1] Metrics Verification: 0 draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.zero;
-  if (!c) { record('[13.1] Metrics Verification: 0 amendments', 'SKIP', 'No 0-draft contract found'); return; }
+  if (!c) { record('[13.1] Metrics Verification: 0 amendments', 'SKIP', 'No 0-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[13.1] Metrics Verification: 0 amendments', () => runMetricsVerification(page, c, 'zero'));
 });
 
 test('[13.2] Metrics Verification: 1 draft amendment', async ({ page }) => {
   const c = contractCache?.byScenario.one;
-  if (!c) { record('[13.2] Metrics Verification: 1 amendment', 'SKIP', 'No 1-draft contract found'); return; }
+  if (!c) { record('[13.2] Metrics Verification: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[13.2] Metrics Verification: 1 amendment', () => runMetricsVerification(page, c, 'one'));
 });
 
 test('[13.3] Metrics Verification: 2+ draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.many;
-  if (!c) { record('[13.3] Metrics Verification: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
+  if (!c) { record('[13.3] Metrics Verification: 2+ amendments', 'SKIP', 'No many-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[13.3] Metrics Verification: 2+ amendments', () => runMetricsVerification(page, c, 'many'));
 });
 
@@ -966,19 +975,19 @@ async function runNonSegmentQty(page, contract, branch, delta) {
 
 test('[14.1] Qty Increase Non-Segment: 0 draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.zero;
-  if (!c) { record('[14.1] Qty Increase Non-Segment: 0 amendments', 'SKIP', 'No 0-draft contract found'); return; }
+  if (!c) { record('[14.1] Qty Increase Non-Segment: 0 amendments', 'SKIP', 'No 0-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[14.1] Qty Increase Non-Segment: 0 amendments', () => runNonSegmentQty(page, c, 'zero', QTY_INC));
 });
 
 test('[14.2] Qty Increase Non-Segment: 1 draft amendment', async ({ page }) => {
   const c = contractCache?.byScenario.one;
-  if (!c) { record('[14.2] Qty Increase Non-Segment: 1 amendment', 'SKIP', 'No 1-draft contract found'); return; }
+  if (!c) { record('[14.2] Qty Increase Non-Segment: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[14.2] Qty Increase Non-Segment: 1 amendment', () => runNonSegmentQty(page, c, 'one', QTY_INC));
 });
 
 test('[14.3] Qty Increase Non-Segment: 2+ draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.many;
-  if (!c) { record('[14.3] Qty Increase Non-Segment: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
+  if (!c) { record('[14.3] Qty Increase Non-Segment: 2+ amendments', 'SKIP', 'No many-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[14.3] Qty Increase Non-Segment: 2+ amendments', () => runNonSegmentQty(page, c, 'many', QTY_INC));
 });
 
@@ -1019,19 +1028,19 @@ async function runBundleSegmentQty(page, contract, branch, delta) {
 
 test('[15.1] Qty Increase Bundle Segments: 0 draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.zero;
-  if (!c) { record('[15.1] Qty Increase Bundle Segments: 0 amendments', 'SKIP', 'No 0-draft contract found'); return; }
+  if (!c) { record('[15.1] Qty Increase Bundle Segments: 0 amendments', 'SKIP', 'No 0-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[15.1] Qty Increase Bundle Segments: 0 amendments', () => runBundleSegmentQty(page, c, 'zero', MDQ_DELTA));
 });
 
 test('[15.2] Qty Increase Bundle Segments: 1 draft amendment', async ({ page }) => {
   const c = contractCache?.byScenario.one;
-  if (!c) { record('[15.2] Qty Increase Bundle Segments: 1 amendment', 'SKIP', 'No 1-draft contract found'); return; }
+  if (!c) { record('[15.2] Qty Increase Bundle Segments: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[15.2] Qty Increase Bundle Segments: 1 amendment', () => runBundleSegmentQty(page, c, 'one', MDQ_DELTA));
 });
 
 test('[15.3] Qty Increase Bundle Segments: 2+ draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.many;
-  if (!c) { record('[15.3] Qty Increase Bundle Segments: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
+  if (!c) { record('[15.3] Qty Increase Bundle Segments: 2+ amendments', 'SKIP', 'No many-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[15.3] Qty Increase Bundle Segments: 2+ amendments', () => runBundleSegmentQty(page, c, 'many', MDQ_DELTA));
 });
 
@@ -1057,19 +1066,19 @@ async function runBundleNonSegmentQty(page, contract, branch, delta) {
 
 test('[16.1] Qty Increase Bundle Non-Segment: 0 draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.zero;
-  if (!c) { record('[16.1] Qty Increase Bundle Non-Segment: 0 amendments', 'SKIP', 'No 0-draft contract found'); return; }
+  if (!c) { record('[16.1] Qty Increase Bundle Non-Segment: 0 amendments', 'SKIP', 'No 0-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[16.1] Qty Increase Bundle Non-Segment: 0 amendments', () => runBundleNonSegmentQty(page, c, 'zero', QTY_INC));
 });
 
 test('[16.2] Qty Increase Bundle Non-Segment: 1 draft amendment', async ({ page }) => {
   const c = contractCache?.byScenario.one;
-  if (!c) { record('[16.2] Qty Increase Bundle Non-Segment: 1 amendment', 'SKIP', 'No 1-draft contract found'); return; }
+  if (!c) { record('[16.2] Qty Increase Bundle Non-Segment: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[16.2] Qty Increase Bundle Non-Segment: 1 amendment', () => runBundleNonSegmentQty(page, c, 'one', QTY_INC));
 });
 
 test('[16.3] Qty Increase Bundle Non-Segment: 2+ draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.many;
-  if (!c) { record('[16.3] Qty Increase Bundle Non-Segment: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
+  if (!c) { record('[16.3] Qty Increase Bundle Non-Segment: 2+ amendments', 'SKIP', 'No many-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[16.3] Qty Increase Bundle Non-Segment: 2+ amendments', () => runBundleNonSegmentQty(page, c, 'many', QTY_INC));
 });
 
@@ -1079,19 +1088,19 @@ test('[16.3] Qty Increase Bundle Non-Segment: 2+ draft amendments', async ({ pag
 
 test('[17.1] Qty Decrease Non-Segment: 0 draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.zero;
-  if (!c) { record('[17.1] Qty Decrease Non-Segment: 0 amendments', 'SKIP', 'No 0-draft contract found'); return; }
+  if (!c) { record('[17.1] Qty Decrease Non-Segment: 0 amendments', 'SKIP', 'No 0-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[17.1] Qty Decrease Non-Segment: 0 amendments', () => runNonSegmentQty(page, c, 'zero', -QTY_DEC));
 });
 
 test('[17.2] Qty Decrease Non-Segment: 1 draft amendment', async ({ page }) => {
   const c = contractCache?.byScenario.one;
-  if (!c) { record('[17.2] Qty Decrease Non-Segment: 1 amendment', 'SKIP', 'No 1-draft contract found'); return; }
+  if (!c) { record('[17.2] Qty Decrease Non-Segment: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[17.2] Qty Decrease Non-Segment: 1 amendment', () => runNonSegmentQty(page, c, 'one', -QTY_DEC));
 });
 
 test('[17.3] Qty Decrease Non-Segment: 2+ draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.many;
-  if (!c) { record('[17.3] Qty Decrease Non-Segment: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
+  if (!c) { record('[17.3] Qty Decrease Non-Segment: 2+ amendments', 'SKIP', 'No many-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[17.3] Qty Decrease Non-Segment: 2+ amendments', () => runNonSegmentQty(page, c, 'many', -QTY_DEC));
 });
 
@@ -1101,19 +1110,19 @@ test('[17.3] Qty Decrease Non-Segment: 2+ draft amendments', async ({ page }) =>
 
 test('[18.1] Qty Decrease Bundle Non-Segment: 0 draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.zero;
-  if (!c) { record('[18.1] Qty Decrease Bundle Non-Segment: 0 amendments', 'SKIP', 'No 0-draft contract found'); return; }
+  if (!c) { record('[18.1] Qty Decrease Bundle Non-Segment: 0 amendments', 'SKIP', 'No 0-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[18.1] Qty Decrease Bundle Non-Segment: 0 amendments', () => runBundleNonSegmentQty(page, c, 'zero', -QTY_DEC));
 });
 
 test('[18.2] Qty Decrease Bundle Non-Segment: 1 draft amendment', async ({ page }) => {
   const c = contractCache?.byScenario.one;
-  if (!c) { record('[18.2] Qty Decrease Bundle Non-Segment: 1 amendment', 'SKIP', 'No 1-draft contract found'); return; }
+  if (!c) { record('[18.2] Qty Decrease Bundle Non-Segment: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[18.2] Qty Decrease Bundle Non-Segment: 1 amendment', () => runBundleNonSegmentQty(page, c, 'one', -QTY_DEC));
 });
 
 test('[18.3] Qty Decrease Bundle Non-Segment: 2+ draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.many;
-  if (!c) { record('[18.3] Qty Decrease Bundle Non-Segment: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
+  if (!c) { record('[18.3] Qty Decrease Bundle Non-Segment: 2+ amendments', 'SKIP', 'No many-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[18.3] Qty Decrease Bundle Non-Segment: 2+ amendments', () => runBundleNonSegmentQty(page, c, 'many', -QTY_DEC));
 });
 
@@ -1123,19 +1132,19 @@ test('[18.3] Qty Decrease Bundle Non-Segment: 2+ draft amendments', async ({ pag
 
 test('[19.1] Qty Decrease Bundle Segments: 0 draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.zero;
-  if (!c) { record('[19.1] Qty Decrease Bundle Segments: 0 amendments', 'SKIP', 'No 0-draft contract found'); return; }
+  if (!c) { record('[19.1] Qty Decrease Bundle Segments: 0 amendments', 'SKIP', 'No 0-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[19.1] Qty Decrease Bundle Segments: 0 amendments', () => runBundleSegmentQty(page, c, 'zero', -MDQ_DELTA));
 });
 
 test('[19.2] Qty Decrease Bundle Segments: 1 draft amendment', async ({ page }) => {
   const c = contractCache?.byScenario.one;
-  if (!c) { record('[19.2] Qty Decrease Bundle Segments: 1 amendment', 'SKIP', 'No 1-draft contract found'); return; }
+  if (!c) { record('[19.2] Qty Decrease Bundle Segments: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[19.2] Qty Decrease Bundle Segments: 1 amendment', () => runBundleSegmentQty(page, c, 'one', -MDQ_DELTA));
 });
 
 test('[19.3] Qty Decrease Bundle Segments: 2+ draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.many;
-  if (!c) { record('[19.3] Qty Decrease Bundle Segments: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
+  if (!c) { record('[19.3] Qty Decrease Bundle Segments: 2+ amendments', 'SKIP', 'No many-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[19.3] Qty Decrease Bundle Segments: 2+ amendments', () => runBundleSegmentQty(page, c, 'many', -MDQ_DELTA));
 });
 
