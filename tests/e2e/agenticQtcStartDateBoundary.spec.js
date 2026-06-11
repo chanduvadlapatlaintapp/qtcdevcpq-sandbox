@@ -35,14 +35,23 @@ test.beforeAll(async ({ browser }) => {
 });
 
 /**
- * Query the QuoteLine table and split the first-term anchor lines (segmentIndex=1
- * or non-segmented) from the rest. Used by both bound attempts to compute the
- * lower floor (max start) and the upper cap (min end).
+ * Compute the first-term bounds the editor actually enforces:
+ *   • Upper cap  = MIN of first-term line END dates       (mirrors _getFirstTermEndDate)
+ *   • Lower floor = start of the upgraded-subscription SEGMENT that contains the
+ *                   quote's current start date            (mirrors _getLowerBoundStartDate)
+ *
+ * IMPORTANT: the lower floor is NOT derived from quote-line start dates. Those
+ * shift forward whenever the quote start is moved, so they are unreliable — the
+ * editor only uses them as a last-resort fallback. We replicate the editor's
+ * primary source (SBQQ__Subscription__c.SBQQ__SegmentStartDate__c), fall back to
+ * the contract term start, then finally to the line-based max.
  *
  * @param {import('@playwright/test').Page} page
  * @param {string} quoteName
+ * @param {string} [contractId]
+ * @param {string|null} [curStartISO]  current quote start date (ISO yyyy-mm-dd)
  */
-async function fetchFirstTermBounds(page, quoteName) {
+async function fetchFirstTermBounds(page, quoteName, contractId, curStartISO) {
   const soql = `SELECT Id, Name, SBQQ__ProductName__c,
                        SBQQ__StartDate__c, SBQQ__EndDate__c,
                        SBQQ__SegmentIndex__c, SBQQ__SegmentKey__c
@@ -58,13 +67,30 @@ async function fetchFirstTermBounds(page, quoteName) {
     dbError = String(e);
   }
   const firstTermLines = dbLines.filter(d => d.SBQQ__SegmentKey__c == null || d.SBQQ__SegmentIndex__c === 1);
-  const firstTermEnds   = firstTermLines.map(d => d.SBQQ__EndDate__c  ).filter(Boolean).sort();
-  const firstTermStarts = firstTermLines.map(d => d.SBQQ__StartDate__c).filter(Boolean).sort();
-  return {
-    dbLines, dbError,
-    firstTermEndISO:   firstTermEnds.length   > 0 ? /** @type {string} */ (firstTermEnds[0])                          : null,
-    firstTermStartISO: firstTermStarts.length > 0 ? /** @type {string} */ (firstTermStarts[firstTermStarts.length - 1]) : null,
-  };
+  const firstTermEnds   = firstTermLines.map(d => d.SBQQ__EndDate__c).filter(Boolean).sort();
+  const firstTermEndISO = firstTermEnds.length > 0 ? /** @type {string} */ (firstTermEnds[0]) : null;
+
+  /** @type {string|null} */ let firstTermStartISO = null;
+  if (contractId) {
+    const subSegs = await u.sfQuery(page, sfCtx.instanceUrl, sfCtx.accessToken,
+      `SELECT SBQQ__SegmentStartDate__c, SBQQ__SegmentEndDate__c FROM SBQQ__Subscription__c WHERE SBQQ__Contract__c = '${contractId}' AND SBQQ__SegmentStartDate__c != null ORDER BY SBQQ__SegmentStartDate__c`)
+      .then(r => r.records || []).catch(() => []);
+    const containingSeg = subSegs.find(s =>
+      (!curStartISO || s.SBQQ__SegmentStartDate__c <= curStartISO) &&
+      (!s.SBQQ__SegmentEndDate__c || !curStartISO || curStartISO <= s.SBQQ__SegmentEndDate__c));
+    firstTermStartISO = (containingSeg || subSegs[0])?.SBQQ__SegmentStartDate__c || null;
+    if (!firstTermStartISO) {
+      const contractRows = await u.sfQuery(page, sfCtx.instanceUrl, sfCtx.accessToken,
+        `SELECT StartDate FROM Contract WHERE Id = '${contractId}'`).then(r => r.records || []).catch(() => []);
+      firstTermStartISO = contractRows[0]?.StartDate || null;
+    }
+  }
+  if (!firstTermStartISO) {
+    // Final fallback — matches the editor's last-resort _getFirstTermStartDate().
+    const firstTermStarts = firstTermLines.map(d => d.SBQQ__StartDate__c).filter(Boolean).sort();
+    firstTermStartISO = firstTermStarts.length > 0 ? /** @type {string} */ (firstTermStarts[firstTermStarts.length - 1]) : null;
+  }
+  return { dbLines, dbError, firstTermEndISO, firstTermStartISO };
 }
 
 /**
@@ -117,8 +143,8 @@ async function runBothBoundChecks(ctx) {
   expect(dbHeader, `SBQQ__Quote__c '${quoteName}' should be queryable via REST`).not.toBeNull();
   const dbQuoteStartDate = dbHeader?.SBQQ__StartDate__c ?? null;
 
-  const bounds = await fetchFirstTermBounds(page, quoteName);
-  expect(bounds.firstTermStartISO, 'Quote should have a first-term line with start date').not.toBeNull();
+  const bounds = await fetchFirstTermBounds(page, quoteName, contract.id, initialUIISO);
+  expect(bounds.firstTermStartISO, 'Quote should have a resolvable first-term start (segment/contract)').not.toBeNull();
   expect(bounds.firstTermEndISO,   'Quote should have a first-term line with end date').not.toBeNull();
 
   // Lower bound first — LWC rolls input back to last valid value so the upper
