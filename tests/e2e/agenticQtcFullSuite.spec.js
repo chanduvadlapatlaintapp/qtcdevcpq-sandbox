@@ -2,15 +2,24 @@
 /**
  * agenticQtcFullSuite.spec.js
  *
- * Unified suite — runs all 38 scenarios from the 13 standard specs in a single
+ * Unified suite — runs all 56 scenarios from the 19 standard specs in a single
  * browser session with ONE shared beforeAll (one login, one contract discovery).
+ *
+ * Groups: 1 Account Search · 2 OSA Selector · 3 App Nav · 4 Editor Core ·
+ *   5 Editor Buttons · 6 Contact Update · 7 Start Date Change · 8 Start Date
+ *   Boundary · 9 Qty Increase · 10 Qty Decrease · 11 Qty Increase Segments ·
+ *   12 Qty Decrease Segments · 13 Metrics · 14 Qty Increase Non-Segment ·
+ *   15 Qty Increase Bundle Segments · 16 Qty Increase Bundle Non-Segment ·
+ *   17 Qty Decrease Non-Segment · 18 Qty Decrease Bundle Non-Segment ·
+ *   19 Qty Decrease Bundle Segments.
  *
  * Key behaviours:
  *   • runSafe() wraps every scenario: errors are caught and recorded as FAIL;
  *     the Playwright test itself never throws, so ALL scenarios always run.
- *   • If a pre-condition is not met (no contract with the right draft count,
- *     no MDQ rows, etc.) the scenario is recorded as SKIP and excluded from
- *     the percentage calculation.
+ *   • If a pre-condition is not met (no contract with the right draft count, no
+ *     MDQ/segment product, no bundle, no non-segment product, etc.) the scenario
+ *     is recorded as SKIP (via skipScenario) and EXCLUDED from the percentage.
+ *     → We never test a product type the quote doesn't contain.
  *   • Pass rate = passed / (passed + failed)  — skipped tests do not count.
  *   • The final SUITE SUMMARY test fails the overall run when pass rate < 75%.
  *
@@ -67,8 +76,20 @@ function record(name, status, detail = '') {
 }
 
 /**
+ * Thrown from inside a scenario body when its pre-condition is not met — e.g.
+ * the open quote contains no MDQ/segment product, no bundle, or no non-segment
+ * product. runSafe() records these as SKIP (excluded from the pass rate) rather
+ * than FAIL, so we never penalise the suite for testing a product type the
+ * quote simply doesn't contain.
+ */
+class SkipSignal extends Error {}
+/** @param {string} reason */
+function skipScenario(reason) { throw new SkipSignal(reason); }
+
+/**
  * Wrap a scenario body: catch all errors (including expect() throws), record
- * PASS/FAIL, and NEVER rethrow — so the Playwright test always resolves cleanly.
+ * PASS / FAIL / SKIP, and NEVER rethrow — so the Playwright test always resolves
+ * cleanly. A thrown SkipSignal → SKIP (not applicable). Any other throw → FAIL.
  * Only the SUITE SUMMARY test fails the run via the 75% threshold.
  *
  * @param {string} name
@@ -79,6 +100,10 @@ async function runSafe(name, fn) {
     await fn();
     record(name, 'PASS');
   } catch (e) {
+    if (e instanceof SkipSignal) {
+      record(name, 'SKIP', e.message);
+      return;
+    }
     const msg = e instanceof Error ? e.message.split('\n')[0].substring(0, 150) : String(e);
     record(name, 'FAIL', msg);
   }
@@ -132,6 +157,120 @@ async function readSegQtys(row) {
 async function setSegQty(row, idx, val) {
   const input = row.locator('input.qty-input').nth(idx);
   await input.click({ clickCount: 3 }); await input.fill(String(val)); await input.press('Tab');
+}
+
+// ── Non-segment / bundle detection helpers (Groups 14-19) ─────────────────────
+/**
+ * Find every editable qty input that belongs to a NON-segment (single-period)
+ * product: `tr.product-row` rows with exactly 1 `input.qty-input`, plus any
+ * spinbutton outside a product row (legacy layout). MDQ rows (≥2 inputs) are
+ * excluded.
+ *
+ * @param {import('@playwright/test').Page} page
+ * @returns {Promise<Array<{input:import('@playwright/test').Locator, lineId:string|null, initial:number}>>}
+ */
+async function findNonSegmentInputs(page) {
+  /** @type {Array<{input:import('@playwright/test').Locator, lineId:string|null, initial:number}>} */
+  const out = [];
+  const rows = page.locator('tr.product-row');
+  const rowCount = await rows.count().catch(() => 0);
+  for (let i = 0; i < rowCount; i++) {
+    const inputs = rows.nth(i).locator('input.qty-input');
+    if ((await inputs.count()) !== 1) continue;  // skip MDQ rows
+    const input  = inputs.first();
+    const lineId = await input.getAttribute('data-line-id').catch(() => null);
+    out.push({ input, lineId, initial: parseFloat(await input.inputValue().catch(() => '0')) || 0 });
+  }
+  // Fallback: spinbuttons outside any product row
+  const sbs = page.getByRole('spinbutton');
+  const sbCount = await sbs.count();
+  for (let i = 0; i < sbCount; i++) {
+    const sb = sbs.nth(i);
+    if ((await sb.locator('xpath=ancestor::tr[contains(@class,"product-row")]').count()) > 0) continue;
+    const lineId = await sb.getAttribute('data-line-id').catch(() => null);
+    out.push({ input: sb, lineId, initial: parseFloat(await sb.inputValue().catch(() => '0')) || 0 });
+  }
+  return out;
+}
+
+/**
+ * Given non-segment candidates, keep only those whose QuoteLine is a
+ * `Static Bundle` (queried from the DB by data-line-id).
+ *
+ * @param {Array<{input:import('@playwright/test').Locator, lineId:string|null, initial:number}>} candidates
+ */
+async function filterStaticBundle(candidates) {
+  const withId = candidates.filter(c => c.lineId);
+  if (withId.length === 0) return [];
+  const soql = `SELECT Id, CPQ_Option_Type__c FROM SBQQ__QuoteLine__c WHERE Id IN (${withId.map(c => `'${c.lineId}'`).join(',')})`;
+  const res  = await u.sfQueryNode(sfCtx.instanceUrl, sfCtx.accessToken, soql);
+  const set  = new Set((res.records || [])
+    .filter((/** @type {any} */ r) => r.CPQ_Option_Type__c === 'Static Bundle')
+    .map((/** @type {any} */ r) => r.Id));
+  return withId.filter(c => set.has(c.lineId));
+}
+
+/**
+ * Find MDQ (≥2-segment) rows whose segments include at least one
+ * `Static Bundle` QuoteLine. Returns the row plus its per-segment line IDs.
+ *
+ * @param {import('@playwright/test').Page} page
+ * @returns {Promise<Array<{row:import('@playwright/test').Locator, productName:string, segmentCount:number, lineIds:string[]}>>}
+ */
+async function findBundleSegmentRows(page) {
+  const rows = await pickMdqRows(page, 2, 8);
+  /** @type {Array<{row:import('@playwright/test').Locator, productName:string, segmentCount:number, lineIds:string[]}>} */
+  const withIds = [];
+  for (const r of rows) {
+    const inputs = r.row.locator('input.qty-input');
+    const n = await inputs.count();
+    /** @type {string[]} */ const ids = [];
+    for (let i = 0; i < n; i++) {
+      const id = await inputs.nth(i).getAttribute('data-line-id').catch(() => null);
+      if (id) ids.push(id);
+    }
+    if (ids.length) withIds.push({ ...r, lineIds: ids });
+  }
+  if (withIds.length === 0) return [];
+  const allIds = withIds.flatMap(r => r.lineIds);
+  const soql   = `SELECT Id, CPQ_Option_Type__c FROM SBQQ__QuoteLine__c WHERE Id IN (${allIds.map(id => `'${id}'`).join(',')})`;
+  const res    = await u.sfQueryNode(sfCtx.instanceUrl, sfCtx.accessToken, soql);
+  const set    = new Set((res.records || [])
+    .filter((/** @type {any} */ r) => r.CPQ_Option_Type__c === 'Static Bundle')
+    .map((/** @type {any} */ r) => r.Id));
+  if (set.size === 0) return [];
+  return withIds.filter(r => r.lineIds.some(id => set.has(id)));
+}
+
+/**
+ * Apply a qty delta (positive = increase, negative = decrease with a floor of 1)
+ * to each input, save, then verify the post-save value of each. Returns whether
+ * every line matched its expected value.
+ *
+ * @param {import('@playwright/test').Page} page
+ * @param {any} qtc
+ * @param {Array<{input:import('@playwright/test').Locator, initial:number}>} lines
+ * @param {number} delta
+ */
+async function editSaveVerifyInputs(page, qtc, lines, delta) {
+  /** @type {number[]} */ const initials = [];
+  for (let i = 0; i < lines.length; i++) {
+    const cur = parseFloat(await lines[i].input.inputValue().catch(() => '0')) || 0;
+    initials.push(cur);
+    const nv = delta >= 0 ? cur + delta : Math.max(1, cur + delta);
+    await lines[i].input.click({ clickCount: 3 });
+    await lines[i].input.fill(String(nv));
+    await lines[i].input.press('Tab');
+    await page.waitForTimeout(800);
+  }
+  await qtc.save(120_000);
+  let allPass = true;
+  for (let i = 0; i < lines.length; i++) {
+    const actual   = parseFloat(await lines[i].input.inputValue().catch(() => '0')) || 0;
+    const expected = delta >= 0 ? initials[i] + delta : Math.max(1, initials[i] + delta);
+    if (Math.abs(actual - expected) >= 0.001) allPass = false;
+  }
+  return allPass;
 }
 
 // ── Metrics helpers (Groups 13) ───────────────────────────────────────────────
@@ -661,7 +800,7 @@ async function runQtyIncreaseSegments(page, contract, branch) {
   const { qtc } = await openEditorByScenario(page, sfCtx, contract, branch);
   await qtc.waitForLines(120_000);
   const mdq = await pickMdqRows(page, 2, 4);
-  if (mdq.length < 2) throw new Error(`Need ≥2 MDQ rows — found ${mdq.length} (not an MDQ quote)`);
+  if (mdq.length < 2) skipScenario(`No MDQ product (needs ≥2 segments) in this quote — found ${mdq.length}`);
 
   // Product A — Year-1 edit propagates to all segments
   const qtysA_before = await readSegQtys(mdq[0].row);
@@ -674,7 +813,7 @@ async function runQtyIncreaseSegments(page, contract, branch) {
   // Product B — Year-N edit is isolated (does not touch Year-1)
   const rowB   = mdq[1].segmentCount > MDQ_SEG_IDX ? mdq[1] : mdq[0];
   const segIdx = Math.min(MDQ_SEG_IDX, rowB.segmentCount - 1);
-  if (segIdx === 0) throw new Error('Not enough segments for Year-N isolation check');
+  if (segIdx === 0) skipScenario('MDQ product has only 1 segment — cannot test Year-N isolation');
   const qtysB_before = await readSegQtys(rowB.row);
   const newB = qtysB_before[segIdx] + MDQ_DELTA;
   await setSegQty(rowB.row, segIdx, newB);
@@ -713,7 +852,7 @@ async function runQtyDecreaseSegments(page, contract, branch) {
   const { qtc } = await openEditorByScenario(page, sfCtx, contract, branch);
   await qtc.waitForLines(120_000);
   const mdq = await pickMdqRows(page, 2, 4);
-  if (mdq.length < 2) throw new Error(`Need ≥2 MDQ rows — found ${mdq.length} (not an MDQ quote)`);
+  if (mdq.length < 2) skipScenario(`No MDQ product (needs ≥2 segments) in this quote — found ${mdq.length}`);
 
   // Product A — Year-1 decrease propagates (floor 1)
   const qtysA_before = await readSegQtys(mdq[0].row);
@@ -726,7 +865,7 @@ async function runQtyDecreaseSegments(page, contract, branch) {
   // Product B — Year-N isolated decrease
   const rowB   = mdq[1].segmentCount > MDQ_SEG_IDX ? mdq[1] : mdq[0];
   const segIdx = Math.min(MDQ_SEG_IDX, rowB.segmentCount - 1);
-  if (segIdx === 0) throw new Error('Not enough segments for Year-N isolation check');
+  if (segIdx === 0) skipScenario('MDQ product has only 1 segment — cannot test Year-N isolation');
   const qtysB_before = await readSegQtys(rowB.row);
   const newB = Math.max(1, qtysB_before[segIdx] - MDQ_DELTA);
   await setSegQty(rowB.row, segIdx, newB);
@@ -803,6 +942,201 @@ test('[13.3] Metrics Verification: 2+ draft amendments', async ({ page }) => {
   const c = contractCache?.byScenario.many;
   if (!c) { record('[13.3] Metrics Verification: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
   await runSafe('[13.3] Metrics Verification: 2+ amendments', () => runMetricsVerification(page, c, 'many'));
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GROUP 14 — Qty Increase: Non-Segment products (3 scenarios)
+//   SKIP when the quote has no single-period (non-segment) products.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** @param {import('@playwright/test').Page} page @param {any} contract @param {'zero'|'one'|'many'} branch @param {number} delta */
+async function runNonSegmentQty(page, contract, branch, delta) {
+  const { qtc } = await openEditorByScenario(page, sfCtx, contract, branch);
+  await qtc.waitForLines(120_000);
+  let lines = await findNonSegmentInputs(page);
+  if (delta < 0) lines = lines.filter(l => l.initial > 1);  // need headroom to decrease
+  if (lines.length === 0) {
+    skipScenario(delta < 0
+      ? 'No decreasable non-segment products (all at minimum qty) in this quote'
+      : 'No non-segment products in this quote');
+  }
+  const allPass = await editSaveVerifyInputs(page, qtc, lines, delta);
+  expect(allPass, `All ${lines.length} non-segment quantities should ${delta >= 0 ? 'increase' : 'decrease'} by ${Math.abs(delta)}`).toBe(true);
+}
+
+test('[14.1] Qty Increase Non-Segment: 0 draft amendments', async ({ page }) => {
+  const c = contractCache?.byScenario.zero;
+  if (!c) { record('[14.1] Qty Increase Non-Segment: 0 amendments', 'SKIP', 'No 0-draft contract found'); return; }
+  await runSafe('[14.1] Qty Increase Non-Segment: 0 amendments', () => runNonSegmentQty(page, c, 'zero', QTY_INC));
+});
+
+test('[14.2] Qty Increase Non-Segment: 1 draft amendment', async ({ page }) => {
+  const c = contractCache?.byScenario.one;
+  if (!c) { record('[14.2] Qty Increase Non-Segment: 1 amendment', 'SKIP', 'No 1-draft contract found'); return; }
+  await runSafe('[14.2] Qty Increase Non-Segment: 1 amendment', () => runNonSegmentQty(page, c, 'one', QTY_INC));
+});
+
+test('[14.3] Qty Increase Non-Segment: 2+ draft amendments', async ({ page }) => {
+  const c = contractCache?.byScenario.many;
+  if (!c) { record('[14.3] Qty Increase Non-Segment: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
+  await runSafe('[14.3] Qty Increase Non-Segment: 2+ amendments', () => runNonSegmentQty(page, c, 'many', QTY_INC));
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GROUP 15 — Qty Increase: Bundle Segments / MDQ (3 scenarios)
+//   SKIP when the quote has no Static Bundle MDQ product.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** @param {import('@playwright/test').Page} page @param {any} contract @param {'zero'|'one'|'many'} branch @param {number} delta */
+async function runBundleSegmentQty(page, contract, branch, delta) {
+  const { qtc } = await openEditorByScenario(page, sfCtx, contract, branch);
+  await qtc.waitForLines(120_000);
+  const bundles = await findBundleSegmentRows(page);
+  if (bundles.length === 0) skipScenario('No Static Bundle MDQ product in this quote');
+  const bundle = bundles[0];
+
+  // Year-1 edit propagates to all segments
+  const beforeA = await readSegQtys(bundle.row);
+  const newA = delta >= 0 ? beforeA[0] + delta : Math.max(1, beforeA[0] + delta);
+  await setSegQty(bundle.row, 0, newA);
+  await page.waitForTimeout(MDQ_QUIESCE);
+  const afterA = await readSegQtys(bundle.row);
+  expect(afterA.every(q => Math.abs(q - newA) < 0.001), `Bundle Year-1 ${delta >= 0 ? 'increase' : 'decrease'} (${newA}) should propagate to all segments`).toBe(true);
+
+  // Year-N edit is isolated
+  const segIdx = Math.min(MDQ_SEG_IDX, bundle.segmentCount - 1);
+  if (segIdx === 0) skipScenario('Bundle has only 1 segment — cannot test Year-N isolation');
+  const beforeB = await readSegQtys(bundle.row);
+  const newB = delta >= 0 ? beforeB[segIdx] + delta : Math.max(1, beforeB[segIdx] + delta);
+  await setSegQty(bundle.row, segIdx, newB);
+  await page.waitForTimeout(MDQ_QUIESCE);
+  const afterB = await readSegQtys(bundle.row);
+  expect(Math.abs(afterB[0] - beforeB[0]) < 0.001, 'Bundle Year-1 must NOT change when Year-N is edited').toBe(true);
+  expect(Math.abs(afterB[segIdx] - newB) < 0.001, `Bundle Year-${segIdx + 1} should equal ${newB}`).toBe(true);
+
+  await qtc.save(120_000);
+}
+
+test('[15.1] Qty Increase Bundle Segments: 0 draft amendments', async ({ page }) => {
+  const c = contractCache?.byScenario.zero;
+  if (!c) { record('[15.1] Qty Increase Bundle Segments: 0 amendments', 'SKIP', 'No 0-draft contract found'); return; }
+  await runSafe('[15.1] Qty Increase Bundle Segments: 0 amendments', () => runBundleSegmentQty(page, c, 'zero', MDQ_DELTA));
+});
+
+test('[15.2] Qty Increase Bundle Segments: 1 draft amendment', async ({ page }) => {
+  const c = contractCache?.byScenario.one;
+  if (!c) { record('[15.2] Qty Increase Bundle Segments: 1 amendment', 'SKIP', 'No 1-draft contract found'); return; }
+  await runSafe('[15.2] Qty Increase Bundle Segments: 1 amendment', () => runBundleSegmentQty(page, c, 'one', MDQ_DELTA));
+});
+
+test('[15.3] Qty Increase Bundle Segments: 2+ draft amendments', async ({ page }) => {
+  const c = contractCache?.byScenario.many;
+  if (!c) { record('[15.3] Qty Increase Bundle Segments: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
+  await runSafe('[15.3] Qty Increase Bundle Segments: 2+ amendments', () => runBundleSegmentQty(page, c, 'many', MDQ_DELTA));
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GROUP 16 — Qty Increase: Bundle Non-Segment (3 scenarios)
+//   SKIP when the quote has no single-period Static Bundle product.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** @param {import('@playwright/test').Page} page @param {any} contract @param {'zero'|'one'|'many'} branch @param {number} delta */
+async function runBundleNonSegmentQty(page, contract, branch, delta) {
+  const { qtc } = await openEditorByScenario(page, sfCtx, contract, branch);
+  await qtc.waitForLines(120_000);
+  let bundles = await filterStaticBundle(await findNonSegmentInputs(page));
+  if (delta < 0) bundles = bundles.filter(l => l.initial > 1);
+  if (bundles.length === 0) {
+    skipScenario(delta < 0
+      ? 'No decreasable non-segment Static Bundle products in this quote'
+      : 'No non-segment Static Bundle products in this quote');
+  }
+  const allPass = await editSaveVerifyInputs(page, qtc, bundles, delta);
+  expect(allPass, `All ${bundles.length} non-segment bundle quantities should ${delta >= 0 ? 'increase' : 'decrease'} by ${Math.abs(delta)}`).toBe(true);
+}
+
+test('[16.1] Qty Increase Bundle Non-Segment: 0 draft amendments', async ({ page }) => {
+  const c = contractCache?.byScenario.zero;
+  if (!c) { record('[16.1] Qty Increase Bundle Non-Segment: 0 amendments', 'SKIP', 'No 0-draft contract found'); return; }
+  await runSafe('[16.1] Qty Increase Bundle Non-Segment: 0 amendments', () => runBundleNonSegmentQty(page, c, 'zero', QTY_INC));
+});
+
+test('[16.2] Qty Increase Bundle Non-Segment: 1 draft amendment', async ({ page }) => {
+  const c = contractCache?.byScenario.one;
+  if (!c) { record('[16.2] Qty Increase Bundle Non-Segment: 1 amendment', 'SKIP', 'No 1-draft contract found'); return; }
+  await runSafe('[16.2] Qty Increase Bundle Non-Segment: 1 amendment', () => runBundleNonSegmentQty(page, c, 'one', QTY_INC));
+});
+
+test('[16.3] Qty Increase Bundle Non-Segment: 2+ draft amendments', async ({ page }) => {
+  const c = contractCache?.byScenario.many;
+  if (!c) { record('[16.3] Qty Increase Bundle Non-Segment: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
+  await runSafe('[16.3] Qty Increase Bundle Non-Segment: 2+ amendments', () => runBundleNonSegmentQty(page, c, 'many', QTY_INC));
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GROUP 17 — Qty Decrease: Non-Segment products (3 scenarios)
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('[17.1] Qty Decrease Non-Segment: 0 draft amendments', async ({ page }) => {
+  const c = contractCache?.byScenario.zero;
+  if (!c) { record('[17.1] Qty Decrease Non-Segment: 0 amendments', 'SKIP', 'No 0-draft contract found'); return; }
+  await runSafe('[17.1] Qty Decrease Non-Segment: 0 amendments', () => runNonSegmentQty(page, c, 'zero', -QTY_DEC));
+});
+
+test('[17.2] Qty Decrease Non-Segment: 1 draft amendment', async ({ page }) => {
+  const c = contractCache?.byScenario.one;
+  if (!c) { record('[17.2] Qty Decrease Non-Segment: 1 amendment', 'SKIP', 'No 1-draft contract found'); return; }
+  await runSafe('[17.2] Qty Decrease Non-Segment: 1 amendment', () => runNonSegmentQty(page, c, 'one', -QTY_DEC));
+});
+
+test('[17.3] Qty Decrease Non-Segment: 2+ draft amendments', async ({ page }) => {
+  const c = contractCache?.byScenario.many;
+  if (!c) { record('[17.3] Qty Decrease Non-Segment: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
+  await runSafe('[17.3] Qty Decrease Non-Segment: 2+ amendments', () => runNonSegmentQty(page, c, 'many', -QTY_DEC));
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GROUP 18 — Qty Decrease: Bundle Non-Segment (3 scenarios)
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('[18.1] Qty Decrease Bundle Non-Segment: 0 draft amendments', async ({ page }) => {
+  const c = contractCache?.byScenario.zero;
+  if (!c) { record('[18.1] Qty Decrease Bundle Non-Segment: 0 amendments', 'SKIP', 'No 0-draft contract found'); return; }
+  await runSafe('[18.1] Qty Decrease Bundle Non-Segment: 0 amendments', () => runBundleNonSegmentQty(page, c, 'zero', -QTY_DEC));
+});
+
+test('[18.2] Qty Decrease Bundle Non-Segment: 1 draft amendment', async ({ page }) => {
+  const c = contractCache?.byScenario.one;
+  if (!c) { record('[18.2] Qty Decrease Bundle Non-Segment: 1 amendment', 'SKIP', 'No 1-draft contract found'); return; }
+  await runSafe('[18.2] Qty Decrease Bundle Non-Segment: 1 amendment', () => runBundleNonSegmentQty(page, c, 'one', -QTY_DEC));
+});
+
+test('[18.3] Qty Decrease Bundle Non-Segment: 2+ draft amendments', async ({ page }) => {
+  const c = contractCache?.byScenario.many;
+  if (!c) { record('[18.3] Qty Decrease Bundle Non-Segment: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
+  await runSafe('[18.3] Qty Decrease Bundle Non-Segment: 2+ amendments', () => runBundleNonSegmentQty(page, c, 'many', -QTY_DEC));
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GROUP 19 — Qty Decrease: Bundle Segments / MDQ (3 scenarios)
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('[19.1] Qty Decrease Bundle Segments: 0 draft amendments', async ({ page }) => {
+  const c = contractCache?.byScenario.zero;
+  if (!c) { record('[19.1] Qty Decrease Bundle Segments: 0 amendments', 'SKIP', 'No 0-draft contract found'); return; }
+  await runSafe('[19.1] Qty Decrease Bundle Segments: 0 amendments', () => runBundleSegmentQty(page, c, 'zero', -MDQ_DELTA));
+});
+
+test('[19.2] Qty Decrease Bundle Segments: 1 draft amendment', async ({ page }) => {
+  const c = contractCache?.byScenario.one;
+  if (!c) { record('[19.2] Qty Decrease Bundle Segments: 1 amendment', 'SKIP', 'No 1-draft contract found'); return; }
+  await runSafe('[19.2] Qty Decrease Bundle Segments: 1 amendment', () => runBundleSegmentQty(page, c, 'one', -MDQ_DELTA));
+});
+
+test('[19.3] Qty Decrease Bundle Segments: 2+ draft amendments', async ({ page }) => {
+  const c = contractCache?.byScenario.many;
+  if (!c) { record('[19.3] Qty Decrease Bundle Segments: 2+ amendments', 'SKIP', 'No many-draft contract found'); return; }
+  await runSafe('[19.3] Qty Decrease Bundle Segments: 2+ amendments', () => runBundleSegmentQty(page, c, 'many', -MDQ_DELTA));
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
