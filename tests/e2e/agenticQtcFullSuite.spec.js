@@ -21,7 +21,8 @@
  *     is recorded as SKIP (via skipScenario) and EXCLUDED from the percentage.
  *     → We never test a product type the quote doesn't contain.
  *   • Pass rate = passed / (passed + failed)  — skipped tests do not count.
- *   • The final SUITE SUMMARY test fails the overall run when pass rate < 75%.
+ *   • The final SUITE SUMMARY test fails the overall run unless pass rate is 100%
+ *     (i.e. any failed scenario fails the whole suite).
  *
  * Excluded:
  *   • agenticQtcCongaPdfDataSync / PreviewSendOSAUsingConga /
@@ -41,7 +42,7 @@ const ACCOUNT_SEARCH    = process.env.QTC_ACCOUNT_SEARCH    || 'Bates White';
 const ACCOUNT_FULL_NAME = process.env.QTC_ACCOUNT_FULL_NAME || 'Bates White';
 const NONSENSE_TERM     = 'zzqxnomatch';
 const RESULTS_DIR       = path.join(__dirname, 'results');
-const PASS_THRESHOLD    = 75; // percent
+const PASS_THRESHOLD    = 100; // percent — suite passes only when EVERY evaluated scenario passes; any failure fails the suite
 
 // ── Shared state (populated in beforeAll, read by every test) ─────────────────
 /** @type {any} */ let sfCtx;
@@ -182,10 +183,10 @@ function skipScenario(reason) { throw new SkipSignal(reason); }
  *   • any other throw → record FAIL + re-throw      → reported as FAILED
  *   • success         → record PASS                 → reported as PASSED
  *
- * A single failed scenario therefore shows red, but it does NOT decide the
- * overall run: the 75%-pass-rate gate (SUITE SUMMARY → richResults.passed) is
- * what upload-results.js uses for the Test_Run status. So the suite can have
- * visible per-scenario failures and still finish PASSED when ≥75% pass.
+ * Every scenario still runs (failures are caught so later scenarios aren't
+ * skipped), but the overall gate is now 100%: the SUITE SUMMARY → richResults.passed
+ * that upload-results.js uses for the Test_Run status is true ONLY when there are
+ * zero failures. Any failed scenario fails the whole suite.
  *
  * @param {string} name
  * @param {() => Promise<void>} fn
@@ -1366,10 +1367,10 @@ test('[19.3] Qty Decrease Bundle Segments: 2+ draft amendments', async ({ page }
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// SUITE SUMMARY — evaluates the 75% pass threshold
+// SUITE SUMMARY — requires a 100% pass rate (any failure fails the suite)
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('SUITE SUMMARY — pass rate must be ≥75%', async () => {
+test('SUITE SUMMARY — pass rate must be 100%', async () => {
   const { runTs, runDir } = u.createRunFolder(RESULTS_DIR);
 
   const passed    = SUITE_RESULTS.filter(r => r.status === 'PASS').length;
@@ -1395,8 +1396,8 @@ test('SUITE SUMMARY — pass rate must be ≥75%', async () => {
   }
   console.log(LINE);
   const verdict = overall
-    ? `✅ SUITE PASSED: ${pct}% ≥ ${PASS_THRESHOLD}%`
-    : `❌ SUITE FAILED: ${pct}% < ${PASS_THRESHOLD}%`;
+    ? `✅ SUITE PASSED: ${pct}% (all ${passed} evaluated scenarios passed)`
+    : `❌ SUITE FAILED: ${pct}% — ${failed} scenario(s) failed (need ${PASS_THRESHOLD}%)`;
   console.log(verdict);
   console.log(LINE + '\n');
 
@@ -1438,6 +1439,6 @@ test('SUITE SUMMARY — pass rate must be ≥75%', async () => {
   });
 
   if (!overall) {
-    throw new Error(`Suite failed: ${passed}/${evaluated} (${pct}%) — need ≥${PASS_THRESHOLD}% to pass`);
+    throw new Error(`Suite failed: ${passed}/${evaluated} passed (${pct}%) — ${failed} scenario(s) failed; ${PASS_THRESHOLD}% required`);
   }
 });
