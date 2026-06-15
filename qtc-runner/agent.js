@@ -121,7 +121,7 @@ async function pollOnce() {
 
     // Query for the oldest PENDING run
     const query = encodeURIComponent(
-        `SELECT Id, Name, Test_Suite__c, Account_Name__c FROM Test_Run__c ` +
+        `SELECT Id, Name, Test_Suite__c, Account_Name__c, Contract_Number__c, Quote_Name__c FROM Test_Run__c ` +
         `WHERE Status__c = 'PENDING' ORDER BY CreatedDate ASC LIMIT 1`
     );
     const result = await sfGet(`/services/data/v${SF_API_VER}/query?q=${query}`);
@@ -169,7 +169,7 @@ async function pollOnce() {
     // ── Step 3: Run Playwright ───────────────────────────────────────────
     let playwrightResult;
     try {
-        playwrightResult = await runSuite(run.Test_Suite__c, run.Id, run.Account_Name__c);
+        playwrightResult = await runSuite(run.Test_Suite__c, run.Id, run.Account_Name__c, run.Contract_Number__c, run.Quote_Name__c);
     } catch (e) {
         playwrightResult = {
             status       : 'ERROR',

@@ -365,6 +365,22 @@ class AgenticQtcPage {
     return this.page.locator('tr.quote-row');
   }
 
+  /**
+   * Click the draft quote row in the modal whose visible text matches `name`.
+   * Falls back to the first row if no match is found.
+   * @param {string} name  e.g. "Q-00123"
+   */
+  async clickDraftQuoteByName(name) {
+    const target = this.draftQuoteRows().filter({ hasText: name }).first();
+    const matched = await target.count().catch(() => 0);
+    if (matched > 0) {
+      await target.click();
+    } else {
+      console.warn(`[agenticQtcPage] clickDraftQuoteByName: "${name}" not found in modal — clicking first row`);
+      await this.draftQuoteRows().first().click();
+    }
+  }
+
   createNewAmendmentButton() {
     return this.page.locator('button.quotes-modal-create-btn');
   }

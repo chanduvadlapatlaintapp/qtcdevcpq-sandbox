@@ -39,9 +39,13 @@ const RESULTS_DIR  = path.join(PROJECT_ROOT, 'test-results');
  *
  * @param {string} suiteName  - Test suite name (maps to tests/e2e/{suiteName}.spec.js)
  * @param {string} testRunId  - Salesforce Test_Run__c Id (used for result folder naming)
- * @param {string} [accountName] - Target Account name chosen on the dashboard.
- *                                 Passed to the spec via QTC_ACCOUNT_* env vars;
- *                                 when blank the spec uses its hard-coded fallback.
+ * @param {string} [accountName]    - Target Account name chosen on the dashboard.
+ *                                   Passed via QTC_ACCOUNT_* env vars; when blank
+ *                                   the spec uses its hard-coded fallback.
+ * @param {string} [contractNumber] - Contract number to scope the run (optional).
+ *                                   Passed via QTC_CONTRACT_NUMBER; blank → spec picks first contract.
+ * @param {string} [quoteName]      - Draft quote name to target (optional).
+ *                                   Passed via QTC_QUOTE_NAME; blank → spec picks first draft.
  * @returns {{
  *   status       : 'PASSED'|'FAILED'|'ERROR',
  *   passed       : number,
@@ -54,7 +58,7 @@ const RESULTS_DIR  = path.join(PROJECT_ROOT, 'test-results');
  *   videoPath    : string|null,
  * }}
  */
-async function runSuite(suiteName, testRunId, accountName) {
+async function runSuite(suiteName, testRunId, accountName, contractNumber, quoteName) {
     // Build the spec file path from suite name
     const specFile = `tests/e2e/${suiteName}.spec.js`;
     const specPath = path.join(PROJECT_ROOT, specFile);
@@ -91,6 +95,14 @@ async function runSuite(suiteName, testRunId, accountName) {
         env.QTC_ACCOUNT_SEARCH    = acct;
         env.QTC_ACCOUNT_FULL_NAME = acct;
         console.log(`[runner] Target account: "${acct}"`);
+    }
+    if (contractNumber && String(contractNumber).trim()) {
+        env.QTC_CONTRACT_NUMBER = String(contractNumber).trim();
+        console.log(`[runner] Target contract: "${env.QTC_CONTRACT_NUMBER}"`);
+    }
+    if (quoteName && String(quoteName).trim()) {
+        env.QTC_QUOTE_NAME = String(quoteName).trim();
+        console.log(`[runner] Target quote: "${env.QTC_QUOTE_NAME}"`);
     }
 
     console.log(`[runner] Starting Playwright: npx ${args.join(' ')}`);
