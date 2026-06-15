@@ -36,6 +36,14 @@ on:
         description: 'Target Account name (provided by the LWC account search). Blank → spec uses its hard-coded default.'
         required: false
         default: ''
+      contract_number:
+        description: 'Contract number to scope the run (optional). Blank → spec picks the first contract.'
+        required: false
+        default: ''
+      quote_name:
+        description: 'Draft quote name to target (optional). Blank → spec picks the first draft.'
+        required: false
+        default: ''
 
   # ── 2. Auto: push to main ──────────────────────────────────────────────────
   push:
@@ -151,9 +159,11 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             # Salesforce already created the record — just echo the inputs
-            echo "test_run_id=${{ inputs.test_run_id }}"   >> $GITHUB_OUTPUT
-            echo "test_suite=${{ inputs.test_suite }}"     >> $GITHUB_OUTPUT
-            echo "account_name=${{ inputs.account_name }}" >> $GITHUB_OUTPUT
+            echo "test_run_id=${{ inputs.test_run_id }}"           >> $GITHUB_OUTPUT
+            echo "test_suite=${{ inputs.test_suite }}"           >> $GITHUB_OUTPUT
+            echo "account_name=${{ inputs.account_name }}"       >> $GITHUB_OUTPUT
+            echo "contract_number=${{ inputs.contract_number }}" >> $GITHUB_OUTPUT
+            echo "quote_name=${{ inputs.quote_name }}"           >> $GITHUB_OUTPUT
           else
             # Auto-triggered by GitHub — create the record now.
             # Suite comes from the repo variable DEFAULT_TEST_SUITE (set in
@@ -240,6 +250,8 @@ jobs:
           QTC_ACCOUNT_NAME:      ${{ steps.run-setup.outputs.account_name }}
           QTC_ACCOUNT_SEARCH:    ${{ steps.run-setup.outputs.account_name }}
           QTC_ACCOUNT_FULL_NAME: ${{ steps.run-setup.outputs.account_name }}
+          QTC_CONTRACT_NUMBER:   ${{ steps.run-setup.outputs.contract_number }}
+          QTC_QUOTE_NAME:        ${{ steps.run-setup.outputs.quote_name }}
           # Auto-enable Conga PDF wait + UI/PDF compare ONLY for the OSA suite.
           # Other suites stay fast; the Conga suite needs ~2-3 min/scenario to
           # poll Salesforce for the generated PDF and parse it.

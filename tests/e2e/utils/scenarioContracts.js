@@ -49,7 +49,19 @@ async function discoverContractByScenarios(browser, ctx) {
       return { byScenario: { zero: null, one: null, many: null } };
     }
 
-    const first = visible[0];
+    // If a specific contract number was requested (from the dashboard scoping),
+    // find it in the visible list; warn and fall back to the first if not found.
+    const targetNumber = process.env.QTC_CONTRACT_NUMBER || '';
+    let first = visible[0];
+    if (targetNumber) {
+      const match = visible.find(c => c.number === targetNumber);
+      if (match) {
+        first = match;
+        console.log(`[scenarioContracts] Scoped to contract: ${first.number} (${first.id})`);
+      } else {
+        console.warn(`[scenarioContracts] QTC_CONTRACT_NUMBER="${targetNumber}" not found in visible contracts — falling back to first (${first.number})`);
+      }
+    }
     const draftSoql = `SELECT Id FROM SBQQ__Quote__c
                        WHERE SBQQ__MasterContract__c = '${first.id}'
                        AND SBQQ__Status__c = 'Draft'
@@ -102,10 +114,15 @@ async function openEditorByScenario(page, ctx, contract, branch) {
   const outcome = await qtc.waitForContractClickOutcome(120_000);
 
   if (branch === 'many' && outcome === 'modal') {
-    // App surfaced the picker (2+ drafts visible to the runner user) — pick the first.
+    // App surfaced the picker (2+ drafts visible to the runner user).
     const modalCount = await qtc.draftQuoteCountInModal();
     expect(modalCount, 'Modal should list ≥ 2 drafts').toBeGreaterThanOrEqual(2);
-    await qtc.draftQuoteRows().first().click();
+    const targetQuote = process.env.QTC_QUOTE_NAME || '';
+    if (targetQuote) {
+      await qtc.clickDraftQuoteByName(targetQuote);
+    } else {
+      await qtc.draftQuoteRows().first().click();
+    }
     await qtc.saveButton().waitFor({ state: 'visible', timeout: 120_000 });
   } else if (branch === 'many') {
     // Discovery counts drafts with a plain SOQL query that does NOT enforce
