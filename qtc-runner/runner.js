@@ -42,6 +42,8 @@ const RESULTS_DIR  = path.join(PROJECT_ROOT, 'test-results');
  * @param {string} [accountName]    - Target Account name chosen on the dashboard.
  *                                   Passed via QTC_ACCOUNT_* env vars; when blank
  *                                   the spec uses its hard-coded fallback.
+ * @param {string} [contractId]     - Salesforce Contract record ID (optional).
+ *                                   Passed via QTC_CONTRACT_ID; used for reliable contract matching.
  * @param {string} [contractNumber] - Contract number to scope the run (optional).
  *                                   Passed via QTC_CONTRACT_NUMBER; blank → spec picks first contract.
  * @param {string} [quoteName]      - Draft quote name to target (optional).
@@ -58,7 +60,7 @@ const RESULTS_DIR  = path.join(PROJECT_ROOT, 'test-results');
  *   videoPath    : string|null,
  * }}
  */
-async function runSuite(suiteName, testRunId, accountName, contractNumber, quoteName) {
+async function runSuite(suiteName, testRunId, accountName, contractId, contractNumber, quoteName) {
     // Build the spec file path from suite name
     const specFile = `tests/e2e/${suiteName}.spec.js`;
     const specPath = path.join(PROJECT_ROOT, specFile);
@@ -96,9 +98,13 @@ async function runSuite(suiteName, testRunId, accountName, contractNumber, quote
         env.QTC_ACCOUNT_FULL_NAME = acct;
         console.log(`[runner] Target account: "${acct}"`);
     }
+    if (contractId && String(contractId).trim()) {
+        env.QTC_CONTRACT_ID = String(contractId).trim();
+        console.log(`[runner] Target contract ID: "${env.QTC_CONTRACT_ID}"`);
+    }
     if (contractNumber && String(contractNumber).trim()) {
         env.QTC_CONTRACT_NUMBER = String(contractNumber).trim();
-        console.log(`[runner] Target contract: "${env.QTC_CONTRACT_NUMBER}"`);
+        console.log(`[runner] Target contract number: "${env.QTC_CONTRACT_NUMBER}"`);
     }
     if (quoteName && String(quoteName).trim()) {
         env.QTC_QUOTE_NAME = String(quoteName).trim();

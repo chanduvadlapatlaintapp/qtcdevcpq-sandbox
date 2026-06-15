@@ -49,15 +49,36 @@ async function discoverContractByScenarios(browser, ctx) {
       return { byScenario: { zero: null, one: null, many: null } };
     }
 
-    // If a specific contract number was requested (from the dashboard scoping),
-    // find it in the visible list; warn and fall back to the first if not found.
+    // If a specific contract was requested (from the dashboard scoping), find it
+    // in the visible list. Match by SF record ID first (unambiguous), then fall
+    // back to contract number matching, then to visible[0].
+    const targetId     = process.env.QTC_CONTRACT_ID     || '';
     const targetNumber = process.env.QTC_CONTRACT_NUMBER || '';
     let first = visible[0];
-    if (targetNumber) {
+    if (targetId) {
+      const match = visible.find(c => c.id === targetId);
+      if (match) {
+        first = match;
+        console.log(`[scenarioContracts] Scoped to contract by ID: ${first.number} (${first.id})`);
+      } else {
+        console.warn(`[scenarioContracts] QTC_CONTRACT_ID="${targetId}" not found in visible contracts — trying number match`);
+        if (targetNumber) {
+          const numMatch = visible.find(c => c.number === targetNumber);
+          if (numMatch) {
+            first = numMatch;
+            console.log(`[scenarioContracts] Scoped to contract by number: ${first.number} (${first.id})`);
+          } else {
+            console.warn(`[scenarioContracts] QTC_CONTRACT_NUMBER="${targetNumber}" also not found — falling back to first (${first.number})`);
+          }
+        } else {
+          console.warn(`[scenarioContracts] No number fallback — using first contract (${first.number})`);
+        }
+      }
+    } else if (targetNumber) {
       const match = visible.find(c => c.number === targetNumber);
       if (match) {
         first = match;
-        console.log(`[scenarioContracts] Scoped to contract: ${first.number} (${first.id})`);
+        console.log(`[scenarioContracts] Scoped to contract by number: ${first.number} (${first.id})`);
       } else {
         console.warn(`[scenarioContracts] QTC_CONTRACT_NUMBER="${targetNumber}" not found in visible contracts — falling back to first (${first.number})`);
       }
