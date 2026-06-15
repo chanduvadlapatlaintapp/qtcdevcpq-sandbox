@@ -301,14 +301,57 @@ class AgenticQtcPage {
    *     fall back to "Create new Amendment Quote"
    * Returns whether the editor mounted within `timeout`.
    *
+   * Contract scoping: when the dashboard supplied a specific contract
+   * (QTC_CONTRACT_ID, or QTC_CONTRACT_NUMBER as a fallback), the requested
+   * `index` is overridden so the run targets that exact contract instead of
+   * whatever sits at position `index`. This lets navigation-style specs (which
+   * default to index 0) honor the operator's contract selection without any
+   * per-spec changes. Falls back to `index` when no scope is set or the scoped
+   * contract isn't visible.
+   *
    * @param {number} index   0-based row index
    * @param {number} [timeout=60000]
    */
   async openContractByIndex(index, timeout = 60_000) {
-    const row = this.contractRows().nth(index);
+    const targetIndex = await this._resolveScopedIndex(index);
+    const row = this.contractRows().nth(targetIndex);
     await row.waitFor({ state: 'visible', timeout: 10_000 });
     await row.click();
     return this._afterContractClick(timeout);
+  }
+
+  /**
+   * Resolve which contract-row index to open given an optional dashboard scope.
+   * Matches QTC_CONTRACT_ID against data-id first (unambiguous), then
+   * QTC_CONTRACT_NUMBER against data-number, else returns the fallback index.
+   * @param {number} fallbackIndex
+   * @returns {Promise<number>}
+   */
+  async _resolveScopedIndex(fallbackIndex) {
+    const targetId     = process.env.QTC_CONTRACT_ID     || '';
+    const targetNumber = process.env.QTC_CONTRACT_NUMBER || '';
+    if (!targetId && !targetNumber) return fallbackIndex;
+
+    const visible = await this.getContractList();
+    if (visible.length === 0) return fallbackIndex;
+
+    if (targetId) {
+      const match = visible.find(c => c.id === targetId);
+      if (match) {
+        console.log(`[agenticQtcPage] Scoped to contract by ID: ${match.number} (${match.id}) → row ${match.index}`);
+        return match.index;
+      }
+      console.warn(`[agenticQtcPage] QTC_CONTRACT_ID="${targetId}" not visible — trying number match`);
+    }
+    if (targetNumber) {
+      const numMatch = visible.find(c => c.number === targetNumber);
+      if (numMatch) {
+        console.log(`[agenticQtcPage] Scoped to contract by number: ${numMatch.number} (${numMatch.id}) → row ${numMatch.index}`);
+        return numMatch.index;
+      }
+      console.warn(`[agenticQtcPage] QTC_CONTRACT_NUMBER="${targetNumber}" not visible — falling back to row ${fallbackIndex}`);
+    }
+    return fallbackIndex;
   }
 
   /**
