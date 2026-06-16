@@ -258,6 +258,43 @@ async function setSegQty(row, idx, val) {
   await input.click({ clickCount: 3 }); await input.fill(String(val)); await input.press('Tab');
 }
 
+/**
+ * Per-segment "Eff. Qty" (the headroom available to decrease) for an MDQ row.
+ * The LWC floors each segment at its verified prior quantity, so
+ * priorQuantity = currentQty − effQty. The `eff-qty-neutral` class marks a 0
+ * (the segment is already at its verified floor and cannot decrease).
+ * @param {import('@playwright/test').Locator} row
+ */
+async function readSegEffQtys(row) {
+  const cells = row.locator('td.col-eff-qty span.eff-qty');
+  const n     = await cells.count();
+  /** @type {number[]} */ const out = [];
+  for (let i = 0; i < n; i++) {
+    const cls = (await cells.nth(i).getAttribute('class').catch(() => '')) || '';
+    if (cls.includes('eff-qty-neutral')) { out.push(0); continue; }
+    const txt = (await cells.nth(i).innerText().catch(() => '0')).trim().replace(/^\+/, '');
+    const v   = parseInt(txt, 10);
+    out.push(Number.isFinite(v) ? v : 0);
+  }
+  return out;
+}
+
+/**
+ * Eff. Qty (decrease headroom) for a single input's row. Returns null when the
+ * row has no Eff. Qty cell (legacy / non-MDQ layout) so callers can fall back to
+ * the old floor-of-1 behaviour for that line.
+ * @param {import('@playwright/test').Locator} input
+ */
+async function readInputEffQty(input) {
+  const cell = input.locator('xpath=ancestor::tr[1]//td[contains(@class,"col-eff-qty")]//span[contains(@class,"eff-qty")]').first();
+  if ((await cell.count().catch(() => 0)) === 0) return null;
+  const cls = (await cell.getAttribute('class').catch(() => '')) || '';
+  if (cls.includes('eff-qty-neutral')) return 0;
+  const txt = (await cell.innerText().catch(() => '0')).trim().replace(/^\+/, '');
+  const v   = parseInt(txt, 10);
+  return Number.isFinite(v) ? v : 0;
+}
+
 // ── Non-segment / bundle detection helpers (Groups 14-19) ─────────────────────
 /**
  * Find every editable qty input that belongs to a NON-segment (single-period)
@@ -342,9 +379,13 @@ async function findBundleSegmentRows(page) {
 }
 
 /**
- * Apply a qty delta (positive = increase, negative = decrease with a floor of 1)
- * to each input, save, then verify the post-save value of each. Returns whether
- * every line matched its expected value.
+ * Apply a qty delta to each input, save, then verify the post-save value of each.
+ * Increase: applies `delta` directly. Decrease: the LWC floors each line at its
+ * verified prior quantity (qty − Eff. Qty), so the applied decrease is capped at
+ * the line's headroom and the expected value is floored accordingly — mirroring
+ * the standalone agenticQtcQuantityDecrease* specs. When no line can decrease
+ * (all at their verified floor) the scenario is skipped rather than waiting on a
+ * Save button that never enables. Returns whether every line matched its expected.
  *
  * @param {import('@playwright/test').Page} page
  * @param {any} qtc
@@ -353,14 +394,29 @@ async function findBundleSegmentRows(page) {
  */
 async function editSaveVerifyInputs(page, qtc, lines, delta) {
   /** @type {number[]} */ const initials = [];
+  /** @type {number[]} */ const applied  = []; // signed delta actually applied per line
   for (let i = 0; i < lines.length; i++) {
     const cur = parseFloat(await lines[i].input.inputValue().catch(() => '0')) || 0;
     initials.push(cur);
-    const nv = delta >= 0 ? cur + delta : Math.max(1, cur + delta);
+    let appliedDelta;
+    if (delta >= 0) {
+      appliedDelta = delta;
+    } else {
+      const eff      = await readInputEffQty(lines[i].input);          // decrease headroom
+      const headroom = eff == null ? Math.max(0, cur - 1) : eff;       // legacy fallback: floor 1
+      appliedDelta   = -Math.min(Math.abs(delta), headroom);
+    }
+    applied.push(appliedDelta);
+    const nv = cur + appliedDelta;
     await lines[i].input.click({ clickCount: 3 });
     await lines[i].input.fill(String(nv));
     await lines[i].input.press('Tab');
     await page.waitForTimeout(800);
+  }
+  // Nothing actually changed (every line already at its verified floor) → no dirty
+  // state, so Save never enables. Skip instead of timing out on a disabled button.
+  if (applied.every(d => d === 0)) {
+    skipScenario('All target lines already at their verified quantity (Eff. Qty 0) — nothing to change');
   }
   await qtc.save(120_000);
   let allPass = true;
@@ -368,7 +424,7 @@ async function editSaveVerifyInputs(page, qtc, lines, delta) {
   const entries = [];
   for (let i = 0; i < lines.length; i++) {
     const actual   = parseFloat(await lines[i].input.inputValue().catch(() => '0')) || 0;
-    const expected = delta >= 0 ? initials[i] + delta : Math.max(1, initials[i] + delta);
+    const expected = initials[i] + applied[i];
     if (Math.abs(actual - expected) >= 0.001) allPass = false;
     const lineId  = lines[i].lineId ?? await lines[i].input.getAttribute('data-line-id').catch(() => null);
     const product = (await lines[i].input.locator('xpath=ancestor::tr').first().locator('.product-label').first().innerText().catch(() => '')).trim();
@@ -965,12 +1021,23 @@ async function runQuantityDecrease(page, contract, branch) {
   expect(spinCount).toBeGreaterThan(0);
   const sbs = page.getByRole('spinbutton');
   const initials = [];
+  /** @type {number[]} */ const applied = []; // signed delta actually applied per line
   for (let i = 0; i < spinCount; i++) {
     const cur = parseFloat(await sbs.nth(i).inputValue().catch(() => '1')) || 1;
     initials.push(cur);
-    const newVal = Math.max(1, cur - QTY_DEC);
+    // The LWC floors a decrease at the verified prior quantity (qty − Eff. Qty),
+    // not at 1 — so cap the decrease at this line's headroom.
+    const eff      = await readInputEffQty(sbs.nth(i));
+    const headroom = eff == null ? Math.max(0, cur - 1) : eff;
+    const appliedDelta = -Math.min(QTY_DEC, headroom);
+    applied.push(appliedDelta);
+    const newVal = cur + appliedDelta;
     await sbs.nth(i).click({ clickCount: 3 }); await sbs.nth(i).fill(String(newVal)); await sbs.nth(i).press('Tab');
     await page.waitForTimeout(800);
+  }
+  // Every line already at its verified floor → no change → Save never enables. Skip.
+  if (applied.every(d => d === 0)) {
+    skipScenario('All lines already at their verified quantity (Eff. Qty 0) — cannot decrease');
   }
   await qtc.save(120_000);
   let allPass = true;
@@ -978,14 +1045,14 @@ async function runQuantityDecrease(page, contract, branch) {
   const entries = [];
   for (let i = 0; i < spinCount; i++) {
     const actual   = parseFloat(await sbs.nth(i).inputValue().catch(() => '0')) || 0;
-    const expected = Math.max(1, initials[i] - QTY_DEC);
+    const expected = initials[i] + applied[i];
     if (Math.abs(actual - expected) >= 0.001) allPass = false;
     const lineId  = await sbs.nth(i).getAttribute('data-line-id').catch(() => null);
     const product = (await sbs.nth(i).locator('xpath=ancestor::tr').first().locator('.product-label').first().innerText().catch(() => '')).trim();
     entries.push({ lineId, before: initials[i], after: actual, product });
   }
   await captureQtyCross(currentLabel, entries);
-  expect(allPass, `All ${spinCount} quantities should have decreased by ${QTY_DEC} (floor 1)`).toBe(true);
+  expect(allPass, `All ${spinCount} quantities should decrease to their verified-quantity floor`).toBe(true);
 }
 
 test('[10.1] Qty Decrease: 0 draft amendments', async ({ page }) => {
@@ -1074,20 +1141,35 @@ async function runQtyDecreaseSegments(page, contract, branch) {
   const mdq = await pickMdqRows(page, 2, 4);
   if (mdq.length < 2) skipScenario(`No MDQ product (needs ≥2 segments) in this quote — found ${mdq.length}`);
 
-  // Product A — Year-1 decrease propagates (floor 1)
+  // Product A — Year-1 decrease propagates to all segments. The LWC clamps each
+  // segment at its own verified prior quantity, so pick a decrease no larger than
+  // the SMALLEST segment headroom — then every segment moves down uniformly
+  // without any crossing its floor (same approach as the standalone spec).
   const qtysA_before = await readSegQtys(mdq[0].row);
-  const newA = Math.max(1, qtysA_before[0] - MDQ_DELTA);
+  const effA         = await readSegEffQtys(mdq[0].row);
+  const minHeadroomA = effA.length ? Math.min(...effA) : 0;
+  if (minHeadroomA <= 0) {
+    skipScenario('An MDQ segment is already at its verified quantity (Eff. Qty 0) — cannot decrease Year-1 uniformly');
+  }
+  const appliedA = Math.min(MDQ_DELTA, minHeadroomA);
+  const newA = qtysA_before[0] - appliedA;
   await setSegQty(mdq[0].row, 0, newA);
   await page.waitForTimeout(MDQ_QUIESCE);
   const qtysA_after = await readSegQtys(mdq[0].row);
-  expect(qtysA_after.every(q => Math.abs(q - newA) < 0.001), `Year-1 decrease (${newA}) should propagate to all segments`).toBe(true);
+  expect(qtysA_after.every((q, i) => Math.abs(q - (qtysA_before[i] - appliedA)) < 0.001),
+    `Year-1 decrease (−${appliedA}) should propagate to all segments (none crossing its verified floor)`).toBe(true);
 
-  // Product B — Year-N isolated decrease
+  // Product B — Year-N isolated decrease (floored at that segment's verified qty)
   const rowB   = mdq[1].segmentCount > MDQ_SEG_IDX ? mdq[1] : mdq[0];
   const segIdx = Math.min(MDQ_SEG_IDX, rowB.segmentCount - 1);
   if (segIdx === 0) skipScenario('MDQ product has only 1 segment — cannot test Year-N isolation');
   const qtysB_before = await readSegQtys(rowB.row);
-  const newB = Math.max(1, qtysB_before[segIdx] - MDQ_DELTA);
+  const effB         = await readSegEffQtys(rowB.row);
+  const headroomB    = effB[segIdx] || 0;
+  if (headroomB <= 0) {
+    skipScenario(`Year-${segIdx + 1} segment already at its verified quantity — cannot test isolated decrease`);
+  }
+  const newB = qtysB_before[segIdx] - Math.min(MDQ_DELTA, headroomB);
   await setSegQty(rowB.row, segIdx, newB);
   await page.waitForTimeout(MDQ_QUIESCE);
   const qtysB_after = await readSegQtys(rowB.row);
@@ -1221,19 +1303,42 @@ async function runBundleSegmentQty(page, contract, branch, delta) {
   if (bundles.length === 0) skipScenario('No Static Bundle MDQ product in this quote');
   const bundle = bundles[0];
 
-  // Year-1 edit propagates to all segments
+  // Year-1 edit propagates to all segments. For a decrease the LWC floors each
+  // segment at its verified prior quantity, so cap the decrease at the smallest
+  // segment headroom — then every segment moves uniformly to newA without
+  // crossing a floor (matches the increase path's uniform-propagation assertion).
   const beforeA = await readSegQtys(bundle.row);
-  const newA = delta >= 0 ? beforeA[0] + delta : Math.max(1, beforeA[0] + delta);
+  let newA;
+  if (delta >= 0) {
+    newA = beforeA[0] + delta;
+  } else {
+    const effA         = await readSegEffQtys(bundle.row);
+    const minHeadroomA = effA.length ? Math.min(...effA) : 0;
+    if (minHeadroomA <= 0) {
+      skipScenario('A bundle segment is already at its verified quantity (Eff. Qty 0) — cannot decrease Year-1');
+    }
+    newA = beforeA[0] - Math.min(Math.abs(delta), minHeadroomA);
+  }
   await setSegQty(bundle.row, 0, newA);
   await page.waitForTimeout(MDQ_QUIESCE);
   const afterA = await readSegQtys(bundle.row);
   expect(afterA.every(q => Math.abs(q - newA) < 0.001), `Bundle Year-1 ${delta >= 0 ? 'increase' : 'decrease'} (${newA}) should propagate to all segments`).toBe(true);
 
-  // Year-N edit is isolated
+  // Year-N edit is isolated (floored at that segment's verified qty for a decrease)
   const segIdx = Math.min(MDQ_SEG_IDX, bundle.segmentCount - 1);
   if (segIdx === 0) skipScenario('Bundle has only 1 segment — cannot test Year-N isolation');
   const beforeB = await readSegQtys(bundle.row);
-  const newB = delta >= 0 ? beforeB[segIdx] + delta : Math.max(1, beforeB[segIdx] + delta);
+  let newB;
+  if (delta >= 0) {
+    newB = beforeB[segIdx] + delta;
+  } else {
+    const effB      = await readSegEffQtys(bundle.row);
+    const headroomB = effB[segIdx] || 0;
+    if (headroomB <= 0) {
+      skipScenario(`Bundle Year-${segIdx + 1} already at its verified quantity — cannot decrease`);
+    }
+    newB = beforeB[segIdx] - Math.min(Math.abs(delta), headroomB);
+  }
   await setSegQty(bundle.row, segIdx, newB);
   await page.waitForTimeout(MDQ_QUIESCE);
   const afterB = await readSegQtys(bundle.row);
