@@ -1088,13 +1088,18 @@ async function runQtyIncreaseSegments(page, contract, branch) {
   const mdq = await pickMdqRows(page, 2, 4);
   if (mdq.length < 2) skipScenario(`No MDQ product (needs ≥2 segments) in this quote — found ${mdq.length}`);
 
-  // Product A — Year-1 edit propagates to all segments
+  // Product A — Year-1 edit propagates to all segments. CPQ recalculates the
+  // cascade asynchronously, so POLL until every segment reflects newA rather than
+  // reading once after a fixed wait (the fixed-wait read was flaky under load —
+  // it could capture stale segment values mid-recalc). Mirrors the standalone
+  // agenticQtcQuantityIncreaseSegments spec's expect.poll approach.
   const qtysA_before = await readSegQtys(mdq[0].row);
   const newA = qtysA_before[0] + MDQ_DELTA;
   await setSegQty(mdq[0].row, 0, newA);
-  await page.waitForTimeout(MDQ_QUIESCE);
-  const qtysA_after = await readSegQtys(mdq[0].row);
-  expect(qtysA_after.every(q => Math.abs(q - newA) < 0.001), `Year-1 edit (${newA}) should propagate to all segments`).toBe(true);
+  await expect.poll(
+    async () => (await readSegQtys(mdq[0].row)).every(q => Math.abs(q - newA) < 0.001),
+    { timeout: 30_000, message: `Year-1 edit (${newA}) should propagate to all segments` }
+  ).toBe(true);
 
   // Product B — Year-N edit is isolated (does not touch Year-1)
   const rowB   = mdq[1].segmentCount > MDQ_SEG_IDX ? mdq[1] : mdq[0];
@@ -1103,7 +1108,11 @@ async function runQtyIncreaseSegments(page, contract, branch) {
   const qtysB_before = await readSegQtys(rowB.row);
   const newB = qtysB_before[segIdx] + MDQ_DELTA;
   await setSegQty(rowB.row, segIdx, newB);
-  await page.waitForTimeout(MDQ_QUIESCE);
+  // Poll until the edited Year-N segment settles at newB (async recalc).
+  await expect.poll(
+    async () => Math.abs((await readSegQtys(rowB.row))[segIdx] - newB) < 0.001,
+    { timeout: 30_000, message: `Year-${segIdx + 1} should equal ${newB}` }
+  ).toBe(true);
   const qtysB_after = await readSegQtys(rowB.row);
   expect(Math.abs(qtysB_after[0] - qtysB_before[0]) < 0.001, 'Year-1 must NOT change when Year-N is edited').toBe(true);
   expect(Math.abs(qtysB_after[segIdx] - newB) < 0.001, `Year-${segIdx + 1} should equal ${newB}`).toBe(true);
