@@ -1088,17 +1088,22 @@ async function runQtyIncreaseSegments(page, contract, branch) {
   const mdq = await pickMdqRows(page, 2, 4);
   if (mdq.length < 2) skipScenario(`No MDQ product (needs ≥2 segments) in this quote — found ${mdq.length}`);
 
-  // Product A — Year-1 edit propagates to all segments. CPQ recalculates the
-  // cascade asynchronously, so POLL until every segment reflects newA rather than
-  // reading once after a fixed wait (the fixed-wait read was flaky under load —
-  // it could capture stale segment values mid-recalc). Mirrors the standalone
-  // agenticQtcQuantityIncreaseSegments spec's expect.poll approach.
+  // Product A — Year-1 edit propagates to all segments. The LWC cascades the
+  // DELTA (newA − before[0]) to every segment, so each segment lands at
+  // before[i] + DELTA — NOT the absolute newA (those are equal only when all
+  // segments start at the same value; a 1-draft amendment can have non-uniform
+  // segments). Poll because CPQ recalculates the cascade asynchronously.
+  // Mirrors the standalone agenticQtcQuantityIncreaseSegments spec (beforeA.map(v => v + DELTA)).
   const qtysA_before = await readSegQtys(mdq[0].row);
-  const newA = qtysA_before[0] + MDQ_DELTA;
+  const expectedA    = qtysA_before.map(v => v + MDQ_DELTA);
+  const newA         = qtysA_before[0] + MDQ_DELTA;
   await setSegQty(mdq[0].row, 0, newA);
   await expect.poll(
-    async () => (await readSegQtys(mdq[0].row)).every(q => Math.abs(q - newA) < 0.001),
-    { timeout: 30_000, message: `Year-1 edit (${newA}) should propagate to all segments` }
+    async () => {
+      const qs = await readSegQtys(mdq[0].row);
+      return qs.length === expectedA.length && qs.every((q, i) => Math.abs(q - expectedA[i]) < 0.001);
+    },
+    { timeout: 30_000, message: `Year-1 edit (+${MDQ_DELTA}) should propagate to all segments (each = before + ${MDQ_DELTA})` }
   ).toBe(true);
 
   // Product B — Year-N edit is isolated (does not touch Year-1)
@@ -1160,13 +1165,18 @@ async function runQtyDecreaseSegments(page, contract, branch) {
   if (minHeadroomA <= 0) {
     skipScenario('An MDQ segment is already at its verified quantity (Eff. Qty 0) — cannot decrease Year-1 uniformly');
   }
-  const appliedA = Math.min(MDQ_DELTA, minHeadroomA);
-  const newA = qtysA_before[0] - appliedA;
+  const appliedA  = Math.min(MDQ_DELTA, minHeadroomA);
+  const newA      = qtysA_before[0] - appliedA;
+  const expectedA = qtysA_before.map(v => v - appliedA);
   await setSegQty(mdq[0].row, 0, newA);
-  await page.waitForTimeout(MDQ_QUIESCE);
-  const qtysA_after = await readSegQtys(mdq[0].row);
-  expect(qtysA_after.every((q, i) => Math.abs(q - (qtysA_before[i] - appliedA)) < 0.001),
-    `Year-1 decrease (−${appliedA}) should propagate to all segments (none crossing its verified floor)`).toBe(true);
+  // Poll for the async cascade to settle (each segment = before[i] − appliedA).
+  await expect.poll(
+    async () => {
+      const qs = await readSegQtys(mdq[0].row);
+      return qs.length === expectedA.length && qs.every((q, i) => Math.abs(q - expectedA[i]) < 0.001);
+    },
+    { timeout: 30_000, message: `Year-1 decrease (−${appliedA}) should propagate to all segments (none crossing its verified floor)` }
+  ).toBe(true);
 
   // Product B — Year-N isolated decrease (floored at that segment's verified qty)
   const rowB   = mdq[1].segmentCount > MDQ_SEG_IDX ? mdq[1] : mdq[0];
@@ -1312,26 +1322,33 @@ async function runBundleSegmentQty(page, contract, branch, delta) {
   if (bundles.length === 0) skipScenario('No Static Bundle MDQ product in this quote');
   const bundle = bundles[0];
 
-  // Year-1 edit propagates to all segments. For a decrease the LWC floors each
-  // segment at its verified prior quantity, so cap the decrease at the smallest
-  // segment headroom — then every segment moves uniformly to newA without
-  // crossing a floor (matches the increase path's uniform-propagation assertion).
+  // Year-1 edit propagates to all segments. The LWC cascades the APPLIED delta to
+  // every segment, so each lands at before[i] + appliedDelta — not the absolute
+  // newA (equal only when segments start uniform). For a decrease the delta is
+  // capped at the smallest segment headroom so no segment crosses its verified
+  // floor. Poll because CPQ recalculates the cascade asynchronously.
   const beforeA = await readSegQtys(bundle.row);
-  let newA;
+  let appliedDeltaA;
   if (delta >= 0) {
-    newA = beforeA[0] + delta;
+    appliedDeltaA = delta;
   } else {
     const effA         = await readSegEffQtys(bundle.row);
     const minHeadroomA = effA.length ? Math.min(...effA) : 0;
     if (minHeadroomA <= 0) {
       skipScenario('A bundle segment is already at its verified quantity (Eff. Qty 0) — cannot decrease Year-1');
     }
-    newA = beforeA[0] - Math.min(Math.abs(delta), minHeadroomA);
+    appliedDeltaA = -Math.min(Math.abs(delta), minHeadroomA);
   }
+  const newA       = beforeA[0] + appliedDeltaA;
+  const expectedAB = beforeA.map(v => v + appliedDeltaA);
   await setSegQty(bundle.row, 0, newA);
-  await page.waitForTimeout(MDQ_QUIESCE);
-  const afterA = await readSegQtys(bundle.row);
-  expect(afterA.every(q => Math.abs(q - newA) < 0.001), `Bundle Year-1 ${delta >= 0 ? 'increase' : 'decrease'} (${newA}) should propagate to all segments`).toBe(true);
+  await expect.poll(
+    async () => {
+      const qs = await readSegQtys(bundle.row);
+      return qs.length === expectedAB.length && qs.every((q, i) => Math.abs(q - expectedAB[i]) < 0.001);
+    },
+    { timeout: 30_000, message: `Bundle Year-1 ${delta >= 0 ? 'increase' : 'decrease'} (${appliedDeltaA >= 0 ? '+' : ''}${appliedDeltaA}) should propagate to all segments (each = before + ${appliedDeltaA})` }
+  ).toBe(true);
 
   // Year-N edit is isolated (floored at that segment's verified qty for a decrease)
   const segIdx = Math.min(MDQ_SEG_IDX, bundle.segmentCount - 1);
