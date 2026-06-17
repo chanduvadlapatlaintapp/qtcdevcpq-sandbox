@@ -48,6 +48,10 @@ on:
         description: 'Draft quote name to target (optional). Blank → spec picks the first draft.'
         required: false
         default: ''
+      accounts_json:
+        description: 'JSON array of accounts for multi-account mode (from dashboard chip picker). Blank → single-account mode.'
+        required: false
+        default: ''
 
   # ── 2. Auto: push to main ──────────────────────────────────────────────────
   push:
@@ -169,6 +173,7 @@ jobs:
             echo "contract_id=${{ inputs.contract_id }}"         >> $GITHUB_OUTPUT
             echo "contract_number=${{ inputs.contract_number }}" >> $GITHUB_OUTPUT
             echo "quote_name=${{ inputs.quote_name }}"           >> $GITHUB_OUTPUT
+            echo "accounts_json=${{ inputs.accounts_json }}"     >> $GITHUB_OUTPUT
           else
             # Auto-triggered by GitHub — create the record now.
             # Suite comes from the repo variable DEFAULT_TEST_SUITE (set in
@@ -258,6 +263,9 @@ jobs:
           QTC_CONTRACT_ID:       ${{ steps.run-setup.outputs.contract_id }}
           QTC_CONTRACT_NUMBER:   ${{ steps.run-setup.outputs.contract_number }}
           QTC_QUOTE_NAME:        ${{ steps.run-setup.outputs.quote_name }}
+          # Multi-account mode: JSON array of accounts from dashboard chip picker.
+          # Blank for single-account and auto-triggered runs.
+          QTC_ACCOUNTS:          ${{ steps.run-setup.outputs.accounts_json }}
           # Auto-enable Conga PDF wait + UI/PDF compare ONLY for the OSA suite.
           # Other suites stay fast; the Conga suite needs ~2-3 min/scenario to
           # poll Salesforce for the generated PDF and parse it.
