@@ -165,7 +165,6 @@ jobs:
       - name: Resolve or create Test_Run__c record
         id: run-setup
         run: |
-          ACCOUNTS_JSON_RAW="${{ inputs.accounts_json }}"
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             # Salesforce already created the record — just echo the inputs
             echo "test_run_id=${{ inputs.test_run_id }}"           >> $GITHUB_OUTPUT
@@ -174,7 +173,6 @@ jobs:
             echo "contract_id=${{ inputs.contract_id }}"         >> $GITHUB_OUTPUT
             echo "contract_number=${{ inputs.contract_number }}" >> $GITHUB_OUTPUT
             echo "quote_name=${{ inputs.quote_name }}"           >> $GITHUB_OUTPUT
-            printf 'accounts_json=%s\n' "$ACCOUNTS_JSON_RAW"  >> $GITHUB_OUTPUT
           else
             # Auto-triggered by GitHub — create the record now.
             # Suite comes from the repo variable DEFAULT_TEST_SUITE (set in
