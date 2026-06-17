@@ -483,7 +483,7 @@ class AgenticQtcPage {
    *                                  lines, so callers can pass a much
    *                                  smaller value (e.g. 300ms).
    */
-  async save(timeout = 90_000, settleMs = 2_000) {
+  async save(timeout = 90_000, settleMs = 2_000, _retries = 1) {
     await this.waitForSaveEnabled();
     await this.saveButton().click();
 
@@ -497,6 +497,12 @@ class AgenticQtcPage {
     }
     if (winner === 1) {
       const errText = await errorToast.innerText().catch(() => '(unable to read toast text)');
+      // Transient row-lock: CPQ's post-insert async flow hasn't released the lock yet.
+      // Wait for the org to settle, then retry once before failing.
+      if (_retries > 0 && /Please try again|UNABLE_TO_LOCK_ROW/i.test(errText)) {
+        await this.page.waitForTimeout(8_000);
+        return this.save(timeout, settleMs, _retries - 1);
+      }
       throw new Error(`Quote save failed: ${errText.trim()}`);
     }
 
