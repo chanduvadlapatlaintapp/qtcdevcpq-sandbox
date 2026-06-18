@@ -62,6 +62,22 @@ let crossIdx = 0;
 /** Current scenario label, set by runSafe — tags cross-check rows. @type {string} */
 let currentLabel = '';
 
+// Header metric tiles (ACV/TCV/YoY/DQS) captured by the Metrics group — before
+// the edit and after Save — surfaced on the dashboard's Metrics tab via the
+// SUITE SUMMARY's richResults.metricsBeforeSave / metricsAfterSave.
+/** @type {Record<string,string>|null} */ let METRICS_BEFORE = null;
+/** @type {Record<string,string>|null} */ let METRICS_AFTER  = null;
+/** @param {Record<string,string>} m */
+function mapHeaderMetrics(m) {
+  return {
+    acv:         m['ACV']                || 'N/A',
+    acvChange:   m['ACV Change']         || 'N/A',
+    tcv:         m['TCV']                || 'N/A',
+    yoyUplift:   m['YoY Uplift']         || 'N/A',
+    dealQuality: m['Deal Quality Score'] || 'N/A',
+  };
+}
+
 /**
  * Append one UI↔DB comparison row.
  * @param {string} label   scenario label, e.g. '[6.3] Contact Update'
@@ -1229,6 +1245,7 @@ async function runMetricsVerification(page, contract, branch) {
   const { qtc, quoteName } = await openEditorByScenario(page, sfCtx, contract, branch);
   const spinCount = await qtc.waitForLines(120_000);
   expect(spinCount).toBeGreaterThan(0);
+  const uiBefore = await qtc.readHeaderMetrics();   // header metric tiles before the edit
   const sbs = page.getByRole('spinbutton');
   for (let i = 0; i < spinCount; i++) {
     const cur = parseFloat(await sbs.nth(i).inputValue().catch(() => '0')) || 0;
@@ -1237,6 +1254,9 @@ async function runMetricsVerification(page, contract, branch) {
   }
   await qtc.save(120_000);
   const uiAfter = await qtc.readHeaderMetrics();
+  // Surface the header metric tiles (ACV/TCV/YoY/DQS) on the dashboard Metrics tab.
+  METRICS_BEFORE = mapHeaderMetrics(uiBefore);
+  METRICS_AFTER  = mapHeaderMetrics(uiAfter);
   const db      = await computeMetricsFromDb(page, quoteName, contract.id);
   const uiAcv   = parseMetric(uiAfter['ACV']);
   const uiTcv   = parseMetric(uiAfter['TCV']);
@@ -1556,6 +1576,10 @@ test('SUITE SUMMARY — pass rate must be 100%', async () => {
     scenarioNumber: 1,
     scenarioLabel: `Full suite — ${passed} passed / ${evaluated} evaluated (${pct}%)`,
     passed: overall,
+    // Header metric tiles captured by the Metrics group → dashboard Metrics tab
+    // "Header Metrics — Before / After Save". Omitted (→ null) if that group skipped.
+    metricsBeforeSave: METRICS_BEFORE || undefined,
+    metricsAfterSave:  METRICS_AFTER  || undefined,
     metricResults: [
       { metric: 'Pass Rate',   before: `0/${evaluated}`, after: `${passed}/${evaluated}`, pass: overall,       note: `${pct}% (threshold ${PASS_THRESHOLD}%)` },
       { metric: 'Passed',      before: '—',              after: String(passed),           pass: true,          note: '' },
