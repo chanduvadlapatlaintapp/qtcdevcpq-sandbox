@@ -67,6 +67,8 @@ let currentLabel = '';
 // SUITE SUMMARY's richResults.metricsBeforeSave / metricsAfterSave.
 /** @type {Record<string,string>|null} */ let METRICS_BEFORE = null;
 /** @type {Record<string,string>|null} */ let METRICS_AFTER  = null;
+/** @type {string|null} */ let METRICS_CONTRACT = null;   // contract number for the Metrics-tab KPI
+/** @type {string|null} */ let METRICS_QUOTE    = null;   // quote name for the Metrics-tab KPI
 /** @param {Record<string,string>} m */
 function mapHeaderMetrics(m) {
   return {
@@ -1255,8 +1257,10 @@ async function runMetricsVerification(page, contract, branch) {
   await qtc.save(120_000);
   const uiAfter = await qtc.readHeaderMetrics();
   // Surface the header metric tiles (ACV/TCV/YoY/DQS) on the dashboard Metrics tab.
-  METRICS_BEFORE = mapHeaderMetrics(uiBefore);
-  METRICS_AFTER  = mapHeaderMetrics(uiAfter);
+  METRICS_BEFORE   = mapHeaderMetrics(uiBefore);
+  METRICS_AFTER    = mapHeaderMetrics(uiAfter);
+  METRICS_CONTRACT = contract?.number ?? null;
+  METRICS_QUOTE    = quoteName || null;
   const db      = await computeMetricsFromDb(page, quoteName, contract.id);
   const uiAcv   = parseMetric(uiAfter['ACV']);
   const uiTcv   = parseMetric(uiAfter['TCV']);
@@ -1578,6 +1582,8 @@ test('SUITE SUMMARY — pass rate must be 100%', async () => {
     passed: overall,
     // Header metric tiles captured by the Metrics group → dashboard Metrics tab
     // "Header Metrics — Before / After Save". Omitted (→ null) if that group skipped.
+    contract:  METRICS_CONTRACT || undefined,
+    quoteName: METRICS_QUOTE    || undefined,
     metricsBeforeSave: METRICS_BEFORE || undefined,
     metricsAfterSave:  METRICS_AFTER  || undefined,
     metricResults: [
