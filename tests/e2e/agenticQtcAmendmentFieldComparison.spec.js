@@ -39,6 +39,12 @@ const ALWAYS_SKIP_FIELDS = new Set([
   'IsDeleted',
   'SBQQ__Quote__c', 'SBQQ__Number__c',  // line parent + auto-number
   'SBQQ__Key__c',                       // per-quote stable key
+  // Each amendment creates a fresh opportunity + auto-numbered records
+  'SBQQ__Opportunity2__c',
+  'SBQQ__LastSavedOn__c',
+  'Intapp_Opportunity_Number__c',
+  'OP4I_Contract_Number__c',
+  'OSA_Auto_Number__c',
 ]);
 
 // ── Field groups used by focused use cases ─────────────────────────────────
@@ -110,14 +116,30 @@ test.beforeAll(async () => {
   ({ runTs, runDir } = u.createRunFolder(RESULTS_DIR));
   console.log(`\n[${KIND}] runDir=${runDir}`);
 
-  sharedContract = await getActivatedContract();
-  if (!sharedContract) {
+  const contracts = await getActivatedContracts();
+  if (!contracts.length) {
     console.log(`\n⚠️  No activated contracts found for "${ACCOUNT_NAME}". Tests will skip.`);
+    return;
+  }
+
+  // Try contracts in StartDate DESC order; skip any whose subscriptions carry
+  // invalid picklist values that make ContractAmender throw a ValidationException.
+  let oobId = /** @type {string|null} */ (null);
+  for (const candidate of contracts) {
+    try {
+      oobId = await createOOBAmendment(candidate.Id);
+      sharedContract = candidate;
+      break;
+    } catch (err) {
+      console.log(`[${KIND}] Contract ${candidate.ContractNumber} (${candidate.Id}) skipped — OOB failed: ${/** @type {any} */ (err)?.message}`);
+    }
+  }
+  if (!sharedContract || !oobId) {
+    console.log(`\n⚠️  All activated contracts for "${ACCOUNT_NAME}" failed OOB amendment creation. Tests will skip.`);
     return;
   }
   console.log(`[${KIND}] Contract: ${sharedContract.ContractNumber} (${sharedContract.Id})`);
 
-  const oobId    = await createOOBAmendment(sharedContract.Id);
   const customId = await createCustomAmendment(sharedContract.Id);
   sharedOobQuoteId    = oobId;
   sharedCustomQuoteId = customId;
@@ -241,8 +263,8 @@ test.afterAll(async () => {
 // Discovery + SOQL helpers (Node-side, no browser page required)
 // ──────────────────────────────────────────────────────────────────────────
 
-/** @returns {Promise<{Id: string, ContractNumber: string}|null>} */
-async function getActivatedContract() {
+/** @returns {Promise<Array<{Id: string, ContractNumber: string}>>} */
+async function getActivatedContracts() {
   const accRes = await u.sfQueryNode(
     sfCtx.instanceUrl, sfCtx.accessToken,
     `SELECT Id FROM Account WHERE Name = '${escapeSoql(ACCOUNT_NAME)}' LIMIT 1`,
@@ -261,7 +283,7 @@ async function getActivatedContract() {
   );
 
   const all = contractRes.records || [];
-  return all.find(/** @param {any} c */ c => ['Activated', 'In Force'].includes(c.Status)) || null;
+  return all.filter(/** @param {any} c */ c => ['Activated', 'In Force'].includes(c.Status));
 }
 
 /**
