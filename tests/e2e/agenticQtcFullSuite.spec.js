@@ -84,7 +84,7 @@ function mapHeaderMetrics(m) {
  * Append one UI↔DB comparison row.
  * @param {string} label   scenario label, e.g. '[6.3] Contact Update'
  * @param {string} product field/product name shown in the Product column
- * @param {{uiBefore?:any, uiAfter?:any, dbPrior?:any, dbAfter?:any, segOcc?:any, match?:boolean, hasData?:boolean}} row
+ * @param {{uiBefore?:any, uiAfter?:any, dbPrior?:any, dbAfter?:any, segOcc?:any, match?:boolean, hasData?:boolean, costBefore?:any, costAfter?:any}} row
  */
 function pushCrossRow(label, product, row) {
   crossIdx++;
@@ -101,6 +101,10 @@ function pushCrossRow(label, product, row) {
     uiAfter,
     dbPrior:  row.dbPrior  ?? null,
     dbAfter,
+    // Editor "Cost" cell (SBQQ__NetTotal__c) before the edit / after save → the
+    // dashboard's UI↔DB "Cost Before" / "Cost After" columns.
+    costBefore: row.costBefore ?? null,
+    costAfter:  row.costAfter  ?? null,
     match,
     hasData:  row.hasData ?? (uiAfter != null || dbAfter != null),
   });
@@ -110,14 +114,14 @@ function pushCrossRow(label, product, row) {
  * Capture per-line UI↔DB quantity rows for a scenario. Queries the DB once for
  * the given line IDs and appends a row per entry.
  * @param {string} label
- * @param {Array<{lineId:string|null, before:number, after:number, product?:string, segOcc?:any}>} entries
+ * @param {Array<{lineId:string|null, before:number, after:number, product?:string, segOcc?:any, costBefore?:any, costAfter?:any}>} entries
  */
 async function captureQtyCross(label, entries) {
   const withId = entries.filter(e => e.lineId);
   /** @type {Map<string, any>} */
   let dbById = new Map();
   if (withId.length) {
-    const soql = `SELECT Id, SBQQ__ProductName__c, SBQQ__Quantity__c, SBQQ__PriorQuantity__c FROM SBQQ__QuoteLine__c WHERE Id IN (${withId.map(e => `'${e.lineId}'`).join(',')})`;
+    const soql = `SELECT Id, SBQQ__ProductName__c, SBQQ__Quantity__c, SBQQ__PriorQuantity__c, SBQQ__NetTotal__c FROM SBQQ__QuoteLine__c WHERE Id IN (${withId.map(e => `'${e.lineId}'`).join(',')})`;
     const res  = await u.sfQueryNode(sfCtx.instanceUrl, sfCtx.accessToken, soql).catch(() => ({ records: [] }));
     dbById = new Map((res.records || []).map((/** @type {any} */ r) => [r.Id, r]));
   }
@@ -125,16 +129,27 @@ async function captureQtyCross(label, entries) {
     const db      = e.lineId ? dbById.get(e.lineId) : null;
     const dbAfter = db ? Number(db.SBQQ__Quantity__c) : null;
     const product = e.product || db?.SBQQ__ProductName__c || `Line ${i + 1}`;
+    // Cost After = the editor's "Cost" cell after save = SBQQ__NetTotal__c. Use
+    // the UI value the caller captured if present, else the DB net total.
+    const dbCost  = db && db.SBQQ__NetTotal__c != null ? fmtCost(db.SBQQ__NetTotal__c) : null;
     pushCrossRow(label, product, {
       segOcc:   e.segOcc ?? null,
       uiBefore: e.before,
       uiAfter:  e.after,
       dbPrior:  db ? (db.SBQQ__PriorQuantity__c ?? null) : null,
       dbAfter,
+      costBefore: e.costBefore ?? null,
+      costAfter:  e.costAfter ?? dbCost,
       match:    dbAfter != null && Math.abs(dbAfter - e.after) < 0.001,
       hasData:  dbAfter != null,
     });
   });
+}
+
+/** Format a numeric net-total to a currency-ish string for the Cost columns. */
+function fmtCost(/** @type {any} */ n) {
+  if (n == null) return null;
+  return '$' + Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 /**
@@ -143,18 +158,33 @@ async function captureQtyCross(label, entries) {
  * @param {string} label
  * @param {{row:import('@playwright/test').Locator, productName:string}} mdqRow
  * @param {number[]} before  per-segment UI quantities before the edit
+ * @param {string[]} [costBefore]  per-segment editor "Cost" cell values before the edit
  */
-async function captureSegmentCross(label, mdqRow, before) {
+async function captureSegmentCross(label, mdqRow, before, costBefore = []) {
   const inputs = mdqRow.row.locator('input.qty-input');
   const n = await inputs.count();
-  /** @type {Array<{lineId:string|null, before:number, after:number, product:string, segOcc:number}>} */
+  /** @type {Array<{lineId:string|null, before:number, after:number, product:string, segOcc:number, costBefore:any}>} */
   const entries = [];
   for (let i = 0; i < n; i++) {
     const lineId = await inputs.nth(i).getAttribute('data-line-id').catch(() => null);
     const after  = parseFloat(await inputs.nth(i).inputValue().catch(() => '0')) || 0;
-    entries.push({ lineId, before: before[i] ?? 0, after, product: `${mdqRow.productName || 'MDQ'} · Y${i + 1}`, segOcc: i + 1 });
+    entries.push({ lineId, before: before[i] ?? 0, after, product: `${mdqRow.productName || 'MDQ'} · Y${i + 1}`, segOcc: i + 1, costBefore: costBefore[i] ?? null });
   }
   await captureQtyCross(label, entries);
+}
+
+/**
+ * Read the editor "Cost" cell value for each qty input in an MDQ product row.
+ * @param {import('@playwright/test').Locator} row
+ * @param {any} qtc
+ * @returns {Promise<string[]>}
+ */
+async function readSegCosts(row, qtc) {
+  const inputs = row.locator('input.qty-input');
+  const n = await inputs.count();
+  /** @type {string[]} */ const out = [];
+  for (let i = 0; i < n; i++) out.push(await qtc.readLineCost(inputs.nth(i)));
+  return out;
 }
 
 // ── Single shared setup ───────────────────────────────────────────────────────
@@ -412,10 +442,12 @@ async function findBundleSegmentRows(page) {
  */
 async function editSaveVerifyInputs(page, qtc, lines, delta) {
   /** @type {number[]} */ const initials = [];
+  /** @type {string[]} */ const costsBefore = [];
   /** @type {number[]} */ const applied  = []; // signed delta actually applied per line
   for (let i = 0; i < lines.length; i++) {
     const cur = parseFloat(await lines[i].input.inputValue().catch(() => '0')) || 0;
     initials.push(cur);
+    costsBefore.push(await qtc.readLineCost(lines[i].input));   // editor "Cost" cell before edit
     let appliedDelta;
     if (delta >= 0) {
       appliedDelta = delta;
@@ -438,7 +470,7 @@ async function editSaveVerifyInputs(page, qtc, lines, delta) {
   }
   await qtc.save(120_000);
   let allPass = true;
-  /** @type {Array<{lineId:string|null, before:number, after:number, product?:string}>} */
+  /** @type {Array<{lineId:string|null, before:number, after:number, product?:string, costBefore?:any}>} */
   const entries = [];
   for (let i = 0; i < lines.length; i++) {
     const actual   = parseFloat(await lines[i].input.inputValue().catch(() => '0')) || 0;
@@ -446,7 +478,7 @@ async function editSaveVerifyInputs(page, qtc, lines, delta) {
     if (Math.abs(actual - expected) >= 0.001) allPass = false;
     const lineId  = lines[i].lineId ?? await lines[i].input.getAttribute('data-line-id').catch(() => null);
     const product = (await lines[i].input.locator('xpath=ancestor::tr').first().locator('.product-label').first().innerText().catch(() => '')).trim();
-    entries.push({ lineId, before: initials[i], after: actual, product });
+    entries.push({ lineId, before: initials[i], after: actual, product, costBefore: costsBefore[i] });
   }
   await captureQtyCross(currentLabel, entries);
   return allPass;
@@ -987,22 +1019,24 @@ async function runQuantityIncrease(page, contract, branch) {
   expect(spinCount).toBeGreaterThan(0);
   const sbs = page.getByRole('spinbutton');
   const initials = [];
+  /** @type {string[]} */ const costsBefore = [];
   for (let i = 0; i < spinCount; i++) {
     const cur = parseFloat(await sbs.nth(i).inputValue().catch(() => '0')) || 0;
     initials.push(cur);
+    costsBefore.push(await qtc.readLineCost(sbs.nth(i)));   // editor "Cost" cell before edit
     await sbs.nth(i).click({ clickCount: 3 }); await sbs.nth(i).fill(String(cur + QTY_INC)); await sbs.nth(i).press('Tab');
     await page.waitForTimeout(800);
   }
   await qtc.save(120_000);
   let allPass = true;
-  /** @type {Array<{lineId:string|null, before:number, after:number, product?:string}>} */
+  /** @type {Array<{lineId:string|null, before:number, after:number, product?:string, costBefore?:any}>} */
   const entries = [];
   for (let i = 0; i < spinCount; i++) {
     const actual = parseFloat(await sbs.nth(i).inputValue().catch(() => '0')) || 0;
     if (Math.abs(actual - (initials[i] + QTY_INC)) >= 0.001) allPass = false;
     const lineId  = await sbs.nth(i).getAttribute('data-line-id').catch(() => null);
     const product = (await sbs.nth(i).locator('xpath=ancestor::tr').first().locator('.product-label').first().innerText().catch(() => '')).trim();
-    entries.push({ lineId, before: initials[i], after: actual, product });
+    entries.push({ lineId, before: initials[i], after: actual, product, costBefore: costsBefore[i] });
   }
   await captureQtyCross(currentLabel, entries);
   expect(allPass, `All ${spinCount} quantities should have increased by ${QTY_INC}`).toBe(true);
@@ -1039,10 +1073,12 @@ async function runQuantityDecrease(page, contract, branch) {
   expect(spinCount).toBeGreaterThan(0);
   const sbs = page.getByRole('spinbutton');
   const initials = [];
+  /** @type {string[]} */ const costsBefore = [];
   /** @type {number[]} */ const applied = []; // signed delta actually applied per line
   for (let i = 0; i < spinCount; i++) {
     const cur = parseFloat(await sbs.nth(i).inputValue().catch(() => '1')) || 1;
     initials.push(cur);
+    costsBefore.push(await qtc.readLineCost(sbs.nth(i)));   // editor "Cost" cell before edit
     // The LWC floors a decrease at the verified prior quantity (qty − Eff. Qty),
     // not at 1 — so cap the decrease at this line's headroom.
     const eff      = await readInputEffQty(sbs.nth(i));
@@ -1059,7 +1095,7 @@ async function runQuantityDecrease(page, contract, branch) {
   }
   await qtc.save(120_000);
   let allPass = true;
-  /** @type {Array<{lineId:string|null, before:number, after:number, product?:string}>} */
+  /** @type {Array<{lineId:string|null, before:number, after:number, product?:string, costBefore?:any}>} */
   const entries = [];
   for (let i = 0; i < spinCount; i++) {
     const actual   = parseFloat(await sbs.nth(i).inputValue().catch(() => '0')) || 0;
@@ -1067,7 +1103,7 @@ async function runQuantityDecrease(page, contract, branch) {
     if (Math.abs(actual - expected) >= 0.001) allPass = false;
     const lineId  = await sbs.nth(i).getAttribute('data-line-id').catch(() => null);
     const product = (await sbs.nth(i).locator('xpath=ancestor::tr').first().locator('.product-label').first().innerText().catch(() => '')).trim();
-    entries.push({ lineId, before: initials[i], after: actual, product });
+    entries.push({ lineId, before: initials[i], after: actual, product, costBefore: costsBefore[i] });
   }
   await captureQtyCross(currentLabel, entries);
   expect(allPass, `All ${spinCount} quantities should decrease to their verified-quantity floor`).toBe(true);
@@ -1113,6 +1149,7 @@ async function runQtyIncreaseSegments(page, contract, branch) {
   // segments). Poll because CPQ recalculates the cascade asynchronously.
   // Mirrors the standalone agenticQtcQuantityIncreaseSegments spec (beforeA.map(v => v + DELTA)).
   const qtysA_before = await readSegQtys(mdq[0].row);
+  const costsA_before = await readSegCosts(mdq[0].row, qtc);   // editor "Cost" cells before edit
   const expectedA    = qtysA_before.map(v => v + MDQ_DELTA);
   const newA         = qtysA_before[0] + MDQ_DELTA;
   await setSegQty(mdq[0].row, 0, newA);
@@ -1141,7 +1178,7 @@ async function runQtyIncreaseSegments(page, contract, branch) {
   expect(Math.abs(qtysB_after[segIdx] - newB) < 0.001, `Year-${segIdx + 1} should equal ${newB}`).toBe(true);
 
   await qtc.save(120_000);
-  await captureSegmentCross(currentLabel, mdq[0], qtysA_before);
+  await captureSegmentCross(currentLabel, mdq[0], qtysA_before, costsA_before);
 }
 
 test('[11.1] Qty Increase Segments (MDQ): 0 draft amendments', async ({ page }) => {
@@ -1178,6 +1215,7 @@ async function runQtyDecreaseSegments(page, contract, branch) {
   // the SMALLEST segment headroom — then every segment moves down uniformly
   // without any crossing its floor (same approach as the standalone spec).
   const qtysA_before = await readSegQtys(mdq[0].row);
+  const costsA_before = await readSegCosts(mdq[0].row, qtc);   // editor "Cost" cells before edit
   const effA         = await readSegEffQtys(mdq[0].row);
   const minHeadroomA = effA.length ? Math.min(...effA) : 0;
   if (minHeadroomA <= 0) {
@@ -1214,7 +1252,7 @@ async function runQtyDecreaseSegments(page, contract, branch) {
   expect(Math.abs(qtysB_after[segIdx] - newB) < 0.001, `Year-${segIdx + 1} should equal ${newB} after decrease`).toBe(true);
 
   await qtc.save(120_000);
-  await captureSegmentCross(currentLabel, mdq[0], qtysA_before);
+  await captureSegmentCross(currentLabel, mdq[0], qtysA_before, costsA_before);
 }
 
 test('[12.1] Qty Decrease Segments (MDQ): 0 draft amendments', async ({ page }) => {
@@ -1352,6 +1390,7 @@ async function runBundleSegmentQty(page, contract, branch, delta) {
   // capped at the smallest segment headroom so no segment crosses its verified
   // floor. Poll because CPQ recalculates the cascade asynchronously.
   const beforeA = await readSegQtys(bundle.row);
+  const costsA_before = await readSegCosts(bundle.row, qtc);   // editor "Cost" cells before edit
   let appliedDeltaA;
   if (delta >= 0) {
     appliedDeltaA = delta;
@@ -1396,7 +1435,7 @@ async function runBundleSegmentQty(page, contract, branch, delta) {
   expect(Math.abs(afterB[segIdx] - newB) < 0.001, `Bundle Year-${segIdx + 1} should equal ${newB}`).toBe(true);
 
   await qtc.save(120_000);
-  await captureSegmentCross(currentLabel, bundle, beforeA);
+  await captureSegmentCross(currentLabel, bundle, beforeA, costsA_before);
 }
 
 test('[15.1] Qty Increase Bundle Segments: 0 draft amendments', async ({ page }) => {
