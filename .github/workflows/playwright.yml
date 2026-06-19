@@ -74,11 +74,16 @@ on:
   #   - cron: '0 2 * * 1-5'   # 2 AM UTC, Mon–Fri (nightly regression)
   #   - cron: '0 */4 * * *'   # Every 4 hours (continuous monitoring)
 
-# Cancel any in-progress run for the same branch/PR when a new one starts.
-# This prevents a pile-up of queued runs after rapid pushes.
+# Concurrency scoping:
+#  - workflow_dispatch (Salesforce LWC): group per test_run_id so every user's
+#    run is its OWN group → they run in parallel on separate GitHub-hosted VMs
+#    and never cancel one another (cancel-in-progress is irrelevant when groups
+#    are unique). All dispatches share one branch, so we CANNOT key on github.ref.
+#  - push / PR (auto triggers): no test_run_id, so fall back to github.ref and
+#    keep cancel-in-progress to collapse a pile-up of rapid pushes.
 concurrency:
-  group: playwright-${{ github.ref }}
-  cancel-in-progress: true
+  group: playwright-${{ github.event.inputs.test_run_id || github.ref }}
+  cancel-in-progress: ${{ github.event.inputs.test_run_id == '' }}
 
 jobs:
   run-tests:
