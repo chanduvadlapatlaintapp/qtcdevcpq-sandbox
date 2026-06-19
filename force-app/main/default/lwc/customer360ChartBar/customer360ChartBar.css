@@ -1,0 +1,28 @@
+.chart-container {
+    width: 100%;
+}
+
+.bar-label {
+    fill: #706E6B;
+    font-size: 12px;
+}
+
+.bar-value {
+    fill: #181818;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+/* ─── Interactive States ────────────────────────────────────────────────── */
+
+.bar-group {
+    cursor: pointer;
+}
+
+.bar-rect {
+    transition: opacity 0.15s ease;
+}
+
+.bar-group:hover .bar-rect {
+    opacity: 0.75;
+}

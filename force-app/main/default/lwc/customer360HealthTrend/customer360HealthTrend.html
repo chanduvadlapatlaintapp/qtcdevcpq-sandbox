@@ -1,0 +1,55 @@
+<template>
+    <div class="health-trend">
+        <h3 class="health-trend__title">Health Trend</h3>
+        <div class="health-trend__chart">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="250" viewBox="0 0 500 250">
+                <!-- Color zones background -->
+                <rect x="40" y="0" width="440" height="55" fill="#FFEBEE" opacity="0.3"></rect>
+                <rect x="40" y="55" width="440" height="55" fill="#FFF3E0" opacity="0.3"></rect>
+                <rect x="40" y="110" width="440" height="55" fill="#FFF8E6" opacity="0.3"></rect>
+                <rect x="40" y="165" width="440" height="55" fill="#E8F5E9" opacity="0.3"></rect>
+
+                <!-- Y-axis labels -->
+                <text x="35" y="10" text-anchor="end" class="axis-label">100</text>
+                <text x="35" y="65" text-anchor="end" class="axis-label">75</text>
+                <text x="35" y="120" text-anchor="end" class="axis-label">50</text>
+                <text x="35" y="175" text-anchor="end" class="axis-label">25</text>
+                <text x="35" y="220" text-anchor="end" class="axis-label">0</text>
+
+                <!-- Grid lines -->
+                <line x1="40" y1="0" x2="480" y2="0" class="grid-line"></line>
+                <line x1="40" y1="55" x2="480" y2="55" class="grid-line"></line>
+                <line x1="40" y1="110" x2="480" y2="110" class="grid-line"></line>
+                <line x1="40" y1="165" x2="480" y2="165" class="grid-line"></line>
+                <line x1="40" y1="220" x2="480" y2="220" class="grid-line"></line>
+
+                <!-- Data line -->
+                <polyline fill="none" stroke="#0176D3" stroke-width="2.5"
+                          stroke-linejoin="round" stroke-linecap="round"
+                          points={linePoints}></polyline>
+
+                <!-- Data points and month labels -->
+                <template for:each={dataPoints} for:item="point">
+                    <g key={point.key} class="data-point-group"
+                       data-index={point.index}
+                       onmouseenter={handlePointHover}
+                       onmouseleave={handlePointLeave}>
+                        <!-- Invisible larger hit area for easier hovering -->
+                        <circle cx={point.x} cy={point.y} r="12" fill="transparent" class="hit-area"></circle>
+                        <circle cx={point.x} cy={point.y} r="4" fill="#0176D3" class="data-dot"></circle>
+                        <circle cx={point.x} cy={point.y} r="6" fill="#0176D3" opacity="0.2" class="data-dot-halo"></circle>
+                        <text x={point.x} y="237" text-anchor="middle" class="month-label">{point.monthLabel}</text>
+                    </g>
+                </template>
+
+                <!-- Custom styled tooltip -->
+                <g lwc:if={showTooltip}>
+                    <rect x={tooltipX} y={tooltipY} width="0" height="0"
+                          class="tooltip-anchor"></rect>
+                    <text x={tooltipX} y={tooltipY} text-anchor="middle"
+                          class="tooltip-text">{tooltipText}</text>
+                </g>
+            </svg>
+        </div>
+    </div>
+</template>

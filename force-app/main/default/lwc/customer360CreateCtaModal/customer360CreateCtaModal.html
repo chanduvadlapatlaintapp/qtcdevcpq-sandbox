@@ -1,0 +1,60 @@
+<template>
+    <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open c360-modal">
+        <div class="slds-modal__container">
+            <!-- Header -->
+            <div class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={handleCancel}>
+                    <lightning-icon icon-name="utility:close" alternative-text="Close" size="small"
+                                   variant="inverse"></lightning-icon>
+                </button>
+                <h2 class="slds-modal__title slds-hyphenate">{modalTitle}</h2>
+            </div>
+
+            <!-- Body -->
+            <div class="slds-modal__content slds-p-around_medium">
+                <div class="slds-form">
+                    <lightning-combobox
+                        label="CTA Type"
+                        value={ctaType}
+                        options={ctaTypeOptions}
+                        onchange={handleTypeChange}
+                        class="slds-m-bottom_small"
+                        required></lightning-combobox>
+
+                    <lightning-combobox
+                        label="Priority"
+                        value={priority}
+                        options={priorityOptions}
+                        onchange={handlePriorityChange}
+                        class="slds-m-bottom_small"></lightning-combobox>
+
+                    <lightning-textarea
+                        label="Description"
+                        value={description}
+                        onchange={handleDescriptionChange}
+                        class="slds-m-bottom_small"
+                        placeholder="Describe the call-to-action..."
+                        max-length="32000"></lightning-textarea>
+
+                    <lightning-input
+                        type="date"
+                        label="Due Date"
+                        value={dueDate}
+                        onchange={handleDueDateChange}
+                        class="slds-m-bottom_small"
+                        required></lightning-input>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="slds-modal__footer">
+                <lightning-button label="Cancel" onclick={handleCancel}
+                                 class="slds-m-right_small"></lightning-button>
+                <lightning-button label="Create CTA" variant="brand"
+                                 onclick={handleSave} disabled={isSaveDisabled}></lightning-button>
+            </div>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>

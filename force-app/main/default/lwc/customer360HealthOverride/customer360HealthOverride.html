@@ -1,0 +1,53 @@
+<template>
+    <div class="health-override">
+        <h3 class="health-override__title">Manual Override</h3>
+        <p class="health-override__desc">Override the automated health score when you have context not captured by system metrics.</p>
+
+        <div class="health-override__form">
+            <div class="health-override__score-input">
+                <label class="health-override__label">Override Score</label>
+                <div class="health-override__slider-row">
+                    <input type="range" min="0" max="100" value={overrideScore}
+                           class="health-override__slider" oninput={handleSliderChange}/>
+                    <span class="health-override__score-display" style={scoreDisplayStyle}>{overrideScore}</span>
+                </div>
+                <div class="health-override__comparison">
+                    <span>Current: <strong>{currentScore}</strong></span>
+                    <span>&#8594;</span>
+                    <span>Override: <strong style={overrideScoreStyle}>{overrideScore}</strong></span>
+                </div>
+            </div>
+
+            <div class="health-override__comment">
+                <label class="health-override__label">Reason for Override</label>
+                <textarea class="health-override__textarea" rows="3"
+                          placeholder="Explain why the health score should be overridden..."
+                          value={overrideComment} onchange={handleCommentChange}></textarea>
+            </div>
+
+            <button class="health-override__submit" onclick={handleSubmit}
+                    disabled={isSubmitDisabled}>
+                Apply Override
+            </button>
+        </div>
+
+        <!-- Override History -->
+        <template lwc:if={hasHistory}>
+            <div class="health-override__history">
+                <h4 class="health-override__history-title">Override History</h4>
+                <template for:each={historyEntries} for:item="entry">
+                    <div key={entry.date} class="history-entry">
+                        <div class="history-entry__header">
+                            <span class="history-entry__user">{entry.user}</span>
+                            <span class="history-entry__date">{entry.formattedDate}</span>
+                        </div>
+                        <div class="history-entry__score">
+                            Score set to <strong style={entry.scoreStyle}>{entry.score}</strong>
+                        </div>
+                        <p class="history-entry__comment">{entry.comment}</p>
+                    </div>
+                </template>
+            </div>
+        </template>
+    </div>
+</template>

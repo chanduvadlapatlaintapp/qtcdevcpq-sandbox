@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Quote Accelerator</masterLabel>
+    <description>CPQ Quote Comparison UI - Displays proposed multi-year deal pricing with current entitlements</description>
+    <targets>
+        <target>lightning__RecordPage</target>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+        <target>lightning__FlowScreen</target>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <objects>
+                <object>SBQQ__Quote__c</object>
+                <object>Opportunity</object>
+            </objects>
+            <property name="quoteId" type="String" label="Quote ID" description="The Salesforce Quote record ID"/>
+        </targetConfig>
+        <targetConfig targets="lightning__AppPage,lightning__HomePage">
+            <property name="quoteId" type="String" label="Quote ID" description="The Salesforce Quote record ID"/>
+        </targetConfig>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="quoteId" type="String" label="Quote ID" description="The Salesforce Quote record ID" role="inputOnly"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

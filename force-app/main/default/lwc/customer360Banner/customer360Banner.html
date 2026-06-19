@@ -1,0 +1,76 @@
+<template>
+    <div class="banner">
+        <!-- Top Row: Back Button + Actions -->
+        <div class="banner__top">
+            <button class="banner__back" onclick={handleBack}>
+                <lightning-icon icon-name="utility:back" size="x-small"></lightning-icon>
+                <span>Back to Portfolio</span>
+            </button>
+            <div class="banner__actions">
+                <button class="banner__action-btn banner__action-btn--primary" onclick={handleLogActivity}>
+                    <lightning-icon icon-name="utility:log_a_call" size="xx-small"></lightning-icon>
+                    Log Activity
+                </button>
+                <button class="banner__action-btn" onclick={handleCreateCta}>
+                    <lightning-icon icon-name="utility:add" size="xx-small"></lightning-icon>
+                    Create CTA
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Banner Content -->
+        <div class="banner__content">
+            <!-- Left: Account Info -->
+            <div class="banner__info">
+                <div class="banner__avatar">
+                    <span class="banner__avatar-text">{initials}</span>
+                </div>
+                <div class="banner__details">
+                    <h1 class="banner__name">{account.name}</h1>
+                    <div class="banner__badges">
+                        <c-customer360-badge label={account.industry} variant="info"></c-customer360-badge>
+                        <c-customer360-badge label={account.segment} variant={segmentVariant}></c-customer360-badge>
+                        <c-customer360-badge label={riskLabel} variant={riskVariant}></c-customer360-badge>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center: Health Ring -->
+            <div class="banner__health">
+                <c-customer360-health-ring score={account.healthScore} size="large"></c-customer360-health-ring>
+                <div class="banner__health-meta">
+                    <span class="banner__health-label">Health Score</span>
+                    <span class={trendClass}>
+                        <lightning-icon lwc:if={isTrendUp} icon-name="utility:arrowup" size="xx-small"></lightning-icon>
+                        <lightning-icon lwc:if={isTrendDown} icon-name="utility:arrowdown" size="xx-small"></lightning-icon>
+                        {trendLabel}
+                    </span>
+                </div>
+            </div>
+
+            <!-- Right: Stat Pills -->
+            <div class="banner__stats">
+                <div class="banner__stat">
+                    <span class="banner__stat-value">{formattedArr}</span>
+                    <span class="banner__stat-label">ARR</span>
+                </div>
+                <div class="banner__stat">
+                    <span class="banner__stat-value">{account.nps}</span>
+                    <span class="banner__stat-label">NPS</span>
+                </div>
+                <div class="banner__stat">
+                    <span class="banner__stat-value">{account.openCtas}</span>
+                    <span class="banner__stat-label">Open CTAs</span>
+                </div>
+                <div class="banner__stat">
+                    <span class="banner__stat-value">{productCount}</span>
+                    <span class="banner__stat-label">Products</span>
+                </div>
+                <div class="banner__stat">
+                    <span class={contactClass}>{account.daysSinceContact}d</span>
+                    <span class="banner__stat-label">Last Contact</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

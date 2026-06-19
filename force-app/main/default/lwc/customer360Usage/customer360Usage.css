@@ -1,0 +1,679 @@
+:host {
+    display: block;
+}
+
+.c360-usage {
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* ─── Header ─────────────────────────────────────────────────────────────── */
+.c360-usage__header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.c360-usage__title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.c360-usage__title-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.c360-usage__icon-box {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #207CEC, #22ECCF);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.c360-usage__title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1C2B40;
+    margin: 0;
+}
+
+.c360-usage__source-badge {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: #F3EDFF;
+    color: #8b5cf6;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.c360-usage__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.c360-usage__mock-badge {
+    background: #EEF2FF;
+    color: #6366F1;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ─── Breadcrumbs ────────────────────────────────────────────────────────── */
+.c360-usage__breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #fafbfc;
+    font-size: 12px;
+}
+
+.c360-usage__crumb-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.c360-usage__crumb-link {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #207CEC;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.c360-usage__crumb-link:hover {
+    text-decoration: underline;
+}
+
+.c360-usage__crumb-sep {
+    color: #94a3b8;
+    font-size: 10px;
+}
+
+.c360-usage__crumb-current {
+    color: #1C2B40;
+    font-weight: 600;
+}
+
+/* ─── KPI Cards ──────────────────────────────────────────────────────────── */
+.c360-usage__kpis {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.c360-usage__kpis--4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.c360-usage__kpi {
+    background: #f8fafc;
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.c360-usage__kpi-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1C2B40;
+}
+
+.c360-usage__kpi-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+/* ─── Rating Panel ───────────────────────────────────────────────────────── */
+.c360-usage__rating-panel {
+    padding: 20px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.c360-usage__rating-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.c360-usage__rating-score {
+    font-size: 36px;
+    font-weight: 800;
+    color: #1C2B40;
+}
+
+.c360-usage__rating-factors {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.c360-usage__factor-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.c360-usage__factor-info {
+    width: 180px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.c360-usage__factor-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #1C2B40;
+}
+
+.c360-usage__factor-weight {
+    font-size: 10px;
+    font-weight: 600;
+    color: #94a3b8;
+}
+
+.c360-usage__factor-bar-track {
+    flex: 1;
+    height: 8px;
+    background: #f1f5f9;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.c360-usage__factor-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s;
+}
+
+.c360-usage__factor-value {
+    width: 30px;
+    text-align: right;
+    font-size: 12px;
+    font-weight: 700;
+    color: #1C2B40;
+}
+
+/* ─── Two-Column Layout ──────────────────────────────────────────────────── */
+.c360-usage__two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 20px;
+}
+
+/* ─── Panel / Card ───────────────────────────────────────────────────────── */
+.c360-usage__panel {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px;
+    background: #ffffff;
+}
+
+.c360-usage__panel-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    padding: 0 20px;
+}
+
+.c360-usage__panel .c360-usage__panel-title {
+    padding: 0;
+}
+
+/* ─── Channel Logins Grid ────────────────────────────────────────────────── */
+.c360-usage__channel-grid {
+    display: flex;
+    flex-direction: column;
+}
+
+.c360-usage__channel-header,
+.c360-usage__channel-row {
+    display: grid;
+    grid-template-columns: 1fr 80px 80px;
+    padding: 6px 0;
+}
+
+.c360-usage__channel-header {
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.c360-usage__channel-header span {
+    font-size: 10px;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+}
+
+.c360-usage__channel-row {
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 12px;
+    color: #1C2B40;
+}
+
+.c360-usage__channel-row span:nth-child(2),
+.c360-usage__channel-row span:nth-child(3),
+.c360-usage__channel-header span:nth-child(2),
+.c360-usage__channel-header span:nth-child(3) {
+    text-align: right;
+}
+
+/* ─── Persona Adoption ───────────────────────────────────────────────────── */
+.c360-usage__persona-row {
+    margin-bottom: 8px;
+}
+
+.c360-usage__persona-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.c360-usage__persona-name {
+    font-size: 12px;
+    color: #1C2B40;
+}
+
+.c360-usage__persona-pct {
+    font-size: 12px;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.c360-usage__persona-bar-track {
+    height: 6px;
+    background: #f1f5f9;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.c360-usage__persona-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.3s;
+}
+
+/* ─── Client Site List ──────────────────────────────────────────────────── */
+.c360-usage__site-list {
+    padding: 0 20px 20px;
+}
+
+.c360-usage__site-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.12s;
+}
+
+.c360-usage__site-card:hover {
+    background: #f8fafc;
+    border-color: #207CEC;
+}
+
+.c360-usage__site-card-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.c360-usage__site-url {
+    font-size: 13px;
+    font-weight: 600;
+    color: #207CEC;
+}
+
+.c360-usage__site-card-stats {
+    display: flex;
+    gap: 16px;
+    font-size: 12px;
+    color: #64748b;
+}
+
+.c360-usage__card-arrow {
+    font-size: 16px;
+    color: #94a3b8;
+    font-weight: 700;
+}
+
+/* ─── Config Pills ───────────────────────────────────────────────────────── */
+.c360-usage__config-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 20px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.c360-usage__config-pill {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.c360-usage__config-pill[data-green="true"] {
+    background: #ecfdf5;
+    color: #10b981;
+}
+
+/* ─── Platform Metrics ───────────────────────────────────────────────────── */
+.c360-usage__platform-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding: 16px 20px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.c360-usage__platform-metric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 8px;
+    background: #f8fafc;
+    border-radius: 8px;
+}
+
+.c360-usage__platform-metric-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1C2B40;
+}
+
+.c360-usage__platform-metric-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: #94a3b8;
+    text-transform: uppercase;
+}
+
+/* ─── Users Grid ─────────────────────────────────────────────────────────── */
+.c360-usage__users-section {
+    padding: 20px;
+}
+
+.c360-usage__users-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 60px 60px 60px 60px 70px;
+    align-items: center;
+    padding: 8px 12px;
+    min-width: 560px;
+}
+
+.c360-usage__users-grid-header {
+    background: #f8fafc;
+    border-radius: 6px;
+    margin-bottom: 4px;
+}
+
+.c360-usage__users-grid-header span {
+    font-size: 10px;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+}
+
+.c360-usage__users-grid-row {
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 12px;
+    color: #1C2B40;
+    cursor: pointer;
+    transition: background 0.12s;
+}
+
+.c360-usage__users-grid-row:hover {
+    background: #f8fafc;
+}
+
+.c360-usage__user-name {
+    font-weight: 600;
+}
+
+.c360-usage__user-email {
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 11px;
+    color: #64748b;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.c360-usage__user-active {
+    color: #10b981;
+    font-weight: 600;
+    font-size: 11px;
+}
+
+.c360-usage__user-inactive {
+    color: #94a3b8;
+    font-size: 11px;
+}
+
+/* ─── User Detail View ───────────────────────────────────────────────────── */
+.c360-usage__user-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.c360-usage__avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #207CEC, #22ECCF);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+
+.c360-usage__user-header-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.c360-usage__user-header-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1C2B40;
+}
+
+.c360-usage__user-header-email {
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 12px;
+    color: #64748b;
+}
+
+.c360-usage__user-header-badges {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.c360-usage__user-status-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 20px;
+    background: #94a3b815;
+    color: #94a3b8;
+}
+
+.c360-usage__user-status-badge[data-active="true"] {
+    background: #10b98115;
+    color: #10b981;
+}
+
+.c360-usage__user-group-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 20px;
+    background: #207CEC15;
+    color: #207CEC;
+}
+
+/* ─── Bar Chart (user logins) ────────────────────────────────────────────── */
+.c360-usage__bar-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.c360-usage__bar-label {
+    width: 80px;
+    font-size: 11px;
+    color: #64748b;
+    flex-shrink: 0;
+}
+
+.c360-usage__bar-track {
+    flex: 1;
+    height: 10px;
+    background: #f1f5f9;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.c360-usage__bar-fill {
+    height: 100%;
+    border-radius: 5px;
+    min-width: 2px;
+    transition: width 0.3s;
+}
+
+.c360-usage__bar-count {
+    width: 30px;
+    text-align: right;
+    font-size: 11px;
+    font-weight: 600;
+    color: #1C2B40;
+}
+
+/* ─── Activity Metadata ──────────────────────────────────────────────────── */
+.c360-usage__meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.c360-usage__meta-label {
+    font-size: 11px;
+    color: #64748b;
+}
+
+.c360-usage__meta-value {
+    font-size: 12px;
+    font-weight: 600;
+    color: #1C2B40;
+    text-align: right;
+}
+
+/* ─── Persona Pills (user detail) ────────────────────────────────────────── */
+.c360-usage__persona-pills-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.c360-usage__persona-pill {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: #f1f5f9;
+    color: #94a3b8;
+}
+
+.c360-usage__persona-pill--adopted {
+    background: #ecfdf5;
+    color: #10b981;
+}
+
+/* ─── States ─────────────────────────────────────────────────────────────── */
+.c360-usage__loading {
+    padding: 48px;
+    display: flex;
+    justify-content: center;
+}
+
+.c360-usage__error {
+    padding: 12px 20px;
+    background: #FEF2F2;
+    color: #DC2626;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .c360-usage__kpis {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .c360-usage__kpis--4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .c360-usage__two-col {
+        grid-template-columns: 1fr;
+    }
+    .c360-usage__platform-metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .c360-usage__factor-info {
+        width: 130px;
+    }
+    .c360-usage__site-card-stats {
+        display: none;
+    }
+}

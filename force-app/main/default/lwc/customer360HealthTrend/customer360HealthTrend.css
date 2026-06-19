@@ -1,0 +1,72 @@
+/* ─── Health Trend Container ──────────────────────────────────────────────── */
+
+.health-trend {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.health-trend__title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    color: #181818;
+}
+
+/* ─── Chart ───────────────────────────────────────────────────────────────── */
+
+.health-trend__chart {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* ─── SVG Labels & Grid ───────────────────────────────────────────────────── */
+
+.axis-label {
+    fill: #706E6B;
+    font-size: 10px;
+}
+
+.grid-line {
+    stroke: #E5E5E5;
+    stroke-width: 0.5;
+}
+
+.month-label {
+    fill: #706E6B;
+    font-size: 9px;
+}
+
+/* ─── Data Point Interactivity ───────────────────────────────────────────── */
+
+.data-point-group {
+    cursor: pointer;
+}
+
+.hit-area {
+    cursor: pointer;
+}
+
+.data-dot {
+    transition: r 0.15s ease;
+}
+
+.data-point-group:hover .data-dot {
+    r: 6;
+}
+
+.data-point-group:hover .data-dot-halo {
+    opacity: 0.35;
+    r: 10;
+}
+
+/* ─── Custom Tooltip ─────────────────────────────────────────────────────── */
+
+.tooltip-text {
+    fill: #181818;
+    font-size: 11px;
+    font-weight: 600;
+    background: white;
+    pointer-events: none;
+}

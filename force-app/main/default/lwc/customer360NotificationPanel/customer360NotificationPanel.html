@@ -1,0 +1,46 @@
+<template>
+    <div class="notif-panel">
+        <!-- Header -->
+        <div class="notif-panel__header">
+            <h3 class="notif-panel__title">Notifications ({alertCount})</h3>
+            <button class="notif-panel__close" onclick={handleClose} title="Close">
+                <lightning-icon icon-name="utility:close" size="xx-small"
+                               alternative-text="Close"></lightning-icon>
+            </button>
+        </div>
+
+        <!-- Alert List -->
+        <div class="notif-panel__body">
+            <template lwc:if={hasAlerts}>
+                <template for:each={activeAlerts} for:item="alert">
+                    <div key={alert.key} class="notif-panel__item"
+                         data-alert-id={alert.id} onclick={handleAlertClick}>
+                        <div class="notif-panel__item-icon">
+                            <lightning-icon icon-name={alert.iconName} size="xx-small"
+                                           variant={alert.iconVariant}></lightning-icon>
+                        </div>
+                        <div class="notif-panel__item-content">
+                            <p class="notif-panel__item-message">{alert.message}</p>
+                            <div class="notif-panel__item-meta">
+                                <span class="notif-panel__item-account">{alert.accountName}</span>
+                                <span class="notif-panel__item-date">{alert.formattedDate}</span>
+                            </div>
+                        </div>
+                        <button class="notif-panel__item-dismiss"
+                                data-alert-id={alert.id} onclick={handleDismiss}
+                                title="Dismiss">
+                            <lightning-icon icon-name="utility:close" size="xx-small"
+                                           alternative-text="Dismiss"></lightning-icon>
+                        </button>
+                    </div>
+                </template>
+            </template>
+            <template lwc:else>
+                <div class="notif-panel__empty">
+                    <lightning-icon icon-name="utility:check" size="small"></lightning-icon>
+                    <p>All caught up! No new notifications.</p>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

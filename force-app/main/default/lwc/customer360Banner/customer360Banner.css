@@ -1,0 +1,186 @@
+/* ─── Banner Container ────────────────────────────────────────────────────── */
+
+.banner {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 20px 24px;
+    margin-bottom: 0;
+}
+
+/* ─── Top Row: Back Button + Actions ─────────────────────────────────────── */
+
+.banner__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.banner__back {
+    background: none;
+    border: none;
+    color: #0176D3;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.banner__back:hover {
+    text-decoration: underline;
+}
+
+.banner__actions {
+    display: flex;
+    gap: 8px;
+}
+
+.banner__action-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid #E5E5E5;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.15s;
+}
+
+.banner__action-btn:hover {
+    background: #F7F9FB;
+}
+
+.banner__action-btn--primary {
+    background: #0176D3;
+    color: white;
+    border-color: #0176D3;
+}
+
+.banner__action-btn--primary:hover {
+    background: #014486;
+}
+
+/* ─── Main Banner Content ────────────────────────────────────────────────── */
+
+.banner__content {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+/* ─── Account Info (Left) ────────────────────────────────────────────────── */
+
+.banner__info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+}
+
+.banner__avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #1B2A4A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner__avatar-text {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.banner__name {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #181818;
+}
+
+.banner__badges {
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+}
+
+/* ─── Health Ring (Center) ───────────────────────────────────────────────── */
+
+.banner__health {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.banner__health-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.banner__health-label {
+    font-size: 0.75rem;
+    color: #706E6B;
+}
+
+.banner__trend {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.banner__trend--up {
+    color: #04844B;
+}
+
+.banner__trend--down {
+    color: #EA001E;
+}
+
+.banner__trend--stable {
+    color: #706E6B;
+}
+
+/* ─── Stat Pills (Right) ────────────────────────────────────────────────── */
+
+.banner__stats {
+    display: flex;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+.banner__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.banner__stat-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #181818;
+}
+
+.banner__stat-value--overdue {
+    color: #EA001E;
+}
+
+.banner__stat-label {
+    font-size: 0.7rem;
+    color: #706E6B;
+    text-transform: uppercase;
+}

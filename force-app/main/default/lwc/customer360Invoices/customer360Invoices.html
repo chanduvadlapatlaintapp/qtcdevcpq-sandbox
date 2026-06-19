@@ -1,0 +1,123 @@
+<template>
+    <div class="c360-inv">
+        <!-- Header -->
+        <div class="c360-inv__header">
+            <div class="c360-inv__title-row">
+                <div class="c360-inv__title-left">
+                    <div class="c360-inv__icon-box">
+                        <lightning-icon icon-name="utility:receipt" size="x-small" variant="inverse"></lightning-icon>
+                    </div>
+                    <h2 class="c360-inv__title">Invoices &amp; Billing</h2>
+                    <span class="c360-inv__source-badge">{sourceBadge.label}</span>
+                    <span class="c360-inv__count">{recordCount}</span>
+                </div>
+                <div class="c360-inv__actions">
+                    <template lwc:if={isMockData}>
+                        <span class="c360-inv__mock-badge">Demo Data</span>
+                    </template>
+                    <button class="c360-inv__export-btn" onclick={handleExportCsv} title="Export CSV">
+                        Export CSV
+                    </button>
+                    <lightning-button-icon
+                        icon-name="utility:refresh"
+                        alternative-text="Refresh"
+                        variant="border-filled"
+                        onclick={handleRefresh}></lightning-button-icon>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <template lwc:if={hasData}>
+            <div class="c360-inv__filters">
+                <lightning-combobox
+                    label="Status"
+                    value={_filterStatus}
+                    options={statusOptions}
+                    variant="label-hidden"
+                    onchange={handleStatusFilter}
+                    class="c360-inv__filter-combo"
+                ></lightning-combobox>
+                <template lwc:if={hasActiveFilter}>
+                    <button class="c360-inv__clear-btn" onclick={handleClearFilter}>Clear</button>
+                </template>
+            </div>
+        </template>
+
+        <!-- Loading -->
+        <template lwc:if={isLoading}>
+            <div class="c360-inv__loading">
+                <lightning-spinner alternative-text="Loading..." size="small"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Grid Table -->
+        <template lwc:if={hasData}>
+            <div class="c360-inv__table-wrap">
+                <!-- Header -->
+                <div class="c360-inv__grid c360-inv__grid-header">
+                    <span>INVOICE #</span>
+                    <span>DATE</span>
+                    <span>DUE DATE</span>
+                    <span>AMOUNT</span>
+                    <span>STATUS</span>
+                    <span>PAYMENT DATE</span>
+                </div>
+                <!-- Rows -->
+                <template for:each={displayData} for:item="inv">
+                    <div key={inv.id} class="c360-inv__grid c360-inv__grid-row">
+                        <span class="c360-inv__cell-number">{inv.invoiceNumber}</span>
+                        <span class="c360-inv__cell-date">{inv.dateFormatted}</span>
+                        <span class="c360-inv__cell-date">{inv.dueDateFormatted}</span>
+                        <span class="c360-inv__cell-amount">{inv.amountFormatted}</span>
+                        <span>
+                            <span class="c360-inv__status-pill" style={inv.statusPillStyle}>{inv.status}</span>
+                        </span>
+                        <span class="c360-inv__cell-date c360-inv__cell-muted">{inv.paymentDateFormatted}</span>
+                    </div>
+                </template>
+                <!-- Summary Row -->
+                <div class="c360-inv__grid c360-inv__grid-summary">
+                    <span class="c360-inv__summary-label">TOTALS</span>
+                    <span></span>
+                    <span></span>
+                    <span class="c360-inv__cell-amount c360-inv__summary-amount">{summaryTotalBilled}</span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <!-- 3 Summary Cards -->
+            <div class="c360-inv__summary-cards">
+                <div class="c360-inv__summary-card c360-inv__summary-card--navy">
+                    <span class="c360-inv__summary-card-value">{totalBilled}</span>
+                    <span class="c360-inv__summary-card-label">Total Billed</span>
+                </div>
+                <div class="c360-inv__summary-card c360-inv__summary-card--green">
+                    <span class="c360-inv__summary-card-value">{totalPaid}</span>
+                    <span class="c360-inv__summary-card-label">Total Paid</span>
+                </div>
+                <div class={outstandingCardClass}>
+                    <span class="c360-inv__summary-card-value">{totalOutstanding}</span>
+                    <span class="c360-inv__summary-card-label">Outstanding</span>
+                </div>
+            </div>
+        </template>
+
+        <!-- Empty State -->
+        <template lwc:if={showEmpty}>
+            <c-customer360-empty-state
+                title="No Invoices"
+                message="No invoice records found for this account."
+                icon="utility:money"></c-customer360-empty-state>
+        </template>
+
+        <!-- Error -->
+        <template lwc:if={errorMessage}>
+            <div class="c360-inv__error">
+                <lightning-icon icon-name="utility:error" variant="error" size="small"></lightning-icon>
+                <span>{errorMessage}</span>
+            </div>
+        </template>
+    </div>
+</template>

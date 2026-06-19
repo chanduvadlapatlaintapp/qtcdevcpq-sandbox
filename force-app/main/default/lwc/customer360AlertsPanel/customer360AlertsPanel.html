@@ -1,0 +1,35 @@
+<template>
+    <div class="alerts-panel">
+        <div class="alerts-panel__header">
+            <h3 class="alerts-panel__title">
+                <lightning-icon icon-name="utility:notification" size="x-small"></lightning-icon>
+                Alerts
+            </h3>
+            <span class="alerts-panel__count">{activeAlertCount}</span>
+        </div>
+        <div class="alerts-panel__list">
+            <template lwc:if={hasAlerts}>
+                <template for:each={visibleAlerts} for:item="alert">
+                    <div key={alert.id} class="alert-card" style={alert.cardStyle}
+                         onclick={handleAlertClick} data-account-id={alert.accountId}>
+                        <div class="alert-card__header">
+                            <lightning-icon icon-name={alert.icon} size="xx-small"
+                                          style={alert.iconStyle}></lightning-icon>
+                            <span class="alert-card__type" style={alert.typeStyle}>{alert.label}</span>
+                            <button class="alert-card__dismiss" onclick={handleDismiss}
+                                    data-alert-id={alert.id}>
+                                <lightning-icon icon-name="utility:close" size="xx-small"></lightning-icon>
+                            </button>
+                        </div>
+                        <p class="alert-card__title">{alert.title}</p>
+                        <p class="alert-card__desc">{alert.description}</p>
+                        <span class="alert-card__time">{alert.relativeTime}</span>
+                    </div>
+                </template>
+            </template>
+            <c-customer360-empty-state lwc:if={noAlerts}
+                title="All Clear" message="No active alerts"
+                icon="utility:check"></c-customer360-empty-state>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,116 @@
+<template>
+    <div class="chat-panel">
+        <!-- Header -->
+        <div class="panel-header">
+            <div class="header-brand">
+                <div class="brand-icon">
+                    <lightning-icon icon-name="utility:einstein" size="xx-small"></lightning-icon>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">QTC Assistant</span>
+                    <span class="brand-status">AI-powered</span>
+                </div>
+            </div>
+            <lightning-button-icon
+                icon-name="utility:refresh"
+                onclick={handleClearChat}
+                variant="bare"
+                size="small"
+                alternative-text="New conversation"
+                title="New conversation">
+            </lightning-button-icon>
+        </div>
+
+        <!-- Messages -->
+        <div class="messages-scroll" lwc:ref="chatMessages">
+            <template if:false={hasMessages}>
+                <div class="empty-state">
+                    <div class="empty-icon-ring">
+                        <lightning-icon icon-name="utility:einstein" size="medium"></lightning-icon>
+                    </div>
+                    <h3 class="empty-title">How can I help you today?</h3>
+                    <p class="empty-desc">I can search accounts, set up amendments, add products, apply discounts, and generate documents.</p>
+                    <div class="suggestions">
+                        <button class="suggestion-chip" onclick={handleQuickAction} data-action="Set up an amendment for Baker McKenzie contract CONT-050314, add 5 seats of DealCloud Mobile License with 50% discount">
+                            <lightning-icon icon-name="utility:contract" size="xx-small"></lightning-icon>
+                            <span>Amend Baker McKenzie</span>
+                        </button>
+                        <button class="suggestion-chip" onclick={handleQuickAction} data-action="Search for Clifford Chance and show me their active contracts">
+                            <lightning-icon icon-name="utility:search" size="xx-small"></lightning-icon>
+                            <span>Find Clifford Chance</span>
+                        </button>
+                        <button class="suggestion-chip" onclick={handleQuickAction} data-action="What can you help me with?">
+                            <lightning-icon icon-name="utility:question" size="xx-small"></lightning-icon>
+                            <span>What can you do?</span>
+                        </button>
+                    </div>
+                </div>
+            </template>
+
+            <template if:true={hasMessages}>
+                <template for:each={messages} for:item="msg">
+                    <div key={msg.id} class={msg.containerClass}>
+                        <template if:false={msg.isUser}>
+                            <div class="avatar ai-avatar">
+                                <lightning-icon icon-name="utility:einstein" size="xx-small"></lightning-icon>
+                            </div>
+                        </template>
+                        <div class={msg.bubbleClass}>
+                            <template if:true={msg.isUser}>
+                                <div class="msg-text">{msg.text}</div>
+                            </template>
+                            <template if:false={msg.isUser}>
+                                <lightning-formatted-rich-text value={msg.formattedText} class="ai-text"></lightning-formatted-rich-text>
+                                <template if:true={msg.hasToolCalls}>
+                                    <div class="tools-strip">
+                                        <template for:each={msg.toolCalls} for:item="tc">
+                                            <span key={tc.name} class="tool-chip">
+                                                <lightning-icon icon-name={tc.icon} size="xx-small"></lightning-icon>
+                                                {tc.label}
+                                            </span>
+                                        </template>
+                                    </div>
+                                </template>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+            </template>
+
+            <template if:true={isThinking}>
+                <div class="message-row ai-row">
+                    <div class="avatar ai-avatar">
+                        <lightning-icon icon-name="utility:einstein" size="xx-small"></lightning-icon>
+                    </div>
+                    <div class="bubble ai-bubble thinking-bubble">
+                        <div class="thinking-content">
+                            <div class="dot-pulse"><span></span><span></span><span></span></div>
+                            <span class="thinking-label">{thinkingStatus}</span>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+
+        <!-- Input -->
+        <div class="input-dock">
+            <div class="composer">
+                <textarea
+                    class="composer-input"
+                    placeholder="Describe what you need — e.g. 'Amend Baker McKenzie, add 5 DealCloud seats at 50% off'"
+                    value={inputText}
+                    onkeydown={handleKeyDown}
+                    oninput={handleInput}
+                    lwc:ref="chatInput"
+                    rows="3">
+                </textarea>
+                <div class="composer-footer">
+                    <span class="composer-hint">Enter to send, Shift+Enter for new line</span>
+                    <button class="send-button" onclick={handleSend} disabled={isSendDisabled} title="Send message">
+                        <lightning-icon icon-name="utility:send" size="xx-small"></lightning-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

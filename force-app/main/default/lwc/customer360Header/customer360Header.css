@@ -1,0 +1,123 @@
+/* ─── Header Container ────────────────────────────────────────────────────── */
+
+.c360-header {
+    background: #1B2A4A;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+}
+
+/* ─── Left Section — Logo & Title ─────────────────────────────────────────── */
+
+.c360-header__left {
+    display: flex;
+    align-items: center;
+}
+
+.c360-header__logo-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+}
+
+.c360-header__logo-icon {
+    --sds-c-icon-color-background: transparent;
+}
+
+.c360-header__title {
+    color: #FFFFFF;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* ─── Right Section — User, Date, Bell ────────────────────────────────────── */
+
+.c360-header__right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.c360-header__user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.c360-header__user-name {
+    color: #FFFFFF;
+    font-size: 0.875rem;
+}
+
+.c360-header__date {
+    color: #FFFFFF;
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+/* ─── Info Button ─────────────────────────────────────────────────────────── */
+
+.c360-header__info-btn {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.c360-header__info-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.info-icon {
+    --sds-c-icon-color-foreground-default: #FFFFFF;
+}
+
+/* ─── Notification Bell ───────────────────────────────────────────────────── */
+
+.c360-header__bell {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.bell-icon {
+    --sds-c-icon-color-foreground-default: #FFFFFF;
+}
+
+.c360-header__badge {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    background: #EA001E;
+    color: #FFFFFF;
+    border-radius: 50%;
+    min-width: 18px;
+    height: 18px;
+    font-size: 0.65rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+/* ─── Icon Color Overrides ────────────────────────────────────────────────── */
+
+:host {
+    --sds-c-icon-color-foreground-default: #FFFFFF;
+}

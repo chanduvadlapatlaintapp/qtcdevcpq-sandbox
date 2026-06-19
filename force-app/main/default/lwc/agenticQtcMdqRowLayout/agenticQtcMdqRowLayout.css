@@ -1,0 +1,407 @@
+/* ─── Row-based MDQ layout (Flavor 2) ─── */
+
+:host {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 16px;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.row-card {
+    border: 1px solid var(--color-border, #2a3a4e);
+    border-radius: 8px;
+    overflow: visible;
+    background: var(--color-surface, #1a2332);
+}
+
+.row-card.needs-approval {
+    border-left: 3px solid #f5a623;
+}
+
+/* ─── Product header (collapsible) ─── */
+
+.product-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: var(--color-surface-active, #162029);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+}
+
+.product-header:hover {
+    background: var(--color-surface-hover, #1e2d3d);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chevron-icon {
+    --sds-c-icon-color-foreground-default: var(--color-text-secondary, #7b8fa3);
+    flex-shrink: 0;
+}
+
+.product-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text, #e8ecf0);
+    letter-spacing: 0.2px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.deal-term {
+    font-size: 12px;
+    color: var(--color-text-secondary, #7b8fa3);
+    padding: 3px 10px;
+    background: var(--color-surface-hover, rgba(123, 143, 163, 0.12));
+    border-radius: 12px;
+}
+
+.total-cost {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-success, #58d68d);
+}
+
+/* ─── Table controls (full width, no horizontal scroll) ─── */
+
+.table-wrapper {
+    padding: 0;
+    min-width: 0;
+    width: 100%;
+}
+
+.table-scroll {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: visible;
+    box-sizing: border-box;
+    padding: 0 12px 12px;
+    text-align: left;
+}
+
+.table-controls {
+    padding: 8px 16px;
+    background: var(--color-surface-active, #162029);
+    border-top: 1px solid var(--color-border, #2a3a4e);
+}
+
+.apply-all-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--color-text-secondary, #8b9db5);
+    cursor: pointer;
+}
+
+.apply-all-label input[type="checkbox"] {
+    accent-color: #4a9eff;
+}
+
+/* ─── Period table ─── */
+
+.period-table {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    max-width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 12px;
+    box-sizing: border-box;
+    margin: 0;
+    text-align: left;
+}
+
+.period-table col.colg-period { width: 11%; }
+.period-table col.colg-verified { width: 8%; }
+.period-table col.colg-qty { width: 8%; }
+.period-table col.colg-monthly { width: 15%; }
+.period-table col.colg-net { width: 14%; }
+.period-table col.colg-discount { width: 7%; }
+.period-table col.colg-uplift { width: 8%; }
+.period-table col.colg-acv { width: 14%; }
+.period-table col.colg-acvchg { width: 15%; }
+
+.period-table thead tr {
+    background: var(--color-surface-active, #0f1923);
+}
+
+.period-table th {
+    padding: 10px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text-secondary, #c5d2e3);
+    border-bottom: 1px solid var(--color-border, #2a3a4e);
+    text-align: left;
+    white-space: nowrap;
+    line-height: 1.25;
+    vertical-align: bottom;
+}
+
+.period-table th.col-product {
+    white-space: normal;
+    line-height: 1.2;
+}
+
+.period-table th.col-verified,
+.period-table th.col-qty,
+.period-table th.col-monthly-sale,
+.period-table th.col-net-amend,
+.period-table th.col-discount,
+.period-table th.col-uplift,
+.period-table th.col-acv,
+.period-table th.col-acv-change {
+    text-align: right;
+}
+
+.period-table th.col-product,
+.period-table td.col-product {
+    padding-left: 12px;
+    padding-right: 8px;
+}
+
+.period-table th.col-monthly-sale,
+.period-table td.col-monthly-sale {
+    border-left: 1px solid var(--color-border, rgba(55, 72, 94, 0.65));
+    padding-left: 10px;
+}
+
+.period-table th.col-acv-change,
+.period-table td.col-acv-change {
+    padding-right: 12px;
+}
+
+/* ─── Period rows ─── */
+
+.period-row {
+    border-bottom: 1px solid var(--color-border, #1e2d3d);
+    transition: background 0.1s;
+}
+
+.period-row:nth-child(even) {
+    background: var(--color-surface-hover, #15202d);
+}
+
+.period-row:nth-child(odd) {
+    background: var(--color-surface, #1a2836);
+}
+
+.period-row:hover {
+    background: var(--color-surface-active, #1f3044);
+}
+
+.period-row td {
+    padding: 8px 8px;
+    color: var(--color-text, #c8d4e0);
+    vertical-align: middle;
+    min-width: 0;
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+.period-cell-inner {
+    max-width: 100%;
+    min-width: 0;
+}
+
+.period-label {
+    font-weight: 600;
+    color: var(--color-text, #e8eef4);
+    font-size: 13px;
+    letter-spacing: 0.01em;
+}
+
+.period-sub-label {
+    font-size: 10px;
+    color: var(--color-text-secondary, #7a8fa3);
+    margin-top: 3px;
+    line-height: 1.35;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
+.period-row .col-product { text-align: left; }
+
+.period-row .col-verified,
+.period-row .col-qty,
+.period-row .col-monthly-sale,
+.period-row .col-net-amend,
+.period-row .col-discount,
+.period-row .col-uplift,
+.period-row .col-acv,
+.period-row .col-acv-change {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.verified-qty {
+    color: var(--color-text-secondary, #8b9db5);
+}
+
+/* ─── Editable inputs ─── */
+
+.input-cell {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    min-width: 0;
+    width: 100%;
+}
+
+.editable-input {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 30px;
+    box-sizing: border-box;
+    padding: 6px 8px;
+    background: var(--color-input-bg, #253545);
+    border: 1px solid var(--color-border, #3a4f65);
+    border-radius: 4px;
+    color: var(--color-text, #e0e8f0);
+    font-size: 12px;
+    text-align: right;
+    outline: none;
+    transition: border-color 0.15s;
+    -moz-appearance: textfield;
+    font-variant-numeric: tabular-nums;
+}
+
+.editable-input::-webkit-outer-spin-button,
+.editable-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.editable-input:focus {
+    border-color: #4a9eff;
+    box-shadow: 0 0 0 2px rgba(74, 158, 255, 0.2);
+}
+
+.col-qty .input-cell {
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.col-qty .editable-input {
+    width: 100%;
+    max-width: 100%;
+}
+
+.discount-cell {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    width: 100%;
+    min-width: 0;
+}
+
+.discount-input {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.pct-sign {
+    color: var(--color-text-secondary, #6b7f94);
+    font-size: 12px;
+}
+
+/* ─── Ramp arrows ─── */
+
+.ramp-arrow {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    flex-shrink: 0;
+}
+
+.ramp-arrow.up {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 6px solid var(--color-success, #58d68d);
+}
+
+.ramp-arrow.down {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid var(--color-error, #ef4444);
+}
+
+.ramp-arrow.same {
+    width: 10px;
+    height: 2px;
+    background: var(--color-text-secondary, #6b7f94);
+    border-radius: 1px;
+}
+
+/* ─── Value cells ─── */
+
+.uplift-value {
+    color: var(--color-text-secondary, #8b9db5);
+}
+
+.net-amend-value {
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--color-text, #e0e8f0);
+    line-height: 1.2;
+}
+
+.acv-value {
+    font-weight: 600;
+    color: var(--color-primary, #a8c4e8);
+}
+
+.acv-change-value {
+    font-weight: 600;
+    color: var(--color-text, #c8d4e0);
+    font-size: 11px;
+    line-height: 1.2;
+}
+
+.col-acv .acv-value,
+.col-net-amend .net-amend-value {
+    font-size: 11px;
+    line-height: 1.2;
+}
+
+@media (max-width: 48rem) {
+    .table-scroll {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .period-table th,
+    .period-row td {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+    .period-table th.col-product,
+    .period-table td.col-product {
+        padding-left: 8px;
+    }
+}

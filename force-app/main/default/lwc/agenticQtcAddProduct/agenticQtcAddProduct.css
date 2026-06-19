@@ -1,0 +1,119 @@
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    background: var(--color-surface, white);
+    border-radius: 12px;
+    width: 600px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    color: var(--color-text, #181818);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--color-border, #e5e5e5);
+}
+
+.modal-header h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.modal-body {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.product-search {
+    margin-bottom: 16px;
+}
+
+.product-list {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid var(--color-border, #e5e5e5);
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--color-border, #f0f0f0);
+    transition: background 0.1s;
+}
+
+.product-item:last-child {
+    border-bottom: none;
+}
+
+.product-item:hover {
+    background: var(--color-surface-hover, #f4f6f9);
+}
+
+.product-item[data-selected="true"] {
+    background: var(--color-surface-active, #eef1f6);
+    border-left: 3px solid var(--color-primary, #0176d3);
+}
+
+.product-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text, #181818);
+}
+
+.product-meta {
+    font-size: 12px;
+    color: var(--color-text-secondary, #706e6b);
+}
+
+.product-config {
+    padding: 16px;
+    background: var(--color-surface-hover, #f4f6f9);
+    border-radius: 8px;
+}
+
+.product-config h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.config-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.pricing-note {
+    font-size: 12px;
+    color: var(--color-text-secondary, #706e6b);
+    font-style: italic;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 16px 20px;
+    border-top: 1px solid var(--color-border, #e5e5e5);
+}

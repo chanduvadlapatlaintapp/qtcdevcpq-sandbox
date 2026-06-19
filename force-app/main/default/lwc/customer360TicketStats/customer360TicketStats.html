@@ -1,0 +1,32 @@
+<template>
+    <template lwc:if={hasTickets}>
+        <div class="c360-ts">
+            <div class="c360-ts__grid">
+                <div class="c360-ts__stat">
+                    <span class="c360-ts__stat-value c360-ts__stat-value--poor">{openCount}</span>
+                    <span class="c360-ts__stat-label">Open</span>
+                </div>
+                <div class="c360-ts__stat">
+                    <span class="c360-ts__stat-value c360-ts__stat-value--good">{closedCount}</span>
+                    <span class="c360-ts__stat-label">Resolved</span>
+                </div>
+                <div class="c360-ts__stat">
+                    <span class="c360-ts__stat-value">{avgResolutionDays}</span>
+                    <span class="c360-ts__stat-label">Avg Resolution</span>
+                </div>
+                <div class="c360-ts__stat">
+                    <span class={csatClass}>{avgCsat}</span>
+                    <span class="c360-ts__stat-label">Avg CSAT</span>
+                </div>
+                <div class="c360-ts__stat">
+                    <span class={urgentClass}>{urgentCount}</span>
+                    <span class="c360-ts__stat-label">Urgent/High Open</span>
+                </div>
+                <div class="c360-ts__stat">
+                    <span class="c360-ts__stat-value">{resolutionRate}</span>
+                    <span class="c360-ts__stat-label">Resolution Rate</span>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

@@ -1,0 +1,209 @@
+.mdq-card {
+    background: var(--color-surface, #1e2a3a);
+    border: 1px solid var(--color-border, #2d3e54);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.mdq-card.needs-approval {
+    border-left: 3px solid #fe9339;
+}
+
+/* ── Grid wrapper ── */
+
+.mdq-grid-wrapper {
+    overflow-x: auto;
+}
+
+.mdq-grid {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    table-layout: fixed;
+}
+
+/* ── Header row 1: Term banner ── */
+
+.header-banner .col-product {
+    background: var(--color-surface-active, #0f1926);
+    color: var(--color-text, #fff);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 12px 16px;
+    text-align: left;
+    vertical-align: middle;
+    width: 200px;
+    min-width: 180px;
+}
+
+.col-term-banner {
+    background: var(--color-table-banner-bg, #2a5a9b);
+    color: var(--color-table-banner-text, #fff);
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px 12px;
+    letter-spacing: 0.3px;
+}
+
+/* ── Header row 2: Year group headers ── */
+
+.header-years .col-year-header {
+    background: var(--color-table-year-bg, #1e4a82);
+    color: var(--color-table-banner-text, #fff);
+    text-align: center;
+    padding: 8px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    border-left: 1px solid var(--color-border, rgba(255, 255, 255, 0.15));
+}
+
+.col-year-header .year-name {
+    display: block;
+    font-weight: 700;
+}
+
+.col-year-header .year-date {
+    display: block;
+    font-size: 10px;
+    font-weight: 400;
+    opacity: 0.8;
+    margin-top: 2px;
+}
+
+/* ── Header row 3: Field sub-columns ── */
+
+.header-fields .col-field {
+    background: var(--color-surface-active, #162438);
+    color: var(--color-text-secondary, #8eafd4);
+    text-align: center;
+    padding: 7px 6px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    border-left: 1px solid var(--color-border, #2d3e54);
+    border-bottom: 1px solid var(--color-border, #2d3e54);
+}
+
+/* ── Product data row ── */
+
+.product-row .col-product-name {
+    background: var(--color-surface-hover, #1a2940);
+    padding: 12px 16px;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--color-text, #ffffff);
+    border-bottom: 1px solid var(--color-border, #2d3e54);
+    vertical-align: middle;
+}
+
+.product-label {
+    display: block;
+    line-height: 1.4;
+}
+
+.product-code {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--color-text-secondary, #8eafd4);
+    margin-top: 2px;
+}
+
+.product-row .col-cell {
+    background: var(--color-surface, #1e2a3a);
+    text-align: center;
+    padding: 10px 8px;
+    border-left: 1px solid var(--color-border, #2d3e54);
+    border-bottom: 1px solid var(--color-border, #2d3e54);
+    vertical-align: middle;
+}
+
+.cell-value {
+    font-size: 13px;
+    color: var(--color-text, #e0e8f0);
+}
+
+.col-editable {
+    background: var(--color-surface-hover, #1a2f4a);
+}
+
+.inline-input {
+    max-width: 100px;
+    margin: 0 auto;
+}
+
+/* ── Detail rows (ACV, TCV, Discount %, etc.) ── */
+
+.detail-row .detail-label {
+    background: var(--color-surface-active, #162438);
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-text-secondary, #8eafd4);
+    border-bottom: 1px solid var(--color-border, #1e2a3a);
+    vertical-align: middle;
+}
+
+.detail-row .col-detail-value {
+    background: var(--color-surface-active, #162438);
+    text-align: center;
+    padding: 8px 8px;
+    font-size: 12px;
+    color: var(--color-text-secondary, #c0d4e8);
+    border-left: 1px solid var(--color-border, #1e2a3a);
+    border-bottom: 1px solid var(--color-border, #1e2a3a);
+    vertical-align: middle;
+}
+
+/* ── Summary footer row ── */
+
+.summary-row .col-product-name {
+    background: var(--color-surface-active, #0f1926);
+    padding: 10px 16px;
+    vertical-align: middle;
+}
+
+.total-label {
+    color: var(--color-text, #fff);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.summary-row .col-total {
+    background: var(--color-surface-active, #162438);
+    text-align: center;
+    padding: 10px 8px;
+    border-left: 1px solid var(--color-border, #2d3e54);
+}
+
+.total-value {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-primary, #7eb8f0);
+}
+
+/* ── Toolbar ── */
+
+.table-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 16px;
+    border-top: 1px solid var(--color-border, #2d3e54);
+}
+
+.apply-all-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--color-text-secondary, #8eafd4);
+    cursor: pointer;
+}
+
+.apply-all-toggle input[type='checkbox'] {
+    accent-color: #4a90d9;
+}

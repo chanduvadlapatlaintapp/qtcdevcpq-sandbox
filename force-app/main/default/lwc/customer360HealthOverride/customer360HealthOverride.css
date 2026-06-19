@@ -1,0 +1,172 @@
+/* ─── Health Override Container ───────────────────────────────────────────── */
+
+.health-override {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.health-override__title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: #181818;
+}
+
+.health-override__desc {
+    font-size: 0.8rem;
+    color: #706E6B;
+    margin: 0 0 16px 0;
+    line-height: 1.4;
+}
+
+/* ─── Form ────────────────────────────────────────────────────────────────── */
+
+.health-override__form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.health-override__label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #3E3E3C;
+    margin-bottom: 6px;
+}
+
+/* ─── Slider ──────────────────────────────────────────────────────────────── */
+
+.health-override__slider-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.health-override__slider {
+    width: 100%;
+    accent-color: #0176D3;
+    cursor: pointer;
+}
+
+.health-override__score-display {
+    font-size: 1.5rem;
+    font-weight: 700;
+    min-width: 48px;
+    text-align: center;
+}
+
+/* ─── Comparison Row ──────────────────────────────────────────────────────── */
+
+.health-override__comparison {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #706E6B;
+    margin-top: 4px;
+}
+
+/* ─── Textarea ────────────────────────────────────────────────────────────── */
+
+.health-override__textarea {
+    width: 100%;
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 0.85rem;
+    font-family: inherit;
+    resize: vertical;
+    color: #181818;
+    box-sizing: border-box;
+}
+
+.health-override__textarea:focus {
+    outline: none;
+    border-color: #0176D3;
+    box-shadow: 0 0 0 1px #0176D3;
+}
+
+.health-override__textarea::placeholder {
+    color: #B0ADAB;
+}
+
+/* ─── Submit Button ───────────────────────────────────────────────────────── */
+
+.health-override__submit {
+    background: #0176D3;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    align-self: flex-start;
+    transition: background 0.2s ease;
+}
+
+.health-override__submit:hover {
+    background: #014486;
+}
+
+.health-override__submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ─── Override History ────────────────────────────────────────────────────── */
+
+.health-override__history {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #E5E5E5;
+}
+
+.health-override__history-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    color: #3E3E3C;
+}
+
+/* ─── History Entry ───────────────────────────────────────────────────────── */
+
+.history-entry {
+    border-left: 3px solid #E5E5E5;
+    padding-left: 12px;
+    margin-bottom: 12px;
+}
+
+.history-entry__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.history-entry__user {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #3E3E3C;
+}
+
+.history-entry__date {
+    font-size: 0.75rem;
+    color: #706E6B;
+}
+
+.history-entry__score {
+    font-size: 0.8rem;
+    color: #3E3E3C;
+    margin-bottom: 4px;
+}
+
+.history-entry__comment {
+    font-size: 0.8rem;
+    color: #706E6B;
+    margin: 0;
+    line-height: 1.4;
+}

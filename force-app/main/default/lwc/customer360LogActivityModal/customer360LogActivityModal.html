@@ -1,0 +1,61 @@
+<template>
+    <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open c360-modal">
+        <div class="slds-modal__container">
+            <!-- Header -->
+            <div class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={handleCancel}>
+                    <lightning-icon icon-name="utility:close" alternative-text="Close" size="small"
+                                   variant="inverse"></lightning-icon>
+                </button>
+                <h2 class="slds-modal__title slds-hyphenate">{modalTitle}</h2>
+            </div>
+
+            <!-- Body -->
+            <div class="slds-modal__content slds-p-around_medium">
+                <div class="slds-form">
+                    <lightning-combobox
+                        label="Activity Type"
+                        value={activityType}
+                        options={activityTypeOptions}
+                        onchange={handleTypeChange}
+                        class="slds-m-bottom_small"
+                        required></lightning-combobox>
+
+                    <lightning-input
+                        label="Subject"
+                        value={subject}
+                        onchange={handleSubjectChange}
+                        class="slds-m-bottom_small"
+                        required
+                        placeholder="Enter activity subject..."></lightning-input>
+
+                    <lightning-textarea
+                        label="Description"
+                        value={description}
+                        onchange={handleDescriptionChange}
+                        class="slds-m-bottom_small"
+                        placeholder="Optional details..."
+                        max-length="32000"></lightning-textarea>
+
+                    <lightning-input
+                        type="date"
+                        label="Activity Date"
+                        value={activityDate}
+                        onchange={handleDateChange}
+                        class="slds-m-bottom_small"
+                        required></lightning-input>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="slds-modal__footer">
+                <lightning-button label="Cancel" onclick={handleCancel}
+                                 class="slds-m-right_small"></lightning-button>
+                <lightning-button label="Save Activity" variant="brand"
+                                 onclick={handleSave} disabled={isSaveDisabled}></lightning-button>
+            </div>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>

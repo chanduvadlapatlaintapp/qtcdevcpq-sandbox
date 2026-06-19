@@ -1,0 +1,97 @@
+<template>
+    <div class="dashboard">
+        <!-- KPI Row -->
+        <div class="dashboard__kpis">
+            <c-customer360-kpi-card
+                label="Total Clients" value={totalClients} icon="utility:people"
+                kpi-key="totalClients"
+                trend={clientTrend} trend-value={clientTrendValue}
+                onkpiclick={handleKpiClick}></c-customer360-kpi-card>
+            <c-customer360-kpi-card
+                label="At Risk" value={atRiskCount} icon="utility:warning"
+                kpi-key="atRisk"
+                variant="error"
+                onkpiclick={handleKpiClick}></c-customer360-kpi-card>
+            <c-customer360-kpi-card
+                label="Healthy" value={healthyPercent} icon="utility:like"
+                kpi-key="healthy"
+                variant="success"
+                onkpiclick={handleKpiClick}></c-customer360-kpi-card>
+            <c-customer360-kpi-card
+                label="Total ARR" value={totalArr} icon="utility:moneybag"
+                kpi-key="totalArr"
+                trend="up" trend-value={arrTrendValue}
+                onkpiclick={handleKpiClick}></c-customer360-kpi-card>
+            <c-customer360-kpi-card
+                label="Avg Health" value={avgHealth} icon="utility:heartbeat"
+                kpi-key="avgHealth"
+                trend={healthTrend}
+                onkpiclick={handleKpiClick}></c-customer360-kpi-card>
+            <c-customer360-kpi-card
+                label="Open CTAs" value={openCtaCount} icon="utility:task"
+                kpi-key="openCtas"
+                variant="warning"
+                onkpiclick={handleKpiClick}></c-customer360-kpi-card>
+        </div>
+
+        <!-- Main Content -->
+        <div class="dashboard__content">
+            <!-- Left: Portfolio List -->
+            <div class="dashboard__main">
+                <!-- Active Filter Badge -->
+                <template lwc:if={hasExternalFilter}>
+                    <div class="dashboard__filter-badge">
+                        <lightning-icon icon-name="utility:filterList" size="xx-small"
+                                       class="slds-m-right_xx-small"></lightning-icon>
+                        <span>{filterDescription}</span>
+                        <button class="filter-badge__clear" onclick={handleClearFilter} title="Clear filter">
+                            <lightning-icon icon-name="utility:close" size="xx-small"
+                                           alternative-text="Clear filter"></lightning-icon>
+                        </button>
+                    </div>
+                </template>
+                <c-customer360-portfolio-list
+                    accounts={accounts}
+                    external-filter={externalFilter}
+                    onaccountselect={handleAccountSelect}></c-customer360-portfolio-list>
+            </div>
+
+            <!-- Right: Sidebar -->
+            <div class="dashboard__sidebar">
+                <!-- Health Distribution Chart -->
+                <div class="dashboard__chart-card">
+                    <h3 class="chart-card__title">Health Distribution</h3>
+                    <c-customer360-chart-donut
+                        segments={healthDistribution}
+                        center-label="Accounts"
+                        center-value={totalClients}
+                        chart-size={donutChartSize}
+                        onsegmentclick={handleHealthSegmentClick}></c-customer360-chart-donut>
+                </div>
+
+                <!-- Segment Breakdown Chart -->
+                <div class="dashboard__chart-card">
+                    <h3 class="chart-card__title">ARR by Segment</h3>
+                    <c-customer360-chart-bar
+                        chart-data={segmentArrData}
+                        orientation="horizontal"
+                        chart-height={barChartHeight}
+                        onbarclick={handleSegmentBarClick}></c-customer360-chart-bar>
+                </div>
+
+                <!-- Chart Popover -->
+                <c-customer360-chart-popover
+                    title={popoverTitle}
+                    items={popoverItems}
+                    is-visible={popoverVisible}
+                    onclose={handlePopoverClose}></c-customer360-chart-popover>
+
+                <!-- Alerts Panel -->
+                <c-customer360-alerts-panel
+                    alerts={alerts}
+                    onalertdismiss={handleAlertDismiss}
+                    onalertclick={handleAlertClick}></c-customer360-alerts-panel>
+            </div>
+        </div>
+    </div>
+</template>

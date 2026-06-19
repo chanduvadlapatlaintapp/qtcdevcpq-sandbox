@@ -1,0 +1,168 @@
+<template>
+    <div class="c360-app">
+        <!-- Header (always visible) -->
+        <div class="c360-header-wrapper">
+            <c-customer360-header
+                user-name={userName}
+                notification-count={notificationCount}
+                onnavigate={handleNavigate}
+                oninfoclick={handleInfoClick}
+                onnotificationclick={handleNotificationClick}></c-customer360-header>
+
+            <!-- Notification Panel -->
+            <template lwc:if={showNotificationPanel}>
+                <c-customer360-notification-panel
+                    alerts={alerts}
+                    onalertclick={handleNotificationAlertClick}
+                    onalertdismiss={handleNotificationAlertDismiss}
+                    onclose={handleNotificationPanelClose}></c-customer360-notification-panel>
+            </template>
+        </div>
+
+        <!-- Error State -->
+        <template lwc:if={hasError}>
+            <div class="c360-error">
+                <div class="c360-error__card">
+                    <lightning-icon icon-name="utility:error" size="large" variant="error"></lightning-icon>
+                    <h2>Something went wrong</h2>
+                    <p>{errorMessage}</p>
+                    <p class="c360-error__hint">Try refreshing the page (Ctrl+Shift+R) to clear cached bundles.</p>
+                </div>
+            </div>
+        </template>
+
+        <!-- Dashboard View -->
+        <template lwc:if={isDashboardView}>
+            <c-customer360-dashboard
+                accounts={portfolioData}
+                alerts={alerts}
+                onaccountselect={handleAccountSelect}
+                onalertdismiss={handleAlertDismiss}
+                onalertclick={handleAlertClick}></c-customer360-dashboard>
+        </template>
+
+        <!-- About View -->
+        <template lwc:if={isAboutView}>
+            <c-customer360-about
+                onnavigate={handleNavigate}></c-customer360-about>
+        </template>
+
+        <!-- Detail View -->
+        <template lwc:if={isDetailView}>
+            <div class="c360-detail">
+                <!-- Banner -->
+                <c-customer360-banner
+                    account={selectedAccount}
+                    onnavigate={handleNavigate}
+                    onlogactivity={handleLogActivity}
+                    oncreatecta={handleCreateCta}></c-customer360-banner>
+
+                <!-- Tab Navigation -->
+                <c-customer360-detail-tabs
+                    active-tab={activeTab}
+                    ontabchange={handleTabChange}></c-customer360-detail-tabs>
+
+                <!-- Tab Content -->
+                <div class="c360-detail__content">
+                    <!-- Overview Tab -->
+                    <template lwc:if={isOverviewTab}>
+                        <c-customer360-overview
+                            account-id={selectedAccountId}
+                            account={selectedAccount}></c-customer360-overview>
+                    </template>
+
+                    <!-- Health Tab -->
+                    <template lwc:if={isHealthTab}>
+                        <div class="c360-detail__health-grid">
+                            <div class="c360-detail__health-left">
+                                <c-customer360-scorecard
+                                    health-data={healthData}></c-customer360-scorecard>
+                                <c-customer360-health-trend
+                                    history={healthHistory}></c-customer360-health-trend>
+                            </div>
+                            <div class="c360-detail__health-right">
+                                <c-customer360-benchmark
+                                    benchmarks={benchmarks}></c-customer360-benchmark>
+                                <c-customer360-health-override
+                                    current-score={currentHealthScore}
+                                    onhealthoverride={handleHealthOverride}></c-customer360-health-override>
+                            </div>
+                        </div>
+                    </template>
+
+                    <!-- Subscriptions Tab (existing component, enhanced in Phase 3) -->
+                    <template lwc:if={isSubscriptionsTab}>
+                        <c-customer360-subscriptions
+                            account-id={selectedAccountId}></c-customer360-subscriptions>
+                    </template>
+
+                    <!-- Usage Tab (enhanced in Phase 3) -->
+                    <template lwc:if={isUsageTab}>
+                        <c-customer360-usage
+                            account-id={selectedAccountId}></c-customer360-usage>
+                        <c-customer360-feature-map
+                            account-id={selectedAccountId}
+                            class="slds-m-top_medium"></c-customer360-feature-map>
+                    </template>
+
+                    <!-- Support Tab (existing component, enhanced in Phase 3) -->
+                    <template lwc:if={isSupportTab}>
+                        <c-customer360-support
+                            account-id={selectedAccountId}></c-customer360-support>
+                    </template>
+
+                    <!-- Invoices Tab (existing component, enhanced in Phase 3) -->
+                    <template lwc:if={isInvoicesTab}>
+                        <c-customer360-invoices
+                            account-id={selectedAccountId}></c-customer360-invoices>
+                    </template>
+
+                    <!-- Timeline Tab -->
+                    <template lwc:if={isTimelineTab}>
+                        <c-customer360-timeline
+                            account-id={selectedAccountId}></c-customer360-timeline>
+                    </template>
+
+                    <!-- CTAs & Playbooks Tab -->
+                    <template lwc:if={isCtasTab}>
+                        <div class="c360-detail__ctas-grid">
+                            <c-customer360-cta-list
+                                ctas={ctaData}
+                                account-id={selectedAccountId}
+                                onctamutation={handleCtaMutation}
+                                ontaskmutation={handleTaskMutation}></c-customer360-cta-list>
+                            <c-customer360-task-list
+                                tasks={flatTaskList}
+                                cta-options={ctaOptionsForTaskList}
+                                account-id={selectedAccountId}
+                                ontaskmutation={handleTaskMutation}></c-customer360-task-list>
+                        </div>
+                    </template>
+
+                    <!-- Success Plan Tab -->
+                    <template lwc:if={isSuccessPlanTab}>
+                        <c-customer360-success-plan
+                            account-id={selectedAccountId}></c-customer360-success-plan>
+                    </template>
+                </div>
+            </div>
+        </template>
+        <!-- Log Activity Modal -->
+        <template lwc:if={showLogActivityModal}>
+            <c-customer360-log-activity-modal
+                account-id={selectedAccountId}
+                account-name={selectedAccountName}
+                onclose={handleModalClose}
+                onactivitylogged={handleActivityLogged}></c-customer360-log-activity-modal>
+        </template>
+
+        <!-- Create CTA Modal -->
+        <template lwc:if={showCreateCtaModal}>
+            <c-customer360-create-cta-modal
+                account-id={selectedAccountId}
+                account-name={selectedAccountName}
+                onclose={handleModalClose}
+                onctacreated={handleCtaCreated}></c-customer360-create-cta-modal>
+        </template>
+    </div>
+</template>

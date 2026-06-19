@@ -1,0 +1,152 @@
+/* ─── Container ───────────────────────────────────────────────────────────── */
+.benchmark {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.benchmark__title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+}
+
+.benchmark__subtitle {
+    font-size: 0.8rem;
+    color: #706E6B;
+    margin: 0 0 16px 0;
+}
+
+/* ─── Metric Rows ─────────────────────────────────────────────────────────── */
+.benchmark__row {
+    display: grid;
+    grid-template-columns: 120px 1fr 100px;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #F3F3F3;
+}
+
+.benchmark__row:last-child {
+    border-bottom: none;
+}
+
+.benchmark__row:hover {
+    background: #f9fafb;
+    border-radius: 6px;
+    margin: 0 -8px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.benchmark__metric-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* ─── Track & Bars ────────────────────────────────────────────────────────── */
+.benchmark__track {
+    position: relative;
+    height: 8px;
+    background: #F3F3F3;
+    border-radius: 4px;
+}
+
+.benchmark__client-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: 4px;
+}
+
+/* ─── Markers ─────────────────────────────────────────────────────────────── */
+.benchmark__marker {
+    position: absolute;
+    top: -4px;
+    width: 2px;
+    height: 16px;
+}
+
+.benchmark__marker--avg {
+    background: #706E6B;
+}
+
+.benchmark__marker--top {
+    background: #04844B;
+}
+
+.benchmark__marker-label {
+    position: absolute;
+    top: -14px;
+    font-size: 0.6rem;
+    color: #706E6B;
+    white-space: nowrap;
+}
+
+/* ─── Values ──────────────────────────────────────────────────────────────── */
+.benchmark__values {
+    text-align: right;
+}
+
+.benchmark__client-value {
+    font-weight: 700;
+}
+
+.benchmark__vs {
+    font-size: 0.75rem;
+    color: #706E6B;
+    display: block;
+}
+
+.benchmark__diff {
+    font-size: 0.65rem;
+    font-weight: 600;
+    display: block;
+    margin-top: 2px;
+}
+
+.benchmark__diff--above {
+    color: #04844B;
+}
+
+.benchmark__diff--below {
+    color: #EA001E;
+}
+
+/* ─── Legend ───────────────────────────────────────────────────────────────── */
+.benchmark__legend {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #F3F3F3;
+}
+
+.benchmark__legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: #706E6B;
+}
+
+.benchmark__legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.benchmark__legend-dot--client {
+    background: #0176D3;
+}
+
+.benchmark__legend-dot--avg {
+    background: #706E6B;
+}
+
+.benchmark__legend-dot--top {
+    background: #04844B;
+}

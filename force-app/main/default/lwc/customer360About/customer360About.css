@@ -1,0 +1,381 @@
+/* ─── About Page Container ─────────────────────────────────────────────────── */
+
+.c360-about {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+/* ─── Back Button ──────────────────────────────────────────────────────────── */
+
+.c360-about__back {
+    margin-bottom: 16px;
+}
+
+.c360-about__back-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #0176D3;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background 0.15s;
+}
+
+.c360-about__back-btn:hover {
+    background: rgba(1, 118, 211, 0.08);
+}
+
+/* ─── Hero Section ─────────────────────────────────────────────────────────── */
+
+.c360-about__hero {
+    text-align: center;
+    padding: 48px 24px 40px;
+    background: linear-gradient(135deg, #1B2A4A 0%, #2C4A7C 100%);
+    border-radius: 16px;
+    margin-bottom: 32px;
+    color: #FFFFFF;
+}
+
+.c360-about__hero-icon {
+    margin-bottom: 16px;
+}
+
+.c360-about__hero-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0 0 12px 0;
+    letter-spacing: -0.5px;
+}
+
+.c360-about__hero-subtitle {
+    font-size: 1.1rem;
+    opacity: 0.85;
+    margin: 0 0 16px 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.c360-about__hero-jira {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+/* ─── Hero Icon Override ──────────────────────────────────────────────────── */
+
+.c360-about__hero-icon lightning-icon {
+    --sds-c-icon-color-background: transparent;
+}
+
+/* ─── Stats Row ────────────────────────────────────────────────────────────── */
+
+.c360-about__stats {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.c360-about__stat-card {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 20px 16px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.c360-about__stat-icon {
+    --sds-c-icon-color-foreground-default: #0176D3;
+}
+
+.c360-about__stat-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1B2A4A;
+}
+
+.c360-about__stat-label {
+    font-size: 0.75rem;
+    color: #706E6B;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ─── Sections ─────────────────────────────────────────────────────────────── */
+
+.c360-about__section {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.c360-about__section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1B2A4A;
+    margin: 0 0 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #F4F6F9;
+}
+
+.c360-about__section-title lightning-icon {
+    --sds-c-icon-color-foreground-default: #0176D3;
+}
+
+.c360-about__subsection-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #444;
+    margin: 24px 0 12px 0;
+}
+
+.c360-about__subsection-title:first-of-type {
+    margin-top: 0;
+}
+
+/* ─── Architecture Grid ───────────────────────────────────────────────────── */
+
+.c360-about__arch-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.c360-about__arch-card {
+    border-radius: 10px;
+    padding: 24px;
+    border: 2px solid;
+}
+
+.c360-about__arch-card--dashboard {
+    border-color: #0176D3;
+    background: rgba(1, 118, 211, 0.04);
+}
+
+.c360-about__arch-card--detail {
+    border-color: #04844B;
+    background: rgba(4, 132, 75, 0.04);
+}
+
+.c360-about__arch-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    color: #1B2A4A;
+}
+
+.c360-about__arch-card p {
+    font-size: 0.85rem;
+    color: #706E6B;
+    margin: 0 0 16px 0;
+    font-weight: 600;
+}
+
+.c360-about__arch-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.c360-about__arch-card li {
+    padding: 6px 0 6px 20px;
+    position: relative;
+    font-size: 0.875rem;
+    color: #444;
+    line-height: 1.5;
+}
+
+.c360-about__arch-card li::before {
+    content: '\2022';
+    position: absolute;
+    left: 4px;
+    color: #0176D3;
+    font-weight: bold;
+}
+
+.c360-about__arch-card--detail li::before {
+    color: #04844B;
+}
+
+/* ─── Tables ───────────────────────────────────────────────────────────────── */
+
+.c360-about__table-wrap {
+    overflow-x: auto;
+}
+
+.c360-about__table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.c360-about__table th {
+    background: #F4F6F9;
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #706E6B;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #E5E5E5;
+}
+
+.c360-about__table td {
+    padding: 10px 14px;
+    font-size: 0.875rem;
+    color: #444;
+    border-bottom: 1px solid #F0F0F0;
+    vertical-align: top;
+}
+
+.c360-about__table tr:last-child td {
+    border-bottom: none;
+}
+
+.c360-about__table tr:hover td {
+    background: #FAFBFC;
+}
+
+.c360-about__table code {
+    background: #F0F3F8;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: #1B2A4A;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* ─── Tab Badge ────────────────────────────────────────────────────────────── */
+
+.c360-about__tab-badge {
+    display: inline-block;
+    background: #E8F0FE;
+    color: #0176D3;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* ─── Status Icons ─────────────────────────────────────────────────────────── */
+
+.c360-about__status {
+    font-size: 1rem;
+}
+
+.c360-about__table--requirements td:first-child {
+    width: 50px;
+    text-align: center;
+}
+
+/* ─── Data Strategy Grid ──────────────────────────────────────────────────── */
+
+.c360-about__data-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.c360-about__data-card {
+    border: 1px solid #E5E5E5;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.c360-about__data-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1B2A4A;
+    margin: 0 0 6px 0;
+}
+
+.c360-about__data-card p {
+    font-size: 0.8rem;
+    color: #706E6B;
+    margin: 0 0 14px 0;
+}
+
+.c360-about__data-tag {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.c360-about__data-tag--mock {
+    background: #E8F0FE;
+    color: #0176D3;
+}
+
+.c360-about__data-tag--apex {
+    background: #E6F4EA;
+    color: #04844B;
+}
+
+.c360-about__data-tag--svg {
+    background: #FFF3E0;
+    color: #B25E00;
+}
+
+/* ─── Footer ───────────────────────────────────────────────────────────────── */
+
+.c360-about__footer {
+    text-align: center;
+    padding: 32px 24px;
+    color: #706E6B;
+    font-size: 0.8rem;
+}
+
+.c360-about__footer p {
+    margin: 0;
+}
+
+/* ─── Responsive ───────────────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+    .c360-about__stats {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .c360-about__arch-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .c360-about__data-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .c360-about__stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

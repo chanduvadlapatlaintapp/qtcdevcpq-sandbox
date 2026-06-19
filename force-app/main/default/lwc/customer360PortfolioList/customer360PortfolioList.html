@@ -1,0 +1,87 @@
+<template>
+    <div class="portfolio-list">
+        <!-- Filter Bar -->
+        <div class="portfolio-list__filters">
+            <div class="portfolio-list__search">
+                <lightning-input type="search" placeholder="Search accounts..."
+                    value={searchTerm} onchange={handleSearch}
+                    variant="label-hidden"></lightning-input>
+            </div>
+            <div class="portfolio-list__segment-filters">
+                <template for:each={segmentButtons} for:item="seg">
+                    <button key={seg.label} class={seg.className}
+                            onclick={handleSegmentFilter} data-segment={seg.value}>
+                        {seg.label}
+                    </button>
+                </template>
+            </div>
+            <div class="portfolio-list__risk-filters">
+                <template for:each={riskButtons} for:item="risk">
+                    <button key={risk.label} class={risk.className}
+                            onclick={handleRiskFilter} data-risk={risk.value}>
+                        {risk.label}
+                    </button>
+                </template>
+            </div>
+            <div class="portfolio-list__sort">
+                <lightning-combobox label="Sort by" value={sortField}
+                    options={sortOptions} onchange={handleSort}
+                    variant="label-hidden"></lightning-combobox>
+            </div>
+        </div>
+
+        <!-- Account Count -->
+        <div class="portfolio-list__meta">
+            <span>{filteredCount} accounts</span>
+        </div>
+
+        <!-- Account List -->
+        <div class="portfolio-list__items">
+            <template for:each={filteredAccounts} for:item="account">
+                <div key={account.id} class="account-row" onclick={handleAccountClick}
+                     data-account-id={account.id}>
+                    <div class="account-row__health">
+                        <c-customer360-health-ring score={account.healthScore}
+                            size="small" show-label={hideLabel}></c-customer360-health-ring>
+                    </div>
+                    <div class="account-row__info">
+                        <span class="account-row__name">{account.name}</span>
+                        <span class="account-row__segment">
+                            <c-customer360-badge label={account.segment}
+                                variant={account.segmentVariant} size="small"></c-customer360-badge>
+                        </span>
+                    </div>
+                    <div class="account-row__metrics">
+                        <div class="account-row__metric">
+                            <span class="metric-label">ARR</span>
+                            <span class="metric-value">{account.formattedArr}</span>
+                        </div>
+                        <div class="account-row__metric">
+                            <span class="metric-label">Health</span>
+                            <span class="metric-value" style={account.healthStyle}>{account.healthScore}</span>
+                        </div>
+                        <div class="account-row__metric">
+                            <span class="metric-label">Renewal</span>
+                            <span class="metric-value">{account.formattedRenewal}</span>
+                        </div>
+                        <div class="account-row__metric">
+                            <span class="metric-label">Contact</span>
+                            <span class={account.contactClass}>{account.daysSinceContact}d ago</span>
+                        </div>
+                    </div>
+                    <div class="account-row__risk">
+                        <c-customer360-badge label={account.riskLabel}
+                            variant={account.riskVariant}></c-customer360-badge>
+                    </div>
+                    <div class="account-row__arrow">
+                        <lightning-icon icon-name="utility:chevronright" size="xx-small"></lightning-icon>
+                    </div>
+                </div>
+            </template>
+        </div>
+
+        <c-customer360-empty-state lwc:if={noResults}
+            title="No Accounts Found" message="Try adjusting your filters"
+            icon="utility:search"></c-customer360-empty-state>
+    </div>
+</template>

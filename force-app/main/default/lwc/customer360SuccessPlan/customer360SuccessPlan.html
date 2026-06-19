@@ -1,0 +1,85 @@
+<template>
+    <div class="c360-sp">
+        <template lwc:if={hasPlan}>
+            <!-- Header -->
+            <div class="c360-sp__header">
+                <div class="c360-sp__header-left">
+                    <h2 class="c360-sp__title">
+                        <lightning-icon icon-name="utility:target" size="small"></lightning-icon>
+                        {planName}
+                    </h2>
+                    <span class="c360-sp__status-badge">Active</span>
+                </div>
+            </div>
+
+            <!-- Summary Metrics -->
+            <div class="c360-sp__metrics">
+                <div class="c360-sp__metric">
+                    <span class="c360-sp__metric-value">{totalObjectives}</span>
+                    <span class="c360-sp__metric-label">Objectives</span>
+                </div>
+                <div class="c360-sp__metric">
+                    <span class="c360-sp__metric-value c360-sp__metric-value--good">{onTrackCount}</span>
+                    <span class="c360-sp__metric-label">On Track</span>
+                </div>
+                <div class="c360-sp__metric">
+                    <span class="c360-sp__metric-value c360-sp__metric-value--poor">{atRiskCount}</span>
+                    <span class="c360-sp__metric-label">At Risk</span>
+                </div>
+                <div class="c360-sp__metric">
+                    <div class="c360-sp__progress-bar">
+                        <div class={overallProgressClass} style={overallProgressWidth}></div>
+                    </div>
+                    <span class="c360-sp__metric-label">{overallProgress}% Overall Progress</span>
+                </div>
+            </div>
+
+            <!-- Objectives -->
+            <div class="c360-sp__objectives">
+                <template for:each={objectives} for:item="obj">
+                    <div key={obj.key} class="c360-sp__obj">
+                        <!-- Objective Header -->
+                        <div class="c360-sp__obj-header">
+                            <div class="c360-sp__obj-info">
+                                <h3 class="c360-sp__obj-name">{obj.name}</h3>
+                                <div class="c360-sp__obj-meta">
+                                    <span class={obj.statusClass}>{obj.statusLabel}</span>
+                                    <span class="c360-sp__obj-due">Due: {obj.formattedDueDate}</span>
+                                    <span class="c360-sp__obj-ms-count">{obj.milestoneLabel}</span>
+                                </div>
+                            </div>
+                            <div class="c360-sp__obj-progress-label">{obj.progressLabel}</div>
+                        </div>
+
+                        <!-- Progress Bar -->
+                        <div class="c360-sp__obj-progress-bar">
+                            <div class={obj.progressClass} style={obj.progressWidth}></div>
+                        </div>
+
+                        <!-- Milestones -->
+                        <div class="c360-sp__milestones">
+                            <template for:each={obj.enrichedMilestones} for:item="ms">
+                                <div key={ms.key} class={ms.msClass}
+                                     data-objective-id={ms.objectiveId}
+                                     data-milestone-index={ms.milestoneIndex}
+                                     onclick={handleMilestoneToggle}>
+                                    <lightning-icon icon-name={ms.icon} size="xx-small"></lightning-icon>
+                                    <span class="c360-sp__ms-name">{ms.name}</span>
+                                    <span class="c360-sp__ms-date">{ms.formattedDate}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- Empty State -->
+        <template lwc:if={showEmpty}>
+            <c-customer360-empty-state
+                title="No Success Plan"
+                message="No success plan has been created for this account yet."
+                icon="utility:target"></c-customer360-empty-state>
+        </template>
+    </div>
+</template>

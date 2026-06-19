@@ -1,0 +1,91 @@
+<template>
+    <div class={cardClass}>
+        <div class="mdq-grid-wrapper">
+            <table class="mdq-grid">
+                <thead>
+                    <!-- Row 1: Product label + term banner -->
+                    <tr class="header-banner">
+                        <th class="col-product" rowspan="3">Product</th>
+                        <th class="col-term-banner" colspan={totalYearCols}>{dealTermLabel}</th>
+                    </tr>
+                    <!-- Row 2: Year group headers with date range -->
+                    <tr class="header-years">
+                        <template for:each={yearColumns} for:item="yr">
+                            <th key={yr.lineId} class="col-year-header" colspan="3">
+                                <span class="year-name">{yr.segmentLabel}</span>
+                                <span class="year-date">{yr.dateRange}</span>
+                            </th>
+                        </template>
+                    </tr>
+                    <!-- Row 3: Quantity / Monthly Sale Price / ACV sub-columns -->
+                    <tr class="header-fields">
+                        <template for:each={yearColumns} for:item="yr">
+                            <th key={yr.keyQty} class="col-field">Quantity</th>
+                            <th key={yr.keyPrice} class="col-field">Monthly Sale Price</th>
+                            <th key={yr.keyAcv} class="col-field">ACV</th>
+                        </template>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Product data row -->
+                    <tr class="product-row">
+                        <td class="col-product-name">
+                            <span class="product-label">{productName}</span>
+                            <span class="product-code">{productCode}</span>
+                        </td>
+                        <template for:each={yearColumns} for:item="yr">
+                            <td key={yr.keyQty} class="col-cell col-editable">
+                                <template if:true={yr.isEditable}>
+                                    <lightning-input type="number" value={yr.quantity}
+                                        data-line-id={yr.lineId}
+                                        onchange={handleSegmentQuantityChange}
+                                        variant="label-hidden"
+                                        min="0" step="1" class="inline-input">
+                                    </lightning-input>
+                                </template>
+                                <template if:false={yr.isEditable}>
+                                    <span class="cell-value">{yr.displayQuantity}</span>
+                                </template>
+                            </td>
+                            <td key={yr.keyPrice} class="col-cell">
+                                <span class="cell-value">{yr.displayMonthlySalePrice}</span>
+                            </td>
+                            <td key={yr.keyAcv} class="col-cell">
+                                <span class="cell-value">{yr.displayAcv}</span>
+                            </td>
+                        </template>
+                    </tr>
+                    <!-- Detail rows: ACV, TCV, Discount %, ACV Change, YoY Uplift -->
+                    <template for:each={detailRows} for:item="row">
+                        <tr key={row.key} class="detail-row">
+                            <td class="col-product-name detail-label">{row.label}</td>
+                            <template for:each={row.values} for:item="val">
+                                <td key={val.key} class="col-detail-value" colspan="3">{val.display}</td>
+                            </template>
+                        </tr>
+                    </template>
+                </tbody>
+                <tfoot>
+                    <!-- Summary row -->
+                    <tr class="summary-row">
+                        <td class="col-product-name">
+                            <span class="total-label">Total: {displayTotalCost}</span>
+                        </td>
+                        <template for:each={yearColumns} for:item="yr">
+                            <td key={yr.keyTotal} class="col-total" colspan="3">
+                                <span class="total-value">{yr.segmentLabel}: {yr.displayTotal}</span>
+                            </td>
+                        </template>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="table-toolbar">
+            <label class="apply-all-toggle">
+                <input type="checkbox" checked={applyToAll} onchange={handleApplyToAllChange} />
+                <span>Apply quantity to all years</span>
+            </label>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,60 @@
+<template>
+    <div class="benchmark">
+        <h3 class="benchmark__title">Peer Benchmarking</h3>
+        <p class="benchmark__subtitle">Compared to {segmentLabel} segment</p>
+
+        <div class="benchmark__metrics">
+            <template for:each={enrichedBenchmarks} for:item="item">
+                <div key={item.metric} class="benchmark__row"
+                     data-index={item.index}
+                     onmouseenter={handleRowHover}
+                     onmouseleave={handleRowLeave}>
+                    <span class="benchmark__metric-name">{item.metric}</span>
+                    <div class="benchmark__bar-container">
+                        <!-- Background track -->
+                        <div class="benchmark__track">
+                            <!-- Segment avg marker -->
+                            <div class="benchmark__marker benchmark__marker--avg"
+                                 style={item.avgStyle} title={item.avgTooltip}>
+                                <span class="benchmark__marker-label">Avg</span>
+                            </div>
+                            <!-- Top quartile marker -->
+                            <div class="benchmark__marker benchmark__marker--top"
+                                 style={item.topStyle} title={item.topTooltip}>
+                                <span class="benchmark__marker-label">Top</span>
+                            </div>
+                            <!-- Client value bar -->
+                            <div class="benchmark__client-bar" style={item.clientBarStyle}></div>
+                        </div>
+                    </div>
+                    <div class="benchmark__values">
+                        <span class="benchmark__client-value" style={item.clientColorStyle}>{item.clientValue}</span>
+                        <span class="benchmark__vs">vs avg {item.segmentAvg}</span>
+                        <template lwc:if={item.isAboveAvg}>
+                            <span class="benchmark__diff benchmark__diff--above">{item.diffLabel}</span>
+                        </template>
+                        <template lwc:if={item.isBelowAvg}>
+                            <span class="benchmark__diff benchmark__diff--below">{item.diffLabel}</span>
+                        </template>
+                    </div>
+                </div>
+            </template>
+        </div>
+
+        <!-- Legend -->
+        <div class="benchmark__legend">
+            <div class="benchmark__legend-item">
+                <span class="benchmark__legend-dot benchmark__legend-dot--client"></span>
+                <span>Client</span>
+            </div>
+            <div class="benchmark__legend-item">
+                <span class="benchmark__legend-dot benchmark__legend-dot--avg"></span>
+                <span>Segment Avg</span>
+            </div>
+            <div class="benchmark__legend-item">
+                <span class="benchmark__legend-dot benchmark__legend-dot--top"></span>
+                <span>Top Quartile</span>
+            </div>
+        </div>
+    </div>
+</template>
