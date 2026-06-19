@@ -19,6 +19,8 @@ export default class AgenticQtcApp extends LightningElement {
      *  display in every monetary cell across the editor and its MDQ term group child.
      *  Null when navigating from chat (editor will fall back to USD). */
     @track selectedCurrencyIsoCode;
+    /** Contract.OSA_Number__c forwarded from the OSA selector — displayed in the header. */
+    @track selectedOsaNumber;
 
     /** true = dark mode (default), false = light mode */
     @track isDarkMode = true;
@@ -114,6 +116,7 @@ export default class AgenticQtcApp extends LightningElement {
         this.selectedExistingQuoteId = detail.existingQuoteId || null;
         this.selectedSubscriptionTcv = detail.subscriptionTcv != null ? detail.subscriptionTcv : null;
         this.selectedCurrencyIsoCode = detail.currencyIsoCode || null;
+        this.selectedOsaNumber = detail.osaNumber || null;
         this.currentPage = 'quoteEditor';
     }
 
@@ -132,6 +135,7 @@ export default class AgenticQtcApp extends LightningElement {
         this.selectedExistingQuoteId = null;
         this.selectedSubscriptionTcv = null;
         this.selectedCurrencyIsoCode = null;
+        this.selectedOsaNumber = null;
         this.currentPage = 'accountSearch';
     }
 
@@ -142,6 +146,7 @@ export default class AgenticQtcApp extends LightningElement {
         this.selectedExistingQuoteId = null;
         this.selectedSubscriptionTcv = null;
         this.selectedCurrencyIsoCode = null;
+        this.selectedOsaNumber = null;
         // Deep-linked sessions have no account context, so the OSA selector would be
         // empty — send the user back to account search instead.
         this.currentPage = this.selectedAccountId ? 'osaSelector' : 'accountSearch';

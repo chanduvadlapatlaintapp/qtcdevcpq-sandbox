@@ -15,6 +15,10 @@
                             <a class="header-title-link" href={quoteRecordUrl} target="_blank" rel="noopener noreferrer">{quoteName}</a>
                         </template>
                         <template if:true={showFallbackHeader}>{headerTitle}</template>
+                        <template if:true={osaNumber}>
+                            <span class="header-title-separator"> | </span>
+                            <span>{osaNumber}</span>
+                        </template>
                     </h2>
                     <p>Configure products and pricing for this contract</p>
                 </div>
@@ -35,8 +39,10 @@
                         icon-name="utility:cases"></lightning-button>
                 </template>
                 -->
-                <lightning-button label="Preview and Send OSA" onclick={handlePreviewSend} variant="brand"
-                    icon-name="utility:send" disabled={isPreviewSendDisabled}></lightning-button>
+                <span title={previewSendTooltip}>
+                    <lightning-button label="Preview and Send OSA" onclick={handlePreviewSend} variant="brand"
+                        icon-name="utility:send" disabled={isPreviewSendDisabled}></lightning-button>
+                </span>
             </div>
         </div>
 

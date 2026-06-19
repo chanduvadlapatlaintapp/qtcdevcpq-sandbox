@@ -30,6 +30,7 @@ export default class AgenticQtcOsaSelector extends LightningElement {
     _pendingContractNumber = null;
     _pendingSubscriptionTcv = null;
     _pendingCurrencyIsoCode = null;
+    _pendingOsaNumber = null;
 
     /**
      * @description Whether contracts exist and loading is complete.
@@ -160,6 +161,7 @@ export default class AgenticQtcOsaSelector extends LightningElement {
         this._pendingCurrencyIsoCode = clicked && clicked.currencyIsoCode
             ? clicked.currencyIsoCode
             : null;
+        this._pendingOsaNumber = clicked?.osaNumber || null;
         this.isLoadingQuotes = true;
         try {
             const drafts = await getDraftQuotesForContract({ contractId });
@@ -211,6 +213,7 @@ export default class AgenticQtcOsaSelector extends LightningElement {
         this._pendingContractNumber = null;
         this._pendingSubscriptionTcv = null;
         this._pendingCurrencyIsoCode = null;
+        this._pendingOsaNumber = null;
     }
 
     /** Prevents clicks inside the modal panel from bubbling to the backdrop. */
@@ -230,7 +233,8 @@ export default class AgenticQtcOsaSelector extends LightningElement {
             contractNumber: this._pendingContractNumber,
             existingQuoteId: existingQuoteId || null,
             subscriptionTcv: this._pendingSubscriptionTcv,
-            currencyIsoCode: this._pendingCurrencyIsoCode
+            currencyIsoCode: this._pendingCurrencyIsoCode,
+            osaNumber: this._pendingOsaNumber
         };
         this.showQuotesModal = false;
         this.draftQuotes = [];
@@ -238,6 +242,7 @@ export default class AgenticQtcOsaSelector extends LightningElement {
         this._pendingContractNumber = null;
         this._pendingSubscriptionTcv = null;
         this._pendingCurrencyIsoCode = null;
+        this._pendingOsaNumber = null;
         this.dispatchEvent(new CustomEvent('contractselected', { detail }));
     }
 

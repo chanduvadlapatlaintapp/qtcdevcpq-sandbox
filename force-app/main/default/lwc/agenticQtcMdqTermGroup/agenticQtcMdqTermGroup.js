@@ -214,10 +214,9 @@ get fieldHeaders() {
         if (!product) return;
         const segments = product.segments || [];
         const segmentKey = product.segmentKey;
-        const editableSegments = segments.filter(s => !s.isLocked);
         const clickedSeg = segments.find(s => s.id === lineId);
         if (!clickedSeg) return;
-        const isFirstSegment = editableSegments.length > 0 && editableSegments[0].id === lineId;
+        const isFirstSegment = segments[0].id === lineId;
         const ownCurrent = Number(clickedSeg.quantity) || 0;
         const ownMin = Number(clickedSeg.priorQuantity) || 0;
 
@@ -236,30 +235,21 @@ get fieldHeaders() {
             return;
         }
 
-        // Snapshot quantities and floors NOW as plain numbers while still in the
-        // synchronous event handler. LWC @api props are live reactive proxies —
-        // reading seg.quantity inside the async timeout would return whatever value
-        // the data store holds at that moment (potentially already updated by the
-        // parent), making the delta calculation wrong (delta=0 → early return →
-        // Year 2+ segments never receive the cascade).
-        const baseQuantities = editableSegments.map(s => Number(s.quantity) || 0);
-        const baseMins       = editableSegments.map(s => Number(s.priorQuantity) || 0);
-
         // eslint-disable-next-line @lwc/lwc/no-async-operation
         this._quantityTimeouts[lineId] = setTimeout(() => {
-            if (isFirstSegment && editableSegments.length > 1) {
-                const delta = qty - baseQuantities[0];
+            if (isFirstSegment && segments.length > 1) {
+                const currentQty = Number(segments[0].quantity) || 0;
+                const delta = qty - currentQty;
                 if (delta === 0) return;
 
                 // Apply the delta to every year, clamping each one at its own
                 // verified floor — later years that are already at the floor
                 // simply stay put rather than blocking the first year's edit.
-                for (let i = 0; i < editableSegments.length; i++) {
-                    const seg        = editableSegments[i];
-                    const segCurrent = baseQuantities[i];
-                    const segMin     = baseMins[i];
-                    const computed   = segCurrent + delta;
-                    const next       = computed < segMin ? segMin : computed;
+                for (const seg of segments) {
+                    const segCurrent = Number(seg.quantity) || 0;
+                    const segMin = Number(seg.priorQuantity) || 0;
+                    const computed = segCurrent + delta;
+                    const next = computed < segMin ? segMin : computed;
                     if (next === segCurrent) continue;
                     clearTimeout(this._quantityTimeouts[seg.id]);
                     this.dispatchEvent(new CustomEvent('mdqquantitychange', {
@@ -294,18 +284,17 @@ get fieldHeaders() {
         const product = this._findProductByLineId(clickedLineId);
         if (!product) return;
         const segments = product.segments || [];
-        const editableSegments = segments.filter(s => !s.isLocked);
-        const isFirstSegment = editableSegments.length > 0 && editableSegments[0].id === clickedLineId;
+        const isFirstSegment = segments.length > 0 && segments[0].id === clickedLineId;
 
-        if (isFirstSegment && editableSegments.length > 1) {
+        if (isFirstSegment && segments.length > 1) {
             // Cascade only steps the years that still have slack; years
             // already at their verified floor stay put rather than blocking
             // the click for every other year.
-            const firstMin = Number(editableSegments[0].priorQuantity) || 0;
-            const firstNext = (Number(editableSegments[0].quantity) || 0) + delta;
+            const firstMin = Number(segments[0].priorQuantity) || 0;
+            const firstNext = (Number(segments[0].quantity) || 0) + delta;
             if (firstNext < firstMin) return;
 
-            for (const seg of editableSegments) {
+            for (const seg of segments) {
                 const current = Number(seg.quantity) || 0;
                 const segMin = Number(seg.priorQuantity) || 0;
                 const next = current + delta;

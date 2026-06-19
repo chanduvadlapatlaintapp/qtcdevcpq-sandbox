@@ -12,6 +12,7 @@ import submitForApproval from '@salesforce/apex/AgenticQTC_ApprovalLogicService.
 import getAccountContacts from '@salesforce/apex/AgenticQTC_AmendContractController.getAccountContacts';
 import searchContacts from '@salesforce/apex/AgenticQTC_AmendContractController.searchContacts';
 import getCurrentSegmentInfo from '@salesforce/apex/AgenticQTC_AmendContractController.getCurrentSegmentInfo';
+import autoApproveIfNotRequired from '@salesforce/apex/AgenticQTC_AmendContractController.autoApproveIfNotRequired';
 // import evaluateQuoteApproval from '@salesforce/apex/AgenticQTC_ApprovalLogicService.evaluateQuoteApproval'; // VK - imported but never called
 // VK: Contract Ops workflow is out of scope for the current release (approval-required
 // quotes aren't being handled in this deploy). Re-enable this import along with
@@ -43,6 +44,8 @@ export default class AgenticQtcQuoteEditor extends LightningElement {
      *  display in the editor (metric tiles + MDQ term group cells). Falls back to
      *  "USD" when null. */
     @api currencyIsoCode;
+    /** Contract.OSA_Number__c — displayed in the editor sub-header. */
+    @api osaNumber;
 
     @track quoteId;
     @track quoteName;
@@ -274,13 +277,23 @@ export default class AgenticQtcQuoteEditor extends LightningElement {
         if (this.isLoading) return true;
         if (this._submittedForApproval) return true;
         if (this.hasUnsavedChanges) return true;
+        // Already approved — there is nothing left to submit
+        if (this.approvalStatus === 'Approved') return true;
         return false;
     }
 
+    // Preview & Send is no longer gated on approval — the OSA can be generated/previewed
+    // before the quote is approved. Only a Software Delivery Contact is required.
     get isPreviewSendDisabled() {
         if (!this.softwareDeliveryContactId || !this.softwareDeliveryContactEmail) return true;
-        if (this.anyApprovalRequired && this.approvalStatus !== 'Approved') return true;
         return false;
+    }
+
+    get previewSendTooltip() {
+        if (!this.softwareDeliveryContactId || !this.softwareDeliveryContactEmail) {
+            return 'Select a Software Delivery Contact to proceed';
+        }
+        return null;
     }
 
     // ─── Approvals ───
@@ -650,6 +663,11 @@ export default class AgenticQtcQuoteEditor extends LightningElement {
             this.progressMessage = 'Evaluating approvals…';
             await this.loadApprovalPreview();
 
+            if (this.approvalItems.length === 0 && this.approvalStatus !== 'Approved') {
+                await autoApproveIfNotRequired({ quoteId: this.quoteId });
+                this.approvalStatus = 'Approved';
+            }
+
             // ── Step 4: Done ─────────────────────────────────────────────
             this.progressValue = 100;
             this.progressMessage = 'Complete!';
@@ -955,6 +973,11 @@ export default class AgenticQtcQuoteEditor extends LightningElement {
             this._pendingQuantityChanges.clear();
 
             await this.loadApprovalPreview();
+
+            if (this.approvalItems.length === 0 && this.approvalStatus !== 'Approved') {
+                await autoApproveIfNotRequired({ quoteId: this.quoteId });
+                this.approvalStatus = 'Approved';
+            }
 
             this.showToast('Quote saved & prices calculated', 'success');
         } catch (error) {
