@@ -42,22 +42,23 @@ export default class AgenticQTCAppFormulas {
     }
 
     /**
-     * Returns a NEW line object with quantity and ACV recomputed.
+     * Returns a NEW line object with quantity, ACV, and live netTotal recomputed.
      * Immutable — caller must replace the line in the array.
      *
-     * NOTE: netPrice / totalCost are intentionally NOT recomputed on
-     * client-side quantity edits — TCV must remain unchanged until the
-     * server (CPQ) returns authoritative pricing on save.
+     * Live netTotal = effectiveQuantity × NetPrice. The server returns the
+     * authoritative SBQQ__NetTotal__c on Save, which overwrites this optimistic
+     * value. The editor sums netTotal across visible lines for the live TCV
+     * header (see agenticQtcQuoteEditor.totalTcv).
      */
     static recalcLineForQuantity(line, newQty) {
         const qty = AgenticQTCAppFormulas.toNumber(newQty);
-        // const netPrice = AgenticQTCAppFormulas.netPrice(line, qty); // TCV must not change on quantity edit
         const acv = AgenticQTCAppFormulas.acv(line, qty);
+        const effectiveQty = AgenticQTCAppFormulas.effectiveQuantity(qty, line.priorQuantity);
+        const netTotal = effectiveQty * AgenticQTCAppFormulas.toNumber(line.netPrice);
         return Object.assign({}, line, {
             quantity: qty,
-            // netPrice,                  // TCV must not change on quantity edit
-            // totalCost: netPrice,       // TCV must not change on quantity edit
-            acv
+            acv,
+            netTotal
         });
     }
 
@@ -101,5 +102,4 @@ export default class AgenticQTCAppFormulas {
 
     static totalAcv(lines)       { return AgenticQTCAppFormulas.sumField(lines, 'acv'); }
     static totalAcvChange(lines) { return AgenticQTCAppFormulas.sumField(lines, 'acvChange'); }
-    static totalTcv(lines)       { return AgenticQTCAppFormulas.sumField(lines, 'netPrice'); }
 }
