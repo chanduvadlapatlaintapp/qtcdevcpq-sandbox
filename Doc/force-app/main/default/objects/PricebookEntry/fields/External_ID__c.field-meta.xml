@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>External_ID__c</fullName>
+    <description>This field provides for a unique identifier that remains constant across organizations. It supports the mirgratio of records from one Salesforce Org to another.</description>
+    <externalId>true</externalId>
+    <inlineHelpText>This field provides for a unique identifier that remains constant across organizations. It supports the mirgratio of records from one Salesforce Org to another.</inlineHelpText>
+    <label>External ID</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>true</unique>
+</CustomField>

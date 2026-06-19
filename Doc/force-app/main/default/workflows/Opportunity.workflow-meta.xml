@@ -1,0 +1,2911 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Alert_Opportunity_Owner_and_Sales_Ops_when_an_open_opportunity_is_7_days_past_it</fullName>
+        <description>Alert Opportunity Owner and Sales Ops when an open opportunity is 7 days past its close date</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>President</recipient>
+            <type>role</type>
+        </recipients>
+        <senderAddress>contractsops@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales_Operations/Open_Opportunity_Past_Close_Date</template>
+    </alerts>
+    <alerts>
+        <fullName>Alert_Opportunity_Owner_when_open_opportunities_are_3_days_past_their_close_date</fullName>
+        <description>Alert Opportunity Owner when an open opportunity is 3 days past its close date</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>contractsops@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales_Operations/Open_Opportunity_Past_Close_Date</template>
+    </alerts>
+    <alerts>
+        <fullName>Billing_pause_opportunity_created</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <ccEmails>ContractsOps_Software@intapp.com</ccEmails>
+        <description>Billing pause opportunity created</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>All/Billing_Pause_Created_for_extended</template>
+    </alerts>
+    <alerts>
+        <fullName>Billing_pause_opportunity_created_2</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Billing pause opportunity created 2</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Customer Success Manager</recipient>
+            <type>accountTeam</type>
+        </recipients>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <recipient>ContractsOps</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>All/Billing_Pause_Created_for</template>
+    </alerts>
+    <alerts>
+        <fullName>Closed_Opportunity_pushed_to_OA</fullName>
+        <ccEmails>daniel.giampietro@intapp.com</ccEmails>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <ccEmails>ashish.sharma@intapp.com</ccEmails>
+        <description>Closed Opportunity pushed to OA</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/OA_Project_Completion_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>Cloud_Addendum_Required_for</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Cloud Addendum Required for</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/Cloud_Addendum_Required_for</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_Cancellation_Cloud</fullName>
+        <ccEmails>devops.dev@intapp.com</ccEmails>
+        <description>Email Cancellation - Cloud</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/Opportunity_Closed_Cancellation</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_Notification_Anticipated_Cancellation</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Email Notification: Anticipated Cancellation</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>diane.lawyer@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jennifer.richard@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>maya.peterson@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/Anticipated_Cancellation</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_Notification_on_Opportunity_push_to_OA</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Email Notification on Opportunity push to OA</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>ashish.sharma@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>daniel.giampietro@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>heather.curry@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>sarah.bakeer@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/OA_Project_Completion_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>New_OSA_Requested</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <ccEmails>contracts@intapp.com</ccEmails>
+        <description>New OSA Requested</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/OSA_Requested_Opportunity_VF</template>
+    </alerts>
+    <alerts>
+        <fullName>Notification_Billing_Pause_Pending</fullName>
+        <ccEmails>orest.skoropad@intapp.com</ccEmails>
+        <description>Notification- Billing Pause Pending</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>All/Billing_Pause_Created_for</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_EUL_Ops_Person_to_Process_Cancellation</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Notify EUL Ops Person to Process Cancellation</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>eldean.ward@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>greg.gardner@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jason.wood@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jennifer.richard@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>rita.rodriguez@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>tim.parsons@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>vera.friss@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Customer_Care/Process_Cancellation</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_Finance_of_Future_Cancellation</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <ccEmails>contractsops@intapp.com</ccEmails>
+        <description>Notify Finance of Future Cancellation</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Finance_Cancellations</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>eldean.ward@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>greg.gardner@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jason.wood@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jennifer.richard@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>rita.rodriguez@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>tim.parsons@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Customer_Care/Future_Cancellation</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_PjM_Opp_Closed_Won</fullName>
+        <description>Notify PjM Opp Closed Won</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Project_Manager__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/Opportunity_Closed_Project_Manager</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_Requester_about_the</fullName>
+        <description>Notify Requester about the approval request being sent out to Approver</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Opportunity_Submitter_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/Quote_Approval_Request_Requester_to_Approver2</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_Sales_Field_Opportunity_Closed</fullName>
+        <ccEmails>cteam@integrationappliance.com</ccEmails>
+        <description>Notify Sales Field Opportunity Closed</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>PracticeGroupLeaders</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>APAC_2</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>Accounting_Consulting_Sales</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>Accounting_Consulting_Sales_Reps</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>DirectorProductMarketing</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>EMEA_Region</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>EMEA_Sales_Reps</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>Eastern_Region</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>Eastern_Sales_Reps</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>Financial_Services_Sales_Reps</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>Global_Law</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>Global_Law_Sales_Reps</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>Inside_Sales</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>NA_Large_Law</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>NA_Large_Law_Sales_Reps</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>NA_Mid_size_Law</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>NA_Mid_size_Law_Sales_Reps</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>President</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>SalesOperations</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>Western_Region</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>Western_Sales_Reps</recipient>
+            <type>role</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/Opportunity_Closed</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_Sales_Ops_to_Process_Cancellation</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Notify Sales Ops to Process Cancellation</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>ContractsOps</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>eldean.ward@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jason.wood@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jennifer.richard@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>tim.parsons@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Customer_Care/Process_Cancellation</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_Steven_Todd</fullName>
+        <ccEmails>LegalOps@intapp.com</ccEmails>
+        <ccEmails>Contractsops@intapp.com</ccEmails>
+        <ccEmails>FS_ContractsOps@intapp.com</ccEmails>
+        <ccEmails>AMOps@intapp.com</ccEmails>
+        <description>Notify LegalOps and ContractOps to provide an annex OSA</description>
+        <protected>false</protected>
+        <senderAddress>sfdc_donotreply@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales_Operations/provide_an_annex_OSA</template>
+    </alerts>
+    <alerts>
+        <fullName>OA_Project_Completion_Notification_soft_book</fullName>
+        <ccEmails>daniel.giampietro@intapp.com</ccEmails>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <ccEmails>ashish.sharma@intapp.com</ccEmails>
+        <description>OA_Project_Completion_Notification_soft_book</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>All/OA_Project_Completion_Notification_soft_book</template>
+    </alerts>
+    <alerts>
+        <fullName>OpportunityCreatedswitchaccounttypeupdateopportunitysourcecampaign</fullName>
+        <description>Opportunity Created - switch account type, update opportunity source campaign</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>InternalNotification/OpportunityCreatedChangeaccountstatus</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Closed_Lost_Email_Renewal</fullName>
+        <ccEmails>csm@intapp.com,</ccEmails>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Opportunity Closed Lost Email Renewal</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <field>CRD_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <recipient>CSMs</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>Accounting</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>COO</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>chet.gandhi@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>eldean.ward@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jason.wood@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jennifer.richard@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jose.fernandez@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>tim.parsons@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>Delegated_Owner__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>InternalNotification/Opportunity_Closed_Lost_Renewal</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Closed_Won_Accounting_Consulting</fullName>
+        <description>Opportunity Closed Won - Accounting/Consulting</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>Accounting_Consulting_Sales</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>jason.wood@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jennifer.richard@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/Opportunity_Closed</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Closed_Won_Billing_Pause</fullName>
+        <ccEmails>notifications_closed_billing_pause@intapp.com</ccEmails>
+        <description>Opportunity Closed Won Billing Pause</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <field>CRD_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Opportunity_Owner_Manager__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>Delegated_Owner__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Project_Manager__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/Processing_Billing_Pause_closed_won_opportunity</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Closed_Won_Catch_all</fullName>
+        <description>Opportunity Closed Won - Catch-all</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>Business_Operations</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>SalesOperations</recipient>
+            <type>role</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/Opportunity_Closed</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Closed_Won_Cloud_Email_Cancellation</fullName>
+        <ccEmails>notifications_closed_cloud_cancelation@intapp.com</ccEmails>
+        <ccEmails>devops.dev@intapp.com</ccEmails>
+        <description>Opportunity Closed Won Cloud Email Cancellation</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <field>Account_owner_manager__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/Opportunity_Closed_Cancellation_Cloud</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Closed_Won_Email_Cancellation</fullName>
+        <ccEmails>notifications_closed_cancelation@intapp.com,</ccEmails>
+        <ccEmails>contractsops@intapp.com,</ccEmails>
+        <ccEmails>ar@intapp.com</ccEmails>
+        <description>Opportunity Closed Won Email Cancellation</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <field>CRD_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>COO</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <field>Account_owner_manager__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Delegated_Owner__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/Opportunity_Closed_Cancellation</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Closed_Won_Email_Renewal</fullName>
+        <ccEmails>csm@intapp.com,</ccEmails>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Opportunity Closed Won Email Renewal</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <field>CRD_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <recipient>CSMs</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>Accounting</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>COO</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>chet.gandhi@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>eldean.ward@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jason.wood@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jennifer.richard@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jose.fernandez@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>tim.parsons@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>Delegated_Owner__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>InternalNotification/Opportunity_Closed_Won_Renewal</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Closed_Won_Engagement_Letter</fullName>
+        <ccEmails>engagement_letter@intapp.com</ccEmails>
+        <description>Opportunity Closed Won Engagement Letter</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Finance/Opportunity_Closed_Won_Engagement</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Closed_Won_Finance_Catch_All_Notification</fullName>
+        <ccEmails>AMOps@intapp.com,</ccEmails>
+        <ccEmails>opportunity_closed_notifications@intapp.com</ccEmails>
+        <description>Opportunity Closed Won Finance Catch All Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>guido.peruzzi@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>kalyani.tandon@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>valerie.dendinger@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>Project_Manager__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/Opportunity_Closed_Won_Finance_Catch_All_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Closed_Won_Intapp_prime</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <ccEmails>IntappPrime@intapp.com</ccEmails>
+        <description>Opportunity Closed Won Intapp Prime</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>kate.hann@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>All/Opportunity_Closed_Won_Prime</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Closed_Won_Legal_Consulting_Services</fullName>
+        <ccEmails>contractsops@intapp.com,</ccEmails>
+        <ccEmails>csmops@intapp.com,</ccEmails>
+        <ccEmails>notifications_closed_consulting@intapp.com</ccEmails>
+        <description>Opportunity Closed Won - Legal - Consulting Services</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Strategic_Consulting</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/Consulting_Opportunity_Closed_Won</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Closed_Won_OnePlace</fullName>
+        <ccEmails>Notifications_Closed_OnePlace@intapp.com</ccEmails>
+        <description>Opportunity Closed Won OnePlace</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Finance/Opportunity_Closed_Won_OnePlace</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Closed_Won_OnePlace_2</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <ccEmails>notifications_oneplace_license_fulfillment@intapp.com,</ccEmails>
+        <description>Opportunity Closed Won OnePlace #2</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>greg.gardner@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>rita.rodriguez@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Finance/Opportunity_Closed_Won_OnePlace</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Closed_Won_Services_Partner</fullName>
+        <ccEmails>psops_support@intapp.com,</ccEmails>
+        <ccEmails>CSMOps@Intapp.com,</ccEmails>
+        <ccEmails>notifications_closed_partner@intapp.com</ccEmails>
+        <description>Opportunity Closed Won Services-Partner</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <field>CRD_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Customer_Care/Partner_Services_Opp_Closed</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Closed_Won_Training</fullName>
+        <ccEmails>contractsops@intapp.com,</ccEmails>
+        <ccEmails>trainingadmin@intapp.com</ccEmails>
+        <ccEmails>jason.wood@intapp.com</ccEmails>
+        <description>Opportunity Closed Won Training</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <field>Delegated_Owner__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Project_Manager__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/Opportunity_Closed_won_training</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Closed_Won_greater_than_20K</fullName>
+        <ccEmails>opportunity_closed_notifications@intapp.com,</ccEmails>
+        <ccEmails>AMOps@intapp.com</ccEmails>
+        <description>Opportunity Closed Won greater than 20K</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>guido.peruzzi@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>kalyani.tandon@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>valerie.dendinger@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/Opportunity_Closed</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Closed_Won_less_than_20K</fullName>
+        <ccEmails>contractsops@intapp.com,</ccEmails>
+        <ccEmails>notifications_closed_less_20K@intapp.com</ccEmails>
+        <description>Opportunity Closed Won less than 20K</description>
+        <protected>false</protected>
+        <recipients>
+            <field>CRD_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Opportunity_Owner_Manager__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>Accounting</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <field>Delegated_Owner__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Project_Manager__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/Opportunity_Closed_less_than_20_K</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_OSA_Requests_for_Training</fullName>
+        <ccEmails>contractsops@intapp.com,</ccEmails>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Opportunity OSA Requests for Training</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>heather.curry@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>All/OSA_Requests_for_Training</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Stage_Approval</fullName>
+        <description>Opportunity Stage Approval</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>bizappsdev@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Business_Operations/Opportunity_Stage_Approval_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Stage_Changed</fullName>
+        <description>Opportunity Stage Changed</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>bizappsdev@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>All/Opportunity_Stage_Changed</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_renewal_at_risk</fullName>
+        <ccEmails>notifications_renewal_at_risk@intapp.com,</ccEmails>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Opportunity renewal at risk</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <field>CRD_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>Accounting</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>COO</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>eldean.ward@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>Account_owner_manager__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Delegated_Owner__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>InternalNotification/Opportunity_changed_Renewal_at_risk</template>
+    </alerts>
+    <alerts>
+        <fullName>POCRORNotification</fullName>
+        <ccEmails>heather.curry@intapp.com</ccEmails>
+        <description>POC/ROR Notification</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>InternalNotification/POCNotification</template>
+    </alerts>
+    <alerts>
+        <fullName>Proposed_Stage_Changed</fullName>
+        <description>Proposed Stage Changed</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>jason.wood@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Business_Operations/Proposed_Stage_Changed</template>
+    </alerts>
+    <alerts>
+        <fullName>Quote_Approved_Approver_to_Requester</fullName>
+        <description>Quote Approved - Approver to Requester</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Opportunity_Submitter_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/Quote_Approved_Approver_to_Requester</template>
+    </alerts>
+    <alerts>
+        <fullName>Quote_Rejected_Approver_to_Requester</fullName>
+        <description>Quote Rejected - Approver to Requester</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Opportunity_Submitter_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/Quote_Rejected_Approver_to_Requester</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Email_to_CRD</fullName>
+        <description>Send Email to CRD</description>
+        <protected>false</protected>
+        <recipients>
+            <field>CRD_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <recipient>Business_Operations</recipient>
+            <type>role</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/Opportunity_Closed</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_email_to_Contracts_Operations_ONLY_Rita_Rodriguez_Vera_Friss</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <ccEmails>LegalOps@intapp.com</ccEmails>
+        <description>Send email to Contracts Operations and LegalOps ONLY (Rita Rodriguez, Vera Friss, Greg Gardner, LegalOps)</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/provide_an_annex_to_Contract_operations</template>
+    </alerts>
+    <alerts>
+        <fullName>Stage_Approval_Accounting_Consulting</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Stage Approval - Accounting/Consulting</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>aleksandr.malyshenko@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>mike.cassano@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Business_Operations/Opportunity_Stage_Approval_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>Stage_Approval_EMEA_Law</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Stage Approval - EMEA Law</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>chris.turk@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Business_Operations/Opportunity_Stage_Approval_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>Stage_Approval_Financial_Services</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Stage Approval - Financial Services</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>bizappsdev@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Business_Operations/Opportunity_Stage_Approval_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>Stage_Approval_Global_Law</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Stage Approval - Global Law</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>don.coleman@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Business_Operations/Opportunity_Stage_Approval_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>Stage_Approval_NA_Large_Law</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Stage Approval - NA Large Law</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Business_Operations/Opportunity_Stage_Approval_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>Stage_Approval_NA_Mid_size_Law</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Stage Approval - NA Mid-size Law</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>tom.jones@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Business_Operations/Opportunity_Stage_Approval_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>Stage_Approval_Unknown</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Stage Approval - Unknown</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>bizappsdev@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Business_Operations/Opportunity_Stage_Approval_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>Status_Pending_Closure_Services</fullName>
+        <ccEmails>Contractsops@intapp.com</ccEmails>
+        <ccEmails>FS_ContractsOps@intapp.com</ccEmails>
+        <description>Status Pending Closure Services</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Pending_closure_notification</template>
+    </alerts>
+    <alerts>
+        <fullName>Status_Pending_Closure_Software</fullName>
+        <ccEmails>contracts@intapp.com</ccEmails>
+        <description>Status Pending Closure Software</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Pending_closure_notification</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Annex_Email_Sent</fullName>
+        <field>Annex_email_sent__c</field>
+        <literalValue>1</literalValue>
+        <name>Annex Email Sent</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Annex_email_sent_update_1</fullName>
+        <field>Annex_email_sent__c</field>
+        <literalValue>1</literalValue>
+        <name>Annex_email_sent update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Clear_Opportunity_Accepted</fullName>
+        <field>Opportunity_Accepted__c</field>
+        <name>Clear Opportunity Accepted</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Clear_Review_Status</fullName>
+        <description>SC-000052</description>
+        <field>Review_Stage__c</field>
+        <name>Clear Review Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>First_Entered_Pre_Shopping_Date</fullName>
+        <field>First_Entered_Pre_Shopping_DateOld__c</field>
+        <formula>If( 
+  ISBLANK(First_Entered_Pre_Shopping_Date__c), 
+  Today(), 
+  First_Entered_Pre_Shopping_Date__c 
+  )</formula>
+        <name>First Entered Pre-Shopping Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>In_Manager_Forecast</fullName>
+        <description>If a deal is better than &apos;pipeline&apos; it is automatically included in the &quot;managers forecast&quot;</description>
+        <field>In_Manager_Forecast__c</field>
+        <literalValue>1</literalValue>
+        <name>In Manager Forecast</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>In_Manager_Forecast2</fullName>
+        <field>In_Manager_Forecast__c</field>
+        <literalValue>1</literalValue>
+        <name>In Manager Forecast2</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Last_Entered_Pre_Shopping_Date</fullName>
+        <field>Last_Entered_Pre_Shopping_Date_New__c</field>
+        <formula>Today()</formula>
+        <name>Last Entered Pre-Shopping Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Date_Opportunity_Closed</fullName>
+        <field>Date_Opportunity_Closed__c</field>
+        <formula>TODAY()</formula>
+        <name>Populate Date Opportunity Closed</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Firm_Maturity_Status_Centrali</fullName>
+        <field>Firm_Maturity_Status__c</field>
+        <literalValue>Centralized</literalValue>
+        <name>Populate Firm Maturity Status - Centrali</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Firm_Maturity_Status_Decentra</fullName>
+        <field>Firm_Maturity_Status__c</field>
+        <literalValue>Decentralized</literalValue>
+        <name>Populate Firm Maturity Status - Decentra</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Firm_Maturity_Status_Transact</fullName>
+        <field>Firm_Maturity_Status__c</field>
+        <literalValue>Transactional</literalValue>
+        <name>Populate Firm Maturity Status - Transact</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Obtain_Contract</fullName>
+        <field>In_Obtain_Contract__c</field>
+        <literalValue>1</literalValue>
+        <name>Populate Obtain Contract</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Regional_VP_Notes_Updated_On</fullName>
+        <field>Regional_VP_Notes_Updated_On__c</field>
+        <formula>NOW()</formula>
+        <name>Regional VP Notes Updated On</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Reset_At_Risk_Notification_Flag</fullName>
+        <description>This field update reset the At Risk Notification flag.</description>
+        <field>Don_t_send_At_Risk_Notification__c</field>
+        <literalValue>0</literalValue>
+        <name>Reset At Risk Notification Flag</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Services_Project_Early_Adopter</fullName>
+        <field>Services_Project_Type__c</field>
+        <literalValue>Early Adopter</literalValue>
+        <name>Services Project - Early Adopter</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Services_Project_Type_Solution_Extensi</fullName>
+        <field>Services_Project_Type__c</field>
+        <literalValue>Solution Extension / Module</literalValue>
+        <name>Services Project Type - Solution Extensi</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Services_Project_Type_Training</fullName>
+        <field>Services_Project_Type__c</field>
+        <literalValue>Training</literalValue>
+        <name>Services Project Type - Training</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Services_Project_Type_Update</fullName>
+        <field>Services_Project_Type__c</field>
+        <literalValue>Services Only</literalValue>
+        <name>Services Project Type Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Services_Project_Type_Update2</fullName>
+        <field>Services_Project_Type__c</field>
+        <literalValue>Change Request</literalValue>
+        <name>Services Project Type Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Services_Project_Type_Update3</fullName>
+        <field>Services_Project_Type__c</field>
+        <literalValue>New Implementation</literalValue>
+        <name>Services Project Type Update 3</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Services_Project_Type_Update_4</fullName>
+        <field>Services_Project_Type__c</field>
+        <literalValue>Upgrade</literalValue>
+        <name>Services Project Type Update 4</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Services_Project_Type_Update_5</fullName>
+        <field>Services_Project_Type__c</field>
+        <literalValue>Consulting</literalValue>
+        <name>Services Project Type Update 5</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Services_Project_Type_Update_6</fullName>
+        <field>Services_Project_Type__c</field>
+        <literalValue>None</literalValue>
+        <name>Services Project Type Update 6</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Close_Date_to_TODAY</fullName>
+        <description>Set &apos;Close Date&apos; to TODAY()</description>
+        <field>CloseDate</field>
+        <formula>TODAY()</formula>
+        <name>Set Close Date to TODAY()</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_First_Entered_Pre_Shopping_Date</fullName>
+        <description>Set the First Entered Pre-Shopping Date to Today() when the stage changes to Pre-Shopping.</description>
+        <field>First_Entered_Pre_Shopping_Date__c</field>
+        <formula>If(
+  ISBLANK(First_Entered_Pre_Shopping_Date__c),
+  Today(),
+  First_Entered_Pre_Shopping_Date__c
+)</formula>
+        <name>Set First Entered Pre-Shopping Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_First_Entered_Pre_Shopping_Date2</fullName>
+        <field>First_Entered_Pre_Shopping_Date__c</field>
+        <formula>IF(
+  ISBLANK(First_Entered_Pre_Shopping_Date__c), 
+  TODAY(),
+  First_Entered_Pre_Shopping_Date__c
+)</formula>
+        <name>Set First Entered Investigation Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_First_Entered_Shopping_Date_1</fullName>
+        <field>First_Entered_Shopping_Date__c</field>
+        <formula>If( 
+ISBLANK(First_Entered_Pre_Shopping_Date__c), 
+Today(), 
+First_Entered_Pre_Shopping_Date__c 
+)</formula>
+        <name>Set First Entered Shopping Date1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_In_Manager_Forecast_Number</fullName>
+        <field>In_Manager_Forecast_Number__c</field>
+        <formula>IF(In_Manager_Forecast__c,1,0)</formula>
+        <name>Set In Manager Forecast Number</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Last_Entered_Investigation3</fullName>
+        <description>Set Last Entered Investigation</description>
+        <field>Last_Entered_Pre_Shopping_Date__c</field>
+        <formula>NOW()</formula>
+        <name>Set Last Entered Investigation</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Last_Entered_Pre_Shopping_Date</fullName>
+        <description>Set the Last Entered Pre-Shopping Date to Today when the Buying Phase changes to &quot;Pre-Shopping&quot;; This will overwrite any date currently in the field.</description>
+        <field>Last_Entered_Pre_Shopping_Date__c</field>
+        <formula>Today()</formula>
+        <name>Set Last Entered Pre-Shopping Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Un_Check_in_Manager_forecast2</fullName>
+        <description>If a deal moves out of Commit or Best Case into &quot;pipeline&quot; or &quot;omitted&quot;, un-check the box</description>
+        <field>In_Manager_Forecast__c</field>
+        <literalValue>0</literalValue>
+        <name>Un Check in Manager forecast2</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Uncheck_Upside_Box</fullName>
+        <field>Upside__c</field>
+        <literalValue>0</literalValue>
+        <name>Uncheck Upside Box</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Approval_Request_Date</fullName>
+        <description>capture Date &amp; Time to track time when the approval process was initiated</description>
+        <field>Approval_Request_Date__c</field>
+        <formula>NOW()</formula>
+        <name>Update &apos;Approval Request Date&apos;</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_CRD_Email_in_Opportunity</fullName>
+        <field>CRD_Email__c</field>
+        <formula>Account.CRD__r.Email</formula>
+        <name>Update CRD Email in Opportunity</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_CSD_M_Email_field</fullName>
+        <field>CRD_Email__c</field>
+        <formula>Account.CRD__r.Email</formula>
+        <name>Update CSD/M Email field on Opportunity</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Field_Stage_Approval_Quality_Date</fullName>
+        <description>Update Field Stage Approval Quality Date</description>
+        <field>Stage_Approval_Quality_Date__c</field>
+        <formula>Today()</formula>
+        <name>Update Field Stage Approval Quality Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_First_Entered_Pre_Shopping_Date</fullName>
+        <field>First_Entered_Pre_Shopping_Date__c</field>
+        <formula>IF(
+  Probability &gt; 0.19,
+  Today(),
+  NULL
+)</formula>
+        <name>Update &quot;First Entered Pre-Shopping Date&quot;</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_First_Entered_Shopping_Date</fullName>
+        <field>First_Entered_Shopping_Date__c</field>
+        <formula>IF(
+   OR(
+      Buying_Phase__c = &quot;Shopping for a Solution&quot;,
+      Buying_Phase__c = &quot;Selected&quot;
+   ),
+Today(),NULL)</formula>
+        <name>Update &quot;First Entered Shopping Date&quot;</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_IMF</fullName>
+        <field>IMF_Upside__c</field>
+        <literalValue>In Manager Forecast</literalValue>
+        <name>Update IMF</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_In_Manager_Forecast</fullName>
+        <field>In_Manager_Forecast__c</field>
+        <literalValue>1</literalValue>
+        <name>Update In Manager Forecast</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Internal_Notification_Sent</fullName>
+        <field>Internal_Notification_Sent__c</field>
+        <literalValue>1</literalValue>
+        <name>Update Internal Notification Sent</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Internal_Notification_Sent_Box</fullName>
+        <field>Internal_Notification_Sent__c</field>
+        <literalValue>1</literalValue>
+        <name>Update Internal Notification Sent Box</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Last_Entered_Pre_Shopping_Date</fullName>
+        <field>Last_Entered_Pre_Shopping_Date__c</field>
+        <formula>IF(
+  Probability &gt; 0.19,
+  Today(),
+  NULL
+)</formula>
+        <name>Update &quot;Last Entered Pre-Shopping Date&quot;</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Last_Entered_Shopping_Date</fullName>
+        <field>Last_Entered_Shopping_Date__c</field>
+        <formula>IF(
+   OR(
+      Buying_Phase__c = &quot;Shopping for a Solution&quot;,
+      Buying_Phase__c = &quot;Selected&quot;
+   ),
+Today(),NULL)</formula>
+        <name>Update &quot;Last Entered Shopping Date&quot;</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Next_Step_Updated_By</fullName>
+        <field>Next_Step_Updated_By__c</field>
+        <formula>$User.FirstName &amp;&quot; &quot;&amp; $User.LastName</formula>
+        <name>Update Next Step Updated By</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Next_Step_Updated_On</fullName>
+        <field>Next_Step_Updated_On__c</field>
+        <formula>NOW()</formula>
+        <name>Update Next Step Updated On</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Opp_Close_Date_to_Prev_Value</fullName>
+        <field>CloseDate</field>
+        <formula>PRIORVALUE(CloseDate)</formula>
+        <name>Update Opp Close Date to Prev Value</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Owner_Manager_Email</fullName>
+        <field>Opportunity_Owner_Manager__c</field>
+        <formula>Owner.Manager.Email</formula>
+        <name>Update Owner Manager Email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_PGL_Non_Compliance_Date</fullName>
+        <field>PGL_Non_Compliance_Flag_Date__c</field>
+        <formula>IF(
+  PGL_Non_Compliance_Flag__c,
+  TODAY(),
+  NULL
+)</formula>
+        <name>Update PGL Non-Compliance Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Primary_Business_Problem_Last_Mod</fullName>
+        <field>Primary_Business_Problem_Last_Modified__c</field>
+        <formula>TODAY()</formula>
+        <name>Update Primary Business Problem Last Mod</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Primary_Competitor_Last_Modified</fullName>
+        <field>Primary_Competitor_Last_Modified_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>Update Primary Competitor Last Modified</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Quote_Approval_Status_Approved</fullName>
+        <description>Updates the Quote Approval Status to Approved</description>
+        <field>Quote_Approval_Status__c</field>
+        <formula>&quot;Approved&quot;</formula>
+        <name>Update &apos;Quote Approval Status&apos; =Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Quote_Approval_Status_Rejected</fullName>
+        <description>Update Quote Approval Status = &apos;Rejected&apos;</description>
+        <field>Quote_Approval_Status__c</field>
+        <formula>&quot;Rejected&quot;</formula>
+        <name>Update &apos;Quote Approval Status&apos; =Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Quote_Approval_Status_Submitte</fullName>
+        <description>Updates the Quote Approval status to either Blank, Submitted, Approved OR Rejected</description>
+        <field>Quote_Approval_Status__c</field>
+        <formula>&quot;Submitted&quot;</formula>
+        <name>Update &apos;Quote Approval Status&apos; =Submitte</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Review_Status</fullName>
+        <description>SC-000003</description>
+        <field>Review_Stage__c</field>
+        <literalValue>Pending Review</literalValue>
+        <name>Update Review Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Services_Partner_Assigned_Date</fullName>
+        <field>Services_Partner_Assigned_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>Update Services Partner Assigned Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Services_Project_Type_Prime</fullName>
+        <description>SC-000054</description>
+        <field>Services_Project_Type__c</field>
+        <literalValue>Intapp Prime</literalValue>
+        <name>Update Services Project Type - Prime</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Stage_Eval</fullName>
+        <description>SC-000059</description>
+        <field>Stage_Approval_Required__c</field>
+        <literalValue>1</literalValue>
+        <name>Update Stage Eval</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Stage_Notes_By</fullName>
+        <field>Stage_Notes_Updated_By__c</field>
+        <formula>$User.FirstName &amp;&quot; &quot;&amp; $User.LastName</formula>
+        <name>Update Stage Notes By</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Stage_Notes_On</fullName>
+        <field>Stage_Notes_Updated_On__c</field>
+        <formula>NOW()</formula>
+        <name>Update Stage Notes On</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Updated_Regional_Notes_VP_Updated_By</fullName>
+        <field>Regional_VP_Notes_Last_Updated_By__c</field>
+        <formula>$User.FirstName&amp;&quot; &quot;&amp;$User.LastName</formula>
+        <name>Updated Regional Notes VP Updated By</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>annex_email_sent_update</fullName>
+        <field>Annex_email_sent__c</field>
+        <literalValue>1</literalValue>
+        <name>annex email sent update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>save_previous_stage</fullName>
+        <field>Previous_stage__c</field>
+        <formula>TEXT(PRIORVALUE(StageName))</formula>
+        <name>Save Previous Stage</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <outboundMessages>
+        <fullName>SendOpportunityToDTE</fullName>
+        <apiVersion>34.0</apiVersion>
+        <endpointUrl>https://www.intapp.com/SalesForceSync/DTE/Opportunity/OpportunityNotificationService.asmx</endpointUrl>
+        <fields>AccountId</fields>
+        <fields>CloseDate</fields>
+        <fields>Id</fields>
+        <fields>IntApp_Opportunity_Number__c</fields>
+        <fields>Name</fields>
+        <fields>Sale_Category__c</fields>
+        <fields>StageName</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>alan.westley@intapp.com</integrationUser>
+        <name>SendOpportunityToDTE</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <outboundMessages>
+        <fullName>clz_94b0f5b1a4274742949b8e717c5607bc</fullName>
+        <apiVersion>35.0</apiVersion>
+        <description>Create project when Opportunity probability reaches 70%</description>
+        <endpointUrl>https://integration.clarizen.com/Sync/SalesforceOutboundMessage?eventId=a7978fe2-6b94-42e7-8279-b017f4856848&amp;clzOrgId=6vt4hvjt8d0i98t1cx38cinl40</endpointUrl>
+        <fields>Id</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>maya.peterson@intapp.com</integrationUser>
+        <name>clz_94b0f5b1a4274742949b8e717c5607bc</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <rules>
+        <fullName>Rule Code%3A OPP-003xFxx</fullName>
+        <actions>
+            <name>Set_In_Manager_Forecast_Number</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Rule Code: OPP-003xFxx
+Set In Manager Forecast Number</description>
+        <formula>OR(   ISCHANGED(In_Manager_Forecast__c),   ISNEW() )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-012xFxx</fullName>
+        <actions>
+            <name>In_Manager_Forecast2</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Uncheck_Upside_Box</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.Probability</field>
+            <operation>greaterOrEqual</operation>
+            <value>50</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.ForecastCategoryName</field>
+            <operation>equals</operation>
+            <value>Commit,Closed</value>
+        </criteriaItems>
+        <description>Rule Code: OPP-012xFxx
+Check in Manager forecast
+if a deal is in best case or higher, it should be &quot;in manager forecast&quot;</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-013xFxx</fullName>
+        <actions>
+            <name>Un_Check_in_Manager_forecast2</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.Probability</field>
+            <operation>lessThan</operation>
+            <value>50</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.ForecastCategoryName</field>
+            <operation>notEqual</operation>
+            <value>Commit,Closed</value>
+        </criteriaItems>
+        <description>Rule Code: OPP-013xFxx
+Un Check in Manager forecast
+if a deal moves from best case or higher to a pipeline or omitted, it should be removed from &quot;in manager forecast&quot;</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-015xFxx</fullName>
+        <actions>
+            <name>Update_First_Entered_Pre_Shopping_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_First_Entered_Shopping_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Last_Entered_Pre_Shopping_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Last_Entered_Shopping_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.Buying_Phase__c</field>
+            <operation>equals</operation>
+            <value>Shopping for a Solution,Pre-Shopping,Selected</value>
+        </criteriaItems>
+        <description>Rule Code: OPP-015xFxx
+Set Pre-Shopping &amp; Shopping Dates when created
+This rule only evaluates when the opportunity is first created. It is a rule to handle the edge cases of when an opportunity is created in a far enough advanced stage.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-022xFxx</fullName>
+        <actions>
+            <name>Update_Services_Partner_Assigned_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-022xFxx
+Update_Date_Partner_Assigned
+Update Services Partner Assigned Date field when Services Partner field is changed.</description>
+        <formula>AND(   NOT(ISBLANK(Services_Partner__c)),   ISCHANGED(Services_Partner__c) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-023xFxx</fullName>
+        <actions>
+            <name>Update_Next_Step_Updated_By</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Next_Step_Updated_On</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-023xFxx
+Update Next Step Updated On and By
+Updates the Next Step Updated On and Next Step Updated By fields when Next Step field is changed</description>
+        <formula>OR(   ISCHANGED(NextStep),   AND(     ISNEW(),     NOT(ISBLANK(NextStep))   ) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-024Exxx</fullName>
+        <actions>
+            <name>Notify_Sales_Field_Opportunity_Closed</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <description>Rule Code: OPP-024Exxx
+Notification: Opportunity Closed Won - Over 20K Recurring
+This opportunity sends an email notification to the regional head of sales and the owner of the opportunity that the opportunity has closed.</description>
+        <formula>AND(   Exclude_from_Notifications__c=FALSE,   NOT(CONTAINS(TEXT(Type),&quot;Acquired&quot;)),   IsWon,   Maintenance_Amount__c &gt; 20000,   ISCHANGED(IsWon),   NOT(     OR(       CONTAINS(Simple_Type__c,&quot;Accounting&quot;),       CONTAINS(Simple_Type__c,&quot;Renewal&quot;),       ISPICKVAL(Type,&quot;Legal - CPI / Recurring Increase&quot;),       ISPICKVAL(Type,&quot;Legal - Services Change Request Internal&quot;),       ISPICKVAL(Type, &quot;Intapp Prime&quot;)     )   ) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-025xFxx</fullName>
+        <actions>
+            <name>Update_Primary_Competitor_Last_Modified</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-025xFxx
+Update Primary Competitor Last Modified
+Updates the Primary Competitor - Last Modified Date field when Primary Competitor field is changed</description>
+        <formula>ISCHANGED(Primary_Competitor__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-026xFxx</fullName>
+        <actions>
+            <name>Update_Primary_Business_Problem_Last_Mod</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-026xFxx
+Update Primary Business Problem Last Modified
+Updates the Primary Business Problem - Last Modified field when Primary Business Problem is changed</description>
+        <formula>ISCHANGED(Identified_Pain__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-028Exxx</fullName>
+        <actions>
+            <name>Notify_Sales_Ops_to_Process_Cancellation</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-028Exxx
+Process Cancellation - Past Close Date
+Sends an email alert to sales ops whenever there is a past due process cancellation.</description>
+        <formula>AND(   Process_Cancellation__c,   CloseDate &lt;= TODAY(),   NOT(ISPICKVAL(Type,&quot;License Conversion - Recurring Decrease&quot;)),   NOT(ISPICKVAL(Type,&quot;Legal - User Count Decrease&quot;)),   NOT(IsClosed) )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-029Exxx</fullName>
+        <actions>
+            <name>Notify_Finance_of_Future_Cancellation</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-029Exxx
+Process Cancellation - Future Close Date
+Sends email notification to Finance whenever a Process Cancellation has a future close date.</description>
+        <formula>AND(   Process_Cancellation__c,   NOT(CloseDate &lt;= TODAY()),   NOT(ISPICKVAL(Type,&quot;License Conversion - Recurring Decrease&quot;)),   NOT(ISPICKVAL(Type,&quot;Legal - User Count Decrease&quot;)),   NOT(IsClosed) )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Notify_Sales_Ops_to_Process_Cancellation</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>Opportunity.CloseDate</offsetFromField>
+            <timeLength>-1</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-030Exxx</fullName>
+        <actions>
+            <name>Notify_EUL_Ops_Person_to_Process_Cancellation</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-030Exxx
+Process Cancellation - Past Close Date - EUL / Conversions
+Sends an email alert to Diane whenever a process cancellation has a past close date (with EUL/Conversions)</description>
+        <formula>AND(   Process_Cancellation__c,   CloseDate &lt;= TODAY(),   OR(     ISPICKVAL(Type,&quot;License Conversion - Recurring Decrease&quot;),     ISPICKVAL(Type,&quot;Legal - User Count Decrease&quot;)   ),   NOT(IsClosed) )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-031Exxx</fullName>
+        <actions>
+            <name>Notify_Finance_of_Future_Cancellation</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-031Exxx
+Process Cancellation - Future Close Date - EUL / Conversions
+Sends an email alert to finance whenever there is a process cancellation with a future date (with EUL/Conversions)</description>
+        <formula>AND(   Process_Cancellation__c,   NOT(CloseDate &lt;= TODAY()),   OR(     ISPICKVAL(Type,&quot;License Conversion - Recurring Decrease&quot;),     ISPICKVAL(Type,&quot;Legal - User Count Decrease&quot;)   ),   NOT(IsClosed) )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Notify_EUL_Ops_Person_to_Process_Cancellation</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>Opportunity.CloseDate</offsetFromField>
+            <timeLength>-1</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-032xFxx</fullName>
+        <actions>
+            <name>Populate_Obtain_Contract</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Obtain Contract</value>
+        </criteriaItems>
+        <description>Rule Code: OPP-032xFxx
+Populate Is in Obtain Contract
+Checks &apos;&apos;In Obtain Contract&apos;&apos; field when Stage equals to &quot;Obtain Contract&quot;</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-033Exxx</fullName>
+        <actions>
+            <name>Notify_PjM_Opp_Closed_Won</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.IsWon</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Type</field>
+            <operation>notEqual</operation>
+            <value>After Market Partner Opportunity</value>
+        </criteriaItems>
+        <description>Rule Code: OPP-033Exxx
+Notify PjM Opp Close
+Sends an email alert to the Project Manager when an opportunity is won.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-034xxOx</fullName>
+        <actions>
+            <name>SendOpportunityToDTE</name>
+            <type>OutboundMessage</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-034xxOx
+UpdateOpportunityInDTE
+Sends out an Outbound message whenever AccountId or Name or Sale Category or StageName values changed or a new opportunity is created</description>
+        <formula>ISNEW() || ISCHANGED(AccountId) || ISCHANGED(Name) || ISCHANGED(Sale_Category__c) || ISCHANGED(StageName)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-035EFxx</fullName>
+        <actions>
+            <name>Email_Cancellation_Cloud</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Update_Internal_Notification_Sent_Box</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Rule Code: OPP-035EFxx
+Email Cancellation - Cloud
+Sends an email notification whenever there is a cancellation on an opportunity for Cloud.</description>
+        <formula>AND(   CONTAINS(TEXT(Product_Line__c),&quot;Cloud&quot;),   Exclude_from_Notifications__c=FALSE,    NOT(ISPICKVAL(Type,&quot;Practice Credit Adjustment&quot;)),    NOT(ISPICKVAL(Type,&quot;Quota Credit Adjustment&quot;)),    NOT(      AND(        ISPICKVAL(Type,&quot;Cancellation - CPI&quot;),        Maintenance_Amount__c&gt;-5000      )    ),    IsClosed,    IsWon,    Maintenance_Amount__c &lt; 0,    Internal_Notification_Sent__c=FALSE )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-036xFxx</fullName>
+        <actions>
+            <name>Services_Project_Type_Update_5</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-036xFxx
+Services Project Type - Consulting
+Updates the Services Project Type to Consulting</description>
+        <formula>ISPICKVAL(Type, &quot;Legal - Consulting Services&quot;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-037xFxx</fullName>
+        <actions>
+            <name>Services_Project_Type_Update3</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-037xFxx
+Services Project Type - Implemetations
+Updates the Services Project Type to Implementations for Legal customer types.</description>
+        <formula>OR(      ISPICKVAL(Type, &quot;Legal - Recovered Customer&quot;),      ISPICKVAL(Type, &quot;Legal - New Customer&quot;),     ISPICKVAL(Type, &quot;Legal - New Product&quot;),      ISPICKVAL(Type, &quot;Legal - Recovered Product&quot;),   ISPICKVAL(Type, &quot;Legal - New Converted Customer&quot;),      ISPICKVAL(Type, &quot;Legal - New Converted Product&quot;)  )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-038xFxx</fullName>
+        <actions>
+            <name>Services_Project_Type_Update2</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-038xFxx
+Services Project Type - Change Request</description>
+        <formula>ISPICKVAL(Type, &quot;Legal - Services Change Request&quot;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-039xFxx</fullName>
+        <actions>
+            <name>Services_Project_Type_Update_6</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-039xFxx
+Services Project Type - Other
+Updates the Services Project Type to None when Type is set to certain values</description>
+        <formula>OR(      ISPICKVAL(Type, &quot;Cancellation - Customer&quot;),      ISPICKVAL(Type, &quot;Cancellation - Module&quot;),      ISPICKVAL(Type, &quot;Cancellation - Product&quot;),      ISPICKVAL(Type, &quot;Cancellation - Recurring Adjustment&quot;),      ISPICKVAL(Type, &quot;Direct - Other&quot;),      ISPICKVAL(Type, &quot;Downgrade - CPI&quot;),      ISPICKVAL(Type, &quot;Downgrade - Product&quot;),      ISPICKVAL(Type, &quot;Legal - Billing Paused - Customer&quot;),      ISPICKVAL(Type, &quot;Legal - Billing Paused - Product&quot;),      ISPICKVAL(Type, &quot;Legal - Billing Restarted - Customer&quot;),      ISPICKVAL(Type, &quot;Legal - Billing Restarted - Product&quot;),      ISPICKVAL(Type, &quot;Legal - CPI / Recurring Increase&quot;),      ISPICKVAL(Type, &quot;Legal - Price Increase&quot;),      ISPICKVAL(Type, &quot;Legal - Renewal&quot;),      ISPICKVAL(Type, &quot;Legal - Thompon Elite&quot;),      ISPICKVAL(Type, &quot;Legal - User Count Decrease&quot;),      ISPICKVAL(Type, &quot;Legal - User Count Uplift&quot;),      ISPICKVAL(Type, &quot;Legal - Version License&quot;),      ISPICKVAL(Type, &quot;OEM - Other&quot;),      ISPICKVAL(Type, &quot;Practice Credit Adjustment&quot;),      ISPICKVAL(Type, &quot;Quota Credit Adjustment&quot;),      ISPICKVAL(Type, &quot;Reseller - Other&quot;),      ISPICKVAL(Type, &quot;Unsuccessful Sales Conversion - Customer&quot;),      ISPICKVAL(Type, &quot;Unsuccessful Sales Conversion - Module&quot;),      ISPICKVAL(Type, &quot;Unsuccessful Sales Conversion - Product&quot;),      ISPICKVAL(Type, &quot;Unsuccessful Trial - Product Downgrade&quot;),      ISPICKVAL(Type, &quot;Legal - Billing Paused&quot;),      ISPICKVAL(Type, &quot;Legal - Billing Restarted&quot;),   ISPICKVAL(Type, &quot;License Conversion - Recurring Increase&quot;),   ISPICKVAL(Type, &quot;Legal - Entitlement Cleanup&quot;),   ISPICKVAL(Type, &quot;Cancellation - Recovery&quot;),   ISPICKVAL(Type, &quot;After Market Partner Opportunity&quot;),   ISPICKVAL(Type, &quot;Legal - Services Change Request - Internal&quot;),   ISPICKVAL(Type, &quot;Legal - Billing Paused/Restarted&quot;),   ISPICKVAL(Type, &quot;Legal - Recurring Adjustment&quot;),   ISPICKVAL(Type, &quot;Legal - Acquired Add-on Module&quot;),   ISPICKVAL(Type, &quot;Legal - Acquired New Customer&quot;),   ISPICKVAL(Type, &quot;Legal - Acquired New Product&quot;),   ISPICKVAL(Type, &quot;Legal - Assessment/POC&quot;),   ISPICKVAL(Type, &quot;Legal - License Band Uplift&quot;)  )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-040xFxx</fullName>
+        <actions>
+            <name>Services_Project_Type_Update_4</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-040xFxx
+Services Project Type - Upgrade</description>
+        <formula>ISPICKVAL(Type, &quot;Upgrade&quot;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-041xFxx</fullName>
+        <actions>
+            <name>Services_Project_Type_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-041xFxx
+Services Project Type - Services Only</description>
+        <formula>OR(   ISPICKVAL(Type, &quot;Legal - Additional Services&quot;),   ISPICKVAL(Type, &quot;Services - Partner&quot;) )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-042xFxx</fullName>
+        <actions>
+            <name>Populate_Date_Opportunity_Closed</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <criteriaItems>
+            <field>Opportunity.IsClosed</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>contains</operation>
+            <value>Closed Won,Closed Lost</value>
+        </criteriaItems>
+        <description>Rule Code: OPP-042xFxx
+Populate Date Opportunity Closed
+Populates date closed when Opportunity is closed</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-044xFxx</fullName>
+        <actions>
+            <name>Set_Close_Date_to_TODAY</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Closed Lost</value>
+        </criteriaItems>
+        <description>Rule Code: OPP-044xFxx
+Closed Lost stage sets CloseDate
+Updates the &apos;Close Date&apos; to TODAY() when Stage = &apos;Closed Lost&apos;</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-045xFxx</fullName>
+        <actions>
+            <name>Update_Owner_Manager_Email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-045xFxx
+Update Owner Manager email
+Sets the Opportunity Owner&apos;s Manager&apos;s email when Opportunity owner is changed</description>
+        <formula>OR(  ISNEW(),  ISCHANGED(OwnerId)  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-046xFxx</fullName>
+        <actions>
+            <name>Clear_Review_Status</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-046xFxx
+Clear Review Status
+SC-000052
+Set Review status to blank when Opportunity stage is changed</description>
+        <formula>AND(   NOT(ISNEW()),   ISCHANGED(StageName) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-047xFxx</fullName>
+        <actions>
+            <name>Update_IMF</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_In_Manager_Forecast</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Closed Won</value>
+        </criteriaItems>
+        <description>Rule Code: OPP-047xFxx
+In Manager Forecast for Closed Won
+Updates the IMF/Upside and In Manager Forecast fields whenever an opportunity is closed won.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-048xFxx</fullName>
+        <actions>
+            <name>Services_Project_Type_Training</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-048xFxx
+Services Project Type - Training
+Updates the Services Project Type to Training when Type is &quot;Training&quot;</description>
+        <formula>ISPICKVAL(Type, &quot;Training&quot;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-049xFxx</fullName>
+        <actions>
+            <name>Update_Review_Status</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Rule Code: OPP-049xFxx
+Set Review Status for New Opportunities
+SC-000003
+Populate review status on certain conditions</description>
+        <formula>AND(   Probability &gt;=0.4,    OR(     ISPICKVAL(Type, &quot;Legal - New Converted Customer&quot;),      ISPICKVAL(Type, &quot;Legal - New Converted Product&quot;),     ISPICKVAL(Type, &quot;Legal - New Customer&quot;),      ISPICKVAL(Type, &quot;Legal - New Product&quot;),     ISPICKVAL(Type, &quot;Legal - New Recovered Customer&quot;),     ISPICKVAL(Type, &quot;Legal - New Recovered Product&quot;),     ISPICKVAL(Package__c, &quot;Upsell to Intapp Time: Total Time Management&quot;),     ISPICKVAL(Package__c, &quot;Upsell to Total Time&quot;),     ISPICKVAL(Package__c, &quot;Upsell to Total Time Cloud&quot;),     AND(       ISPICKVAL(Type, &quot;Legal - Add-on Module&quot;),       Maintenance_Amount__c &gt; 20000     )   ) )</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-050xFxx</fullName>
+        <actions>
+            <name>Regional_VP_Notes_Updated_On</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Updated_Regional_Notes_VP_Updated_By</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-050xFxx
+Track Regional VP Note Updates
+Tracks when and by who the Regional VP Notes were updated</description>
+        <formula>ISCHANGED(Regional_VP_Notes__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-051xFxx</fullName>
+        <actions>
+            <name>Update_Services_Project_Type_Prime</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-051xFxx
+Update Services Project Type - Intapp Prime
+SC-000054
+Populates Services Project Type when Type is set to &quot;Intapp Prime&quot;</description>
+        <formula>ISPICKVAL(Type, &quot;Intapp Prime&quot;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-052xFxx</fullName>
+        <actions>
+            <name>Update_Stage_Eval</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-052xFxx
+Update Stage Approval Required Field
+SC-000059
+Checks &apos;&apos;Stage Approval Required&apos;&apos; on certain conditions on Opportunity Stage, Type, Package and Maintenance Amount</description>
+        <formula>AND(   ISCHANGED(StageName),   NOT(ISPICKVAL(StageName, &quot;Target Account&quot;)),    OR(     ISPICKVAL(Type,&quot;Legal - New Converted Customer&quot;),     ISPICKVAL(Type,&quot;Legal - New Converted Product&quot;),     ISPICKVAL(Type,&quot;Legal - New Customer&quot;),     ISPICKVAL(Type,&quot;Legal - New Product&quot;),     ISPICKVAL(Type,&quot;Legal - New Recovered Customer&quot;),     ISPICKVAL(Type,&quot;Legal - New Recovered Product&quot;),     ISPICKVAL(Type,&quot;Early Adopter Program&quot;),     ISPICKVAL(Package__c,&quot;Upsell to Intapp Time: Total Time Management&quot;),     ISPICKVAL(Package__c,&quot;Upsell to Total Time&quot;),     ISPICKVAL(Package__c,&quot;Upsell to Total Time Cloud&quot;),     AND(       ISPICKVAL(Type,&quot;Legal - Add-on module&quot;),       Maintenance_Amount__c &gt; 20000     )   ) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-053xFxx</fullName>
+        <actions>
+            <name>Update_Stage_Notes_By</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Stage_Notes_On</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Rule Code: OPP-053xFxx
+Update Stage Notes Updated On and By</description>
+        <formula>ISCHANGED(Current_Stage_Notes__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-054xFxx</fullName>
+        <actions>
+            <name>Update_Opp_Close_Date_to_Prev_Value</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.IsWon</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.CloseDate</field>
+            <operation>greaterThan</operation>
+            <value>TODAY</value>
+        </criteriaItems>
+        <description>Rule Code: OPP-054xFxx
+Update Close Date to Previous Value</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-055xxxx</fullName>
+        <active>false</active>
+        <description>Rule Code: OPP-055xxxx
+Update CSM Account Mgr Field on Opportunity</description>
+        <formula>TRUE</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-056xFxx</fullName>
+        <actions>
+            <name>Reset_At_Risk_Notification_Flag</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Rule Code: OPP-056xFxx
+At-Risk Remove
+Add a task to the opportunity when the At Risk chances from True to False.</description>
+        <formula>At_Risk__c = False &amp;&amp; NOT(ISNEW()) &amp;&amp; PRIORVALUE(At_Risk__c) = True &amp;&amp;  Don_t_send_At_Risk_Notification__c  &lt;&gt; True</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-057xFxx</fullName>
+        <actions>
+            <name>Reset_At_Risk_Notification_Flag</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Rule Code: OPP-057xFxx
+At-Risk Add
+Add a task to the opportunity when the At Risk changes from False to True.</description>
+        <formula>At_Risk__c = True &amp;&amp; NOT(ISNEW()) &amp;&amp; PRIORVALUE(At_Risk__c) = False &amp;&amp;  Don_t_send_At_Risk_Notification__c  &lt;&gt; True</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-058Exxx</fullName>
+        <active>false</active>
+        <booleanFilter>1 AND 2 AND (3 OR 4 OR 5)</booleanFilter>
+        <criteriaItems>
+            <field>Opportunity.IsClosed</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Sale_Category__c</field>
+            <operation>equals</operation>
+            <value>New Software Product,Add-on Software,License Count Uplift</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.CloseDate</field>
+            <operation>equals</operation>
+            <value>LAST 10 FISCAL YEARS</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.CloseDate</field>
+            <operation>equals</operation>
+            <value>LAST 3 FISCAL QUARTERS</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.CloseDate</field>
+            <operation>equals</operation>
+            <value>LAST 90 DAYS</value>
+        </criteriaItems>
+        <description>Rule Code: OPP-058Exxx
+Alert when open Opportunity is past its Close Date
+Alert the opportunity owner if an opportunity is still open after the close date has past.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Alert_Opportunity_Owner_when_open_opportunities_are_3_days_past_their_close_date</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>Opportunity.CloseDate</offsetFromField>
+            <timeLength>3</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Alert_Opportunity_Owner_and_Sales_Ops_when_an_open_opportunity_is_7_days_past_it</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>Opportunity.CloseDate</offsetFromField>
+            <timeLength>7</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-059xFxx</fullName>
+        <actions>
+            <name>Update_Field_Stage_Approval_Quality_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Rule Code: OPP-059xFxx
+Edit Rule Stage Approval Previously Unchecked WF Rule
+Edit Rule Stage Approval Previously Unchecked WF Rule</description>
+        <formula>Stage_Approval_Required__c = FALSE</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-060EFxx</fullName>
+        <actions>
+            <name>Update_CRD_Email_in_Opportunity</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.IsWon</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Sale_Category__c</field>
+            <operation>equals</operation>
+            <value>New Software Product,Add-on Software,License Count Uplift,Additional Services</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Account.CRD__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Rule Code: OPP-060EFxx
+CRD Notification on Opportunity Won
+Notify the CRDs on Opportunity - Won (excluding CPI &amp; unrelated types)</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Send_Email_to_CRD</name>
+                <type>Alert</type>
+            </actions>
+            <timeLength>1</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-074Exxx</fullName>
+        <actions>
+            <name>Proposed_Stage_Changed</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <description>Rule Code: OPP-074Exxx
+Proposed Stage Updated
+Sends an email notification whenever the proposed stage is changed on any opportunity.</description>
+        <formula>ISCHANGED(Proposed_Stage__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-076Exxx</fullName>
+        <actions>
+            <name>POCRORNotification</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.POC_ROR__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <description>Rule Code: OPP-076Exxx
+POC/ROR Trigger
+This is triggered when the POC/ROR checkbox is checked. To notify the implementation director.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-077xFxx</fullName>
+        <actions>
+            <name>Update_CSD_M_Email_field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Rule Code: OPP-077xFxx
+Updates CSD/M email on Opportunities
+Updates CSD/M email on the Opportunities from CSM Account Mgr; works in conjunction with Process Builder rule: &apos;Update CSM Account Manager email address on Contacts &amp; Opportunities v2&quot;</description>
+        <formula>TRUE</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-079xFxx</fullName>
+        <actions>
+            <name>Populate_Firm_Maturity_Status_Decentra</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Rule Code: OPP-079xFxx
+Populate Firm Maturity Status - Decentralized</description>
+        <formula>ISPICKVAL(Account.Firm_Maturity_Status__c, &quot;Decentralized&quot;)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-081xFxx</fullName>
+        <actions>
+            <name>Populate_Firm_Maturity_Status_Transact</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Rule Code: OPP-081xFxx
+Populate Firm Maturity Status - Transactional</description>
+        <formula>ISPICKVAL(Account.Firm_Maturity_Status__c, &quot;Transactional&quot;)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-082xFxx</fullName>
+        <actions>
+            <name>Populate_Firm_Maturity_Status_Centrali</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Rule Code: OPP-082xFxx
+Populate Firm Maturity Status - Centralized</description>
+        <formula>ISPICKVAL(Account.Firm_Maturity_Status__c, &quot;Centralized&quot;)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-083Exxx</fullName>
+        <actions>
+            <name>Opportunity_Stage_Changed</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <description>Rule Code: OPP-083Exxx
+Opportunity Stage Change
+Sends an email notification if the stage of the opportunity is changed.</description>
+        <formula>AND(   ISCHANGED(StageName),   OwnerId=&quot;00550000001N5So&quot; )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-084xFxx</fullName>
+        <actions>
+            <name>Update_PGL_Non_Compliance_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-084xFxx
+Update PGL Non-Compliance Date
+Populates PGL Non-Compliance Flag Date when PGL Non Compliance Flag is changed</description>
+        <formula>ISCHANGED(PGL_Non_Compliance_Flag__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-085Exxx</fullName>
+        <actions>
+            <name>Opportunity_OSA_Requests_for_Training</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-085Exxx
+Opportunity OSA Request Notification
+Sends email notification to to request contracts to be created.</description>
+        <formula>AND(  ISPICKVAL(Type , &quot;Training&quot;),  OR(  ISNEW(),  ISCHANGED(StageName)  ),  ISPICKVAL(StageName, &quot;Selected&quot;)  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-086Exxx</fullName>
+        <actions>
+            <name>Email_Notification_on_Opportunity_push_to_OA</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-086Exxx
+Sends an email alert whenever Create or merge with OA project field is set to &apos;&apos;create a new project&apos;&apos; or &apos;&apos;merge with existing project&apos;&apos; and project template has a value</description>
+        <formula>AND(     OR(           ISPICKVAL( Create_Merge_Project_in_OA__c , &apos;Create a new project&apos;),         AND(             ISPICKVAL( Create_Merge_Project_in_OA__c , &apos;Merge with existing project&apos;),             NOT(ISBLANK(Project__c))             )        ),         NOT(ISBLANK(TEXT(Project_Template__c)))    )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-087Exxx</fullName>
+        <actions>
+            <name>Closed_Opportunity_pushed_to_OA</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-087Exxx 
+Sends an email alert whenever Opportunity Stage is Closed Won or Closed Lost and Project info. is populated.</description>
+        <formula>AND( NOT(ISBLANK(Project__c)),  NOT(ISBLANK(TEXT(Project_Template__c))), NOT(ISBLANK(TEXT( Create_Merge_Project_in_OA__c))), OR( ISPICKVAL(StageName,&apos;Closed Won&apos;), ISPICKVAL(StageName,&apos;Closed Lost&apos;) )  )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-089Exxx</fullName>
+        <actions>
+            <name>Notify_Steven_Todd</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>annex_email_sent_update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>email alert when Opportunity.&quot;Request OSA&quot; changed to true and Account.&quot;Pre 9.4.1. Liability Annex Executed&quot; is False</description>
+        <formula>AND(   Account.Pre_9_4_1_Liability_Annex_Executed__c=False,  NOT( OR( ISPICKVAL(Account.Liability_Annex_Status__c,&quot;Received&quot;),  ISPICKVAL(Account.Liability_Annex_Status__c,&quot;Drafted&quot;),  ISPICKVAL(Account.Liability_Annex_Status__c,&quot;Requested&quot;) )), Request_OSA__c=True,   NOT(CONTAINS(Opp_Product_Lines__c, &quot;Cloud&quot;)),  OR(   ISPICKVAL(Account.Contract_Term_Version__c,&quot;9.2&quot;),   ISPICKVAL(Account.Contract_Term_Version__c,&quot;9.3&quot;),   ISPICKVAL(Account.Contract_Term_Version__c,&quot;9.4&quot;)),  Annex_email_sent__c =False )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-090Exxx</fullName>
+        <actions>
+            <name>Send_email_to_Contracts_Operations_ONLY_Rita_Rodriguez_Vera_Friss</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Annex_Email_Sent</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Liability Annex
+
+Send email to Contracts Operations ONLY (Rita Rodriguez, Vera Friss) to get new agreement. 
+CC the Owner of the Account</description>
+        <formula>AND( Account.Pre_9_4_1_Liability_Annex_Executed__c=False, Annex_email_sent__c = FALSE, ISBLANK(Account.Liability_Annex_Contract_Number__c), NOT(  OR(  ISPICKVAL(Account.Liability_Annex_Status__c,&quot;Received&quot;),  ISPICKVAL(Account.Liability_Annex_Status__c,&quot;Drafted&quot;), ISPICKVAL(Account.Liability_Annex_Status__c,&quot;N/A&quot;),  ISPICKVAL(Account.Liability_Annex_Status__c,&quot;Requested&quot;)  )),  Request_OSA__c=True,   OR( ISPICKVAL(Account.Contract_Term_Version__c,&quot;8.5&quot;), ISPICKVAL(Account.Contract_Term_Version__c,&quot;8.8&quot;), ISPICKVAL(Account.Contract_Term_Version__c,&quot;8.9&quot;), ISPICKVAL(Account.Contract_Term_Version__c,&quot;9.0&quot;), ISPICKVAL(Account.Contract_Term_Version__c,&quot;9.1&quot;),  ISPICKVAL(Account.Contract_Term_Version__c,&quot;9.2&quot;),  ISPICKVAL(Account.Contract_Term_Version__c,&quot;9.3&quot;),   ISPICKVAL(Account.Contract_Term_Version__c,&quot;9.4&quot;)  )  )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-091Exxx</fullName>
+        <actions>
+            <name>Cloud_Addendum_Required_for</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Annex_email_sent_update_1</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Cloud Addendum
+
+Master Terms: Term Version &lt; 10.4 (needs to be determined)
+Master Terms: Cloud Addendum = NULL
+Request OSA ISCHANGED to TRUE
+Opportunity Product Lines (Text) CONTAINS &quot;Cloud&quot;
+Annex_email_sent__c = FALSE</description>
+        <formula>AND(  ISBLANK(Account.Cloud_Addendum__c),  Annex_email_sent__c = FALSE, Request_OSA__c=True, CONTAINS(Opp_Product_Lines__c,&quot;Cloud&quot;),  OR(  ISPICKVAL(Account.Contract_Term_Version__c,&quot;8.5&quot;), ISPICKVAL(Account.Contract_Term_Version__c,&quot;8.8&quot;),  ISPICKVAL(Account.Contract_Term_Version__c,&quot;8.9&quot;),  ISPICKVAL(Account.Contract_Term_Version__c,&quot;9.0&quot;),  ISPICKVAL(Account.Contract_Term_Version__c,&quot;9.1&quot;),  ISPICKVAL(Account.Contract_Term_Version__c,&quot;9.2&quot;),  ISPICKVAL(Account.Contract_Term_Version__c,&quot;9.3&quot;),  ISPICKVAL(Account.Contract_Term_Version__c,&quot;9.4&quot;),  ISPICKVAL(Account.Contract_Term_Version__c,&quot;9.4.1&quot;),  ISPICKVAL(Account.Contract_Term_Version__c,&quot;9.4v3&quot;),  ISPICKVAL(Account.Contract_Term_Version__c,&quot;10.1.1&quot;),  ISPICKVAL(Account.Contract_Term_Version__c,&quot;10.2&quot;),  ISPICKVAL(Account.Contract_Term_Version__c,&quot;10.2.1&quot;),   ISPICKVAL(Account.Contract_Term_Version__c,&quot;10.2.2&quot;),  ISPICKVAL(Account.Contract_Term_Version__c,&quot;10.3&quot;)  )     )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-092Exxx</fullName>
+        <actions>
+            <name>OA_Project_Completion_Notification_soft_book</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-092Exxx
+Sends out an email alert to Ashish when OA Project fields on Opportunity are populated and Opportunity Stage is either &apos;Closed - Won&apos; or &apos;Closed - Lost&apos;.</description>
+        <formula>AND( NOT(ISBLANK(Project__c)), NOT(ISBLANK(TEXT(Create_Merge_Project_in_OA__c))), NOT(ISBLANK(TEXT(Project_Template__c))), OR( ISPICKVAL (StageName,&apos;Closed Won&apos;), ISPICKVAL (StageName,&apos;Closed Lost&apos;)) )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-093xFxx</fullName>
+        <actions>
+            <name>Services_Project_Type_Solution_Extensi</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-093xFxx
+Services Project Type - Solution Extension/Module</description>
+        <formula>ISPICKVAL(Type, &quot;Legal - Add-on module&quot;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-094Exxx</fullName>
+        <actions>
+            <name>Billing_pause_opportunity_created</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Billing_pause_opportunity_created_2</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Billing Pause Approved</value>
+        </criteriaItems>
+        <description>Rule Code: OPP-094Exxx Generates billing pause document/email for contract opps based on information provided by CSM/Jennifer</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-094xFx</fullName>
+        <actions>
+            <name>Services_Project_Early_Adopter</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-094xFxx
+Services Project Type - Early Adopter</description>
+        <formula>ISPICKVAL(Type, &quot;Early Adopter Program&quot;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-095Exxx</fullName>
+        <actions>
+            <name>Notification_Billing_Pause_Pending</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Pending Approval - Billing Pause</value>
+        </criteriaItems>
+        <description>For future use (not active as of June 4):Rule Code: OPP-095Exxx Generates email when approval from finance is received</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-096xFxx</fullName>
+        <actions>
+            <name>Set_First_Entered_Pre_Shopping_Date2</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-096xFxx
+Set Entered Investigation Date</description>
+        <formula>AND(   Probability &gt; 0.09,   ISPICKVAL(Opportunity_Accepted__c, &quot;Yes&quot;) )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-097xFxx</fullName>
+        <actions>
+            <name>Clear_Opportunity_Accepted</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Clears the value of the Opportunity Accepted field when the Stage is changed.</description>
+        <formula>AND( ISCHANGED(StageName), PRIORVALUE(Probability) &gt; 0.09, ISPICKVAL(StageName, &apos;Pre-Funnel&apos;) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-098xFxx</fullName>
+        <actions>
+            <name>save_previous_stage</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>When Stage is changed. Previous value is pushed to &quot;Previous stage&quot; field</description>
+        <formula>ISCHANGED(StageName)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A OPP-099xFxx</fullName>
+        <actions>
+            <name>Set_Last_Entered_Investigation3</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: OPP-099xFxx
+Set Last Entered Investigation Date</description>
+        <formula>OR( AND( ISCHANGED(StageName), ISPICKVAL(Opportunity_Accepted__c ,&apos;Yes&apos;), Previous_stage__c =&apos;Pre-Funnel&apos;, ISPICKVAL(StageName ,&apos;Qualify&apos;) ), AND( ISCHANGED(Opportunity_Accepted__c ), ISPICKVAL(Opportunity_Accepted__c ,&apos;Yes&apos;), OR( ISPICKVAL(StageName ,&apos;Qualify&apos;), ISPICKVAL(StageName ,&apos;Verify&apos;), ISPICKVAL(StageName ,&apos;Select&apos;), ISPICKVAL(StageName ,&apos;Propose&apos;), ISPICKVAL(StageName ,&apos;Closed Won&apos;) ) ) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>clz_26e244bf-64e7-49e5-9214-4a3625111059</fullName>
+        <actions>
+            <name>clz_94b0f5b1a4274742949b8e717c5607bc</name>
+            <type>OutboundMessage</type>
+        </actions>
+        <active>false</active>
+        <formula>(Probability&gt;=0.7)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>clz_90096867-3c01-4881-8197-a7f8fc49d2a8</fullName>
+        <active>false</active>
+        <formula>(Probability&gt;=0.7)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>clz_d98fffc3-e762-4495-b2ac-a6b02bf12671</fullName>
+        <active>false</active>
+        <formula>(Probability&gt;=0.7)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>clz_e0b2ae33-7193-4c5c-9f06-6b1ff8ff2a53</fullName>
+        <active>false</active>
+        <formula>(Probability&gt;=0.7)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <tasks>
+        <fullName>NewIntegrationBuilderDealOpened</fullName>
+        <assignedTo>system@intapp.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>A new Integration Builder deal has opened.
+
+Please change the Account record Integration Builder field to &quot;Prospect&quot;.
+
+Thank you!</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>New Integration Builder Deal Opened</subject>
+    </tasks>
+    <tasks>
+        <fullName>NewRiskPracticeDealOpened</fullName>
+        <assignedTo>system@intapp.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>A new Risk Practice deal has opened.
+
+Please change the Account record for the appropriate product:
+
+Change Wall Builder field to &quot;Prospect&quot;, or
+Change ADAM field to &quot;Prospect&quot;
+
+Thank you!</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>New Risk Practice Deal Opened</subject>
+    </tasks>
+    <tasks>
+        <fullName>NewTimeBuilderDealOpened</fullName>
+        <assignedTo>system@intapp.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>A new Time Builder deal has opened.
+
+Please change the Account record Time Builder field to &quot;Prospect&quot;.
+
+Thank you!</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>New Time Builder Deal Opened</subject>
+    </tasks>
+</Workflow>

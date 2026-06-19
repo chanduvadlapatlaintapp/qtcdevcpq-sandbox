@@ -1,0 +1,32 @@
+<apex:page showHeader="false" id="SiteTemplate">
+  <apex:stylesheet value="{!URLFOR($Resource.SiteSamples, 'SiteStyles.css')}"/>
+  <apex:insert name="header">
+<style type="text/css">
+.tabNavigation {
+   background-image: url("/portal/dimg/portalTopBg9999990C479D.gif");
+}
+.tab td div {
+    background-image: url("/portal/dimg/portalTabRight999999999999.gif");
+}
+.portalheader {
+    text-align: left;
+}
+.portalheader h1 {
+    font-size: 40px;
+}
+.portalfooter {
+    top-margin: 10pt;
+    text-align: center;
+}
+</style>
+    <div class="portalheader">
+      <img style="padding: 40px 40px 0px 40px;" width="350" height="72" src="https://c.na3.content.force.com/servlet/servlet.ImageServer?id=01550000000eGww&oid=00D3000000007yR"/>
+      <span style="font-size: 200%">Customer Portal</span>
+<!--      <div style="text-align: right"><a href="/portal/secur/logout.jsp">Logout</a></div> -->
+    </div>
+  </apex:insert>
+  <apex:insert name="body"/>
+  <apex:insert name="footer">
+    <div class="portalfooter">Copyright &copy; 2013 <a href="http://www.intapp.com/">IntApp, Inc.</a></div>
+  </apex:insert>
+</apex:page>

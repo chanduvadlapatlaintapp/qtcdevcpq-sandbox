@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_Questionnaire_Required</fullName>
+    <active>true</active>
+    <description>Makes the Time Questionnaire field required when Recurring Involved? is &quot;Yes&quot;</description>
+    <errorConditionFormula>AND(
+  CONTAINS(TEXT(Product__c), &quot;Time&quot;),
+  ISPICKVAL(Recurring_Involved__c,&quot;Yes&quot;),
+  ISBLANK(TEXT(Time_Questionnaire_Available__c))
+)</errorConditionFormula>
+    <errorDisplayField>Time_Questionnaire_Available__c</errorDisplayField>
+    <errorMessage>Time Questionnaire Available is required when there is Recurring Involved.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account$Large_Firm_Status__c</field>
+    </columns>
+    <columns>
+        <field>Account$Intapp_Time__c</field>
+    </columns>
+    <columns>
+        <field>Account$IntApp_Open_Conflicts__c</field>
+    </columns>
+    <columns>
+        <field>Account$IntApp_Open_Intake__c</field>
+    </columns>
+    <columns>
+        <field>Account$IntegrationBuilder__c</field>
+    </columns>
+    <columns>
+        <field>Account$Wall_Builder__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>(((1 or 2 or 3 or 4 or 5) AND 6)) AND 7</booleanFilter>
+        <criteriaItems>
+            <column>Account$Intapp_Time__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Own it</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$IntegrationBuilder__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Own it</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$IntApp_Open_Conflicts__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Own it</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$IntApp_Open_Intake__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Own it</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$Wall_Builder__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Own it</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Cases$IsClosed</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Cases$Type</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Support</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Account Product Ownership List</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_and_Cases__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Account$Large_Firm_Status__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Account$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

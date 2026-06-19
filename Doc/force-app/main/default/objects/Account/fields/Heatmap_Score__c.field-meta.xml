@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Heatmap_Score__c</fullName>
+    <description>Total of 4 heatmapping scores</description>
+    <externalId>false</externalId>
+    <formula>CASE ( Heat_Mapping_CIO__c, &quot;1&quot;, 1, &quot;2&quot;, 2, &quot;3&quot;, 3, 0)+CASE ( Heat_Mapping_Finance__c, &quot;1&quot;, 1, &quot;2&quot;, 2, &quot;3&quot;, 3, 0)+CASE ( Heat_Mapping_Risk__c, &quot;1&quot;, 1, &quot;2&quot;, 2, &quot;3&quot;, 3, 0)+CASE ( Heat_Mapping_Apps__c, &quot;1&quot;, 1, &quot;2&quot;, 2, &quot;3&quot;, 3, 0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Awareness Score</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

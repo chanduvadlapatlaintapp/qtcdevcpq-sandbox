@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Update_Document_No</fullName>
+        <field>OSA_No__c</field>
+        <formula>Contract.ContractNumber</formula>
+        <name>Update Document No</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Tax</fullName>
+        <field>Tax</field>
+        <formula>0</formula>
+        <name>Update Tax</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Terms_a</fullName>
+        <field>a__c</field>
+        <formula>CASE(Terms_a_and_d__c,
+  &quot;URL Terms&quot;,&quot;Integration Appliance, Inc.(\&quot;Intapp\&quot;) software and services are provided to Customer solely in accordance with and subject to the Intapp General Terms and Conditions, which are posted on the Internet at http://www.intapp.com/intapptermsandconditions. Customer&apos;s signature on this Order and Sale Agreement constitutes Customer&apos;s acceptance of such Intapp General Terms and Conditions as governing this Order and Sale Agreement.&quot;,
+  &quot;Cloud Terms&quot;,&quot;Integration Appliance, Inc. (\&quot;Intapp\&quot;) software and services are provided to Customer solely in accordance with and subject to the Intapp General Terms and Conditions, which are posted on the Internet at http://www.intapp.com/intapptermsandconditions, as well as the Intapp Cloud Services Addendum attached hereto. Customer&apos;s signature on this Order and Sale Agreement constitutes Customer&apos;s acceptance of such Intapp General Terms and Conditions and Intapp Cloud Services Addendum as governing this Order and Sale Agreement.&quot;,
+  &quot;Existing Terms&quot;,&quot;Integration Appliance, Inc.(\&quot;Intapp\&quot;) software and services are provided to Customer solely in accordance with and subject to the Intapp General Terms and Conditions associated with Order and Sale Agreement #&quot;&amp;Opportunity.Account.Master_Terms_Contract_Number__r.ContractNumber&amp;&quot;.&quot;,
+  &quot;&quot;
+)</formula>
+        <name>Update Terms a</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Terms_c</fullName>
+        <field>c__c</field>
+        <formula>CASE(Terms_c__c,
+  &quot;Standard No Retainer&quot;,&apos;&lt;html&gt;&lt;body&gt;&lt;p&gt;Payment Terms&lt;ul&gt;&lt;li&gt;Services shall be invoiced monthly in arrears for actual hours worked, and will be due Net 30 days from the invoice date.&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&apos;,
+  &quot;Standard With Retainer&quot;,&apos;&lt;html&gt;&lt;body&gt;&lt;p&gt;Payment Terms&lt;ul&gt;&lt;li&gt;50% non-refundable Services Retainer due Net 30 from Agreement signature.&lt;/li&gt;&lt;li&gt;Intapp shall deduct Services as performed against the Services Retainer until the balance is consumed. Thereafter, services shall be invoiced monthly in arrears for actual hours worked, and will be due Net 30 days from the invoice date.&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&apos;,
+  &quot;Standard No Retainer with Credit&quot;,&apos;&lt;html&gt;&lt;body&gt;&lt;p&gt;Payment Terms&lt;ul&gt;&lt;li&gt;Services fees will be invoiced monthly in arrears for actual hours worked, and will be due Net 30 days from the invoice date. Such invoices shall deduct the above referenced services credit until the credit balance is consumed.&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&apos;,
+  &quot;Standard Retainer with Credit&quot;,&apos;&lt;html&gt;&lt;body&gt;&lt;p&gt;Payment Terms&lt;ul&gt;&lt;li&gt;50% non-refundable Services Retainer due Net 30 from Agreement signature.&lt;/li&gt;&lt;li&gt;Intapp shall deduct Services as performed against the above referenced services credit until the credit balance is consumed. Then Intapp shall deduct Services as performed against the Services Retainer until the Services Retainer is consumed. Thereafter, services shall be invoiced monthly in arrears for actual hours worked, and will be due Net 30 days from the invoice date. Such invoices shall deduct the above referenced services credit until the credit balance is consumed.&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&apos;,
+  &quot;Fixed Fee&quot;,&apos;&lt;html&gt;&lt;body&gt;&lt;p&gt;Payment Terms&lt;ul&gt;&lt;li&gt;Grand Total Fees due Net 30 from Agreement signature&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&apos;,
+  &quot;&quot;
+)</formula>
+        <name>Update Terms c</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_additional_tax_language</fullName>
+        <field>Additional_Tax_Language__c</field>
+        <formula>IF(ISPICKVAL(Terms_a_and_d__c,&quot;Existing Terms&quot;),&quot;&quot;,&quot;Subject to applicable taxes&quot;)</formula>
+        <name>Update additional tax language</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_b</fullName>
+        <field>b__c</field>
+        <formula>CASE(Terms_b_and_bI__c,
+  &quot;T&amp;M Change Order&quot;,&quot;The above estimate is quoted on a Time &amp; Materials basis per attached Change Order and is neither a cap nor a “not to exceed” price quote. All fees are in addition to and do not modify or replace current fees and payments made and owed under previously executed Agreements. Any Services not specifically included under the enclosed Change Order shall be scoped and billed on a separate Order and Sale Agreement.&quot;,
+  &quot;T&amp;M Statement of Work&quot;,&quot;The above estimate is quoted on a Time &amp; Materials basis per attached Statement of Work and is neither a cap nor a “not to exceed” price quote. Any Services not specifically included under the enclosed Statement of Work shall be scoped and billed on a separate Order and Sale Agreement.&quot;,
+  &quot;FF Change Order&quot;,&quot;All fees are in addition to and do not modify or replace current fees and payments made and owed under previously executed Agreements. Any Services not specifically included under the enclosed Change Order shall be scoped and billed on a separate Order and Sale Agreement.&quot;,
+  &quot;FF Statement of Work&quot;,&quot;All fees are in addition to and do not modify or replace current fees and payments made and owed under previously executed Agreements. Any Services not specifically included under the enclosed Statement of Work shall be scoped and billed on a separate Order and Sale Agreement.&quot;,
+  &quot;&quot;
+)</formula>
+        <name>Update b</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_bI</fullName>
+        <field>bI__c</field>
+        <formula>Case(Terms_b_and_bI__c,
+  &quot;T&amp;M Change Order&quot;,&quot;&quot;,
+  &quot;T&amp;M Statement of Work&quot;,&quot;&quot;,
+  &quot;FF Change Order&quot;,&quot;Services must be utilized within 180 days of the date of this agreement. Unused services will expire at the end of this 180 day period.&quot;,
+  &quot;FF Statement of Work&quot;,&quot;Services must be utilized within 180 days of the date of this agreement. Unused services will expire at the end of this 180 day period.&quot;,
+  &quot;&quot;
+)</formula>
+        <name>Update b.I</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_d</fullName>
+        <field>d__c</field>
+        <formula>IF(ISPICKVAL(Terms_a_and_d__c,&quot;Existing Terms&quot;),&quot;Fees due under this Order and Sale Agreement, do not include any taxes, levies, duties or similar governmental assessments of any nature, including, for example, value-added, sales, use or withholding taxes, assessable by any jurisdiction whatsoever (collectively, “Taxes”). You are responsible for paying all Taxes associated with fees related to this Agreement, and fees which are payable by you to Intapp hereunder will not be reduced by any tax withholding. If Intapp has the legal obligation to pay or collect Taxes for which you are responsible, Intapp will invoice you and you will pay that amount unless you provide Intapp with a valid tax exemption certificate authorized by the appropriate taxing authority. For clarity, Intapp is solely responsible for taxes assessable against Intapp based on its net income, property and employees.&quot;,&quot;&quot;)</formula>
+        <name>Update d</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Rule Code%3A QUO-001xFxx</fullName>
+        <actions>
+            <name>Update_Document_No</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: QUO-001xFxx
+Update Document No
+Populate OSA No. field with ContractId whenever it is changed</description>
+        <formula>OR( 
+  ISNEW(), 
+  ISCHANGED(ContractId) 
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A QUO-003xFxx</fullName>
+        <actions>
+            <name>Update_Tax</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: QUO-003xFxx
+Update Tax
+Populate Tax field with 0 if it is blank</description>
+        <formula>ISBLANK(Tax)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A QUO-004xFxx</fullName>
+        <actions>
+            <name>Update_Terms_a</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: QUO-004xFxx
+Update Terms a
+Update the field (a) whenever Terms_a_and_d__c is changed.</description>
+        <formula>OR( 
+  ISNEW(), 
+  ISCHANGED(Terms_a_and_d__c) 
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A QUO-005xFxx</fullName>
+        <actions>
+            <name>Update_b</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: QUO-005xFxx
+Update Terms b
+Update field (b) whenever Terms_b_and_bI__c is changed</description>
+        <formula>OR( 
+  ISNEW(), 
+  ISCHANGED(Terms_b_and_bI__c) 
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A QUO-006xFxx</fullName>
+        <actions>
+            <name>Update_bI</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: QUO-006xFxx
+Update Terms b.I
+Updates field (b.I) whenever Terms_b_and_bI__c is changed</description>
+        <formula>OR( 
+  ISNEW(), 
+  ISCHANGED(Terms_b_and_bI__c) 
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A QUO-007xFxx</fullName>
+        <actions>
+            <name>Update_Terms_c</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: QUO-007xFxx
+Update Terms c
+Updates field (c) whenever Terms_c__c is changed</description>
+        <formula>OR( 
+  ISCHANGED(Terms_c__c), 
+  ISNEW() 
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A QUO-008xFxx</fullName>
+        <actions>
+            <name>Update_additional_tax_language</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_d</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: QUO-008xFxx
+Update Terms d
+Updates fields (d) and Additional Tax Language whenever Terms_a_and_d__c is changed</description>
+        <formula>OR( 
+  ISNEW(), 
+  ISCHANGED(Terms_a_and_d__c) 
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

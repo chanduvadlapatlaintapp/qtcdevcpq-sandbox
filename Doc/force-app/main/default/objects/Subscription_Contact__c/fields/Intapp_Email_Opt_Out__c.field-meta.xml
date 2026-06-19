@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Intapp_Email_Opt_Out__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(INCLUDES( Contact__r.Opt_Out__c , &quot;All Marketing&quot;), &quot;All Marketing&quot;, NULL)  + BR() + 
+IF(INCLUDES( Contact__r.Opt_Out__c , &quot;Time Marketing&quot;), &quot;Time Marketing&quot;, NULL)  + BR() + 
+IF(INCLUDES( Contact__r.Opt_Out__c , &quot;Risk Marketing&quot;), &quot;Risk Marketing&quot;, NULL)  + BR() +
+IF(INCLUDES( Contact__r.Opt_Out__c , &quot;Integration Marketing&quot;), &quot;Integration Marketing&quot;, NULL)  + BR() + 
+IF(INCLUDES( Contact__r.Opt_Out__c , &quot;Risk Marketing - Webinars Only&quot;), &quot;Risk Marketing - Webinars Only&quot;, NULL)  + BR() + 
+IF(INCLUDES( Contact__r.Opt_Out__c , &quot;Time Marketing - Webinars Only&quot;), &quot;Time Marketing - Webinars Only&quot;, NULL)  + BR() + 
+IF(INCLUDES( Contact__r.Opt_Out__c , &quot;Integration Marketing - Webinars Only&quot;), &quot;Integration Marketing - Webinars Only&quot;, NULL)  + BR() + 
+IF(INCLUDES( Contact__r.Opt_Out__c , &quot;NPS Survey&quot;), &quot;NPS Survey&quot;, NULL)  + BR() + 
+IF(INCLUDES( Contact__r.Opt_Out__c , &quot;CRM Communication&quot;), &quot;CRM Communication&quot;, NULL) + BR() +
+IF(INCLUDES( Contact__r.Opt_Out__c , &quot;Critical Alerts&quot;), &quot;Critical Alerts&quot;, NULL)</formula>
+    <label>Intapp Email Opt Out</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

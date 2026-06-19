@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Intapp_Item_Master_Number_Prefix_new__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( 
+OR(
+ISBLANK(Product_LineNew__r.IMP_prefix__c),
+ISNULL(Product_LineNew__r.IMP_prefix__c)
+),
+&apos;GE&apos;,
+Product_LineNew__r.IMP_prefix__c)</formula>
+    <label>Intapp Item Master Number Prefix new</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

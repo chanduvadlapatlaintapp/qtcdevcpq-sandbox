@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OPP_Prevent_Stage_Change_After_ClosedWon</fullName>
+    <active>false</active>
+    <description>BIZ-73470</description>
+    <errorConditionFormula>AND(
+  ISPICKVAL(PRIORVALUE(StageName), &quot;Closed Won&quot;),
+  NOT(ISCHANGED(StageName))
+)</errorConditionFormula>
+    <errorMessage>Opportunity cannot be changed after it is set to &quot;Closed Won.&quot; If this change is required, please contact your System Administrator.</errorMessage>
+</ValidationRule>

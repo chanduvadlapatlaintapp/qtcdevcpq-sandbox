@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Invoice_Total__c</fullName>
+    <description>This field was created at part of the renewal management implementation. It summarizes the Sales Price + Recurring Amount Change so it is easy to report on the total value of the new renewal invoice.</description>
+    <formula>UnitPrice + Recurring_Amount_Change__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>This field is only relevant for renewal opportunities.</inlineHelpText>
+    <label>Invoice Total</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <type>Currency</type>
+</CustomField>

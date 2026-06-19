@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Intapp_Exposure__c</fullName>
+    <label>Intapp Exposure</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Attended Connect</fullName>
+                <default>false</default>
+                <label>Attended Connect</label>
+            </value>
+            <value>
+                <fullName>Intapp Customer</fullName>
+                <default>false</default>
+                <label>Intapp Customer</label>
+            </value>
+            <value>
+                <fullName>Intapp Pricing Customer</fullName>
+                <default>false</default>
+                <label>Intapp Pricing Customer</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

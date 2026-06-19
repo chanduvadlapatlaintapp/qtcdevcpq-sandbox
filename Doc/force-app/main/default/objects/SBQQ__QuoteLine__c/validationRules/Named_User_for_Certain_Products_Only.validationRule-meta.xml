@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Named_User_for_Certain_Products_Only</fullName>
+    <active>false</active>
+    <description>Prevents users from using Named User as a Meter Type for certain products unless they are part of a bundle.</description>
+    <errorConditionFormula>IF( 
+  AND( 
+      SBQQ__RequiredBy__r.SBQQ__ProductCode__c &lt;&gt;&quot;CR-01456&quot;, 
+  OR( 
+    SBQQ__ProductCode__c = &quot;EX-00830&quot;, 
+    SBQQ__ProductCode__c = &quot;RI-01417&quot;, 
+    SBQQ__ProductCode__c = &quot;RI-01420&quot; 
+  ), 
+  ISPICKVAL(Meter_Type__c, &quot;Named Users&quot;),
+  OR(
+    $User.Id &lt;&gt; &quot;00550000002q64G&quot;,
+    $Profile.Id &lt;&gt; &quot;00e50000001BmUZ&quot;
+  )
+ ), 
+  TRUE, 
+  FALSE 
+)</errorConditionFormula>
+    <errorMessage>Meter Type Named User cannot be used for these products unless they are part of the OnePlace for Marketing solution.</errorMessage>
+</ValidationRule>

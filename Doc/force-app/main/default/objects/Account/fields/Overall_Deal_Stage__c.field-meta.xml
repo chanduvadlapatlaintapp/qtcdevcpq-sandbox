@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Overall_Deal_Stage__c</fullName>
+    <label>Overall Deal Stage</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Not Started</fullName>
+                <default>false</default>
+                <label>Not Started</label>
+            </value>
+            <value>
+                <fullName>Progressing</fullName>
+                <default>false</default>
+                <label>Progressing</label>
+            </value>
+            <value>
+                <fullName>Advanced</fullName>
+                <default>false</default>
+                <label>Advanced</label>
+            </value>
+            <value>
+                <fullName>Completed</fullName>
+                <default>false</default>
+                <label>Completed</label>
+            </value>
+            <value>
+                <fullName>Stalled</fullName>
+                <default>false</default>
+                <label>Stalled</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

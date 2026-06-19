@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Role__c</fullName>
+    <label>Role Interaction</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Unmet</fullName>
+                <default>false</default>
+                <label>Unmet</label>
+            </value>
+            <value>
+                <fullName>Unmet - Same Room</fullName>
+                <default>false</default>
+                <label>Unmet - Same Room</label>
+            </value>
+            <value>
+                <fullName>Interaction - Email/Phone</fullName>
+                <default>false</default>
+                <label>Interaction - Email/Phone</label>
+            </value>
+            <value>
+                <fullName>Met</fullName>
+                <default>false</default>
+                <label>Met</label>
+            </value>
+            <value>
+                <fullName>Unmet - Current MD</fullName>
+                <default>false</default>
+                <label>Unmet - Current MD</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

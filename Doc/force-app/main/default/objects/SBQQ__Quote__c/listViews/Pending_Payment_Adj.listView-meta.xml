@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pending_Payment_Adj</fullName>
+    <columns>Line_of_Business__c</columns>
+    <columns>SBQQ__Account__c</columns>
+    <columns>NAME</columns>
+    <columns>SBQQ__Opportunity2__c</columns>
+    <columns>SBQQ__Status__c</columns>
+    <columns>First_Segment_Months__c</columns>
+    <columns>SBQQ__StartDate__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>SBQQ__Status__c</field>
+        <operation>equals</operation>
+        <value>Pending Payment Adj</value>
+    </filters>
+    <label>Pending Payment Adj</label>
+    <language>en_US</language>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,95 @@
+<template>
+    <template if:false={hasAnalysis}>
+        <div class="pra-empty">
+            <p>No subscription data available for analysis.</p>
+        </div>
+    </template>
+
+    <template if:true={hasAnalysis}>
+        <div class="pra-root">
+            <!-- Top Row: Annualized Contract Value -->
+            <div class="pra-grid-1">
+                <!-- Annualized Contract Value by Product -->
+                <div class="pra-panel">
+                    <h3 class="pra-panel-title">Annualized Contract Value by Product</h3>
+                    <div class="pra-bar-list">
+                        <template for:each={productBars} for:item="bar">
+                            <div key={bar.key} class="pra-bar-item">
+                                <div class="pra-bar-header">
+                                    <span class="pra-bar-label">{bar.label}</span>
+                                    <span class="pra-bar-value">{bar.value}</span>
+                                </div>
+                                <div class="pra-bar-track">
+                                    <div class="pra-bar-fill" style={bar.barStyle}></div>
+                                </div>
+                                <template if:true={bar.hasSubtitle}>
+                                    <p class="pra-bar-subtitle">{bar.subtitle}</p>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Row -->
+            <div class={bottomGridClass}>
+                <!-- ACV Change by Product (Internal Only) -->
+                <template if:true={showAcvChange}>
+                    <div class="pra-panel">
+                        <h3 class="pra-panel-title">ACV Change by Product</h3>
+                        <p class="pra-panel-subtitle">Internal only</p>
+                        <template if:true={hasAcvChangeData}>
+                            <div class="pra-acv-list">
+                                <template for:each={acvChangeBars} for:item="item">
+                                    <div key={item.key} class="pra-acv-item">
+                                        <span class="pra-acv-label">{item.label}</span>
+                                        <span class={item.valueClass}>{item.value}</span>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                        <template if:false={hasAcvChangeData}>
+                            <p class="pra-no-data">No ACV changes</p>
+                        </template>
+                    </div>
+                </template>
+
+                <!-- By Deployment Type -->
+                <div class="pra-panel">
+                    <h3 class="pra-panel-title">By Deployment Type</h3>
+                    <div class="pra-bar-list">
+                        <template for:each={deploymentBars} for:item="bar">
+                            <div key={bar.key} class="pra-bar-item">
+                                <div class="pra-bar-header">
+                                    <span class="pra-bar-label">{bar.label}</span>
+                                    <span class="pra-bar-value">{bar.value}</span>
+                                </div>
+                                <div class="pra-bar-track">
+                                    <div class="pra-bar-fill" style={bar.barStyle}></div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- By Support Level -->
+                <div class="pra-panel">
+                    <h3 class="pra-panel-title">By Support Level</h3>
+                    <div class="pra-bar-list">
+                        <template for:each={supportBars} for:item="bar">
+                            <div key={bar.key} class="pra-bar-item">
+                                <div class="pra-bar-header">
+                                    <span class="pra-bar-label">{bar.label}</span>
+                                    <span class="pra-bar-value">{bar.value}</span>
+                                </div>
+                                <div class="pra-bar-track">
+                                    <div class="pra-bar-fill" style={bar.barStyle}></div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

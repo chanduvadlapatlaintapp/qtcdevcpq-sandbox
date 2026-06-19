@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>SBQQ__Quote__c.SBQQ__Primary__c</field>
+    </columns>
+    <columns>
+        <field>SBQQ__Quote__c.SBQQ__NetAmount__c</field>
+    </columns>
+    <columns>
+        <field>FK_$Opportunity.Net_Amount__c</field>
+    </columns>
+    <columns>
+        <field>FK_OPP_STAGE_NAME</field>
+    </columns>
+    <currency>GBP</currency>
+    <description>Quote Net Total vs Opportunity Net total</description>
+    <filter>
+        <criteriaItems>
+            <column>SBQQ__Quote__c.SBQQ__Primary__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Quote Net Total vs Opportunity Net total</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$SBQQ__Quote__c@SBQQ__Quote__c.SBQQ__Opportunity2__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>FK_$Opportunity.Net_Amount__c</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2020-01-01</startDate>
+    </timeFrameFilter>
+</Report>

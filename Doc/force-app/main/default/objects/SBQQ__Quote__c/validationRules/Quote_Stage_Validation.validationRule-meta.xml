@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quote_Stage_Validation</fullName>
+    <active>true</active>
+    <description>Field values should not be BLANK if the Quote stage progresses to Pricing Proposal OR OSA, 45102,45897
+Validation to MSA, SOW Document Attached fields as part of BIZ-45995,48195
+,47771,48829,50208,61614</description>
+    <errorConditionFormula>AND(ISPICKVAL(Quote_Stage__c,&apos;Contract Executed&apos;),NOT(ISPICKVAL(Renewal_Quote_Type__c,&apos;Auto-Renewal&apos;)),
+NOT(ISPICKVAL(Deal_Type__c,&apos;Other&apos;)),
+(OR(
+ISBLANK(OSA_Signature_Date__c),
+ISBLANK(Booking_Date__c),
+(ISPICKVAL(Subsidiary__c ,&quot;&quot;)),
+ISBLANK(Bill_To_Account__c),
+ISBLANK(Bill_To_Address__c),
+ISBLANK(Ship_To_Account__c),
+ISBLANK(Ship_To_Address__c),
+ISBLANK(Invoicing_Contact__c),
+ISBLANK(Software_Delivery_Contact__c)
+)))</errorConditionFormula>
+    <errorMessage>Please update the required data (See Guidance for Success) before moving to the next stage.</errorMessage>
+</ValidationRule>

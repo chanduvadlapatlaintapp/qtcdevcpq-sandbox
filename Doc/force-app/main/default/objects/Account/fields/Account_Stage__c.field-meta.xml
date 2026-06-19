@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Stage__c</fullName>
+    <label>Account Stage</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>0. No Effort</fullName>
+                <default>true</default>
+                <label>0. No Effort</label>
+            </value>
+            <value>
+                <fullName>1. Outreach</fullName>
+                <default>false</default>
+                <label>1. Outreach</label>
+            </value>
+            <value>
+                <fullName>2. Communicated With</fullName>
+                <default>false</default>
+                <label>2. Communicated With</label>
+            </value>
+            <value>
+                <fullName>3. Meeting scheduled</fullName>
+                <default>false</default>
+                <label>3. Meeting scheduled</label>
+            </value>
+            <value>
+                <fullName>4. Met in Person</fullName>
+                <default>false</default>
+                <label>4. Met in Person</label>
+            </value>
+            <value>
+                <fullName>5. Created Opportunity</fullName>
+                <default>false</default>
+                <label>5. Created Opportunity</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

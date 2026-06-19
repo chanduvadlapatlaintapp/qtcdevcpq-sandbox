@@ -1,0 +1,739 @@
+:host {
+    display: block;
+}
+
+/* =========================================================================
+   SECTION HEADER
+   ========================================================================= */
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: #ffffff;
+    border-bottom: 1px solid #E6E6E6;
+}
+
+.section-header__icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.5rem;
+    background: #E8F1FD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.section-header__icon lightning-icon {
+    --sds-c-icon-color-foreground-default: #207CEC;
+}
+
+.section-header__title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #073C7D;
+    margin: 0;
+}
+
+.section-header__desc {
+    font-size: 0.8125rem;
+    color: #536E8D;
+    margin: 0.125rem 0 0 0;
+}
+
+/* =========================================================================
+   FILTER BAR
+   ========================================================================= */
+
+.filter-bar {
+    padding: 1rem 1.5rem;
+    background: #ffffff;
+    border-bottom: 1px solid #E6E6E6;
+}
+
+.filter-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.filter-row:last-child {
+    margin-bottom: 0;
+}
+
+.filter-group {
+    flex: 1 1 0%;
+    min-width: 130px;
+}
+
+.filter-group--wide {
+    flex: 2 1 0%;
+}
+
+.filter-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #536E8D;
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.filter-hint {
+    font-weight: 400;
+    color: #A4B9D7;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.filter-group lightning-combobox {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.filter-actions {
+    flex-shrink: 0;
+}
+
+.filter-actions lightning-button {
+    --sds-c-button-brand-color-background: #003C80;
+    --sds-c-button-brand-color-background-hover: #0E54A9;
+    --sds-c-button-brand-color-border: #003C80;
+    --sds-c-button-brand-color-border-hover: #0E54A9;
+}
+
+/* =========================================================================
+   DEAL TYPE PILLS
+   ========================================================================= */
+
+.pill-container {
+    display: flex;
+    gap: 0.375rem;
+    padding-top: 0.25rem;
+}
+
+.deal-type-pill {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid #E6E6E6;
+    background: #ffffff;
+    color: #536E8D;
+    transition: all 0.15s;
+    user-select: none;
+}
+
+.deal-type-pill:hover {
+    border-color: #207CEC;
+    color: #207CEC;
+}
+
+.deal-type-pill--active {
+    background: #E8F1FD;
+    border-color: #207CEC;
+    color: #003C80;
+    font-weight: 600;
+}
+
+/* =========================================================================
+   RESULT SUMMARY
+   ========================================================================= */
+
+.result-summary {
+    margin-left: auto;
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+    flex-shrink: 0;
+}
+
+.result-summary__count {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #073C7D;
+}
+
+.result-summary__label {
+    font-size: 0.8125rem;
+    color: #536E8D;
+}
+
+.result-summary__changes {
+    font-size: 0.75rem;
+    color: #207CEC;
+    font-weight: 600;
+}
+
+/* =========================================================================
+   LOADING / ERROR / SUCCESS / NO RESULTS
+   ========================================================================= */
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 0;
+}
+
+/* --- Toast Notification --- */
+
+.toast {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    animation: toastSlideIn 0.3s ease-out;
+    position: relative;
+}
+
+.toast--success {
+    background: #003C80;
+    color: #ffffff;
+}
+
+.toast--error {
+    background: #fef2f2;
+    border-bottom: 1px solid #fecaca;
+    color: #991b1b;
+}
+
+.toast__message {
+    flex: 1;
+}
+
+.toast__dismiss {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 0.25rem;
+    opacity: 0.7;
+    transition: opacity 0.15s;
+}
+
+.toast--success .toast__dismiss {
+    color: #ffffff;
+}
+
+.toast--error .toast__dismiss {
+    color: #991b1b;
+}
+
+.toast__dismiss:hover {
+    opacity: 1;
+}
+
+@keyframes toastSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Hidden File Input --- */
+
+.file-input-hidden {
+    display: none;
+}
+
+.no-results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 1rem;
+    color: #A4B9D7;
+}
+
+.no-results lightning-icon {
+    --sds-c-icon-color-foreground-default: #A4B9D7;
+    margin-bottom: 1rem;
+}
+
+.no-results__title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #536E8D;
+    margin: 0 0 0.25rem 0;
+}
+
+.no-results__text {
+    font-size: 0.8125rem;
+    color: #A4B9D7;
+    margin: 0;
+}
+
+/* =========================================================================
+   BULK EDIT BAR
+   ========================================================================= */
+
+.bulk-edit-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+    background: #E8F1FD;
+    border-bottom: 2px solid #207CEC;
+}
+
+.bulk-edit-bar__info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #003C80;
+    flex-shrink: 0;
+}
+
+.bulk-edit-bar__info lightning-icon {
+    --sds-c-icon-color-foreground-default: #207CEC;
+}
+
+.bulk-edit-bar__actions {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.75rem;
+    flex: 1;
+}
+
+.bulk-edit-bar__field {
+    min-width: 160px;
+}
+
+.bulk-edit-bar__value {
+    min-width: 180px;
+}
+
+/* =========================================================================
+   RESULTS TABLE
+   ========================================================================= */
+
+.results-area {
+    padding: 1rem 1.5rem 2.5rem;
+    background: #F4F7FA;
+}
+
+.table-wrapper {
+    overflow: visible;
+    background: #ffffff;
+    border-radius: 0.625rem;
+    border: 1px solid #E6E6E6;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8125rem;
+}
+
+/* --- Table Header --- */
+
+thead th {
+    position: sticky;
+    top: 0;
+    background: #FAFAF9;
+    padding: 0.625rem 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #536E8D;
+    border-bottom: 2px solid #E6E6E6;
+    white-space: nowrap;
+}
+
+/* Editable column headers get blue tint */
+.th-editable {
+    background: #E8F1FD;
+    color: #003C80;
+}
+
+/* --- Sticky Columns --- */
+
+.th-sticky {
+    z-index: 3;
+}
+.th-sticky--first {
+    position: sticky;
+    left: 0;
+    min-width: 40px;
+    max-width: 40px;
+}
+.th-sticky--second {
+    position: sticky;
+    left: 40px;
+    min-width: 200px;
+}
+
+.td-sticky {
+    z-index: 2;
+    background: #ffffff;
+}
+.td-sticky--first {
+    position: sticky;
+    left: 0;
+    min-width: 40px;
+    max-width: 40px;
+}
+.td-sticky--second {
+    position: sticky;
+    left: 40px;
+    min-width: 200px;
+}
+
+/* --- Checkbox cells --- */
+
+.th-checkbox,
+.td-checkbox {
+    text-align: center;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.th-checkbox input[type="checkbox"],
+.td-checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #207CEC;
+}
+
+/* --- Table Body --- */
+
+tbody td {
+    padding: 0.625rem 0.75rem;
+    border-bottom: 1px solid #f0f0f5;
+    white-space: nowrap;
+    overflow: visible;
+}
+
+tbody tr {
+    transition: background 0.1s;
+}
+
+tbody tr:hover {
+    background: #E8F1FD;
+}
+
+tbody tr:hover .td-sticky {
+    background: #E8F1FD;
+}
+
+/* --- Row States --- */
+
+.data-row--editing {
+    background: #E8F1FD !important;
+}
+
+.data-row--editing .td-sticky {
+    background: #E8F1FD !important;
+}
+
+.data-row--changed {
+    background: #EBF4FE !important;
+}
+
+.data-row--changed .td-sticky {
+    background: #EBF4FE !important;
+}
+
+.data-row--selected {
+    background: #E8F1FD !important;
+}
+
+.data-row--selected .td-sticky {
+    background: #E8F1FD !important;
+}
+
+/* --- Cell Styles --- */
+
+.opp-name {
+    font-weight: 500;
+}
+
+.opp-name__link {
+    color: #207CEC;
+    text-decoration: none;
+}
+
+.opp-name__link:hover {
+    text-decoration: underline;
+}
+
+.editable-cell {
+    cursor: pointer;
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    border: 1px dashed transparent;
+    transition: border-color 0.15s;
+    min-height: 1.5em;
+    display: inline-block;
+    min-width: 60px;
+}
+
+.editable-cell:hover {
+    border-color: #207CEC;
+    background: #E8F1FD;
+}
+
+.inline-edit {
+    min-width: 140px;
+}
+
+.inline-edit--lookup {
+    min-width: 160px;
+}
+
+.lookup-hint {
+    font-size: 0.72rem;
+    color: #536E8D;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 160px;
+}
+
+/* Ensure combobox dropdowns render above everything and are fully visible */
+td {
+    position: relative;
+}
+
+td lightning-combobox {
+    --slds-c-combobox-dropdown-position: fixed;
+}
+
+/* --- Stage Badge --- */
+
+.stage-badge {
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.625rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    background: #F4F7FA;
+    color: #536E8D;
+}
+
+.stage-badge--won {
+    background: #B5EDDA;
+    color: #003C80;
+}
+
+.stage-badge--lost {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.stage-badge--qualify {
+    background: #E8F1FD;
+    color: #003C80;
+}
+
+.stage-badge--pending {
+    background: #B5EDDA;
+    color: #003C80;
+}
+
+/* =========================================================================
+   RECORD LIMIT WARNING
+   ========================================================================= */
+
+.limit-warning {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.5rem;
+    background: #FFF7E6;
+    border-bottom: 1px solid #F5A623;
+    font-size: 0.8125rem;
+    color: #7D4E00;
+}
+
+.limit-warning lightning-icon {
+    --sds-c-icon-color-foreground-default: #F5A623;
+    flex-shrink: 0;
+}
+
+.limit-warning__text strong {
+    font-weight: 700;
+}
+
+/* =========================================================================
+   SAVE RESULTS PANEL
+   ========================================================================= */
+
+.save-results-panel {
+    border-bottom: 1px solid #E6E6E6;
+    background: #FAFAFA;
+    font-size: 0.8125rem;
+}
+
+.save-results-panel__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.625rem 1.5rem;
+}
+
+.save-results-panel__summary {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.save-results-panel__success-count {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-weight: 600;
+    color: #2E7D32;
+}
+
+.save-results-panel__success-count lightning-icon {
+    --sds-c-icon-color-foreground-default: #2E7D32;
+}
+
+.save-results-panel__fail-count {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-weight: 600;
+    color: #991b1b;
+}
+
+.save-results-panel__fail-count lightning-icon {
+    --sds-c-icon-color-foreground-default: #991b1b;
+}
+
+.save-results-panel__dismiss {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #536E8D;
+    padding: 0 0.25rem;
+    opacity: 0.7;
+    transition: opacity 0.15s;
+}
+
+.save-results-panel__dismiss:hover {
+    opacity: 1;
+}
+
+.save-results-panel__errors {
+    list-style: none;
+    margin: 0;
+    padding: 0 1.5rem 0.75rem;
+    border-top: 1px solid #F0E0E0;
+}
+
+.save-results-panel__error-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.375rem 0;
+    border-bottom: 1px solid #F9F0F0;
+    color: #991b1b;
+}
+
+.save-results-panel__error-item:last-child {
+    border-bottom: none;
+}
+
+.save-results-panel__error-item lightning-icon {
+    --sds-c-icon-color-foreground-default: #991b1b;
+    flex-shrink: 0;
+}
+
+.save-results-panel__error-name {
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.save-results-panel__error-msg {
+    color: #7F1D1D;
+    font-size: 0.75rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* =========================================================================
+   SAVE STATUS COLUMN
+   ========================================================================= */
+
+.th-status {
+    background: #FAFAFA;
+    color: #536E8D;
+    min-width: 120px;
+}
+
+.td-status {
+    min-width: 120px;
+}
+
+.status-success {
+    display: inline-flex;
+    align-items: center;
+}
+
+.status-success lightning-icon {
+    --sds-c-icon-color-foreground-default: #2E7D32;
+}
+
+.status-error {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    cursor: help;
+}
+
+.status-error lightning-icon {
+    --sds-c-icon-color-foreground-default: #991b1b;
+    flex-shrink: 0;
+}
+
+.status-error__text {
+    font-size: 0.72rem;
+    color: #991b1b;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* =========================================================================
+   SAVE STATUS ROW STATES
+   ========================================================================= */
+
+.data-row--save-success {
+    background: #F0FFF4 !important;
+}
+
+.data-row--save-success .td-sticky {
+    background: #F0FFF4 !important;
+}
+
+.data-row--save-error {
+    background: #FFF5F5 !important;
+}
+
+.data-row--save-error .td-sticky {
+    background: #FFF5F5 !important;
+}

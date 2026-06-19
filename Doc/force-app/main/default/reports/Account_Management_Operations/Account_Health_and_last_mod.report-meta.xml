@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>TYPE</field>
+    </columns>
+    <columns>
+        <field>Account.IntApp_Account_Number__c</field>
+    </columns>
+    <columns>
+        <field>ACCOUNT_NAME</field>
+    </columns>
+    <columns>
+        <field>Account.CSM_Health_Rating__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Account Health and last mod</description>
+    <filter>
+        <criteriaItems>
+            <column>TYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Partner,Client - Lapsed,Client - LegalKEY Only,Client</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Account Health and last mod</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>ContractList</reportType>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>START_DATE</dateColumn>
+        <endDate>2025-12-31</endDate>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>1900-01-01</startDate>
+    </timeFrameFilter>
+</Report>

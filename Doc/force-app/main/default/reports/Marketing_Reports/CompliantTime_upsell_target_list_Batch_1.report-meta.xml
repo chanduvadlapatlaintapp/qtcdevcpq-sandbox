@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>FIRST_NAME</field>
+    </columns>
+    <columns>
+        <field>LAST_NAME</field>
+    </columns>
+    <columns>
+        <field>TITLE</field>
+    </columns>
+    <columns>
+        <field>Contact.Role_old__c</field>
+    </columns>
+    <columns>
+        <field>Contact.Standard_Title__c</field>
+    </columns>
+    <columns>
+        <field>ADDRESS2_STREET</field>
+    </columns>
+    <columns>
+        <field>ADDRESS2_CITY</field>
+    </columns>
+    <columns>
+        <field>ADDRESS2_STATE</field>
+    </columns>
+    <columns>
+        <field>ADDRESS2_COUNTRY</field>
+    </columns>
+    <columns>
+        <field>PHONE1</field>
+    </columns>
+    <columns>
+        <field>EMAIL</field>
+    </columns>
+    <columns>
+        <field>OWNER_FULL_NAME</field>
+    </columns>
+    <columns>
+        <field>Contact.Active_Campaign_Count__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.Account_Count__c</field>
+    </columns>
+    <currency>GBP</currency>
+    <description>Contacts from the Compliant Time accounts we are targeting upsells to - contacts based on spec provided in list request from by Claire Darling</description>
+    <filter>
+        <booleanFilter>(1 AND (2 OR 3) AND 4 AND 5 AND 6)</booleanFilter>
+        <criteriaItems>
+            <column>Account.IntApp_Account_Number__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>,A200406,A200935,A201145,A200214,A200986,A200346,A201866,A201813,A201130,A201727,A200535,A200116,A200151,A200736,A201079,A200511,A200467,A200645,A201087,A200137,A200335,A200414,A202874,A200153,A200521,A201809,A200570,A200523,A200657,A200391,A201003,A200465,A201896,A200797,A200298,A200807,A200227,A200951,A200287,A200135,A201160,A200920,A200399,A200364,A200871,A200526,A200556,A200022,A200393,A200686,A200338,A200541,A201081,A200408,A200445,A201872,A201060,A200086,A200104,A200324,A200157,A200440,A200787,A201805,A200510,A200230,A202973,A200110,A200482,A200176,A201854,A201786,A202623,A203138,A201899,A201864,A200503,A201683,A200788,A203084,A201171,A200418,A201399,A200060,A200404,A200520,A202625,A201108,A204211,A202935,A201037,A202798,A200610,A200946,A201153,A201868,A200111,A201730,A201215,A200258,A200442,A200487,A203051,A200152 A200495 A201875 A202079 A201914 A314299 A202567 A201909,A200401</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contact.Role_old__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Firm Management,Risk Leader,Finance Management</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contact.Standard_Title__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>6. COO / Executive Director / EVP,7. CFO / Finance Director / SVP,8. GC / Risk Partner / CCO / CRO</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>INDUSTRY</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Legal</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contact.Opt_Out__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>excludes</operator>
+            <value>All Marketing</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>ACCOUNT.NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Compliant Time upsell target list 1 of 2</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>ContactList</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

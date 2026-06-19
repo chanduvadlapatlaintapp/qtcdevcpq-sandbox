@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active_Relationships_Product_Customers</fullName>
+    <columns>Subscription_Name__c</columns>
+    <columns>NAME</columns>
+    <columns>Status__c</columns>
+    <columns>Customer_Lifecycle_Stage__c</columns>
+    <columns>Account_Owner__c</columns>
+    <columns>CSM__c</columns>
+    <columns>CSM_Health_Rating__c</columns>
+    <columns>Amount__c</columns>
+    <columns>CSM_Health_Rating_Last_Modified__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Product_LineNew__c</field>
+        <operation>contains</operation>
+        <value>Relationships</value>
+    </filters>
+    <filters>
+        <field>CSM_Health_Rating__c</field>
+        <operation>notEqual</operation>
+        <value>Black</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Active</value>
+    </filters>
+    <label>Active Relationships Product Customers</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Customer_Experience_Group</group>
+    </sharedTo>
+</ListView>

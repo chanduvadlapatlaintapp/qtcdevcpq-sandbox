@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Subsidiaries__c</fullName>
+    <description>Available subsidiaries in NetSuite (C - Customer, P - Prospect)</description>
+    <inlineHelpText>Available subsidiaries in NetSuite (C - Customer, P - Prospect)</inlineHelpText>
+    <label>NS Subsidiaries</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>--DO NOT SELECT--</fullName>
+                <default>false</default>
+                <label>--DO NOT SELECT--</label>
+            </value>
+            <value>
+                <fullName>01C</fullName>
+                <default>false</default>
+                <label>01C</label>
+            </value>
+            <value>
+                <fullName>05C</fullName>
+                <default>false</default>
+                <label>05C</label>
+            </value>
+            <value>
+                <fullName>08C</fullName>
+                <default>false</default>
+                <label>08C</label>
+            </value>
+            <value>
+                <fullName>18C</fullName>
+                <default>false</default>
+                <label>18C</label>
+            </value>
+            <value>
+                <fullName>23C</fullName>
+                <default>false</default>
+                <label>23C</label>
+            </value>
+            <value>
+                <fullName>28C</fullName>
+                <default>false</default>
+                <label>28C</label>
+            </value>
+            <value>
+                <fullName>35C</fullName>
+                <default>false</default>
+                <label>35C</label>
+            </value>
+            <value>
+                <fullName>37C</fullName>
+                <default>false</default>
+                <label>37C</label>
+            </value>
+            <value>
+                <fullName>40C</fullName>
+                <default>false</default>
+                <label>40C</label>
+            </value>
+            <value>
+                <fullName>42C</fullName>
+                <default>false</default>
+                <label>42C</label>
+            </value>
+            <value>
+                <fullName>44C</fullName>
+                <default>false</default>
+                <label>44C</label>
+            </value>
+            <value>
+                <fullName>46C</fullName>
+                <default>false</default>
+                <label>46C</label>
+            </value>
+            <value>
+                <fullName>50C</fullName>
+                <default>false</default>
+                <label>50C</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

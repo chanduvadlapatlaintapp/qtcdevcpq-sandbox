@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>BIZ-43794</description>
+    <environments>Default</environments>
+    <interviewLabel>Quote Document Generate Date Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Quote Document Generate Date Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Generate_Doc_date_on_Quote</name>
+        <label>Update Generate Doc date on Quote</label>
+        <locationX>491</locationX>
+        <locationY>385</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Quote__r.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Quote_Document_Generated_Date__c</field>
+            <value>
+                <elementReference>$Record.CreatedDate</elementReference>
+            </value>
+        </inputAssignments>
+        <object>SBQQ__Quote__c</object>
+    </recordUpdates>
+    <start>
+        <locationX>330</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>Update_Generate_Doc_date_on_Quote</targetReference>
+        </connector>
+        <object>SBQQ__QuoteDocument__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

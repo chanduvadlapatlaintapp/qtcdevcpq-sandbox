@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DocketingPortfolio__c</fullName>
+    <description>This is to designate the Docketing application in use at the account. This replaced the old checkbox system.</description>
+    <inlineHelpText>What Docketing software does this account use?</inlineHelpText>
+    <label>Docketing</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>American LegalNet eDocket</fullName>
+                <default>false</default>
+                <label>American LegalNet eDocket</label>
+            </value>
+            <value>
+                <fullName>CompuLaw</fullName>
+                <default>false</default>
+                <label>CompuLaw</label>
+            </value>
+            <value>
+                <fullName>Custom</fullName>
+                <default>false</default>
+                <label>Custom</label>
+            </value>
+            <value>
+                <fullName>IP Manager</fullName>
+                <default>false</default>
+                <label>IP Manager</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Patricia</fullName>
+                <default>false</default>
+                <label>Patricia</label>
+            </value>
+            <value>
+                <fullName>PATTSY</fullName>
+                <default>false</default>
+                <label>PATTSY</label>
+            </value>
+            <value>
+                <fullName>ProLaw</fullName>
+                <default>false</default>
+                <label>ProLaw</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

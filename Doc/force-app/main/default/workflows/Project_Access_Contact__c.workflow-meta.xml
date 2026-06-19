@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Update_Box_Access_Requested_Date</fullName>
+        <field>Box_Access_Requested_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>Update Box Access Requested Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Clarizen_Access_Requested_Date</fullName>
+        <field>Clarizen_Access_Requested_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>Update Clarizen Access Requested Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_JIRA_Access_Requested_Date</fullName>
+        <field>JIRA_Access_Requested_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>Update JIRA Access Requested Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <outboundMessages>
+        <fullName>SendPACToDTE</fullName>
+        <apiVersion>34.0</apiVersion>
+        <endpointUrl>https://www.intapp.com/SalesForceSync/DTE/PAC/PACNotificationService.asmx</endpointUrl>
+        <fields>Box__c</fields>
+        <fields>Clarizen__c</fields>
+        <fields>Contact__c</fields>
+        <fields>Id</fields>
+        <fields>JIRA__c</fields>
+        <fields>Name</fields>
+        <fields>Smartsheet__c</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>alan.westley@intapp.com</integrationUser>
+        <name>SendPACToDTE</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <rules>
+        <fullName>Rule Code%3A PAC-001xxOx</fullName>
+        <actions>
+            <name>SendPACToDTE</name>
+            <type>OutboundMessage</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: PAC-001xxOx
+UpdatePACInDTE
+Sends an outbound message in DTE to update Project Access Contact</description>
+        <formula>ISNEW()||
+ISCHANGED(Box__c)||
+ISCHANGED(Clarizen__c)||
+ISCHANGED(JIRA__c)||
+ISCHANGED(Smartsheet__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A PAC-002xFxx</fullName>
+        <actions>
+            <name>Update_Box_Access_Requested_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: PAC-002xFxx
+Populate Box Access Requested Date
+Updates Box access requested date when Box__c is set to &quot;Access Requested&quot;</description>
+        <formula>AND( 
+  ISCHANGED(Box__c), 
+  ISPICKVAL(Box__c, &quot;Access Requested&quot;) 
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A PAC-003xFxx</fullName>
+        <actions>
+            <name>Update_JIRA_Access_Requested_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: PAC-003xFxx
+Populate JIRA Access Requested Date
+Populates JIRA Access Requested Date when JIRA__c is set to &quot;Access Requested&quot;</description>
+        <formula>AND(
+  ISCHANGED(JIRA__c),
+  ISPICKVAL(JIRA__c, &quot;Access Requested&quot;)
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A PAC-004xFxx</fullName>
+        <actions>
+            <name>Update_Clarizen_Access_Requested_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: PAC-004xFxx
+Populate Clarizen Access Requested Date
+Populates Clarizen Access Requested Date when Clarizen__c is set to &quot;Access Requested&quot;</description>
+        <formula>AND(
+  ISCHANGED(Clarizen__c),
+  ISPICKVAL(Clarizen__c, &quot;Access Requested&quot;)
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

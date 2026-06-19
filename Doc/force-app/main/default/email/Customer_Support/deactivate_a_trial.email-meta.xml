@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>SO_Letterhead</letterhead>
+    <name>deactivate a trial</name>
+    <style>freeForm</style>
+    <subject>{!Contract.Account} - Trial Ended – Please Deactivate, Line of Business: {!Contract.Applicable_Subsidiary__c}</subject>
+    <textOnly>{!Contract.Account}
+Line of Business: {!Contract.Applicable_Subsidiary__c}
+The trial has ended. Please deactivate trial instance.
+OSA# {!Contract.ContractNumber} {!Contract.Link}
+
+
+
+Rule Code: CTR-044Exxx</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

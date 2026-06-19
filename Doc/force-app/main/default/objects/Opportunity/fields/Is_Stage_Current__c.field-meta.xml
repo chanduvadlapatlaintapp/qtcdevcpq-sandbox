@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Stage_Current__c</fullName>
+    <formula>IF(
+  OR(
+    IsClosed,
+    ISPICKVAL(StageName,&quot;Target Account&quot;),
+    ISPICKVAL(StageName,&quot;Waiting on Billing Pause&quot;),
+    ISPICKVAL(StageName,&quot;Waiting on Billing Restart&quot;),
+    ISPICKVAL(StageName,&quot;Informed of Potential Cancellation&quot;),
+    ISPICKVAL(StageName,&quot;Discussing with Customer&quot;),
+    ISPICKVAL(StageName,&quot;Engaged in Remediation&quot;),
+    ISPICKVAL(StageName,&quot;Collections Concerns&quot;),
+    ISPICKVAL(StageName,&quot;Final Negotiations&quot;),
+    ISPICKVAL(StageName,&quot;ACV Outcome Certain&quot;),
+    ISPICKVAL(StageName,&quot;Waiting for Kickoff&quot;),
+    ISPICKVAL(StageName,&quot;Approaching EUL Evaluation&quot;),
+    ISPICKVAL(StageName,&quot;Discussing uplift with Account Owner&quot;),
+    ISPICKVAL(StageName,&quot;Discussing Firm Wide Conversion&quot;),
+    ISPICKVAL(StageName,&quot;Discussing uplift with Customer&quot;),
+    ISPICKVAL(StageName,&quot;Developing license count recommendation&quot;),
+    ISPICKVAL(StageName,&quot;Waiting for Finance to send bill&quot;),
+    ISPICKVAL(StageName,&quot;Waiting for payment&quot;),
+    ISPICKVAL(StageName,&quot;Opportunity Reset&quot;),
+    ISPICKVAL(StageName,&quot;Expression of Interest&quot;),
+    ISPICKVAL(StageName,&quot;Investigation&quot;),
+    ISPICKVAL(StageName,&quot;Business Case Development&quot;),
+    ISPICKVAL(StageName,&quot;Evaluation of Options&quot;),
+    ISPICKVAL(StageName,&quot;Resolution of Concerns&quot;),
+    ISPICKVAL(StageName,&quot;Get Management Approval&quot;),
+    ISPICKVAL(StageName,&quot;Obtain Contract&quot;),
+    ISPICKVAL(StageName,&quot;Trial Period&quot;),
+    ISPICKVAL(StageName,&quot;Recurring Adjustment&quot;)
+  ),
+  TRUE,
+  FALSE
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Is Stage Current?</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Source_System__c</fullName>
+    <description>BIZ-77549: Identifies whether the Opportunity or Quote originated from OP4I or Salesforce based on the selected Deal Type.</description>
+    <label>Source System</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>OP4I</fullName>
+                <default>false</default>
+                <label>OP4I</label>
+            </value>
+            <value>
+                <fullName>SFDC</fullName>
+                <default>true</default>
+                <label>SFDC</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

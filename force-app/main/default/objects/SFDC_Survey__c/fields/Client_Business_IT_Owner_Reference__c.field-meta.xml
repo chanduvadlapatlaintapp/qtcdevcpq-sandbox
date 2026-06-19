@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Client_Business_IT_Owner_Reference__c</fullName>
+    <inlineHelpText>Given the experience you’ve had, would you ever be willing to take a call from a firm that was considering using this product?</inlineHelpText>
+    <label>Client Business Owner Reference</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Yes</fullName>
+                <default>false</default>
+                <label>Yes</label>
+            </value>
+            <value>
+                <fullName>No</fullName>
+                <default>false</default>
+                <label>No</label>
+            </value>
+            <value>
+                <fullName>Not Yet</fullName>
+                <default>false</default>
+                <label>Not Yet</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSCaseTB_Select_desktop_operating_system__c</fullName>
+    <inlineHelpText>Select the desktop operating system used in your organization from the drop-down list.</inlineHelpText>
+    <label>Select desktop operating system</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Windows 7</fullName>
+                <default>false</default>
+                <label>Windows 7</label>
+            </value>
+            <value>
+                <fullName>Windows Vista</fullName>
+                <default>false</default>
+                <label>Windows Vista</label>
+            </value>
+            <value>
+                <fullName>Windows XP</fullName>
+                <default>false</default>
+                <label>Windows XP</label>
+            </value>
+            <value>
+                <fullName>Other operating system</fullName>
+                <default>false</default>
+                <label>Other operating system</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

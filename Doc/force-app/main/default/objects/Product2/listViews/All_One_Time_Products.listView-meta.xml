@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_One_Time_Products</fullName>
+    <columns>PRODUCT2.NAME</columns>
+    <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+    <columns>PRODUCT2.SKU</columns>
+    <columns>SBQQ__SubscriptionType__c</columns>
+    <columns>SBQQ__SubscriptionTerm__c</columns>
+    <columns>SBQQ__SubscriptionPricing__c</columns>
+    <columns>Product_Revenue_Type__c</columns>
+    <columns>Product_Type__c</columns>
+    <columns>PRODUCT2.CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>PRODUCT2.ACTIVE</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>SBQQ__SubscriptionType__c</field>
+        <operation>equals</operation>
+        <value>One-time</value>
+    </filters>
+    <label>All One-Time Products</label>
+</ListView>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Co_Marketing_Agreement__c</fullName>
+    <description>Created field for term &amp; conditions - BIZ-48165</description>
+    <label>Co-Marketing Agreement</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Press Release</fullName>
+                <default>false</default>
+                <label>Press Release</label>
+            </value>
+            <value>
+                <fullName>Case Study</fullName>
+                <default>false</default>
+                <label>Case Study</label>
+            </value>
+            <value>
+                <fullName>Do Not Use Name/Logo</fullName>
+                <default>false</default>
+                <label>Do Not Use Name/Logo</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_InProcess1</fullName>
+    <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Requesting_Employee__c</columns>
+    <columns>Estimated_Completion_Date__c</columns>
+    <columns>Description__c</columns>
+    <columns>Product__c</columns>
+    <columns>Client_Contact__c</columns>
+    <columns>Submit_directly_for_Approval__c</columns>
+    <columns>Deadline__c</columns>
+    <columns>Status__c</columns>
+    <columns>Technical_Scoping_Assigned_To__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Submitted,In Process</value>
+    </filters>
+    <filters>
+        <field>Product__c</field>
+        <operation>contains</operation>
+        <value>Wall,open</value>
+    </filters>
+    <filters>
+        <field>Product__c</field>
+        <operation>contains</operation>
+        <value>Intapp Open: Conflicts,Intapp Open: Intake,Intapp Walls</value>
+    </filters>
+    <label>Risk InProcess</label>
+    <language>en_US</language>
+</ListView>

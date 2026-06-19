@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Case$CaseNumber</field>
+    </columns>
+    <columns>
+        <field>Case$CreatedDate</field>
+    </columns>
+    <columns>
+        <field>Case$Date_Closed__c</field>
+    </columns>
+    <columns>
+        <field>Case$Days_Open__c</field>
+    </columns>
+    <columns>
+        <field>Case$Contact</field>
+    </columns>
+    <columns>
+        <field>Case$Product__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Case$Account.Type</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Implementation Partner</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Case$Account</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Partner Qtrly Case Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Cases_Custom__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Case$CreatedDate</dateColumn>
+        <endDate>2016-09-30</endDate>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2016-07-01</startDate>
+    </timeFrameFilter>
+</Report>

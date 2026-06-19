@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Completed_Trainings</fullName>
+    <columns>NAME</columns>
+    <columns>Product__c</columns>
+    <columns>Seats_Taken__c</columns>
+    <columns>City__c</columns>
+    <columns>Instructor__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>End_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Completed</value>
+    </filters>
+    <label>Completed Trainings</label>
+    <language>en_US</language>
+</ListView>

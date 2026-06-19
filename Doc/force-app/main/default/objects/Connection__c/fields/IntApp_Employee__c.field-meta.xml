@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IntApp_Employee__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Type your own name, or choose an active IntApp employee from the list. (Only Active Users of Salesforce are shown. If you need to enter an inactive user, please talk to our Salesforce admin.)</description>
+    <inlineHelpText>Type your own name, or choose an active IntApp employee from the list. (Only Active Users of Salesforce are shown. If you need to enter an inactive user, please talk to our Salesforce admin.)</inlineHelpText>
+    <label>IntApp Employee</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>Value does not exist or is not an active User.</errorMessage>
+        <filterItems>
+            <field>User.IsActive</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Connections</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

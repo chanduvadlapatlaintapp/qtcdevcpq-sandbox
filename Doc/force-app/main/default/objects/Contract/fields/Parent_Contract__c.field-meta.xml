@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Parent_Contract__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>This points to the main contract for this customer. If this Contract is the master OSA, this field is blank.</description>
+    <inlineHelpText>This points to the main contract for this customer. If this Contract is the master OSA, this field is blank.</inlineHelpText>
+    <label>Parent Terms Contract</label>
+    <referenceTo>Contract</referenceTo>
+    <relationshipLabel>Addendum Contracts</relationshipLabel>
+    <relationshipName>Child_OSAs</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Wall_Builder_Releases</fullName>
+    <columns>NAME</columns>
+    <columns>Description__c</columns>
+    <columns>Actual_Release_Date__c</columns>
+    <columns>Limited_Support_Date__c</columns>
+    <columns>Retired_Date__c</columns>
+    <columns>Support_Level__c</columns>
+    <columns>Build__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Estimated_Release_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Product_Line__c</field>
+        <operation>equals</operation>
+        <value>Intapp Walls</value>
+    </filters>
+    <label>Wall Builder Releases</label>
+    <language>en_US</language>
+</ListView>

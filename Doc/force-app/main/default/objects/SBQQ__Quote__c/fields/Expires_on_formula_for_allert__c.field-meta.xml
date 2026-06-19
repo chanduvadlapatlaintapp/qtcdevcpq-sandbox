@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Expires_on_formula_for_allert__c</fullName>
+    <formula>IF(OR(SBQQ__ExpirationDate__c&lt;today(), TEXT(SBQQ__ExpirationDate__c)=null),true,false)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Expires on formula for allert</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Type__c</fullName>
+    <label>Product Type</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Software</fullName>
+                <default>false</default>
+                <label>Software</label>
+            </value>
+            <value>
+                <fullName>Services</fullName>
+                <default>false</default>
+                <label>Services</label>
+            </value>
+            <value>
+                <fullName>Maintenance</fullName>
+                <default>false</default>
+                <label>Maintenance</label>
+            </value>
+            <value>
+                <fullName>Discount</fullName>
+                <default>false</default>
+                <label>Discount</label>
+            </value>
+            <value>
+                <fullName>Support</fullName>
+                <default>false</default>
+                <label>Support</label>
+            </value>
+            <value>
+                <fullName>Services Discount</fullName>
+                <default>false</default>
+                <label>Services Discount</label>
+            </value>
+            <value>
+                <fullName>Software Discount (Recurring)</fullName>
+                <default>false</default>
+                <label>Software Discount (Recurring)</label>
+            </value>
+            <value>
+                <fullName>Training</fullName>
+                <default>false</default>
+                <label>Training</label>
+            </value>
+            <value>
+                <fullName>Training Discount</fullName>
+                <default>false</default>
+                <label>Training Discount</label>
+            </value>
+            <value>
+                <fullName>Early Adopter</fullName>
+                <default>false</default>
+                <label>Early Adopter</label>
+            </value>
+            <value>
+                <fullName>Software Discount (One-Time)</fullName>
+                <default>false</default>
+                <label>Software Discount (One-Time)</label>
+            </value>
+            <value>
+                <fullName>Tax Only</fullName>
+                <default>false</default>
+                <label>Tax Only</label>
+            </value>
+            <value>
+                <fullName>Services (Recurring)</fullName>
+                <default>false</default>
+                <label>Services (Recurring)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

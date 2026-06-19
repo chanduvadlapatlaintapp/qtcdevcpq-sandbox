@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MD_Eval_Control__c</fullName>
+    <description>Control: the ability to influence and direct the steps of a buying process</description>
+    <inlineHelpText>Control: the ability to influence and direct the steps of a buying process</inlineHelpText>
+    <label>MD Eval: Control</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>00 - No follow-up documentation of client conversations</fullName>
+                <default>false</default>
+                <label>00 - No follow-up documentation of client conversations</label>
+            </value>
+            <value>
+                <fullName>01 - Scheduled meeting confirmed by prospect</fullName>
+                <default>false</default>
+                <label>01 - Scheduled meeting confirmed by prospect</label>
+            </value>
+            <value>
+                <fullName>02 - Meeting concludes with next steps agreed upon</fullName>
+                <default>false</default>
+                <label>02 - Meeting concludes with next steps agreed upon</label>
+            </value>
+            <value>
+                <fullName>03 - Sponsor Letter (email) sent</fullName>
+                <default>false</default>
+                <label>03 - Sponsor Letter (email) sent</label>
+            </value>
+            <value>
+                <fullName>04 - Sponsor Letter (email) agree upon/modified (Sponsor Email Required)</fullName>
+                <default>false</default>
+                <label>04 - Sponsor Letter (email) agree upon/modified (Sponsor Email Required)</label>
+            </value>
+            <value>
+                <fullName>05 - Buying and decision processes shared by potential Power Sponsor</fullName>
+                <default>false</default>
+                <label>05 - Buying and decision processes shared by potential Power Sponsor</label>
+            </value>
+            <value>
+                <fullName>06 - Power Sponsor Letter (email) and MAP sent (Power Sponsor Email Required)</fullName>
+                <default>false</default>
+                <label>06 - Power Sponsor Letter (email) and MAP sent (Power Sponsor Email Required)</label>
+            </value>
+            <value>
+                <fullName>07 - Power Sponsor Letter (email) and MAP accepted /modified (Draft Evaluation Plan Required)</fullName>
+                <default>false</default>
+                <label>07 - Power Sponsor Letter (email) and MAP accepted /modified (Draft Evaluation Plan Required)</label>
+            </value>
+            <value>
+                <fullName>08 - First customer-owner step of the MAP completed</fullName>
+                <default>false</default>
+                <label>08 - First customer-owner step of the MAP completed</label>
+            </value>
+            <value>
+                <fullName>09 - Final proof step completed to satisfaction of Power Sponsor</fullName>
+                <default>false</default>
+                <label>09 - Final proof step completed to satisfaction of Power Sponsor</label>
+            </value>
+            <value>
+                <fullName>10 - Evaluation Plan completed</fullName>
+                <default>false</default>
+                <label>10 - Evaluation Plan completed</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

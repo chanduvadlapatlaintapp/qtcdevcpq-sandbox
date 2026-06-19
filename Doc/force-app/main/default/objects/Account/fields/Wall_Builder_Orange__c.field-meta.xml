@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Wall_Builder_Orange__c</fullName>
+    <description>This is a placeholder field that enables charting Orange values for Risk accounts.</description>
+    <inlineHelpText>This is a placeholder field that enables charting Orange values for Risk accounts.</inlineHelpText>
+    <label>Risk Orange</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Risk</fullName>
+                <color>#E27001</color>
+                <default>true</default>
+                <label>Risk</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

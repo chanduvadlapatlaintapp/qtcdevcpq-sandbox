@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_cancelable_Multiyear_Agreements__c</fullName>
+    <label>Non-cancelable Multiyear Agreements</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>2 year</fullName>
+                <default>false</default>
+                <label>2 year</label>
+            </value>
+            <value>
+                <fullName>3 year</fullName>
+                <default>false</default>
+                <label>3 year</label>
+            </value>
+            <value>
+                <fullName>4 year</fullName>
+                <default>false</default>
+                <label>4 year</label>
+            </value>
+            <value>
+                <fullName>5 year</fullName>
+                <default>false</default>
+                <label>5 year</label>
+            </value>
+            <value>
+                <fullName>&gt;5 year</fullName>
+                <default>false</default>
+                <label>&gt;5 year</label>
+            </value>
+            <value>
+                <fullName>1 Year</fullName>
+                <default>false</default>
+                <label>1 Year</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

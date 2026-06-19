@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Contract.Opportunity__r$Name</field>
+    </columns>
+    <columns>
+        <field>Contract.Opportunity__r$Type</field>
+    </columns>
+    <columns>
+        <field>Contract.Opportunity__r$CloseDate</field>
+    </columns>
+    <columns>
+        <field>Contract.Opportunity__r$Sale_Category__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>(1 AND 2) OR 3</booleanFilter>
+        <criteriaItems>
+            <column>Contract.Opportunity__r$Sale_Category__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>Product</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contract.Opportunity__r$Sale_Category__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>New</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contract.Opportunity__r$Sale_Category__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Add-on Software</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <aggregateType>RowCount</aggregateType>
+        <dateGranularity>Day</dateGranularity>
+        <field>Contract$ContractNumber</field>
+        <sortByName>RowCount</sortByName>
+        <sortOrder>Desc</sortOrder>
+        <sortType>Aggregate</sortType>
+    </groupingsDown>
+    <name>Multi Opp for single Contract</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Contracts_with_Opportunities__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Contract$ActivatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2019-07-01</startDate>
+    </timeFrameFilter>
+</Report>

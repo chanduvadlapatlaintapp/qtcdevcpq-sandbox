@@ -1,0 +1,246 @@
+name: QTC Playwright Tests
+
+# ── Trigger modes ──────────────────────────────────────────────────────────────
+#
+# 1. workflow_dispatch  — Manual trigger from the Salesforce LWC dashboard.
+#                         The LWC passes test_run_id + test_suite + sf_instance_url.
+#
+# 2. push (main)        — Auto-triggers whenever a commit lands on main
+#                         (covers PR merges and direct pushes).
+#                         Creates a new Test_Run__c record automatically.
+#
+# 3. pull_request       — Auto-triggers when a PR targeting main is merged.
+#                         Provides richer context (PR number, title) in the run.
+#                         Creates a new Test_Run__c record automatically.
+#
+# 4. schedule           — Uncomment the cron block below for nightly/hourly runs.
+#                         Creates a new Test_Run__c record automatically.
+#
+# ──────────────────────────────────────────────────────────────────────────────
+
+on:
+  # ── 1. Manual / Salesforce LWC trigger ────────────────────────────────────
+  workflow_dispatch:
+    inputs:
+      test_run_id:
+        description: 'Salesforce Test_Run__c Id (provided by the LWC)'
+        required: true
+      test_suite:
+        description: 'Suite name (e.g. agenticQtcQuantityIncrease)'
+        required: true
+        default: 'agenticQtcQuantityIncrease'
+      sf_instance_url:
+        description: 'Salesforce instance URL (provided by the LWC)'
+        required: true
+      account_name:
+        description: 'Target Account name (provided by the LWC account search). Blank → spec uses its hard-coded default.'
+        required: false
+        default: ''
+
+  # ── 2. Auto: push to main ──────────────────────────────────────────────────
+  push:
+    branches:
+      - main
+    # Optional: only trigger when test-relevant paths change
+    # paths:
+    #   - 'tests/e2e/**'
+    #   - 'force-app/**'
+    #   - '.github/workflows/playwright.yml'
+
+  # ── 3. Auto: PR merged into main ──────────────────────────────────────────
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+  # ── 4. Scheduled runs (uncomment to enable) ─────────────────────────────────
+  # schedule:
+  #   - cron: '0 2 * * 1-5'   # 2 AM UTC, Mon–Fri (nightly regression)
+  #   - cron: '0 */4 * * *'   # Every 4 hours (continuous monitoring)
+
+# Cancel any in-progress run for the same branch/PR when a new one starts.
+# This prevents a pile-up of queued runs after rapid pushes.
+concurrency:
+  group: playwright-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  run-tests:
+    # Skip pull_request events where the PR was closed WITHOUT merging
+    if: |
+      github.event_name != 'pull_request' ||
+      github.event.pull_request.merged == true
+
+    runs-on: ubuntu-latest
+    # 45 min covers the Conga OSA suite (~3 min/scenario × 3 scenarios) when
+    # QTC_OSA_WAIT_FOR_DOC=1 polls for the generated PDF.
+    timeout-minutes: 45
+
+    steps:
+      # ── 1. Checkout ─────────────────────────────────────────────────────────
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      # ── 2. Node.js ──────────────────────────────────────────────────────────
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # ── 3. Dependencies ─────────────────────────────────────────────────────
+      - name: Install npm dependencies
+        run: npm ci
+
+      # ── 4. Playwright browsers ──────────────────────────────────────────────
+      - name: Install Playwright browsers + OS deps
+        run: npx playwright install --with-deps chromium
+
+      # ── 5. Salesforce CLI ───────────────────────────────────────────────────
+      - name: Install Salesforce CLI
+        run: npm install --global @salesforce/cli@2.137.7
+
+      # ── 6. Authenticate to Salesforce ───────────────────────────────────────
+      # Detects which org triggered the run from sf_instance_url:
+      #   - URL contains "uat"  → uses SF_SFDX_AUTH_URL_UAT  secret, alias qtcuat
+      #   - anything else       → uses SF_SFDX_AUTH_URL       secret, alias qtcmock
+      - name: Authenticate to Salesforce
+        id: sf-auth
+        run: |
+          INSTANCE_URL="${{ inputs.sf_instance_url }}"
+          if [[ "$INSTANCE_URL" == *"uat"* ]]; then
+            printf '%s' "$SF_AUTH_UAT" > /tmp/sf-auth.txt
+            ORG_ALIAS="qtcuat"
+          else
+            printf '%s' "$SF_AUTH_MOCK" > /tmp/sf-auth.txt
+            ORG_ALIAS="qtcmock"
+          fi
+          sf org login sfdx-url --sfdx-url-file /tmp/sf-auth.txt --alias "$ORG_ALIAS" --set-default
+          rm /tmp/sf-auth.txt
+          echo "org_alias=$ORG_ALIAS" >> $GITHUB_OUTPUT
+          echo "Authenticated to: $INSTANCE_URL (alias: $ORG_ALIAS)"
+        env:
+          SF_AUTH_MOCK: ${{ secrets.SF_SFDX_AUTH_URL }}
+          SF_AUTH_UAT:  ${{ secrets.SF_SFDX_AUTH_URL_UAT }}
+
+      # ── 7. Resolve or create Test_Run__c ─────────────────────────────────────
+      # workflow_dispatch: use the ID + suite supplied by the Salesforce LWC.
+      # All other triggers: create a new Test_Run__c record in Salesforce.
+      - name: Resolve or create Test_Run__c record
+        id: run-setup
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            # Salesforce already created the record — just echo the inputs
+            echo "test_run_id=${{ inputs.test_run_id }}"   >> $GITHUB_OUTPUT
+            echo "test_suite=${{ inputs.test_suite }}"     >> $GITHUB_OUTPUT
+            echo "account_name=${{ inputs.account_name }}" >> $GITHUB_OUTPUT
+          else
+            # Auto-triggered by GitHub — create the record now.
+            # Suite comes from the repo variable DEFAULT_TEST_SUITE (set in
+            # Settings → Variables) with a safe fallback.
+            SUITE="${DEFAULT_TEST_SUITE:-agenticQtcQuantityIncrease}"
+            node .github/scripts/create-run.js \
+              "$SUITE" \
+              "${{ github.event_name }}" \
+              "${{ github.sha }}"
+          fi
+        env:
+          # Repo variable: Settings → Variables → Actions → DEFAULT_TEST_SUITE
+          DEFAULT_TEST_SUITE: ${{ vars.DEFAULT_TEST_SUITE }}
+
+      # ── 8. Annotate the run with context ─────────────────────────────────────
+      - name: Log run context
+        run: |
+          echo "### QTC Playwright Run" >> $GITHUB_STEP_SUMMARY
+          echo "| | |" >> $GITHUB_STEP_SUMMARY
+          echo "|-|-|" >> $GITHUB_STEP_SUMMARY
+          echo "| **Test Run ID** | \`${{ steps.run-setup.outputs.test_run_id }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Suite** | ${{ steps.run-setup.outputs.test_suite }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Account** | ${{ steps.run-setup.outputs.account_name || '(spec default)' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Trigger** | ${{ github.event_name }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Branch** | ${{ github.ref_name }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Commit** | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **SF Org** | ${{ steps.sf-auth.outputs.org_alias }} |" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "| **PR** | #${{ github.event.pull_request.number }} — ${{ github.event.pull_request.title }} |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      # ── 9. Mark run as RUNNING ───────────────────────────────────────────────
+      - name: Mark Test_Run__c as RUNNING
+        run: node .github/scripts/update-run.js "$TR_ID" RUNNING
+        env:
+          TR_ID: ${{ steps.run-setup.outputs.test_run_id }}
+          QTC_SF_ORG: ${{ steps.sf-auth.outputs.org_alias }}
+
+      # ── 10. Run Playwright ───────────────────────────────────────────────────
+      # CI=true → playwright.config.js sets headless: true
+      # continue-on-error: true → upload-results always runs even on failure
+      - name: Run Playwright tests
+        id: playwright
+        run: |
+          SUITE="${{ steps.run-setup.outputs.test_suite }}"
+          TR_ID="${{ steps.run-setup.outputs.test_run_id }}"
+
+          # Map suite name → spec file (mirrors SUITE_MAP in qtc-runner/runner.js)
+          case "$SUITE" in
+            agenticQtcQuantityIncrease) SPEC="tests/e2e/agenticQtcQuantityIncrease.spec.js" ;;
+            *)                          SPEC="tests/e2e/${SUITE}.spec.js" ;;
+          esac
+
+          echo "Suite: $SUITE"
+          echo "Spec:  $SPEC"
+
+          mkdir -p "test-results/$TR_ID"
+
+          npx playwright test "$SPEC" \
+            --reporter=json \
+            --output="test-results/$TR_ID"
+        env:
+          CI: 'true'
+          PLAYWRIGHT_JSON_OUTPUT_NAME: "test-results/${{ steps.run-setup.outputs.test_run_id }}/results.json"
+          QTC_SF_ORG: ${{ steps.sf-auth.outputs.org_alias }}
+          # Target account chosen on the dashboard. Specs read these and fall
+          # back to their own hard-coded default only when blank (auto-triggered
+          # push/PR runs supply no account).
+          QTC_ACCOUNT_NAME:      ${{ steps.run-setup.outputs.account_name }}
+          QTC_ACCOUNT_SEARCH:    ${{ steps.run-setup.outputs.account_name }}
+          QTC_ACCOUNT_FULL_NAME: ${{ steps.run-setup.outputs.account_name }}
+          # Auto-enable Conga PDF wait + UI/PDF compare ONLY for the OSA suite.
+          # Other suites stay fast; the Conga suite needs ~2-3 min/scenario to
+          # poll Salesforce for the generated PDF and parse it.
+          QTC_OSA_WAIT_FOR_DOC: ${{ steps.run-setup.outputs.test_suite == 'agenticQtcPreviewSendOSAUsingConga' && '1' || '' }}
+          QTC_OSA_DOC_TIMEOUT_MS: '300000'  # 5 min (instead of default 3 min) for slower CI orgs
+        continue-on-error: true
+
+      # ── 11. Upload results to Salesforce ─────────────────────────────────────
+      - name: Upload results to Salesforce
+        if: always()
+        run: node .github/scripts/upload-results.js "$TR_ID"
+        env:
+          TR_ID: ${{ steps.run-setup.outputs.test_run_id }}
+          PLAYWRIGHT_EXIT_CODE: ${{ steps.playwright.outcome == 'success' && '0' || '1' }}
+          QTC_SF_ORG: ${{ steps.sf-auth.outputs.org_alias }}
+
+      # ── 12. Update GitHub Step Summary with result ────────────────────────────
+      - name: Update step summary with result
+        if: always()
+        run: |
+          STATUS="${{ steps.playwright.outcome }}"
+          if [ "$STATUS" = "success" ]; then
+            echo "| **Result** | ✅ PASSED |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| **Result** | ❌ FAILED |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      # ── 13. Upload artifacts to GitHub ───────────────────────────────────────
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-${{ steps.run-setup.outputs.test_run_id }}
+          path: |
+            test-results/${{ steps.run-setup.outputs.test_run_id }}/
+            tests/e2e/results/runs/
+            tests/e2e/report/
+          retention-days: 30
+          if-no-files-found: warn

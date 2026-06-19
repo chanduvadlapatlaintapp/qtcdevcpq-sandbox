@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Maximum_Segment_Index__c</fullName>
+    <description>BIZ-46116: This is used to calculate maximum segment index value of Opportunity Product</description>
+    <label>Maximum Segment Index</label>
+    <summarizedField>OpportunityLineItem.Segment_Index__c</summarizedField>
+    <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+    <summaryOperation>max</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

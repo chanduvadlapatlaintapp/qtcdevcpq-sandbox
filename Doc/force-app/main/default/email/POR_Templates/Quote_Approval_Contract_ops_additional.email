@@ -1,0 +1,30 @@
+<messaging:emailTemplate subject="OSA Requested for {!relatedto.SBQQ__Account__r.Name} - Line of Business: {!relatedTo.Line_of_Business__c}, OP4I Sales Segment: {!relatedto.OP4I_Sales_Segment__c}"  recipientType="User" relatedToType="SBQQ__Quote__c">
+<messaging:plainTextEmailBody >
+
+
+An OSA request has been submitted. 
+
+Opportunity Name : {!relatedto.SBQQ__Opportunity2__r.Name}
+Line of Business: {!relatedTo.Line_of_Business__c}
+Quote Link : {!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+relatedTo.Id}
+OP4I Deal Owner: {!relatedto.SBQQ__Opportunity2__r.OP4I_Deal_Owner__c}
+Opportunity Type: {!relatedto.SBQQ__Opportunity2__r.Type}
+Effective Date: <apex:outputText value="{0, date, dd'-'MMM'-'yy}">
+    <apex:param value="{!relatedto.SBQQ__StartDate__c}" /> 
+</apex:outputText>
+First Segment (Months): {!relatedto.First_Segment_Months__c}
+Initial Terms (Months): {!relatedto.SBQQ__SubscriptionTerm__c}
+Requested OSA Expiration: {!relatedto.Expiration_Date_International__c}
+Associated Contract (OSA): {!relatedto.SBQQ__MasterContract__r.ContractNumber}
+
+
+Special Comments (from Seller): 
+{!relatedto.Special_Comments_Sellers__c} 
+
+Special Comments (to Sellers):
+{!relatedto.Special_Comments__c}
+
+
+
+</messaging:plainTextEmailBody>
+</messaging:emailTemplate>

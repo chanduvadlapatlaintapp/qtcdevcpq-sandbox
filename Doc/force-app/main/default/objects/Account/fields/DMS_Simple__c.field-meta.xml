@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DMS_Simple__c</fullName>
+    <description>What is the document management system at this firm?</description>
+    <externalId>false</externalId>
+    <formula>IF(
+  OR(
+    INCLUDES(DMSPortfolio__c, &quot;Interwoven&quot;),
+    INCLUDES(DMSPortfolio__c, &quot;Interwoven Unknown&quot;),
+    INCLUDES(DMSPortfolio__c, &quot;iManage&quot;),
+    INCLUDES(DMSPortfolio__c, &quot;Hosted iManage&quot;),
+    INCLUDES(DMSPortfolio__c, &quot;HP&quot;),
+    INCLUDES(DMSPortfolio__c, &quot;Autonomy&quot;)),
+  &quot;iManage&quot;,
+  IF(
+    OR(
+      INCLUDES(DMSPortfolio__c, &quot;DM5&quot;),
+      INCLUDES(DMSPortfolio__c, &quot;DM6&quot;),
+      INCLUDES(DMSPortfolio__c, &quot;DOCS Open&quot;),
+      INCLUDES(DMSPortfolio__c, &quot;Hummingbird Unknown&quot;),
+      INCLUDES(DMSPortfolio__c, &quot;Open Text&quot;),
+      INCLUDES(DMSPortfolio__c, &quot;Open Text Livelink&quot;)),
+    &quot;Open Text&quot;,
+    IF(
+      INCLUDES(DMSPortfolio__c, &quot;NetDocuments&quot;),
+      &quot;NetDocuments&quot;,
+      IF(
+        ISBLANK(DMSPortfolio__c),
+        &quot;Unknown&quot;,
+        &quot;Other&quot;))))</formula>
+    <inlineHelpText>What is the document management system at this firm?</inlineHelpText>
+    <label>DMS - Simple</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

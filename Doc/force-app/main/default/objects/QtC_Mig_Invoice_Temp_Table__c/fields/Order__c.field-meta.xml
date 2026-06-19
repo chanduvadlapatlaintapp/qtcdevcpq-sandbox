@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Order__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Order</label>
+    <referenceTo>Order</referenceTo>
+    <relationshipLabel>QtC Mig Invoice Temp Table</relationshipLabel>
+    <relationshipName>QtC_Mig_Invoice_Temp_Table</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

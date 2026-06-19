@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Proforma_Invoice__c$Renewal_Quote__c.Order__c.NetSuite_Document_Number__c</field>
+    </columns>
+    <columns>
+        <field>Proforma_Invoice__c$Name</field>
+    </columns>
+    <columns>
+        <field>Proforma_Invoice__c.Quotes__r$Name</field>
+    </columns>
+    <currency>USD</currency>
+    <format>Tabular</format>
+    <name>Renewal Letter Report - NS</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Renewal_Letters_with_Renewal_Quotes__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Proforma_Invoice__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>

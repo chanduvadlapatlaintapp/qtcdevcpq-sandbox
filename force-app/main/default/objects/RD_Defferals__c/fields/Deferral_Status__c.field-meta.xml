@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deferral_Status__c</fullName>
+    <label>Deferral Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>In Process</fullName>
+                <default>false</default>
+                <label>In Process</label>
+            </value>
+            <value>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+                <label>On Hold</label>
+            </value>
+            <value>
+                <fullName>Pending Close Approval</fullName>
+                <default>false</default>
+                <label>Pending Close Approval</label>
+            </value>
+            <value>
+                <fullName>Closed - Won</fullName>
+                <default>false</default>
+                <label>Closed - Won</label>
+            </value>
+            <value>
+                <fullName>Closed - Lost</fullName>
+                <default>false</default>
+                <label>Closed - Lost</label>
+            </value>
+            <value>
+                <fullName>Closed - Superseded</fullName>
+                <default>false</default>
+                <label>Closed - Superseded</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

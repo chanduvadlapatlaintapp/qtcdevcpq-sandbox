@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Jun13 Intake Mailer</name>
+    <style>none</style>
+    <subject>Deconstructing New Business Intake</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+I&apos;ve attached the latest update from IntApp. At your request, we&apos;ve updated our process to send you these mailers electronically. (If you&apos;d prefer not to receive future updates from us, just let me know.)
+
+A letter from our VP Marketing [http://j.mp/IntakeLetter]
+
+IntApp has recently released a new software product called IntApp Open. It was designed from the ground up specifically for new business intake and is not a general workflow platform. In developing it, we leveraged input from an advisory group comprising law firms, insurance providers and industry consulting experts. I&apos;ve attached this bulletin [http://j.mp/IntakeSheet] that describes the product in more detail.
+
+I&apos;ve also attached this ILTA article [http://j.mp/IntakeILTA] on new business intake, which talks about the changing state of how law firms should be addressing their intake process in relation to their long-term business goals.
+
+Please feel free to email info@intapp.com or contact me directly if you&apos;d like to see a product demonstration or just to learn more.
+
+Regards,
+
+Jason Yu
+IntApp, Inc.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OSA_status__c</fullName>
+    <label>OSA status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Not drafted</fullName>
+                <default>false</default>
+                <label>Not drafted</label>
+            </value>
+            <value>
+                <fullName>Drafting OSA</fullName>
+                <default>false</default>
+                <label>Drafting OSA</label>
+            </value>
+            <value>
+                <fullName>Needs IntApp approval</fullName>
+                <default>false</default>
+                <label>Needs IntApp approval</label>
+            </value>
+            <value>
+                <fullName>Presented</fullName>
+                <default>false</default>
+                <label>Presented</label>
+            </value>
+            <value>
+                <fullName>Negotiating with budget owner</fullName>
+                <default>false</default>
+                <label>Negotiating with budget owner</label>
+            </value>
+            <value>
+                <fullName>Waiting for signature</fullName>
+                <default>false</default>
+                <label>Waiting for signature</label>
+            </value>
+            <value>
+                <fullName>Won&apos;t buy/Won&apos;t make OSA</fullName>
+                <default>false</default>
+                <label>Won&apos;t buy/Won&apos;t make OSA</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Trial Period</fullName>
+                <default>false</default>
+                <label>Trial Period</label>
+            </value>
+            <value>
+                <fullName>Recurring Adjustment</fullName>
+                <default>false</default>
+                <label>Recurring Adjustment</label>
+            </value>
+            <value>
+                <fullName>Drafted - Expired</fullName>
+                <default>false</default>
+                <label>Presented - Expired</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

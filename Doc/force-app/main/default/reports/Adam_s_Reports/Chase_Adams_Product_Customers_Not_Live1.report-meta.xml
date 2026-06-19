@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Subscription__c$Name</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$CRD__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Subscription_Name__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Product_Line__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Subscription__c$Customer_Lifecycle_Stage__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>In Production</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c$Account_Owner__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Chase Adams</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Subscription__c$Account__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Chase Adams: Product Customers Not Live</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Product_Customers_with_Projects__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Subscription__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>blaine.sullivan@intapp.com</contactEmail>
+    <contactPhone>6508520400</contactPhone>
+    <label>NamelySandbox</label>
+    <logoUrl>https://intapp--c.na3.content.force.com/servlet/servlet.ImageServer?id=01550000003HOLM&amp;oid=00DWA000005oe93</logoUrl>
+    <samlConfig>
+        <acsUrl>https://intapp-sandbox.namely.com/saml/consume</acsUrl>
+        <encryptionType>AES_128</encryptionType>
+        <entityUrl>https://intapp-sandbox.namely.com/saml/metadata</entityUrl>
+        <issuer>https://intapp.my.salesforce.com</issuer>
+        <samlNameIdFormat>Transient</samlNameIdFormat>
+        <samlSigningAlgoType>SHA1</samlSigningAlgoType>
+        <samlSubjectType>Username</samlSubjectType>
+    </samlConfig>
+    <startUrl>https://intapp-sandbox.namely.com/users/login</startUrl>
+</ConnectedApp>

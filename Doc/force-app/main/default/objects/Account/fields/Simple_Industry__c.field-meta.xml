@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Simple_Industry__c</fullName>
+    <description>Tells you whether the Account is Accounting,Consulting,Financial Services,Legal,Professional Services or other industry</description>
+    <externalId>false</externalId>
+    <formula>CASE(Industry, 
+&quot;Legal&quot;,&quot;Legal&quot;, 
+&quot;PS - Accounting&quot;,&quot;Accounting&quot;, 
+&quot;PS - Consulting&quot;,&quot;Consulting&quot;, 
+&quot;PS - Construction&quot;,&quot;Professional Services - Other&quot;, 
+&quot;PS - Engineering&quot;,&quot;Professional Services - Other&quot;, 
+&quot;FS - Banking&quot;,&quot;Financial Services&quot;, 
+&quot;FS - Finance&quot;,&quot;Financial Services&quot;, 
+&quot;FS - Hedge Fund&quot;,&quot;Financial Services&quot;, 
+&quot;FS - Insurance&quot;,&quot;Financial Services&quot;, 
+&quot;FS - Investment Banking&quot;,&quot;Financial Services&quot;, 
+&quot;FS - Private Equity/Venture Capital&quot;,&quot;Financial Services&quot;,
+&quot;PS - Accounting - Big 4&quot;, &quot;Accounting&quot;,
+&quot;PS - Accounting - Global Network&quot;, &quot;Accounting&quot;,
+&quot;Other&quot; 
+)</formula>
+    <inlineHelpText>Tells you whether the Account is Accounting,Consulting,Financial Services,Legal,Professional Services or other industry</inlineHelpText>
+    <label>Simple Industry</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

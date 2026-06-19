@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Services_Request_Age__c</fullName>
+    <description>Calculated Age field for use in calculation of Services Request Age</description>
+    <externalId>false</externalId>
+    <formula>IF(
+   ISBLANK( Completion_Date__c ),
+   TODAY()- DateValue(CreatedDate),
+   Completion_Date__c -DATEVALUE(CreatedDate)
+ )</formula>
+    <inlineHelpText>Calculated Age field for use in calculation of Services Request Age</inlineHelpText>
+    <label>Services Request Age</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

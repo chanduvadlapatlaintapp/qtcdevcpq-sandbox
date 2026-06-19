@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Intapp_Billing_Customer_with_Subsidiary__c</fullName>
+    <description>Created as part of BIZ-81156.</description>
+    <externalId>false</externalId>
+    <formula>Bill_To_Account__r.IntApp_Account_Number__c +
+IF(CONTAINS(TEXT(Subsidiary__c), &quot;:&quot;) &amp;&amp; LEFT(TEXT(Subsidiary__c), FIND(&quot;:&quot;, TEXT(Subsidiary__c)) - 1) &lt;&gt; &quot;01&quot;,
+  &quot;:&quot; &amp; LEFT(TEXT(Subsidiary__c), FIND(&quot;:&quot;, TEXT(Subsidiary__c)) - 1),
+  &quot;&quot;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Intapp Billing Customer with Subsidiary</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

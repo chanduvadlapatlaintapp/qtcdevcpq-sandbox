@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSCase_DMS_Security__c</fullName>
+    <label>DMS Security</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>BizTalk</fullName>
+                <default>false</default>
+                <label>BizTalk</label>
+            </value>
+            <value>
+                <fullName>iManage 8.x</fullName>
+                <default>false</default>
+                <label>iManage 8.x</label>
+            </value>
+            <value>
+                <fullName>NetDocuments</fullName>
+                <default>false</default>
+                <label>NetDocuments</label>
+            </value>
+            <value>
+                <fullName>Open Text DM5</fullName>
+                <default>false</default>
+                <label>Open Text DM5</label>
+            </value>
+            <value>
+                <fullName>Other DMS</fullName>
+                <default>false</default>
+                <label>Other DMS</label>
+            </value>
+            <value>
+                <fullName>SharePoint 2007</fullName>
+                <default>false</default>
+                <label>SharePoint 2007</label>
+            </value>
+            <value>
+                <fullName>SharePoint 2010</fullName>
+                <default>false</default>
+                <label>SharePoint 2010</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

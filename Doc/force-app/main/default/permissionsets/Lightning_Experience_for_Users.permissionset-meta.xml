@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This Permission set enables Lightning Experience for Users.
+-Lightning Console User
+-Lightning Experience User</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Lightning Experience for Users</label>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>LightningConsoleAllowedForUser</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>LightningExperienceUser</name>
+    </userPermissions>
+</PermissionSet>

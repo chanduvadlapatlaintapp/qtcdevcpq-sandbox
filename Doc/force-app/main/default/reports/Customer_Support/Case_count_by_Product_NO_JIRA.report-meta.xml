@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <calculatedFormula>RowCount</calculatedFormula>
+        <datatype>number</datatype>
+        <developerName>FORMULA1</developerName>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Count</masterLabel>
+        <scale>0</scale>
+    </aggregates>
+    <columns>
+        <field>Case.JIRA_Issue__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Over 5 years</description>
+    <filter>
+        <criteriaItems>
+            <column>RECORDTYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Case.Support</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>SUBJECT</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notContain</operator>
+            <value>Undeliverable,Absence du bureau,Email Delivery Failure</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Case.Product__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>DTE,DTE Axiom,Intapp Time,Intapp Time Cloud,Rekoop,RollCall,Time Builder</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Case.JIRA_Issue__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value></value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Case.Product__c</field>
+        <sortOrder>Desc</sortOrder>
+    </groupingsDown>
+    <name>Case count by Product (NO JIRA)</name>
+    <params>
+        <name>units</name>
+        <value>h</value>
+    </params>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CaseList</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATEONLY</dateColumn>
+        <endDate>2018-07-05</endDate>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2013-07-05</startDate>
+    </timeFrameFilter>
+</Report>

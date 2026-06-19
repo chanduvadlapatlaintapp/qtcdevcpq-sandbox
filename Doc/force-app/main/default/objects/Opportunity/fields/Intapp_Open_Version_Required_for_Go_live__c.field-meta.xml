@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Intapp_Open_Version_Required_for_Go_live__c</fullName>
+    <description>For Intapp Open deals that require features not yet released, which Intapp Open version will the implementation require?</description>
+    <inlineHelpText>For Intapp Open deals that require features not yet released, which Intapp Open version will the implementation require?</inlineHelpText>
+    <label>Intapp Open Version Required for Go-live</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>2.0 (October 2013)</fullName>
+                <default>false</default>
+                <label>2.0 (October 2013)</label>
+            </value>
+            <value>
+                <fullName>2.1 (January 2014)</fullName>
+                <default>false</default>
+                <label>2.1 (January 2014)</label>
+            </value>
+            <value>
+                <fullName>2.2 (April 2014)</fullName>
+                <default>false</default>
+                <label>2.2 (April 2014)</label>
+            </value>
+            <value>
+                <fullName>2.3 (July 2014)</fullName>
+                <default>false</default>
+                <label>2.3 (July 2014)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

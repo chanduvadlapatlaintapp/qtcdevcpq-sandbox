@@ -1,0 +1,107 @@
+<html>
+<!-- 
+*********************************************************
+* please remember to update the "oid" hidden field to be your campaign ID
+* When creating new fields, ensure the names are the same as those generated in the web-to-lead form.  (ie. This is a glorified web-2-lead).
+* The "value" fields are the merge details as from a normal HTML template
+* Make sure you also check/update the campaign status.
+*
+* Don't forget to create a web-to-lead form for the Text email version of this.
+*********************************************************                                  
+-->
+<head>
+<title>Event Invite</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<script language="javascript" type="text/javascript">
+
+<!--
+function YesAttending()
+{
+   document.mainForm.member_status = "Accepted";	
+   return true;
+}
+function NotAttending()
+{
+// document.mainForm.retURL = "http://www.yourorg.com/nextTime.html"	
+   document.mainForm.member_status = "Declined"	;
+   return true;
+}
+//-->
+</script>
+<style>
+p{margin-top:0px; margin-bottom:0px;}
+.style1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+</style>
+</head>
+<body style=" bLabel:body; bEditID:b1st1; background-color:#FFFFFF;">
+<center >
+  <table width="500" cellpadding="0" height="450" cellspacing="0" id="topTable" >
+    <tr valign="top" >
+      <td  style=" bLabel:header; height:100; text-align:left; vertical-align:top; bEditID:r1st1; background-color:#FFFFFF;"><img bLabel="headerImage" border="0" bEditID="r1sp1" id="r1sp1" src="/servlet/servlet.ImageServer?oid=00D3000000007yR&id=0155000000085W4" ></img></td>
+    </tr>
+    <tr valign="top" >
+      <td  style=" bLabel:accent1; height:1; bEditID:r2st1; background-color:#FFFFFF;"></td>
+    </tr>
+    <tr valign="top" >
+      <td height="300" styleInsert="1"  style=" font-family:arial; bLabel:main; color:#000000; font-size:12pt; bEditID:r3st1; background-color:#FFFFFF;"><table width="550" cellpadding="5" height="525" border="0" cellspacing="5" >
+          <tr height="400" valign="top" >
+            <td height="515" style=" font-family:arial; bLabel:main; color:#000000; font-size:12pt; bEditID:r3st1; background-color:#FFFFFF;" locked="0" aEditID="c1r1" tEditID="c1r1" ><form name="mainForm" action="http://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST">
+                <input type=hidden name="oid" value="00D3000000007yR">
+                <input type=hidden name="retURL" value="http://www.salesforce.com">
+                <input type=hidden id="Campaign_ID" name="Campaign_ID" value="701200000000tOW">
+                <input type=hidden id="member_status" name="member_status" value="Accepted">
+                <input name="first_name" id="first_name" type="hidden" value="{!Contact.FirstName}" size=20 maxlength=40>
+                <input name="last_name" id="last_name" type="hidden" value="{!Contact.LastName}" size=20 maxlength=40>
+                <input name="company" id="company" type="hidden" value="{!Account.Name}">
+                <input name="OwnerId" id="OwnerId" type="hidden" value="{!Contact.OwnerId}">
+                <input name="email" id="email" type="hidden" value="{!Contact.Email}">
+                <input name="phone" id="phone" type="hidden" value="{!Contact.Phone}">
+                <input name="mobile" id="mobile" type="hidden" value="{!Contact.MobilePhone}">
+                <P><FONT color=#000000>Dear {!Contact.FirstName},<BR>
+                  &nbsp;<BR>
+                  Come and experience all the <FONT style="BACKGROUND-COLOR: #ffffff">Rugby League </FONT>action in style and comfort at Stadium Australia!</FONT></P>
+                <P><FONT color=#000000></FONT>&nbsp;</P>
+                <P><FONT color=#000000>We&rsquo;d love you to join us in AAPT&rsquo;s Corporate Box to see the Bulldogs&nbsp;take on the&nbsp;Roosters.</FONT></P>
+                <P><FONT color=#000000><BR>
+                  It&rsquo;s always a fantastic&nbsp;evening's entertainment at Stadium Australia &ndash; spectacular action, good company and plenty of refreshments &ndash; so we hope you can come along.</P>
+                <P>&nbsp;</P>
+                <P><FONT color=#000000><STRONG>Who: Bulldogs v Roosters</STRONG></FONT></P>
+                <P><FONT color=#000000><STRONG>When:</STRONG>&nbsp;Saturday 22&nbsp;July 2006 <BR>
+                  <STRONG>Time:</STRONG> 4.00pm<BR>
+                  <STRONG>Where:</STRONG> Stadium Australia &ndash; AAPT Corporate Box<BR>
+                  &nbsp;<BR>
+                  Places are limited.&nbsp;If you would like to attend, please&nbsp;ensure you rsvp&nbsp;as soon as possible. We'll then send you your ticket along with more details.<BR>
+                  &nbsp;</FONT></P>
+                <P><FONT color=#000000>
+                  <label>RSVP:
+                  <input name="Accept" type="submit" id="Submit" value="Accept" onClick="return YesAttending();">
+                  </label>
+                  </FONT></P>
+                <P><FONT color=#000000><BR>
+                  It would be great to see you there!<BR>
+                  </FONT></P>
+                <P>&nbsp;</P>
+                <P><BR>
+                  <FONT color=#000000 size=1>At AAPT we respect your privacy.&nbsp; If you would like to find out more about AAPT's privacy policy, please visit the </FONT><A href="http://aapt.com.au/popup/privacy.asp"><FONT color=#000000 size=1>AAPT privacy page</FONT></A><FONT color=#000000 size=1>.</FONT></P>
+                <P>&nbsp;</P>
+                <P class="style1">A special thanks to AAPT to for  this sample HTML email template.</P>
+              </form></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr valign="top" >
+      <td  style=" bLabel:accent2; height:1; bEditID:r4st1; background-color:#FFFFFF;"></td>
+    </tr>
+    <tr valign="top" >
+      <td  style=" bLabel:footer; height:100; text-align:left; vertical-align:top; bEditID:r5st1; background-color:#FFFFFF;"><img bLabel="footerImage" border="0" bEditID="r5sp1" id="r5sp1" src="/servlet/servlet.ImageServer?oid=00D3000000007yR&id=0155000000085W5" ></img></td>
+    </tr>
+    <tr valign="top" >
+      <td  style=" bLabel:accent3; height:1; bEditID:r6st1; background-color:#FFFFFF;"></td>
+    </tr>
+  </table>
+</center>
+<img src="/servlet/servlet.ImageServer?oid=00D2000000001yU&esid=01820000000m5hJ">
+</html>

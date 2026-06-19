@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_move_stage_to_9_without_approval</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+  OR(
+    ISPICKVAL(Issue_Category__c,&quot;Convert to Intapp Product&quot;),
+    ISPICKVAL(Issue_Category__c,&quot;Custom Approach&quot;)
+  ),
+  NOT(Approved_to_stay_on_TFG__c),
+  ISPICKVAL(PMP_Stage__c,&quot;9. Rejected Intapp Migration. No further efforts.&quot;),
+  NOT($Profile.Id=&quot;00e30000000bvR3&quot;)
+)</errorConditionFormula>
+    <errorDisplayField>Approved_to_stay_on_TFG__c</errorDisplayField>
+    <errorMessage>This PMP is not approved to stay on a TFG product. Please contact Don or Sig for such approval.</errorMessage>
+</ValidationRule>

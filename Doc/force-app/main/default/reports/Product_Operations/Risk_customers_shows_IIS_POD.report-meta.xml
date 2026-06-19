@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account.IntApp_Account_Number__c</field>
+    </columns>
+    <columns>
+        <field>TYPE</field>
+    </columns>
+    <columns>
+        <field>Product_Ownership_Detail__c.Product_line_link__c</field>
+    </columns>
+    <columns>
+        <field>Product_Ownership_Detail__c.License_basis_link__c</field>
+    </columns>
+    <columns>
+        <field>Product_Ownership_Detail__c.Status__c</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <crossFilters>
+        <criteriaItems>
+            <column>Product_line_link__c</column>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>Intake,Conflicts,Terms</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Status__c</column>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Own it,Own Partial,Entitled</value>
+        </criteriaItems>
+        <operation>with</operation>
+        <primaryTableColumn>ACCOUNT_ID</primaryTableColumn>
+        <relatedTable>Product_Ownership_Detail__c</relatedTable>
+        <relatedTableJoinColumn>Account_Name__c</relatedTableJoinColumn>
+    </crossFilters>
+    <currency>USD</currency>
+    <description>same logic as Risk customers with IIS POD, this is flipped showing IIS ownership</description>
+    <filter>
+        <criteriaItems>
+            <column>TYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Customer</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Product_Ownership_Detail__c.Product_line_link__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Integration Service - Cloud</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Product_Ownership_Detail__c.Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Own it,Own Partial,Entitled</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>ACCOUNT.NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Risk customers shows IIS POD</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountCustomEntity$Product_Ownership_Detail__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Product_Ownership_Detail__c.Product_line_link__c</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>DUE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DTE_Ownership_Simple__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  OR(
+    ISPICKVAL(DTE_Axiom__c,&quot;Own it&quot;),
+    ISPICKVAL(DTE_Axiom_Mobile__c,&quot;Own it&quot;),
+    ISPICKVAL(DTE_Legacy__c,&quot;Own it&quot;),
+    ISPICKVAL(DTE_Legacy_Mobile__c,&quot;Own it&quot;)
+  ),
+  &quot;Own it&quot;,
+  IF(
+    AND(
+      NOT(ISPICKVAL(DTE_Axiom__c,&quot;Own it&quot;)),
+      NOT(ISPICKVAL(DTE_Axiom_Mobile__c,&quot;Own it&quot;)),
+      NOT(ISPICKVAL(DTE_Legacy__c,&quot;Own it&quot;)),
+      NOT(ISPICKVAL(DTE_Legacy_Mobile__c,&quot;Own it&quot;)),
+      ISPICKVAL(RollCall__c,&quot;Own it&quot;)
+    ),
+    &quot;RollCall Only&quot;,
+    &quot;&quot;
+  )
+)</formula>
+    <label>DTE Ownership - Simple</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

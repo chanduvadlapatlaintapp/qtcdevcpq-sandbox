@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pilot_Team_volunteer_or_assigned__c</fullName>
+    <description>Were the members of the Pilot group assigned, or voluntary?
+
+Part of Technical Debt Project: Week 8 fields (Expiring June 1)</description>
+    <inlineHelpText>Were the members of the Pilot group assigned, or voluntary?</inlineHelpText>
+    <label>Pilot Team: vlntr or assigned? Exp June1</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Volunteer: single practice</fullName>
+                <default>false</default>
+                <label>Volunteer: single practice</label>
+            </value>
+            <value>
+                <fullName>Volunteer: Pracitce and Finance</fullName>
+                <default>false</default>
+                <label>Volunteer: Pracitce and Finance</label>
+            </value>
+            <value>
+                <fullName>Volunteer: other cross-functional team</fullName>
+                <default>false</default>
+                <label>Volunteer: other cross-functional team</label>
+            </value>
+            <value>
+                <fullName>Assigned: single practice</fullName>
+                <default>false</default>
+                <label>Assigned: single practice</label>
+            </value>
+            <value>
+                <fullName>Assigned: Pracitce and Finance</fullName>
+                <default>false</default>
+                <label>Assigned: Pracitce and Finance</label>
+            </value>
+            <value>
+                <fullName>Assigned: other cross-functional team</fullName>
+                <default>false</default>
+                <label>Assigned: other cross-functional team</label>
+            </value>
+            <value>
+                <fullName>Mixed group</fullName>
+                <default>false</default>
+                <label>Mixed group</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Update_Deferral_Health</fullName>
+        <field>Health_Status__c</field>
+        <literalValue>Yellow</literalValue>
+        <name>Update Deferral Health</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Projected_End_Date</fullName>
+        <field>RD_Projected_End_Date__c</field>
+        <formula>Pending_Amendment_Date__c</formula>
+        <name>Update Projected End Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Rule Code%3A DEF-002xFxx</fullName>
+        <actions>
+            <name>Update_Projected_End_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: DEF-002xFxx
+Update_Projected_End_Date_Amendment
+Updates Projected End Date If an amendment is being processed</description>
+        <formula>AND(   ISCHANGED(Pending_Amendment_Date__c),   Pending_Amendment_Date__c &gt; RD_Projected_End_Date__c,   OR(     ISPICKVAL(Deferral_Status__c,&quot;In Process&quot;),     ISPICKVAL(Deferral_Status__c,&quot;On Hold&quot;),     ISPICKVAL(Deferral_Status__c,&quot;Pending Close Approval&quot;)   ) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A DEF-003xFxx</fullName>
+        <actions>
+            <name>Update_Deferral_Health</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: DEF-003xFxx
+Update_Health_Amendment
+Updates Health Status If an amendment is being processed</description>
+        <formula>AND(   ISCHANGED(Pending_Amendment_Date__c),   Pending_Amendment_Date__c &gt; RD_Projected_End_Date__c,   ISPICKVAL(Health_Status__c,&quot;Green&quot;),   OR(     ISPICKVAL(Deferral_Status__c,&quot;In Process&quot;),     ISPICKVAL(Deferral_Status__c,&quot;On Hold&quot;),     ISPICKVAL(Deferral_Status__c,&quot;Pending Close Approval&quot;)   ) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

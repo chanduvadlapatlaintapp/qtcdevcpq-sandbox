@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tier_Formula__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(INCLUDES(Tier__c , &quot;Tier A&quot;), &quot;A&quot;,&quot;&quot;)
+&amp;
+IF(INCLUDES(Tier__c , &quot;Tier B&quot;), &quot;B&quot;,&quot;&quot;)
+&amp;
+IF(INCLUDES(Tier__c , &quot;Tier C&quot;), &quot;C&quot;,&quot;&quot;)
+&amp;
+IF(INCLUDES(Tier__c , &quot;Tier D&quot;), &quot;D&quot;,&quot;&quot;)
+&amp;
+IF(INCLUDES(Tier__c , &quot;Tier E&quot;), &quot;E&quot;,&quot;&quot;)
+&amp;
+IF(INCLUDES(Tier__c , &quot;Tier (none)&quot;), &quot;(none)&quot;,&quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Tier Formula</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

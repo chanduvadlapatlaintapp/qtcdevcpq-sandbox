@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesIncludeBosses>true</doesIncludeBosses>
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Contracts Ops</name>
+    <queueMembers>
+        <users>
+            <user>greg.gardner@intapp.com</user>
+            <user>jason.wood@intapp.com</user>
+            <user>polina.glikina@intapp.com</user>
+            <user>rita.rodriguez@intapp.com</user>
+            <user>vera.friss@intapp.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>SBQQ__Quote__c</sobjectType>
+    </queueSobject>
+</Queue>

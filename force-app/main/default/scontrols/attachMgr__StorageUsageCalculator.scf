@@ -1,0 +1,53 @@
+<html>
+<head>
+<script type="text/javascript" src="/js/functions.js"></script>
+<script src="/soap/ajax/8.0/connection.js"></script>
+<script type="text/javascript">
+function queryFailed(error, source) {
+    source.output.innerHTML = "An error has occurred: " + error;
+    resizeIframe();
+}
+
+function storage(){
+	var state = { //state required when the callback is called
+                        storage : document.getElementById("storage"),
+                        startTime : new Date().getTime()};
+
+    var callback = {
+                    	//call returnCall if the request is successful
+                        onSuccess: success,
+                        //call queryFailed if the api request fails
+                        onFailure: queryFailed,
+                        source: state
+                   };
+    //sforce.connection.batchSize="1000";
+    
+    document.getElementById("storage").innerHTML = '<p> Please wait while we retrieve your <br>records. This may take a while...<br/><br/><img align="middle" src="/img/waiting_dots.gif" alt="Please wait..." width="196" height="20" title="Please wait..." /></p>';
+	//alert("Test");
+	sforce.connection.query("Select a.BodyLength from Attachment a", callback);
+
+}
+ 
+function success(result) {
+ 	var totalSize = 0;
+ 	if(result.size > 0){
+	    var it = new sforce.QueryResultIterator(result);
+	    while (it.hasNext()) {
+	        var size = it.next().getInt('BodyLength');
+	        totalSize += size;
+	    }
+    }
+    document.getElementById("storage").innerHTML = '<p>Total storage used by all attachments <br/> visible to the current user:<br/><br/>'+totalSize + ' bytes <br/> or <br/>' + (totalSize/1024) + 'KB <br/> or <br/>'+(totalSize/1048576)+'MB</p>';
+}
+    
+    
+    </script>
+</head>
+
+<body onload="storage();">
+	            <form action="javascript:formSubmit();" enctype="application/x-www-form-urlencoded" name="TopButtons" id="topbuttons" method="POST">
+	            <img src="AttachResumeCand_files/s.gif" alt="" class="minWidth" title="" height="1" width="1">
+	                        <h2 class="mainTitle"><span id="storage" style="font-family: Arial,Helvetica,sans-serif;font-size: 75%"></span>&nbsp;</h2>
+	            </form>
+</body>
+</html>

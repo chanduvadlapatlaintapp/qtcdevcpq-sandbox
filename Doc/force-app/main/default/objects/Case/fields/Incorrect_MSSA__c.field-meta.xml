@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Incorrect_MSSA__c</fullName>
+    <description>BIZ-50209</description>
+    <label>Incorrect MSSA</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Annex</fullName>
+                <default>false</default>
+                <label>Annex</label>
+            </value>
+            <value>
+                <fullName>DPA</fullName>
+                <default>false</default>
+                <label>DPA</label>
+            </value>
+            <value>
+                <fullName>Liability Payment Terms</fullName>
+                <default>false</default>
+                <label>Liability Payment Terms</label>
+            </value>
+            <value>
+                <fullName>Master Terms Version</fullName>
+                <default>false</default>
+                <label>Master Terms Version</label>
+            </value>
+            <value>
+                <fullName>Support SLA</fullName>
+                <default>false</default>
+                <label>Support SLA</label>
+            </value>
+            <value>
+                <fullName>Unable to Open Attachment</fullName>
+                <default>false</default>
+                <label>Unable to Open Attachment</label>
+            </value>
+            <value>
+                <fullName>Watermark</fullName>
+                <default>false</default>
+                <label>Watermark</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

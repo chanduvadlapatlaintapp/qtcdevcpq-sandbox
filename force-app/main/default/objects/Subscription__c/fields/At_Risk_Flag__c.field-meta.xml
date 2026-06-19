@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>At_Risk_Flag__c</fullName>
+    <formula>IF(ISPICKVAL(CSM_Health_Rating__c,&quot;D - At Risk / Anticipated Cancellation&quot;),TRUE,FALSE)</formula>
+    <label>At Risk Flag</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

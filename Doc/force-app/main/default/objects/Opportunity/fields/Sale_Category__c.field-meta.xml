@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sale_Category__c</fullName>
+    <description>This filed is used for &quot;CLOSED WON NOTIFICATIONS&quot;
+This field categorizes Opportunities into categories that match the quota system.</description>
+    <externalId>false</externalId>
+    <formula>CASE(Type,
+  &quot;Legal - New Customer&quot;,&quot;New Product Customer&quot;,
+  &quot;Legal - New Product&quot;,&quot;New Product Customer&quot;,
+  &quot;Legal - Thomson Elite&quot;,&quot;New Product Customer&quot;,
+  &quot;Legal - Recovered Customer&quot;,&quot;New Product Customer&quot;,
+  &quot;Legal - Recovered Product&quot;,&quot;New Product Customer&quot;,
+  &quot;Legal - New Converted Product&quot;,&quot;New Product Customer&quot;,
+  &quot;Legal - New Converted Customer&quot;,&quot;New Product Customer&quot;,
+  &quot;MDY&quot;,&quot;New Product Customer&quot;,
+  &quot;Legal - Add-on module&quot;,&quot;Module&quot;,
+  &quot;Legal - Version License&quot;,&quot;Module&quot;,
+  &quot;Legal - Recurring Adjustment&quot;,&quot;Recurring Adjustment&quot;,
+  &quot;License Conversion - Recurring Decrease&quot;,&quot;Churn&quot;,
+  &quot;License Conversion - Recurring Increase&quot;,&quot;License Uplift&quot;,
+  &quot;Legal - Assessment/POC&quot;,&quot;Other&quot;,
+  &quot;Legal - License Band Uplift&quot;,&quot;License Uplift&quot;,
+  &quot;Legal - User Count Uplift&quot;,&quot;License Uplift&quot;,
+  &quot;Legal - Additional Services&quot;,&quot;Additional Services&quot;,
+  &quot;Intapp Prime&quot;,&quot;Additional Services&quot;,
+  &quot;Legal - Services Change Request&quot;,&quot;Additional Services&quot;,
+  &quot;Legal - Services Change Request Internal&quot;,&quot;Additional Services&quot;,
+  &quot;Training&quot;, &quot;Additional Services&quot;,
+  &quot;Services - Partner&quot;, &quot;Additional Services&quot;,
+  &quot;Legal - CPI / Recurring Increase&quot;,&quot;SFA&quot;,
+  &quot;Cancellation - Customer&quot;,&quot;Churn&quot;,
+  &quot;Cancellation - Module&quot;,&quot;Churn&quot;,
+  &quot;Cancellation - Product&quot;,&quot;Churn&quot;,
+  &quot;Downgrade - Product&quot;,&quot;Churn&quot;,
+  &quot;Legal - User Count Decrease&quot;,&quot;Churn&quot;,
+  &quot;Downgrade - License Conversion&quot;,&quot;Churn&quot;,
+  &quot;Cancellation - CPI&quot;,&quot;Churn&quot;,
+  &quot;Cancellation - Recurring Adjustment&quot;,&quot;Churn&quot;,
+  &quot;Legal - Acquired New Customer&quot;,&quot;Acquired Contract&quot;,
+  &quot;Legal - Acquired New Product&quot;,&quot;Acquired Contract&quot;,
+  &quot;Legal - Acquired Add-on Module&quot;,&quot;Acquired Contract&quot;,
+  &quot;Legal - Consulting Services&quot;,&quot;Additional Services&quot;,
+  &quot;Upgrade&quot;, &quot;Additional Services&quot;,
+  &quot;Intapp Prime&quot;, &quot;Additional Services&quot;, 
+  &quot;ACV Downgrade/Partial ACV Cancellation&quot;, &quot;Churn&quot;,
+  &quot;New Implementation&quot;, &quot;Additional Services&quot;,
+  &quot;ACV Recovery/Partial ACV Reinstatement&quot;, &quot;Churn&quot;,
+  &quot;Platform Conversion - Increase&quot;, &quot;Module&quot;,
+  &quot;Platform Conversion - Internal Increase&quot;, &quot;Other&quot;,
+  &quot;Platform Conversion - Decrease&quot;, &quot;Module&quot;,
+  &quot;Platform Conversion - Internal Decrease&quot;, &quot;Other&quot;,
+  &quot;Other&quot;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>This field categorizes Opportunities into categories that match the quota system.</inlineHelpText>
+    <label>Sale Category</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

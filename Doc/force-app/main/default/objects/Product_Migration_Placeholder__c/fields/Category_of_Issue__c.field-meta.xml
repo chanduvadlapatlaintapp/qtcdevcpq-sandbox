@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Category_of_Issue__c</fullName>
+    <description>CR# 44951</description>
+    <label>Category of Issue TBD</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Account Management</fullName>
+                <default>false</default>
+                <label>Account Management</label>
+            </value>
+            <value>
+                <fullName>Commercial</fullName>
+                <default>false</default>
+                <label>Commercial</label>
+            </value>
+            <value>
+                <fullName>Implementation Issue</fullName>
+                <default>false</default>
+                <label>Implementation Issue</label>
+            </value>
+            <value>
+                <fullName>Partner Issues</fullName>
+                <default>false</default>
+                <label>Partner Issues</label>
+            </value>
+            <value>
+                <fullName>Product Issue</fullName>
+                <default>false</default>
+                <label>Product Issue</label>
+            </value>
+            <value>
+                <fullName>Self-inflicted</fullName>
+                <default>false</default>
+                <label>Self-inflicted</label>
+            </value>
+            <value>
+                <fullName>Support Issue</fullName>
+                <default>false</default>
+                <label>Support Issue</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

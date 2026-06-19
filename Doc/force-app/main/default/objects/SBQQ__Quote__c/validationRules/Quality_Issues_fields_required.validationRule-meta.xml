@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quality_Issues_fields_required</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(OR(ISBLANK(TEXT(Quality_Issues_Level_1__c)),ISBLANK(Quality_Issues_Level_2__c)) , 
+OR( ISPICKVAL( SBQQ__Status__c ,&apos;Quote needs Review&apos;) , ISPICKVAL( SBQQ__Status__c ,&apos;AM Ops Engaged&apos;)),NOT(CONTAINS( $Label.Profile_System_Adminstrator ,$Profile.Name)))</errorConditionFormula>
+    <errorMessage>Quality Issues Level 1 and Quality Issues Level 2 are required when status is either &apos;Quote Needs Review&apos; or &apos;AM Ops Engaged&apos;</errorMessage>
+</ValidationRule>

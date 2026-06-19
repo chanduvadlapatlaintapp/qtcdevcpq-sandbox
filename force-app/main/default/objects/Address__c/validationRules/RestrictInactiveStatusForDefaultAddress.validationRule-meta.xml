@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RestrictInactiveStatusForDefaultAddress</fullName>
+    <active>true</active>
+    <description>BIZ-45075:If the status is updated to “Inactive” and either Default Billing Address or Default Shipping Address is checked true, then throw the error message at the Status field</description>
+    <errorConditionFormula>AND(ISPICKVAL(Status__c,&apos;Inactive&apos;),OR(Default_Shipping_Address__c=true,Default_Billing_Address__c =true))</errorConditionFormula>
+    <errorDisplayField>Status__c</errorDisplayField>
+    <errorMessage>Please create a new address with Default Billing / Shipping Address checked before updating the Status to Inactive.</errorMessage>
+</ValidationRule>

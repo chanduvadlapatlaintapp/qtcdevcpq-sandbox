@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contract_Master_Terms__c</fullName>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Contract Master Terms</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Existing Terms</fullName>
+                <default>false</default>
+                <label>Existing Intapp MSSA Terms</label>
+            </value>
+            <value>
+                <fullName>OnePlace Legacy</fullName>
+                <default>false</default>
+                <label>OnePlace Legacy</label>
+            </value>
+            <value>
+                <fullName>Repstor Legacy</fullName>
+                <default>false</default>
+                <label>Repstor Legacy</label>
+            </value>
+            <value>
+                <fullName>Legacy DealCloud Agreement</fullName>
+                <default>false</default>
+                <label>Legacy DealCloud Agreement</label>
+            </value>
+            <value>
+                <fullName>Custom Master Term from Account</fullName>
+                <default>false</default>
+                <label>Custom Master Term from Account</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

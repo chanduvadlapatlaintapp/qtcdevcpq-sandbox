@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Software_Billing_Frequency_1st_Year__c</fullName>
+    <label>Software Billing Frequency (1st Year)</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Trial</fullName>
+                <default>false</default>
+                <label>Trial</label>
+            </value>
+            <value>
+                <fullName>Annual</fullName>
+                <default>false</default>
+                <label>Annual</label>
+            </value>
+            <value>
+                <fullName>Quarterly in advance</fullName>
+                <default>false</default>
+                <label>Quarterly Y1 Only</label>
+            </value>
+            <value>
+                <fullName>XXXXX</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Semi-annually</fullName>
+                <default>false</default>
+                <label>Semi-annually 1 Only</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

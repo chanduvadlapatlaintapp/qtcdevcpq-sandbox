@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Send_Internal_Email</fullName>
+    <availability>online</availability>
+    <displayType>link</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Send Internal Email</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>location.replace(&apos;/email/author/emailauthor.jsp?retURL=/{!Contact.Id}&amp;p3_lkid={!Contact.Id}&amp;rtype=003&amp;p2_lkid=&amp;template_id=00X50000001FRMS&amp;p24=&apos;);</url>
+</WebLink>

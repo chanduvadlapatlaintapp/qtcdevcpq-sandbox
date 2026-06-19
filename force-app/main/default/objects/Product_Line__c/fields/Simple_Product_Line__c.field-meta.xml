@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Simple_Product_Line__c</fullName>
+    <description>Field used to simplify the product line list for reporting purposes. This is used in the data warehouse.</description>
+    <label>Product Family</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CRM</fullName>
+                <default>false</default>
+                <label>CRM</label>
+            </value>
+            <value>
+                <fullName>Conflicts</fullName>
+                <default>false</default>
+                <label>Conflicts</label>
+            </value>
+            <value>
+                <fullName>Experience</fullName>
+                <default>false</default>
+                <label>Experience</label>
+            </value>
+            <value>
+                <fullName>Intake</fullName>
+                <default>false</default>
+                <label>Intake</label>
+            </value>
+            <value>
+                <fullName>Integrate</fullName>
+                <default>false</default>
+                <label>Integrate</label>
+            </value>
+            <value>
+                <fullName>TFG - Other</fullName>
+                <default>false</default>
+                <label>TFG - Other</label>
+            </value>
+            <value>
+                <fullName>Multiple Products</fullName>
+                <default>false</default>
+                <label>Multiple Products</label>
+            </value>
+            <value>
+                <fullName>L&amp;P</fullName>
+                <default>false</default>
+                <label>L&amp;P</label>
+            </value>
+            <value>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+                <label>Pricing</label>
+            </value>
+            <value>
+                <fullName>Relationships</fullName>
+                <default>false</default>
+                <label>Relationships</label>
+            </value>
+            <value>
+                <fullName>Terms</fullName>
+                <default>false</default>
+                <label>Terms</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Content</fullName>
+                <default>false</default>
+                <label>Content</label>
+            </value>
+            <value>
+                <fullName>Time</fullName>
+                <default>false</default>
+                <label>Time</label>
+            </value>
+            <value>
+                <fullName>Walls</fullName>
+                <default>false</default>
+                <label>Walls</label>
+            </value>
+            <value>
+                <fullName>Flow</fullName>
+                <default>false</default>
+                <label>Flow</label>
+            </value>
+            <value>
+                <fullName>DealCloud</fullName>
+                <default>false</default>
+                <label>DealCloud</label>
+            </value>
+            <value>
+                <fullName>IIS</fullName>
+                <default>false</default>
+                <label>IIS</label>
+            </value>
+            <value>
+                <fullName>Small Firms</fullName>
+                <default>false</default>
+                <label>Small Firms</label>
+            </value>
+            <value>
+                <fullName>Nudges</fullName>
+                <default>false</default>
+                <label>Nudges</label>
+            </value>
+            <value>
+                <fullName>OPIS</fullName>
+                <default>false</default>
+                <label>OPIS</label>
+            </value>
+            <value>
+                <fullName>OnePlace</fullName>
+                <default>false</default>
+                <label>OnePlace</label>
+            </value>
+            <value>
+                <fullName>OPMBD</fullName>
+                <default>false</default>
+                <label>OPMBD</label>
+            </value>
+            <value>
+                <fullName>Data - Risk</fullName>
+                <default>false</default>
+                <label>Data - Risk</label>
+            </value>
+            <value>
+                <fullName>Data - MBD</fullName>
+                <default>false</default>
+                <label>Data - MBD</label>
+            </value>
+            <value>
+                <fullName>Collaboration &amp; Content</fullName>
+                <default>false</default>
+                <label>Collaboration</label>
+            </value>
+            <value>
+                <fullName>Billstream</fullName>
+                <default>false</default>
+                <label>Billstream</label>
+            </value>
+            <value>
+                <fullName>Documents</fullName>
+                <default>false</default>
+                <label>Documents</label>
+            </value>
+            <value>
+                <fullName>Workspaces</fullName>
+                <default>false</default>
+                <label>Workspaces</label>
+            </value>
+            <value>
+                <fullName>Multiple Products – C&amp;C</fullName>
+                <default>false</default>
+                <label>Multiple Products – C&amp;C</label>
+            </value>
+            <value>
+                <fullName>Client Collaboration</fullName>
+                <default>false</default>
+                <label>Client Collaboration</label>
+            </value>
+            <value>
+                <fullName>Multiple Products – MBD</fullName>
+                <default>false</default>
+                <label>Multiple Products – MBD</label>
+            </value>
+            <value>
+                <fullName>Multiple Products – OPOF</fullName>
+                <default>false</default>
+                <label>Multiple Products – OPOF</label>
+            </value>
+            <value>
+                <fullName>Multiple Products - Risk</fullName>
+                <default>false</default>
+                <label>Multiple Products - Risk</label>
+            </value>
+            <value>
+                <fullName>Employee Compliance</fullName>
+                <default>false</default>
+                <label>Employee Compliance</label>
+            </value>
+            <value>
+                <fullName>Data - DealCloud</fullName>
+                <default>false</default>
+                <label>Data - DealCloud</label>
+            </value>
+            <value>
+                <fullName>TermSheet</fullName>
+                <default>false</default>
+                <label>TermSheet</label>
+            </value>
+            <value>
+                <fullName>DealCloud Assist​</fullName>
+                <default>false</default>
+                <label>DealCloud Assist</label>
+            </value>
+            <value>
+                <fullName>DealCloud Activator​</fullName>
+                <default>false</default>
+                <label>DealCloud Activator​</label>
+            </value>
+            <value>
+                <fullName>Time Assist​</fullName>
+                <default>false</default>
+                <label>Time Assist​</label>
+            </value>
+            <value>
+                <fullName>Celeste</fullName>
+                <default>false</default>
+                <label>Celeste</label>
+            </value>
+            <value>
+                <fullName>Properties</fullName>
+                <default>false</default>
+                <label>Properties</label>
+            </value>
+            <value>
+                <fullName>Delphai</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Delphai</label>
+            </value>
+            <value>
+                <fullName>TermSheet - Cloud</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>TermSheet - Cloud</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

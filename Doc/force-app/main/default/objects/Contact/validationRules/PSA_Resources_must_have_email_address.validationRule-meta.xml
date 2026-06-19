@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSA_Resources_must_have_email_address</fullName>
+    <active>false</active>
+    <description>PSA Resources must have a valid email address.</description>
+    <errorConditionFormula>AND(
+  NOT($Profile.Id=&quot;00e30000000bvR3&quot;),
+  (RecordType.Name = &quot;PSA Resource&quot;),
+  ISBLANK(Email)
+)</errorConditionFormula>
+    <errorDisplayField>AccountId</errorDisplayField>
+    <errorMessage>Email required for PSA Resources.</errorMessage>
+</ValidationRule>

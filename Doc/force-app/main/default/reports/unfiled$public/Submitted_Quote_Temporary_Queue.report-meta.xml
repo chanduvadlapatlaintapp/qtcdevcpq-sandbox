@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>SBQQ__Quote__c.Account_Name__c</field>
+    </columns>
+    <columns>
+        <field>CUST_LAST_UPDATE</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>SBQQ__Quote__c.SBQQ__Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Submitted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>CUST_NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>,Q-03578,Q-03616,Q-03759,Q-05029,Q-05180,Q-05535,Q-05547,Q-05578,Q-05628,Q-05705,Q-05805,Q-05845,Q-05918,Q-06017,Q-06228,Q-06321,Q-06322,Q-06404,Q-06421,Q-06452,Q-06571,Q-06661,Q-06677,Q-06688,Q-06784,Q-06786,Q-06848,Q-06871,Q-06912,Q-06995,Q-07000,Q-07023,Q-07032,Q-07035,Q-07042,Q-07049,Q-07068,Q-07093,Q-07141,Q-07213,Q-07337,Q-07402,Q-07676,Q-07857,Q-07926</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Submitted Quote - Temporary Queue</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$SBQQ__Quote__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>SBQQ__Quote__c.SBQQ__StartDate__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

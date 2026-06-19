@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X2006_Budget__c</fullName>
+    <label>2006 Budget</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Unknown</fullName>
+                <default>true</default>
+                <label>Unknown</label>
+            </value>
+            <value>
+                <fullName>2006 Budget Approved</fullName>
+                <default>false</default>
+                <label>2006 Budget Approved</label>
+            </value>
+            <value>
+                <fullName>2006 Budget Maybe</fullName>
+                <default>false</default>
+                <label>2006 Budget Maybe</label>
+            </value>
+            <value>
+                <fullName>2006 Approved for Something</fullName>
+                <default>false</default>
+                <label>2006 Approved for Something</label>
+            </value>
+            <value>
+                <fullName>No Budget</fullName>
+                <default>false</default>
+                <label>No Budget</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

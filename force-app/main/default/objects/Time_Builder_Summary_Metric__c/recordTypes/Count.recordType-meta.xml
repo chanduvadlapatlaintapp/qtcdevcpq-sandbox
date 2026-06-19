@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Count</fullName>
+    <active>true</active>
+    <label>Count</label>
+    <picklistValues>
+        <picklist>Count_Type__c</picklist>
+        <values>
+            <fullName>Avg per Enabled Timekeeper</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Total Count</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Event_Retention_Length__c</picklist>
+        <values>
+            <fullName>45 days</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>90 days</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Version__c</picklist>
+        <values>
+            <fullName>4%2E7%2E4%2E11</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

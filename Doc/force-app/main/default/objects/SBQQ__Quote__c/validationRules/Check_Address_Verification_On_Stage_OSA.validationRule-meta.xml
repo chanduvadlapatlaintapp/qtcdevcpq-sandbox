@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Check_Address_Verification_On_Stage_OSA</fullName>
+    <active>true</active>
+    <description>BIZ-66665</description>
+    <errorConditionFormula>AND(
+    ISCHANGED(Quote_Stage__c),
+    ISPICKVAL(Quote_Stage__c, &quot;Finalize OSA&quot;),
+    
+    NOT(
+        AND(
+            NOT(ISBLANK(Bill_To_Address__c)),
+            ISPICKVAL(Bill_To_Address__r.Status__c, &quot;Verification Approved&quot;),
+
+            NOT(ISBLANK(Ship_To_Address__c)),
+            ISPICKVAL(Ship_To_Address__r.Status__c, &quot;Verification Approved&quot;)
+        )
+    )
+)</errorConditionFormula>
+    <errorMessage>Please check the billing and shipping address of the account</errorMessage>
+</ValidationRule>

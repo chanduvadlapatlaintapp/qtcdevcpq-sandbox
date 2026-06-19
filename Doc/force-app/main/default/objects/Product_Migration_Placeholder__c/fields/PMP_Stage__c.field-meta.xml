@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PMP_Stage__c</fullName>
+    <label>PMP Stage</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>0. Not yet started</fullName>
+                <color>#0B6FCE</color>
+                <default>true</default>
+                <label>0. Not yet started</label>
+            </value>
+            <value>
+                <fullName>1. Initial communication to client sent</fullName>
+                <default>false</default>
+                <label>1. Initial communication to client sent</label>
+            </value>
+            <value>
+                <fullName>2. Meeting with customer scheduled</fullName>
+                <color>#E27001</color>
+                <default>false</default>
+                <label>2. Meeting with customer scheduled</label>
+            </value>
+            <value>
+                <fullName>3. Met with customer, discussing options</fullName>
+                <color>#A845DC</color>
+                <default>false</default>
+                <label>3. Met with customer, discussing options</label>
+            </value>
+            <value>
+                <fullName>4. Met with customer. Disinclined to move forward</fullName>
+                <default>false</default>
+                <label>4. Met with customer. Disinclined to move forward</label>
+            </value>
+            <value>
+                <fullName>5. Migration Opportunity confirmed and created. PMP closed.</fullName>
+                <default>false</default>
+                <label>5. Migration Opportunity confirmed and created. PMP closed.</label>
+            </value>
+            <value>
+                <fullName>6. Sales Opportunity confirmed and created. PMP closed.</fullName>
+                <default>false</default>
+                <label>6. Sales Opportunity confirmed and created. PMP closed.</label>
+            </value>
+            <value>
+                <fullName>7. Rejected all offers or cancelled.  PMP closed.</fullName>
+                <default>false</default>
+                <label>7. Rejected all offers or cancelled.  PMP closed.</label>
+            </value>
+            <value>
+                <fullName>Not yet started</fullName>
+                <default>false</default>
+                <label>Not yet started</label>
+            </value>
+            <value>
+                <fullName>Initial communication to customer sent</fullName>
+                <default>false</default>
+                <label>Initial communication to customer sent</label>
+            </value>
+            <value>
+                <fullName>Initial conversation with customer held</fullName>
+                <default>false</default>
+                <label>Initial conversation with customer held</label>
+            </value>
+            <value>
+                <fullName>SWAT team engaged</fullName>
+                <default>false</default>
+                <label>SWAT team engaged</label>
+            </value>
+            <value>
+                <fullName>Success plan created / reviewed with customer</fullName>
+                <default>false</default>
+                <label>Success plan created / reviewed with customer</label>
+            </value>
+            <value>
+                <fullName>Success plan being executed</fullName>
+                <default>false</default>
+                <label>Success plan being executed</label>
+            </value>
+            <value>
+                <fullName>Confirmation of workflows in production. PMP closed.</fullName>
+                <default>false</default>
+                <label>Confirmation of workflows in production. PMP closed.</label>
+            </value>
+            <value>
+                <fullName>Assessment scheduled</fullName>
+                <default>false</default>
+                <label>Assessment scheduled</label>
+            </value>
+            <value>
+                <fullName>Assessment completed</fullName>
+                <default>false</default>
+                <label>Assessment completed</label>
+            </value>
+            <value>
+                <fullName>Final customer roadmap presentation scheduled</fullName>
+                <default>false</default>
+                <label>Final customer roadmap presentation scheduled</label>
+            </value>
+            <value>
+                <fullName>Final customer roadmap presentation completed</fullName>
+                <default>false</default>
+                <label>Final customer roadmap presentation completed</label>
+            </value>
+            <value>
+                <fullName>Opportunity confirmed and created. PMP closed.</fullName>
+                <default>false</default>
+                <label>Opportunity confirmed and created. PMP closed.</label>
+            </value>
+            <value>
+                <fullName>Customer declined offers to move to cloud solution(s). PMP closed.</fullName>
+                <default>false</default>
+                <label>Customer declined offers to move to cloud solution(s). PMP closed.</label>
+            </value>
+            <value>
+                <fullName>Conflicts utility run</fullName>
+                <default>false</default>
+                <label>Conflicts utility run</label>
+            </value>
+            <value>
+                <fullName>Customer review complete - firm requires HF</fullName>
+                <default>false</default>
+                <label>Customer review complete - firm requires HF</label>
+            </value>
+            <value>
+                <fullName>Project team notified or support ticket raised</fullName>
+                <default>false</default>
+                <label>Project team notified or support ticket raised</label>
+            </value>
+            <value>
+                <fullName>Customer review complete - require rule update.</fullName>
+                <default>false</default>
+                <label>Customer review complete - require rule update.</label>
+            </value>
+            <value>
+                <fullName>EOS and Roadmap meeting scheduled</fullName>
+                <default>false</default>
+                <label>EOS and Roadmap meeting scheduled</label>
+            </value>
+            <value>
+                <fullName>EOS and Roadmap meeting completed</fullName>
+                <default>false</default>
+                <label>EOS and Roadmap meeting completed</label>
+            </value>
+            <value>
+                <fullName>SOW requested</fullName>
+                <default>false</default>
+                <label>SOW requested</label>
+            </value>
+            <value>
+                <fullName>SOW presented</fullName>
+                <default>false</default>
+                <label>SOW presented</label>
+            </value>
+            <value>
+                <fullName>Conversion to Time 8 confirmed. Opportunity created. PMP closed.</fullName>
+                <default>false</default>
+                <label>Conversion to Time 8 confirmed. Opportunity created. PMP closed.</label>
+            </value>
+            <value>
+                <fullName>Deck created</fullName>
+                <default>false</default>
+                <label>Deck created</label>
+            </value>
+            <value>
+                <fullName>Deck finalized</fullName>
+                <default>false</default>
+                <label>Deck finalized</label>
+            </value>
+            <value>
+                <fullName>Presentation to customer scheduled</fullName>
+                <default>false</default>
+                <label>Presentation to customer scheduled</label>
+            </value>
+            <value>
+                <fullName>Presentation to customer completed</fullName>
+                <default>false</default>
+                <label>Presentation to customer completed</label>
+            </value>
+            <value>
+                <fullName>Customer accepted 3-year Walls offer. PMP closed.</fullName>
+                <default>false</default>
+                <label>Customer accepted 3-year Walls offer. PMP closed.</label>
+            </value>
+            <value>
+                <fullName>Customer declined Walls offer.</fullName>
+                <default>false</default>
+                <label>Customer declined Walls offer.</label>
+            </value>
+            <value>
+                <fullName>Intapp Time review meeting scheduled.</fullName>
+                <default>false</default>
+                <label>Intapp Time review meeting scheduled.</label>
+            </value>
+            <value>
+                <fullName>Intapp Time review meeting completed.</fullName>
+                <default>false</default>
+                <label>Intapp Time review meeting completed.</label>
+            </value>
+            <value>
+                <fullName>Customer inclined to move forward with FMS time recording. PMP closed.</fullName>
+                <default>false</default>
+                <label>Customer inclined to move forward with FMS time recording. PMP closed.</label>
+            </value>
+            <value>
+                <fullName>Customer declined to move apply HF at this time. PMP closed.</fullName>
+                <default>false</default>
+                <label>Customer declined to move apply HF at this time. PMP closed.</label>
+            </value>
+            <value>
+                <fullName>HF applied in Prod</fullName>
+                <default>false</default>
+                <label>HF applied in Prod</label>
+            </value>
+            <value>
+                <fullName>Customer declined to apply HF at this time. PMP Closed.</fullName>
+                <default>false</default>
+                <label>Customer declined to apply HF at this time. PMP Closed.</label>
+            </value>
+            <value>
+                <fullName>Customer review complete - firm does not require HF. PMP Closed.</fullName>
+                <default>false</default>
+                <label>Customer review complete - firm does not require HF. PMP Closed.</label>
+            </value>
+            <value>
+                <fullName>Customer review complete - firm does not require rule update. PMP Closed.</fullName>
+                <default>false</default>
+                <label>Customer review complete - firm does not require rule update. PMP Closed.</label>
+            </value>
+            <value>
+                <fullName>Delivery of utility</fullName>
+                <default>false</default>
+                <label>Delivery of utility</label>
+            </value>
+            <value>
+                <fullName>Utility run and analysis completed</fullName>
+                <default>false</default>
+                <label>Utility run and analysis completed</label>
+            </value>
+            <value>
+                <fullName>Opportunity Closed Won</fullName>
+                <default>false</default>
+                <label>Opportunity Closed Won</label>
+            </value>
+            <value>
+                <fullName>Committed / In Contracts</fullName>
+                <default>false</default>
+                <label>Committed / In Contracts</label>
+            </value>
+            <value>
+                <fullName>Engaged</fullName>
+                <default>false</default>
+                <label>Engaged</label>
+            </value>
+            <value>
+                <fullName>Sales Opportunity</fullName>
+                <default>false</default>
+                <label>Sales Opportunity</label>
+            </value>
+            <value>
+                <fullName>In Discussion</fullName>
+                <default>false</default>
+                <label>In Discussion</label>
+            </value>
+            <value>
+                <fullName>Not Migrating</fullName>
+                <default>false</default>
+                <label>Not Migrating</label>
+            </value>
+            <value>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+                <label>Cancelled</label>
+            </value>
+            <value>
+                <fullName>Awaiting Review/Meeting</fullName>
+                <default>false</default>
+                <label>Awaiting Review/Meeting</label>
+            </value>
+            <value>
+                <fullName>Awaiting Approvals</fullName>
+                <default>false</default>
+                <label>Awaiting Approvals</label>
+            </value>
+            <value>
+                <fullName>On-Hold</fullName>
+                <default>false</default>
+                <label>On-Hold</label>
+            </value>
+            <value>
+                <fullName>Sent back to Requester</fullName>
+                <default>false</default>
+                <label>Sent back to Requester</label>
+            </value>
+            <value>
+                <fullName>Request Complete</fullName>
+                <default>false</default>
+                <label>Request Complete</label>
+            </value>
+            <value>
+                <fullName>Request Cancelled</fullName>
+                <default>false</default>
+                <label>Request Cancelled</label>
+            </value>
+            <value>
+                <fullName>Request Declined</fullName>
+                <default>false</default>
+                <label>Request Declined</label>
+            </value>
+            <value>
+                <fullName>Communication sent to customer</fullName>
+                <default>false</default>
+                <label>Communication sent to customer</label>
+            </value>
+            <value>
+                <fullName>Meeting scheduled</fullName>
+                <default>false</default>
+                <label>Meeting scheduled</label>
+            </value>
+            <value>
+                <fullName>Support case created</fullName>
+                <default>false</default>
+                <label>Support case created</label>
+            </value>
+            <value>
+                <fullName>Additional conditions to be met.</fullName>
+                <default>false</default>
+                <label>Additional conditions to be met.</label>
+            </value>
+            <value>
+                <fullName>Reference status requested.</fullName>
+                <default>false</default>
+                <label>Reference status requested.</label>
+            </value>
+            <value>
+                <fullName>Follow-up communication to client sent.</fullName>
+                <default>false</default>
+                <label>Follow-up communication to client sent.</label>
+            </value>
+            <value>
+                <fullName>Client acknowledges effort and timeline. PMP closed.</fullName>
+                <default>false</default>
+                <label>Client acknowledges effort and timeline. PMP closed.</label>
+            </value>
+            <value>
+                <fullName>Objective successful. PMP closed.</fullName>
+                <default>false</default>
+                <label>Objective successful. PMP closed.</label>
+            </value>
+            <value>
+                <fullName>Customer declined program. PMP Closed.</fullName>
+                <default>false</default>
+                <label>Customer declined program. PMP Closed.</label>
+            </value>
+            <value>
+                <fullName>Customer has completed analysis and remediation. PMP Closed.</fullName>
+                <default>false</default>
+                <label>Customer has completed analysis and remediation. PMP Closed.</label>
+            </value>
+            <value>
+                <fullName>Customer declined to move forward with program. PMP Closed</fullName>
+                <default>false</default>
+                <label>Customer declined to move forward with program. PMP Closed</label>
+            </value>
+            <value>
+                <fullName>Customer cancelling Intapp product(s).  PMP closed.</fullName>
+                <default>false</default>
+                <label>Customer cancelling Intapp product(s).  PMP closed.</label>
+            </value>
+            <value>
+                <fullName>Customer declined participation in program. PMP closed.</fullName>
+                <default>false</default>
+                <label>Customer declined participation in program. PMP closed.</label>
+            </value>
+            <value>
+                <fullName>Customer removed from program</fullName>
+                <default>false</default>
+                <label>Customer removed from program</label>
+            </value>
+            <value>
+                <fullName>Client not contacted/responded</fullName>
+                <default>false</default>
+                <label>Client not contacted/responded</label>
+            </value>
+            <value>
+                <fullName>Client contacted, not an opportunity</fullName>
+                <default>false</default>
+                <label>Client contacted, not an opportunity</label>
+            </value>
+            <value>
+                <fullName>Client contacted, opportunity recorded</fullName>
+                <default>false</default>
+                <label>Client contacted, opportunity recorded</label>
+            </value>
+            <value>
+                <fullName>Client contacted, already a RAPTOR customer</fullName>
+                <default>false</default>
+                <label>Client contacted, already a RAPTOR customer</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

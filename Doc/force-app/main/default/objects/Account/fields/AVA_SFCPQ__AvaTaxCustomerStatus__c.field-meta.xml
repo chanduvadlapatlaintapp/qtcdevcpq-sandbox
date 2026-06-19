@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AVA_SFCPQ__AvaTaxCustomerStatus__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Displays the AvaTax Exemption customer status.</description>
+    <externalId>false</externalId>
+    <formula>IMAGE(CASE(AVA_SFCPQ__AvaTaxMessage__c ,
+&quot;Success&quot;, &quot;/img/msg_icons/confirm16.png&quot;,
+&quot;Success: Email address is recommended&quot;, &quot;/img/msg_icons/confirm16.png&quot;,
+&quot;Update customer to AvaTax Exemption&quot;, &quot;/img/msg_icons/warning16.png&quot;,
+&quot;&quot;,&quot;/resource/not_available&quot;,
+&quot;Error&quot;,&quot;/img/msg_icons/error16.png&quot;,
+&quot;/img/msg_icons/error16.png&quot;), &quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Displays the AvaTax Exemption customer status.</inlineHelpText>
+    <label>AvaTax Customer Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

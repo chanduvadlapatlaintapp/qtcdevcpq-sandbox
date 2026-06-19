@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MDRole__c</fullName>
+    <label>MD Role Interaction</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Met</fullName>
+                <color>#78C953</color>
+                <default>false</default>
+                <label>Met</label>
+            </value>
+            <value>
+                <fullName>Phone/Email Met</fullName>
+                <color>#0B24BE</color>
+                <default>false</default>
+                <label>Phone/Email Met</label>
+            </value>
+            <value>
+                <fullName>Actively Working</fullName>
+                <color>#F3D904</color>
+                <default>false</default>
+                <label>Actively Working</label>
+            </value>
+            <value>
+                <fullName>Unmet</fullName>
+                <color>#A53711</color>
+                <default>true</default>
+                <label>Unmet</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

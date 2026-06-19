@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Display_OTC_and_Adj_amounts__c</fullName>
+    <formula>IF(OR( OR(One_time_Credit_Yr1__c &lt; 0, One_time_Credit_Yr2__c &lt; 0, One_time_Credit_Yr3__c &lt; 0, One_time_Credit_Yr4__c &lt; 0, One_time_Credit_Yr5__c &lt; 0, One_time_Credit_Yr6__c &lt; 0), Total_Subscription_Fees_1st_Year__c &lt;&gt; Year_1_Subscription_Fees_With_Adjustment__c), true, false)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Display OTC and Adj amounts</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

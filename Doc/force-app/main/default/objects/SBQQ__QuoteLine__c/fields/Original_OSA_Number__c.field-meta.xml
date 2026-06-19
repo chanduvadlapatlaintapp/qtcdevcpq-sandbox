@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Original_OSA_Number__c</fullName>
+    <description>BIZ-49497:Consolidated quote lines should have reference to the original OSA number</description>
+    <externalId>false</externalId>
+    <formula>SBQQ__RenewedSubscription__r.SBQQ__Contract__r.OSA_Number__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Original OSA Number</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Integrated_Company_Data_Provider__c</fullName>
+    <inlineHelpText>This is external content the Account utilizes via a pre-built Intapp integration</inlineHelpText>
+    <label>Integrated Company Data Provider</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Accuity – AML</fullName>
+                <default>false</default>
+                <label>Accuity – AML</label>
+            </value>
+            <value>
+                <fullName>Bureau Van Dijk - Orbis – Corporate Tree</fullName>
+                <default>false</default>
+                <label>Bureau Van Dijk - Orbis – Corporate Tree</label>
+            </value>
+            <value>
+                <fullName>Custom – AML</fullName>
+                <default>false</default>
+                <label>Custom – AML</label>
+            </value>
+            <value>
+                <fullName>Custom – Corporate Tree</fullName>
+                <default>false</default>
+                <label>Custom – Corporate Tree</label>
+            </value>
+            <value>
+                <fullName>Dun &amp; Bradstreet - Avention</fullName>
+                <default>false</default>
+                <label>Dun &amp; Bradstreet - Avention</label>
+            </value>
+            <value>
+                <fullName>Dun &amp; Bradstreet – Corporate Tree</fullName>
+                <default>false</default>
+                <label>Dun &amp; Bradstreet – Corporate Tree</label>
+            </value>
+            <value>
+                <fullName>Dun &amp; Bradstreet – KYC &amp; BO</fullName>
+                <default>false</default>
+                <label>Dun &amp; Bradstreet – KYC &amp; BO</label>
+            </value>
+            <value>
+                <fullName>Dun &amp; Bradstreet – Financial Ratings</fullName>
+                <default>false</default>
+                <label>Dun &amp; Bradstreet – Financial Ratings</label>
+            </value>
+            <value>
+                <fullName>Thomson Reuters – Worldcheck – AML</fullName>
+                <default>false</default>
+                <label>Thomson Reuters – Worldcheck – AML</label>
+            </value>
+            <value>
+                <fullName>S&amp;P Capital IQ</fullName>
+                <default>false</default>
+                <label>S&amp;P Capital IQ</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

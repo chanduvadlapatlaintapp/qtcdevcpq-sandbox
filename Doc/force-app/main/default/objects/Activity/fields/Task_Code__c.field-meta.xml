@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Task_Code__c</fullName>
+    <description>Used to help track duration of activities such as configuration, development, administration, etc.</description>
+    <label>Task Code</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>0 N/A</fullName>
+                <default>true</default>
+                <label>0 N/A</label>
+            </value>
+            <value>
+                <fullName>1 Admin</fullName>
+                <default>false</default>
+                <label>1 Admin</label>
+            </value>
+            <value>
+                <fullName>2 Prep</fullName>
+                <default>false</default>
+                <label>2 Prep</label>
+            </value>
+            <value>
+                <fullName>3 Config</fullName>
+                <default>false</default>
+                <label>3 Config</label>
+            </value>
+            <value>
+                <fullName>4 Custom</fullName>
+                <default>false</default>
+                <label>4 Custom</label>
+            </value>
+            <value>
+                <fullName>5 Devel</fullName>
+                <default>false</default>
+                <label>5 Devel</label>
+            </value>
+            <value>
+                <fullName>6 Q/A</fullName>
+                <default>false</default>
+                <label>6 Q/A</label>
+            </value>
+            <value>
+                <fullName>7 Rollout</fullName>
+                <default>false</default>
+                <label>7 Rollout</label>
+            </value>
+            <value>
+                <fullName>8 Train(I)</fullName>
+                <default>false</default>
+                <label>8 Train(I)</label>
+            </value>
+            <value>
+                <fullName>9 Train(E)</fullName>
+                <default>false</default>
+                <label>9 Train(E)</label>
+            </value>
+            <value>
+                <fullName>10 Travel</fullName>
+                <default>false</default>
+                <label>10 Travel</label>
+            </value>
+            <value>
+                <fullName>11 OOO</fullName>
+                <default>false</default>
+                <label>11 OOO</label>
+            </value>
+            <value>
+                <fullName>12 AT Support</fullName>
+                <default>false</default>
+                <label>12 AT Support</label>
+            </value>
+            <value>
+                <fullName>13 IB Support</fullName>
+                <default>false</default>
+                <label>13 IB Support</label>
+            </value>
+            <value>
+                <fullName>14 TB Support</fullName>
+                <default>false</default>
+                <label>14 TB Support</label>
+            </value>
+            <value>
+                <fullName>15 WB Support</fullName>
+                <default>false</default>
+                <label>15 WB Support</label>
+            </value>
+            <value>
+                <fullName>16 CRM</fullName>
+                <default>false</default>
+                <label>16 CRM</label>
+            </value>
+            <value>
+                <fullName>17 Pre-Sales</fullName>
+                <default>false</default>
+                <label>17 Pre-Sales</label>
+            </value>
+            <value>
+                <fullName>18 Marketing</fullName>
+                <default>false</default>
+                <label>18 Marketing</label>
+            </value>
+            <value>
+                <fullName>19 CSM</fullName>
+                <default>false</default>
+                <label>19 CSM</label>
+            </value>
+            <value>
+                <fullName>20 Closing</fullName>
+                <default>false</default>
+                <label>20 Closing</label>
+            </value>
+            <value>
+                <fullName>21 DTE Support</fullName>
+                <default>false</default>
+                <label>21 DTE Support</label>
+            </value>
+            <value>
+                <fullName>22 Open Support</fullName>
+                <default>false</default>
+                <label>22 Open Support</label>
+            </value>
+            <value>
+                <fullName>23 Client Advocacy</fullName>
+                <default>false</default>
+                <label>23 Client Advocacy</label>
+            </value>
+            <value>
+                <fullName>24 Client Advisory Group</fullName>
+                <default>false</default>
+                <label>24 Client Advisory Group</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

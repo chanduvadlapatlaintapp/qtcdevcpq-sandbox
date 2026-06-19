@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_Pause_Date__c</fullName>
+    <description>When did we make the decision to pause billing for this product? This field should only be used on Restart opportunities. The amount of time elapsed between the Pause date and the Close date for the restart opportunity determines how much recurring revenue and collections were lost to the billing pause. Part of Technical Debt Project: Week 7 fields (Expiring May 25)</description>
+    <inlineHelpText>When did we make the decision to pause billing for this product? This field should only be used on Restart opportunities.</inlineHelpText>
+    <label>Billing Pause Date (Exp May 25)</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Date</type>
+</CustomField>

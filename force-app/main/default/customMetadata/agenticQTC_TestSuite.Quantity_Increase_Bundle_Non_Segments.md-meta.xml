@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Quantity Increase Bundle Non Segments</label>
+    <protected>false</protected>
+    <values>
+        <field>Allow_Multiple_Account__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Default_Accounts__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Description__c</field>
+        <value xsi:type="xsd:string">Targets only non-segment lines whose CPQ_Option_Type__c = &apos;Static Bundle&apos; (identified by a DB query on data-line-id). Increases each by +5, saves. DB verification: asserts the bundle line qty updated and that every non-segment Static Component child line matches the bundle qty and has a non-zero Revenue_Allocation__c. Skips if the quote has no non-segment Static Bundle lines. 3 scenarios.</value>
+    </values>
+    <values>
+        <field>Is_Active__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Module__c</field>
+        <value xsi:type="xsd:string">Simplified AgenticQTC</value>
+    </values>
+    <values>
+        <field>Sort_Order__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Suite_Value__c</field>
+        <value xsi:type="xsd:string">agenticQtcQuantityIncreaseBundleNonSegment</value>
+    </values>
+</CustomMetadata>

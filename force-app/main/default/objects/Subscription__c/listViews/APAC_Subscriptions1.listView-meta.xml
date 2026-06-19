@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APAC_Subscriptions1</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>At_Risk_Flag__c</columns>
+    <columns>CSM_Health_Rating__c</columns>
+    <columns>Health_Rating__c</columns>
+    <columns>Product_Line__c</columns>
+    <columns>Status__c</columns>
+    <columns>Subscription_Count__c</columns>
+    <columns>Subscription_Name__c</columns>
+    <columns>Amount__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Geography__c</field>
+        <operation>equals</operation>
+        <value>APAC</value>
+    </filters>
+    <label>APAC Subscriptions</label>
+    <sharedTo></sharedTo>
+</ListView>

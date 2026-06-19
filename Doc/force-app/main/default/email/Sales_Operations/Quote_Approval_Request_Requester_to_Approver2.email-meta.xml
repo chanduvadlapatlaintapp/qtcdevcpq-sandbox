@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Used in the Quote Approval Process - Request - Template #4 - Requester to Approver</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>Plain_Intapp_Logo</letterhead>
+    <name>Quote Approval Request - Requester to Approver(to Requester)</name>
+    <style>freeForm</style>
+    <subject>Copy of Request Quote For Approval sent out to Approver</subject>
+    <textOnly>Please review the attached quote in the opportunity from the link below and approve/reject below.
+
+Opportunity Name: {!Opportunity.Name}
+Opportunity Owner: {!Opportunity.OwnerFullName}
+Opportunity Approval Requester/Submitter: {!Opportunity.Opportunity_Approval_Requester_submitter__c}
+
+Account Name: {!Account.Name}
+
+Link to Opportunity: {!Opportunity.Link}
+
+
+
+
+
+
+Sales Territory: {!Account.Simple_Territory__c}
+Approval Process: {!ApprovalRequest.Process_Name}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

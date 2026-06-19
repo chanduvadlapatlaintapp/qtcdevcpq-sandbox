@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>SO_Letterhead</letterhead>
+    <name>Pending closure notification</name>
+    <style>freeForm</style>
+    <subject>Deal Pending Closure for {!Opportunity.Name} - Line of Business: {!Opportunity.Line_of_Business__c}, OP4I Sales Segment: {!Opportunity.Quote_Sales_Segment__c}</subject>
+    <textOnly>A deal is Pending Closure for {!Opportunity.Account}.
+
+Opportunity Name: {!Opportunity.Name}
+Line of Business: {!Opportunity.Line_of_Business__c}
+Opportunity Link: {!Opportunity.Link}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

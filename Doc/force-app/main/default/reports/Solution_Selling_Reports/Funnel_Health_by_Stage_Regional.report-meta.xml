@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>text</bucketType>
+        <developerName>BucketField_47566618</developerName>
+        <masterLabel>_Stage</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>Solution_Selling_Snapshot__c.Approved_Stage__c</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Expression of Interest</sourceValue>
+            </sourceValues>
+            <value>1. Expression of Interest</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Investigation</sourceValue>
+            </sourceValues>
+            <value>2. Investigation</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Business Case Development</sourceValue>
+            </sourceValues>
+            <value>3. Business Case Development</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Evaluation of Option</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Evaluation of Options</sourceValue>
+            </sourceValues>
+            <value>4. Evaluation of Options</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Resolution of Concerns</sourceValue>
+            </sourceValues>
+            <value>5. Resolution of Concerns</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Get Management Approval</sourceValue>
+            </sourceValues>
+            <value>6. Get Management Approval</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Obtain Contract</sourceValue>
+            </sourceValues>
+            <value>7. Obtain Contract</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Recurring Adjustment</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Trial Period</sourceValue>
+            </sourceValues>
+            <value>8. Recurring Adjustment</value>
+        </values>
+    </buckets>
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <aggregate>Sum</aggregate>
+            <axisBinding>y</axisBinding>
+            <column>Solution_Selling_Snapshot__c.Recurring_Amount_Change__c.CONVERT</column>
+        </chartSummaries>
+        <chartType>VerticalColumnStacked</chartType>
+        <enableHoverLabels>false</enableHoverLabels>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>Solution_Selling_Snapshot__c.Snapshot_Date__c</groupingColumn>
+        <legendPosition>Right</legendPosition>
+        <location>CHART_TOP</location>
+        <secondaryGroupingColumn>BucketField_47566618</secondaryGroupingColumn>
+        <showAxisLabels>true</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>false</showValues>
+        <size>Medium</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>12</textSize>
+        <titleColor>#000000</titleColor>
+        <titleSize>18</titleSize>
+    </chart>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Solution_Selling_Snapshot__c.Recurring_Amount_Change__c.CONVERT</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Solution_Selling_Snapshot__c.Sale_Category__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>New Software Product,Add-on Software,License Uplift</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Solution_Selling_Snapshot__c.Snapshot_Date__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>LAST_N_DAYS:10</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>BucketField_47566618</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Other,8. Recurring Adjustment</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Solution_Selling_Snapshot__c.Practice_Group__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notContain</operator>
+            <value>Third,Flow,Multiple</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Solution_Selling_Snapshot__c.Snapshot_Date__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Solution_Selling_Snapshot__c.Sales_Territory__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_47566618</field>
+        <sortOrder>Desc</sortOrder>
+    </groupingsDown>
+    <name>Funnel Health: by Stage (Segment)</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>CustomEntity$Solution_Selling_Snapshot__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Solution_Selling_Snapshot__c.Snapshot_Date__c</dateColumn>
+        <interval>INTERVAL_LAST30</interval>
+    </timeFrameFilter>
+</Report>

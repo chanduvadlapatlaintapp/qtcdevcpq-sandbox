@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Configuration for triggering GitHub Actions Playwright test runs from Salesforce. Set PAT__c post-deploy via Setup → Custom Metadata Types. Never commit the PAT value to source control.</description>
+    <label>GitHub Actions Config</label>
+    <pluralLabel>GitHub Actions Configs</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

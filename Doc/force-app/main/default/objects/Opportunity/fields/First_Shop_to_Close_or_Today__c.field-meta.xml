@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>First_Shop_to_Close_or_Today__c</fullName>
+    <description>Number of days between First Shop Date and Today for Open Opportunities or Close Date for Closed Opportunities</description>
+    <externalId>false</externalId>
+    <formula>IF( IsClosed, CloseDate- First_Entered_Shopping_Date__c , TODAY()-First_Entered_Shopping_Date__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>First Shop to Close or Today</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

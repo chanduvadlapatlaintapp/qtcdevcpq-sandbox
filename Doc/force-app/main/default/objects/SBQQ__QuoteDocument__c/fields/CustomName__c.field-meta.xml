@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CustomName__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( CONTAINS(Name,&apos;Proposal&apos;),Name,
+IF( 
+
+OR(
+AND(
+CONTAINS(  SBQQ__Quote__r.Services_Project_Type__c  ,&quot;Change Request&quot;),
+OR(
+ISPICKVAL( SBQQ__Quote__r.Services_Terms__c,&quot;T&amp;M&quot;),
+ISPICKVAL( SBQQ__Quote__r.Services_Terms__c,&quot;FF&quot;),
+ISPICKVAL( SBQQ__Quote__r.Services_Terms__c,&quot;Milestone&quot;)
+)),
+ISPICKVAL(SBQQ__Quote__r.Services_Only_Type__c ,&apos;FF Change Order&apos;),
+ISPICKVAL(SBQQ__Quote__r.Services_Only_Type__c ,&apos;T&amp;M Change Order&apos;)
+), 
+
+TEXT(YEAR(SBQQ__Quote__r.SBQQ__ExpirationDate__c))&amp; 
+IF(MONTH(SBQQ__Quote__r.SBQQ__ExpirationDate__c) &lt;10,&quot;0&quot;&amp;TEXT(MONTH(SBQQ__Quote__r.SBQQ__ExpirationDate__c)),TEXT(MONTH(SBQQ__Quote__r.SBQQ__ExpirationDate__c)))&amp; 
+TEXT(DAY(SBQQ__Quote__r.SBQQ__ExpirationDate__c))&amp; 
+
+ 
+&quot;_Bundle#&quot;&amp;   SBQQ__Quote__r.OSA_Number__c   &amp;
+&apos;_CR#X for #&apos;&amp;
+
+  SBQQ__Quote__r.OSA_Number__c 
+&amp;
+
+IF(ISPICKVAL(SBQQ__Quote__r.Line_of_Business__c,&quot;Intapp&quot;),&quot;_Intapp_&quot;,IF(ISPICKVAL(SBQQ__Quote__r.Line_of_Business__c,&quot;DealCloud&quot;),&quot;_DealCloud_&quot;,&quot;&quot;))&amp;
+ 
+ 
+SUBSTITUTE(SBQQ__Quote__r.SBQQ__Account__r.Account_Short_Name__c,&quot; &quot;,&quot;&quot;)
+
+&amp;
+IF(ISPICKVAL(SBQQ__Quote__r.Version__c,&quot;1&quot;),&quot;&quot;,&quot;_v&quot;&amp;TEXT( SBQQ__Version__c ))
+
+, 
+
+
+TEXT(YEAR(SBQQ__Quote__r.SBQQ__ExpirationDate__c))&amp; 
+IF(MONTH(SBQQ__Quote__r.SBQQ__ExpirationDate__c) &lt;10,&quot;0&quot;&amp;TEXT(MONTH(SBQQ__Quote__r.SBQQ__ExpirationDate__c)),TEXT(MONTH(SBQQ__Quote__r.SBQQ__ExpirationDate__c)))&amp; 
+TEXT(DAY(SBQQ__Quote__r.SBQQ__ExpirationDate__c))&amp; 
+&quot;_Bundle#&quot;&amp; 
+ SBQQ__Quote__r.OSA_Number__c &amp; 
+IF(ISPICKVAL(SBQQ__Quote__r.Line_of_Business__c,&quot;Intapp&quot;),&quot;_Intapp_&quot;,IF(ISPICKVAL(SBQQ__Quote__r.Line_of_Business__c,&quot;DealCloud&quot;),&quot;_DealCloud_&quot;,&quot;&quot;))&amp;
+SUBSTITUTE(SBQQ__Quote__r.SBQQ__Account__r.Account_Short_Name__c,&quot; &quot;,&quot;&quot;)
+&amp; &quot;_v&quot; &amp;  TEXT( SBQQ__Version__c )
+ 
+
+))</formula>
+    <label>CustomName</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

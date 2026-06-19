@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Unfollow</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Unfollow</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/18.0/connection.js&quot;)}
+
+// EDIT THE FOLLOWING LINE TO ALTER THE CODE FOR OTHER OBJECTS. USE THE PICKLISTS ABOVE TO SELECT FIELD TYPE = $ObjectType AND THE OBJECT NAME THEN REPLACE &quot;$ObjectType.Case&quot; WITH YOUR NEW OBJECT NAME
+var records = {!GETRECORDIDS( $ObjectType.Case)};
+
+// display running message popup
+function LBox() {
+  var box = new parent.SimpleDialog(&quot;steve&quot;+Math.random(), true);
+  parent.box = box;
+
+  box.setTitle(&quot;Unfollow Records&quot;);
+
+  box.createDialog();
+  box.setWidth(220);
+
+  box.setContentInnerHTML(&quot;&lt;img src=&apos;/img/loading32.gif&apos; alt=&apos;&apos; /&gt; Running&quot;);
+
+  box.setupDefaultButtons();
+
+  box.show();
+}
+
+// display output message
+function CBox(){
+  if (unfollow_count &lt; records.length)
+  box.setContentInnerHTML(&quot;You have now unfollowed &quot;+unfollow_count+&quot; records.  You were not following the other selected records.  &lt;br /&gt;&lt;br /&gt;&lt;a href=\&quot;#\&quot; onclick=\&quot;box.hide();\&quot;&gt;Close&lt;/a&gt;&quot;);
+ else
+  box.setContentInnerHTML(&quot;You have now unfollowed &quot;+unfollow_count+&quot; records. &lt;br /&gt;&lt;br /&gt;&lt;a href=\&quot;#\&quot; onclick=\&quot;box.hide();\&quot;&gt;Close&lt;/a&gt;&quot;);
+}
+
+if (records[0] == null) {
+  alert(&quot;Please select at least one record.&quot;);
+}
+else {
+  var unfollow_count = 0;
+  
+  LBox();
+
+  try {
+   // find following records
+   var searchstring = &quot;SELECT Id FROM EntitySubscription WHERE (ParentId IN (&quot;;
+   for (var i = 0; i &lt; records.length - 1; i++) {
+      searchstring += &quot;&apos;&quot; + records[i] + &quot;&apos;,&quot;;
+   }
+   searchstring += &quot;&apos;&quot; + records[records.length - 1] + &quot;&apos;) AND SubscriberId =&apos;{!User.Id}&apos;)&quot;;
+   var resultRecords = sforce.connection.query(searchstring).getArray(&quot;records&quot;);
+
+   // delete following records
+   var recordIds = [];
+   for (var i = 0; i &lt; resultRecords.length; i++) {
+      recordIds.push(resultRecords[i].Id);
+      unfollow_count++;
+   }
+   sforce.connection.deleteIds(recordIds);
+  } catch(e) {
+     alert(e);
+  }
+
+   CBox();
+}</url>
+</WebLink>

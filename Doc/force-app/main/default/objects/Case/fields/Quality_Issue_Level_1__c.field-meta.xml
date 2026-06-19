@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quality_Issue_Level_1__c</fullName>
+    <description>Custom Field built according to BIZ-47763</description>
+    <label>Quality Issue Level 1</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Deal</fullName>
+                <default>false</default>
+                <label>Deal</label>
+            </value>
+            <value>
+                <fullName>Incorrect SOW</fullName>
+                <default>false</default>
+                <label>Incorrect SOW</label>
+            </value>
+            <value>
+                <fullName>Incorrect MSSA</fullName>
+                <default>false</default>
+                <label>Incorrect MSSA</label>
+            </value>
+            <value>
+                <fullName>System Error</fullName>
+                <default>false</default>
+                <label>System Error</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

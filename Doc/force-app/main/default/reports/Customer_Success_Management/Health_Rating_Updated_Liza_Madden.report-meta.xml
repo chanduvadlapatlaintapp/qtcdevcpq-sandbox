@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Subscription__c.CSM_Health_Rating_Last_Modified__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <column>ACCOUNT.NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>McCarter &amp; English LLP (01),Cleary Gottlieb Steen &amp; Hamilton LLP (01),Cravath,Swaine &amp; Moore LLP (01),Davis Polk &amp; Wardwell LLP (01),Debevoise &amp; Plimpton LLP (01),Hughes Hubbard &amp; Reed LLP (01),Jackson Lewis P.C. (01),Kobre &amp; Kim LLP (01),Patterson Belknap Webb &amp; Tyler LLP (01),PJT Partners (01),Proskauer Rose LLP (01),Schulte Roth &amp; Zabel LLP (01),Shearman &amp; Sterling LLP (01),Simpson Thacher &amp; Bartlett LLP (01),Skadden,Arps,Slate,Meagher &amp; Flom LLP (01),Stroock &amp; Stroock &amp; Lavan LLP (01),Weil,Gotshal &amp; Manges,LLP (01)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.CRD__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Liza Madden</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Health Rating Updated - Liza Madden</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountCustomEntity$Subscription__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Subscription__c.CSM_Health_Rating_Last_Modified__c</dateColumn>
+        <endDate>2016-06-30</endDate>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2016-01-01</startDate>
+    </timeFrameFilter>
+</Report>

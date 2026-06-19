@@ -1,0 +1,11 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="1" aEditID="c1r1" >
+<![CDATA[<P>&nbsp;A new case closing survey has been received for <SPAN style="FONT-WEIGHT: bold">{!Case.Account}</SPAN><BR><BR><BR><SPAN style="FONT-WEIGHT: bold">Name:</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; {!Case.Survey_Name__c}<BR><SPAN style="FONT-WEIGHT: bold">Project Manager:</SPAN> {!Case.Survey_ProjectManagerName__c}<BR><SPAN style="FONT-WEIGHT: bold">Engineer:</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; {!Case.Survey_EngineerName__c}<BR><SPAN style="FONT-WEIGHT: bold">Consultant:</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; {!Case.Survey_Consultant__c}<BR><BR><SPAN style="FONT-WEIGHT: bold">Product:</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {!Case.Survey_ProductName__c}<BR><BR><SPAN style="FONT-WEIGHT: bold">Overall Score:</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; {!Case.Survey_OverallScore__c}<BR><SPAN style="FONT-WEIGHT: bold">Project Manager Score:</SPAN>&nbsp; {!Case.Survey_ProjectManagerScore__c}<BR><SPAN style="FONT-WEIGHT: bold">Engineer Score:</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; {!Case.Survey_EngineerScore__c}<BR><SPAN style="FONT-WEIGHT: bold">Product Score:</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; {!Case.Survey_ProductScore__c}</P>
+<P><STRONG></STRONG>&nbsp;</P>
+<P><STRONG>Comments:</STRONG>&nbsp;&nbsp;{!Case.Survey_Comments__c}<BR><BR>For additional information, please click here: &nbsp;<BR>{!Case.Link}</P>
+<P>&nbsp;</P>
+<P>Associated Implementation Case:&nbsp;&nbsp;<EM>({!Case.Survey_AssociatedCase__c})</EM></P>
+<P><A href="https://na3.salesforce.com/{!Case.Survey_AssociatedCaseId__c}">https://na3.salesforce.com/{!Case.Survey_AssociatedCaseId__c}</A>&nbsp;&nbsp;</P>]]></td>
+</tr>
+</table>

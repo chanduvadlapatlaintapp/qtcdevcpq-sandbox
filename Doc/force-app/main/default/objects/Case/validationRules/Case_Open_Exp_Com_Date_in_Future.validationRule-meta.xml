@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Case_Open_Exp_Com_Date_in_Future</fullName>
+    <active>false</active>
+    <description>When a case is open, the expected completion date must be in the future in order to save the case.</description>
+    <errorConditionFormula>AND(
+ IsClosed = FALSE,
+ PSCase_Project_Exp_Compl_Date__c  &lt;  TODAY()
+)</errorConditionFormula>
+    <errorDisplayField>PSCase_Project_Exp_Compl_Date__c</errorDisplayField>
+    <errorMessage>Please pick an expected completion date of today or later.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,99 @@
+<template>
+    <div class={cardClass}>
+        <!-- Collapsed View -->
+        <div class="card-collapsed" onclick={toggleExpanded}>
+            <div class="card-left">
+                <div class="product-name">{lineData.productName}</div>
+                <template if:true={lineData.segmentLabel}>
+                    <span class="segment-badge">{lineData.segmentLabel}</span>
+                </template>
+                <template if:true={lineData.isLocked}>
+                    <lightning-icon icon-name="utility:lock" size="xx-small" class="lock-icon"></lightning-icon>
+                </template>
+            </div>
+            <div class="card-right">
+                <div class="field-compact">
+                    <span class="field-label">Qty</span>
+                    <span class="field-value">{displayQuantity}</span>
+                </div>
+                <div class="field-compact">
+                    <span class="field-label">Total</span>
+                    <span class="field-value">{displayTotalCost}</span>
+                </div>
+                <template if:true={lineData.approvalRequired}>
+                    <span class={approvalBadgeClass}>{lineData.approvalRequired}</span>
+                </template>
+                <lightning-icon icon-name={expandIcon} size="x-small" class="expand-icon"></lightning-icon>
+            </div>
+        </div>
+
+        <!-- Expanded View -->
+        <template if:true={isExpanded}>
+            <div class="card-expanded">
+                <div class="expanded-grid">
+                    <!-- Editable: Quantity -->
+                    <div class="field-group">
+                        <label>Quantity</label>
+                        <template if:false={lineData.isLocked}>
+                            <lightning-input type="number" value={lineData.quantity}
+                                onchange={handleQuantityChange} variant="label-hidden"
+                                min="0" step="1" class="inline-input"></lightning-input>
+                        </template>
+                        <template if:true={lineData.isLocked}>
+                            <span class="readonly-value">{displayQuantity}</span>
+                        </template>
+                    </div>
+
+                    <!-- Read-only: Monthly Sale Price -->
+                    <div class="field-group">
+                        <label>Monthly Sale Price</label>
+                        <span class="readonly-value">{displayListPrice}</span>
+                    </div>
+
+                    <!-- Read-only: Meter Type -->
+                    <div class="field-group">
+                        <label>Meter Type</label>
+                        <span class="readonly-value">{displayProductCode}</span>
+                    </div>
+
+                    <!-- Read-only: TCV -->
+                    <div class="field-group">
+                        <label>TCV</label>
+                        <span class="readonly-value">{displayTotalCost}</span>
+                    </div>
+
+                    <!-- Read-only: Discount % -->
+                    <div class="field-group">
+                        <label>Discount %</label>
+                        <span class="readonly-value">{displayDiscount}</span>
+                    </div>
+
+                    <!-- Editable: ACV Change -->
+                    <div class="field-group">
+                        <label>ACV Change</label>
+                        <template if:false={lineData.isLocked}>
+                            <lightning-input type="number" value={lineData.acvChange}
+                                onchange={handleAcvChange} variant="label-hidden"
+                                formatter="currency" step="0.01" class="inline-input"></lightning-input>
+                        </template>
+                        <template if:true={lineData.isLocked}>
+                            <span class="readonly-value">{displayAcvChange}</span>
+                        </template>
+                    </div>
+
+                    <!-- Read-only: Approval Required -->
+                    <div class="field-group">
+                        <label>Approval Required</label>
+                        <span class={approvalBadgeClass}>{lineData.approvalRequired}</span>
+                    </div>
+
+                    <!-- Segment Dates -->
+                    <div class="field-group">
+                        <label>Segment Dates</label>
+                        <span class="readonly-value">{displayDateRange}</span>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
+</template>

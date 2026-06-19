@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Intapp_Time_Disposition__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  CONTAINS(TEXT(Intapp_Time_Total_Management__c),&quot;Own it&quot;),
+  &quot;TTM&quot;,
+  IF(
+    CONTAINS(TEXT(Rekoop_Time_Management__c),&quot;Own it - Cloud&quot;),
+    &quot;Rekoop&quot;,
+    IF(
+      ISPICKVAL(DTE_Legacy__c,&quot;Own it&quot;),
+      &quot;DTE Legacy&quot;,
+      IF(
+        AND(
+          CONTAINS(TEXT(Intapp_Time_Core_Management__c),&quot;Own it&quot;),
+          NOT(ISPICKVAL(Intapp_Time_Capture__c,&quot;Own it&quot;)),
+          NOT(ISPICKVAL(Time_Builder__c,&quot;Own it&quot;))
+        ),
+        &quot;Core&quot;,
+        IF(
+          AND(
+            OR(
+              ISPICKVAL(DTE_Axiom__c,&quot;Own it&quot;),
+              CONTAINS(TEXT(Intapp_Time_Core_Management__c),&quot;Own it&quot;)
+            ),
+            OR(
+              ISPICKVAL(Time_Builder__c,&quot;Own it&quot;),
+              CONTAINS(TEXT(Intapp_Time_Capture__c),&quot;Own it&quot;)
+            )
+          ),
+          &quot;Possible TTM&quot;,
+          IF(
+            AND(
+              OR(
+                ISPICKVAL(DTE_Axiom_Mobile__c,&quot;Own it&quot;),
+                CONTAINS(TEXT(Intapp_Time_Mobile__c),&quot;Own it&quot;)
+              ),
+              OR(
+                ISPICKVAL(Time_Builder__c,&quot;Own it&quot;),
+                CONTAINS(TEXT(Intapp_Time_Capture__c),&quot;Own it&quot;)
+              )
+            ),
+            &quot;Capture &amp; Mobile&quot;,
+            IF(
+              ISPICKVAL(Time_Builder__c,&quot;Own it&quot;),
+              &quot;Time Builder Only&quot;,
+              IF(
+                CONTAINS(TEXT(Intapp_Time_Capture__c),&quot;Own it&quot;),
+                &quot;Time Capture Only&quot;,
+                IF(
+                  AND(
+                    ISPICKVAL(DTE_Axiom__c,&quot;Own it&quot;),
+                    OR(
+                      ISPICKVAL(DTE_Axiom_Mobile__c,&quot;Own it&quot;),
+                      CONTAINS(TEXT(Intapp_Time_Mobile__c),&quot;Own it&quot;)
+                    )
+                  ),
+                  &quot;Possible Core&quot;,
+                  IF(
+                    ISPICKVAL(DTE_Axiom__c,&quot;Own it&quot;),
+                    &quot;DTE Axiom Only&quot;,
+                    IF(
+                      OR(
+                        CONTAINS(TEXT(Intapp_Time_Mobile__c),&quot;Own it&quot;),
+                        ISPICKVAL(DTE_Axiom_Mobile__c,&quot;Own it&quot;)
+                      ),
+                      &quot;Mobile Only&quot;,
+                      IF(
+                        CONTAINS(TEXT(Intapp_Time__c),&quot;Own it&quot;),
+                        &quot;Other&quot;,
+                        &quot;Not a Time Customer&quot;
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+)</formula>
+    <label>Intapp Time Disposition - DO NOT USE</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

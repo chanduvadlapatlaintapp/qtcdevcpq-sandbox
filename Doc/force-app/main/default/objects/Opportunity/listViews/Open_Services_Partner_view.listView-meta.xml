@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Open_Services_Partner_view</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Intapp_Open_Version_Required_for_Go_live__c</columns>
+    <columns>Intapp_Open_Go_Live_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Sale_Category__c</field>
+        <operation>equals</operation>
+        <value>New Software Product</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Closed Won</value>
+    </filters>
+    <filters>
+        <field>Package__c</field>
+        <operation>equals</operation>
+        <value>Intake,Conflicts</value>
+    </filters>
+    <label>Open Services Partner view</label>
+    <sharedTo>
+        <role>ProductManager</role>
+        <roleAndSubordinatesInternal>CEO</roleAndSubordinatesInternal>
+        <roleAndSubordinatesInternal>CFO</roleAndSubordinatesInternal>
+        <roleAndSubordinatesInternal>COO</roleAndSubordinatesInternal>
+        <roleAndSubordinatesInternal>CTO</roleAndSubordinatesInternal>
+    </sharedTo>
+</ListView>

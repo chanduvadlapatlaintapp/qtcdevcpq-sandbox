@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Contact.Full_Name__c</field>
+    </columns>
+    <columns>
+        <field>TITLE</field>
+    </columns>
+    <columns>
+        <field>OWNER_FULL_NAME</field>
+    </columns>
+    <columns>
+        <field>Account.New_Intapp_Time_Prospect__c</field>
+    </columns>
+    <columns>
+        <field>Contact.Standard_Title__c</field>
+    </columns>
+    <columns>
+        <field>Contact.Role_old__c</field>
+    </columns>
+    <currency>GBP</currency>
+    <description>Proposed NAML TTM List for Crystal campaign Feb&apos;18</description>
+    <filter>
+        <criteriaItems>
+            <column>Account.New_Intapp_Time_Prospect__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>unengaged non-customer</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contact.Role_old__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>includes</operator>
+            <value>Finance Leader,Firm Management</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contact.Standard_Title__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>CFO,COO</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Simple_Territory__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>NA Mid-size Law</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Intapp_Master_Ranking__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>TYPE</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>ACCOUNT.NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>NAML Total Time Unengaged Proposed List</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>ContactList</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

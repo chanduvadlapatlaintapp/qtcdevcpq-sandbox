@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>SBQQ__Quote__c$Account_Name__c</field>
+    </columns>
+    <columns>
+        <field>SBQQ__Quote__c$SBQQ__Opportunity2__c</field>
+    </columns>
+    <columns>
+        <field>SBQQ__Quote__c$Name</field>
+    </columns>
+    <columns>
+        <field>SBQQ__Quote__c$CreatedDate</field>
+    </columns>
+    <columns>
+        <field>SBQQ__Quote__c$OSA_Auto_Number__c</field>
+    </columns>
+    <columns>
+        <field>SBQQ__Quote__c.SBQQ__Orders__r$OrderNumber</field>
+    </columns>
+    <columns>
+        <field>SBQQ__Quote__c.SBQQ__Orders__r.SBQQ__Contracts__r$ContractNumber</field>
+    </columns>
+    <columns>
+        <field>SBQQ__Quote__c$Deal_Type__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>SBQQ__Quote__c.SBQQ__Orders__r$Sync_NetSuite__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Quotes which are Ordered and integrated to NetSuite to be billed</description>
+    <format>Tabular</format>
+    <name>Billing Team - Orders ready to be billed</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Quote_with_Contract_and_Order__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>SBQQ__Quote__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

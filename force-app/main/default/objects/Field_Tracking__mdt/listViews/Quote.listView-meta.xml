@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quote</fullName>
+    <columns>MasterLabel</columns>
+    <columns>DeveloperName</columns>
+    <columns>NamespacePrefix</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Object_Name__c</field>
+        <operation>equals</operation>
+        <value>SBQQ__Quote__c</value>
+    </filters>
+    <label>Quote</label>
+    <language>en_US</language>
+</ListView>

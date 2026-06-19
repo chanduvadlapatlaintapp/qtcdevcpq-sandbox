@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validation_On_Update_Of_Meter_Type</fullName>
+    <active>true</active>
+    <description>BIZ-45118:Contract ops should have the ability to update the Meter Type</description>
+    <errorConditionFormula>AND(ISCHANGED(Per_Integrations__c),$Profile.Name &lt;&gt; &apos;Contracts / CRM Ops&apos;)</errorConditionFormula>
+    <errorMessage>Meter Type cannot be changed. Please contact Contract Ops to update the Meter Type.</errorMessage>
+</ValidationRule>

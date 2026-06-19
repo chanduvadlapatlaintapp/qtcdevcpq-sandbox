@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesIncludeBosses>true</doesIncludeBosses>
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Order Management Team</name>
+    <queueMembers>
+        <users>
+            <user>chandrika.patil@intapp.com</user>
+            <user>eric.thorne@intapp.com</user>
+            <user>kelly.karsten@intapp.com</user>
+            <user>michael.rowan@intapp.com</user>
+            <user>selena.long@intapp.com</user>
+            <user>ted.minkov@intapp.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Order</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>Order_Change__c</sobjectType>
+    </queueSobject>
+</Queue>

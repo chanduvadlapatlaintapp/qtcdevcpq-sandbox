@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>sent to PSS to inform them a new order has been entered</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Order to be shipped</name>
+    <style>none</style>
+    <subject>Saleforce Automation: New {!Order_Header__c.RecordType} Order for {!Order_Header__c.Account__c}</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

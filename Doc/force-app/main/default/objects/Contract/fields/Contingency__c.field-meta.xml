@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contingency__c</fullName>
+    <description>Does this contract have any contingencies, or any acceptance criteria that must be met?</description>
+    <inlineHelpText>Does this contract have any contingencies, or any acceptance criteria that must be met?</inlineHelpText>
+    <label>Contingency Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>- Acceptance criteria - Services</fullName>
+                <default>false</default>
+                <label>- Acceptance criteria - Services</label>
+            </value>
+            <value>
+                <fullName>- Acceptance criteria - Software</fullName>
+                <default>false</default>
+                <label>- Acceptance criteria - Software</label>
+            </value>
+            <value>
+                <fullName>- Acceptance criteria - Terms &amp; Conditions</fullName>
+                <default>false</default>
+                <label>- Acceptance criteria - Terms &amp; Conditions</label>
+            </value>
+            <value>
+                <fullName>- POC</fullName>
+                <default>false</default>
+                <label>- POC</label>
+            </value>
+            <value>
+                <fullName>- Right of Return</fullName>
+                <default>false</default>
+                <label>- Right of Return</label>
+            </value>
+            <value>
+                <fullName>- All of the above</fullName>
+                <default>false</default>
+                <label>- All of the above</label>
+            </value>
+            <value>
+                <fullName>- Other</fullName>
+                <default>false</default>
+                <label>- Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

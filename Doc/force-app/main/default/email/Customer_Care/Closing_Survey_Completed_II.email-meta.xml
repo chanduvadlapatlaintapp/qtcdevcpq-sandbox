@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>PS_Survey_Letterhead</letterhead>
+    <name>Closing Survey Completed II</name>
+    <style>newsletter</style>
+    <subject>Closing Survey for {!SFDC_Survey__c} Completed</subject>
+    <textOnly>Account: {!SFDC_Survey__c.Account__c}
+
+
+Product Line: {!SFDC_Survey__c.Product_Line_Text__c}
+
+
+
+Client PjM Contact: {!SFDC_Survey__c.Contact__c}
+Date Client PjM Interviewed: {!SFDC_Survey__c.Date_Client_PjM_Interviewed__c}
+
+
+Client Business Owner: {!SFDC_Survey__c.Client_Owner__c}
+Date Business Owner Interviewed: {!SFDC_Survey__c.Date_Business_IT_Owner_Interviewed__c}
+
+
+
+Survey Link: {!SFDC_Survey__c.Link}
+
+**To view the Intapp Resource individual scores, please click on the Survey Link above and scroll down to the Intapp Resources section at the bottom of the page**
+
+Client Objectives/Success Criteria
+
+PjM Project Objective: {!SFDC_Survey__c.PjM_Project_Objective__c}
+
+
+PjM Objective Fulfillment: Score: {!SFDC_Survey__c.PjM_Objective_Fulfilment_Score__c}
+
+
+
+Client Review of Product
+
+PjM Impression of Product: Score: {!SFDC_Survey__c.PjM_Impression_of_Product_Score__c}
+
+
+PjM Impression of Product: Reason: {!SFDC_Survey__c.PjM_Impression_of_Product_Reason__c}
+
+
+PjM Impression of Product: Advice: {!SFDC_Survey__c.PjM_Impression_of_Product_Advice__c}
+
+
+
+PjM End User Satisfaction: Score: {!SFDC_Survey__c.PjM_End_User_Satisfaction_Score__c}
+PjM End User Satisfaction: Reason:  {!SFDC_Survey__c.PjM_End_User_Satisfaction_Reason__c}
+PjM End User Satisfaction: Advice: {!SFDC_Survey__c.PjM_End_User_Satisfaction_Advice__c}
+
+
+
+
+Client Summary Review of Project
+
+Impression of Project: Score: {!SFDC_Survey__c.Impression_of_Project_Score__c}
+
+
+
+Impression of Project: Reason: {!SFDC_Survey__c.Impression_of_Project_Reason__c}
+
+
+
+Impression of Project: Advice: {!SFDC_Survey__c.Impression_of_Project_Advice__c}
+
+
+
+
+Client Review of Support Process
+
+Impression of Support: Score: {!SFDC_Survey__c.Impression_of_Support_Handover_Score__c}
+
+
+Impression of Support: Reason: {!SFDC_Survey__c.Impression_of_Support_Handover_Reason__c}
+
+
+Impression of Support: Advice: {!SFDC_Survey__c.Impression_Support_Handover_Advice__c}
+
+
+Client Review of Intapp Partner
+
+PjM Impression of Partner: Score: {!SFDC_Survey__c.PjM_Impression_of_Partner_Score__c}
+
+
+PjM Impression of Partner: Reason: {!SFDC_Survey__c.PjM_Impression_of_Partner_Reason__c}
+
+
+PjM Impression of Partner: Advice: {!SFDC_Survey__c.PjM_Impression_of_Partner_Advice__c}
+
+
+
+Client Review of Intapp
+
+PjM Impression of Intapp Score: {!SFDC_Survey__c.PjM_Impression_of_Intapp_Score__c}
+
+
+PjM Impression of Intapp: Reason: {!SFDC_Survey__c.PjM_Impression_of_Intapp_Reason__c}
+
+
+PjM Impression of Intapp: Advice: {!SFDC_Survey__c.PjM_Impression_of_Intapp_Advice__c}
+
+Subscription Management Details
+
+PjM Impression of Health Rating: {!SFDC_Survey__c.PjM_Impression_of_Health_Rating__c}
+
+
+Lifecycle Confirmation: {!SFDC_Survey__c.Lifecycle_Confirmation__c}
+
+
+Subscription Contacts List: {!SFDC_Survey__c.Subscription_Contacts_List__c}
+
+
+
+Other Comments
+
+Client PjM Reference: {!SFDC_Survey__c.Client_PjM_Reference__c}
+Client PjM Reference Notes: {!SFDC_Survey__c.Client_PjM_Reference_Notes__c}
+
+
+
+General PjM Comments: {!SFDC_Survey__c.General_PjM_Comments__c}
+Client Objectives/Success Criteria
+
+Owner Project Objective: {!SFDC_Survey__c.Owner_Project_Objective__c}
+
+
+Owner Objective Fulfillment: Score: {!SFDC_Survey__c.Owner_Objective_Fulfilment_Score__c}
+
+
+
+
+Client Review of Product
+
+Owner Impression of Product: Score: {!SFDC_Survey__c.Owner_Impression_of_Product_Score__c}
+
+
+Owner Impression of Product: Reason: {!SFDC_Survey__c.Owner_Impression_of_Product_Reason__c}
+
+
+Owner Impression of Product: Advice: {!SFDC_Survey__c.Owner_Impression_of_Product_Advice__c}
+
+
+
+Owner End User Satisfaction: Score: {!SFDC_Survey__c.Owner_End_User_Satisfaction_Score__c}
+
+
+Owner End User Satisfaction: Reason: {!SFDC_Survey__c.Owner_End_User_Satisfaction_Reason__c}
+
+
+Owner End User Satisfaction: Advice: {!SFDC_Survey__c.Owner_End_User_Satisfaction_Advice__c}
+
+
+Client Review of Intapp Partner
+
+Owner Impression of Partner: Score: {!SFDC_Survey__c.Owner_Impression_of_Partner_Score__c}
+
+
+Owner Impression of Partner: Reason: {!SFDC_Survey__c.Owner_Impression_of_Partner_Reason__c}
+
+
+Owner Impression of Partner: Advice: {!SFDC_Survey__c.Owner_Impression_of_Partner_Advice__c}
+
+
+Client Review of Intapp
+
+Owner Impression of Intapp Score: {!SFDC_Survey__c.Owner_Impression_of_Intapp_Score__c}
+
+
+Owner Impression of Intapp: Reason: {!SFDC_Survey__c.Owner_Impression_of_Intapp_Reason__c}
+
+
+Owner Impression of Intapp: Advice: {!SFDC_Survey__c.Owner_Impression_of_Intapp_Advice__c}
+
+
+
+
+Subscription Management Details
+
+Owner Impression of Health Rating: {!SFDC_Survey__c.Owner_Impression_of_Health_Rating__c}
+
+
+Other Comments
+
+Client Business/IT Owner Reference: {!SFDC_Survey__c.Client_Business_IT_Owner_Reference__c}
+
+
+Client Business/IT Owner Reference Notes: {!SFDC_Survey__c.Client_Business_IT_Owner_Reference_Notes__c}
+
+
+General Owner Comments: {!SFDC_Survey__c.General_Owner_Comments__c}
+Rule Code: SUR-005Exxx</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

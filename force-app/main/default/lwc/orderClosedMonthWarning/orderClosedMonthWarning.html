@@ -1,0 +1,17 @@
+<template>
+    <template if:true={showWarning}>
+        <div class="slds-notify slds-notify_alert slds-theme_warning" role="alert">
+            <span class="slds-assistive-text">warning</span>
+            <lightning-icon
+                icon-name="utility:warning"
+                size="x-small"
+                alternative-text="Warning"
+                class="slds-m-right_x-small"
+            ></lightning-icon>
+            <h2>
+                <strong>Warning:</strong> The Opportunity Closed Month does not match the current month.
+                Please confirm this Order should be created under the current period.
+            </h2>
+        </div>
+    </template>
+</template>

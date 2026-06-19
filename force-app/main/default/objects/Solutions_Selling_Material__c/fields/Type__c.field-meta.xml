@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <inlineHelpText>Please choose the attachment type.</inlineHelpText>
+    <label>Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Delivered Business Case / ROI</fullName>
+                <default>false</default>
+                <label>Delivered Business Case / ROI</label>
+            </value>
+            <value>
+                <fullName>Draft Evaluation Plan</fullName>
+                <default>false</default>
+                <label>Draft Evaluation Plan</label>
+            </value>
+            <value>
+                <fullName>Final Evaluation Plan</fullName>
+                <default>false</default>
+                <label>Final Evaluation Plan</label>
+            </value>
+            <value>
+                <fullName>Go/No-Go Confirmation Email</fullName>
+                <default>false</default>
+                <label>Go/No-Go Confirmation Email</label>
+            </value>
+            <value>
+                <fullName>Handover Confirmation</fullName>
+                <default>false</default>
+                <label>Handover Confirmation</label>
+            </value>
+            <value>
+                <fullName>Lead Confirmation Email</fullName>
+                <default>false</default>
+                <label>Lead Confirmation Email</label>
+            </value>
+            <value>
+                <fullName>Next Steps Confirmation Email</fullName>
+                <default>false</default>
+                <label>Next Steps Confirmation Email</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Pain Chain</fullName>
+                <default>false</default>
+                <label>Pain Chain</label>
+            </value>
+            <value>
+                <fullName>Power Sponsor Confirmation Email</fullName>
+                <default>false</default>
+                <label>Power Sponsor Confirmation Email</label>
+            </value>
+            <value>
+                <fullName>Proposal</fullName>
+                <default>false</default>
+                <label>Proposal</label>
+            </value>
+            <value>
+                <fullName>Sponsor Confirmation Email</fullName>
+                <default>false</default>
+                <label>Sponsor Confirmation Email</label>
+            </value>
+            <value>
+                <fullName>Transition/Implementation Plan Email</fullName>
+                <default>false</default>
+                <label>Transition/Implementation Plan Email</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

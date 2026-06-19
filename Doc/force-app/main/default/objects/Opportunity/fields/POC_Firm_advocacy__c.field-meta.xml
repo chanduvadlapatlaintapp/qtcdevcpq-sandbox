@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>POC_Firm_advocacy__c</fullName>
+    <description>Does the POC have a champion at the firm?
+
+Part of Technical Debt Project: Week 8 fields (Expiring June 1)</description>
+    <inlineHelpText>Does the POC have a champion at the firm?</inlineHelpText>
+    <label>POC Firm advocacy (Expiring Jun 1)</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Executive Committee</fullName>
+                <default>false</default>
+                <label>Executive Committee</label>
+            </value>
+            <value>
+                <fullName>Technology Committee</fullName>
+                <default>false</default>
+                <label>Technology Committee</label>
+            </value>
+            <value>
+                <fullName>Managing Partner</fullName>
+                <default>false</default>
+                <label>Managing Partner</label>
+            </value>
+            <value>
+                <fullName>Other Key Partner</fullName>
+                <default>false</default>
+                <label>Other Key Partner</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

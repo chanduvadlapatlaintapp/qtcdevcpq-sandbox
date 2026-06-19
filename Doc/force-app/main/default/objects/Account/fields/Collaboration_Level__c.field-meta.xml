@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Collaboration_Level__c</fullName>
+    <label>Collaboration Level</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Not Client-Facing</fullName>
+                <default>false</default>
+                <label>Not Client-Facing</label>
+            </value>
+            <value>
+                <fullName>Reasonable, but Require Coaching</fullName>
+                <default>false</default>
+                <label>Reasonable, but Require Coaching</label>
+            </value>
+            <value>
+                <fullName>Participation Results in Deal Wins</fullName>
+                <default>false</default>
+                <label>Participation Results in Deal Wins</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

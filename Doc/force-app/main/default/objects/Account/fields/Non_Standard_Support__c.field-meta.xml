@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Standard_Support__c</fullName>
+    <formula>IF(
+  OR(
+    CONTAINS(TEXT(Support_Level_Intapp_Open_Conflicts__c),&quot;Premium&quot;),
+    CONTAINS(TEXT(Support_Level_Intapp_Open_Intake__c),&quot;Premium&quot;),
+    CONTAINS(TEXT(Support_Level_Intapp_Time__c),&quot;Premium&quot;),
+    CONTAINS(TEXT(Support_Level_Integration_Builder__c),&quot;Premium&quot;),
+    CONTAINS(TEXT(Support_Level_Wall_Builder__c),&quot;Premium&quot;),
+    CONTAINS(TEXT(Support_Level_Rekoop__c), &quot;Premium&quot;)
+  ),
+  TRUE,
+  FALSE
+)</formula>
+    <label>Non-Standard Support</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Liability__c</fullName>
+    <label>Liability</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>1x software amounts</fullName>
+                <default>false</default>
+                <label>1x software amounts</label>
+            </value>
+            <value>
+                <fullName>1.5x software amounts</fullName>
+                <default>false</default>
+                <label>1.5x software amounts</label>
+            </value>
+            <value>
+                <fullName>2x software amounts</fullName>
+                <default>false</default>
+                <label>2x software amounts</label>
+            </value>
+            <value>
+                <fullName>1x software &amp; services amounts</fullName>
+                <default>false</default>
+                <label>1x software &amp; services amounts</label>
+            </value>
+            <value>
+                <fullName>1.5x software &amp; services amounts</fullName>
+                <default>false</default>
+                <label>1.5x software &amp; services amounts</label>
+            </value>
+            <value>
+                <fullName>2x software &amp; services amounts</fullName>
+                <default>false</default>
+                <label>2x software &amp; services amounts</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>N/A (Master Terms Apply)</fullName>
+                <default>false</default>
+                <label>N/A (Master Terms Apply)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSCase_Wall_Import_Source__c</fullName>
+    <label>Wall Import Source</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>LegalKEY</fullName>
+                <default>false</default>
+                <label>LegalKEY</label>
+            </value>
+            <value>
+                <fullName>WincWall</fullName>
+                <default>false</default>
+                <label>WincWall</label>
+            </value>
+            <value>
+                <fullName>Accutrac</fullName>
+                <default>false</default>
+                <label>Accutrac</label>
+            </value>
+            <value>
+                <fullName>FileSurf</fullName>
+                <default>false</default>
+                <label>FileSurf</label>
+            </value>
+            <value>
+                <fullName>DM Groups</fullName>
+                <default>false</default>
+                <label>DM Groups</label>
+            </value>
+            <value>
+                <fullName>AMH Walls</fullName>
+                <default>false</default>
+                <label>AMH Walls</label>
+            </value>
+            <value>
+                <fullName>Wall Builder Upgrade</fullName>
+                <default>false</default>
+                <label>Wall Builder Upgrade</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

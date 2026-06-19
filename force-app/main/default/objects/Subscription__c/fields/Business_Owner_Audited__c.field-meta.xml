@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Business_Owner_Audited__c</fullName>
+    <formula>IF(
+  Business_Owner_Contacts_Audited__c &gt; 0,
+  TRUE,
+  FALSE
+)</formula>
+    <label>Business Owner Audited?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

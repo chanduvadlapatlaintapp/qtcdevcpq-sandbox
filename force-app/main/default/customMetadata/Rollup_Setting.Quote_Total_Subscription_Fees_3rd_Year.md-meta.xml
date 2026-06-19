@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Quote-Total_Subscription_Fees_3rd_Year</label>
+    <protected>false</protected>
+    <values>
+        <field>Aggregation_function__c</field>
+        <value xsi:type="xsd:string">SUM</value>
+    </values>
+    <values>
+        <field>Child_Object_Name__c</field>
+        <value xsi:type="xsd:string">SBQQ__QuoteLine__c</value>
+    </values>
+    <values>
+        <field>Child_object_Aggregation_field__c</field>
+        <value xsi:type="xsd:string">NetTotal_No_Currency__c</value>
+    </values>
+    <values>
+        <field>Formula_Source_Fields_Child_Object__c</field>
+        <value xsi:type="xsd:string">NetTotal_No_Currency__c,Product_Type__c,SBQQ__SegmentIndex__c</value>
+    </values>
+    <values>
+        <field>Parent_Object_Field__c</field>
+        <value xsi:type="xsd:string">Total_Subscription_Fees_3rd_Year__c</value>
+    </values>
+    <values>
+        <field>Parent_Object_Name__c</field>
+        <value xsi:type="xsd:string">SBQQ__Quote__c</value>
+    </values>
+    <values>
+        <field>Relationship_field_on_Child__c</field>
+        <value xsi:type="xsd:string">SBQQ__Quote__c</value>
+    </values>
+    <values>
+        <field>SOQL_filter__c</field>
+        <value xsi:type="xsd:string">(Product_Type__c = &apos;Software&apos; OR Product_Type__c = &apos;Software Discount&apos; OR Product_Type__c = &apos;Software Discount (One-Time)&apos;) AND SBQQ__SegmentIndex__c = 3 AND (SBQQ__RequiredBy__c = null OR CPQ_Option_Type__c = &apos;Static Bundle&apos;)</value>
+    </values>
+</CustomMetadata>

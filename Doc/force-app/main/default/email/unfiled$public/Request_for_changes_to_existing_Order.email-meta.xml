@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>BIZ-64703</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>EmptyLetterhead</letterhead>
+    <name>Request for changes to existing Order</name>
+    <style>formalLetter</style>
+    <subject>Request for changes to existing Order</subject>
+    <textOnly>Hello,
+
+Please check the new and existing values for the order and approve/reject the request.
+
+Order : {!Order_Change__c.OrderId__c} 
+
+Order Change : {!Order_Change__c.Name} {!Order_Change__c.Order_Change_URL__c}
+
+
+Thanks</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

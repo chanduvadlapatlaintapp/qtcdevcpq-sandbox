@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>USERS.NAME</field>
+    </columns>
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Account_Field_History__c.Product_Field__c</field>
+    </columns>
+    <columns>
+        <field>Account_Field_History__c.Version_Previous__c</field>
+    </columns>
+    <columns>
+        <field>Account_Field_History__c.Version_Current__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Pulls all Account field history for changes on versions for: Walls, Time Entry, Time Capture, Open and Flow.</description>
+    <format>Tabular</format>
+    <name>Ticket - 10086</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountCustomEntity$Account_Field_History__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>DUE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

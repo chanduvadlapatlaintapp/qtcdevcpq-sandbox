@@ -1,0 +1,25 @@
+<apex:page showHeader="true" sidebar="false" standardStylesheets="false"
+           lightningStylesheets="true" docType="html-5.0"
+           title="Notes and Attachments">
+
+    <apex:includeLightning />
+
+    <div id="lwcContainer" style="min-height: 80vh;"></div>
+
+    <script>
+        var quoteId = '{!JSENCODE($CurrentPage.parameters.quoteId)}';
+
+        $Lightning.use('c:quoteFileViewAllApp', function () {
+            $Lightning.createComponent(
+                'c:quoteFileViewAll',
+                { quoteId: quoteId },
+                'lwcContainer',
+                function (cmp) {
+                    if (cmp) {
+                        console.log('quoteFileViewAll component created successfully');
+                    }
+                }
+            );
+        });
+    </script>
+</apex:page>

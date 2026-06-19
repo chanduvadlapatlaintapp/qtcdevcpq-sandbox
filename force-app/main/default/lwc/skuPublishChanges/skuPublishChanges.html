@@ -1,0 +1,165 @@
+<template>
+    <!-- ===================== LIST VIEW ===================== -->
+    <template if:true={isListView}>
+        <div class="publish-header">
+            <div class="publish-header__text">
+                <h2 class="publish-header__title">Publish Changes</h2>
+                <p class="publish-header__subtitle">Create and submit configuration change sets for review</p>
+            </div>
+            <lightning-button
+                label="New Change Set"
+                variant="brand"
+                icon-name="utility:add"
+                onclick={handleNewChangeSet}
+                disabled={isCreating}>
+            </lightning-button>
+        </div>
+
+        <template if:true={hasChangeSets}>
+            <div class="changeset-list">
+                <template for:each={changeSets} for:item="cs">
+                    <div key={cs.recordId}
+                         class="changeset-row"
+                         data-id={cs.recordId}
+                         onclick={handleRowClick}
+                         role="button"
+                         tabindex="0">
+                        <div class="changeset-row__left">
+                            <div class="changeset-row__name">{cs.name}</div>
+                            <div class="changeset-row__meta">
+                                <span class="changeset-row__date">{cs.formattedDate}</span>
+                                <span class="changeset-row__sep">&middot;</span>
+                                <span class="changeset-row__count">{cs.entryLabel}</span>
+                            </div>
+                        </div>
+                        <div class="changeset-row__right">
+                            <lightning-badge label={cs.displayStatus} class={cs.badgeVariant}></lightning-badge>
+                            <lightning-icon icon-name="utility:chevronright" size="x-small"
+                                            alternative-text="View details">
+                            </lightning-icon>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <template if:false={hasChangeSets}>
+            <div class="empty-state">
+                <lightning-icon icon-name="utility:upload" size="large"
+                                alternative-text="No change sets">
+                </lightning-icon>
+                <h3 class="empty-state__title">No change sets yet</h3>
+                <p class="empty-state__text">
+                    Create a new change set to stage configuration changes for review.
+                </p>
+            </div>
+        </template>
+    </template>
+
+    <!-- ===================== DETAIL VIEW ===================== -->
+    <template if:true={isDetailView}>
+        <div class="detail-header">
+            <button class="detail-back" onclick={handleBackToList}>
+                <lightning-icon icon-name="utility:chevronleft" size="xx-small"
+                                alternative-text="Back">
+                </lightning-icon>
+                <span>Back to Change Sets</span>
+            </button>
+        </div>
+
+        <template if:true={sessionDetail}>
+            <!-- Session Info Card -->
+            <div class="detail-card">
+                <div class="detail-card__header">
+                    <div class="detail-card__title-group">
+                        <h2 class="detail-card__title">{sessionDetail.name}</h2>
+                        <lightning-badge label={detailDisplayStatus}
+                                         class={detailBadgeVariant}>
+                        </lightning-badge>
+                    </div>
+                    <div class="detail-card__meta">
+                        <span>Created {detailFormattedDate}</span>
+                        <template if:true={sessionDetail.createdByName}>
+                            <span>&middot; by {sessionDetail.createdByName}</span>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Processing State -->
+                <template if:true={detailIsProcessing}>
+                    <div class="status-banner status-banner--processing">
+                        <lightning-spinner alternative-text="Processing" size="small">
+                        </lightning-spinner>
+                        <span class="status-banner__text">Your changes are being processed...</span>
+                    </div>
+                </template>
+
+                <!-- Published State -->
+                <template if:true={detailIsPublished}>
+                    <div class="status-banner status-banner--success">
+                        <lightning-icon icon-name="utility:check" size="small"
+                                        alternative-text="Published"
+                                        variant="inverse">
+                        </lightning-icon>
+                        <span class="status-banner__text">Changes published successfully!</span>
+                    </div>
+                </template>
+
+                <!-- Failed State -->
+                <template if:true={detailIsFailed}>
+                    <div class="status-banner status-banner--error">
+                        <lightning-icon icon-name="utility:error" size="small"
+                                        alternative-text="Error"
+                                        variant="error">
+                        </lightning-icon>
+                        <div class="status-banner__content">
+                            <span class="status-banner__text">Publishing failed</span>
+                            <template if:true={sessionDetail.errorMessage}>
+                                <p class="status-banner__detail">{sessionDetail.errorMessage}</p>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Entries List -->
+                <template if:true={detailHasEntries}>
+                    <div class="entries-section">
+                        <h3 class="entries-section__title">Changes in this set</h3>
+                        <template for:each={groupedEntries} for:item="group">
+                            <div key={group.key} class="entry-group">
+                                <div class="entry-group__header">{group.objectName}</div>
+                                <template for:each={group.entries} for:item="entry">
+                                    <div key={entry.recordId} class="entry-row">
+                                        <span class="entry-row__name">{entry.recordName}</span>
+                                        <lightning-badge label={entry.operationType}
+                                                         class={entry.opBadgeVariant}>
+                                        </lightning-badge>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+
+                <template if:false={detailHasEntries}>
+                    <div class="entries-empty">
+                        <p>No changes added to this set yet.</p>
+                    </div>
+                </template>
+
+                <!-- Submit Button -->
+                <template if:true={detailIsDraft}>
+                    <div class="detail-actions">
+                        <lightning-button
+                            label={submitButtonLabel}
+                            variant="brand"
+                            icon-name="utility:upload"
+                            onclick={handleSubmit}
+                            disabled={isSubmitDisabled}>
+                        </lightning-button>
+                    </div>
+                </template>
+            </div>
+        </template>
+    </template>
+</template>

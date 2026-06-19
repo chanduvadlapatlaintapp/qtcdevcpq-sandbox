@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Community_Role__c</fullName>
+    <inlineHelpText>Business = Access to the business Customer Community 
+Technical = Access to the technical Customer Community</inlineHelpText>
+    <label>Customer Community Role</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Integration - Business</fullName>
+                <default>false</default>
+                <label>Integration - Business</label>
+            </value>
+            <value>
+                <fullName>Integration - Technical</fullName>
+                <default>false</default>
+                <label>Integration - Technical</label>
+            </value>
+            <value>
+                <fullName>Risk - Technical</fullName>
+                <default>false</default>
+                <label>Risk - Technical</label>
+            </value>
+            <value>
+                <fullName>Revenue - Business</fullName>
+                <default>false</default>
+                <label>Revenue - Business</label>
+            </value>
+            <value>
+                <fullName>Revenue - Technical</fullName>
+                <default>false</default>
+                <label>Revenue - Technical</label>
+            </value>
+            <value>
+                <fullName>Risk - Business</fullName>
+                <default>false</default>
+                <label>Risk - Business</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>6</visibleLines>
+</CustomField>

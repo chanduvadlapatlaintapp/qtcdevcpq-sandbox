@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>number</bucketType>
+        <developerName>BucketField_70618716</developerName>
+        <masterLabel>Case Initial Response Time</masterLabel>
+        <nullTreatment>z</nullTreatment>
+        <sourceColumnName>Case.Case_Initial_Response_Time__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <to>2</to>
+            </sourceValues>
+            <value>SLA</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>2</from>
+            </sourceValues>
+            <value>Missed SLA</value>
+        </values>
+    </buckets>
+    <buckets>
+        <bucketType>text</bucketType>
+        <developerName>BucketField_6709596</developerName>
+        <masterLabel>Country</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>Case.Account_Territory__c</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Australia-NZ</sourceValue>
+            </sourceValues>
+            <value>APAC</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Mid Atlantic/South East AE</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>MidAtlantic-North</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>North Central</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>North Central AE</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Northeast</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>South East/Central</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>West-Canada</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>West-Canada AE</sourceValue>
+            </sourceValues>
+            <value>North America</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>UK</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>UK AE</sourceValue>
+            </sourceValues>
+            <value>Europe</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>STATUS</field>
+    </columns>
+    <columns>
+        <field>SUBJECT</field>
+    </columns>
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>Case.Case_Initial_Response_Time__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>RECORDTYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Case.Support</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>SUBJECT</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notContain</operator>
+            <value>Undeliverable,Absence du bureau,Email Delivery Failure</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_70618716</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Month</dateGranularity>
+        <field>CREATED_DATEONLY</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>CASE_NUMBER</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Data - Monthly SLA</name>
+    <params>
+        <name>units</name>
+        <value>h</value>
+    </params>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CaseList</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Case.Case_Initial_Response_Time__c</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATEONLY</dateColumn>
+        <endDate>2016-08-31</endDate>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2016-03-01</startDate>
+    </timeFrameFilter>
+</Report>

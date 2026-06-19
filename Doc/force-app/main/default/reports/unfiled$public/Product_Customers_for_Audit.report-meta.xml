@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Subscription__c$Id</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Product_Line_New_Text__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Product_LineNew__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Name</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Amount__c.CONVERT</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Amount__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Account__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Account__c.IntApp_Account_Number__c</field>
+    </columns>
+    <currency>USD</currency>
+    <format>Tabular</format>
+    <name>Product Customers for Audit</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Subscriptions__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Subscription__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

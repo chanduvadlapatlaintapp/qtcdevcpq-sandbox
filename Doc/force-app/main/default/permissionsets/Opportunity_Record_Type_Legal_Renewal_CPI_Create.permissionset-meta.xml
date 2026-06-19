@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Able users to create opportunity records of record type = Legal - Renewal / CPI</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Opportunity Record Type = Legal - Renewal / CPI - Create</label>
+    <recordTypeVisibilities>
+        <recordType>Opportunity.Legal_Renewal</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+</PermissionSet>

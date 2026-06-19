@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OpenAir_Billing_Rule__c</fullName>
+    <description>BIZ-60535 - Requirement for OpenAir.</description>
+    <label>OpenAir Billing Rule</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Item_Revenue_Category__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Fixed Fee % complete</fullName>
+                <default>false</default>
+                <label>Fixed Fee % complete</label>
+            </value>
+            <value>
+                <fullName>Fixed Fee on date or milestone</fullName>
+                <default>false</default>
+                <label>Fixed Fee on date or milestone</label>
+            </value>
+            <value>
+                <fullName>Time</fullName>
+                <default>false</default>
+                <label>Time</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Professional Services</controllingFieldValue>
+            <valueName>Fixed Fee % complete</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Professional Services</controllingFieldValue>
+            <valueName>Fixed Fee on date or milestone</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Professional Services</controllingFieldValue>
+            <valueName>Time</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

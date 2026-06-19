@@ -1,0 +1,58 @@
+<apex:component controller="ApprovalRequestController" access="global">
+    <!-- Attribute to accept User ID -->
+    <apex:attribute name="UserID" assignTo="{!usrId}" type="String" description="Id of the Actor"/>
+
+    <!-- Table layout -->
+    <table border="1" style="border-collapse:collapse; width:100%;" cellpadding="10" valign="top"> 
+        <tr bgcolor="#1797c0" style="color:white;">
+            <th>Action</th>
+            <th>Quote Number</th>
+            <th>Deal Owner</th>
+            <th>Opportunity</th>
+            <th>Account</th>
+            <th>Approval Request Notes</th>
+            <th>Days Since Requested</th>
+        </tr>
+
+        <!-- Repeat over approvals -->
+        <apex:repeat value="{!approvalRequests}" var="approvalRequest">
+            <tr valign="top">
+                <td>
+                    <a href="{!approvalRequest.actionLink}" target="_blank">Approve/Reject</a>
+                </td>
+                <td>
+                    <apex:outputLink value="{!approvalRequest.quoteNumberLink}" target="_blank">
+                        {!approvalRequest.quoteName}
+                    </apex:outputLink>
+                </td>
+                <td>{!approvalRequest.quoteOwnerName}</td>
+                <td>
+                    <apex:outputLink value="{!approvalRequest.opportunityLink}" target="_blank">
+                        {!approvalRequest.opportunityName}
+                    </apex:outputLink>
+                </td>
+                <td>
+                    <apex:outputLink value="{!approvalRequest.accountLink}" target="_blank">
+                        {!approvalRequest.accountName}
+                    </apex:outputLink>
+                </td>
+                <td>{!approvalRequest.approvalRequestNotes}</td>
+                <td>{!approvalRequest.daysSinceRequested}</td>
+                <!--<td>{!approvalRequest.status}</td>
+                <td>{!approvalRequest.submittedDate}</td>
+                 <td>
+                    <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                        <apex:param value="{!approvalRequest.createdDate}" />
+                    </apex:outputText>
+                 </td>-->
+            </tr>
+        </apex:repeat>
+
+        <!-- Summary Row -->
+        <tr bgcolor="#1797c0" style="color:white;">
+            <td colspan="7">
+                <b>Grand Total: ({!IF(NOT(ISBLANK(ApprovalRequests)), ApprovalRequests.size, 0)} Approvals)</b>
+            </td>
+        </tr>
+    </table>
+</apex:component>

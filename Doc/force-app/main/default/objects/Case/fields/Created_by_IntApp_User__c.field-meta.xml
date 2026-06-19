@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Created_by_IntApp_User__c</fullName>
+    <formula>IF(
+   OR(
+      CreatedBy.ProfileId=&quot;00e50000001Bf1Z&quot;,
+      CreatedBy.ProfileId=&quot;00e50000001BeFL&quot;,
+      CreatedBy.ProfileId=&quot;00e50000001BeFQ&quot;,
+      CreatedBy.ProfileId=&quot;00e50000001Be7C&quot;,
+      CreatedBy.ProfileId=&quot;00e50000001BeFV&quot;,
+      CreatedBy.ProfileId=&quot;00e50000001BeFa&quot;,
+      CreatedBy.ProfileId=&quot;00e50000001BeFf&quot;,
+      CreatedBy.ProfileId=&quot;00e50000001BeFk&quot;,
+      CreatedBy.ProfileId=&quot;00e50000001BboW&quot;
+   ),
+   FALSE,TRUE
+)</formula>
+    <label>Created by IntApp User</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,95 @@
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading..." size="small"></lightning-spinner>
+    </template>
+
+    <template if:true={hasRecords}>
+        <div class="record-count-bar">
+            <span class="record-count">{recordCountLabel}</span>
+            <template if:true={isDirty}>
+                <lightning-button label="Save Quote Terms" variant="brand" icon-name="utility:save"
+                    onclick={handleSave} class="slds-m-left_small"></lightning-button>
+            </template>
+        </div>
+
+        <div class="slds-scrollable_x">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped slds-table_fixed-layout branded-table">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th style="width:130px;">Name</th>
+                        <th style="width:420px;">Body</th>
+                        <th style="width:110px;">Type</th>
+                        <th style="width:130px;">Status</th>
+                        <th style="width:70px;">Active</th>
+                        <th style="width:90px;">Print Order</th>
+                        <th style="width:150px;">Category</th>
+                        <th style="width:180px;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={records} for:item="rec">
+                        <tr key={rec.rowIndex}>
+                            <td>
+                                <span class="slds-truncate">{rec.Name}</span>
+                            </td>
+                            <td class="body-col-cell">
+                                <lightning-input-rich-text value={rec.SBQQ__Body__c}
+                                    data-index={rec.rowIndex} data-field="SBQQ__Body__c"
+                                    onchange={handleFieldChange}
+                                    label-visible="false"
+                                    placeholder="Enter body..."></lightning-input-rich-text>
+                            </td>
+                            <td>
+                                <span class="slds-truncate">{rec.SBQQ__Type__c}</span>
+                            </td>
+                            <td>
+                                <lightning-combobox value={rec.SBQQ__Status__c}
+                                    options={statusFieldOptions} data-index={rec.rowIndex}
+                                    data-field="SBQQ__Status__c"
+                                    onchange={handleFieldChange} variant="label-hidden"
+                                    label="Status"></lightning-combobox>
+                            </td>
+                            <td class="cell-checkbox">
+                                <lightning-input type="checkbox" checked={rec.SBQQ__Active__c}
+                                    data-index={rec.rowIndex} data-field="SBQQ__Active__c"
+                                    onchange={handleFieldChange} variant="label-hidden"
+                                    label="Active"></lightning-input>
+                            </td>
+                            <td>
+                                <lightning-input type="number" value={rec.SBQQ__PrintOrder__c}
+                                    data-index={rec.rowIndex} data-field="SBQQ__PrintOrder__c"
+                                    onchange={handleFieldChange} variant="label-hidden"
+                                    label="Order" step="1"></lightning-input>
+                            </td>
+                            <td>
+                                <lightning-combobox value={rec.Term_Category__c}
+                                    options={categoryOptions} data-index={rec.rowIndex}
+                                    data-field="Term_Category__c"
+                                    onchange={handleFieldChange} variant="label-hidden"
+                                    label="Category"></lightning-combobox>
+                            </td>
+                            <td>
+                                <lightning-input value={rec.Description__c}
+                                    data-index={rec.rowIndex} data-field="Description__c"
+                                    onchange={handleFieldChange} variant="label-hidden"
+                                    label="Description"></lightning-input>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+    <template if:false={hasRecords}>
+        <template if:false={isLoading}>
+            <div class="empty-state">
+                <div class="empty-state-icon">
+                    <lightning-icon icon-name="utility:contract" size="small"></lightning-icon>
+                </div>
+                <h3 class="empty-state-heading">No quote terms</h3>
+                <p class="empty-state-text">No quote terms are associated with this product.</p>
+            </div>
+        </template>
+    </template>
+</template>

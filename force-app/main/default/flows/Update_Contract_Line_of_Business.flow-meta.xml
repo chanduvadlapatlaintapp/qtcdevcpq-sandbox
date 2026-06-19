@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>OSA_fields_on_opportunity</name>
+        <label>OSA fields on opportunity</label>
+        <locationX>383</locationX>
+        <locationY>531</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>OSA_field_on_opportunity</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__MasterContract__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>myVariable_current.Associated_Contract_OSA__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Line_of_Business__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__MasterContract__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Contract_Line_of_Business</targetReference>
+            </connector>
+            <label>OSA field on opportunity</label>
+        </rules>
+    </decisions>
+    <description>Update Contract Line of Business from Quote Line of Business.</description>
+    <environments>Default</environments>
+    <interviewLabel>Update Contract Line of Business {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update Contract Line of Business</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Update Contract Line of Business from Quote Line of Business</description>
+        <name>Update_Contract_Line_of_Business</name>
+        <label>Update Contract Line of Business</label>
+        <locationX>1016</locationX>
+        <locationY>520</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.SBQQ__MasterContract__r.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Applicable_Subsidiary__c</field>
+            <value>
+                <elementReference>$Record.Line_of_Business__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OP4I_Deal_Owner__c</field>
+            <value>
+                <elementReference>$Record.OP4I_Deal_Owner__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Contract</object>
+    </recordUpdates>
+    <start>
+        <locationX>676</locationX>
+        <locationY>22</locationY>
+        <connector>
+            <targetReference>OSA_fields_on_opportunity</targetReference>
+        </connector>
+        <object>SBQQ__Quote__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+    <variables>
+        <name>myVariable_current</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+</Flow>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contacts_With_PortalAccounts</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>FULL_NAME</columns>
+    <columns>CONTACT.EMAIL</columns>
+    <columns>PortalAccount__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ShowPortalAccount__c</field>
+        <operation>equals</operation>
+        <value>AccountCreated</value>
+    </filters>
+    <label>Contacts With PortalAccounts</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Technical_Support_Engineer</role>
+    </sharedTo>
+</ListView>

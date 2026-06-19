@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CONTRACT_NUMBER</field>
+    </columns>
+    <columns>
+        <field>STATUS</field>
+    </columns>
+    <columns>
+        <field>ACCOUNT_NAME</field>
+    </columns>
+    <currency>USD</currency>
+    <description>OSAs with statuses</description>
+    <filter>
+        <criteriaItems>
+            <column>Contract.Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notContain</operator>
+            <value>Services Only,Services Change Order,Services Change Order (Internal),Support</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>CONTRACT_NUMBER</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>,9188,11997,16862,18927,17103,19054,19017,18378,18680,17479,7156,18687,16885,18707,6349,18667,18881,18595,17212,11974,16833,7052,14381,18685,18719,18624,7212,18145,18092,18203,18758,18795,6341,18706,18651,18728,7210,7424,6462,6749,9447,8593,11907,18794,18561,16864,18717,6351,6466,17245,16822,16845,16875,18693,16479,19173,17911,16898,17098,18797,18998,17742,6550,18781,17623,18790,9610,16860,17624,16923,18324,16529,17549,18689,18682,17834,17737,18708,18462,18119,17104,18012,17852,17871,18835,18458,16906,17114,17796,7229,13547,18854,10082,17762,16883,17140,16840,17508,6442,18420,18464,17979,19025,17929,18351,16829,18849,18820,18105,18573,17639,19052,18915,18188,18669,18694,6137,19163,17585,17915,18059,17112,8163,18750,18955,16841,18408,16874,18198,17746,18934,17725,18599,16986,19031,16826,18171,17788,17116,18993,17117</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <name>OSAs with statuses</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>ContractList</reportType>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>CONTRACT_NUMBER</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>START_DATE</dateColumn>
+        <endDate>2025-12-31</endDate>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>1900-01-01</startDate>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This notification should go out to CSMOps to follow up with the CSM Acct Mgr on the reference status</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>PS_Survey_Letterhead</letterhead>
+    <name>Reference Program: Detach Contact</name>
+    <style>freeForm</style>
+    <subject>Detached Reference: {!Contact.Name}</subject>
+    <textOnly>{!Contact.Name} which has a reference status of either nominated or active has been detached for an account.  Please contact the former CS Account Manager to determine next steps.
+
+
+
+Contact: {!Contact.Link}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

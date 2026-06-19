@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loss_Detail__c</fullName>
+    <inlineHelpText>If processing a cancellation, please determine the detailed cancellation type here.</inlineHelpText>
+    <label>Cancellation Detail</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Type</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Customer Product Downgrade - Customer Success</fullName>
+                <default>false</default>
+                <label>Customer Product Downgrade - Customer Success</label>
+            </value>
+            <value>
+                <fullName>Customer Product Cancellation - Customer Success</fullName>
+                <default>false</default>
+                <label>Customer Product Cancellation - Customer Success</label>
+            </value>
+            <value>
+                <fullName>Failed POC / ROR / Cancelled Sale</fullName>
+                <default>false</default>
+                <label>Failed POC / ROR / Cancelled Sale</label>
+            </value>
+            <value>
+                <fullName>Partner Cancellation</fullName>
+                <default>false</default>
+                <label>Partner Cancellation</label>
+            </value>
+            <value>
+                <fullName>Credit Adjustment - Data Cleanup</fullName>
+                <default>false</default>
+                <label>Credit Adjustment - Data Cleanup</label>
+            </value>
+            <value>
+                <fullName>Customer Product Downgrade - End User License</fullName>
+                <default>false</default>
+                <label>Customer Product Downgrade - End User License</label>
+            </value>
+            <value>
+                <fullName>Customer Cancellation - Firm Dissolution</fullName>
+                <default>false</default>
+                <label>Customer Cancellation - Firm Dissolution</label>
+            </value>
+            <value>
+                <fullName>Customer Cancellation - Firm Merger</fullName>
+                <default>false</default>
+                <label>Customer Cancellation - Firm Merger</label>
+            </value>
+            <value>
+                <fullName>License Conversion</fullName>
+                <default>false</default>
+                <label>License Conversion</label>
+            </value>
+            <value>
+                <fullName>Customer Product Downgrade - CPI</fullName>
+                <default>false</default>
+                <label>Customer Product Downgrade - CPI</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Cancellation - Customer</controllingFieldValue>
+            <controllingFieldValue>Cancellation - Product</controllingFieldValue>
+            <controllingFieldValue>Downgrade - Product</controllingFieldValue>
+            <controllingFieldValue>Cancellation - Module</controllingFieldValue>
+            <valueName>Customer Product Downgrade - Customer Success</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancellation - Customer</controllingFieldValue>
+            <controllingFieldValue>Cancellation - Product</controllingFieldValue>
+            <controllingFieldValue>Downgrade - Product</controllingFieldValue>
+            <controllingFieldValue>Cancellation - Module</controllingFieldValue>
+            <valueName>Customer Product Cancellation - Customer Success</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancellation - Customer</controllingFieldValue>
+            <controllingFieldValue>Cancellation - Product</controllingFieldValue>
+            <controllingFieldValue>Downgrade - Product</controllingFieldValue>
+            <controllingFieldValue>Cancellation - Module</controllingFieldValue>
+            <valueName>Partner Cancellation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancellation - Customer</controllingFieldValue>
+            <controllingFieldValue>Cancellation - Product</controllingFieldValue>
+            <valueName>Customer Cancellation - Firm Dissolution</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancellation - Customer</controllingFieldValue>
+            <controllingFieldValue>Cancellation - Product</controllingFieldValue>
+            <valueName>Customer Cancellation - Firm Merger</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancellation - Recurring Adjustment</controllingFieldValue>
+            <valueName>Credit Adjustment - Data Cleanup</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>License Conversion - Recurring Decrease</controllingFieldValue>
+            <valueName>License Conversion</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Legal - User Count Decrease</controllingFieldValue>
+            <valueName>Customer Product Downgrade - End User License</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

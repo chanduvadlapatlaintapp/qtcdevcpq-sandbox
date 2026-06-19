@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OpptyStageRestrictEdit</fullName>
+    <active>false</active>
+    <description>Only users with Edit Permission for Oppty Stage will be able to edit the Oppty Stage field.</description>
+    <errorConditionFormula>ISCHANGED(StageName )
+&amp;&amp; NOT(ISNEW())
+&amp;&amp;
+NOT( $Permission.EditPermissionforOpportunityStage)</errorConditionFormula>
+    <errorMessage>User is not allowed to edit the Opportunity Stage field</errorMessage>
+</ValidationRule>

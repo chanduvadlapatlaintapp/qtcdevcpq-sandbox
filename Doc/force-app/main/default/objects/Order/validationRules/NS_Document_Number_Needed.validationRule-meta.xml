@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NS_Document_Number_Needed</fullName>
+    <active>true</active>
+    <description>Contract needed before bill now</description>
+    <errorConditionFormula>AND(
+    SBQQ__Contracted__c = FALSE,
+    ISCHANGED(Latest_Bill_Now_Date_Time__c)
+)</errorConditionFormula>
+    <errorMessage>Please Contract this Order before creating an Invoice.</errorMessage>
+</ValidationRule>

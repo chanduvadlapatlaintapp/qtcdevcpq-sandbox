@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ORDER_Prevent_Status_Change_After_Activa</fullName>
+    <active>true</active>
+    <description>BIZ-73470</description>
+    <errorConditionFormula>AND(
+  ISPICKVAL(PRIORVALUE(Status), &quot;Activated&quot;),
+  NOT(ISCHANGED(Status))
+)</errorConditionFormula>
+    <errorMessage>Order cannot be changed after the order is &quot;Activated.&quot; If this change is required, please contact your System Administrator.</errorMessage>
+</ValidationRule>

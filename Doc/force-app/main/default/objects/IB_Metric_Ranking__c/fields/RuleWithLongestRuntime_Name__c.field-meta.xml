@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RuleWithLongestRuntime_Name__c</fullName>
+    <label>RuleWithLongestRuntime Name</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Long Sleep Rule</fullName>
+                <default>false</default>
+                <label>Long Sleep Rule</label>
+            </value>
+            <value>
+                <fullName>Loop 1000</fullName>
+                <default>false</default>
+                <label>Loop 1000</label>
+            </value>
+            <value>
+                <fullName>Loop 10000 with errors</fullName>
+                <default>false</default>
+                <label>Loop 10000 with errors</label>
+            </value>
+            <value>
+                <fullName>Loop 10000 with warnings</fullName>
+                <default>false</default>
+                <label>Loop 10000 with warnings</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- 
+*********************************************************
+* *** please remember to update the "oid" hidden field to be your "campaign ID" ***
+* When creating new fields, ensure the names are the same as those generated in the web-to-lead form.  (ie. This is a glorified web-2-lead).
+* The "value" fields are the merge details as from a normal HTML template
+* Make sure you also check/update the campaign status.
+*
+* Don't forget to create a web-to-lead form for the Text email version of this.
+*********************************************************                                  
+-->
+<meta name="Copyright" content="salesforce.com">
+<meta name="Author" content="Jeff Challis">
+<link href="/css/ie_global.css" rel="stylesheet" type="text/css">
+<link href="/css/ie_navigation.css" rel="stylesheet" type="text/css">
+<link href="/css/contacts_styles.css" rel="stylesheet" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Request Update</title>
+<STYLE>
+       TD, P, UL, OL, LI, TEXTAREA { font-family: 'Verdana', 'Arial', 'Helvetica'; font-weight: normal; font-size: 11px; color: #666666; }
+       A:visited.{ color: #666666; }
+       A:link { color: #666666; }
+       A:hover { color: #CC0000; }
+   .style1 {color: #F3F3EC}
+.TableBorder {
+	border: thick ridge #EBAF59;
+}
+</STYLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Request Upate</title>
+</head>
+<body>
+<table width="571" border="0" cellpadding="3" cellspacing="3" bordercolor="EBAF59" bgcolor="#F3F3EC" class="TableBorder">
+  <tr>
+    <td width="300"><img src="/servlet/servlet.ImageServer?oid=00D3000000007yR&amp;id=0155000000085Vr" alt="Banking" width="225" height="60" /></td>
+    <td width="265"><h2>Request Update </h2></td>
+  </tr>
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2"><form action="http://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" enctype="application/x-www-form-urlencoded">
+        <input type=hidden name="oid" value="00D3000000007yR">
+        <input type=hidden name="retURL" value="http://www.salesforce.com">
+        <input type=hidden name="Campaign_ID" value="701200000000tXE">
+        <input type=hidden name="member_status" value="Updated">
+        <table width="566" border="0" cellspacing="2" cellpadding="0">
+          <tr>
+            <td>I'm updating my address book and I want to be sure we keep in touch. Can you take a look at the info I have for you below and let me know if it's out of date? </td>
+          </tr>
+          <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="2" bordercolor="EBAF59">
+                <tr>
+                  <TD width="50%" vAlign=top><TABLE cellSpacing=0 cellPadding=0 width=251  border=0>
+                      <TR>
+                        <TD width="250" class="contactinfo"><SPAN class="small">
+                          <label for="0">Salutation:</label>
+                          </SPAN><BR>
+                          <input type="text" maxlength=80 size=30 name="salutation" id="0" value="{!Contact.Salutation}" /></TD>
+                      </TR>
+                      <TR>
+                        <TD width="250" class="contactinfo"><SPAN class="small">
+                          <label for="1">First Name:</label>
+                          </SPAN><BR>
+                          <input name="first_name" type="text" id="first_name" value="{!Contact.FirstName}" size=30 maxlength=80 /></TD>
+                      </TR>
+                      <TR>
+                        <TD width="250" class="contactinfo"><SPAN class="small">
+                          <label for="2">Last Name:</label>
+                          </SPAN><BR>
+                          <input name="last_name" type="text" id="last_name" value="{!Contact.LastName}" size=30 maxlength=80 /></TD>
+                      </TR>
+                      <TR>
+                        <TD width="250" class="contactinfo"><SPAN class="small">
+                          <label for="3">Mailing Street:</label>
+                          </SPAN><BR>
+                          <textarea name="street" id="street" rows="2" cols="36">{!Contact.MailingStreet}</textarea></TD>
+                      </TR>
+                      <TR>
+                        <TD width="250" class="contactinfo"><SPAN class="small">
+                          <label for="4">Mailing City:</label>
+                          </SPAN><BR>
+                          <input name="city" type="text" id="city" value="{!Contact.MailingCity}" size=30 maxlength=80 /></TD>
+                      </TR>
+                      <TR>
+                        <TD width="250" class="contactinfo"><SPAN class="small">
+                          <label for="5">Mailing State/Province:</label>
+                          </SPAN><BR>
+                          <input name="state" type="text" id="state" value="{!Contact.MailingState}" size=30 maxlength=80 /></TD>
+                      </TR>
+                      <TR>
+                        <TD width="250" class="contactinfo"><SPAN class="small">
+                          <label for="6">Mailing Zip/Postal Code:</label>
+                          </SPAN><BR>
+                          <input name="zip" type="text" id="zip" value="{!Contact.MailingPostalCode}" size=30 maxlength=80 /></TD>
+                      </TR>
+                      <TR>
+                        <TD width="250" class="contactinfo"><SPAN class="small">
+                          <label for="7">Mailing Country:</label>
+                          </SPAN><BR>
+                          <input name="country" type="text" id="country" value="{!Contact.MailingCountry}" size=30 maxlength=80 /></TD>
+                      </TR>
+                      <TR>
+                        <TD width="250" class="contactinfo"><SPAN class="small">
+                          <label for="8">Email:</label>
+                          </SPAN><BR>
+                          <input name="email" type="text" id="email" value="{!Contact.Email}" size=30 maxlength=80/></TD>
+                      </TR>
+                    </TABLE></TD>
+                  <TD width="50%" vAlign=top><TABLE cellSpacing=0 cellPadding=3 width=256 border=0>
+                      <TR>
+                        <TD width="250" class="contactinfo"><SPAN class="small">&nbsp;&nbsp;&nbsp;
+                          <label for="9">Company:</label>
+                          </SPAN><BR>
+                          &nbsp;&nbsp;&nbsp;
+                          <input name="company" type="text" id="company" value="{!Account.Name}" size=30 maxlength=80/></TD>
+                      </TR>
+                      <TR>
+                        <TD width="250" class="contactinfo"><SPAN class="small">&nbsp;&nbsp;&nbsp;
+                          <label for="10">Title:</label>
+                          </SPAN><BR>
+                          &nbsp;&nbsp;&nbsp;
+                          <input name="title" type="text" id="title" value="{!Contact.Title}" size=30 maxlength=80/></TD>
+                      </TR>
+                      <TR>
+                        <TD width="250" class="contactinfo"><SPAN class="small">&nbsp;&nbsp;&nbsp;
+                          <label for="11">Department:</label>
+                          </SPAN><BR>
+                          &nbsp;&nbsp;&nbsp;
+                          <input name="department" type="text" id="department" value="{!Contact.Department}" size=30 maxlength=80/></TD>
+                      </TR>
+                      <TR>
+                        <TD width="250" class="contactinfo"><SPAN class="small">&nbsp;&nbsp;&nbsp;
+                          <label for="12">Phone:</label>
+                          </SPAN><BR>
+                          &nbsp;&nbsp;&nbsp;
+                          <input name="phone" type="text" id="phone" value="{!Contact.Phone}" size=30 maxlength=80/></TD>
+                      </TR>
+                      <TR>
+                        <TD width="250" class="contactinfo"><SPAN class="small">&nbsp;&nbsp;&nbsp;
+                          <label for="13">Mobile:</label>
+                          </SPAN><BR>
+                          &nbsp;&nbsp;&nbsp;
+                          <input name="mobile" type="text" id="mobile" value="{!Contact.MobilePhone}" size=30 maxlength=80/></TD>
+                      </TR>
+                      <TR>
+                        <TD width="250" class="contactinfo"><SPAN class="small">&nbsp;&nbsp;&nbsp;
+                          <label for="15">Fax:</label>
+                          </SPAN><BR>
+                          &nbsp;&nbsp;&nbsp;
+                          <input name="fax" type="text" id="fax" value="{!Contact.Fax}" size=30 maxlength=80/></TD>
+                      </TR>
+                    </TABLE></TD>
+                </tr>
+              </table></td>
+          </tr>
+          <tr>
+            <TD class="contactinfo"><SPAN class="small">
+              <label for="3"><br />
+              If you would also like to send a note to {!User.FirstName} {!User.LastName} you may enter it here:</label>
+              </SPAN><BR>
+              <textarea name="description" id="description" rows="5" cols="80"></textarea></TD>
+          </tr>
+        </table>
+        <label><br />
+        <br />
+        <input type="submit" name="Submit" value="Update" />
+        </label>
+      </form></td>
+  </tr>
+  <tr>
+    <td colspan="2"><p>&nbsp;</p>
+      <p>Regards,<br />
+        {!User.FirstName}<br />
+      </p>
+      <p>{!User.CompanyName}<br />
+        {!User.Title}<br />
+        Phone: {!User.Phone}<br />
+        Fax: {!User.Fax}<br />
+        Email: {!User.Email}</p></td>
+  </tr>
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

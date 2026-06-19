@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_33722202</developerName>
+        <masterLabel>Sector</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>INDUSTRY</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Legal</sourceValue>
+            </sourceValues>
+            <value>Law Firm</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>PS - Accounting</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>PS - Accounting - Big 4</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>PS - Accounting - Global Network</sourceValue>
+            </sourceValues>
+            <value>Accounting Firm</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>PS - Consulting</sourceValue>
+            </sourceValues>
+            <value>Consulting Firm</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>FS - Banking</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>FS - Finance</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>FS - Hedge Fund</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>FS - Insurance</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>FS - Investment Banking</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>FS - Private Equity/Venture Capital</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>FS - Trust &amp; Corporate Services</sourceValue>
+            </sourceValues>
+            <value>Financial Services Firm</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>USERS.NAME</field>
+    </columns>
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>TYPE</field>
+    </columns>
+    <columns>
+        <field>RATING</field>
+    </columns>
+    <columns>
+        <field>DUE_DATE</field>
+    </columns>
+    <columns>
+        <field>LAST_UPDATE</field>
+    </columns>
+    <columns>
+        <field>ADDRESS1_STATE</field>
+    </columns>
+    <currency>GBP</currency>
+    <description>Count of Customers split by Sector</description>
+    <filter>
+        <criteriaItems>
+            <column>Account.Customer_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Customer</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Customer_Status__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Geography__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_33722202</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>INDUSTRY</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Customer Count</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountList</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

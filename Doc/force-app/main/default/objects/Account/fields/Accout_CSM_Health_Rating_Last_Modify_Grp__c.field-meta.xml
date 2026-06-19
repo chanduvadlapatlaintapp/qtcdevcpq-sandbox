@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accout_CSM_Health_Rating_Last_Modify_Grp__c</fullName>
+    <description>Account CSM Health rating last modified</description>
+    <externalId>false</externalId>
+    <formula>IF(DATEVALUE(AccountCSM_Health_Rating_Last_Modified__c) &lt; TODAY()-366, &quot;4. 366+ Days&quot;,
+IF(DATEVALUE(AccountCSM_Health_Rating_Last_Modified__c) &lt; TODAY()-180, &quot;3. 181 to 365 Days&quot;,
+IF(DATEVALUE(AccountCSM_Health_Rating_Last_Modified__c) &lt; TODAY()-90, &quot;2. 91 to 180 Days&quot;,
+IF(DATEVALUE(AccountCSM_Health_Rating_Last_Modified__c) &gt;= TODAY()-90, &quot;1. 0 to 90 Days&quot;,
+&quot;5. Never Changed&quot;
+))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Account CSM Health rating last modified</inlineHelpText>
+    <label>Accout CSM Health Rating Last Modify Grp</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

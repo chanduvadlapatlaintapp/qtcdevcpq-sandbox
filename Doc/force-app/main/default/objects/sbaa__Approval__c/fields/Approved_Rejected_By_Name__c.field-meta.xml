@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approved_Rejected_By_Name__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( 
+	ISPICKVAL(sbaa__Status__c,&apos;Approved&apos;) ,  
+	IF(AND(NOT(ISBLANK(sbaa__ApprovedBy__r.FirstName)),NOT(ISNULL(sbaa__ApprovedBy__r.FirstName))), 
+		sbaa__ApprovedBy__r.FirstName + &apos; &apos;, 
+		&apos;&apos;
+	) + &apos;&apos; + 
+	IF(AND(NOT(ISBLANK(sbaa__ApprovedBy__r.LastName)),NOT(ISNULL(sbaa__ApprovedBy__r.LastName))), 
+		sbaa__ApprovedBy__r.LastName, 
+		&apos;&apos;
+	),
+	sbaa__Approver__r.Name
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Approved/Rejected By Name</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

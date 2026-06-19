@@ -1,0 +1,7 @@
+<apex:component controller="SendAttachmentsWithEmails"  access="GLOBAL">
+    <apex:attribute name="quoteId" description="Attribute on the component."
+                    type="String" required="required" assignTo="{!controllerValue}"/>
+    <apex:outputPanel rendered="{!attachmentFound}"> 
+    <p><a href="{!controllerValue}">Document</a></p> 
+    </apex:outputPanel>
+</apex:component>

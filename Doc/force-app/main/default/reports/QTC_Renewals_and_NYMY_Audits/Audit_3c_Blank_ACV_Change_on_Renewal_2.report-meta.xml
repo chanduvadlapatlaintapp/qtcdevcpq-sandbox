@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Opportunity$Account</field>
+    </columns>
+    <columns>
+        <field>Opportunity$OSA_Number__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Opportunity$Amount</field>
+    </columns>
+    <columns>
+        <field>Opportunity$CloseDate</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Opportunity.OpportunityLineItems$ACV_Change__c</field>
+    </columns>
+    <columns>
+        <field>Opportunity.OpportunityLineItems$Product_Name__c</field>
+    </columns>
+    <columns>
+        <field>Opportunity$SBQQ__PrimaryQuote__c</field>
+    </columns>
+    <columns>
+        <field>Opportunity$Additional_Notes__c</field>
+    </columns>
+    <currency>USD</currency>
+    <customDetailFormulas>
+        <calculatedFormula>CASE(MONTH(Opportunity.CloseDate),
+1, &quot;Q3-&quot; + TEXT(YEAR(Opportunity.CloseDate)), 
+2, &quot;Q3-&quot; + TEXT(YEAR(Opportunity.CloseDate)), 
+3, &quot;Q3-&quot; + TEXT(YEAR(Opportunity.CloseDate)), 
+4, &quot;Q4-&quot; + TEXT(YEAR(Opportunity.CloseDate)), 
+5, &quot;Q4-&quot; + TEXT(YEAR(Opportunity.CloseDate)), 
+6, &quot;Q4-&quot; + TEXT(YEAR(Opportunity.CloseDate)), 
+7, &quot;Q1-&quot; + TEXT(YEAR(Opportunity.CloseDate)), 
+8, &quot;Q1-&quot; + TEXT(YEAR(Opportunity.CloseDate)),
+9, &quot;Q1-&quot; + TEXT(YEAR(Opportunity.CloseDate)),
+10,&quot;Q2-&quot; + TEXT(YEAR(Opportunity.CloseDate)),
+11,&quot;Q2-&quot; + TEXT(YEAR(Opportunity.CloseDate)),
+12,&quot;Q2-&quot; + TEXT(YEAR(Opportunity.CloseDate)), 
+&quot;None&quot;)</calculatedFormula>
+        <dataType>Text</dataType>
+        <developerName>CDF1</developerName>
+        <label>Fiscal Quarter</label>
+        <scale>2</scale>
+    </customDetailFormulas>
+    <filter>
+        <criteriaItems>
+            <column>Opportunity$Deal_Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Renewal</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Opportunity.OpportunityLineItems$ACV_Change__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value></value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Opportunity.OpportunityLineItems$CPQ_Option_Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Static Component</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Opportunity$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Audit 3c - Blank ACV Change on Renewal.2</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Opportunities_with_Opp_Products__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Opportunity$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2025-08-24</startDate>
+    </timeFrameFilter>
+</Report>

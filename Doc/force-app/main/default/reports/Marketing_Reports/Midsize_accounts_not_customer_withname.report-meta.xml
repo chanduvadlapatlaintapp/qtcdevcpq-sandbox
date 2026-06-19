@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>FIRST_NAME</field>
+    </columns>
+    <columns>
+        <field>LAST_NAME</field>
+    </columns>
+    <columns>
+        <field>TITLE</field>
+    </columns>
+    <columns>
+        <field>ADDRESS2_COUNTRY</field>
+    </columns>
+    <columns>
+        <field>PHONE1</field>
+    </columns>
+    <columns>
+        <field>EMAIL</field>
+    </columns>
+    <columns>
+        <field>OWNER_FULL_NAME</field>
+    </columns>
+    <columns>
+        <field>EMAIL_OPT_OUT</field>
+    </columns>
+    <columns>
+        <field>Contact.Opt_Out__c</field>
+    </columns>
+    <columns>
+        <field>Contact.Standard_Firm_Role__c</field>
+    </columns>
+    <columns>
+        <field>Contact.Standard_Title__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <column>ACCOUNT.NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>BDB Pitmans LLP,Bernstein,Shur,Sawyer &amp; Nelson,P.A.,Blaney McMurtry LLP,Bodman,PLC,Bressler Amery &amp; Ross PC,Butzel Long,P.C.,Carey Olsen,Carey y Cia Ltda,Connell Foley LLP,DibbsBarker,Dickstein Shapiro LLP,Dreier Stein Kahan Browne Woods George LLP,Field Law LLP,Freeman Mathis &amp; Gary,Gadens Lawyers Melbourne,Gadens Lawyers QLD,Gray Reed,Greensfelder Hemker &amp; Gale P.C.,Hawkins Parnell Thackston &amp; Young LLP,Horwich Farrelly,Jackson McDonald,Kenyon &amp; Kenyon,LeClairRyan PLLC,MacRoberts,McDonald Hopkins Co.,LPA,Michael,Best &amp; Friedrich,Montgomery,McCracken,Walker &amp; Rhoads,L.L.P.,Moore Blatch LLP,Morton Fraser,MTA Solicitors LLP</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>ACCOUNT.NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Murtha Cullina LLP,Norton Rose Fulbright (Aust) - HDY,Novak Druce Connolly Bove &amp; Quigg LLP,Parker Poe Adams &amp; Bernstein LLp,Pierce Atwood LLP,Plunkett &amp; Cooney,P.C,Ropers Majeski Kohn &amp; Bentley,Russell-Cooke,Schnader,Harrison,Segal &amp; Lewis LLP,Sedgwick LLP,Shumaker,Loop &amp; Kendrick LLP,Sills Cummis &amp; Gross,P.C.,Slater Gordon Solutions Legal Limited,Thomson Geer,Wotton + Kearney</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>ACCOUNT.NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Midsize accounts - not customer-withname</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>ContactList</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

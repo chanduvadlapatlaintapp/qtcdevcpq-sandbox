@@ -1,0 +1,846 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Check_for_available_records</name>
+        <label>Check for available records</label>
+        <locationX>182</locationX>
+        <locationY>674</locationY>
+        <defaultConnector>
+            <targetReference>messagewhenopendinggovfound</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Check_for_Case_creation</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>Check_for_pending_Governance_Account</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Check_for_pending_Governance_address</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_OSA_Support_Record_Type_id_for_case_creation</targetReference>
+            </connector>
+            <label>Check for Case creation</label>
+        </rules>
+    </decisions>
+    <description>Submit for Governance Via button if any of the 5 fields status is not verification approved .
+Ticket number BIZ-45066 
+Modified to create a case instead of task according to BIZ-47757
+Modified Case field Values according to BIZ-48208</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>Billtoaccountname</name>
+        <dataType>String</dataType>
+        <expression>{!$Label.recordurl}&amp;&quot;/&quot;&amp;{!Getquoterecordid.Bill_To_Account__c}</expression>
+    </formulas>
+    <formulas>
+        <name>Billtoaccountsimple1</name>
+        <dataType>String</dataType>
+        <expression>IF(ISPICKVAL({!Getquoterecordid.Bill_To_Account__r.Status__c},&quot;Verification Approved&quot;),&apos;Verified Account&apos; , {!Billtoaccountname})</expression>
+    </formulas>
+    <formulas>
+        <name>BILLTOADDRESS</name>
+        <dataType>String</dataType>
+        <expression>{!$Label.recordurl}&amp;&quot;/&quot;&amp;{!Getquoterecordid.Bill_To_Address__c}</expression>
+    </formulas>
+    <formulas>
+        <name>billtoaddresssimple5</name>
+        <dataType>String</dataType>
+        <expression>IF(ISPICKVAL({!Getquoterecordid.Bill_To_Address__r.Status__c},&quot;Verification Approved&quot;),&apos;Verified Address&apos; , {!BILLTOADDRESS})</expression>
+    </formulas>
+    <formulas>
+        <name>quoteaccount</name>
+        <dataType>String</dataType>
+        <expression>{!$Label.recordurl}&amp;&quot;/&quot;&amp;{!Getquoterecordid.SBQQ__Account__r.Id}</expression>
+    </formulas>
+    <formulas>
+        <name>quoteaccountsimple2</name>
+        <dataType>String</dataType>
+        <expression>IF(ISPICKVAL({!Getquoterecordid.SBQQ__Account__r.Status__c},&quot;Verification Approved&quot;),&apos;Verified Account&apos; , {!quoteaccount})</expression>
+    </formulas>
+    <formulas>
+        <name>SHIPTOACCOUNTNAME</name>
+        <dataType>String</dataType>
+        <expression>{!$Label.recordurl}&amp;&quot;/&quot;&amp;{!Getquoterecordid.Ship_To_Account__c}</expression>
+    </formulas>
+    <formulas>
+        <name>Shiptoaccountsimple3</name>
+        <dataType>String</dataType>
+        <expression>IF(ISPICKVAL({!Getquoterecordid.Ship_To_Account__r.Status__c},&quot;Verification Approved&quot;),&apos;Verified Account&apos; , {!SHIPTOACCOUNTNAME})</expression>
+    </formulas>
+    <formulas>
+        <name>Shiptoaddress</name>
+        <dataType>String</dataType>
+        <expression>{!$Label.recordurl}&amp;&quot;/&quot;&amp;{!Getquoterecordid.Ship_To_Address__c}</expression>
+    </formulas>
+    <formulas>
+        <name>shiptoaddresssimple4</name>
+        <dataType>String</dataType>
+        <expression>IF(ISPICKVAL({!Getquoterecordid.Ship_To_Address__r.Status__c},&quot;Verification Approved&quot;),&apos;Verified Address&apos; , {!Shiptoaddress})</expression>
+    </formulas>
+    <interviewLabel>Submit for governance {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Quote : Submit for governance</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordCreates>
+        <name>Create_a_case_for_governance</name>
+        <label>Create a case for governance</label>
+        <locationX>50</locationX>
+        <locationY>998</locationY>
+        <connector>
+            <targetReference>Update_Quote</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>AccountId</field>
+            <value>
+                <elementReference>Getquoterecordid.SBQQ__Account__r.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Deal_Requests__c</field>
+            <value>
+                <elementReference>Descriptionontask</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>Getgroupidcontractsmanagement.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Quote__c</field>
+            <value>
+                <elementReference>Getquoterecordid.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Request_Type__c</field>
+            <value>
+                <stringValue>Account Governance</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Submitted</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <elementReference>SubjectforCase</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Type</field>
+            <value>
+                <stringValue>Contracts Support</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Case</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordLookups>
+        <description>To check if all the 5 fields mentioned in the ticket has value</description>
+        <name>Check_for_blank_Account_Address</name>
+        <label>Check for blank Account/Address</label>
+        <locationX>182</locationX>
+        <locationY>242</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_for_blank_address</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Getquoterecordid.SBQQ__Account__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Getquoterecordid.Bill_To_Account__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Getquoterecordid.Ship_To_Account__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Check_for_blank_address</name>
+        <label>Check for blank address</label>
+        <locationX>182</locationX>
+        <locationY>350</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_for_pending_Governance_Account</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Getquoterecordid.Bill_To_Address__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Getquoterecordid.Ship_To_Address__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Address__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Check_for_pending_Governance_Account</name>
+        <label>Check for pending Governance Account</label>
+        <locationX>182</locationX>
+        <locationY>458</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_for_pending_Governance_address</targetReference>
+        </connector>
+        <filterLogic>(1 AND 2) OR (2 AND 3) OR (2 AND 4)</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Getquoterecordid.SBQQ__Account__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Verification Approved</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Getquoterecordid.Bill_To_Account__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Getquoterecordid.Ship_To_Account__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Check_for_pending_Governance_address</name>
+        <label>Check for pending Governance address</label>
+        <locationX>182</locationX>
+        <locationY>566</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_for_available_records</targetReference>
+        </connector>
+        <filterLogic>(1 AND 2) OR (2 AND 3)</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Getquoterecordid.Bill_To_Address__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Verification Approved</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Getquoterecordid.Ship_To_Address__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Address__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_OSA_Support_Record_Type_id_for_case_creation</name>
+        <label>Get OSA Support Record Type id for case creation</label>
+        <locationX>50</locationX>
+        <locationY>782</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Getgroupidcontractsmanagement</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>OSA_Support</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>SobjectType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Case</stringValue>
+            </value>
+        </filters>
+        <object>RecordType</object>
+        <outputAssignments>
+            <assignToReference>recordtypeidofcase</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
+        <name>Getgroupidcontractsmanagement</name>
+        <label>Getgroupidcontractsmanagement</label>
+        <locationX>50</locationX>
+        <locationY>890</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_a_case_for_governance</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Type</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Queue</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Contracts_Management</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Group</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Getquoterecordid</name>
+        <label>Getquoterecordid</label>
+        <locationX>182</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_for_blank_Account_Address</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SBQQ__Quote__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Quote</name>
+        <label>Update Quote</label>
+        <locationX>50</locationX>
+        <locationY>1106</locationY>
+        <connector>
+            <targetReference>Successful_Creation_of_Case</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Getquoterecordid.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>AccountGovernance_Case_Opened__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>SBQQ__Quote__c</object>
+    </recordUpdates>
+    <screens>
+        <name>messagewhenopendinggovfound</name>
+        <label>messagewhenopendinggovfound</label>
+        <locationX>314</locationX>
+        <locationY>782</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>message13</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;No case creation needed !!&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Successful_Creation_of_Case</name>
+        <label>Successful Creation of Case</label>
+        <locationX>50</locationX>
+        <locationY>1214</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Casecreationsuccess</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;Governance Case Has been created!!&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Getquoterecordid</targetReference>
+        </connector>
+    </start>
+    <status>Obsolete</status>
+    <textTemplates>
+        <name>ABB_9</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: {!quoteaccount}
+Bill To Account: {!Billtoaccountname}
+Ship To Account: Verified
+Address record that requires governance.
+Bill To Address: {!BILLTOADDRESS}
+Ship To Address: Verified</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ABD_17</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: {!quoteaccount}
+Bill To Account: Verified
+Ship To Account: Verified
+Address record that requires governance.
+Bill To Address: {!BILLTOADDRESS}
+Ship To Address: Verified</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ABS_8</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: {!quoteaccount}
+Bill To Account: {!Billtoaccountname}
+Ship To Account: Verified
+Address record that requires governance.
+Bill To Address: Verified
+Ship To Address: {!Shiptoaddress}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ABSB_7</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: {!quoteaccount}
+Bill To Account: {!Billtoaccountname}
+Ship To Account: Verified
+Address record that requires governance.
+Bill To Address: {!BILLTOADDRESS}
+Ship To Address: {!Shiptoaddress}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ABSS_4</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: {!quoteaccount}
+Bill To Account: {!Billtoaccountname}
+Ship To Account: {!SHIPTOACCOUNTNAME}
+Address record that requires governance.
+Bill To Address: Verified
+Ship To Address: {!Shiptoaddress}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ABSSB_5</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: {!quoteaccount}
+Bill To Account: {!Billtoaccountname}
+Ship To Account: {!SHIPTOACCOUNTNAME}
+Address record that requires governance.
+Bill To Address: {!BILLTOADDRESS}
+Ship To Address: {!Shiptoaddress}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>accountbillandship_3</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: {!quoteaccount}
+Bill To Account: {!Billtoaccountname}
+Ship To Account: {!SHIPTOACCOUNTNAME}
+Address record that requires governance.
+Bill To Address: Verified
+Ship To Address: Verified</text>
+    </textTemplates>
+    <textTemplates>
+        <name>AS_14</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: {!quoteaccount}
+Bill To Account: Verified
+Ship To Account: {!SHIPTOACCOUNTNAME}
+Address record that requires governance.
+Bill To Address: Verified
+Ship To Address: Verified</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ASB_13</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: {!quoteaccount}
+Bill To Account: Verfied
+Ship To Account: {!SHIPTOACCOUNTNAME}
+Address record that requires governance.
+Bill To Address: {!BILLTOADDRESS}
+Ship To Address: Verified</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ASBB_6</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: {!quoteaccount}
+Bill To Account: Verified
+Ship To Account: {!SHIPTOACCOUNTNAME}
+Address record that requires governance.
+Bill To Address: {!BILLTOADDRESS}
+Ship To Address: Verified</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ASH_16</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: {!quoteaccount}
+Bill To Account: Verified
+Ship To Account: Verified
+Address record that requires governance.
+Bill To Address: Verified
+Ship To Address: {!Shiptoaddress}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ASHB_15</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: {!quoteaccount}
+Bill To Account: Verified
+Ship To Account: Verified
+Address record that requires governance.
+Bill To Address: {!BILLTOADDRESS}
+Ship To Address: {!Shiptoaddress}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ASS_12</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: {!quoteaccount}
+Bill To Account: Verified
+Ship To Account: {!SHIPTOACCOUNTNAME}
+Address record that requires governance.
+Bill To Address: Verified
+Ship To Address: {!Shiptoaddress}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ASSB_11</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: {!quoteaccount}
+Bill To Account: verified
+Ship To Account: {!SHIPTOACCOUNTNAME}
+Address record that requires governance.
+Bill To Address: {!BILLTOADDRESS}
+Ship To Address: {!Shiptoaddress}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>BB_26</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: Verified
+Bill To Account: {!Billtoaccountname}
+Ship To Account: Verified
+Address record that requires governance.
+Bill To Address: {!BILLTOADDRESS}
+Ship To Address: Verified</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Billto_27</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: Verified
+Bill To Account: {!Billtoaccountname}
+Ship To Account: Verified
+Address record that requires governance.
+Bill To Address: Verified
+Ship To Address: Verified</text>
+    </textTemplates>
+    <textTemplates>
+        <name>billto_34</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: Verified
+Bill To Account: Verified
+Ship To Account: Verified
+Address record that requires governance.
+Bill To Address: {!BILLTOADDRESS}
+Ship To Address: Verified</text>
+    </textTemplates>
+    <textTemplates>
+        <name>billtoaccountblank</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;{!Getquoterecordid.SBQQ__Account__r.Name}&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>BS_23</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: Verified
+Bill To Account: {!Billtoaccountname}
+Ship To Account: {!SHIPTOACCOUNTNAME}
+Address record that requires governance.
+Bill To Address: Verified
+Ship To Address: Verified</text>
+    </textTemplates>
+    <textTemplates>
+        <name>BS_32</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: Verified
+Bill To Account: Verified
+Ship To Account: Verified
+Address record that requires governance.
+Bill To Address: {!BILLTOADDRESS}
+Ship To Address: {!Shiptoaddress}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>BSB_21</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: Verified
+Bill To Account: {!Billtoaccountname}
+Ship To Account: {!SHIPTOACCOUNTNAME}
+Address record that requires governance.
+Bill To Address: {!BILLTOADDRESS}
+Ship To Address: Verified</text>
+    </textTemplates>
+    <textTemplates>
+        <name>BSH_25</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: Verified
+Bill To Account: {!Billtoaccountname}
+Ship To Account: Verified
+Address record that requires governance.
+Bill To Address: Verified
+Ship To Address: {!Shiptoaddress}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>BSHB_24</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: Verified
+Bill To Account: {!Billtoaccountname}
+Ship To Account: Verified
+Address record that requires governance.
+Bill To Address: {!BILLTOADDRESS}
+Ship To Address: {!Shiptoaddress}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>BSS_20</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: Verified
+Bill To Account: {!Billtoaccountname}
+Ship To Account: {!SHIPTOACCOUNTNAME}
+Address record that requires governance.
+Bill To Address: Verified
+Ship To Address: {!Shiptoaddress}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>BSSB_19</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: Verified
+Bill To Account: {!Billtoaccountname}
+Ship To Account: {!SHIPTOACCOUNTNAME}
+Address record that requires governance.
+Bill To Address: {!BILLTOADDRESS}
+Ship To Address: {!Shiptoaddress}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Descriptionontask</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;&lt;strong&gt;Account and Addresses on {!Getquoterecordid.Name} that require Governance :&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt; Sold To Account ({!Getquoterecordid.SBQQ__Account__r.Name}) :  {!quoteaccountsimple2}&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Bill To Account ({!Getquoterecordid.Bill_To_Account__r.Name})  :  {!Billtoaccountsimple1}&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Ship To Account ({!Getquoterecordid.Ship_To_Account__r.Name}) :  {!Shiptoaccountsimple3}&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Bill To Address ({!Getquoterecordid.Bill_To_Address__r.Name}) :  {!billtoaddresssimple5}&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Ship To Address ({!Getquoterecordid.Ship_To_Address__r.Name}) :  {!shiptoaddresssimple4}&lt;/li&gt;&lt;/ul&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>QuoteAccount_1</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;Account record that requires governance.&lt;/p&gt;&lt;p&gt;Quote Account:&amp;nbsp;{!quoteaccount}&lt;/p&gt;&lt;p&gt;Bill To Account: &lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt; verified&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Ship To Account: Verified&lt;/p&gt;&lt;p&gt;Address record that requires governance.&lt;/p&gt;&lt;p&gt;Bill To Address: Verified&lt;/p&gt;&lt;p&gt;Ship To Address: Verified&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Quoteaccounturl</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;Account record that requires governance. &lt;/p&gt;&lt;p&gt;Quote Account: &lt;a href=&quot; {!Billtoaccountname}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Click&lt;/a&gt; to open Account&lt;/p&gt;&lt;p&gt;Bill To Account: Verified&lt;/p&gt;&lt;p&gt;Ship To Account: Verified&lt;/p&gt;&lt;p&gt;Address record that requires governance.&lt;/p&gt;&lt;p&gt;Bill To Address: Verified&lt;/p&gt;&lt;p&gt;Ship To Address: Verified&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Quoteandbilltoaccount_2</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: {!quoteaccount}
+Bill To Account: {!Billtoaccountname}
+Ship To Account: Verified
+Address record that requires governance.
+Bill To Address: Verified
+Ship To Address: Verified</text>
+    </textTemplates>
+    <textTemplates>
+        <name>SB_30</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: Verified
+Bill To Account: Verified
+Ship To Account: {!SHIPTOACCOUNTNAME}
+Address record that requires governance.
+Bill To Address: {!BILLTOADDRESS}
+Ship To Address: Verified</text>
+    </textTemplates>
+    <textTemplates>
+        <name>shiptoaccountURL</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;Account record that requires governance.&lt;/p&gt;&lt;p&gt;Quote Account: &lt;a href=&quot;https://intapp--qtcdev.sandbox.lightning.force.com/builder_platform_interaction/%7B!Billtoaccountname%7D&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Click&lt;/a&gt; to open Account&lt;/p&gt;&lt;p&gt;Bill To Account: Verified&lt;/p&gt;&lt;p&gt;Ship To Account: &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!SHIPTOACCOUNTNAME} &lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;open Account&lt;/span&gt; &lt;/p&gt;&lt;p&gt;Address record that requires governance.&lt;/p&gt;&lt;p&gt;Bill To Address: Verified&lt;/p&gt;&lt;p&gt;Ship To Address: Verified&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>SHIPTOAD_31</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: Verified
+Bill To Account: Verified
+Ship To Account: {!SHIPTOACCOUNTNAME}
+Address record that requires governance.
+Bill To Address: Verified
+Ship To Address: Verified</text>
+    </textTemplates>
+    <textTemplates>
+        <name>SHIPTOADD33</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: Verified
+Bill To Account: Verified
+Ship To Account: Verified
+Address record that requires governance.
+Bill To Address: Verified
+Ship To Address: {!Shiptoaddress}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>SS_29</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: Verified
+Bill To Account: Verified
+Ship To Account: {!SHIPTOACCOUNTNAME}
+Address record that requires governance.
+Bill To Address: Verified
+Ship To Address: {!Shiptoaddress}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>SSB_28</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Account record that requires governance.
+Quote Account: Verified
+Bill To Account: Verified
+Ship To Account: {!SHIPTOACCOUNTNAME}
+Address record that requires governance.
+Bill To Address: {!BILLTOADDRESS}
+Ship To Address: {!Shiptoaddress}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>SubjectforCase</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Need account / address governance for quote - {!Getquoterecordid.Name}</text>
+    </textTemplates>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>recordtypeidofcase</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

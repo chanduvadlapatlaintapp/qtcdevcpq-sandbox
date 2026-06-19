@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Percentage_of_ACV</fullName>
+    <columns>PRODUCT2.NAME</columns>
+    <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+    <columns>PRODUCT2.DESCRIPTION</columns>
+    <columns>PRODUCT2.ACTIVE</columns>
+    <columns>SBQQ__SubscriptionPricing__c</columns>
+    <columns>Pricing_Basis__c</columns>
+    <columns>Percentage_of_ACV__c</columns>
+    <columns>Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>PRODUCT2.ACTIVE</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Pricing_Basis__c</field>
+        <operation>equals</operation>
+        <value>% of ACV</value>
+    </filters>
+    <label>Percentage of ACV</label>
+</ListView>

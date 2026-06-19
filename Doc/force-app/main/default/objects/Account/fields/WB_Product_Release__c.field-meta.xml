@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WB_Product_Release__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Wall Builder release currently deployed at account</description>
+    <inlineHelpText>Wall Builder release currently deployed at account</inlineHelpText>
+    <label>WB Version</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>WB Version value does not exist or does not match filter criteria.</errorMessage>
+        <filterItems>
+            <field>Product_Release__c.Product_Line__r.Name</field>
+            <operation>equals</operation>
+            <value>Intapp Walls</value>
+        </filterItems>
+        <filterItems>
+            <field>Product_Release__c.Name</field>
+            <operation>notEqual</operation>
+            <value>Unscheduled</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Product_Release__c</referenceTo>
+    <relationshipLabel>Deployed Accounts</relationshipLabel>
+    <relationshipName>Accounts</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

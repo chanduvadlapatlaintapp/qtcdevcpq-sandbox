@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Root_Cause_Analysis_Subcategory__c</fullName>
+    <label>RCA Subcategory</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Root_Cause_Analysis_Category__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Lack of Product Knowledge</fullName>
+                <default>false</default>
+                <label>Lack of Product Knowledge</label>
+            </value>
+            <value>
+                <fullName>Poor Response Time</fullName>
+                <default>false</default>
+                <label>Poor Response Time</label>
+            </value>
+            <value>
+                <fullName>Project Took Too Long</fullName>
+                <default>false</default>
+                <label>Project Took Too Long</label>
+            </value>
+            <value>
+                <fullName>Wants UX Improvements</fullName>
+                <default>false</default>
+                <label>Wants UX Improvements</label>
+            </value>
+            <value>
+                <fullName>Missing Functionality</fullName>
+                <default>false</default>
+                <label>Missing Functionality</label>
+            </value>
+            <value>
+                <fullName>Product Quality</fullName>
+                <default>false</default>
+                <label>Product Quality</label>
+            </value>
+            <value>
+                <fullName>Product not well adopted</fullName>
+                <default>false</default>
+                <label>Product not well adopted</label>
+            </value>
+            <value>
+                <fullName>Unhappy with Price or Price Structure</fullName>
+                <default>false</default>
+                <label>Unhappy with Price or Price Structure</label>
+            </value>
+            <value>
+                <fullName>Believed score was good</fullName>
+                <default>false</default>
+                <label>Believed score was good</label>
+            </value>
+            <value>
+                <fullName>Process Issues</fullName>
+                <default>false</default>
+                <label>Process Issues</label>
+            </value>
+            <value>
+                <fullName>Architecture</fullName>
+                <default>false</default>
+                <label>Architecture</label>
+            </value>
+            <value>
+                <fullName>Partner Issues</fullName>
+                <default>false</default>
+                <label>Partner Issues</label>
+            </value>
+            <value>
+                <fullName>Competition</fullName>
+                <default>false</default>
+                <label>Competition</label>
+            </value>
+            <value>
+                <fullName>Dissatisfied with Project</fullName>
+                <default>false</default>
+                <label>Dissatisfied with Project</label>
+            </value>
+            <value>
+                <fullName>Request More Outbound Communication</fullName>
+                <default>false</default>
+                <label>Request More Outbound Communication</label>
+            </value>
+            <value>
+                <fullName>Resolvable Issue</fullName>
+                <default>false</default>
+                <label>Resolvable Issue</label>
+            </value>
+            <value>
+                <fullName>Product Documentation Lacking or Nonexistent</fullName>
+                <default>false</default>
+                <label>Product Documentation Lacking or Nonexistent</label>
+            </value>
+            <value>
+                <fullName>Dissatisfied with Training or Training Material</fullName>
+                <default>false</default>
+                <label>Dissatisfied with Training or Training Material</label>
+            </value>
+            <value>
+                <fullName>Improve communications on new releases/features</fullName>
+                <default>false</default>
+                <label>Improve communications on new releases/features</label>
+            </value>
+            <value>
+                <fullName>Business case uncertain or in doubt</fullName>
+                <default>false</default>
+                <label>Business case uncertain or in doubt</label>
+            </value>
+            <value>
+                <fullName>Poor engagement and/or communications</fullName>
+                <default>false</default>
+                <label>Poor engagement and/or communications</label>
+            </value>
+            <value>
+                <fullName>Request for more training</fullName>
+                <default>false</default>
+                <label>Request for more training</label>
+            </value>
+            <value>
+                <fullName>Request to improve portal contents</fullName>
+                <default>false</default>
+                <label>Request to improve portal contents</label>
+            </value>
+            <value>
+                <fullName>More engagement requested</fullName>
+                <default>false</default>
+                <label>More engagement requested</label>
+            </value>
+            <value>
+                <fullName>Improve promotion of best practices</fullName>
+                <default>false</default>
+                <label>Improve promotion of best practices</label>
+            </value>
+            <value>
+                <fullName>Enhancements requested</fullName>
+                <default>false</default>
+                <label>Enhancements requested</label>
+            </value>
+            <value>
+                <fullName>No Issues Reported</fullName>
+                <default>false</default>
+                <label>No Issues Reported</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Support</controllingFieldValue>
+            <valueName>Poor Response Time</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Support</controllingFieldValue>
+            <valueName>Process Issues</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Support</controllingFieldValue>
+            <valueName>Poor engagement and/or communications</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Professional Services</controllingFieldValue>
+            <valueName>Project Took Too Long</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Professional Services</controllingFieldValue>
+            <valueName>Partner Issues</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Professional Services</controllingFieldValue>
+            <valueName>Dissatisfied with Project</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Wants UX Improvements</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Missing Functionality</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Product Quality</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Architecture</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Product Documentation Lacking or Nonexistent</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <controllingFieldValue>CRM</controllingFieldValue>
+            <valueName>Improve communications on new releases/features</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Enhancements requested</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Commercial</controllingFieldValue>
+            <valueName>Unhappy with Price or Price Structure</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Commercial</controllingFieldValue>
+            <valueName>Competition</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Commercial</controllingFieldValue>
+            <valueName>Request More Outbound Communication</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Adoption</controllingFieldValue>
+            <valueName>Product not well adopted</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Adoption</controllingFieldValue>
+            <valueName>Business case uncertain or in doubt</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>No Issues</controllingFieldValue>
+            <valueName>No Issues Reported</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Training / Portal Contents</controllingFieldValue>
+            <valueName>Dissatisfied with Training or Training Material</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Training / Portal Contents</controllingFieldValue>
+            <valueName>Request for more training</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Training / Portal Contents</controllingFieldValue>
+            <valueName>Request to improve portal contents</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CRM</controllingFieldValue>
+            <valueName>More engagement requested</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CRM</controllingFieldValue>
+            <valueName>Improve promotion of best practices</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

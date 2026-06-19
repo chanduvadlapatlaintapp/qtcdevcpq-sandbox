@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>It will populate Account and Quote Approval Request Notes on Approval</description>
+        <name>Update_Approvals_fields_from_Quote</name>
+        <label>Update Approvals fields from Quote</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Account__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Quote__r.SBQQ__Account__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Quote_Approval_Request_Notes__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Quote__r.Approval_Request_Notes__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.sbaa__Opportunity__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Quote__r.SBQQ__Opportunity2__c</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Created w.r.t BIZ-69286</description>
+    <environments>Default</environments>
+    <interviewLabel>Approval Before Insert {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Approval Before Insert</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Approvals_fields_from_Quote</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Quote__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>sbaa__Approval__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

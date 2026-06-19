@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TFG_Opportunity_Annual_at_5_Years__c</fullName>
+    <formula>(TFG_Opportunity_License_Amount__c+(TFG_Opportunity_Maintenance_Amount__c*5))/5</formula>
+    <label>TFG Opportunity Annual at 5 Years</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Purpose__c</fullName>
+    <description>To designate what the purpose/subject of the interaction was (differentiated by type, since type indicates type of interaction)</description>
+    <label>Purpose</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Account Management</fullName>
+                <default>false</default>
+                <label>Account Management</label>
+            </value>
+            <value>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+                <label>Marketing</label>
+            </value>
+            <value>
+                <fullName>Marketing - PR</fullName>
+                <default>false</default>
+                <label>Marketing - PR</label>
+            </value>
+            <value>
+                <fullName>Opportunity work</fullName>
+                <default>false</default>
+                <label>Opportunity work</label>
+            </value>
+            <value>
+                <fullName>PM - Integration Builder</fullName>
+                <default>false</default>
+                <label>PM - Integration Builder</label>
+            </value>
+            <value>
+                <fullName>PM - Time Builder</fullName>
+                <default>false</default>
+                <label>PM - Time Builder</label>
+            </value>
+            <value>
+                <fullName>PM - Wall Builder</fullName>
+                <default>false</default>
+                <label>PM - Wall Builder</label>
+            </value>
+            <value>
+                <fullName>Services</fullName>
+                <default>false</default>
+                <label>Services</label>
+            </value>
+            <value>
+                <fullName>Support</fullName>
+                <default>false</default>
+                <label>Support</label>
+            </value>
+            <value>
+                <fullName>Territory Development</fullName>
+                <default>false</default>
+                <label>Territory Development</label>
+            </value>
+            <value>
+                <fullName>Pre Opportunity</fullName>
+                <default>false</default>
+                <label>Pre Opportunity</label>
+            </value>
+            <value>
+                <fullName>Business Unit Support</fullName>
+                <default>false</default>
+                <label>Business Unit Support</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

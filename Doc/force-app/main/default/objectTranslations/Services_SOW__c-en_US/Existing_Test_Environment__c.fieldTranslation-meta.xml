@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Does the customer have a standing test environment? If so, does it match production or do we need to install software on it? --></help>
+    <label><!-- Existing Test Environment? --></label>
+    <name>Existing_Test_Environment__c</name>
+    <picklistValues>
+        <masterLabel>New Client - Unknown</masterLabel>
+        <translation><!-- New Client - Unknown --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No</masterLabel>
+        <translation><!-- No --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Yes (Test matches Production)</masterLabel>
+        <translation><!-- Yes (Test matches Production) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Yes (Test servers available, software needs to be installed)</masterLabel>
+        <translation><!-- Yes (Test servers available, software needs to be installed) --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

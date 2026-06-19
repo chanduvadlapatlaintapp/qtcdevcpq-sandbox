@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Business_Acceptance_Maturity_Model_Lead_Notification</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <description>Business Acceptance Maturity Model Lead Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>john.vonhof@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>lea.schweitzer@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>InternalNotification/Business_Acceptance_Maturity_Model</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>CASL_compliance</fullName>
+        <field>CASL_Compliance__c</field>
+        <literalValue>1</literalValue>
+        <name>CASL compliance</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCPA_Compliance</fullName>
+        <field>CCPA_Compliance__c</field>
+        <literalValue>1</literalValue>
+        <name>CCPA Compliance</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>GDPR_Compliance</fullName>
+        <field>GDPR_Compliance__c</field>
+        <literalValue>1</literalValue>
+        <name>GDPR Compliance</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Rule Code%3A LEAD-004Exxx</fullName>
+        <actions>
+            <name>Business_Acceptance_Maturity_Model_Lead_Notification</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: LEAD-004Exxx
+Business Acceptance Maturity Model Lead Notifiation
+Sends an email notification to Lea whenever there is a new lead under the Business Acceptance Maturity Model campaign</description>
+        <formula>Campaign.Name=&quot;Business Acceptance Maturity Model&quot;</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A LEAD-005xFxx</fullName>
+        <actions>
+            <name>CASL_compliance</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
+        <criteriaItems>
+            <field>Lead.Country</field>
+            <operation>contains</operation>
+            <value>CAN,CA,Canada</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Lead.State</field>
+            <operation>contains</operation>
+            <value>BC,British Columbia,New Brunswick,NB,Nova Scotia,NS,Ontario,ON,Quebec,QC,Manitoba,MB,Prince Edward Island,PE,Saskatchewan,SK,Alberta,AB,Newfoundland and Labrador,NL,Newfoundland</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Lead.Phone</field>
+            <operation>startsWith</operation>
+            <value>204,226,236,249,250,289,343,365,367,403,416,418,431,437,438,450,506,514,519,548,579,581,587,604,613,639,647,705,709,778,780,782,807,819,825,867,873,902,905,(204),(226),(236),(249),(250),(289),(306),(343),(365),(367),(403),(416),(418),(431),(437),(438)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Lead.State</field>
+            <operation>contains</operation>
+            <value>Newfoundland and Labrador,NL,Newfoundland</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Lead.Phone</field>
+            <operation>startsWith</operation>
+            <value>(450),(506),(514),(519),(548),(579),(581),(587),(604),(613),(639),(647),(705),(709),(778),(780),(782),(807),(819),(825),(867),(873),(902),(905)</value>
+        </criteriaItems>
+        <description>updates CASL compliance</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A LEAD-006xFxx</fullName>
+        <actions>
+            <name>CCPA_Compliance</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 OR 2 OR 3</booleanFilter>
+        <criteriaItems>
+            <field>Lead.State</field>
+            <operation>contains</operation>
+            <value>CA,California</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Lead.Phone</field>
+            <operation>startsWith</operation>
+            <value>209,(209),213,(213),279,(279),310,(310),323,(323),341,(341),408,(408),424,(424),442,(442),510,(510),530,(530),559,(559),562,(562),619 (619),626,(626),628,(628),650,(650),657,(657),661,(661),669,(669),707,(707),714,(714),747,(747),760</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Lead.Phone</field>
+            <operation>startsWith</operation>
+            <value>(760),805,(805),818,(818),820,(820),831,(831),858,(858),909,(909),916,(916),925,(925),949,(949),951,(951)</value>
+        </criteriaItems>
+        <description>updates CCPA Compliance</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A LEAD-007xFxx</fullName>
+        <actions>
+            <name>GDPR_Compliance</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+        <criteriaItems>
+            <field>Lead.Country</field>
+            <operation>contains</operation>
+            <value>Austria,Belgium,Bulgaria,Croatia,Cyprus,Czech Republic,Denmark,Estonia,Finland,France,Germany,Greece,Hungary,Iceland,Ireland,Italy,Latvia,Liechtenstein,Lithuania,Luxembourg,Malta,Netherlands,Norway,Poland,Portugal,Romania</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Lead.Phone</field>
+            <operation>startsWith</operation>
+            <value>+43,+32,+359,+385,+357,+420,+45,+372,+358,+33,+350,+49,+30,+36,+354,+353,+39,+371,+423,+370,+352,+356,+31+,47,+48,+351,+40,+421,+386,+34,+46,+44,+355,+376,+374,+994,+375,+387,+298,+995,+983,+389,+373,+377,+382</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Lead.Phone</field>
+            <operation>startsWith</operation>
+            <value>+7,+378,+381,+41,+90,+380</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Lead.Country</field>
+            <operation>contains</operation>
+            <value>Slovakia,Slovenia,Spain,Sweden,Switzerland,United Kingdom,Cy,cz,dk,fe,gr,de,hu,IE,IM,IT,LT,nl,ng,no,pl,ru,za,es,se,il,CH,ae,GB,UK ·</value>
+        </criteriaItems>
+        <description>updates GDPR Compliance</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

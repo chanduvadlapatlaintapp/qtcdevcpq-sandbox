@@ -1,0 +1,22 @@
+<!-- 
+    @description Visualforce component to display the next approver's name in the approval chain 
+                 using the ApprovalEmailTemplateController. Takes the current approval ID and quote ID 
+                 as attributes and shows the next approver if available.
+    @author Manisha
+    @jira BIZ-68135
+-->
+
+<apex:component controller="ApprovalEmailTemplateController" access="global">
+
+    <!-- Approval ID passed from the template (current approval record) -->
+    <apex:attribute name="approval" type="Id" description="Current Approval ID" assignTo="{!approvalId}" />
+
+    <!-- Quote ID passed from the template -->
+    <apex:attribute name="recordId" assignTo="{!quoteId}" type="Id" description="Quote Id"/>
+
+    <!-- Show next approver's name if available -->
+    <apex:outputPanel rendered="{!NOT(ISNULL(nextApproverName))}">
+        {!nextApproverName}
+    </apex:outputPanel>
+
+</apex:component>

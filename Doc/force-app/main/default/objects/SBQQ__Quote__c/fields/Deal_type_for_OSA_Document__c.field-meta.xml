@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deal_type_for_OSA_Document__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( ISPICKVAL( SBQQ__Type__c , &apos;Amendment&apos;), &apos;Amendment to OSA&apos;, &apos;Order and Sale Agreement&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Deal type for OSA Document</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

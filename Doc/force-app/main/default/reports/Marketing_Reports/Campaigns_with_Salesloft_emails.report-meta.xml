@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CAMPAIGN_NAME</field>
+    </columns>
+    <columns>
+        <field>START_DATE</field>
+    </columns>
+    <columns>
+        <field>END_DATE</field>
+    </columns>
+    <columns>
+        <field>CAMPAIGN_OWNER</field>
+    </columns>
+    <currency>GBP</currency>
+    <description>This report displays campaigns with Salesloft outreach associated commencing 10th February and ending 18th February</description>
+    <filter>
+        <criteriaItems>
+            <column>CAMPAIGN_NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>2020-02-10_Connect NYC_HOL Announcement/Extended Early Bird_Unmailables_INEM_SL,2020-03-04_Legal_20Q3_Toronto CoS/RRT pilot_HALF DAY,2020-03-04_Legal_20Q3_Toronto CoS/RRT pilot_FULL DAY,2020-02-14_Connect NYC_Announce Best Practices Sessions_Unmailables_INEM_SL,2020-03-17_Legal_20Q2_Finance Roundtable_NYC,2020-03-18_Legal_20Q3_Finance Roundtable_CHI,2020-03-19_Legal_20Q3_Finance Roundtable_KC</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Campaigns with Salesloft emails</name>
+    <params>
+        <name>scopeid</name>
+        <value></value>
+    </params>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CampaignList</reportType>
+    <scope>orgAll</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+</Report>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Internal email to CRD and CSM upon NPS Survey completion</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>PS_Survey_Letterhead</letterhead>
+    <name>NPS Survey Notification</name>
+    <style>freeForm</style>
+    <subject>NPS Survey Received for {!SFDC_Survey__c.Product_Line__c}</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Reminder - Jan15 UK Activity Tracker</name>
+    <style>none</style>
+    <subject>Intapp Activity Tracker Webinar Starting in 30 Minutes</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+Thank you for registering for the Intapp Activity Tracker webinar. It will start in 30 minutes, at 2:00pm GMT.
+
+To join the webinar:
+
+URL: https://intappinc.webex.com/intappinc/onstage/g.php?MTID=ee5ba17e6dc3e94bab3a96a1ffd02d50a
+
+Once you join the WebEx you will see the audio conference details. You may need to click on the “show all global call-in numbers” link to find your call-in number.
+
+If you have any difficulties joining the WebEx, please send me an email.
+
+Regards,
+
+Lea Schweitzer
+Marketing Manager
+Intapp - Software for a Changing Legal Market</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

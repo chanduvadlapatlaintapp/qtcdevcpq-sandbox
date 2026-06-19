@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Conga_Trigger_Send_Proforma_Invoice</name>
+        <label>Conga Trigger Send Proforma Invoice</label>
+        <locationX>242</locationX>
+        <locationY>384</locationY>
+        <actionName>Proforma_Invoice__c.Conga_Trigger_Send_Proforma_Invoice</actionName>
+        <actionType>outboundMessage</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <nameSegment>Proforma_Invoice__c.Conga_Trigger_Send_Proforma_Invoice</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Disable_PDF_Generation</name>
+        <label>Disable PDF Generation</label>
+        <locationX>374</locationX>
+        <locationY>276</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>PDF_Generation_Enabled</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Renewal_Quote__r.Disable_RL_PDF_Generation__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Conga_Trigger_Send_Proforma_Invoice</targetReference>
+            </connector>
+            <label>PDF Generation Enabled</label>
+        </rules>
+    </decisions>
+    <description>BIZ-64479 - Renewal Letter - Quote lines missing for auto-renewal</description>
+    <environments>Default</environments>
+    <interviewLabel>Send Proforma Invoice {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Send Proforma Invoice</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Initiated</stringValue>
+            </value>
+        </filters>
+        <object>Proforma_Invoice__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <scheduledPaths>
+            <name>Adding_delay_of_1_min_for_Document_Creation</name>
+            <connector>
+                <targetReference>Disable_PDF_Generation</targetReference>
+            </connector>
+            <label>Adding delay of 1 min for Document Creation</label>
+            <offsetNumber>1</offsetNumber>
+            <offsetUnit>Minutes</offsetUnit>
+            <recordField>CreatedDate</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

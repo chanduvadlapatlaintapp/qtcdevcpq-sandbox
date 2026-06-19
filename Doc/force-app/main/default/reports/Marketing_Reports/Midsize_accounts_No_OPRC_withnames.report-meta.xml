@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>FIRST_NAME</field>
+    </columns>
+    <columns>
+        <field>LAST_NAME</field>
+    </columns>
+    <columns>
+        <field>TITLE</field>
+    </columns>
+    <columns>
+        <field>ADDRESS2_COUNTRY</field>
+    </columns>
+    <columns>
+        <field>EMAIL</field>
+    </columns>
+    <columns>
+        <field>OWNER_FULL_NAME</field>
+    </columns>
+    <columns>
+        <field>EMAIL_OPT_OUT</field>
+    </columns>
+    <columns>
+        <field>Contact.Opt_Out__c</field>
+    </columns>
+    <columns>
+        <field>Contact.Standard_Firm_Role__c</field>
+    </columns>
+    <columns>
+        <field>Contact.Standard_Title__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+        <criteriaItems>
+            <column>ACCOUNT.NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Allen Matkins Leck Gamble &amp; Mallory LLP,Archer &amp; Greiner,P.C.,Armstrong Teasdale LLP,Arnold Bloch Leibler,Ashfords,Balch &amp; Bingham LLP,Bell Gully,Bevan Brittan LLP,Birketts LLP,Blaney McMurtry LLP,Bodman,PLC,Bressler Amery &amp; Ross PC,Bricker &amp; Eckler LLP,Bristows,Buddle Findlay,Capsticks,Carey Olsen,Clarke Willmott LLP,Connell Foley LLP,Constangy,Brooks &amp; Smith,LLC,Cox &amp; Palmer,Creel,García-Cuéllar,Aiza y Enriquez,S.C.,Cripps LLP,Dentons Australia Pty Ltd,Dentons Kensington Swan,Dentons Rodyk &amp; Davidson LLP,DibbsBarker,Dickstein Shapiro LLP,Doughty Street Chambers,Dreier Stein Kahan Browne Woods George LLP</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>ACCOUNT.NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Fladgate LLP,Foot Anstey LLP,Forsters LLP,Freeman Mathis &amp; Gary,Gadens Lawyers Melbourne,Gadens Lawyers QLD,Godfrey &amp; Kahn,S.C.,Gray Reed,Greensfelder Hemker &amp; Gale P.C.,Greenspoon Marder LLP,Hall,Render,Killian,Heath &amp; Lyman,P.C.,Hannes Snellman,Hanson Bridgett LLP,Harper Macleod LLP,Harter Secrest &amp; Emery LLP,Holding Redlich,HopgoodGanim Lawyers,Howard Kennedy,Ince Gordon Dadds,Jackson Kelly PLLC,JMW Solicitors,Johnson Winter &amp; Slattery,Kean Miller LLP,Kenyon &amp; Kenyon,King &amp; Wood Mallesons Hong Kong,Lawson Lundell,LeClairRyan PLLC,Manning &amp; Kass,Ellrod,Ramirez,Trester LLP,Marks &amp; Clerk LLP,McCabe Curwood</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>ACCOUNT.NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>McDonald Hopkins Co.,LPA,Michael,Best &amp; Friedrich,Michelmores LLP,Miranda &amp; Associados,Moore Blatch LLP,MTA Solicitors LLP,Norton Rose Fulbright (Aust) - HDY,Novak Druce Connolly Bove &amp; Quigg LLP,Parsons Behle &amp; Latimer,Peckar &amp; Abramson,Piper Alderman,Plunkett &amp; Cooney,P.C,Posse Herrera Ruiz,Post &amp; Schell PC,Roca Junyent,Roetzel &amp; Andress,Royds Withy King LLP,Russell-Cooke,Rutan &amp; Tucker,LLP,Schellenberg Wittmer Ltd.,Schnader,Harrison,Segal &amp; Lewis LLP,Sedgwick LLP,Seward &amp; Kissel LLP,Shine Lawyers,Simpson Grierson,Slater Gordon Solutions Legal Limited,Stewarts Law LLP,Thomson Geer,Tucker Ellis LLP,Ulmer &amp; Berne LLP</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>ACCOUNT.NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Walker Morris,Warner Norcross &amp; Judd LLP,Wedlake Bell,Whiteford,Taylor &amp; Preston,LLP,Winckworth Sherwood,Windels Marx Lane &amp; Mittendorf LLP,Wotton + Kearney</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Midsize accounts - No OPRC-withnames</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>ContactList</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>Contact.Full_Name__c</field>
+    </columns>
+    <columns>
+        <field>Contact.Standard_Title__c</field>
+    </columns>
+    <columns>
+        <field>CREATED_DATE</field>
+    </columns>
+    <columns>
+        <field>LAST_UPDATE</field>
+    </columns>
+    <columns>
+        <field>Contact.Date_Last_Validated__c</field>
+    </columns>
+    <columns>
+        <field>Contact.Date_Time_contact_info_was_verified__c</field>
+    </columns>
+    <columns>
+        <field>Contact.Contact_info_last_updated_by__c</field>
+    </columns>
+    <currency>GBP</currency>
+    <description>Automation report for Lori for populating the SDR MBO Tracker for Q4FY18</description>
+    <filter>
+        <criteriaItems>
+            <column>Account.Intapp_Master_Ranking__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contact.Standard_Title__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>,1. Senior Partner / Chairman,3. Sector Group Leader / Industry Group Leader,4. Client Relationship Partner / Key Client Partner,5. PGL,13. Knowledge Leader / Information Services Leader,14. Partner and Others</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Sales_Development_Rep__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Lori Hamel</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>AutomationFile:Lori SDR MBO Q4FY18</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>ContactList</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>ACCOUNT.NAME</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deferral__c</fullName>
+    <label>Deferral</label>
+    <referenceTo>RD_Defferals__c</referenceTo>
+    <relationshipLabel>Deferral Invoice Links</relationshipLabel>
+    <relationshipName>Deferral_Invoice_Links</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

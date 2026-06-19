@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Experience__c</fullName>
+    <label>Experience</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Experience - Cloud</fullName>
+                <default>false</default>
+                <label>Experience - Cloud</label>
+            </value>
+            <value>
+                <fullName>Experience - On Prem</fullName>
+                <default>false</default>
+                <label>Experience - On Prem</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

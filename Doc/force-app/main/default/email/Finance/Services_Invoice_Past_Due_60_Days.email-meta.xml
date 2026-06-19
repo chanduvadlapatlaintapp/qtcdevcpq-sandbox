@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>AR_Letterhead</letterhead>
+    <name>Services Invoice Past Due 60 Days</name>
+    <style>freeForm</style>
+    <subject>Services Invoice 60 Days Past Due - {!Invoice__c.OSA_Number__c} {!Invoice__c.Account_Name__c}</subject>
+    <textOnly>Account Name: {!Invoice__c.Account_Name__c}
+OSA: {!Invoice__c.OSA_Number__c}
+OSA Name: {!Invoice__c.OSA_Name__c}
+Invoice Number: {!Invoice__c.Name}
+Due Date: {!Invoice__c.Due_Date__c}
+Days Past Due: {!TODAY() - Invoice__c.Due_Date__c}
+
+The above invoice is now 30 days past due. The Intapp Accounts Receivable team is continuing to pursue collection efforts per the notes in the invoice.
+
+{!Invoice__c.Link}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

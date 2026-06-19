@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Rooney_Team_View_Marketing_PGL</fullName>
+    <booleanFilter>1 AND 2 AND 3</booleanFilter>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>OPPORTUNITY.AMOUNT</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Practice_Lead__c</field>
+        <operation>contains</operation>
+        <value>Raymond</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>notContain</operation>
+        <value>Closed,Closed Won,Closed - Billing Restarted,Closed - Should Never have been</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.LAST_NAME</field>
+        <operation>contains</operation>
+        <value>synder,frederick,shaw,ridge</value>
+    </filters>
+    <label>Rooney Team View - Marketing PGL</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Sales_Team</group>
+    </sharedTo>
+</ListView>

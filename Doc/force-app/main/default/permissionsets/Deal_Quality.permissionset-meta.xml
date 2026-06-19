@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Gives user ability to view Deal Quality and Deal Quality Notes fields on the Opportunity object</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.MSSA_Auto_renewal_Exclusion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.Deal_Quality_Notes__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.Deal_Quality__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Deal Quality</label>
+    <license>Salesforce</license>
+</PermissionSet>

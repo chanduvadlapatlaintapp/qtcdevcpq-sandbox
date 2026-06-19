@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>License_Basis__c</fullName>
+    <label>License Basis</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Product__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Activity Tracker</fullName>
+                <default>false</default>
+                <label>Activity Tracker</label>
+            </value>
+            <value>
+                <fullName>Additional Security Extensions</fullName>
+                <default>false</default>
+                <label>Additional Security Extensions</label>
+            </value>
+            <value>
+                <fullName>Advanced</fullName>
+                <default>false</default>
+                <label>Advanced</label>
+            </value>
+            <value>
+                <fullName>Advanced - Cloud</fullName>
+                <default>false</default>
+                <label>Advanced - Cloud</label>
+            </value>
+            <value>
+                <fullName>Advanced Security Package</fullName>
+                <default>false</default>
+                <label>Advanced Security Package</label>
+            </value>
+            <value>
+                <fullName>AI Module</fullName>
+                <default>false</default>
+                <label>AI Module</label>
+            </value>
+            <value>
+                <fullName>Assessment Module</fullName>
+                <default>false</default>
+                <label>Assessment Module</label>
+            </value>
+            <value>
+                <fullName>Attorney Acknowledgements</fullName>
+                <default>false</default>
+                <label>Attorney Acknowledgements</label>
+            </value>
+            <value>
+                <fullName>Auditing Package</fullName>
+                <default>false</default>
+                <label>Auditing Package</label>
+            </value>
+            <value>
+                <fullName>Capture</fullName>
+                <default>false</default>
+                <label>Capture</label>
+            </value>
+            <value>
+                <fullName>Cloud: Total Management</fullName>
+                <default>false</default>
+                <label>Cloud: Total Management</label>
+            </value>
+            <value>
+                <fullName>Compliance Module</fullName>
+                <default>false</default>
+                <label>Compliance Module</label>
+            </value>
+            <value>
+                <fullName>Confidentiality Package</fullName>
+                <default>false</default>
+                <label>Confidentiality Package</label>
+            </value>
+            <value>
+                <fullName>Contractors</fullName>
+                <default>false</default>
+                <label>Contractors</label>
+            </value>
+            <value>
+                <fullName>Core Limited</fullName>
+                <default>false</default>
+                <label>Core Limited</label>
+            </value>
+            <value>
+                <fullName>Core Management</fullName>
+                <default>false</default>
+                <label>Core Management</label>
+            </value>
+            <value>
+                <fullName>Criteria Based Access</fullName>
+                <default>false</default>
+                <label>Criteria Based Access</label>
+            </value>
+            <value>
+                <fullName>DMS Package</fullName>
+                <default>false</default>
+                <label>DMS Package</label>
+            </value>
+            <value>
+                <fullName>Document Assembly</fullName>
+                <default>false</default>
+                <label>Document Assembly</label>
+            </value>
+            <value>
+                <fullName>Dynamic Groups</fullName>
+                <default>false</default>
+                <label>Dynamic Groups</label>
+            </value>
+            <value>
+                <fullName>Engage. Letter w/ BI</fullName>
+                <default>false</default>
+                <label>Engage. Letter w/ BI</label>
+            </value>
+            <value>
+                <fullName>Engage. Letter w/ BI - Cloud</fullName>
+                <default>false</default>
+                <label>Engage. Letter w/ BI - Cloud</label>
+            </value>
+            <value>
+                <fullName>Extend</fullName>
+                <default>false</default>
+                <label>Extend</label>
+            </value>
+            <value>
+                <fullName>Foundational Walls</fullName>
+                <default>false</default>
+                <label>Foundational Walls</label>
+            </value>
+            <value>
+                <fullName>Lawyer Portal</fullName>
+                <default>false</default>
+                <label>Lawyer Portal</label>
+            </value>
+            <value>
+                <fullName>Legal Holds</fullName>
+                <default>false</default>
+                <label>Legal Holds</label>
+            </value>
+            <value>
+                <fullName>Matter Team Manager</fullName>
+                <default>false</default>
+                <label>Matter Team Manager</label>
+            </value>
+            <value>
+                <fullName>Mobile</fullName>
+                <default>false</default>
+                <label>Mobile</label>
+            </value>
+            <value>
+                <fullName>People, Places &amp; Printers</fullName>
+                <default>false</default>
+                <label>People, Places &amp; Printers</label>
+            </value>
+            <value>
+                <fullName>Regulatory Reporting</fullName>
+                <default>false</default>
+                <label>Regulatory Reporting</label>
+            </value>
+            <value>
+                <fullName>Self Maintaining Walls</fullName>
+                <default>false</default>
+                <label>Self Maintaining Walls</label>
+            </value>
+            <value>
+                <fullName>Standard</fullName>
+                <default>false</default>
+                <label>Standard</label>
+            </value>
+            <value>
+                <fullName>Standard - Cloud</fullName>
+                <default>false</default>
+                <label>Standard - Cloud</label>
+            </value>
+            <value>
+                <fullName>Total Management</fullName>
+                <default>false</default>
+                <label>Total Management</label>
+            </value>
+            <value>
+                <fullName>Wall Builder</fullName>
+                <default>false</default>
+                <label>Wall Builder</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Intake</controllingFieldValue>
+            <valueName>Advanced</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake</controllingFieldValue>
+            <valueName>Advanced - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake</controllingFieldValue>
+            <valueName>Assessment Module</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake</controllingFieldValue>
+            <valueName>Document Assembly</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake</controllingFieldValue>
+            <valueName>Engage. Letter w/ BI</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake</controllingFieldValue>
+            <valueName>Engage. Letter w/ BI - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake</controllingFieldValue>
+            <valueName>Extend</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake</controllingFieldValue>
+            <valueName>Standard</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake</controllingFieldValue>
+            <valueName>Standard - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>AI Module</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>Capture</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>Cloud: Total Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>Compliance Module</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>Core Limited</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>Core Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>Mobile</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>Total Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Activity Tracker</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Additional Security Extensions</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Advanced Security Package</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Attorney Acknowledgements</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Auditing Package</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Confidentiality Package</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Contractors</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Criteria Based Access</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>DMS Package</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Dynamic Groups</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Foundational Walls</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Lawyer Portal</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Legal Holds</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Matter Team Manager</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>People, Places &amp; Printers</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Regulatory Reporting</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Self Maintaining Walls</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Wall Builder</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account.Intapp_Master_Ranking__c</field>
+    </columns>
+    <columns>
+        <field>Account.Lawyers__c</field>
+    </columns>
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.Account_Recurring_Amount__c</field>
+    </columns>
+    <columns>
+        <field>Account.Recurring_Amount_Risk__c</field>
+    </columns>
+    <columns>
+        <field>Account.Recurring_Amount_Time__c</field>
+    </columns>
+    <columns>
+        <field>Account.Recurring_Amount_Integration__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Use this report to identify Accounts that have cancellation opportunities that are incorrect, or sales opportunities missing.</description>
+    <filter>
+        <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+        <criteriaItems>
+            <column>Account.Account_Recurring_Amount__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>lessThan</operator>
+            <value>USD 0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Recurring_Amount_Time__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>lessThan</operator>
+            <value>USD 0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Recurring_Amount_Risk__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>lessThan</operator>
+            <value>USD 0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Recurring_Amount_Integration__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>lessThan</operator>
+            <value>USD 0</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Audit - Accounts with Negative Recurring</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountList</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Account.Account_Recurring_Amount__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2001-06-03</startDate>
+    </timeFrameFilter>
+</Report>

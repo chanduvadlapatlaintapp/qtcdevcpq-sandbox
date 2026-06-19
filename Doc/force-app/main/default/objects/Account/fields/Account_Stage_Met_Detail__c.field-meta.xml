@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Stage_Met_Detail__c</fullName>
+    <label>Account Stage Met Detail</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Account_Stage__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Manager</fullName>
+                <default>false</default>
+                <label>Manager</label>
+            </value>
+            <value>
+                <fullName>Department Director</fullName>
+                <default>false</default>
+                <label>Department Director</label>
+            </value>
+            <value>
+                <fullName>ED/COO/Partner</fullName>
+                <default>false</default>
+                <label>ED/COO/Partner</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>4. Met in Person</controllingFieldValue>
+            <valueName>Manager</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>4. Met in Person</controllingFieldValue>
+            <valueName>Department Director</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>4. Met in Person</controllingFieldValue>
+            <valueName>ED/COO/Partner</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Name__c</fullName>
+    <description>Name of the target Account, captured at run time from the dashboard account search. This string is passed to the Playwright specs (QTC_ACCOUNT_NAME / QTC_ACCOUNT_SEARCH / QTC_ACCOUNT_FULL_NAME) instead of the hard-coded fallback.</description>
+    <externalId>false</externalId>
+    <label>Account Name</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

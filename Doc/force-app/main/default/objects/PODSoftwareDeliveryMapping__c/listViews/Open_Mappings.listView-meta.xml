@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Open_Mappings</fullName>
+    <columns>NAME</columns>
+    <columns>Product__c</columns>
+    <columns>License_Basis__c</columns>
+    <columns>Version__c</columns>
+    <columns>Box_File__c</columns>
+    <columns>Box_Shared_Link__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Product__c</field>
+        <operation>equals</operation>
+        <value>Conflicts,Intake,Terms</value>
+    </filters>
+    <label>Open Mappings</label>
+    <language>en_US</language>
+</ListView>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Processed</fullName>
+    <columns>Line_of_Business__c</columns>
+    <columns>SBQQ__Status__c</columns>
+    <columns>NAME</columns>
+    <columns>SBQQ__Opportunity2__c</columns>
+    <columns>SBQQ__Account__c</columns>
+    <columns>Pricing_Products__c</columns>
+    <columns>SBQQ__MasterContract__c</columns>
+    <columns>SBQQ__StartDate__c</columns>
+    <columns>SBQQ__ExpirationDate__c</columns>
+    <columns>Total_Subscription_Fees__c</columns>
+    <columns>Services_Net_Total__c</columns>
+    <columns>Special_Comments__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>SBQQ__Status__c</field>
+        <operation>equals</operation>
+        <value>Processed</value>
+    </filters>
+    <filters>
+        <field>LAST_UPDATE</field>
+        <operation>greaterOrEqual</operation>
+        <value>6/29/2023 12:00 AM</value>
+    </filters>
+    <label>Total Processed OSA Requests</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>ContractsOps</group>
+        <role>Business_Operations</role>
+    </sharedTo>
+</ListView>

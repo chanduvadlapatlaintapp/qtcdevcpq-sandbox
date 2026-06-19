@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Response for VMware Webinar</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - Oct09 VMware Webinar</name>
+    <style>none</style>
+    <subject>IntApp Virtualization Webinar</subject>
+    <textOnly>{!Lead.FirstName} {!Lead.LastName}:
+
+Thank you for registering for the IntApp virtualization webinar.
+
+Date: Friday, October 9
+Time: 9 am Pacific / 12 pm Eastern
+
+Video:
+
+Conference URL: https://www.livemeeting.com/cc/vcc/join?id=w3482292&amp;role=attend&amp;pw=A348229
+Meeting ID: w3482292
+Entry Code: A348229 
+
+
+Audio:
+
+Conference Audio Dial In:
+US/Canada: 888-298-3451
+UK: 0-808-101-1147
+Passcode: 3482292 
+
+
+Please log in and dial the conference audio line 10 minutes prior to the start time. 
+
+
+http://www.intapp.com
+All information Copyright 2009 IntApp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

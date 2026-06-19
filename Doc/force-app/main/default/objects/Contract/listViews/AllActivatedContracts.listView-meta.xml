@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AllActivatedContracts</fullName>
+    <columns>Applicable_Subsidiary__c</columns>
+    <columns>Subsidiary__c</columns>
+    <columns>CONTRACT.ACTIVATED_BY</columns>
+    <columns>CONTRACT.CONTRACT_NUMBER</columns>
+    <columns>CONTRACT.NAME</columns>
+    <columns>COMPANY_SIGNED_DATE</columns>
+    <columns>CONTRACT.END_DATE</columns>
+    <columns>CONTRACT.STATUS</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Total_Contract_Value__c</columns>
+    <columns>Support_Stream__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CONTRACT.STATUS</field>
+        <operation>equals</operation>
+        <value>In Force</value>
+    </filters>
+    <filters>
+        <field>COMPANY_SIGNED_DATE</field>
+        <operation>greaterThan</operation>
+        <value>2/1/2022</value>
+    </filters>
+    <label>Future Start Activated Contracts</label>
+    <language>en_US</language>
+</ListView>

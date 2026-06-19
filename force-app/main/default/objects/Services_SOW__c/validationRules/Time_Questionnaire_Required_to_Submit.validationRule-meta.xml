@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_Questionnaire_Required_to_Submit</fullName>
+    <active>true</active>
+    <description>Prevents SOW Requests from being submitted in the Time Questionnaire Available field is set to &quot;No&quot;</description>
+    <errorConditionFormula>AND( 
+  ISPICKVAL(Recurring_Involved__c, &quot;Yes&quot;),
+  CONTAINS(TEXT(Product__c),&quot;Time&quot;),
+  ISPICKVAL(Time_Questionnaire_Available__c, &quot;No&quot;), 
+  ISPICKVAL(Status__c, &quot;Submitted&quot;),
+  RecordType.Id = &quot;012500000006rcw&quot;
+)</errorConditionFormula>
+    <errorDisplayField>Status__c</errorDisplayField>
+    <errorMessage>A time questionnaire must be available before an SOW can be submitted.</errorMessage>
+</ValidationRule>

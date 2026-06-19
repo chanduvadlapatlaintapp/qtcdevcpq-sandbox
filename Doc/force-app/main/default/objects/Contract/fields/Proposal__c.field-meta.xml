@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Proposal__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>This links the contract to the appropriate proposal</description>
+    <label>Proposal</label>
+    <referenceTo>Proposal__c</referenceTo>
+    <relationshipLabel>Contracts</relationshipLabel>
+    <relationshipName>R00N50000001Qc4vEAC</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

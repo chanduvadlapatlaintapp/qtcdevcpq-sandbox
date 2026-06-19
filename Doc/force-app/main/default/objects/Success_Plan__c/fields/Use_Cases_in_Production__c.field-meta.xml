@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Use_Cases_in_Production__c</fullName>
+    <inlineHelpText>Which of the above flows are currently in production?</inlineHelpText>
+    <label>Use Cases in Production</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Administrative/Operation Request</fullName>
+                <default>false</default>
+                <label>Administrative/Operation Request</label>
+            </value>
+            <value>
+                <fullName>Application-Specific Workflow</fullName>
+                <default>false</default>
+                <label>Application-Specific Workflow</label>
+            </value>
+            <value>
+                <fullName>DMS/Workspace Management</fullName>
+                <default>false</default>
+                <label>DMS/Workspace Management</label>
+            </value>
+            <value>
+                <fullName>Document Service Center/Routing</fullName>
+                <default>false</default>
+                <label>Document Service Center/Routing</label>
+            </value>
+            <value>
+                <fullName>Email/Fax</fullName>
+                <default>false</default>
+                <label>Email/Fax</label>
+            </value>
+            <value>
+                <fullName>Finance</fullName>
+                <default>false</default>
+                <label>Finance</label>
+            </value>
+            <value>
+                <fullName>Human Resources</fullName>
+                <default>false</default>
+                <label>Human Resources</label>
+            </value>
+            <value>
+                <fullName>IP Practice automation</fullName>
+                <default>false</default>
+                <label>IP Practice automation</label>
+            </value>
+            <value>
+                <fullName>IT/Staff Requests</fullName>
+                <default>false</default>
+                <label>IT/Staff Requests</label>
+            </value>
+            <value>
+                <fullName>Knowledge Management</fullName>
+                <default>false</default>
+                <label>Knowledge Management</label>
+            </value>
+            <value>
+                <fullName>Marketing &amp; Business Development</fullName>
+                <default>false</default>
+                <label>Marketing &amp; Business Development</label>
+            </value>
+            <value>
+                <fullName>Matter Management</fullName>
+                <default>false</default>
+                <label>Matter Management</label>
+            </value>
+            <value>
+                <fullName>Professional Compliance</fullName>
+                <default>false</default>
+                <label>Professional Compliance</label>
+            </value>
+            <value>
+                <fullName>Records Management</fullName>
+                <default>false</default>
+                <label>Records Management</label>
+            </value>
+            <value>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+                <label>Transportation</label>
+            </value>
+            <value>
+                <fullName>Vendor Management</fullName>
+                <default>false</default>
+                <label>Vendor Management</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

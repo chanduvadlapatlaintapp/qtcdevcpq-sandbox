@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AVA_SFCPQ__ValidateAccountsAddress</fullName>
+    <availability>online</availability>
+    <description>Validate Accounts Billing &amp; Shipping addresses</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>Validate Billing Address</masterLabel>
+    <openType>noSidebar</openType>
+    <protected>false</protected>
+    <url>/apex/AVA_MAPPER__addressValidation?id={!Account.Id}&amp;sType=CPQConfig&amp;adrType=Billing&amp;objectAPIName=AVA_SFCPQ__AvaTax_Mapping__c&amp;fieldAPIName=AVA_SFCPQ__Field_Mapping__c</url>
+</WebLink>

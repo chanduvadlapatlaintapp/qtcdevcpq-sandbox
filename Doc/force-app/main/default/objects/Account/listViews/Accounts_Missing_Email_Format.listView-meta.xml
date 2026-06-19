@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accounts_Missing_Email_Format</fullName>
+    <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Email_Format__c</columns>
+    <columns>Generic_Email_Ending__c</columns>
+    <columns>CRD__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ACCOUNT.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Account.LegalAccounts</value>
+    </filters>
+    <filters>
+        <field>Email_Format__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>Generic_Email_Ending__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>ACCOUNT.TYPE</field>
+        <operation>equals</operation>
+        <value>Customer</value>
+    </filters>
+    <label>Accounts Missing Email Format</label>
+    <language>en_US</language>
+</ListView>

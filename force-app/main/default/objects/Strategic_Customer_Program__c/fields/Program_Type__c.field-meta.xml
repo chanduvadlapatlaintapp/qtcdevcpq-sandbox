@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Program_Type__c</fullName>
+    <label>Program Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Cancelled SCP</fullName>
+                <default>false</default>
+                <label>Cancelled SCP</label>
+            </value>
+            <value>
+                <fullName>Candidate for SCP</fullName>
+                <default>false</default>
+                <label>Candidate for SCP</label>
+            </value>
+            <value>
+                <fullName>Enterprise</fullName>
+                <default>false</default>
+                <label>Enterprise</label>
+            </value>
+            <value>
+                <fullName>Informal / Ad-hoc</fullName>
+                <default>false</default>
+                <label>Informal / Ad-hoc</label>
+            </value>
+            <value>
+                <fullName>Key Account</fullName>
+                <default>false</default>
+                <label>Key Account</label>
+            </value>
+            <value>
+                <fullName>Premium Support (Gold)</fullName>
+                <default>false</default>
+                <label>Premium Support (Gold)</label>
+            </value>
+            <value>
+                <fullName>Premium Support (Platinum)</fullName>
+                <default>false</default>
+                <label>Premium Support (Platinum)</label>
+            </value>
+            <value>
+                <fullName>Strategic Enterprise</fullName>
+                <default>false</default>
+                <label>Strategic Enterprise</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

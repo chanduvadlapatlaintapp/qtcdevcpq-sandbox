@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Account Exemption Fields --></label>
+        <name>AVA_SFCPQ__AccountExemptionFields</name>
+    </fieldSets>
+    <recordTypes>
+        <description><!-- Used for accounts in the accounting industry --></description>
+        <label><!-- Accounts - Accounting --></label>
+        <name>Accounts_Accounting</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Accounts - Financial Services --></label>
+        <name>Accounts_Financial_Services</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Used for accounts that are partners --></description>
+        <label><!-- Accounts - Partners --></label>
+        <name>Accounts_Partners</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Used for accounts in the legal industry --></description>
+        <label><!-- Accounts - Legal --></label>
+        <name>LegalAccounts</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Please do not edit this field value --></errorMessage>
+        <name>AVA_SFCPQ__Validate_AvaTax_Exemption_Customer_ID</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Billing Country is required for Create Prospect for NS Subsidiary. --></errorMessage>
+        <name>Address_Required_For_Create_Prospect</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- DC MSA Addendum-Notes Is Required When DC MSA Addendum contains a Contract Number --></errorMessage>
+        <name>DC_MSA_Addendum_Notes_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter ‘Status Justification’ when inactivating/ declining verification request for the account. --></errorMessage>
+        <name>If_Status_Justification_Is_Blank</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Industry field cannot be updated when status is Verified --></errorMessage>
+        <name>Restrict_Edit_access_on_verified_status</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You do not have permission to update Account Status. Please request Contract Ops to update Account Status by creating a Task. --></errorMessage>
+        <name>Status_Validation_NonAdminUser</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Conga_Composer_OAuth --></label>
+        <name>APXTConga4__Conga_Composer_OAuth</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Conga_Mail_Merge --></label>
+        <name>APXTConga4__Conga_Mail_Merge</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Add_Customer_s_to_AvaTax_Exemption --></label>
+        <name>AVA_SFCPQ__Add_Customer_s_to_AvaTax_Exemption</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Save_to_Avalara --></label>
+        <name>AVA_SFCPQ__Save_to_Avalara</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- ValidateAccountsAddress --></label>
+        <name>AVA_SFCPQ__ValidateAccountsAddress</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Validate_Shipping_Address --></label>
+        <name>AVA_SFCPQ__Validate_Shipping_Address</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Account_Dashboard_Btn --></label>
+        <name>Account_Dashboard_Btn</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- AmericanLawyer --></label>
+        <name>AmericanLawyer</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- CSM_Activities --></label>
+        <name>CSM_Activities</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Closed_Won_Opportunities_by_Product_Line --></label>
+        <name>Closed_Won_Opportunities_by_Product_Line</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Closed_Won_Opportunities_by_Product_Line_Contract_Operations --></label>
+        <name>Closed_Won_Opportunities_by_Product_Line_Contract_Operations</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Engagement_Status --></label>
+        <name>Engagement_Status</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Historical_Rankings --></label>
+        <name>Historical_Rankings</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- IB_Rules_ok_over_time --></label>
+        <name>IB_Rules_ok_over_time</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Open_Opportunities_Legal_Sales --></label>
+        <name>Open_Opportunities_Legal_Sales</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Open_Opportunities_by_Product_Line --></label>
+        <name>Open_Opportunities_by_Product_Line</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Open_Renewal_Opportunities --></label>
+        <name>Open_Renewal_Opportunities</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Opportunities_Closed_Won --></label>
+        <name>Opportunities_Closed_Won</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Opportunities_Open --></label>
+        <name>Opportunities_Open</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- OrgViewAccountChart --></label>
+        <name>OrgViewAccountChart</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Partnership_Information --></label>
+        <name>Partnership_Information</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Product_Ownersip_Details --></label>
+        <name>Product_Ownersip_Details</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Products_Closed_Won --></label>
+        <name>Products_Closed_Won</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Amend_Assets --></label>
+        <name>SBQQ__Amend_Assets</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Renew_Assets --></label>
+        <name>SBQQ__Renew_Assets</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Sales_Activities --></label>
+        <name>Sales_Activities</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_With_DocuSign2 --></label>
+        <name>Send_With_DocuSign2</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- TB_30_day_Usage_Trend --></label>
+        <name>TB_30_day_Usage_Trend</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- TB_Daily_Trend_Report --></label>
+        <name>TB_Daily_Trend_Report</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- TB_Single_Day_Report --></label>
+        <name>TB_Single_Day_Report</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Time_Builder_Usage_Report --></label>
+        <name>Time_Builder_Usage_Report</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Unfollow --></label>
+        <name>Unfollow</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Upsell_Opportunities --></label>
+        <name>Upsell_Opportunities</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_with_DocuSign --></label>
+        <name>dsfs__Send_with_DocuSign</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Verify_with_DNB --></label>
+        <name>dsfs__Verify_with_DNB</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- financialprofile --></label>
+        <name>financialprofile</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- map --></label>
+        <name>map</name>
+    </webLinks>
+</CustomObjectTranslation>

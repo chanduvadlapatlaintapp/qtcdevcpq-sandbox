@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Intapp_Sales_Stage__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(TFG_Sales_Stage__c,
+  &quot;10% - Create&quot;,&quot;Target&quot;,
+  &quot;25% - Qualify&quot;,&quot;Expression&quot;,
+  &quot;50% - Develop&quot;,&quot;Biz Case&quot;,
+  &quot;75% - Prove&quot;,&quot;Evaluation of Options&quot;,
+  &quot;90% - Negotiate&quot;,&quot;In Contract&quot;,
+  &quot;100% - Closed&quot;,&quot;Closed Won&quot;,
+  &quot;Other&quot;
+)</formula>
+    <label>Intapp Sales Stage</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

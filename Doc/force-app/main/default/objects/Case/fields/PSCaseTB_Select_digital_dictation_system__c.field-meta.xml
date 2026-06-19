@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSCaseTB_Select_digital_dictation_system__c</fullName>
+    <inlineHelpText>Select your digital dictation system from the drop-down list.</inlineHelpText>
+    <label>Select digital dictation system</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Big Hand</fullName>
+                <default>false</default>
+                <label>Big Hand</label>
+            </value>
+            <value>
+                <fullName>Winscribe</fullName>
+                <default>false</default>
+                <label>Winscribe</label>
+            </value>
+            <value>
+                <fullName>nFlow</fullName>
+                <default>false</default>
+                <label>nFlow</label>
+            </value>
+            <value>
+                <fullName>Other digital dictation system</fullName>
+                <default>false</default>
+                <label>Other digital dictation system</label>
+            </value>
+            <value>
+                <fullName>Digital Dictation Not Required</fullName>
+                <default>true</default>
+                <label>Digital Dictation Not Required</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

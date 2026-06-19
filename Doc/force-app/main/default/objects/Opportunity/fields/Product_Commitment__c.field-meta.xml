@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Commitment__c</fullName>
+    <label>Product Commitment</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Standard</fullName>
+                <default>false</default>
+                <label>Standard</label>
+            </value>
+            <value>
+                <fullName>Outside Pricebook</fullName>
+                <default>false</default>
+                <label>Outside Pricebook</label>
+            </value>
+            <value>
+                <fullName>Future Product Development</fullName>
+                <default>false</default>
+                <label>Future Product Development</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

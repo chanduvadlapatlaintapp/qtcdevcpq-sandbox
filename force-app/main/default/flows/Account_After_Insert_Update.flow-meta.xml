@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>55.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Name_change</name>
+        <label>Name change</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>name_Change_Decision</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>DateAccCreate</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Time_Stamp</targetReference>
+            </connector>
+            <label>name Change Decision</label>
+        </rules>
+    </decisions>
+    <description>BIZ-43689, BIZ-60139</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>Date</name>
+        <dataType>DateTime</dataType>
+        <expression>{!$Record.LastModifiedBy.LastModifiedDate}</expression>
+    </formulas>
+    <formulas>
+        <name>DateAccCreate</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(ISNEW(),ISCHANGED({!$Record.Name}))</expression>
+    </formulas>
+    <formulas>
+        <name>DateFormula</name>
+        <dataType>DateTime</dataType>
+        <expression>{!$Record.LastModifiedDate}</expression>
+    </formulas>
+    <formulas>
+        <name>IsnewFormula</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+        ISNEW(),
+        NOT(
+            ISBLANK(
+             {!$Record.Name}
+                )
+            )
+        )</expression>
+    </formulas>
+    <interviewLabel>Account After Insert Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Account After Insert Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Set_Time_Stamp</name>
+        <label>Set Time Stamp</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <inputAssignments>
+            <field>TimeStamp_AccNameChange__c</field>
+            <value>
+                <elementReference>$Record.LastModifiedDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Name_change</targetReference>
+        </connector>
+        <filterFormula>NOT({!$Setup.Automation_Controls__c.Active__c} &amp;&amp; {!$Setup.Automation_Controls__c.Bypass_Flows__c} &amp;&amp; {!$Setup.Automation_Controls__c.Account_Bypass__c} &amp;&amp; (ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c}) || (NOT(ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c})) &amp;&amp; CONTAINS({!$Setup.Automation_Controls__c.Data_Id__c}, {!$Record.Id}))))</filterFormula>
+        <object>Account</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

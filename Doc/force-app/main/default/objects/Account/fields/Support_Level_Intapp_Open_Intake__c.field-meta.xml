@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Support_Level_Intapp_Open_Intake__c</fullName>
+    <inlineHelpText>What support level does this customer have for Intapp Open Intake?</inlineHelpText>
+    <label>Support Level - Intapp Open Intake</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Standard (Silver)</fullName>
+                <default>false</default>
+                <label>Standard (Silver)</label>
+            </value>
+            <value>
+                <fullName>Premium (Gold)</fullName>
+                <default>false</default>
+                <label>Premium (Gold)</label>
+            </value>
+            <value>
+                <fullName>Premium (Platinum)</fullName>
+                <default>false</default>
+                <label>Premium (Platinum)</label>
+            </value>
+            <value>
+                <fullName>Lapsed</fullName>
+                <default>false</default>
+                <label>Lapsed</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

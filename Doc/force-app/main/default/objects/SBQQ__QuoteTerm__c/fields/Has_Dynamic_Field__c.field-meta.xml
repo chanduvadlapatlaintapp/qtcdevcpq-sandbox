@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Has_Dynamic_Field__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indicates whether this quote term contains dynamic fields (fields wrapped between {! and }) in the SBQQ__Body__c field. BIZ-75350</description>
+    <inlineHelpText>Check this box if the quote term body contains dynamic fields that reference quote field values.</inlineHelpText>
+    <label>Has Dynamic Field</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Consulting_Approach__c</fullName>
+    <description>How will we approach the consulting portion of this migration?</description>
+    <label>Consulting Approach</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>1. Basic Technology Swap &amp; Scoping</fullName>
+                <default>false</default>
+                <label>1. Basic Technology Swap &amp; Scoping</label>
+            </value>
+            <value>
+                <fullName>2. Conversion Strategy Review</fullName>
+                <default>false</default>
+                <label>2. Conversion Strategy Review</label>
+            </value>
+            <value>
+                <fullName>3. Business Process Conversion with Strategy Review</fullName>
+                <default>false</default>
+                <label>3. Business Process Conversion with Strategy Review</label>
+            </value>
+            <value>
+                <fullName>4. Intake and Conflicts Process Conversion</fullName>
+                <default>false</default>
+                <label>4. Intake and Conflicts Process Conversion</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

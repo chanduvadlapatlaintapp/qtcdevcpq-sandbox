@@ -1,0 +1,17 @@
+<messaging:emailTemplate subject="[URGENT] Action required: you have outstanding OSA approvals at Date/Time" recipientType="User">
+    <messaging:htmlEmailBody >
+        <html>
+            <body>
+                <p>Hello {!recipient.Name},</p>
+                
+                <p>You have the following pending approvals:</p>
+                
+                <br/>
+                <!-- Embed the component and pass userId -->
+                <c:PendingApprovalRequests UserID="{!recipient.Id}" />
+                <br/>
+                <p>Regards,<br/>Approval Team</p>
+            </body>
+        </html>
+    </messaging:htmlEmailBody>
+</messaging:emailTemplate>

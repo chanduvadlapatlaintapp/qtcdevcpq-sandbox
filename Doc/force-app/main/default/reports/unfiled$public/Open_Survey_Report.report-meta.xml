@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>SFDC_Survey__c.Survey_Request__c</field>
+    </columns>
+    <columns>
+        <field>SFDC_Survey__c.Product_Line__c</field>
+    </columns>
+    <columns>
+        <field>SFDC_Survey__c.NPS_Score__c</field>
+    </columns>
+    <columns>
+        <field>SFDC_Survey__c.Reason_for_NPS_Score__c</field>
+    </columns>
+    <columns>
+        <field>SFDC_Survey__c.Improvement_Feedback__c</field>
+    </columns>
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>FIRST_NAME</field>
+    </columns>
+    <columns>
+        <field>LAST_NAME</field>
+    </columns>
+    <columns>
+        <field>TITLE</field>
+    </columns>
+    <columns>
+        <field>CUST_CREATED_DATE</field>
+    </columns>
+    <columns>
+        <field>OWNER_FULL_NAME</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Report of Open Customer Surveys</description>
+    <filter>
+        <criteriaItems>
+            <column>SFDC_Survey__c.Product_Line__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>Intapp Open</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Open Survey Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>ContactCustomEntity$SFDC_Survey__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>SFDC_Survey__c.NPS_Score__c</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>LAST_ACTIVITY</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

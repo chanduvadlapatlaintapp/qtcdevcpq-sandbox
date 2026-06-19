@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bill_To_Address__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Captures Bill To address</description>
+    <label>Bill To Address</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Address__c.Account__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.Bill_To_Account__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Address__c</referenceTo>
+    <relationshipLabel>Quotes</relationshipLabel>
+    <relationshipName>Quotes</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

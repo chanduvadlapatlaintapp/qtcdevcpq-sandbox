@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Notification_of_Reference_Event_creation_without_CSM_Account_Manager</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Notification of Reference Event creation without CSM Account Manager</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>ameya.thatte@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>maya.peterson@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Customer_Care/Reference_Event</template>
+    </alerts>
+    <alerts>
+        <fullName>Notification_with_all_fields_on_Reference_object_to_Account_manager_and_CSM_Team</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Notification with all fields on Reference object to Account manager and CSM Team when a new record is created.</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>ameya.thatte@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>maya.peterson@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Customer_Care/Reference_Event</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Update_CSM_Account_Mgr_Field</fullName>
+        <field>CSM_Account_Mgr__c</field>
+        <formula>Prospect_Contact__r.Account.CRD__r.Email</formula>
+        <name>Update CSM Account Mgr Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Rule Code%3A RE-001xFxx</fullName>
+        <actions>
+            <name>Update_CSM_Account_Mgr_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: RE-001xFxx
+Update CSM Manager Email
+Update CSM Manager Email address on the Reference Event object when a new record is created</description>
+        <formula>TRUE</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A RE-002Exxx</fullName>
+        <actions>
+            <name>Notification_with_all_fields_on_Reference_object_to_Account_manager_and_CSM_Team</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: RE-002Exxx
+Notify AC Manager and CSM Team
+Notify AC Manager (CSM) and CSM Team when a Reference Event record is created</description>
+        <formula>NOT(ISBLANK(CSM_Account_Mgr__c))</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A RE-003Exxx</fullName>
+        <actions>
+            <name>Notification_of_Reference_Event_creation_without_CSM_Account_Manager</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: RE-003Exxx 
+Reference Event Created without CSM Account Manager
+Sends an email notification When a related Prospect Account&apos;s CRD field is blank</description>
+        <formula>ISBLANK(Prospect_Contact__r.Account.CRD__c)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

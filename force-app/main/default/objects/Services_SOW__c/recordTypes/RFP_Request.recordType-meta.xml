@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RFP_Request</fullName>
+    <active>true</active>
+    <description>Use this to submit RFPs</description>
+    <label>RFP Request</label>
+    <picklistValues>
+        <picklist>Deliverable__c</picklist>
+        <values>
+            <fullName>Executive Solution Story</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hands-on Workshop</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other %28description below%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PoC %2F Pilot</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Standard Demo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tailored Demo</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Existing_Test_Environment__c</picklist>
+        <values>
+            <fullName>New Client - Unknown</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes %28Test matches Production%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes %28Test servers available%2C software needs to be installed%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Geography__c</picklist>
+        <values>
+            <fullName>APAC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EMEA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>North America</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Product__c</picklist>
+        <values>
+            <fullName>CG Analyze</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CG Flow</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CG Protect</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Flow</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Integrate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Open - Conflicts - Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Open - Experience - Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Open - Intake - Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Open - Terms of Business - Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Open%3A Conflicts</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Open%3A Experience</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Open%3A Intake</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Open%3A Intake %28Engagement Letters%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Open%3A Terms of Business</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Time%3A Capture</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Time%3A Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Time%3A Compliance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Time%3A Core Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Time%3A Legacy Axiom Mobility</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Time%3A Legacy DTE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Time%3A Legacy DTE Axiom</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Time%3A Mobility</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Time%3A Total Time Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Walls</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Integrate - Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LegalKEY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Multiple Products</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pricing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pricing - Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rekoop</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RollCall</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TFG - Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Third Party Product - D%26B</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Recurring_Involved__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Sure</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Remote_Access_Verification__c</picklist>
+        <values>
+            <fullName>New Client - Unknown</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Remote Access Restrictions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unfettered Citrix</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unfettered VPN</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Request_Type__c</picklist>
+        <values>
+            <fullName>Quote only</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SOW document required</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Services_Request_Status__c</picklist>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Submitted</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Assigned</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Process</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>On Hold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Out-of-date</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ready for Review</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Returned to Requesting Employee for Edits</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SOW Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SOW Modified</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Submitted</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Submit_directly_for_Approval__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Time_Questionnaire_Available__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type_of_Support_Required__c</picklist>
+        <values>
+            <fullName>Business Consulting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Professional Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Engineer</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Urgency_Level__c</picklist>
+        <values>
+            <fullName>High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Medium</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

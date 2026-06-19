@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Should_Trigger_Notification__c</fullName>
+    <description>This field is used to audit the renewal notifications that go out when an invoice is paid after being 60 days or more overdue. This field can be deprecated once the audit is complete.</description>
+    <externalId>false</externalId>
+    <formula>IF(
+  AND(
+    Due_Date__c &lt; Date_Paid__c - 59,
+    ISPICKVAL(Status__c, &quot;Paid in Full&quot;)
+  ),
+  &quot;Yes&quot;, 
+   &quot;No&quot;
+)</formula>
+    <label>Should Trigger Notification</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validation_in_active_pending_governance</fullName>
+    <active>false</active>
+    <errorConditionFormula>Pending_Governance_Fr__c  = True &amp;&amp; ( ISPICKVAL(Quote_Stage__c,&quot;Pricing Proposal&quot;)||ISPICKVAL(Quote_Stage__c,&quot;Finalize OSA&quot;))</errorConditionFormula>
+    <errorDisplayField>Number_of_DLIs__c</errorDisplayField>
+    <errorMessage>&apos;Account and/or Addresses require Governance. Please &apos;Submit for Governance&apos;</errorMessage>
+</ValidationRule>

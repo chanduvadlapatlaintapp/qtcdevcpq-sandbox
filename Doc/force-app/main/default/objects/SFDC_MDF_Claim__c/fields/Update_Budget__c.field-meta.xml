@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Update_Budget__c</fullName>
+    <externalId>false</externalId>
+    <formula>case(SFDC_Channel_Budget__c, &quot;&quot;, &quot;&quot;, HYPERLINK(&quot;/servlet/servlet.Integration?lid=01N30000000D0Mw&amp;eid=&quot; &amp;  SFDC_Channel_Budget__c , IMAGE(&quot;/servlet/servlet.FileDownload?file=0153000000074DG&quot;, &quot;Update Budget&quot;)))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Update Budget</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

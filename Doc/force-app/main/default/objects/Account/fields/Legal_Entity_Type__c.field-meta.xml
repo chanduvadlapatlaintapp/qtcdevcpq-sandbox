@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Legal_Entity_Type__c</fullName>
+    <inlineHelpText>Only use if the Industry is &quot;Legal.&quot; Use this field to further specify what type of legal entity this account is</inlineHelpText>
+    <label>Legal Entity Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ABS</fullName>
+                <default>false</default>
+                <label>ABS</label>
+            </value>
+            <value>
+                <fullName>Firm</fullName>
+                <default>false</default>
+                <label>Firm</label>
+            </value>
+            <value>
+                <fullName>Corporate</fullName>
+                <default>false</default>
+                <label>Corporate</label>
+            </value>
+            <value>
+                <fullName>Government</fullName>
+                <default>false</default>
+                <label>Government</label>
+            </value>
+            <value>
+                <fullName>Judicial</fullName>
+                <default>false</default>
+                <label>Judicial</label>
+            </value>
+            <value>
+                <fullName>Software for Legal</fullName>
+                <default>false</default>
+                <label>Software for Legal</label>
+            </value>
+            <value>
+                <fullName>Consulting for Legal</fullName>
+                <default>false</default>
+                <label>Consulting for Legal</label>
+            </value>
+            <value>
+                <fullName>Insurer/Broker for Legal</fullName>
+                <default>false</default>
+                <label>Insurer/Broker for Legal</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

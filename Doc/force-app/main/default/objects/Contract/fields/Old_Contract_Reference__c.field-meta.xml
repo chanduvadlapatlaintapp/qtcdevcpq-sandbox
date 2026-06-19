@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Old_Contract_Reference__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Old Contract Reference</label>
+    <referenceTo>Contract</referenceTo>
+    <relationshipLabel>Contracts (Old Contract Reference)</relationshipLabel>
+    <relationshipName>Contracts5</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

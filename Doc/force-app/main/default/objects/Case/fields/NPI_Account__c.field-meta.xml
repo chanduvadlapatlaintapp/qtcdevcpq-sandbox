@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NPI_Account__c</fullName>
+    <formula>IF(
+   Account.Active_NPI_Project__c = true,
+    TRUE,
+    FALSE
+)</formula>
+    <inlineHelpText>Please review the custom report &quot;NPI Projects&quot;. If the case being opened for the product that the NPI project is for, please contact npi@intapp.com. Otherwise, please use normal procedures for this support case.</inlineHelpText>
+    <label>NPI Account</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

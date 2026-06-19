@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_Quote_Type__c</fullName>
+    <description>Created as part of BIZ-47716, to specify the renewal Quote type.
+Auto Renewal - Created Automatically by the system when renewal quoted is selected on the contract.
+Renewal-Changes - Created by cloning Auto-Renewal Quotes.
+COntract consolidation - created while consolidating contracts</description>
+    <label>Renewal Quote Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Auto-Renewal</fullName>
+                <default>false</default>
+                <label>Auto-Renewal</label>
+            </value>
+            <value>
+                <fullName>Consolidated-Quote</fullName>
+                <default>false</default>
+                <label>Consolidated-Quote</label>
+            </value>
+            <value>
+                <fullName>Renewal-Changes</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Renewal-Changes</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

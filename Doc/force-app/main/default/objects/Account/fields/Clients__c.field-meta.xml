@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Clients__c</fullName>
+    <description>Known Clients of Firm</description>
+    <label>Clients</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Bank of America</fullName>
+                <default>false</default>
+                <label>Bank of America</label>
+            </value>
+            <value>
+                <fullName>DuPont</fullName>
+                <default>false</default>
+                <label>DuPont</label>
+            </value>
+            <value>
+                <fullName>Wal-Mart</fullName>
+                <default>false</default>
+                <label>Wal-Mart</label>
+            </value>
+            <value>
+                <fullName>GE</fullName>
+                <default>false</default>
+                <label>GE</label>
+            </value>
+            <value>
+                <fullName>JPM</fullName>
+                <default>false</default>
+                <label>JPM</label>
+            </value>
+            <value>
+                <fullName>Microsoft</fullName>
+                <default>false</default>
+                <label>Microsoft</label>
+            </value>
+            <value>
+                <fullName>Wells Fargo</fullName>
+                <default>false</default>
+                <label>Wells Fargo</label>
+            </value>
+            <value>
+                <fullName>Citi</fullName>
+                <default>false</default>
+                <label>Citi</label>
+            </value>
+            <value>
+                <fullName>Goldman Sachs</fullName>
+                <default>false</default>
+                <label>Goldman Sachs</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

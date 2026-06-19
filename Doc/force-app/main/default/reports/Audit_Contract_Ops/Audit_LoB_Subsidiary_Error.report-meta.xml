@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_ID</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>FK_$Contract.Subsidiary__c</field>
+    </columns>
+    <columns>
+        <field>FK_$Contract.Applicable_Subsidiary__c</field>
+    </columns>
+    <columns>
+        <field>SBQQ__Quote__c.Line_of_Business__c</field>
+    </columns>
+    <columns>
+        <field>FK_$Contract.OSA_Type__c</field>
+    </columns>
+    <columns>
+        <field>SBQQ__Quote__c.SBQQ__Opportunity2__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Identifies when LOB does not agree with Subsidiary.In Force and (LOB is DC but Subsidiary is not DC) OR  (Subsidiary is Intapp or Repstor but LOB is not Intapp)</description>
+    <filter>
+        <booleanFilter>1 AND ((2 AND 3) OR (4 AND 5))</booleanFilter>
+        <criteriaItems>
+            <column>FK_CTRC_STATUS</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>In Force</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>FK_$Contract.Subsidiary__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>&quot;18:DealCloud, Inc.&quot;</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>FK_$Contract.Applicable_Subsidiary__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>DealCloud</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>FK_$Contract.Subsidiary__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>01:200 Integration Appliance (US),35:Repstor Limited,&quot;37:Repstor, Inc.&quot;</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>FK_$Contract.Applicable_Subsidiary__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Intapp</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Audit: LoB_Subsidiary_Error</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$SBQQ__Quote__c@SBQQ__Quote__c.SBQQ__MasterContract__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>FK_$Contract.OSA_Type__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>FK_CTRC_END_DATE</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>

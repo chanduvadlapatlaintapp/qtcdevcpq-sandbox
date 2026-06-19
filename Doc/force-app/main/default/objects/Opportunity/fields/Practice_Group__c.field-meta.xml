@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Practice_Group__c</fullName>
+    <description>Which IntApp practice group should drive strategy for this opportunity.</description>
+    <inlineHelpText>Which IntApp practice group should drive strategy for this opportunity.</inlineHelpText>
+    <label>Business Unit</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Operations &amp; Finance</fullName>
+                <color>#78C953</color>
+                <default>false</default>
+                <label>Time</label>
+            </value>
+            <value>
+                <fullName>Risk &amp; Compliance</fullName>
+                <color>#E27001</color>
+                <default>false</default>
+                <label>Compliance</label>
+            </value>
+            <value>
+                <fullName>IT</fullName>
+                <color>#0B6FCE</color>
+                <default>false</default>
+                <label>IT</label>
+            </value>
+            <value>
+                <fullName>Multiple Products</fullName>
+                <default>false</default>
+                <label>Multiple Products</label>
+            </value>
+            <value>
+                <fullName>Knowledge &amp; Content</fullName>
+                <default>false</default>
+                <label>Knowledge &amp; Content</label>
+            </value>
+            <value>
+                <fullName>Leaders &amp; Professionals</fullName>
+                <default>false</default>
+                <label>Leaders &amp; Professionals</label>
+            </value>
+            <value>
+                <fullName>Flow &amp; Intake Bundle</fullName>
+                <default>false</default>
+                <label>Flow &amp; Intake Bundle</label>
+            </value>
+            <value>
+                <fullName>DealCloud</fullName>
+                <default>false</default>
+                <label>DealCloud</label>
+            </value>
+            <value>
+                <fullName>Marketing &amp; BD</fullName>
+                <default>false</default>
+                <label>Marketing &amp; BD</label>
+            </value>
+            <value>
+                <fullName>Collaborations &amp; Content</fullName>
+                <default>false</default>
+                <label>Collaboration</label>
+            </value>
+            <value>
+                <fullName>#N/A</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>#N/A</label>
+            </value>
+            <value>
+                <fullName>Intapp Pricing</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Intapp Pricing</label>
+            </value>
+            <value>
+                <fullName>Revenue</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Revenue</label>
+            </value>
+            <value>
+                <fullName>Risk and Compliance</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Risk and Compliance</label>
+            </value>
+            <value>
+                <fullName>Technology Practice</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Technology Practice</label>
+            </value>
+            <value>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Unknown</label>
+            </value>
+            <value>
+                <fullName>Wall Builder</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Wall Builder</label>
+            </value>
+            <value>
+                <fullName>Revenue</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Revenue</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

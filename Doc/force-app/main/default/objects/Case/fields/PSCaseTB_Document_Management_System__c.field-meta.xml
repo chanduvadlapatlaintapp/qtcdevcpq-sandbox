@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSCaseTB_Document_Management_System__c</fullName>
+    <inlineHelpText>If you will be integrating your document management system (DMS) with Time Builder select your DMS from the drop-down list.</inlineHelpText>
+    <label>Document Management System</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>DMS - Autonomy iManage 8.x</fullName>
+                <default>false</default>
+                <label>DMS - Autonomy iManage 8.x</label>
+            </value>
+            <value>
+                <fullName>DMS - Open Text DM 5.x</fullName>
+                <default>false</default>
+                <label>DMS - Open Text DM 5.x</label>
+            </value>
+            <value>
+                <fullName>DMS - NetDocuments</fullName>
+                <default>false</default>
+                <label>DMS - NetDocuments</label>
+            </value>
+            <value>
+                <fullName>DMS - Open Text DOCSOpen 4.x</fullName>
+                <default>false</default>
+                <label>DMS - Open Text DOCSOpen 4.x</label>
+            </value>
+            <value>
+                <fullName>DMS - SharePoint 2010</fullName>
+                <default>false</default>
+                <label>DMS - SharePoint 2010</label>
+            </value>
+            <value>
+                <fullName>DMS - SharePoint 2007</fullName>
+                <default>false</default>
+                <label>DMS - SharePoint 2007</label>
+            </value>
+            <value>
+                <fullName>DMS - Other</fullName>
+                <default>false</default>
+                <label>DMS - Other</label>
+            </value>
+            <value>
+                <fullName>DMS Integration Not Required</fullName>
+                <default>true</default>
+                <label>DMS Integration Not Required</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

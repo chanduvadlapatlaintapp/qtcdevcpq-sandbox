@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PAF_Opp</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>Opp_Product_Lines__c</columns>
+    <columns>RnwlOpp_Invoice_Date__c</columns>
+    <columns>OPPORTUNITY.AMOUNT</columns>
+    <columns>Maintenance_Amount__c</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>How_was_the_outcome_achieved__c</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Payment_Terms_Services__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>CS Review,Closed Won</value>
+    </filters>
+    <label>PAF Opportunity</label>
+    <language>en_US</language>
+</ListView>

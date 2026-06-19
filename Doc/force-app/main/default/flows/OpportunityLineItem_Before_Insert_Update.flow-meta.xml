@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Term</name>
+        <label>Assign Term</label>
+        <locationX>50</locationX>
+        <locationY>503</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Term__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Quote_Line_Item</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_OP4I_Deal_Id</name>
+        <label>Set OP4I Deal Id</label>
+        <locationX>490</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.OP4I_Deal_Id__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Opportunity.OP4I_Deal_Id__c</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Update_Opportunity_Product_Fields</name>
+        <label>Update Opportunity Product Fields</label>
+        <locationX>182</locationX>
+        <locationY>803</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Net_Amount2__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Quote_Line_Item.SBQQ__NetTotal__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Net_Price_Month__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Quote_Line_Item.Net_Unit_Price__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Recurring_Discount__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Quote_Line_Item.SBQQ__AdditionalDiscount__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Recurring_Product__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ReccuringProductFormula</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Segment_Index__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Quote_Line_Item.SBQQ__SegmentIndex__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Term_End_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Quote_Line_Item.SBQQ__EndDate__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Term_Start_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Quote_Line_Item.SBQQ__StartDate__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Total_Price_Book_Amount__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Quote_Line_Item.Total_Price_Book_Amount__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Recurring_or_Onetime_subscription_credit__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>RecurringorOnetimesubscriptioncredit</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.OP4I_Deal_Id__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Opportunity.OP4I_Deal_Id__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.ACV_Change__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Quote_Line_Item.ACV_Change__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.CPQ_List_Price__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Quote_Line_Item.SBQQ__ListPrice__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Customer_Sales_Price_Per_Month__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Quote_Line_Item.Customer_Sale_Price_Per_Month__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Parent_of_Bundle__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Quote_Line_Item.Parent_of_Bundle__c</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Check_Quote_Line</name>
+        <label>Check Quote Line</label>
+        <locationX>458</locationX>
+        <locationY>287</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Quote_Line_not_null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__QuoteLine__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_Services</targetReference>
+            </connector>
+            <label>Quote Line not null</label>
+        </rules>
+        <rules>
+            <name>Quote_Line_is_null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__QuoteLine__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_OP4I_Deal_Id</targetReference>
+            </connector>
+            <label>Quote Line is null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Services</name>
+        <label>Check Services</label>
+        <locationX>182</locationX>
+        <locationY>395</locationY>
+        <defaultConnector>
+            <targetReference>Get_Quote_Line_Item</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__QuoteLine__r.SBQQ__Product__r.Guided_Selling_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Services</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Term</targetReference>
+            </connector>
+            <label>True</label>
+        </rules>
+    </decisions>
+    <description>BIZ-49319
+opportunity product Net_Price_Month__c should sync with quote line Net_Unit_Price__c - BIZ-49614
+BIZ-53998(Update Record OP4I deal Id from Opportunity)
+BIZ-55298 NS Order Id pulled from Order to Opp Line Item already, removing overwritting
+BIZ-62260 Populate OP4I deal id
+BIZ-68691 Added Parent_of_Bundle__c field logic since this field is false when we renew the contract.
+BIZ-66418 Added Bypass check</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>ReccuringProductFormula</name>
+        <dataType>Boolean</dataType>
+        <expression>IF(
+  ISPICKVAL({!Get_Quote_Line_Item.Product_Type__c}, &quot;Software&quot;),
+TRUE, 
+FALSE)</expression>
+    </formulas>
+    <formulas>
+        <name>RecurringorOnetimesubscriptioncredit</name>
+        <dataType>Boolean</dataType>
+        <expression>{!$Record.Recurring_Product__c} || (ISPICKVAL({!$Record.PricebookEntry.Product2.Product_Type__c}, &apos;Software Discount (One-Time)&apos; ) &amp;&amp;  NOT(CONTAINS({!$Record.PricebookEntry.Product2.Name}, &apos;Payment Adjustment&apos;)))</expression>
+    </formulas>
+    <interviewLabel>OpportunityLineItem Before Insert Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>OpportunityLineItem Before Insert Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Quote_Line_Item</name>
+        <label>Get Quote Line Item</label>
+        <locationX>182</locationX>
+        <locationY>695</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_Opportunity_Product_Fields</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.SBQQ__QuoteLine__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SBQQ__QuoteLine__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>332</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_Quote_Line</targetReference>
+        </connector>
+        <filterFormula>NOT({!$Setup.Automation_Controls__c.Active__c} 
+&amp;&amp; {!$Setup.Automation_Controls__c.Bypass_Flows__c} 
+&amp;&amp; {!$Setup.Automation_Controls__c.OpportunityLine_Bypass__c} 
+&amp;&amp; (
+	ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c}) 
+	|| (
+		NOT(ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c})) 
+		&amp;&amp; CONTAINS({!$Setup.Automation_Controls__c.Data_Id__c}, {!$Record.Id})
+	)
+))</filterFormula>
+        <object>OpportunityLineItem</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

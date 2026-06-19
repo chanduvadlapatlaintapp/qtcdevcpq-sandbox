@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AllActivatedOrders</fullName>
+    <columns>ORDERS.ORDER_NUMBER</columns>
+    <columns>SALES.ACCOUNT.NAME</columns>
+    <columns>ORDERS.TOTAL_AMOUNT</columns>
+    <columns>ORDERS.EFFECTIVE_DATE</columns>
+    <columns>ORDERS.STATUS</columns>
+    <columns>NetSuite_Sales_order_Internal_Id__c</columns>
+    <columns>NetSuite_Order_Id__c</columns>
+    <columns>CONTRACT.CONTRACT_NUMBER</columns>
+    <columns>ORDERS.CREATED_DATE</columns>
+    <columns>NS_Error__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ORDERS.STATUS_CODE</field>
+        <operation>equals</operation>
+        <value>A</value>
+    </filters>
+    <label>All Activated Orders</label>
+</ListView>

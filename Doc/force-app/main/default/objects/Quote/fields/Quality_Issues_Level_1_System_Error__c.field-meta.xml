@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quality_Issues_Level_1_System_Error__c</fullName>
+    <label>Quality Issues Level 1 (System Error)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>API (System Error)</fullName>
+                <default>false</default>
+                <label>API (System Error)</label>
+            </value>
+            <value>
+                <fullName>Calculation (System Error)</fullName>
+                <default>false</default>
+                <label>Calculation (System Error)</label>
+            </value>
+            <value>
+                <fullName>Other (System Error)</fullName>
+                <default>false</default>
+                <label>Other (System Error)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

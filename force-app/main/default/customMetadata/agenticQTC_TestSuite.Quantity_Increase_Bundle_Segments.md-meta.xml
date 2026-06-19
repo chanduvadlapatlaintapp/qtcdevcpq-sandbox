@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Quantity Increase Bundle Segments</label>
+    <protected>false</protected>
+    <values>
+        <field>Allow_Multiple_Account__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Default_Accounts__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Description__c</field>
+        <value xsi:type="xsd:string">Tests MDQ Static Bundle increase. Identifies bundle rows by querying CPQ_Option_Type__c for every data-line-id. Steps: (1) Year-1 edit propagates to all segments, (2) Year-N isolated edit changes only that segment. Saves. DB: asserts each bundle segment line&apos;s qty, then queries all Static Component lines on the quote (Segment_Index_Custom__c != null) and asserts each matches the expected bundle qty at that segment index with non-zero Revenue_Allocation__c. 3 scenarios.</value>
+    </values>
+    <values>
+        <field>Is_Active__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Module__c</field>
+        <value xsi:type="xsd:string">Simplified AgenticQTC</value>
+    </values>
+    <values>
+        <field>Sort_Order__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Suite_Value__c</field>
+        <value xsi:type="xsd:string">agenticQtcQuantityIncreaseBundleSegments</value>
+    </values>
+</CustomMetadata>

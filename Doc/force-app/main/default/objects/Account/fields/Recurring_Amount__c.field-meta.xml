@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recurring_Amount__c</fullName>
+    <inlineHelpText>What is the total recurring amount from LegalKey deals for this Account?</inlineHelpText>
+    <label>Recurring Amount - LegalKey EXPRNG 10/16</label>
+    <summarizedField>Opportunity.Maintenance_Amount__c</summarizedField>
+    <summaryFilterItems>
+        <field>Opportunity.Package__c</field>
+        <operation>equals</operation>
+        <value>LegalKey Conflicts</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Opportunity.AccountId</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

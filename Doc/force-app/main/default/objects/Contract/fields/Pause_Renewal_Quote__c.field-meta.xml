@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pause_Renewal_Quote__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Checkbox to indicate if Renewal Quote Creation from the Contract should be paused. If checked, this contract will not be picked up by the scheduled flow that creates Renewal Quotes 90 days before contract end date.</description>
+    <label>Pause Renewal Quote</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

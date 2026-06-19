@@ -1,0 +1,41 @@
+<apex:page doctype="html-5.0" standardStylesheets="false" showHeader="false" sidebar="false" applyBodyTag="false" applyHtmlTag="false">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Page Title</title>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" />
+    </head>
+    <body>
+
+        <!-- Put your custom content here -->
+<apex:outputPanel styleClass="navbar navbar-inverse navbar-fixed-top" layout="block" html-role="navigation">
+      <apex:outputPanel styleClass="container" layout="block">
+        <apex:outputPanel styleClass="navbar-header" layout="block">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <apex:outputPanel styleClass="sr-only">Toggle navigation</apex:outputPanel>
+            <apex:outputPanel styleClass="icon-bar"></apex:outputPanel>
+            <apex:outputPanel styleClass="icon-bar"></apex:outputPanel>
+            <apex:outputPanel styleClass="icon-bar"></apex:outputPanel>
+          </button>
+          <a class="navbar-brand" href="#">Salesforce1 and Bootstrap</a>
+        </apex:outputPanel>
+        <apex:outputPanel styleClass="navbar-collapse collapse" layout="block">
+          <form class="navbar-form navbar-right" role="form">
+            <apex:outputPanel styleClass="form-group" layout="block">
+              <input type="text" placeholder="Email" class="form-control" />
+            </apex:outputPanel>
+            <apex:outputPanel styleClass="form-group" layout="block">
+              <input type="password" placeholder="Password" class="form-control" />
+            </apex:outputPanel>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+        </apex:outputPanel><!--/.navbar-collapse -->
+      </apex:outputPanel>
+    </apex:outputPanel>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    </body>
+</apex:page>

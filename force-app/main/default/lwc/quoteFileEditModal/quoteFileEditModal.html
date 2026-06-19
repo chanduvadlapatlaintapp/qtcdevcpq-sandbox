@@ -1,0 +1,48 @@
+<template>
+    <lightning-modal-header label="Edit File"></lightning-modal-header>
+
+    <lightning-modal-body>
+        <!-- Title -->
+        <div class="slds-m-bottom_medium">
+            <lightning-input
+                label="Title"
+                value={title}
+                onchange={handleTitleChange}
+                required
+                message-when-value-missing="Title is required."
+            ></lightning-input>
+        </div>
+
+        <!-- Document Type -->
+        <div class="slds-m-bottom_medium">
+            <lightning-combobox
+                name="documentType"
+                label="Document Type"
+                value={documentType}
+                placeholder="-- Select Document Type --"
+                options={documentTypeOptions}
+                onchange={handleDocumentTypeChange}
+                required
+                message-when-value-missing="Please select a Document Type."
+            ></lightning-combobox>
+        </div>
+
+        <!-- Error Display -->
+        <template if:true={errorMessage}>
+            <div class="slds-notify slds-notify_alert slds-alert_error slds-m-top_medium" role="alert">
+                <span class="slds-assistive-text">error</span>
+                <h2>{errorMessage}</h2>
+            </div>
+        </template>
+
+        <!-- Spinner while saving -->
+        <template if:true={isSaving}>
+            <lightning-spinner alternative-text="Saving..." size="medium"></lightning-spinner>
+        </template>
+    </lightning-modal-body>
+
+    <lightning-modal-footer>
+        <lightning-button label="Cancel" onclick={handleCancel} class="slds-m-right_x-small"></lightning-button>
+        <lightning-button label="Save" variant="brand" onclick={handleSave}></lightning-button>
+    </lightning-modal-footer>
+</template>

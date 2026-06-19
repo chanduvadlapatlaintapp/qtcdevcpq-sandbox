@@ -1,0 +1,32 @@
+<messaging:emailTemplate subject="New MSSA Required for {!relatedto.SBQQ__Account__r.Name} - Line of Business: {!relatedTo.Line_of_Business__c}"  recipientType="User" relatedToType="SBQQ__Quote__c">
+<messaging:plainTextEmailBody >
+
+ 
+An OSA has been requested and it has been indicated by LegalOps that a new MSSA is required for {!relatedto.SBQQ__Account__r.Name} due to outdated terms. 
+ 
+ACTION 
+Sales -  Please update the Master Terms of your quote to URL.
+Contract Ops – Please confirm we do not use existing terms for this OSA.
+ 
+WE DO NOT ADVISE SENDING A PDF OF NEW MSSA
+We have found the best practice is to simply provide the OSA with the URL referenced. We will not want to send the customer a copy of the MSSA as it will invite redlines and we want this to move as quickly as possible for you.
+ 
+WE DO NOT ADVISE SENDING COPY OF OLD MSSA
+We advise you do not send a copy of the outdated MSSA, as it will encourage them to compare and invite redlines which will slow the deal. The idea here is Legal Ops has taken the time to identify which deals could simply have an amendment rather than a new MSSA. This account does not fall into that amendment category.
+ 
+The new MSSA typically has more favorable terms for the client.
+ 
+Should they insist, the link to the contract where you will find the original MSSA can be located below. Go to the notes and attachments and look for the signed document.  Alternatively you can find the original contract number which houses the MSSA, on the account under Master Terms: Contract Number.
+ 
+ 
+Account: {!relatedto.SBQQ__Account__r.Name}
+Line of Business: {!relatedTo.Line_of_Business__c}  
+Master Terms: Contract Number: {!relatedto.SBQQ__Account__r.Master_Terms_Contract_Number__r.ContractNumber}
+MSSA Version Number: {!relatedto.SBQQ__Account__r.Contract_Term_Version__c}
+Master Terms: Contract Number URL: https://intapp.my.salesforce.com/{!relatedto.SBQQ__Account__r.Master_Terms_Contract_Number__c}
+
+
+
+
+</messaging:plainTextEmailBody>
+</messaging:emailTemplate>

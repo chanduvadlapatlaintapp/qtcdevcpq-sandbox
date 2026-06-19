@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account.Cases$CaseNumber</field>
+    </columns>
+    <columns>
+        <field>Account.Cases$DateOpen__c</field>
+    </columns>
+    <columns>
+        <field>Account.Cases$Product_Component__c</field>
+    </columns>
+    <columns>
+        <field>Account.Cases$Subject</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Last 6 mos support activity</description>
+    <filter>
+        <criteriaItems>
+            <column>Account$IntApp_Open_Conflicts__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Own it</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Cases$Product__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>LegalKey</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$LegalKEY_Conflicts__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Own it</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Cases$DateOpen__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>LAST_N_DAYS:180</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>LK Support Cases from Conflicts Customer</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_and_Cases__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Account.Cases$DateOpen__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Account.Cases$DateOpen__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

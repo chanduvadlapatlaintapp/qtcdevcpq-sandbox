@@ -1,0 +1,6 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div>Please review the quote and reattach to the opportunity<br><br>Opportunity Name: {!Opportunity.Name}<br><div style="font-size: 12pt;">Opportunity Owner:&nbsp;{!Opportunity.OwnerFullName}</div><div style="font-size: 12pt;">Opportunity Approval Requester/submitter:&nbsp;{!Opportunity.Opportunity_Approval_Requester_submitter__c}</div></div><div style="font-size: 12pt;"><br></div><div>Account Name: {!Account.Name}<br><br></div><div>Approval Requested Date:&nbsp;{!Opportunity.Approval_Request_Date__c}</div><div><br></div><div><br></div><div>Link to Opportunity:&nbsp;{!Opportunity.Link}</div><div><br></div><div><span style="font-size: x-small;">Approval Process:&nbsp;{!ApprovalRequest.Process_Name}</span></div>]]></td>
+</tr>
+</table>

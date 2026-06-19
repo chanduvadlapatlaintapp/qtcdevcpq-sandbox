@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ComponentsRequiringShipment</fullName>
+    <columns>NAME</columns>
+    <columns>Series_Number__c</columns>
+    <columns>Shipping_Length__c</columns>
+    <columns>Shipping_Width__c</columns>
+    <columns>Shipping_Height__c</columns>
+    <columns>Shipping_Weight__c</columns>
+    <columns>Insured_Value__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Shipping_Required__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Components Requiring Shipment</label>
+</ListView>

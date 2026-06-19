@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MD_Eval_Pain__c</fullName>
+    <description>Pain: critical business issue, problem or potential missed opportunity</description>
+    <inlineHelpText>Pain: critical business issue, problem or potential missed opportunity</inlineHelpText>
+    <label>MD Eval: Pain</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>00 - Customer has not indicated pain or needs/requirements</fullName>
+                <default>false</default>
+                <label>00 - Customer has not indicated pain or needs/requirements</label>
+            </value>
+            <value>
+                <fullName>01 - Salesperson assumes Sponsor’s needs/requirements</fullName>
+                <default>false</default>
+                <label>01 - Salesperson assumes Sponsor’s needs/requirements</label>
+            </value>
+            <value>
+                <fullName>02 - Sponsor admits needs/requirements</fullName>
+                <default>false</default>
+                <label>02 - Sponsor admits needs/requirements</label>
+            </value>
+            <value>
+                <fullName>03 - Sponsor admits pain</fullName>
+                <default>false</default>
+                <label>03 - Sponsor admits pain</label>
+            </value>
+            <value>
+                <fullName>04 - Salesperson explores key reasons for Sponsor&apos;s pain</fullName>
+                <default>false</default>
+                <label>04 - Salesperson explores key reasons for Sponsor&apos;s pain</label>
+            </value>
+            <value>
+                <fullName>05 - Sponsor agrees to documented pain and reasons (Sponsor Email Required)</fullName>
+                <default>false</default>
+                <label>05 - Sponsor agrees to documented pain and reasons (Sponsor Email Required)</label>
+            </value>
+            <value>
+                <fullName>06 - Salesperson assumes Power Sponsor’s needs/requirements</fullName>
+                <default>false</default>
+                <label>06 - Salesperson assumes Power Sponsor’s needs/requirements</label>
+            </value>
+            <value>
+                <fullName>07 - Power Sponsor admits needs/requirements</fullName>
+                <default>false</default>
+                <label>07 - Power Sponsor admits needs/requirements</label>
+            </value>
+            <value>
+                <fullName>08 - Power Sponsor admits pain</fullName>
+                <default>false</default>
+                <label>08 - Power Sponsor admits pain</label>
+            </value>
+            <value>
+                <fullName>09 - Salesperson explores key reasons for Power Sponsor&apos;s pain</fullName>
+                <default>false</default>
+                <label>09 - Salesperson explores key reasons for Power Sponsor&apos;s pain</label>
+            </value>
+            <value>
+                <fullName>10 - Power Sponsor agrees to documented pain and reasons (Power Sponsor Email Required)</fullName>
+                <default>false</default>
+                <label>10 - Power Sponsor agrees to documented pain and reasons (Power Sponsor Email Required)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

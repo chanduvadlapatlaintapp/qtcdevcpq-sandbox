@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Deal Desk --></label>
+        <name>sbaa__DealDesk</name>
+    </fieldSets>
+    <validationRules>
+        <errorMessage><!-- The CPI field may only be edited by CSM Operations. Please contact CSM Ops if these fields need to be updated. --></errorMessage>
+        <name>Cannot_Edit_CPi_Field</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A mimium of 20 hours must be purchase for Intapp Prime. --></errorMessage>
+        <name>Intapp_Prime_Minimum_Hours</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Subsidy Amount and Subsidy Type are only to be filled in for credit products. --></errorMessage>
+        <name>Subsidy_Amount_Only_on_Credit_Products</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Subsidy Type is required when there is a Subsidy Amount, and Subsidy Amount is required when there is a Subsidy Type selected. --></errorMessage>
+        <name>Subsidy_Type_Required</name>
+    </validationRules>
+</CustomObjectTranslation>

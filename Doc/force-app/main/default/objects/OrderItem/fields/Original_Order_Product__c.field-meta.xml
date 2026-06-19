@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Original_Order_Product__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISPICKVAL(SBQQ__QuoteLine__r.SBQQ__Quote__r.SBQQ__Type__c, &apos;Amendment&apos;), CASESAFEID(SBQQ__QuoteLine__r.SBQQ__UpgradedSubscription__r.SBQQ__OrderProduct__r.Id), &apos;&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Original Order Product</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

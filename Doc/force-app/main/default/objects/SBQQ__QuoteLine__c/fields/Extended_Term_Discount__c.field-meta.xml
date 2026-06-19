@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Extended_Term_Discount__c</fullName>
+    <description>Customfield to display the free months discount as a Currency value.
+Built according to US# BIZ-46272. Formula edited as part of BIZ-47197</description>
+    <formula>IF(SBQQ__DistributorDiscount__c&gt;0, Customer_Sale_Price_Per_Month__c  * SBQQ__Quote__r.Free_Months__c  *  SBQQ__Quantity__c, NULL)</formula>
+    <label>Extended Term Credit</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

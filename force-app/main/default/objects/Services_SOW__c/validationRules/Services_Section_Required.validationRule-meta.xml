@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Services_Section_Required</fullName>
+    <active>true</active>
+    <description>The Services Section is required in order for an SOW to be marked as &quot;SOW Completed&quot;</description>
+    <errorConditionFormula>AND(
+  DATEVALUE(CreatedDate)&gt;DATEVALUE(&quot;2016-07-19&quot;),
+  ISPICKVAL(Status__c, &quot;SOW Completed&quot;),
+  OR(
+    ISBLANK(Services_Amount__c),
+    ISBLANK(Services_Amount_T_M__c),
+    ISBLANK(Services_Hours_Fixed_Fee__c),
+    ISBLANK(Services_Hours_T_M__c)
+  )
+)</errorConditionFormula>
+    <errorMessage>The Services Section (Services Amount - Fixed Fee, Services Amount - T&amp;M, Services Hours - Fixed Fee, and Services Hours - T&amp;M) are required before an SOW can be marked as &quot;SOW Completed&quot;</errorMessage>
+</ValidationRule>

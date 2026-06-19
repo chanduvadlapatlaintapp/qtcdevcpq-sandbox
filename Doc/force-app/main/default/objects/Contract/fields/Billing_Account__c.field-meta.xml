@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_Account__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <inlineHelpText>This is the Account with whom we have the billing relationship.</inlineHelpText>
+    <label>Billing Account</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Billing Contracts</relationshipLabel>
+    <relationshipName>Contracts</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Lookup</type>
+</CustomField>

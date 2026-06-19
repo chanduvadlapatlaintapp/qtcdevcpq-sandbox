@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Other_product_approval__c</fullName>
+    <description>Created for BIZ BIZ-49905</description>
+    <externalId>false</externalId>
+    <formula>IF(OR(On_Prem_Multi_year_product__c = true,Has_Trial_Product__c = true,ISPICKVAL(Deal_Type__c, &apos;Contract Replacement&apos;)),1,
+IF(OR(Repstor_Retro__c = true,Repstor__c = true,Legacy_Repstor_Agreement__c = true),2,
+IF((Partner_Related__c = true),3,
+IF((Cloud_Migration__c = true),4,0))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Other product approval</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

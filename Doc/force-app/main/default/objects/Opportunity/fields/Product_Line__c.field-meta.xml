@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Line__c</fullName>
+    <label>Product Line</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Practice_Group__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Conflicts - On Prem</fullName>
+                <color>#E27001</color>
+                <default>false</default>
+                <label>Conflicts - On Prem</label>
+            </value>
+            <value>
+                <fullName>Intake - On Prem</fullName>
+                <color>#E27001</color>
+                <default>false</default>
+                <label>Intake - On Prem</label>
+            </value>
+            <value>
+                <fullName>Records Management</fullName>
+                <color>#E27001</color>
+                <default>false</default>
+                <label>Records Management</label>
+            </value>
+            <value>
+                <fullName>TFG - Legacy</fullName>
+                <color>#E27001</color>
+                <default>false</default>
+                <label>TFG - Legacy</label>
+            </value>
+            <value>
+                <fullName>Terms - On Prem</fullName>
+                <color>#E27001</color>
+                <default>false</default>
+                <label>Terms - On Prem</label>
+            </value>
+            <value>
+                <fullName>Terms - Cloud</fullName>
+                <color>#E27001</color>
+                <default>false</default>
+                <label>Terms - Cloud</label>
+            </value>
+            <value>
+                <fullName>LegalKey - Legacy</fullName>
+                <default>false</default>
+                <label>LegalKey - Legacy</label>
+            </value>
+            <value>
+                <fullName>Experience - On Prem</fullName>
+                <default>false</default>
+                <label>Experience - On Prem</label>
+            </value>
+            <value>
+                <fullName>Experience - Cloud</fullName>
+                <default>false</default>
+                <label>Experience - Cloud</label>
+            </value>
+            <value>
+                <fullName>Integrate - Cloud</fullName>
+                <default>false</default>
+                <label>Integrate - Cloud</label>
+            </value>
+            <value>
+                <fullName>Multiple Products - On Prem</fullName>
+                <default>false</default>
+                <label>Multiple Products - On Prem</label>
+            </value>
+            <value>
+                <fullName>Pricing - On Prem</fullName>
+                <default>false</default>
+                <label>Pricing - On Prem</label>
+            </value>
+            <value>
+                <fullName>Pricing - Cloud</fullName>
+                <default>false</default>
+                <label>Pricing - Cloud</label>
+            </value>
+            <value>
+                <fullName>L&amp;P - Cloud</fullName>
+                <default>false</default>
+                <label>L&amp;P - Cloud</label>
+            </value>
+            <value>
+                <fullName>Relationships - On Prem</fullName>
+                <default>false</default>
+                <label>Relationships - On Prem</label>
+            </value>
+            <value>
+                <fullName>Relationships - Cloud</fullName>
+                <default>false</default>
+                <label>Relationships - Cloud</label>
+            </value>
+            <value>
+                <fullName>CRM - Cloud</fullName>
+                <default>false</default>
+                <label>CRM - Cloud</label>
+            </value>
+            <value>
+                <fullName>Flow - Cloud</fullName>
+                <default>false</default>
+                <label>Flow - Cloud</label>
+            </value>
+            <value>
+                <fullName>Flow - On Prem</fullName>
+                <default>false</default>
+                <label>Flow - On Prem</label>
+            </value>
+            <value>
+                <fullName>Multiple Products - Cloud</fullName>
+                <default>false</default>
+                <label>Multiple Products - Cloud</label>
+            </value>
+            <value>
+                <fullName>Time - On Prem</fullName>
+                <default>false</default>
+                <label>Time - On Prem</label>
+            </value>
+            <value>
+                <fullName>Time - Cloud</fullName>
+                <default>false</default>
+                <label>Time - Cloud</label>
+            </value>
+            <value>
+                <fullName>Intake - Cloud</fullName>
+                <default>false</default>
+                <label>Intake - Cloud</label>
+            </value>
+            <value>
+                <fullName>Conflicts - Cloud</fullName>
+                <default>false</default>
+                <label>Conflicts - Cloud</label>
+            </value>
+            <value>
+                <fullName>Walls - On Prem</fullName>
+                <default>false</default>
+                <label>Walls - On Prem</label>
+            </value>
+            <value>
+                <fullName>Integrate - On Prem</fullName>
+                <default>false</default>
+                <label>Integrate - On Prem</label>
+            </value>
+            <value>
+                <fullName>DealCloud - Cloud</fullName>
+                <default>false</default>
+                <label>DealCloud - Cloud</label>
+            </value>
+            <value>
+                <fullName>OPIS - Cloud</fullName>
+                <default>false</default>
+                <label>OPIS - Cloud</label>
+            </value>
+            <value>
+                <fullName>Content</fullName>
+                <default>false</default>
+                <label>Content</label>
+            </value>
+            <value>
+                <fullName>Integration Service - Cloud</fullName>
+                <default>false</default>
+                <label>Integration Service - Cloud</label>
+            </value>
+            <value>
+                <fullName>Third Party Referrals</fullName>
+                <default>false</default>
+                <label>Third Party Referrals</label>
+            </value>
+            <value>
+                <fullName>Small Firms - Cloud</fullName>
+                <default>false</default>
+                <label>Small Firms - Cloud</label>
+            </value>
+            <value>
+                <fullName>Nudges - Cloud</fullName>
+                <default>false</default>
+                <label>Nudges - Cloud</label>
+            </value>
+            <value>
+                <fullName>Third Party Content - D&amp;B Data Mgmt</fullName>
+                <default>false</default>
+                <label>Third Party Content - D&amp;B Data Mgmt</label>
+            </value>
+            <value>
+                <fullName>Third Party Content - S&amp;P</fullName>
+                <default>false</default>
+                <label>Third Party Content - S&amp;P</label>
+            </value>
+            <value>
+                <fullName>Third Party Content - D&amp;B Tree</fullName>
+                <default>false</default>
+                <label>Third Party Content - D&amp;B Tree</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Multiple Products</controllingFieldValue>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <controllingFieldValue>Marketing &amp; BD</controllingFieldValue>
+            <valueName>Multiple Products - On Prem</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Multiple Products</controllingFieldValue>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <controllingFieldValue>Marketing &amp; BD</controllingFieldValue>
+            <valueName>Multiple Products - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Conflicts - On Prem</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Intake - On Prem</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Records Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>TFG - Legacy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Terms - On Prem</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Terms - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>LegalKey - Legacy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Intake - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Conflicts - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Walls - On Prem</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <valueName>Pricing - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <valueName>Time - On Prem</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <valueName>Time - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Knowledge &amp; Content</controllingFieldValue>
+            <valueName>Third Party Referrals</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Knowledge &amp; Content</controllingFieldValue>
+            <valueName>Third Party Content - D&amp;B Data Mgmt</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Knowledge &amp; Content</controllingFieldValue>
+            <valueName>Third Party Content - S&amp;P</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Knowledge &amp; Content</controllingFieldValue>
+            <valueName>Third Party Content - D&amp;B Tree</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IT</controllingFieldValue>
+            <valueName>Integrate - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IT</controllingFieldValue>
+            <valueName>Flow - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IT</controllingFieldValue>
+            <valueName>Flow - On Prem</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IT</controllingFieldValue>
+            <valueName>Integrate - On Prem</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IT</controllingFieldValue>
+            <valueName>Integration Service - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Leaders &amp; Professionals</controllingFieldValue>
+            <valueName>L&amp;P - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Leaders &amp; Professionals</controllingFieldValue>
+            <valueName>Small Firms - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Leaders &amp; Professionals</controllingFieldValue>
+            <valueName>Nudges - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing &amp; BD</controllingFieldValue>
+            <valueName>Experience - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing &amp; BD</controllingFieldValue>
+            <valueName>Relationships - On Prem</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing &amp; BD</controllingFieldValue>
+            <valueName>Relationships - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing &amp; BD</controllingFieldValue>
+            <valueName>CRM - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>DealCloud</controllingFieldValue>
+            <valueName>DealCloud - Cloud</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

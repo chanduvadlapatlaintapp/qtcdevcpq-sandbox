@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X2007_Budget_Status__c</fullName>
+    <label>2007 Budget Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>It is in the budget and approved</fullName>
+                <default>false</default>
+                <label>It is in the budget and approved</label>
+            </value>
+            <value>
+                <fullName>It might be in the budget but I don&apos;t know</fullName>
+                <default>false</default>
+                <label>It might be in the budget but I don&apos;t know</label>
+            </value>
+            <value>
+                <fullName>No idea what the budget status is</fullName>
+                <default>false</default>
+                <label>No idea what the budget status is</label>
+            </value>
+            <value>
+                <fullName>I know it is not in the budget</fullName>
+                <default>false</default>
+                <label>I know it is not in the budget</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

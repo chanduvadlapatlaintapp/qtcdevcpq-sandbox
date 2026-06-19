@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Retainer_Amount_Validation</fullName>
+    <active>true</active>
+    <description>Validation for Retainer Amount according to product type and Users.
+Built according to US# BIZ-45113.</description>
+    <errorConditionFormula>OR(
+		AND(
+			NOT(ISPICKVAL(Product_Type__c, &apos;Services&apos;)),
+			ISCHANGED(Retainer_Amount__c)
+			),
+		AND(
+			ISNEW(),(NOT(ISPICKVAL(Product_Type__c, &apos;Services&apos;))), Retainer_Amount__c&gt;0
+			),
+		AND(
+			NOT($Permission.Admin_Override),
+			AND(
+				ISPICKVAL(Product_Type__c, &apos;Services&apos;),
+				ISCHANGED(Retainer_Amount__c)
+				)
+			),
+		AND(
+			NOT($Permission.Admin_Override),
+			AND(
+				ISNEW(),ISPICKVAL(Product_Type__c, &apos;Services&apos;), Retainer_Amount__c&gt;0
+				)
+			)
+			
+	)</errorConditionFormula>
+    <errorMessage>Retainer Amount can only be populated for Services Products. Please request Service Ops to update Retainer Amount.</errorMessage>
+</ValidationRule>

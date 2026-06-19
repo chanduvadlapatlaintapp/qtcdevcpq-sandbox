@@ -1,0 +1,95 @@
+<apex:page controller="AgenticQTC_OsaTemplateController" renderAs="pdf" applyBodyTag="false" showHeader="false" sidebar="false">
+    <head>
+        <style type="text/css">
+            @page { size: letter; margin: 1in; }
+            body { font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #333; }
+            .header { text-align: center; border-bottom: 2px solid #0176d3; padding-bottom: 16px; margin-bottom: 24px; }
+            .header h1 { font-size: 22px; color: #0176d3; margin: 0; }
+            .header p { color: #666; margin: 4px 0 0; }
+            .section { margin-bottom: 20px; }
+            .section h2 { font-size: 14px; color: #0176d3; border-bottom: 1px solid #e5e5e5; padding-bottom: 4px; margin-bottom: 8px; }
+            .info-grid { display: table; width: 100%; }
+            .info-row { display: table-row; }
+            .info-label { display: table-cell; padding: 4px 8px; font-weight: bold; width: 180px; background: #f4f6f9; }
+            .info-value { display: table-cell; padding: 4px 8px; }
+            table.products { width: 100%; border-collapse: collapse; margin-top: 8px; }
+            table.products th { background: #0176d3; color: white; padding: 8px; text-align: left; font-size: 11px; }
+            table.products td { padding: 8px; border-bottom: 1px solid #e5e5e5; font-size: 11px; }
+            table.products tr:nth-child(even) { background: #f9fafb; }
+            table.products tr.changed { background: #e8f7ee; font-weight: 600; }
+            .change-positive { color: #2e844a; font-weight: bold; }
+            .change-negative { color: #c23934; font-weight: bold; }
+            .change-none { color: #999; font-style: italic; }
+            .totals { text-align: right; margin-top: 16px; font-size: 13px; }
+            .totals .total-value { font-size: 18px; font-weight: bold; color: #0176d3; }
+            .terms { margin-top: 24px; padding: 16px; background: #f4f6f9; border-radius: 4px; }
+            .terms h2 { margin-top: 0; }
+            .terms p { font-size: 10px; line-height: 1.5; color: #666; }
+            .signature { margin-top: 40px; }
+            .sig-line { border-top: 1px solid #333; width: 250px; margin-top: 40px; padding-top: 4px; }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Order Schedule Amendment (OSA)</h1>
+            <p>ServiceTitan, Inc. — Contract Amendment Agreement</p>
+        </div>
+
+        <div class="section">
+            <h2>Amendment Details</h2>
+            <div class="info-grid">
+                <div class="info-row"><div class="info-label">Quote Number</div><div class="info-value">{!quoteName}</div></div>
+                <div class="info-row"><div class="info-label">Account</div><div class="info-value">{!accountName}</div></div>
+                <div class="info-row"><div class="info-label">Contract Number</div><div class="info-value">{!contractNumber}</div></div>
+                <div class="info-row"><div class="info-label">Amendment Date</div><div class="info-value">{!amendmentDate}</div></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Products &amp; Pricing</h2>
+            <table class="products">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th style="text-align:center">Prior Qty</th>
+                        <th style="text-align:center">New Qty</th>
+                        <th style="text-align:center">Change</th>
+                        <th style="text-align:right">Unit Price</th>
+                        <th style="text-align:right">Net Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <apex:repeat value="{!quoteLines}" var="line">
+                        <tr class="{!IF(line.isChanged, 'changed', '')}">
+                            <td>{!line.productName}</td>
+                            <td style="text-align:center">{!line.priorQuantity}</td>
+                            <td style="text-align:center"><strong>{!line.quantity}</strong></td>
+                            <td style="text-align:center">
+                                <apex:outputPanel rendered="{!line.isChanged}">
+                                    <span class="{!IF(CONTAINS(line.qtyChange, '+'), 'change-positive', 'change-negative')}">{!line.qtyChange}</span>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!!line.isChanged}">
+                                    <span class="change-none">{!line.qtyChange}</span>
+                                </apex:outputPanel>
+                            </td>
+                            <td style="text-align:right">${!line.listPrice}</td>
+                            <td style="text-align:right">${!line.netPrice}</td>
+                        </tr>
+                    </apex:repeat>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="terms">
+            <h2>Standard Terms</h2>
+            <p>This Amendment is made pursuant to the Master Subscription Agreement between ServiceTitan, Inc. and the Customer. All terms and conditions of the original agreement remain in full force and effect except as expressly modified herein. This Amendment shall be effective as of the Amendment Date stated above. Customer acknowledges that the additional products and services listed above are subject to the standard pricing and billing terms. Any quantity increases will be billed on a prorated basis from the effective date through the end of the current contract term.</p>
+        </div>
+
+        <div class="signature">
+            <h2>Acceptance</h2>
+            <p>By signing below, Customer agrees to the terms of this Amendment.</p>
+            <div class="sig-line">Customer Signature &amp; Date</div>
+            <div class="sig-line">Printed Name &amp; Title</div>
+        </div>
+    </body>
+</apex:page>

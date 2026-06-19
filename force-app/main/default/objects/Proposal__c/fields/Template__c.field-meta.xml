@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Template__c</fullName>
+    <label>Template</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>General New</fullName>
+                <default>false</default>
+                <label>General New</label>
+            </value>
+            <value>
+                <fullName>General Upgrade</fullName>
+                <default>false</default>
+                <label>General Upgrade</label>
+            </value>
+            <value>
+                <fullName>Pricing Only</fullName>
+                <default>false</default>
+                <label>Pricing Only</label>
+            </value>
+            <value>
+                <fullName>Walls Only</fullName>
+                <default>false</default>
+                <label>Walls Only</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

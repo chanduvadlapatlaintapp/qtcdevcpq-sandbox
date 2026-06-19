@@ -1,0 +1,67 @@
+<messaging:emailTemplate subject="Approval for {!relatedTo.Quote__r.SBQQ__Account__r.Name}" recipientType="User" relatedToType="sbaa__Approval__c">
+ <messaging:HtmlEmailBody >
+ <html>
+ <body>
+
+<p>Dear {!relatedTo.sbaa__AssignedTo__r.Name}</p>
+
+<p>The following quote has been submitted for approval by {!relatedTo.Quote__r.SubmittedUser__r.Name} </p>
+
+<br></br>
+<b>Customer Name</b> : {!relatedTo.Quote__r.SBQQ__ShippingName__c} <br/>
+
+<b>Current Account ACV</b> : {!relatedTo.Quote__r.Currency_Symbol__c}<apex:outputText value="{0, number, ###,###,###,###.00}"><apex:param value="{!relatedTo.Quote__r.Account_ACV__c}"/></apex:outputText> <br/>
+
+<br></br>
+<b>Deal Name</b>: {!relatedTo.Quote__r.SBQQ__Opportunity2__r.Name} <br/>
+
+<b>Deal Owner</b> : {!relatedTo.Quote__r.OP4I_Deal_Owner__c}<br/>
+
+<b>Deal ACV</b>: {!relatedTo.Quote__r.Currency_Symbol__c}<apex:outputText value="{0, number, ###,###,###,###.00}"> <apex:param value="{!relatedTo.Quote__r.Deal_ACV__c}"/> </apex:outputText><br/>
+
+<b>First Segment Months</b>: <apex:outputtext >{!FLOOR(relatedTo.Quote__r.First_Segment_Months__c)}</apex:outputtext> <br/>
+
+<b>Total Contract Term</b> : <apex:outputtext >{!FLOOR(relatedTo.Quote__r.SBQQ__SubscriptionTerm__c)}</apex:outputtext> <br/>
+
+<b>Deal TCV</b> : {!relatedTo.Quote__r.Currency_Symbol__c}<apex:outputText value="{0, number, ###,###,###,###.00}"> <apex:param value="{!relatedTo.Quote__r.Total_Subscription_Fees__c}"/> </apex:outputText><br/>
+
+<b>Total Discount</b> : {!relatedTo.Quote__r.Initial_Term_Discount__c}% <br/>
+
+<b>Additional Free months at no cost</b> : <apex:outputtext >{!FLOOR(relatedTo.Quote__r.Additional_Free_months_at_no_cost__c)}</apex:outputtext> <br/>
+
+<b>Payment Terms</b> : {!relatedTo.Quote__r.Software_Payment_Terms__c} <br/>
+
+<b>Billing Frequency</b> : {!relatedTo.Quote__r.SBQQ__BillingFrequency__c} <br/>
+
+<b>Average YoY Increase</b> : {!relatedTo.Quote__r.Min_year_on_year_committed_spend__c}% <br/>
+
+<b>Services TCV</b> : {!relatedTo.Quote__r.Currency_Symbol__c}<apex:outputText value="{0, number, ###,###,###,###0.00}"> <apex:param value="{!relatedTo.Quote__r.Services_Net_Total__c}"/> </apex:outputText><br/>
+
+<b>Services Discount</b> : {!relatedTo.Quote__r.Services_Discount_Percentage__c}% <br/>
+
+<br></br>
+<b>Last requested OSA comments</b> : {!relatedTo.Quote__r.Last_OSA_Comment__c} <br/>
+<br></br>
+
+<b>Deal Cloud PUPM (If applicable)</b>: {!relatedTo.Quote__r.Currency_Symbol__c}<apex:outputText value="{0,number,###,###,###,##0.00}"> <apex:param value="{!relatedTo.Quote__r.Deal_Cloud_PUPM__c}"/> </apex:outputText><br/>
+
+<b>Outstanding Balance (Subscription)</b> :{!relatedTo.Quote__r.Currency_Symbol__c}<apex:outputText value="{0, number, ###,###,###,###0.00}"> <apex:param value="{!relatedTo.Quote__r.Outstanding_Balance_Subscription__c}"/> </apex:outputText><br/>
+
+<b>Outstanding Balance (Services)</b> : {!relatedTo.Quote__r.Currency_Symbol__c}<apex:outputText value="{0, number, ###,###,###,###0.00}"> <apex:param value="{!relatedTo.Quote__r.Outstanding_Balance_Services__c}"/> </apex:outputText><br/>
+
+<b>Client Entitlements</b> : https://op4i2-sand.dealcloud.intapp.com/portal/pages/5/reports/704/entries/{!relatedTo.Quote__r.OP4I_Account_Id__c}<br/>
+
+<b>OP4I Deal Link</b> : {!relatedTo.Quote__r.OP4I_Quote_URL__c}<br/>
+
+<b>CPQ Quote: </b>&nbsp;<apex:outputLink value="{!LEFT($Api.Enterprise_Server_URL_300, FIND('/services',$Api.Enterprise_Server_URL_300))}/{!relatedTo.Quote__r.Id}" >{!relatedTo.Quote__r.Name}</apex:outputLink> <br/>
+
+
+
+<p>You can approve the request by responding to this email with YES, APPROVE or APPROVED. You can reject this request by responding to this email with NO, REJECT or REJECTED.</p> 
+
+
+ <p style="color:white"><apex:outputText value="{!relatedTo.ID}"/></p>
+ </body>
+ </html>
+ </messaging:HtmlEmailBody>
+</messaging:emailTemplate>

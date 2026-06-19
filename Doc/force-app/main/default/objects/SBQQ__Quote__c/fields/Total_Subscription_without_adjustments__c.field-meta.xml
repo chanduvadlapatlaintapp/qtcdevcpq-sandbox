@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Subscription_without_adjustments__c</fullName>
+    <description>.</description>
+    <externalId>false</externalId>
+    <formula>Total_Subscription_Fees__c - (Total_Subscription_Fees__c - Total_Subscription_Fees_Year_1__c - Total_Subscription_Fees_2nd_Year__c - Total_Subscription_Fees_3rd_Year__c - Total_Subscription_Fees_4th_Year__c - Total_Subscription_Fees_5th_Year__c - Total_Subscription_Fees_6th_Year__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Total Subscription without adjustments</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

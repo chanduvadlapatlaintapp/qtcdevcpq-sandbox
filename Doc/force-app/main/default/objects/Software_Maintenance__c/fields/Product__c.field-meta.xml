@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Software_License__r.Product__c,
+   &quot;DTE Legacy&quot;,&quot;DTE Legacy&quot;,
+   &quot;Other&quot;,&quot;Other&quot;,
+   &quot;DTE Legacy Mobile&quot;,&quot;DTE Legacy Mobile&quot;,
+   &quot;RollCall&quot;,&quot;RollCall&quot;,
+   &quot;DTE Axiom Mobile&quot;,&quot;DTE Axiom Mobile&quot;,
+   &quot;DTE Axiom&quot;,&quot;DTE Axiom&quot;,
+   &quot;Time Builder&quot;,&quot;Time Builder&quot;,
+&quot;Unknown&quot;)</formula>
+    <label>Product</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

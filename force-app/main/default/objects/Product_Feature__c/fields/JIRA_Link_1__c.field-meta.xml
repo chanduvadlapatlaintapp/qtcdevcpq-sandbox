@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>JIRA_Link_1__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( 
+ JIRA_ID__c   &lt;&gt; &quot;&quot;, 
+HYPERLINK(&quot;http://armadillo/browse/&quot;  &amp;  JIRA_ID__c , &quot;View JIRA Item&quot;),
+ &quot;&lt;none&gt;&quot;)</formula>
+    <label>JIRA Link 1</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

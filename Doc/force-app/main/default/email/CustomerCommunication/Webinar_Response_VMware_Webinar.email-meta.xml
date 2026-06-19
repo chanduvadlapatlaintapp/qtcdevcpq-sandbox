@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Response for VMware Webinar</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - VMware Webinar</name>
+    <style>none</style>
+    <subject>IntApp VMware Webinar</subject>
+    <textOnly>{!Lead.FirstName} {!Lead.LastName}:
+
+Thank you for registering for the VMware Webinar.
+Date: Thursday, March 19
+Time: 9 am Pacific / 12 pm Eastern (4 pm GMT)
+
+
+Video:
+
+Conference URL: http://e-meetings.mci.com/nc/join.php?i=SV56561&amp;p=intapp&amp;t=c
+Conference/Meeting Number: SV56561
+Conference/Meeting Passcode: IntApp
+
+
+Audio:
+
+Conference Audio Dial In:
+US/Canada: 877-917-3617
+UK: 1-312-470-7008
+(give operator the passcode: &quot;IntApp&quot; and conference leader&apos;s name: &quot;Neal Vora&quot;)
+
+
+
+Please log in and dial the conference audio line 10 minutes prior to the start time.
+
+
+
+http://www.intapp.com
+All information Copyright 2009 IntApp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

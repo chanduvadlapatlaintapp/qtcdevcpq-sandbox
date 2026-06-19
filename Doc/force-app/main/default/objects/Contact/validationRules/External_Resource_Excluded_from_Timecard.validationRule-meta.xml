@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>External_Resource_Excluded_from_Timecard</fullName>
+    <active>false</active>
+    <description>If a person is marked as an external resource, the &quot;Exclude from missing timecard&quot; checkbox must be checked.</description>
+    <errorConditionFormula>AND(
+  NOT($Profile.Id=&quot;00e30000000bvR3&quot;),
+  External_Resource__c=TRUE,
+  Exclude_From_Missing_Timecards__c =FALSE)</errorConditionFormula>
+    <errorMessage>&quot;Exclude From Missing Timecards&quot; must be checked for External Resources.</errorMessage>
+</ValidationRule>

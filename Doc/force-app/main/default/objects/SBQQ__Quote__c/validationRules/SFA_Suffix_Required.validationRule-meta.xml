@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SFA_Suffix_Required</fullName>
+    <active>false</active>
+    <description>created as part of BIZ-45114.
+If user picks a value in ‘SFA Prefix’, a value in ‘SFA Suffix’ should be required.</description>
+    <errorConditionFormula>AND(
+NOT(ISBLANK(TEXT( SFA_Prefix__c ))),
+ISBLANK(TEXT( SFA_Suffix__c ))
+)</errorConditionFormula>
+    <errorMessage>SFA Suffix is required if SFA prefix is selected</errorMessage>
+</ValidationRule>

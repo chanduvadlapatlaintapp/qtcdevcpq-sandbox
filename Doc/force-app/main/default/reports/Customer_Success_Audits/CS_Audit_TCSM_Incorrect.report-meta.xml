@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>text</bucketType>
+        <developerName>BucketField_86617062</developerName>
+        <masterLabel>Product</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>Subscription__c.Product_LineNew__c</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Conflicts</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Conflicts - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Conflicts - On Prem</sourceValue>
+            </sourceValues>
+            <value>Conflicts</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>CRM</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>CRM - Cloud</sourceValue>
+            </sourceValues>
+            <value>CRM</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Experience</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Experience - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Experience - On Prem</sourceValue>
+            </sourceValues>
+            <value>Experience</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Intake</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Intake - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Intake - On Prem</sourceValue>
+            </sourceValues>
+            <value>Intake</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Integrate</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Integrate - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Flow - On Prem</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Integrate - On Prem</sourceValue>
+            </sourceValues>
+            <value>Integrate</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>PSP</sourceValue>
+            </sourceValues>
+            <value>PSP</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Pricing - Cloud</sourceValue>
+            </sourceValues>
+            <value>Pricing</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Relationships</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Relationships - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Relationships - On Prem</sourceValue>
+            </sourceValues>
+            <value>Relationships</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>TFG - Other</sourceValue>
+            </sourceValues>
+            <value>TFG</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Terms</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Terms - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Terms - On Prem</sourceValue>
+            </sourceValues>
+            <value>Terms</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Third Party Product - D&amp;B</sourceValue>
+            </sourceValues>
+            <value>D&amp;B</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Time</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Time - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Time - On Prem</sourceValue>
+            </sourceValues>
+            <value>Time</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Walls</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Walls - On Prem</sourceValue>
+            </sourceValues>
+            <value>Walls</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>USERS.NAME</field>
+    </columns>
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>Subscription__c.Product_LineNew__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c.CSM__c</field>
+    </columns>
+    <columns>
+        <field>CUST_ID</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <currency>GBP</currency>
+    <filter>
+        <booleanFilter>((((1 AND ((2 AND 3) OR (4 AND 5) OR (6 AND 7) OR (8 AND 9) OR (10 AND 11) OR (12 AND 13)))))) OR 14 OR (15 AND 16)</booleanFilter>
+        <criteriaItems>
+            <column>Account.Customer_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Customer</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c.CSM__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>James Edwards</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>BucketField_86617062</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Conflicts,Intake,Terms,D&amp;B</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c.CSM__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Colleen Gifford</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>BucketField_86617062</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Walls</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c.CSM__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Matt McInerny</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>BucketField_86617062</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Time</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c.CSM__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Olivia Thompson</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>BucketField_86617062</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Integrate</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c.CSM__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Kimberly Auther</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>BucketField_86617062</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Relationships</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c.CSM__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>BucketField_86617062</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>TFG,OTher</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c.CSM__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>James Edwards,Colleen Gifford,Matt McInerny,Olivia Thompson,Kimberly Auther</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c.CSM__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>BucketField_86617062</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>CRM,PSP,TFG,D&amp;B,Other</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_86617062</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>CS Audit:TCSM Incorrect</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountCustomEntity$Subscription__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>DUE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

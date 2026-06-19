@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - Jul13 D&amp;B Webinar Response</name>
+    <style>none</style>
+    <subject>IntApp Webinar Confirmation</subject>
+    <textOnly>Webinar Invite -- Suspect
+
+
+{!Contact.FirstName} {!Contact.LastName}: Thank you for registering for the webinar. Please see below for login details.
+
+Title: Master Your Data
+Date: Wednesday, 24th July
+Time: 4pm BST / 11am EDT / 8am PDT
+
+URL: https://intapp.webex.com/intapp/j.php?J=809676478
+
+UK toll-free: 0808 101 4881
+US toll-free: 1 800 434 1335
+
+Conference ID / Passcode: 353361#
+
+http://www.intapp.com
+
+All information Copyright 2013 IntApp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

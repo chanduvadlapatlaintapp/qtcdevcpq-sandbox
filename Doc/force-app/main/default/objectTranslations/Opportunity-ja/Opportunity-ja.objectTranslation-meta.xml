@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Deal Desk --></label>
+        <name>sbaa__DealDesk</name>
+    </fieldSets>
+    <recordTypes>
+        <description><!-- Use this for Consulting - Internal Projects --></description>
+        <label><!-- Consulting Services - Internal --></label>
+        <name>Consulting_Services_Internal</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Use this for end user licenses. --></description>
+        <label><!-- Legal - Annual End User License --></label>
+        <name>Legal_Annual_End_User_License</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Use this for processing billing pause and restart opportunities --></description>
+        <label><!-- Legal - Billing Pause / Restart --></label>
+        <name>Legal_Billing_Pause_Restart</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Use this for cancellations and any negative recurring adjustments --></description>
+        <label><!-- Legal - Cancellation / Recurring Downgrade --></label>
+        <name>Legal_Cancellation</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Use this when selling Flow. If you are selling Flow as part of an Intake bundle - use the Intapp Open Record Type --></description>
+        <label><!-- Legal - Flow/Multiple Products --></label>
+        <name>Legal_Flow</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Use this when selling Integration Builder --></description>
+        <label><!-- Legal - Integration --></label>
+        <name>Legal_Integration</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Use this for historical processing only. Make sure to always convert Opportunities in this record type back after using. --></description>
+        <label><!-- Legal - Legacy --></label>
+        <name>Legal_Legacy</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Use this when selling Intapp Open, or when selling a Flow &amp; Intake bundle --></description>
+        <label><!-- Legal - Open --></label>
+        <name>Legal_Open</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Use this Record Type for CPI Opportunities to Law Firms --></description>
+        <label><!-- Legal - Renewal / CPI --></label>
+        <name>Legal_Renewal</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Opportunities for Change Requests and Opportunities initiated from Services for Services Only --></description>
+        <label><!-- Legal - Change Requests / Services Initiated --></label>
+        <name>Legal_Services_Only</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This record type is only meant for processing legacy TFG Services. Do not use this for new sales. --></description>
+        <label><!-- Legal - TFG Services --></label>
+        <name>Legal_TFG_Services</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Use this when selling any of the Intapp Time products --></description>
+        <label><!-- Legal - Time --></label>
+        <name>Legal_Time</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Use this when selling Wall Builder or any of its modules --></description>
+        <label><!-- Legal - Walls --></label>
+        <name>Legal_Walls</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Migration Opportunity --></label>
+        <name>Migration_Opportunity</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Use this Record Type to record special adjustments to a sales rep&apos;s quota credit for a related opportunity, such as a deal split. --></description>
+        <label><!-- Quota Credit Adjustment --></label>
+        <name>Quota_Credit_Adjustment</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Use this for any Sales led Opportunities for Emerging Markets --></description>
+        <label><!-- Sales - Emerging Markets --></label>
+        <name>Sales_Emerging_Markets</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Use this for any Sales led Opportunities for Legal --></description>
+        <label><!-- Sales - Legal --></label>
+        <name>Sales_Legal</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This is to track the Opportunities which will go to the Partners --></description>
+        <label><!-- Services - Partner --></label>
+        <name>Services_Partner</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This record type is used to track training services sold by Support. --></description>
+        <label><!-- Training --></label>
+        <name>Training</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Please update the quote stage to &quot;Contract Executed&quot; and complete the Deal Validation Checklist before closing the Opportunity. --></errorMessage>
+        <name>DealChecklistValidation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Opportunity cannot be changed after it is set to &quot;Closed Won.&quot; If this change is required, please contact your System Administrator. --></errorMessage>
+        <name>OPP_Prevent_Stage_Change_After_ClosedWon</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Opportunity Owner cannot be changed manually. For OP4I deals, update the Deal Owner in OP4I. For SFDC deals, the Owner is automatically managed based on the Account Owner. --></errorMessage>
+        <name>Opportunity_Owner_Read_Only</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- User is not allowed to edit the Opportunity Stage field --></errorMessage>
+        <name>OpptyStageRestrictEdit</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>
+            <!-- Opportunity can only be ordered only on the following conditions:
+1. Opportunity Stage: Closed Won
+2. Primary Quote Stage: Contract Executed
+3. Primary Quote Deal Checklist: Completed -->
+        </errorMessage>
+        <name>Order_Creation_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Renewal Hold Reason is required when Renewal Hold is checked. --></errorMessage>
+        <name>Renewal_Hold_Reason_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter the OSA number for the In Contract or Closed Won Legal opportunity. --></errorMessage>
+        <name>Require_Contract_Number_for_Closed_Won</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Deal Owner on Renewal and NYMY opportunities can only be updated from OP4I. Please update the Deal Owner in OP4I and it will sync to Salesforce. --></errorMessage>
+        <name>Restrict_Deal_Owner_Update_Renewal_NYMY</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- NYMY opportunity should not go beyond ‘Qualify&apos; stage. --></errorMessage>
+        <name>Restrict_Stage_Update_On_NYMY</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot switch status to pre-funnel --></errorMessage>
+        <name>re_funnel_change</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Conga_Composer_OAuth --></label>
+        <name>APXTConga4__Conga_Composer_OAuth</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Conga_Mail_Merge --></label>
+        <name>APXTConga4__Conga_Mail_Merge</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Deal_Strength_History_Control --></label>
+        <name>Deal_Strength_History_Control</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Deal_Strength_History_Pain --></label>
+        <name>Deal_Strength_History_Pain</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Deal_Strength_History_Power --></label>
+        <name>Deal_Strength_History_Power</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Deal_Strength_History_Value --></label>
+        <name>Deal_Strength_History_Value</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Deal_Strength_History_Vision --></label>
+        <name>Deal_Strength_History_Vision</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Newcontractforthisopportunity --></label>
+        <name>Newcontractforthisopportunity</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- QS_TB_Usage_Summary --></label>
+        <name>QS_TB_Usage_Summary</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Reference_Material --></label>
+        <name>Reference_Material</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Amend_Assets --></label>
+        <name>SBQQ__Amend_Assets</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Amend_Contract --></label>
+        <name>SBQQ__Amend_Contract</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- CreateOrder --></label>
+        <name>SBQQ__CreateOrder</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Include_Document --></label>
+        <name>SBQQ__Include_Document</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- TB_Renewal_Summary_Report --></label>
+        <name>TB_Renewal_Summary_Report</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Unfollow --></label>
+        <name>Unfollow</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_with_DocuSign --></label>
+        <name>dsfs__Send_with_DocuSign</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Verify_with_DNB --></label>
+        <name>dsfs__Verify_with_DNB</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- PreviewApprovals --></label>
+        <name>sbaa__PreviewApprovals</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- RecallApprovals --></label>
+        <name>sbaa__RecallApprovals</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- ResendRequestEmail --></label>
+        <name>sbaa__ResendRequestEmail</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- SubmitForApproval --></label>
+        <name>sbaa__SubmitForApproval</name>
+    </webLinks>
+</CustomObjectTranslation>

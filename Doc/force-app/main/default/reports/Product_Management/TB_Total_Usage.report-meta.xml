@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>Time_Builder_Timeline_Metric__c.Usage_Type__c</field>
+    </columns>
+    <columns>
+        <field>Time_Builder_Timeline_Metric__c.X90_Days__c</field>
+    </columns>
+    <columns>
+        <field>FK_$Account.License_Band__c</field>
+    </columns>
+    <columns>
+        <field>FK_$Account.License_Band_Timekeepers__c</field>
+    </columns>
+    <columns>
+        <field>FK_$Account.Time_Journal__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Time_Builder_Timeline_Metric__c.Usage_Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Timekeepers - Journal Usage</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>TB Total Usage</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Time_Builder_Timeline_Metric__c@Time_Builder_Timeline_Metric__c.Account__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Time_Builder_Timeline_Metric__c.X12_Months_Max_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

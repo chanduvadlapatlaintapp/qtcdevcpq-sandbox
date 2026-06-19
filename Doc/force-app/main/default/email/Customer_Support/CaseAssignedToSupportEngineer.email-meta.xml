@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email template for when a case is assigned to support engineer</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>TS_Letterhead</letterhead>
+    <name>CaseAssignedToSupportEngineer</name>
+    <style>formalLetter</style>
+    <subject>Case #{!Case.CaseNumber} is assigned to you: {!Case.OwnerFullName} | {!Case.Subject}</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

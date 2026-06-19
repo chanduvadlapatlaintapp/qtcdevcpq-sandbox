@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Contract$Account</field>
+    </columns>
+    <columns>
+        <field>Contract$ContractNumber</field>
+    </columns>
+    <columns>
+        <field>Contract$Status</field>
+    </columns>
+    <columns>
+        <field>Contract$BillingFrequency__c</field>
+    </columns>
+    <columns>
+        <field>Contract$SBQQ__RenewalOpportunity__c</field>
+    </columns>
+    <columns>
+        <field>Contract$StartDate</field>
+    </columns>
+    <columns>
+        <field>Contract$EndDate</field>
+    </columns>
+    <columns>
+        <field>Contract$Type__c</field>
+    </columns>
+    <columns>
+        <field>Contract$OSA_Type__c</field>
+    </columns>
+    <columns>
+        <field>Contract$Deal_Type__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Contract$Renewals_Pause__c</field>
+    </columns>
+    <currency>USD</currency>
+    <customDetailFormulas>
+        <calculatedFormula>CASE(MONTH(Contract.EndDate),
+1, &quot;Q3-&quot; + TEXT(YEAR(Contract.EndDate)), 
+2, &quot;Q3-&quot; + TEXT(YEAR(Contract.EndDate)), 
+3, &quot;Q3-&quot; + TEXT(YEAR(Contract.EndDate)), 
+4, &quot;Q4-&quot; + TEXT(YEAR(Contract.EndDate)), 
+5, &quot;Q4-&quot; + TEXT(YEAR(Contract.EndDate)), 
+6, &quot;Q4-&quot; + TEXT(YEAR(Contract.EndDate)), 
+7, &quot;Q1-&quot; + TEXT(YEAR(Contract.EndDate)), 
+8, &quot;Q1-&quot; + TEXT(YEAR(Contract.EndDate)),
+9, &quot;Q1-&quot; + TEXT(YEAR(Contract.EndDate)),
+10,&quot;Q2-&quot; + TEXT(YEAR(Contract.EndDate)),
+11,&quot;Q2-&quot; + TEXT(YEAR(Contract.EndDate)),
+12,&quot;Q2-&quot; + TEXT(YEAR(Contract.EndDate)), 
+&quot;None&quot;)</calculatedFormula>
+        <dataType>Text</dataType>
+        <developerName>CDF1</developerName>
+        <label>Fiscal Quarter</label>
+        <scale>2</scale>
+    </customDetailFormulas>
+    <description>Active OSAs w/o renewal opportunities</description>
+    <filter>
+        <criteriaItems>
+            <column>Contract$Status</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>In Force,Partially Cancelled or superseded</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contract$SBQQ__RenewalOpportunity__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value></value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contract$Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Services Only</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contract$EndDate</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>lessOrEqual</operator>
+            <value>NEXT_N_DAYS:365</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contract$Renewals_Pause__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contract$Deal_Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Add-On,Partner_Fee</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contract$Is_Migrated_Contract__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contract$BillingFrequency__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Trial</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contract$StartDate</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>THIS_FISCAL_QUARTER</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>CDF1</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Audit 1a -Renewal - Active OSA w/o renew</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Contracts_with_Renewal_Opportunities__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Contract$StartDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2025-07-01</startDate>
+    </timeFrameFilter>
+</Report>

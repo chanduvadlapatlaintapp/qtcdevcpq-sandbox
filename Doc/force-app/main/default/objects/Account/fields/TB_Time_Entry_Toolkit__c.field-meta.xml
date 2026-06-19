@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TB_Time_Entry_Toolkit__c</fullName>
+    <description>License for the Time Builder Time Entry Toolkit?</description>
+    <inlineHelpText>Does this this customer have a license for the Time Builder Time Entry Toolkit?</inlineHelpText>
+    <label>TB Time Entry Toolkit</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Own it</fullName>
+                <default>false</default>
+                <label>Own it</label>
+            </value>
+            <value>
+                <fullName>Suspect</fullName>
+                <default>false</default>
+                <label>Suspect</label>
+            </value>
+            <value>
+                <fullName>Lapsed</fullName>
+                <default>false</default>
+                <label>Lapsed</label>
+            </value>
+            <value>
+                <fullName>Own it - Trial</fullName>
+                <default>false</default>
+                <label>Own it - Trial</label>
+            </value>
+            <value>
+                <fullName>Converted</fullName>
+                <default>false</default>
+                <label>Converted</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

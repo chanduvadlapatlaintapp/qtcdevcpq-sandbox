@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>text</bucketType>
+        <developerName>BucketField_6709596</developerName>
+        <masterLabel>Country</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>Case.Account_Territory__c</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Australia-NZ</sourceValue>
+            </sourceValues>
+            <value>APAC</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Mid Atlantic/South East AE</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>MidAtlantic-North</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>North Central</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>North Central AE</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Northeast</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>South East/Central</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>West-Canada</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>West-Canada AE</sourceValue>
+            </sourceValues>
+            <value>North America</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>UK</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>UK AE</sourceValue>
+            </sourceValues>
+            <value>Europe</value>
+        </values>
+    </buckets>
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_73236645</developerName>
+        <masterLabel>Products</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>Case.Product__c</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>DTE</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>DTE Axiom</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>DTE Axiom Mobile</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Intapp Time</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Time Builder</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>TB Attorney Rollout</sourceValue>
+            </sourceValues>
+            <value>Time</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Intake</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Conflicts</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Contract Express</sourceValue>
+            </sourceValues>
+            <value>Open</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Activity Tracker</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Wall Builder</sourceValue>
+            </sourceValues>
+            <value>Walls</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Integration Builder VM</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Integration Builder/Training</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Integration Builder</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Intapp Flow</sourceValue>
+            </sourceValues>
+            <value>Integrate</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>LegalKey</sourceValue>
+            </sourceValues>
+            <value>LegalKey</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>CompliGuard Protect</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>CompliGuard Flow</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>CompliGuard Analyze</sourceValue>
+            </sourceValues>
+            <value>LegacyCG</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>RollCall</sourceValue>
+            </sourceValues>
+            <value>Rollcall</value>
+        </values>
+    </buckets>
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <axisBinding>y</axisBinding>
+            <column>RowCount</column>
+        </chartSummaries>
+        <chartType>VerticalColumnStacked</chartType>
+        <enableHoverLabels>true</enableHoverLabels>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>CREATED_DATEONLY</groupingColumn>
+        <legendPosition>Right</legendPosition>
+        <location>CHART_TOP</location>
+        <secondaryGroupingColumn>BucketField_73236645</secondaryGroupingColumn>
+        <showAxisLabels>true</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>false</showValues>
+        <size>Medium</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>12</textSize>
+        <titleColor>#000000</titleColor>
+        <titleSize>18</titleSize>
+    </chart>
+    <columns>
+        <field>OWNER</field>
+    </columns>
+    <columns>
+        <field>BucketField_6709596</field>
+    </columns>
+    <columns>
+        <field>STATUS</field>
+    </columns>
+    <columns>
+        <field>Case.Product__c</field>
+    </columns>
+    <columns>
+        <field>SUBJECT</field>
+    </columns>
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>RECORDTYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Case.Support</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>SUBJECT</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notContain</operator>
+            <value>Undeliverable,Absence du bureau,Email Delivery Failure</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Geography__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Unknown</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>CREATED_DATE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>TODAY,LAST_N_DAYS:9</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>CREATED_DATEONLY</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_73236645</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Support Cases by Product - Last 10 Days</name>
+    <params>
+        <name>units</name>
+        <value>h</value>
+    </params>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CaseList</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>STATUS</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATEONLY</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

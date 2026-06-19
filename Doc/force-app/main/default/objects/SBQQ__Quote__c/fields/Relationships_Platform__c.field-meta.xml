@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Relationships_Platform__c</fullName>
+    <label>Relationships Platform</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>OPM</fullName>
+                <default>false</default>
+                <label>OPM</label>
+            </value>
+            <value>
+                <fullName>SFDC</fullName>
+                <default>false</default>
+                <label>SFDC</label>
+            </value>
+            <value>
+                <fullName>CMC</fullName>
+                <default>false</default>
+                <label>CMC</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

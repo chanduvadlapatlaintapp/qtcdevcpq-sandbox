@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Source_of_Lawyers_count__c</fullName>
+    <description>Where did we get the current count of the number of Lawyers? Options could be the most recent NLJ or other firm rankings list, the firm&apos;s web site, or talking with a senior person at the firm.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>What source is the information about the number of lawyers from? Required when making changes to lawyer numbers</inlineHelpText>
+    <label>Lawyers/Professionals Source</label>
+    <length>255</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

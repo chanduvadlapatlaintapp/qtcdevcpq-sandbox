@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Response for BPM Webinar</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - Jul10 BPM Webinar</name>
+    <style>none</style>
+    <subject>IntApp Webinar Confirmation</subject>
+    <textOnly>{!Lead.FirstName} {!Lead.LastName}: 
+
+Thank you for registering for the IntApp Business Process Management &amp; Workflows Webinar. The login details are below.
+
+Date: Thursday, July 29
+Time: 9 am Pacific / 12 pm Eastern (4 pm GMT)
+
+Video:
+
+Conference URL: https://www.livemeeting.com/cc/vcc/join?id=w6868473&amp;role=attend&amp;pw=A686847
+Meeting ID: w6868473
+Entry Code: A686847
+
+Audio:
+
+Conference Audio Dial In:
+US/Canada: 888-299-7241 
+UK: 0-800-404-7656
+Passcode: 6868473
+
+
+http://www.intapp.com
+All information Copyright 2010 IntApp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

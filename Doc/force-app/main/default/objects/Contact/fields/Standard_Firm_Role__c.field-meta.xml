@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Standard_Firm_Role__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  OR(
+    INCLUDES(Role_old__c, &quot;Finance Staff&quot;),
+    INCLUDES(Role_old__c, &quot;Finance Management&quot;),
+    INCLUDES(Role_old__c, &quot;Firm Management&quot;),
+    INCLUDES(Role_old__c, &quot;Managing Parnter&quot;)
+  ),
+  &quot;Finance&quot;,
+IF(
+  OR(
+    INCLUDES(Role_old__c, &quot;Risk Staff / Conflicts&quot;),
+    INCLUDES(Role_old__c, &quot;Records&quot;),
+    INCLUDES(Role_old__c, &quot;Risk Leader&quot;),
+    INCLUDES(Role_old__c, &quot;Intake Leader&quot;),
+    INCLUDES(Role_old__c, &quot;IT Security&quot;),
+    INCLUDES(Role_old__c, &quot;Non-Law Firm Risk Leader&quot;)
+  ),
+  &quot;Risk&quot;,
+IF(
+  OR(
+    INCLUDES(Role_old__c, &quot;IT Staff&quot;),
+    INCLUDES(Role_old__c, &quot;IT Leader&quot;),
+    INCLUDES(Role_old__c, &quot;Integration Leader&quot;)
+  ),
+  &quot;IT&quot;,
+  &quot;&quot;
+)))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Standard Firm Role</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

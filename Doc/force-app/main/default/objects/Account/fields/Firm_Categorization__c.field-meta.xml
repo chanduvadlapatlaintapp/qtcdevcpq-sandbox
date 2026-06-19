@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Firm_Categorization__c</fullName>
+    <description>The C-team has asked to add a new field to the account to track the “firm categorization” in terms of the Top30 L&amp;P program</description>
+    <label>Firm Categorization</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Verein</fullName>
+                <default>false</default>
+                <label>Verein</label>
+            </value>
+            <value>
+                <fullName>Merged</fullName>
+                <default>false</default>
+                <label>Merged</label>
+            </value>
+            <value>
+                <fullName>Elite</fullName>
+                <default>false</default>
+                <label>Elite</label>
+            </value>
+            <value>
+                <fullName>Challenger</fullName>
+                <default>false</default>
+                <label>Challenger</label>
+            </value>
+            <value>
+                <fullName>Specialist</fullName>
+                <default>false</default>
+                <label>Specialist</label>
+            </value>
+            <value>
+                <fullName>Market Pressure</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Market Pressure</label>
+            </value>
+            <value>
+                <fullName>Top Tier/White Glove</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Top Tier/White Glove</label>
+            </value>
+            <value>
+                <fullName>Verein/Network</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Verein/Network</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

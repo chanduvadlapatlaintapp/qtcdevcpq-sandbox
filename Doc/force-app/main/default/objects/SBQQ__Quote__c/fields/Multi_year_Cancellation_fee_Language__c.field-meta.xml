@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Multi_year_Cancellation_fee_Language__c</fullName>
+    <description>Created as part of BIZ-54003</description>
+    <externalId>false</externalId>
+    <formula>IF(ISPICKVAL(Cancellation_fee__c, &quot;5% cancellation fee&quot;), &quot;5%&quot;,
+IF(ISPICKVAL(Cancellation_fee__c, &quot;10% cancellation fee&quot;), &quot;10%&quot;,
+IF(ISPICKVAL(Cancellation_fee__c, &quot;25% cancellation fee&quot;), &quot;25%&quot;, &quot;&quot;)
+)
+)</formula>
+    <label>Multi-year Cancellation fee Language</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

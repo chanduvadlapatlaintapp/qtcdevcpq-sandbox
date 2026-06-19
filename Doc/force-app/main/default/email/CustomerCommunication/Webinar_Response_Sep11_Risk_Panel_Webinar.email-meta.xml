@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Response for September 2011 Risk Panel Webinar on Mergers and Laterals</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - Sep11 Risk Panel Webinar</name>
+    <style>none</style>
+    <subject>IntApp Webinar Confirmation</subject>
+    <textOnly>{!Lead.FirstName} {!Lead.LastName}: 
+
+Thank you for registering for the IntApp Risk Roundtable Webinar. The login details are below.
+
+Date: Wednesday, September 14
+Time: 9am Pacific / 12pm Eastern
+
+Video:
+
+Conference URL: https://www.livemeeting.com/cc/vcmeeting/join?id=3334407&amp;role=attend&amp;pw=A333440
+Meeting ID: 3334407
+Entry Code: A333440
+
+Audio:
+
+Conference Audio Dial In: 888-656-7429
+Passcode: 3334407
+
+http://www.intapp.com
+All information Copyright 2011 IntApp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

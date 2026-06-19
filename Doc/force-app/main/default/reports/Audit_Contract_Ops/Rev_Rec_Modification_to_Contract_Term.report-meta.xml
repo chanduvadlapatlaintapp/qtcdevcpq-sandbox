@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Contract$ContractNumber</field>
+    </columns>
+    <columns>
+        <field>Contract$Audited_for_Supersession__c</field>
+    </columns>
+    <columns>
+        <field>Contract.Opportunity__r$Name</field>
+    </columns>
+    <columns>
+        <field>Contract.Opportunity__r.OpportunityLineItems$Product_Name__c</field>
+    </columns>
+    <columns>
+        <field>Contract$Includes_modification_to_contract_term__c</field>
+    </columns>
+    <columns>
+        <field>Contract$Initial_Software_Term_Length__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>(2 OR 3) AND 1 AND 4</booleanFilter>
+        <criteriaItems>
+            <column>Contract$Status</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>In Force</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contract.Opportunity__r.OpportunityLineItems$Product_Name__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>Superseded Contracts</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contract$Includes_modification_to_contract_term__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contract$Audited_for_Supersession__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Contract$OP4I_Sales_Segment__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Rev Rec: Modification to Contract Term</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Contracts_with_Opportunitie1__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Contract$ContractNumber</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Contract$ActivatedDate</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>

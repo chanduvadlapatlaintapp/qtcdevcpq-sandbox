@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HomePageComponent xmlns="http://soap.sforce.com/2006/04/metadata">
+    <body>&lt;iframe id=&quot;iframe&quot; src=&quot;/apex/CustomerPortalHomePage&quot; style=&quot;overflow:scroll;width:100%&quot; seamless=&quot;seamless&quot; frameborder=&quot;0&quot; height=&quot;750px;&quot; scrolling=&quot;yes&quot;&gt;&lt;/iframe&gt;&lt;script&gt;	var pageURL = window.location.href; 	iframeSrcURL = &apos;/apex/CustomerPortalHomePage&apos;;	if (pageURL.indexOf(&apos;/portal&apos;) &gt; -1) { 		iframeSrcURL = &apos;/portal/CustomerPortalHomePage&apos;;	}	document.getElementById(&quot;iframe&quot;).src = iframeSrcURL;&lt;/script&gt;</body>
+    <pageComponentType>htmlArea</pageComponentType>
+    <width>wide</width>
+</HomePageComponent>

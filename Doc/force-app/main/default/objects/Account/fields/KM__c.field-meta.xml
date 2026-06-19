@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>KM__c</fullName>
+    <description>This is to designate the Knowledge Management application in use at the account. This replaced the old checkbox system.</description>
+    <inlineHelpText>What Knowledge Management software does this account use?</inlineHelpText>
+    <label>KM</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Custom</fullName>
+                <default>false</default>
+                <label>Custom</label>
+            </value>
+            <value>
+                <fullName>Interwoven Search</fullName>
+                <default>false</default>
+                <label>Interwoven Search</label>
+            </value>
+            <value>
+                <fullName>MS Search</fullName>
+                <default>false</default>
+                <label>MS Search</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Recommind</fullName>
+                <default>false</default>
+                <label>Recommind</label>
+            </value>
+            <value>
+                <fullName>West KM</fullName>
+                <default>false</default>
+                <label>West KM</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Response for EIM Time Webinar</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - EIM Time Webinar</name>
+    <style>none</style>
+    <subject>EIM Time Webinar</subject>
+    <textOnly>{!Lead.FirstName} {!Lead.LastName}:
+
+Thank you for registering for the EIM Time Webinar.
+Date: Wednesday, April 1
+Time: 11 am Pacific / 2 pm Eastern
+
+
+Video:
+
+Conference URL: http://e-meetings.mci.com/nc/join.php?i=SV56561&amp;p=time&amp;t=c
+Conference/Meeting Number: SV56561
+Conference/Meeting Passcode: Time
+
+
+Audio:
+
+Conference Audio Dial In: 800-369-3357 (give operator the passcode: &quot;Time&quot; and conference leader&apos;s name: &quot;Eldean Ward&quot;)
+
+
+
+Please log in and dial the conference audio line 10 minutes prior to the start time.
+
+
+
+http://www.intapp.com
+All information Copyright 2009 IntApp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

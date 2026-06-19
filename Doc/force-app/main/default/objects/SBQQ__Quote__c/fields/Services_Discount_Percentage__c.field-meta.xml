@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Services_Discount_Percentage__c</fullName>
+    <description>Services Discount %, used to populate Quote Term</description>
+    <formula>IF(
+Services_Net_Total__c + Services_Credit_Amount__c = 0,
+0,
+Services_Credit_Amount__c/(Services_Net_Total__c + Services_Credit_Amount__c)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Services Discount Percentage(Non Prime)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

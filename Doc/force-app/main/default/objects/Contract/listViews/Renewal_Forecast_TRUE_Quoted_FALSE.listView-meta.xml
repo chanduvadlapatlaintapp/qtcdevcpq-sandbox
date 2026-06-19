@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_Forecast_TRUE_Quoted_FALSE</fullName>
+    <columns>CONTRACT.CONTRACT_NUMBER</columns>
+    <columns>CONTRACT.NAME</columns>
+    <columns>Total_Contract_Value__c</columns>
+    <columns>CONTRACT.START_DATE</columns>
+    <columns>CONTRACT.STATUS</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>CONTRACT.CREATED_DATE</columns>
+    <columns>SBQQ__RenewalForecast__c</columns>
+    <columns>SBQQ__RenewalQuoted__c</columns>
+    <columns>Active__c</columns>
+    <columns>Contract_End_Date_Timezone_Adjusted__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>SBQQ__RenewalForecast__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>SBQQ__RenewalQuoted__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Contract_End_Date_Timezone_Adjusted__c</field>
+        <operation>contains</operation>
+        <value>2025</value>
+    </filters>
+    <filters>
+        <field>CONTRACT.STATUS</field>
+        <operation>equals</operation>
+        <value>In Force</value>
+    </filters>
+    <label>Renewal Forecast TRUE Quoted FALSE</label>
+</ListView>

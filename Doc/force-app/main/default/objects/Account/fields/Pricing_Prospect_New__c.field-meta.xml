@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pricing_Prospect_New__c</fullName>
+    <label>Pricing Prospect New</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Customer (Pricing - Cloud)</fullName>
+                <default>false</default>
+                <label>Customer (Pricing - Cloud)</label>
+            </value>
+            <value>
+                <fullName>Customer (Pricing)</fullName>
+                <default>false</default>
+                <label>Customer (Pricing)</label>
+            </value>
+            <value>
+                <fullName>Engaged Customer</fullName>
+                <default>false</default>
+                <label>Engaged Customer</label>
+            </value>
+            <value>
+                <fullName>Engaged Non-Customer</fullName>
+                <default>false</default>
+                <label>Engaged Non-Customer</label>
+            </value>
+            <value>
+                <fullName>Unengaged Customer</fullName>
+                <default>false</default>
+                <label>Unengaged Customer</label>
+            </value>
+            <value>
+                <fullName>Unengaged Non-Customer</fullName>
+                <default>false</default>
+                <label>Unengaged Non-Customer</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

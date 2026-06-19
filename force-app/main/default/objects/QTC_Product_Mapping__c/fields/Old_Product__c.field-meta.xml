@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Old_Product__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>To host the product id for the old retired product</description>
+    <label>Old Product</label>
+    <referenceTo>Product2</referenceTo>
+    <relationshipLabel>QTC Product Mappings (Old Product)</relationshipLabel>
+    <relationshipName>QTC_Product_Mappings1</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>
+        <!-- &quot;New Install&quot; criteria:
+	- virgin customer
+	- first installation of a product 
+	- installation of AT for a WB customer. 
+	- installation of WB for an  AT customer. 
+	- phase 1 of cases matching above criteria; subsequent phases do not count. -->
+    </help>
+    <label><!-- Project Type --></label>
+    <name>PSCase_Project_Type__c</name>
+    <picklistValues>
+        <masterLabel>Bug Fix</masterLabel>
+        <translation><!-- Bug Fix --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Extension</masterLabel>
+        <translation><!-- Extension --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Install</masterLabel>
+        <translation><!-- New Install --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>POC</masterLabel>
+        <translation><!-- POC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Services Only</masterLabel>
+        <translation><!-- Services Only --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Training</masterLabel>
+        <translation><!-- Training --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Upgrade</masterLabel>
+        <translation><!-- Upgrade --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VM Migration</masterLabel>
+        <translation><!-- VM Migration --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

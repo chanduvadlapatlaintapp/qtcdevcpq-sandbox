@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_Forecast_for_Service_Only</fullName>
+    <active>true</active>
+    <description>Created as part of BIZ-53415.</description>
+    <errorConditionFormula>AND(
+OR( SBQQ__RenewalForecast__c ,  SBQQ__RenewalQuoted__c ),
+ISPICKVAL( Type__c , &apos;Services Only&apos;) 
+)</errorConditionFormula>
+    <errorMessage>Contracts with only One-Time Subscriptions cannot be renewed</errorMessage>
+</ValidationRule>

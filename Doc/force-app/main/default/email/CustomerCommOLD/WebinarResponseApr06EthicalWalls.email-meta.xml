@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Webinar Response Email Template</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - Apr06 Ethical Walls</name>
+    <style>none</style>
+    <subject>CONFIRMATION: IntApp Webinar</subject>
+    <textOnly>{!Lead.FirstName} {!Lead.LastName}: Thank you for registering for IntApp webinar.
+
+Date: Friday, April 21
+
+Time:  2 pm (Eastern) / 11 am (Pacific)
+
+Video:
+
+  Conference URL: http://e-meetings.mci.com/nc/join.php?i=SV56561&amp;p=integration&amp;t=c
+  Conference/Meeting Number: SV56561
+  Conference/Meeting Passcode: intapp
+
+
+Audio:
+
+ Conference Audio Dial In:
+ 888-390-0675 (give operator the password: &quot;INTAPP&quot;)
+  
+
+Please log in and dial the conference audio line 10 minutes prior to the start time.
+
+
+
+
+ 
+ 
+ 
+  http://www.intapp.com 
+
+  All information Copyright 2005 IntApp, Inc. All rights 
+ reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

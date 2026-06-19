@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <calculatedFormula>ABS((Invoice__c.Outstanding_Bln__c:AVG-Invoice__c.Outstanding_Balance_from_NetSuite__c:AVG)/Invoice__c.Outstanding_Bln__c:AVG)</calculatedFormula>
+        <datatype>percent</datatype>
+        <developerName>FORMULA1</developerName>
+        <downGroupingContext>Invoice__c$Name</downGroupingContext>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Difference %</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <colorRanges>
+        <columnName>FORMULA1</columnName>
+        <highBreakpoint>10.0</highBreakpoint>
+        <highColor>#C25454</highColor>
+        <lowBreakpoint>2.0</lowBreakpoint>
+        <lowColor>#54C254</lowColor>
+        <midColor>#C2C254</midColor>
+    </colorRanges>
+    <columns>
+        <field>Invoice__c$Status_from_NetSuite__c</field>
+    </columns>
+    <columns>
+        <field>Invoice__c$Invoice_Status__c</field>
+    </columns>
+    <columns>
+        <field>Invoice__c$Outstanding_Balance_from_NetSuite__c</field>
+    </columns>
+    <columns>
+        <field>Invoice__c$Outstanding_Bln__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Shows invoices that have a mismatch of Salesforce status or amount with NetSuite</description>
+    <filter>
+        <booleanFilter>((1 AND 2) OR (3 AND 4)) OR 5</booleanFilter>
+        <criteriaItems>
+            <column>Invoice__c$Status_from_NetSuite__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>open</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Invoice__c$Invoice_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Open,Partially Paid,Partially Credited</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Invoice__c$Status_from_NetSuite__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Paid in Full</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Invoice__c$Invoice_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Paid in Full,Paid but Partially Credited,Credited in Full</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Invoice__c$Balance_mismatch__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Invoice__c$Name</field>
+        <sortByName>FORMULA1</sortByName>
+        <sortOrder>Desc</sortOrder>
+        <sortType>CustomSummaryFormula</sortType>
+    </groupingsDown>
+    <name>Invoice Amount/Status Audit Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Invoices__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Invoice__c$Status_from_NetSuite__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Invoice__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Configurator Filters --></label>
+        <name>SBQQ__ConfiguratorFilter</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Configurator Lookup --></label>
+        <name>SBQQ__ConfiguratorLookup</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Search Filters --></label>
+        <name>SBQQ__SearchFilters</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Search Results --></label>
+        <name>SBQQ__SearchResults</name>
+    </fieldSets>
+    <recordTypes>
+        <description><!-- The record type to be used for products such as Wall Builder --></description>
+        <label><!-- Product --></label>
+        <name>Product</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- The record type to be used for services such as implementations. --></description>
+        <label><!-- Service --></label>
+        <name>Service</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- You can&apos;t update the Product Status Field, please contact Contract/CRM Ops user. --></errorMessage>
+        <name>Product_Status_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Entitlement Conversion cannot be set to one per quote line if Asset Conversion is set to one per unit --></errorMessage>
+        <name>SBQQSC__Invalid_Entitlement_Conversion</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must check either Include In Maintenance or Exclude From Maintenance checkbox. --></errorMessage>
+        <name>SBQQ__Include_or_Exclude_Maintenance</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- When Charge Type is Recurring, a Billing Type must be selected. --></errorMessage>
+        <name>SBQQ__RecurringChargeTypeMustHaveBillingType</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can only select One per Subscribed Asset for Subscription Conversion for Percent of Total Subscriptions --></errorMessage>
+        <name>SBQQ__Subscription_Conversion_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Only subscription products may specify term discount schedule --></errorMessage>
+        <name>SBQQ__Term_schedule_requires_subscription</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- When Charge Type is One-Time, a Billing Frequency value cannot be selected. --></errorMessage>
+        <name>SBQQ__Validate_billing_frequency</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- When Charge Type is One-Time or Usage, a Billing Type value cannot be selected. --></errorMessage>
+        <name>SBQQ__Validate_billing_type</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- CloneWithRelated --></label>
+        <name>SBQQ__CloneWithRelated</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- CloneWithRelatedClassic --></label>
+        <name>SBQQ__CloneWithRelatedClassic</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Translate --></label>
+        <name>SBQQ__Translate</name>
+    </webLinks>
+</CustomObjectTranslation>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Status_Validation</fullName>
+    <active>false</active>
+    <description>Only users with Intapp Admin Override Permission set can edit the product status field.
+Built accordinjg to user story BIZ-45081.</description>
+    <errorConditionFormula>AND(
+NOT($Permission.Admin_Override),
+ISCHANGED(Status__c)
+)</errorConditionFormula>
+    <errorMessage>You can&apos;t update the Product Status Field, please contact Contract/CRM Ops user.</errorMessage>
+</ValidationRule>

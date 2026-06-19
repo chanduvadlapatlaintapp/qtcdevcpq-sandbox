@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_Services_SOW_with_Bounding_Questions</fullName>
+    <availability>online</availability>
+    <displayType>link</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>New Services SOW with Bounding Questions</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/apex.js&quot;)}
+
+var oppId,r,i;
+oppId = &apos;{!Opportunity.Id}&apos;;
+i = 0;
+do {
+   i++;
+   response = sforce.apex.execute(&quot;ServicesSOW&quot;,&quot;createFlowRequestWithDefaultFields&quot;,{opportunityId: oppId});
+} while ( (response == &apos;HTTP_ERROR&apos;) &amp;&amp; (i &lt;= 10) );
+if (response == &apos;HTTP_ERROR&apos;)
+  alert(&apos;Could not connect to the Intapp Flow server. Please try again later&apos;);
+else if (response == &apos;FEATURE_NOT_AVAILABLE_ERROR&apos;)
+  alert(&apos;This feature is available for pilot users only. For more information, contact Kevin Ehrie at kevin.ehrie@intapp.com&apos;);
+else
+  var w = window.open(&apos;https://intappprod.open.intapp.com/app/Intake/Requests/RequestForm.aspx?rid=&apos;+response);</url>
+</WebLink>

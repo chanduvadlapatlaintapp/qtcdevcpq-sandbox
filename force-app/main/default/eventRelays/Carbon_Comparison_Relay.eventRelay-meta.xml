@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EventRelayConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <destinationResourceName>callout:AWS_US_East_1</destinationResourceName>
+    <eventChannel>DealEvent__chn</eventChannel>
+    <label>Carbon Comparison Relay</label>
+    <relayOption>{&quot;ReplayRecovery&quot;:&quot;EARLIEST&quot;}</relayOption>
+    <state>RUN</state>
+</EventRelayConfig>

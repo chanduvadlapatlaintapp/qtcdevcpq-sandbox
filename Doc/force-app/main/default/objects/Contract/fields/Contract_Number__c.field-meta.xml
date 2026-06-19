@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contract_Number__c</fullName>
+    <description>Field created to display hyperlink of contract number on the screen flow.
+Built according to US # 46097</description>
+    <externalId>false</externalId>
+    <formula>HYPERLINK(&quot;/&quot; &amp;  Id  , ContractNumber)</formula>
+    <label>Contract Number</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

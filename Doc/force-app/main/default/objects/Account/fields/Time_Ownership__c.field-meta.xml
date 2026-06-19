@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_Ownership__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  OR(
+     ISPICKVAL(DTE_Axiom__c,&quot;Own it&quot;),
+     ISPICKVAL(DTE_Axiom_Mobile__c,&quot;Own it&quot;),
+     ISPICKVAL(DTE_Legacy__c,&quot;Own it&quot;),
+     ISPICKVAL(DTE_Legacy_Mobile__c,&quot;Own it&quot;),
+     ISPICKVAL(Time_Builder__c,&quot;Own it&quot;),
+     ISPICKVAL(TB_Time_Entry_Toolkit__c,&quot;Own it&quot;),
+     ISPICKVAL(eBillingHub_Module__c,&quot;Own it&quot;),
+     ISPICKVAL(TB_Mobility__c,&quot;Own it&quot;)
+   ),
+  &quot;Own it&quot;,
+  IF(
+    ISPICKVAL(RollCall__c,&quot;Own it&quot;),
+    &quot;RollCall Only&quot;,
+    &quot;&quot;
+  )
+)</formula>
+    <label>Time Ownership</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

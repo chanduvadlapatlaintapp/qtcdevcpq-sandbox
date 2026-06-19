@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>To notify Finance that a contract has been fulfilled</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Shipping Complete Notification</name>
+    <style>none</style>
+    <subject>Shipping Fulfilled on {!Contract.Account} - Recognize Revenue</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

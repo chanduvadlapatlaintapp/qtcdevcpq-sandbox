@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Changeapprovalstatustoapproved</fullName>
+        <description>Changes approval status to approved</description>
+        <field>Approval_Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Change approval status to approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Changeapprovalstatustorejected</fullName>
+        <description>Changes the approval status to rejected</description>
+        <field>Approval_Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>Change approval status to rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Changesubmissionstattofulfilled</fullName>
+        <description>Changes the submission status to fulfilled</description>
+        <field>Submission_Status__c</field>
+        <literalValue>Fulfilled</literalValue>
+        <name>Change submission stat to fulfilled</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Changesubmissionstatustoinprogress</fullName>
+        <description>Change submission status to in progress</description>
+        <field>Submission_Status__c</field>
+        <literalValue>In Progress</literalValue>
+        <name>Change submission status to in progress</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Changesubmissionstatustosubmitted</fullName>
+        <description>Changes the submission status to submitted</description>
+        <field>Submission_Status__c</field>
+        <literalValue>Submitted</literalValue>
+        <name>Change submission status to submitted</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SetStatustoApproved</fullName>
+        <description>Changes the Approval Status field to approved</description>
+        <field>Approval_Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Set Status to Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+</Workflow>

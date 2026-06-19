@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OP4I_Deal_Owner_Id__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>This field will be auto populated from Opportunity&apos;s Account Owner for Oppty originated from Salesforce. For Oppty originated from OP4I, OP4I will provide Salesforce User Id to Salesforce.</description>
+    <label>OP4I Deal Owner</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Contract_OP4I_Deal_Owner_Id</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>OPPORTUNITY_NAME</field>
+    </columns>
+    <columns>
+        <field>Opportunity.Sale_Category__c</field>
+    </columns>
+    <columns>
+        <field>STAGE_NAME</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>(1 OR 2) AND 3</booleanFilter>
+        <criteriaItems>
+            <column>OPPORTUNITY_ID</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0062J00000nauL6,0062J00000r6ss3,0062J00000ncIQq,0062J00000r6z6K,0062J00000r7Q7g,0062J00000pwXWi,0062J00000r6GFA,0062J00000pyQuI,0062J00000r6kFI,0062J00000nUIvo,0062J00000q0GtW,0062J00000nSoqF,0062J00000q0C5w,0062J00000r5wNX,0062J00000r5jnm,0062J00000r5gGm,0062J00000r5Tkq,0062J00000q0KOi,0062J00000q0DZs,0062J00000q0FGE,0062J00000q0IH7,0062J00000q07bs,0062J00000q05lT,0062J00000pyU6X,0062J00000pzYBs,0062J00000pzTJS,0062J00000pyzXf,0062J00000py6v8,0062J00000pylJr,0062J00000pyM9t,0062J00000pyvvq,0062J00000pwmtX,0062J00000nUPAI,0062J00000nUzZo,0062J00000pxA7s,0062J00000py6CJ,0062J00000nUFig,0062J00000pwKPw,0065000000m1rpv,0065000000jXQE3,0062J00000r81R0,0065000000e7CJc,0062J00000r89FP,0062J00000r7fL0,0062J00000pyQUl,0062J00000r7CYS,0062J00000r7Dxa,0062J00000pyBfW,0062J00000r60P5</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>OPPORTUNITY_ID</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0062J00000r7kb7,0062J00000r5oFC,0062J00000nTOHt,0062J00000nUVCM,0062J00000leOAX,0062J00000r61o4,0062J00000r7dMu,0062J00000nTunK,0062J00000r8BJU,0062J00000r8Ewq,0062J00000r74Hk,0062J00000r81LW,0062J00000r7z8e,0062J00000nT63j,0062J00000nTFZK,0062J00000pyNsh,0062J00000nbF7J,0062J00000r7NLD,0062J00000r6Dh1,0062J00000r6DhL,0062J00000r7FA0,0062J00000nSvvn,0062J00000r5zlp,0062J00000pzQjp,0062J00000r7Gy9,0062J00000r7Gvy,0062J00000r65zL,0062J00000nbEz2,0062J00000nTLOu,0062J00000orRHj,0065000000jvaGX,0062J00000pzg6N,0062J00000n7hSe,0065000000m26Lu,0062J00000leUko,0062J00000nclEN,0062J00000pzhIc,0062J00000pzESE,0062J00000r5U0y,0062J00000r5ZSV,0062J00000pwt5Z,0062J00000pyomE,0062J00000r6dvD,0065000000m2VUs,0062J00000r7zcw,0062J00000r6fE0,0062J00000r5o2I,0062J00000r6tBT,0062J00000r7GzF,0062J00000r7XVT,0062J00000r8EGW,0062J00000r8Gfr,0062J00000r8Bzl,0062J00000nc0KP,0062J00000r6GCv,0062J00000nSrvV,0062J00000pxQs7,0062J00000pywLf,0062J00000r6Rx0,0062J00000pz0g3,0062J00000nT2Qh</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>STAGE_NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Closed Won</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>TYPE</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Opps for Jose</name>
+    <params>
+        <name>open</name>
+        <value>all</value>
+    </params>
+    <params>
+        <name>probability</name>
+        <value>&gt;0</value>
+    </params>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Opportunity</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CLOSE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

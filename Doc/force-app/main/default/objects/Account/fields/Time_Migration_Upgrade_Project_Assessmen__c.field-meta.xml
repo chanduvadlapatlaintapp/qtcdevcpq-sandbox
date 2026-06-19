@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_Migration_Upgrade_Project_Assessmen__c</fullName>
+    <label>Time Migration Upgr. Project Assessment</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Complex</fullName>
+                <default>false</default>
+                <label>Complex</label>
+            </value>
+            <value>
+                <fullName>Easy</fullName>
+                <default>false</default>
+                <label>Easy</label>
+            </value>
+            <value>
+                <fullName>Moderate</fullName>
+                <default>false</default>
+                <label>Moderate</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

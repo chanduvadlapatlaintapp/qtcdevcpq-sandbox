@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Firm_Size_quote_line__c</fullName>
+    <externalId>false</externalId>
+    <formula>If( Band_Override__c =0,
+&quot;Up to &quot;&amp; Band_Quote_Line__c &amp;&quot; Licensed &quot;&amp;TEXT(SBQQ__Quote__r.License_Basis__c),
+&quot;Up to &quot;&amp; TEXT(Band_Override__c) &amp;&quot; Licensed &quot;&amp;TEXT(SBQQ__Quote__r.License_Basis__c))</formula>
+    <label>Firm Size Quote Line</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

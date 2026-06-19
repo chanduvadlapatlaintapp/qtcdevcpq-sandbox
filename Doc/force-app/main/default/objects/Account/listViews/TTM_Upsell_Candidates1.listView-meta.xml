@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TTM_Upsell_Candidates1</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND (4 OR 5)</booleanFilter>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Intapp_Time_Disposition__c</columns>
+    <columns>Account_Owner_Name__c</columns>
+    <columns>License_Band_Category__c</columns>
+    <columns>Accounting_Simple__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ACCOUNT.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Account.LegalAccounts</value>
+    </filters>
+    <filters>
+        <field>Intapp_Time__c</field>
+        <operation>contains</operation>
+        <value>Own it</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.TYPE</field>
+        <operation>equals</operation>
+        <value>Customer</value>
+    </filters>
+    <filters>
+        <field>Intapp_Time_Disposition__c</field>
+        <operation>equals</operation>
+        <value>TTM</value>
+    </filters>
+    <filters>
+        <field>Intapp_Time_Disposition__c</field>
+        <operation>equals</operation>
+        <value>Rekoop</value>
+    </filters>
+    <label>TTM and Rekoop</label>
+    <language>en_US</language>
+</ListView>

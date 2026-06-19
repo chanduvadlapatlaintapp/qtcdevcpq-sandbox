@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>text</bucketType>
+        <developerName>BucketField_63470727</developerName>
+        <masterLabel>Major Version</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>Subscription__c$Account__c.Open_Version__c</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>3.0 HF2</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3.0 HF7</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3.0.1000</sourceValue>
+            </sourceValues>
+            <value>3.0</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>3.1</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3.1 HF1</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3.1 HF3</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3.1 HF4</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3.1 HF5</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3.1.1000</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3.1.1001</sourceValue>
+            </sourceValues>
+            <value>3.1</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>3.2</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3.2 HF1</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3.2 HF4</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3.2 HF5</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3.2. HF2</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3.2.10</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3.2.13</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3.2.14</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3.2.8</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3.2.9</sourceValue>
+            </sourceValues>
+            <value>3.2</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>3.3.0</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3.3.1</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3.3.2</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3.3.3</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3.3.4</sourceValue>
+            </sourceValues>
+            <value>3.3</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>3.4.0</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3.4.1</sourceValue>
+            </sourceValues>
+            <value>3.4</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>2.3 HF6</sourceValue>
+            </sourceValues>
+            <value>2.3</value>
+        </values>
+    </buckets>
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <axisBinding>y</axisBinding>
+            <column>RowCount</column>
+        </chartSummaries>
+        <chartType>VerticalColumn</chartType>
+        <enableHoverLabels>true</enableHoverLabels>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>Subscription__c$Account__c.Simple_Open_Version__c</groupingColumn>
+        <location>CHART_TOP</location>
+        <showAxisLabels>true</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>false</showValues>
+        <size>Medium</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>12</textSize>
+        <titleColor>#000000</titleColor>
+        <titleSize>18</titleSize>
+    </chart>
+    <columns>
+        <field>Subscription__c$Name</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Account__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$CRD__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Subscription_Name__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Customer_Lifecycle_Stage__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>((1 AND (2 AND 3) OR (4 AND 5) OR 7) AND 6) AND 8</booleanFilter>
+        <criteriaItems>
+            <column>Subscription__c$Account__c.RecordType</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Account.LegalAccounts,Account.Accounts_Financial_Services,Account.Accounts_Accounting</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c$Product_Line__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Intapp Open - Intake,Intapp Open - Intake - Cloud</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c$Product_Line__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Intapp Open - Conflicts,Intapp Open - Conflicts - Cloud</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c$Customer_Lifecycle_Stage__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Project not started yet,Implementation,Within 90 days of Production,In Production</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c$Product_Line__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Intapp Open - Terms,Intapp Open - Terms - Cloud</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c$CRD__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Julia Montgomery</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Subscription__c$Account__c.Simple_Open_Version__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>CSM: Open Clients by Version - Julia</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Subscriptions__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Subscription__c$Account__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Subscription__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

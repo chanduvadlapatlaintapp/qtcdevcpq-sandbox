@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SRT_Open_Email_Frequency__c</fullName>
+    <label>SRT - Open - Email Frequency</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Daily</fullName>
+                <default>true</default>
+                <label>Daily</label>
+            </value>
+            <value>
+                <fullName>Weekly - Monday</fullName>
+                <default>false</default>
+                <label>Weekly - Monday</label>
+            </value>
+            <value>
+                <fullName>Weekly - Tuesday</fullName>
+                <default>false</default>
+                <label>Weekly - Tuesday</label>
+            </value>
+            <value>
+                <fullName>Weekly - Wednesday</fullName>
+                <default>false</default>
+                <label>Weekly - Wednesday</label>
+            </value>
+            <value>
+                <fullName>Weekly - Thursday</fullName>
+                <default>false</default>
+                <label>Weekly - Thursday</label>
+            </value>
+            <value>
+                <fullName>Weekly - Friday</fullName>
+                <default>false</default>
+                <label>Weekly - Friday</label>
+            </value>
+            <value>
+                <fullName>Weekly - Saturday</fullName>
+                <default>false</default>
+                <label>Weekly - Saturday</label>
+            </value>
+            <value>
+                <fullName>Weekly - Sunday</fullName>
+                <default>false</default>
+                <label>Weekly - Sunday</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

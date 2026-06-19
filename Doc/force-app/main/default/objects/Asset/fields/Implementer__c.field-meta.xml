@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Implementer__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Person responsible for implementing this asset</description>
+    <inlineHelpText>Person responsible for implementing this asset</inlineHelpText>
+    <label>Implementer</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Assets</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

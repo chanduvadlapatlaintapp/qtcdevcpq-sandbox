@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EMEA_Subscriptions</fullName>
+    <columns>Account__c</columns>
+    <columns>NAME</columns>
+    <columns>Product_Line__c</columns>
+    <columns>Customer_Lifecycle_Stage__c</columns>
+    <columns>CSM_Health_Rating__c</columns>
+    <columns>At_Risk_Flag__c</columns>
+    <columns>Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Geography__c</field>
+        <operation>contains</operation>
+        <value>EMEA</value>
+    </filters>
+    <label>EMEA Subscriptions</label>
+</ListView>

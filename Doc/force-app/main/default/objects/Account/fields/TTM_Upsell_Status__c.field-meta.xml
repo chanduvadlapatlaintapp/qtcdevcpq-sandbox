@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TTM_Upsell_Status__c</fullName>
+    <label>TTM Upsell Status TO DELETE</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Candidate</fullName>
+                <default>false</default>
+                <label>Candidate</label>
+            </value>
+            <value>
+                <fullName>Upsell Completed</fullName>
+                <default>false</default>
+                <label>Upsell Completed</label>
+            </value>
+            <value>
+                <fullName>Upsell Rejected</fullName>
+                <default>false</default>
+                <label>Upsell Rejected</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

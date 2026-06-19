@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Business_Unit__c</fullName>
+    <description>Formula field for Product Business Unit
+Created as part of BIZ-47120. Updates to Block Pricing Matrix.</description>
+    <externalId>false</externalId>
+    <formula>Text(Product__r.Business_Units__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Product Business Unit</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

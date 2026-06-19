@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Value_of_Closed_Won_opportunities__c</fullName>
+    <defaultValue>0</defaultValue>
+    <description>sums the ‘Recurring Amount (Change)’ of the opportunities where ‘Simple Status’ = ‘Closed Won’</description>
+    <inlineHelpText>sums the ‘Recurring Amount (Change)’ of the opportunities where ‘Simple Status’ = ‘Closed Won’</inlineHelpText>
+    <label>Value of Closed Won opportunities</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Currency</type>
+</CustomField>

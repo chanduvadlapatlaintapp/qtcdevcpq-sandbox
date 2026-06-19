@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BusinessProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Assessment</fullName>
+    <description>Support process for specific Status records for Time Builder Assessments</description>
+    <isActive>true</isActive>
+    <values>
+        <fullName>Closed - Abandoned</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Completed</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>In Process</fullName>
+        <default>true</default>
+    </values>
+    <values>
+        <fullName>Pre-Start Date</fullName>
+        <default>false</default>
+    </values>
+</BusinessProcess>

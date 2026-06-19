@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_Hold__c</fullName>
+    <description>Formula field — pulls Renewal Hold status from the parent Opportunity. BIZ-82935.</description>
+    <formula>SBQQ__Opportunity2__r.Renewals_Pause__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Renewal Hold</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

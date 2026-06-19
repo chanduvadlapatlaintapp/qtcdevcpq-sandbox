@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active_Resources_Must_Have_Work_Calendar</fullName>
+    <active>false</active>
+    <description>Active resources must have a work calendar</description>
+    <errorConditionFormula>AND(
+  NOT($Profile.Id=&quot;00e30000000bvR3&quot;),
+  Is_Resource_Active__c=TRUE,
+  ISBLANK(Work_Calendar__c)
+)</errorConditionFormula>
+    <errorMessage>Active Resources must have a work calendar.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Original_Opportunity_Product__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Created w.r.t BIZ-68888</description>
+    <label>Original Opportunity Product</label>
+    <referenceTo>OpportunityLineItem</referenceTo>
+    <relationshipLabel>Subscriptions</relationshipLabel>
+    <relationshipName>Subscriptions</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

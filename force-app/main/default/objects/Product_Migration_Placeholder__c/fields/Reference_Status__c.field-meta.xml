@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reference_Status__c</fullName>
+    <label>Reference Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Reference now</fullName>
+                <default>false</default>
+                <label>Reference now</label>
+            </value>
+            <value>
+                <fullName>Will be reference once live</fullName>
+                <default>false</default>
+                <label>Will be reference once live</label>
+            </value>
+            <value>
+                <fullName>Turned against Intapp in marketplace</fullName>
+                <default>false</default>
+                <label>Turned against Intapp in marketplace</label>
+            </value>
+            <value>
+                <fullName>Jury is still out</fullName>
+                <default>false</default>
+                <label>Jury is still out</label>
+            </value>
+            <value>
+                <fullName>We don&apos;t know the reference status</fullName>
+                <default>false</default>
+                <label>We don&apos;t know the reference status</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

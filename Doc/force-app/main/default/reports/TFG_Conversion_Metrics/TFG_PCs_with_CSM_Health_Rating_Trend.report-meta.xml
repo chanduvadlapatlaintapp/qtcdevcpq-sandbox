@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Subscription_History_Snapshot__c.Account_Name__c</field>
+    </columns>
+    <columns>
+        <field>Subscription_History_Snapshot__c.Product_Line__c</field>
+    </columns>
+    <columns>
+        <field>Subscription_History_Snapshot__c.CG_Flow__c</field>
+    </columns>
+    <columns>
+        <field>Subscription_History_Snapshot__c.Subscription_Name__c</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Subscription_History_Snapshot__c.CSM_Health_Change__c</field>
+    </columns>
+    <columns>
+        <field>Subscription_History_Snapshot__c.CSM_Health_Rating__c</field>
+    </columns>
+    <columns>
+        <field>Subscription_History_Snapshot__c.CSM_Health_Rating_Previous__c</field>
+    </columns>
+    <columns>
+        <field>Subscription_History_Snapshot__c.CG_Analyze__c</field>
+    </columns>
+    <columns>
+        <field>Subscription_History_Snapshot__c.CG_Protect__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>(1 AND 2) or (3 AND 4) or (5 AND 6)</booleanFilter>
+        <criteriaItems>
+            <column>Subscription_History_Snapshot__c.Product_Line__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Intapp Open - Intake</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription_History_Snapshot__c.CG_Flow__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Converted to Intapp Product</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription_History_Snapshot__c.Product_Line__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Intapp Open - Conflicts</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription_History_Snapshot__c.CG_Analyze__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Converted to Intapp Product</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription_History_Snapshot__c.Product_Line__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Wall Builder</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription_History_Snapshot__c.CG_Protect__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Converted to Intapp Product</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Subscription_History_Snapshot__c.Subscription_Number__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>TFG CG Migrations w/Health Rating Trend</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Subscription_History_Snapshot__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>CUST_NAME</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Subscription_History_Snapshot__c.CSM_Health_Rating_Last_Modified__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

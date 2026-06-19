@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Most_Recent_Memo__c</fullName>
+    <description>SC-000046</description>
+    <formula>IF(
+  Date__c=Invoice__r.Most_Recent_Memo__c,
+  TRUE,
+  FALSE
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Most Recent Memo</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

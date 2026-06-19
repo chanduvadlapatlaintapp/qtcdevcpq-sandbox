@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bill_To_Account__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>BIZ-81529 - Captures the Bill-To Account sourced from the related Quote (SBQQ__Quote__c.Bill_To_Account__c) for use in the SFDC &gt; OP4I integration.</description>
+    <inlineHelpText>Bill-To Account sourced from the primary Quote. Used by the OP4I integration to sync the Bill-To entity on the Deal.</inlineHelpText>
+    <label>Bill To Account</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Accounts (Bill To Account)</relationshipLabel>
+    <relationshipName>BillToAccounts</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Lookup</type>
+</CustomField>

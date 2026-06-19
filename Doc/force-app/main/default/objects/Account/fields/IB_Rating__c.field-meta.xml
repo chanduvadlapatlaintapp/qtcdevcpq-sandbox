@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IB_Rating__c</fullName>
+    <description>To indicate what the customer&apos;s experience is with integration builder. For account management and product management purposes.</description>
+    <inlineHelpText>Indicates customer&apos;s current IB experience.</inlineHelpText>
+    <label>IB Rating</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Unknown</fullName>
+                <default>true</default>
+                <label>Unknown</label>
+            </value>
+            <value>
+                <fullName>Happy</fullName>
+                <default>false</default>
+                <label>Happy</label>
+            </value>
+            <value>
+                <fullName>Okay</fullName>
+                <default>false</default>
+                <label>Okay</label>
+            </value>
+            <value>
+                <fullName>Concerned</fullName>
+                <default>false</default>
+                <label>Concerned</label>
+            </value>
+            <value>
+                <fullName>Not Applicable</fullName>
+                <default>false</default>
+                <label>Not Applicable</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

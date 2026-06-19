@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Eleks Rollcall</label>
+    <pageAccesses>
+        <apexPage>EleksCases</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>EleksClosedCases</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>EleksSurveys</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+</PermissionSet>

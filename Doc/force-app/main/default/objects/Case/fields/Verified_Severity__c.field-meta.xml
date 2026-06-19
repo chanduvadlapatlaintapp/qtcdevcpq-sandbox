@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verified_Severity__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>For Critical priority cases, once we have assessed or taken the required action to stabilize the customer situation, the assigned Customer Support Engineer will downgrade the case priority from Critical to a more appropriate priority.  We would like to establish a means of preserving the original “verified critical” priority for reporting purposes.</description>
+    <label>Verified Severity</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

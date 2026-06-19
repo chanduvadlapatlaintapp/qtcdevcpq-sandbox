@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>Activity_Status__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Proforma_Invoice_Document__c</columns>
+    <columns>Status__c</columns>
+    <columns>Renewal_Quote__c</columns>
+    <columns>Renewal_Start_Date__c</columns>
+    <columns>Account_Name__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Payment received</value>
+    </filters>
+    <filters>
+        <field>Renewal_Start_Date__c</field>
+        <operation>greaterThan</operation>
+        <value>3/1/2025</value>
+    </filters>
+    <label>All</label>
+</ListView>

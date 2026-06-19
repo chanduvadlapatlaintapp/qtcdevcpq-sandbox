@@ -1,0 +1,32 @@
+<aura:component implements="force:hasRecordId,force:lightningQuickActionWithoutHeader,lightning:availableForFlowActions" access="global">
+	<aura:attribute name="recordId" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+	<aura:attribute name="fields" type="String[]" default="['SBQQ__AmendmentStartDate__c', 'Name']"/>
+    <aura:attribute name="Contract" type="Object" /> 
+    <aura:attribute name="record" type="Object" />
+	<aura:html tag="style">
+        .slds-modal__container{
+            max-width: 80rem !important;
+            width:50% !important;
+            height ; auto;
+         }
+         .modal-body{
+         	height : 500px !important;
+            max-height: 800px !important;
+         }
+        .slds-modal__content{
+            height : 500px !important;
+            max-height: 800px !important;
+		}
+    </aura:html>
+    <lightning:formattedText value="{!v.recordId}" aura:id="ThisRecord" class="slds-hidden"/>
+    <force:recordData aura:id="recordLoader"
+       recordId="{!v.recordId}"
+       fields="{!v.fields}"
+       targetFields="{!v.Contract}"
+       targetRecord="{!v.record}"
+       recordUpdated="{!c.recordUpdate}"
+       />
+    <lightning:flow aura:id="flowData" onstatuschange="{!c.submitAmendContract}"/>
+	
+</aura:component>

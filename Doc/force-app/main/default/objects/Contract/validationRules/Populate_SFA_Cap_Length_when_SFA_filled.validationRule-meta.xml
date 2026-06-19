@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Populate_SFA_Cap_Length_when_SFA_filled</fullName>
+    <active>false</active>
+    <description>Populate SFA_Cap_Length when SFA Cap after Initial Term is filled</description>
+    <errorConditionFormula>AND(
+   OR(
+       NOT(ISPICKVAL(CPI__c, &apos;N/A (Master Terms Apply)&apos;)),
+       NOT(ISBLANK(TEXT(CPI__c))
+     )),
+  ISBLANK(TEXT(SFA_Cap_Length__c)),
+  ISNEW()
+)</errorConditionFormula>
+    <errorMessage>Please populate the SFA Cap Length field. Since the SFA Cap after Initial Term field is populated on this contract</errorMessage>
+</ValidationRule>

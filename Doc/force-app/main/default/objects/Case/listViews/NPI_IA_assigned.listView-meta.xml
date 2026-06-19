@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NPI_IA_assigned</fullName>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>Product__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>OWNER_NAME</field>
+        <operation>notEqual</operation>
+        <value>NPI Team Queue,OnePlace Support Queue,Implementation Expert Queue</value>
+    </filters>
+    <filters>
+        <field>Product__c</field>
+        <operation>equals</operation>
+        <value>Experience,OnePlace_AWS,OnePlace - AWS,Relationships</value>
+    </filters>
+    <filters>
+        <field>Account_CSM_Health_Rating__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>OPFM SWAT (Open)</label>
+    <language>en_US</language>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

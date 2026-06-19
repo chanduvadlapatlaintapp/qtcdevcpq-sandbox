@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AllOpenActivities</fullName>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>TASK.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>All Open Activities</label>
+</ListView>

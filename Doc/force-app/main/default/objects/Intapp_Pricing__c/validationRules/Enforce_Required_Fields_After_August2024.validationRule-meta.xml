@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Enforce_Required_Fields_After_August2024</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    ISNEW(),
+    TODAY() &gt;= DATE(2024, 8, 1),
+    OR(
+        ISBLANK(Product_Code__c),
+        ISBLANK(Tier__c),
+        ISBLANK(Price__c),
+        ISBLANK(Price_Book__c)
+    )
+)</errorConditionFormula>
+    <errorMessage>Product Code, Tier, Price, and Price Book must be populated for records created on or after August 1, 2024.</errorMessage>
+</ValidationRule>

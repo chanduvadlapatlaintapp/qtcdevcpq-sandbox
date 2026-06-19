@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Number_of_Days_in_Advance__c</fullName>
+    <description>Identifies the number of days in advance of the subscription start date that invoices should be generated. Used to derive the Billing Schedule lookup key.</description>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Number of Days in Advance</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>0 days - Fully Upfront</fullName>
+                <default>true</default>
+                <label>0 days - Fully Upfront</label>
+            </value>
+            <value>
+                <fullName>30 days</fullName>
+                <default>false</default>
+                <label>30 days</label>
+            </value>
+            <value>
+                <fullName>45 days</fullName>
+                <default>false</default>
+                <label>45 days</label>
+            </value>
+            <value>
+                <fullName>60 days</fullName>
+                <default>false</default>
+                <label>60 days</label>
+            </value>
+            <value>
+                <fullName>90 days</fullName>
+                <default>false</default>
+                <label>90 days</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

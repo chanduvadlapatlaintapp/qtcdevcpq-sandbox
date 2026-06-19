@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>PS_Survey_Letterhead</letterhead>
+    <name>Closing Survey Completed</name>
+    <style>freeForm</style>
+    <subject>Closing Survey for {!SFDC_Survey__c} Completed</subject>
+    <textOnly>The closing survey for {!SFDC_Survey__c} has been completed:
+
+Account: {!SFDC_Survey__c.Account__c}
+Product Line: {!SFDC_Survey__c.Product_Line__c}
+Client Contact: {!SFDC_Survey__c.Contact__c}
+Client Owner: {!SFDC_Survey__c.Client_Owner__c}
+Intapp PjM: {!SFDC_Survey__c.Intapp_PjM__c}
+Intapp SE: {!SFDC_Survey__c.Intapp_SE__c}
+Intapp AC: {!SFDC_Survey__c.Intapp_AC__c}
+Intapp PC: {!SFDC_Survey__c.Intapp_PC__c}
+
+PjM Project Objective: {!SFDC_Survey__c.Intapp_PC__c}
+PjM Objective Fulfilment: Score: {!SFDC_Survey__c.Intapp_PC__c}
+
+Owner Project
+Objective: {!SFDC_Survey__c.Owner_Project_Objective__c}
+Owner Objective Fulfilment: Score: {!SFDC_Survey__c.Owner_Objective_Fulfilment_Score__c}
+
+Project Manager: Score: {!SFDC_Survey__c.Project_Manager_Score__c}
+
+Solutions Engineer: Score: {!SFDC_Survey__c.Solutions_Engineer_Score__c}
+
+Principal Consultant: Score: {!SFDC_Survey__c.Principal_Consultant_Score__c}
+
+Adoption Consultant: Score: {!SFDC_Survey__c.Adoption_Consultant_Score__c}
+
+PjM Impression of Intapp Score: {!SFDC_Survey__c.PjM_Impression_of_Intapp_Score__c}
+Owner Impression of Intapp: Score: {!SFDC_Survey__c.Owner_Impression_of_Intapp_Score__c}
+
+PjM Impression of Partner Score: {!SFDC_Survey__c.PjM_Impression_of_Partner_Score__c}
+Owner Impression of Partner: Score: {!SFDC_Survey__c.Owner_Impression_of_Partner_Score__c}
+
+PjM Impression of Product Score: {!SFDC_Survey__c.PjM_Impression_of_Product_Score__c}
+Owner Impression of Product Score: {!SFDC_Survey__c.Owner_Impression_of_Product_Score__c}
+
+PjM End User Satisfaction: Score: {!SFDC_Survey__c.PjM_End_User_Satisfaction_Score__c}
+Owner End User Satisfaction: Score: {!SFDC_Survey__c.Owner_End_User_Satisfaction_Score__c}
+
+Impression of Project: Score: {!SFDC_Survey__c.Impression_of_Project_Score__c}
+
+Impression of Support Handover: Score: {!SFDC_Survey__c.Impression_of_Support_Handover_Score__c}
+
+General PjM Comments: {!SFDC_Survey__c.General_PjM_Comments__c}
+General Owner Comments: {!SFDC_Survey__c.General_Owner_Comments__c}
+
+
+Detail Link: {!SFDC_Survey__c.Link}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

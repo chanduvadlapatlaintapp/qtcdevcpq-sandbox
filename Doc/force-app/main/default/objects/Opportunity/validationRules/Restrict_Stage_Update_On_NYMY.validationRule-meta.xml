@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Restrict_Stage_Update_On_NYMY</fullName>
+    <active>false</active>
+    <description>NYMY opportunity should not go beyond initial Stage</description>
+    <errorConditionFormula>AND($Profile.Name&lt;&gt;&apos;System Administrator&apos;,Related_Opportunity__c!=null,ISCHANGED(StageName),NOT(ISNEW()))</errorConditionFormula>
+    <errorMessage>NYMY opportunity should not go beyond ‘Qualify&apos; stage.</errorMessage>
+</ValidationRule>

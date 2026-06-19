@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>text</bucketType>
+        <developerName>BucketField_67559136</developerName>
+        <masterLabel>_Stage</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>Sales_Engineering_Queue_Snapshot__c.Opportunity_Stage__c</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Target Account</sourceValue>
+            </sourceValues>
+            <value>1.Outside Funnel</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Expression of Interest</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Investigation</sourceValue>
+            </sourceValues>
+            <value>2.Early Stage Funnel</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Business Case Development</sourceValue>
+            </sourceValues>
+            <value>3.Business Case Development</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Evaluation of Options</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Resolution of Concerns</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Get Management Approval</sourceValue>
+            </sourceValues>
+            <value>4.Late Stage Funnel</value>
+        </values>
+    </buckets>
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <axisBinding>y</axisBinding>
+            <column>RowCount</column>
+        </chartSummaries>
+        <chartType>VerticalColumnStacked</chartType>
+        <enableHoverLabels>true</enableHoverLabels>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>Sales_Engineering_Queue_Snapshot__c.Snapshot_Date__c</groupingColumn>
+        <legendPosition>Bottom</legendPosition>
+        <location>CHART_TOP</location>
+        <secondaryGroupingColumn>BucketField_67559136</secondaryGroupingColumn>
+        <showAxisLabels>true</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>false</showValues>
+        <size>Medium</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>12</textSize>
+        <titleColor>#000000</titleColor>
+        <titleSize>18</titleSize>
+    </chart>
+    <columns>
+        <field>Sales_Engineering_Queue_Snapshot__c.Intapp_Opportunity_Number__c</field>
+    </columns>
+    <currency>GBP</currency>
+    <filter>
+        <criteriaItems>
+            <column>Sales_Engineering_Queue_Snapshot__c.Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Cancelled</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Sales_Engineering_Queue_Snapshot__c.Services_SOW_Record_Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Early Resource Tracking</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Sales_Engineering_Queue_Snapshot__c.Type_of_Support_Required__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Sales Engineer</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Sales_Engineering_Queue_Snapshot__c.Opportunity_Stage__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notContain</operator>
+            <value>Close</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Sales_Engineering_Queue_Snapshot__c.Snapshot_Date__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Sales_Engineering_Queue_Snapshot__c.Sales_Territory__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_67559136</field>
+        <sortOrder>Desc</sortOrder>
+    </groupingsDown>
+    <name>Petra Test</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntityAuditHistory$Sales_Engineering_Queue_Snapshot__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

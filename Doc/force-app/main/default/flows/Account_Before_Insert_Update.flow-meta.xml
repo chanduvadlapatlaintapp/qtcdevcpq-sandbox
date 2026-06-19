@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>MSSA_to_DPA_data_flow</name>
+        <label>MSSA to DPA data flow</label>
+        <locationX>336</locationX>
+        <locationY>1187</locationY>
+        <defaultConnectorLabel>FALSE_MSSA to DPA data flow</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_MSSA_to_DPA_data_flow</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_26</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Populate_DPA</targetReference>
+            </connector>
+            <label>TRUE_MSSA to DPA data flow</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Populate_Primary_Service_Provider_for_new_Account</name>
+        <label>Populate Primary Service Provider for new Account</label>
+        <locationX>336</locationX>
+        <locationY>587</locationY>
+        <defaultConnector>
+            <targetReference>MSSA_to_DPA_data_flow</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_Populate Primary Service Provider for new Account</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_Populate_Primary_Service_Provider_for_new_Account</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_5</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Primary_Service_Provider</targetReference>
+            </connector>
+            <label>TRUE_Populate Primary Service Provider for new Account</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Primary_Service_Provider_Available</name>
+        <label>Primary Service Provider Available</label>
+        <locationX>182</locationX>
+        <locationY>803</locationY>
+        <defaultConnector>
+            <targetReference>MSSA_to_DPA_data_flow</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Primary_Service_Provider.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Populate_Primary_Service_Provider</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Vertical_populate</name>
+        <label>Vertical populate</label>
+        <locationX>336</locationX>
+        <locationY>287</locationY>
+        <defaultConnector>
+            <targetReference>Populate_Primary_Service_Provider_for_new_Account</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_Vertical populate</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_Vertical_populate</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>update_Simple_Vertical</targetReference>
+            </connector>
+            <label>TRUE_Vertical populate</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>formula_1_myRule_1_A1_8775985797</name>
+        <dataType>String</dataType>
+        <expression>IF(ISPICKVAL({!$Record.Vertical__c} ,&apos;Legal&apos;),&apos;Professional Services&apos;,
+IF(ISPICKVAL({!$Record.Vertical__c} ,&apos;Accounting&apos;),&apos;Professional Services&apos;,
+IF(ISPICKVAL({!$Record.Vertical__c} ,&apos;Consulting&apos;),&apos;Professional Services&apos;,
+IF(ISPICKVAL({!$Record.Vertical__c} ,&apos;IB&amp;A&apos;),&apos;Financial Services&apos;,
+IF(ISPICKVAL({!$Record.Vertical__c} ,&apos;PCM&apos;),&apos;Financial Services&apos;,&apos;Other&apos;)))))</expression>
+    </formulas>
+    <formulas>
+        <name>formula_2_myRule_1_A1_5733074025</name>
+        <dataType>String</dataType>
+        <expression>IF(ISPICKVAL({!$Record.Vertical__c} ,&apos;Legal&apos;),&apos;Legal&apos;,
+IF(ISPICKVAL({!$Record.Vertical__c} ,&apos;Accounting&apos;),&apos;Accounting/Consulting&apos;,
+IF(ISPICKVAL({!$Record.Vertical__c} ,&apos;Consulting&apos;),&apos;Accounting/Consulting&apos;,
+IF(ISPICKVAL({!$Record.Vertical__c} ,&apos;IB&amp;A&apos;),&apos;Financial Services&apos;,
+IF(ISPICKVAL({!$Record.Vertical__c} ,&apos;PCM&apos;),&apos;Financial Services&apos;,&apos;Other&apos;)))))</expression>
+    </formulas>
+    <formulas>
+        <name>formula_3_myRule_7_A1_0701060085</name>
+        <dataType>String</dataType>
+        <expression>(PRIORVALUE({!$Record.TB_Version__c.Name} ))</expression>
+    </formulas>
+    <formulas>
+        <name>formula_4_myRule_11_A1_5994483570</name>
+        <dataType>String</dataType>
+        <expression>(PRIORVALUE({!$Record.WB_Product_Release__c.Name}))</expression>
+    </formulas>
+    <formulas>
+        <name>formula_5_myRule_15_A1_8979450213</name>
+        <dataType>String</dataType>
+        <expression>(PRIORVALUE({!$Record.Open_Version__c.Name} ))</expression>
+    </formulas>
+    <formulas>
+        <name>formula_6_myRule_19_A1_0290529837</name>
+        <dataType>String</dataType>
+        <expression>(PRIORVALUE({!$Record.Flow_Version__c.Name} ))</expression>
+    </formulas>
+    <formulas>
+        <name>formula_7_myRule_26_A1_5798839785</name>
+        <dataType>String</dataType>
+        <expression>IF(
+OR(
+ISPICKVAL({!$Record.Contract_Term_Version__c} ,&apos;10.8&apos;),
+ISPICKVAL({!$Record.Contract_Term_Version__c} ,&apos;10.9&apos;)), 
+&apos;Complete v1809&apos;,
+IF(
+ISPICKVAL({!$Record.Contract_Term_Version__c}, &apos;11&apos;), &apos;Complete v11&apos;,
+&apos;&apos;)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_1</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+ISNEW(),
+AND(ISCHANGED({!$Record.Vertical__c} ), NOT(ISNEW())
+
+))</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_26</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISCHANGED({!$Record.Contract_Term_Version__c} ))</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_5</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(ISBLANK({!$Record.Primary_Services_Provider__c} ),
+ISNEW() 
+)</expression>
+    </formulas>
+    <interviewLabel>Account Before Insert Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Account Before Insert Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Primary_Service_Provider</name>
+        <label>Get Primary Service Provider</label>
+        <locationX>182</locationX>
+        <locationY>695</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Primary_Service_Provider_Available</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Label.Primary_Services_Provider_Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Populate_DPA</name>
+        <label>Populate DPA</label>
+        <locationX>204</locationX>
+        <locationY>1295</locationY>
+        <inputAssignments>
+            <field>DPA_Status__c</field>
+            <value>
+                <elementReference>formula_7_myRule_26_A1_5798839785</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Populate_Primary_Service_Provider</name>
+        <label>Populate Primary Service Provider</label>
+        <locationX>50</locationX>
+        <locationY>911</locationY>
+        <connector>
+            <targetReference>MSSA_to_DPA_data_flow</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Primary_Services_Provider__c</field>
+            <value>
+                <elementReference>$Label.Primary_Services_Provider_Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>update_Simple_Vertical</name>
+        <label>update Simple Vertical</label>
+        <locationX>204</locationX>
+        <locationY>395</locationY>
+        <connector>
+            <targetReference>Populate_Primary_Service_Provider_for_new_Account</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Industry__c</field>
+            <value>
+                <elementReference>formula_1_myRule_1_A1_8775985797</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Simple_Vertical__c</field>
+            <value>
+                <elementReference>formula_2_myRule_1_A1_5733074025</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>210</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Vertical_populate</targetReference>
+        </connector>
+        <filterFormula>NOT({!$Setup.Automation_Controls__c.Active__c} &amp;&amp; {!$Setup.Automation_Controls__c.Bypass_Flows__c} &amp;&amp; {!$Setup.Automation_Controls__c.Account_Bypass__c} &amp;&amp; (ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c}) || (NOT(ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c})) &amp;&amp; CONTAINS({!$Setup.Automation_Controls__c.Data_Id__c}, {!$Record.Id}))))</filterFormula>
+        <object>Account</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

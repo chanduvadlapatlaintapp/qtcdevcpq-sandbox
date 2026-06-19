@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VP_Eval_Value__c</fullName>
+    <description>Value: tangible benefits of your solution minus the customer investment</description>
+    <inlineHelpText>Value: tangible benefits of your solution minus the customer investment</inlineHelpText>
+    <label>VP Eval: Value</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>00 - Value not identified</fullName>
+                <default>false</default>
+                <label>00 - Value not identified</label>
+            </value>
+            <value>
+                <fullName>01 - Salesperson has shared initial value proposition with customer</fullName>
+                <default>false</default>
+                <label>01 - Salesperson has shared initial value proposition with customer</label>
+            </value>
+            <value>
+                <fullName>02 - Sponsor shared cost of current business situation (pain, reasons, impact)</fullName>
+                <default>false</default>
+                <label>02 - Sponsor shared cost of current business situation (pain, reasons, impact)</label>
+            </value>
+            <value>
+                <fullName>03 - Sponsor confirms potential value (based on satisfactory proof) (Sponsor Email Required)</fullName>
+                <default>false</default>
+                <label>03 - Sponsor confirms potential value (based on satisfactory proof) (Sponsor Email Required)</label>
+            </value>
+            <value>
+                <fullName>04 - Power Sponsor shared cost of current business situation (pain, reasons, impact)</fullName>
+                <default>false</default>
+                <label>04 - Power Sponsor shared cost of current business situation (pain, reasons, impact)</label>
+            </value>
+            <value>
+                <fullName>05 - Power Sponsor confirms potential value (based on satisfactory proof) (Power Sponsor Email Required)</fullName>
+                <default>false</default>
+                <label>05 - Power Sponsor confirms potential value (based on satisfactory proof) (Power Sponsor Email Required)</label>
+            </value>
+            <value>
+                <fullName>06 - Value to additional beneficiaries identified</fullName>
+                <default>false</default>
+                <label>06 - Value to additional beneficiaries identified</label>
+            </value>
+            <value>
+                <fullName>07 - Value analysis conducted – driven by salesperson</fullName>
+                <default>false</default>
+                <label>07 - Value analysis conducted – driven by salesperson</label>
+            </value>
+            <value>
+                <fullName>08 - Value analysis conducted – driven by customer</fullName>
+                <default>false</default>
+                <label>08 - Value analysis conducted – driven by customer</label>
+            </value>
+            <value>
+                <fullName>09 - Value analysis conducted – jointly produced</fullName>
+                <default>false</default>
+                <label>09 - Value analysis conducted – jointly produced</label>
+            </value>
+            <value>
+                <fullName>10 - Value of solution sufficiently addresses cost of current business situation</fullName>
+                <default>false</default>
+                <label>10 - Value of solution sufficiently addresses cost of current business situation</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

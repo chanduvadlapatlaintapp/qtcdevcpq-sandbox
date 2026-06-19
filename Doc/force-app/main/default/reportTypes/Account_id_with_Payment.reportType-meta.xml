@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <baseObject>Account</baseObject>
+    <category>accounts</category>
+    <deployed>true</deployed>
+    <description>This report includes the payment information and the account information</description>
+    <label>Account id with Payment</label>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Id</field>
+            <table>Account</table>
+        </columns>
+        <masterLabel>Accounts</masterLabel>
+    </sections>
+</ReportType>

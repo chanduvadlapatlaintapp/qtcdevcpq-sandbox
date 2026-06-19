@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Opps_Whitmore</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>Forecast_Status__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>CORE.USERS.FULL_NAME</columns>
+    <columns>Practice_Lead__c</columns>
+    <columns>PGL_Notes__c</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.FISCAL_PERIOD</columns>
+    <columns>Maintenance_Amount__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Practice_Group__c</field>
+        <operation>contains</operation>
+        <value>Marketing &amp; BD</value>
+    </filters>
+    <filters>
+        <field>Sales_Territory__c</field>
+        <operation>contains</operation>
+        <value>South</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>contains</operation>
+        <value>Pre-Funnel,Qualification,Validation,Proposal,Selected</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.TYPE</field>
+        <operation>contains</operation>
+        <value>New Product</value>
+    </filters>
+    <label>All Opps - Whitmore</label>
+    <language>en_US</language>
+</ListView>

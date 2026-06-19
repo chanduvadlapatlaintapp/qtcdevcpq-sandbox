@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Subscription__c.Subscription_Contact__r$Contact_Account__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c.Subscription_Contact__r$Contact__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Product_Line__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c.Subscription_Contact__r$Role__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c.Subscription_Contact__r$Auditor__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Subscription__c.Subscription_Contact__r$Contact_Account__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>Bond Dickinson,CMS Hasche,Allen &amp; Overy</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Subscription Contacts - UK Accounts</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Subscriptions_with_Subscription_Contacts__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Subscription__c.Subscription_Contact__r$Contact__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Subscription__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

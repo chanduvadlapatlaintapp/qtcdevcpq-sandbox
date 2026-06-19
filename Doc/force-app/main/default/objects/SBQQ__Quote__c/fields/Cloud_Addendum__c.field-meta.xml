@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cloud_Addendum__c</fullName>
+    <formula>IF(omit_cloud_add_attachment__c=True, False ,
+ OR(IF(ISPICKVAL( Contract_Master_Terms__c ,&apos;Existing Terms Cloud&apos;),True,False),
+IF(ISPICKVAL( Contract_Master_Terms__c ,&apos;Existing Intapp MSSA plus Cloud and Annex&apos;),True,False)))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Cloud Addendum</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

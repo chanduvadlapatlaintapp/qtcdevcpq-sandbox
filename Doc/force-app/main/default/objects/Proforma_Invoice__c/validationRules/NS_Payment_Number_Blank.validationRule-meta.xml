@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NS_Payment_Number_Blank</fullName>
+    <active>true</active>
+    <description>BIZ-59995</description>
+    <errorConditionFormula>AND(
+IF(ISBLANK(NS_Payment_Number__c),true,false),
+IF(ISCHANGED(Status__c),true,false),
+ISPICKVAL(Status__c, &apos;Payment Received&apos;) 
+)</errorConditionFormula>
+    <errorMessage>Please make sure the NS Payment Number is populated</errorMessage>
+</ValidationRule>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Field__c</fullName>
+    <description>Products with different versions to track version history</description>
+    <inlineHelpText>Products with different versions to track version history</inlineHelpText>
+    <label>Product Field</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Flow</fullName>
+                <default>false</default>
+                <label>Flow</label>
+            </value>
+            <value>
+                <fullName>Open</fullName>
+                <default>false</default>
+                <label>Open</label>
+            </value>
+            <value>
+                <fullName>Time Capture</fullName>
+                <default>false</default>
+                <label>Time Capture</label>
+            </value>
+            <value>
+                <fullName>Time Entry</fullName>
+                <default>false</default>
+                <label>Time Entry</label>
+            </value>
+            <value>
+                <fullName>Walls</fullName>
+                <default>false</default>
+                <label>Walls</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

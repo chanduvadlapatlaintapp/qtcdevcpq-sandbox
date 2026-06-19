@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Feature_Owner__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Person that owns the business requirements and management of this feature through the entire product management lifecycle. This person is typically a product manager, though occasionally SEs and Engineers play this role.</description>
+    <inlineHelpText>Person that owns the business requirements and management of this feature through the entire product management lifecycle. This person is typically a product manager, though occasionally SEs and Engineers play this role.</inlineHelpText>
+    <label>Feature Owner</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Product_Features2</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WB_Modules_Extensions__c</fullName>
+    <description>All WB modules and extensions that are deployed in Wall Builder at this account. This does not include modules purchased but not scheduled for implementation.</description>
+    <inlineHelpText>All WB modules and extensions that are deployed in Wall Builder at this account. This does not include modules purchased but not scheduled for implementation.</inlineHelpText>
+    <label>WB Modules &amp; Extensions</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Accutrac</fullName>
+                <default>false</default>
+                <label>Accutrac</label>
+            </value>
+            <value>
+                <fullName>Activity Tracker</fullName>
+                <default>false</default>
+                <label>Activity Tracker</label>
+            </value>
+            <value>
+                <fullName>Activity Tracker (Box)</fullName>
+                <default>false</default>
+                <label>Activity Tracker (Box)</label>
+            </value>
+            <value>
+                <fullName>Activity Tracker (DM5)</fullName>
+                <default>false</default>
+                <label>Activity Tracker (DM5)</label>
+            </value>
+            <value>
+                <fullName>Activity Tracker (Exchange)</fullName>
+                <default>false</default>
+                <label>Activity Tracker (Exchange)</label>
+            </value>
+            <value>
+                <fullName>Activity Tracker (iManage)</fullName>
+                <default>false</default>
+                <label>Activity Tracker (iManage)</label>
+            </value>
+            <value>
+                <fullName>Activity Tracker (other)</fullName>
+                <default>false</default>
+                <label>Activity Tracker (other)</label>
+            </value>
+            <value>
+                <fullName>Adverse Party Walls (Elite)</fullName>
+                <default>false</default>
+                <label>Adverse Party Walls (Elite)</label>
+            </value>
+            <value>
+                <fullName>Adverse Party Walls (LegalKEY)</fullName>
+                <default>false</default>
+                <label>Adverse Party Walls (LegalKEY)</label>
+            </value>
+            <value>
+                <fullName>Attorney Acknowledgments</fullName>
+                <default>false</default>
+                <label>Attorney Acknowledgments</label>
+            </value>
+            <value>
+                <fullName>Attorney-Secretary Pairings</fullName>
+                <default>false</default>
+                <label>Attorney-Secretary Pairings</label>
+            </value>
+            <value>
+                <fullName>BizTalk</fullName>
+                <default>false</default>
+                <label>BizTalk</label>
+            </value>
+            <value>
+                <fullName>Carpe Diem</fullName>
+                <default>false</default>
+                <label>Carpe Diem</label>
+            </value>
+            <value>
+                <fullName>Carpe Diem NG</fullName>
+                <default>false</default>
+                <label>Carpe Diem NG</label>
+            </value>
+            <value>
+                <fullName>CMS</fullName>
+                <default>false</default>
+                <label>CMS</label>
+            </value>
+            <value>
+                <fullName>Contractor Walls</fullName>
+                <default>false</default>
+                <label>Contractor Walls</label>
+            </value>
+            <value>
+                <fullName>Criteria-Based Access (iManage)</fullName>
+                <default>false</default>
+                <label>Criteria-Based Access (iManage)</label>
+            </value>
+            <value>
+                <fullName>Cross Border and Local Rules</fullName>
+                <default>false</default>
+                <label>Cross Border and Local Rules</label>
+            </value>
+            <value>
+                <fullName>Decisiv</fullName>
+                <default>false</default>
+                <label>Decisiv</label>
+            </value>
+            <value>
+                <fullName>DM5</fullName>
+                <default>false</default>
+                <label>DM5</label>
+            </value>
+            <value>
+                <fullName>Elite 3E (Ethical walls)</fullName>
+                <default>false</default>
+                <label>Elite 3E (Ethical walls)</label>
+            </value>
+            <value>
+                <fullName>Elite 3E (Records)</fullName>
+                <default>false</default>
+                <label>Elite 3E (Records)</label>
+            </value>
+            <value>
+                <fullName>Elite 3E (Timekeeper)</fullName>
+                <default>false</default>
+                <label>Elite 3E (Timekeeper)</label>
+            </value>
+            <value>
+                <fullName>Elite Records</fullName>
+                <default>false</default>
+                <label>Elite Records</label>
+            </value>
+            <value>
+                <fullName>FileSurf</fullName>
+                <default>false</default>
+                <label>FileSurf</label>
+            </value>
+            <value>
+                <fullName>File Systems</fullName>
+                <default>false</default>
+                <label>File Systems</label>
+            </value>
+            <value>
+                <fullName>File systems (AD groups)</fullName>
+                <default>false</default>
+                <label>File systems (AD groups)</label>
+            </value>
+            <value>
+                <fullName>Foundational Walls (CMS)</fullName>
+                <default>false</default>
+                <label>Foundational Walls (CMS)</label>
+            </value>
+            <value>
+                <fullName>Foundational Walls (DM5)</fullName>
+                <default>false</default>
+                <label>Foundational Walls (DM5)</label>
+            </value>
+            <value>
+                <fullName>Foundational Walls (File Shares)</fullName>
+                <default>false</default>
+                <label>Foundational Walls (File Shares)</label>
+            </value>
+            <value>
+                <fullName>Foundational Walls (iManage)</fullName>
+                <default>false</default>
+                <label>Foundational Walls (iManage)</label>
+            </value>
+            <value>
+                <fullName>Foundational Walls (Time Core)</fullName>
+                <default>false</default>
+                <label>Foundational Walls (Time Core)</label>
+            </value>
+            <value>
+                <fullName>Generic Extension</fullName>
+                <default>false</default>
+                <label>Generic Extension</label>
+            </value>
+            <value>
+                <fullName>Hosted Worksite</fullName>
+                <default>false</default>
+                <label>Hosted Worksite</label>
+            </value>
+            <value>
+                <fullName>iManage</fullName>
+                <default>false</default>
+                <label>iManage</label>
+            </value>
+            <value>
+                <fullName>iManage plug-in</fullName>
+                <default>false</default>
+                <label>iManage plug-in</label>
+            </value>
+            <value>
+                <fullName>Insider Lists</fullName>
+                <default>false</default>
+                <label>Insider Lists</label>
+            </value>
+            <value>
+                <fullName>Intapp Open</fullName>
+                <default>false</default>
+                <label>Intapp Open</label>
+            </value>
+            <value>
+                <fullName>Intapp Time</fullName>
+                <default>false</default>
+                <label>Intapp Time</label>
+            </value>
+            <value>
+                <fullName>Intapp Time Capture</fullName>
+                <default>false</default>
+                <label>Intapp Time Capture</label>
+            </value>
+            <value>
+                <fullName>Intapp Time Core</fullName>
+                <default>false</default>
+                <label>Intapp Time Core</label>
+            </value>
+            <value>
+                <fullName>InterAction</fullName>
+                <default>false</default>
+                <label>InterAction</label>
+            </value>
+            <value>
+                <fullName>Interwoven Records Manager (IRM)</fullName>
+                <default>false</default>
+                <label>Interwoven Records Manager (IRM)</label>
+            </value>
+            <value>
+                <fullName>Lawyer Portal</fullName>
+                <default>false</default>
+                <label>Lawyer Portal</label>
+            </value>
+            <value>
+                <fullName>Legal Holds</fullName>
+                <default>false</default>
+                <label>Legal Holds</label>
+            </value>
+            <value>
+                <fullName>Legal Holds (DM5)</fullName>
+                <default>false</default>
+                <label>Legal Holds (DM5)</label>
+            </value>
+            <value>
+                <fullName>Legal Holds (iManage)</fullName>
+                <default>false</default>
+                <label>Legal Holds (iManage)</label>
+            </value>
+            <value>
+                <fullName>Legal Holds (LegalKEY)</fullName>
+                <default>false</default>
+                <label>Legal Holds (LegalKEY)</label>
+            </value>
+            <value>
+                <fullName>Legal Holds (NetDocuments)</fullName>
+                <default>false</default>
+                <label>Legal Holds (NetDocuments)</label>
+            </value>
+            <value>
+                <fullName>LegalKey</fullName>
+                <default>false</default>
+                <label>LegalKey</label>
+            </value>
+            <value>
+                <fullName>Matter Center</fullName>
+                <default>false</default>
+                <label>Matter Center</label>
+            </value>
+            <value>
+                <fullName>Matter Team Manager</fullName>
+                <default>false</default>
+                <label>Matter Team Manager</label>
+            </value>
+            <value>
+                <fullName>NetDocuments</fullName>
+                <default>false</default>
+                <label>NetDocuments</label>
+            </value>
+            <value>
+                <fullName>ProLaw</fullName>
+                <default>false</default>
+                <label>ProLaw</label>
+            </value>
+            <value>
+                <fullName>Self-Maintaining (Carpe Diem)</fullName>
+                <default>false</default>
+                <label>Self-Maintaining (Carpe Diem)</label>
+            </value>
+            <value>
+                <fullName>Self-Maintaining (Carpe Diem NG)</fullName>
+                <default>false</default>
+                <label>Self-Maintaining (Carpe Diem NG)</label>
+            </value>
+            <value>
+                <fullName>Self-Maintaining (CMS)</fullName>
+                <default>false</default>
+                <label>Self-Maintaining (CMS)</label>
+            </value>
+            <value>
+                <fullName>Self-Maintaining (DM5)</fullName>
+                <default>false</default>
+                <label>Self-Maintaining (DM5)</label>
+            </value>
+            <value>
+                <fullName>Self-Maintaining (DTE)</fullName>
+                <default>false</default>
+                <label>Self-Maintaining (DTE)</label>
+            </value>
+            <value>
+                <fullName>Self-Maintaining (Elite 3E)</fullName>
+                <default>false</default>
+                <label>Self-Maintaining (Elite 3E)</label>
+            </value>
+            <value>
+                <fullName>Self-Maintaining (Firm Time)</fullName>
+                <default>false</default>
+                <label>Self-Maintaining (Firm Time)</label>
+            </value>
+            <value>
+                <fullName>Self-Maintaining (Generic DMS)</fullName>
+                <default>false</default>
+                <label>Self-Maintaining (Generic DMS)</label>
+            </value>
+            <value>
+                <fullName>Self-Maintaining (Generic Time)</fullName>
+                <default>false</default>
+                <label>Self-Maintaining (Generic Time)</label>
+            </value>
+            <value>
+                <fullName>Self-Maintaining (iManage)</fullName>
+                <default>false</default>
+                <label>Self-Maintaining (iManage)</label>
+            </value>
+            <value>
+                <fullName>Self-Maintaining (Intapp Time Capture)</fullName>
+                <default>false</default>
+                <label>Self-Maintaining (Intapp Time Capture)</label>
+            </value>
+            <value>
+                <fullName>Self-Maintaining (Intapp Time Core)</fullName>
+                <default>false</default>
+                <label>Self-Maintaining (Intapp Time Core)</label>
+            </value>
+            <value>
+                <fullName>Self-Maintaining (Omnia)</fullName>
+                <default>false</default>
+                <label>Self-Maintaining (Omnia)</label>
+            </value>
+            <value>
+                <fullName>Self-Maintaining (WebView)</fullName>
+                <default>false</default>
+                <label>Self-Maintaining (WebView)</label>
+            </value>
+            <value>
+                <fullName>SharePoint</fullName>
+                <default>false</default>
+                <label>SharePoint</label>
+            </value>
+            <value>
+                <fullName>SharePoint 2010 (COM)</fullName>
+                <default>false</default>
+                <label>SharePoint 2010 (COM)</label>
+            </value>
+            <value>
+                <fullName>SharePoint 2010 (HTTP)</fullName>
+                <default>false</default>
+                <label>SharePoint 2010 (HTTP)</label>
+            </value>
+            <value>
+                <fullName>SharePoint 2010 (Hybrid)</fullName>
+                <default>false</default>
+                <label>SharePoint 2010 (Hybrid)</label>
+            </value>
+            <value>
+                <fullName>SharePoint 2013 (COM)</fullName>
+                <default>false</default>
+                <label>SharePoint 2013 (COM)</label>
+            </value>
+            <value>
+                <fullName>SharePoint 2013 (HTTP)</fullName>
+                <default>false</default>
+                <label>SharePoint 2013 (HTTP)</label>
+            </value>
+            <value>
+                <fullName>SharePoint 2013 (Hybrid)</fullName>
+                <default>false</default>
+                <label>SharePoint 2013 (Hybrid)</label>
+            </value>
+            <value>
+                <fullName>Time KM</fullName>
+                <default>false</default>
+                <label>Time KM</label>
+            </value>
+            <value>
+                <fullName>WebView</fullName>
+                <default>false</default>
+                <label>WebView</label>
+            </value>
+            <value>
+                <fullName>WebView (Timekeeper)</fullName>
+                <default>false</default>
+                <label>WebView (Timekeeper)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>10</visibleLines>
+</CustomField>

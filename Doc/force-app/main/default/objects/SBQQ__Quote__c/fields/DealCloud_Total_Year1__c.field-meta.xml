@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DealCloud_Total_Year1__c</fullName>
+    <description>Used to calculate total for Quote Lines having Product Family DealCloud.
+Created as part of BIZ-45145</description>
+    <label>DealCloud Total Year1</label>
+    <summarizedField>SBQQ__QuoteLine__c.SBQQ__NetTotal__c</summarizedField>
+    <summaryFilterItems>
+        <field>SBQQ__QuoteLine__c.Product_Family_Value__c</field>
+        <operation>equals</operation>
+        <value>DealCloud</value>
+    </summaryFilterItems>
+    <summaryForeignKey>SBQQ__QuoteLine__c.SBQQ__Quote__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

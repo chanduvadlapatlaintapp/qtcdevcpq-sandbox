@@ -1,0 +1,272 @@
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+    </template>
+
+    <!-- ===== Success State ===== -->
+    <template if:true={createdProductIds}>
+        <div class="slds-p-around_medium">
+            <div class="success-card">
+                <div class="slds-text-align_center slds-p-around_large">
+                    <span class="success-icon">
+                        <lightning-icon icon-name="action:approval" size="large"></lightning-icon>
+                    </span>
+                    <h2 class="slds-text-heading_medium slds-m-top_small slds-m-bottom_xx-small">
+                        {successMessage}
+                    </h2>
+                    <p class="slds-text-body_regular slds-m-bottom_medium success-subtitle">
+                        Your new standalone SKUs are ready. What would you like to do next?
+                    </p>
+                    <div class="slds-grid slds-grid_align-center slds-wrap">
+                        <lightning-button label="Set Up Meter Type" variant="brand"
+                            icon-name="utility:metrics"
+                            onclick={handleNavigateToMeterTypes}
+                            class="slds-m-right_small slds-m-bottom_small"></lightning-button>
+                        <lightning-button label="Set Up Pricing" variant="brand"
+                            icon-name="utility:moneybag"
+                            onclick={handleNavigateToPricing}
+                            class="slds-m-right_small slds-m-bottom_small"></lightning-button>
+                        <lightning-button label="Go to Update Tab" variant="neutral"
+                            icon-name="utility:edit"
+                            onclick={handleNavigateToUpdate}
+                            class="slds-m-right_small slds-m-bottom_small"></lightning-button>
+                        <lightning-button label="Create More SKUs" variant="neutral"
+                            icon-name="utility:add"
+                            onclick={handleReset}
+                            class="slds-m-bottom_small"></lightning-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- ===== Multi-Row Create Form ===== -->
+    <template if:false={createdProductIds}>
+        <div class="slds-p-around_medium">
+
+            <!-- Page Header + Action Buttons -->
+            <div class="page-header slds-m-bottom_medium">
+                <div class="slds-grid slds-grid_vertical-align-center">
+                    <div class="header-icon">
+                        <lightning-icon icon-name="utility:add" size="x-small"></lightning-icon>
+                    </div>
+                    <div class="slds-col">
+                        <h1 class="header-title">Create Standalone SKUs</h1>
+                        <p class="header-subtitle">
+                            Add rows below and fill in product details. Fields marked with * are required.
+                        </p>
+                    </div>
+                    <div class="slds-col_bump-left slds-grid slds-grid_vertical-align-end">
+                        <lightning-button label="Add Row" variant="neutral"
+                            icon-name="utility:add" onclick={handleAddRow}
+                            class="slds-m-right_small"></lightning-button>
+                        <lightning-button label="Reset All" variant="neutral"
+                            icon-name="utility:refresh" onclick={handleReset}
+                            class="slds-m-right_small"></lightning-button>
+                        <lightning-button label="Create All" variant="brand"
+                            icon-name="utility:save" onclick={handleCreateAll}
+                            disabled={isCreateDisabled}></lightning-button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Validation Error Banner -->
+            <template if:true={hasValidationErrors}>
+                <div class="validation-banner slds-m-bottom_small">
+                    <template for:each={validationErrors} for:item="err">
+                        <p key={err}>{err}</p>
+                    </template>
+                </div>
+            </template>
+
+            <!-- Multi-Row Table -->
+            <template if:true={hasRows}>
+                <div class="slds-scrollable_x">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped slds-table_fixed-layout branded-table create-table">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th scope="col" class="col-row-num">#</th>
+                                <th scope="col" class="col-name">Product Name *</th>
+                                <th scope="col" class="col-code">Product Code *</th>
+                                <th scope="col" class="col-im-name">Item Master Name *</th>
+                                <th scope="col" class="col-desc">Description</th>
+                                <th scope="col" class="col-checkbox">Active</th>
+                                <th scope="col" class="col-picklist">Product Group</th>
+                                <th scope="col" class="col-picklist">Product Type</th>
+                                <th scope="col" class="col-picklist">License Type</th>
+                                <th scope="col" class="col-picklist">Pricing Basis</th>
+                                <th scope="col" class="col-picklist">Services Type</th>
+                                <th scope="col" class="col-picklist">Guided Selling</th>
+                                <th scope="col" class="col-checkbox">Legal</th>
+                                <th scope="col" class="col-checkbox">Accounting</th>
+                                <th scope="col" class="col-checkbox">Consulting</th>
+                                <th scope="col" class="col-checkbox">IBA</th>
+                                <th scope="col" class="col-checkbox">PCM</th>
+                                <th scope="col" class="col-checkbox">Prime</th>
+                                <th scope="col" class="col-checkbox">Real Assets</th>
+                                <th scope="col" class="col-checkbox">Corporate</th>
+                                <th scope="col" class="col-action"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={rows} for:item="row">
+                                <tr key={row.id} class={row.rowCssClass}>
+                                    <td class="cell-center row-num">{row.displayIndex}</td>
+                                    <td class={row.nameClass}>
+                                        <lightning-input value={row.product.Name}
+                                            data-index={row.id} data-field="Name"
+                                            data-object="product" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Name"></lightning-input>
+                                    </td>
+                                    <td class={row.codeClass}>
+                                        <lightning-input value={row.product.ProductCode}
+                                            data-index={row.id} data-field="ProductCode"
+                                            data-object="product" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Code"></lightning-input>
+                                    </td>
+                                    <td class={row.imNameClass}>
+                                        <lightning-input value={row.itemMaster.Name}
+                                            data-index={row.id} data-field="Name"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Item Master Name"></lightning-input>
+                                    </td>
+                                    <td>
+                                        <lightning-input value={row.product.Description}
+                                            data-index={row.id} data-field="Description"
+                                            data-object="product" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Description"></lightning-input>
+                                    </td>
+                                    <td class="cell-center">
+                                        <lightning-input type="checkbox" checked={row.product.IsActive}
+                                            data-index={row.id} data-field="IsActive"
+                                            data-object="product" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Active"></lightning-input>
+                                    </td>
+                                    <td>
+                                        <lightning-combobox value={row.product.Product_Group__c}
+                                            options={productGroupOptions}
+                                            data-index={row.id} data-field="Product_Group__c"
+                                            data-object="product" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Product Group"></lightning-combobox>
+                                    </td>
+                                    <td>
+                                        <lightning-combobox value={row.product.Product_Type__c}
+                                            options={productTypeOptions}
+                                            data-index={row.id} data-field="Product_Type__c"
+                                            data-object="product" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Product Type"></lightning-combobox>
+                                    </td>
+                                    <td>
+                                        <lightning-combobox value={row.product.Product_License_Type__c}
+                                            options={productLicenseTypeOptions}
+                                            data-index={row.id} data-field="Product_License_Type__c"
+                                            data-object="product" onchange={handleFieldChange}
+                                            variant="label-hidden" label="License Type"></lightning-combobox>
+                                    </td>
+                                    <td>
+                                        <lightning-combobox value={row.product.Pricing_Basis__c}
+                                            options={pricingBasisOptions}
+                                            data-index={row.id} data-field="Pricing_Basis__c"
+                                            data-object="product" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Pricing Basis"></lightning-combobox>
+                                    </td>
+                                    <td>
+                                        <lightning-combobox value={row.product.Services_Product_Type__c}
+                                            options={servicesProductTypeOptions}
+                                            data-index={row.id} data-field="Services_Product_Type__c"
+                                            data-object="product" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Services Type"></lightning-combobox>
+                                    </td>
+                                    <td>
+                                        <lightning-combobox value={row.product.Guided_Selling_Type__c}
+                                            options={guidedSellingTypeOptions}
+                                            data-index={row.id} data-field="Guided_Selling_Type__c"
+                                            data-object="product" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Guided Selling"></lightning-combobox>
+                                    </td>
+                                    <td class="cell-center">
+                                        <lightning-input type="checkbox" checked={row.product.Is_Legal__c}
+                                            data-index={row.id} data-field="Is_Legal__c"
+                                            data-object="product" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Legal"></lightning-input>
+                                    </td>
+                                    <td class="cell-center">
+                                        <lightning-input type="checkbox" checked={row.product.Is_Accounting__c}
+                                            data-index={row.id} data-field="Is_Accounting__c"
+                                            data-object="product" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Accounting"></lightning-input>
+                                    </td>
+                                    <td class="cell-center">
+                                        <lightning-input type="checkbox" checked={row.product.Is_Consulting__c}
+                                            data-index={row.id} data-field="Is_Consulting__c"
+                                            data-object="product" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Consulting"></lightning-input>
+                                    </td>
+                                    <td class="cell-center">
+                                        <lightning-input type="checkbox" checked={row.product.Is_IBA__c}
+                                            data-index={row.id} data-field="Is_IBA__c"
+                                            data-object="product" onchange={handleFieldChange}
+                                            variant="label-hidden" label="IBA"></lightning-input>
+                                    </td>
+                                    <td class="cell-center">
+                                        <lightning-input type="checkbox" checked={row.product.Is_PCM__c}
+                                            data-index={row.id} data-field="Is_PCM__c"
+                                            data-object="product" onchange={handleFieldChange}
+                                            variant="label-hidden" label="PCM"></lightning-input>
+                                    </td>
+                                    <td class="cell-center">
+                                        <lightning-input type="checkbox" checked={row.product.Is_Prime__c}
+                                            data-index={row.id} data-field="Is_Prime__c"
+                                            data-object="product" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Prime"></lightning-input>
+                                    </td>
+                                    <td class="cell-center">
+                                        <lightning-input type="checkbox" checked={row.product.Is_Real_Assets__c}
+                                            data-index={row.id} data-field="Is_Real_Assets__c"
+                                            data-object="product" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Real Assets"></lightning-input>
+                                    </td>
+                                    <td class="cell-center">
+                                        <lightning-input type="checkbox" checked={row.product.Iss_Corporate__c}
+                                            data-index={row.id} data-field="Iss_Corporate__c"
+                                            data-object="product" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Corporate"></lightning-input>
+                                    </td>
+                                    <td class="cell-center">
+                                        <lightning-button-icon icon-name="utility:delete"
+                                            alternative-text="Remove row"
+                                            variant="bare" size="medium"
+                                            data-index={row.id}
+                                            onclick={handleRemoveRow}></lightning-button-icon>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Bottom Action Bar -->
+                <div class="toolbar slds-m-top_medium">
+                    <lightning-button label="Add Row" variant="neutral"
+                        icon-name="utility:add" onclick={handleAddRow}
+                        class="slds-m-right_small"></lightning-button>
+                    <lightning-button label="Create All" variant="brand"
+                        icon-name="utility:save" onclick={handleCreateAll}
+                        disabled={isCreateDisabled}></lightning-button>
+                </div>
+            </template>
+
+            <!-- Empty State -->
+            <template if:false={hasRows}>
+                <div class="empty-state">
+                    <div class="empty-state-icon">
+                        <lightning-icon icon-name="utility:add" size="small"></lightning-icon>
+                    </div>
+                    <h3 class="empty-state-heading">No rows added</h3>
+                    <p class="empty-state-text">Click "Add Row" to begin creating SKUs.</p>
+                </div>
+            </template>
+
+        </div>
+    </template>
+</template>

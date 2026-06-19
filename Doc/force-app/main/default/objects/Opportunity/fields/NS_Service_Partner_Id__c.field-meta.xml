@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NS_Service_Partner_Id__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  ISBLANK(Services_Partner__c),
+  &quot;&quot;,
+  Services_Partner__r.IntApp_Account_Number__c 
+)</formula>
+    <label>NS Service Partner Id</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

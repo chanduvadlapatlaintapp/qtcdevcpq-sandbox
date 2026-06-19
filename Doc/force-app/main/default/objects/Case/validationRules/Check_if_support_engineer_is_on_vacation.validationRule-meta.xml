@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Check_if_support_engineer_is_on_vacation</fullName>
+    <active>true</active>
+    <description>Checks if employee is on Out Of Office</description>
+    <errorConditionFormula>AND (
+TODAY()&gt;=Owner:User.Vacation_Start_Date__c ,
+TODAY()&lt;=Owner:User.Vacation_End_Date__c , 
+ISCHANGED(OwnerId),
+ RecordTypeId =&quot;0123000000008KC&quot; 
+)</errorConditionFormula>
+    <errorMessage>This employee is on Out Of Office</errorMessage>
+</ValidationRule>

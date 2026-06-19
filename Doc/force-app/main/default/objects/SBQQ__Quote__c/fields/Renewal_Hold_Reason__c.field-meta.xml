@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_Hold_Reason__c</fullName>
+    <description>Formula field — pulls Renewal Hold Reason from the parent Opportunity. BIZ-82935.</description>
+    <externalId>false</externalId>
+    <formula>SBQQ__Opportunity2__r.Renewal_Pause_Reason__c</formula>
+    <label>Renewal Hold Reason</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

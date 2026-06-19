@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Segment_Bundle_Line__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>BIZ-68140 - Reference to the parent Static Bundle Opportunity Line Item for segmentation tracking of Static Components.</description>
+    <label>Segment Bundle Line</label>
+    <referenceTo>OpportunityLineItem</referenceTo>
+    <relationshipLabel>Opportunity Product (Segment Bundle Line)</relationshipLabel>
+    <relationshipName>Segment_Bundle_Lines</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

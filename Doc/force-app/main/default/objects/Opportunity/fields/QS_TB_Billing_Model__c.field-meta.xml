@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>QS_TB_Billing_Model__c</fullName>
+    <description>Part of Technical Debt Project: Week 5 fields (Expiring May 11)</description>
+    <label>TB Billing Model (Expiring May 11)</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Enterprise Lawyer Band</fullName>
+                <default>false</default>
+                <label>Enterprise Lawyer Band</label>
+            </value>
+            <value>
+                <fullName>Enterprise Lawyer Band + Users</fullName>
+                <default>false</default>
+                <label>Enterprise Lawyer Band + Users</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

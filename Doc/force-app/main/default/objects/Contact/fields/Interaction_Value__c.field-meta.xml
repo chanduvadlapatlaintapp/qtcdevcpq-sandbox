@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Interaction_Value__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISPICKVAL(Role__c, &quot;Met - Supports&quot;), 7, 
+IF(ISPICKVAL(Role__c, &quot;Met - Denied&quot;), 6,
+IF(ISPICKVAL(Role__c,&quot;Met&quot;), 5,
+IF(ISPICKVAL(Role__c,&quot;Interaction - Email/Phone&quot;), 4,
+IF(ISPICKVAL(Role__c,&quot;Unmet - Same Room&quot;), 3,
+IF(ISPICKVAL(Role__c,&quot;Unmet&quot;), 2,
+IF(ISPICKVAL(Role__c,&quot;Unknown&quot;), 1, 0)))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Interaction Value</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

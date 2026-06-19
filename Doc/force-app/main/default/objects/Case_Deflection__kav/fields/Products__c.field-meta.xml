@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Products__c</fullName>
+    <label>Products</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>All</fullName>
+                <default>false</default>
+                <label>All</label>
+            </value>
+            <value>
+                <fullName>Bug Fix</fullName>
+                <default>false</default>
+                <label>Bug Fix</label>
+            </value>
+            <value>
+                <fullName>CC/RC</fullName>
+                <default>false</default>
+                <label>CC/RC</label>
+            </value>
+            <value>
+                <fullName>C I D</fullName>
+                <default>false</default>
+                <label>C I D</label>
+            </value>
+            <value>
+                <fullName>CompliGuard Analyze</fullName>
+                <default>false</default>
+                <label>CompliGuard Analyze</label>
+            </value>
+            <value>
+                <fullName>CompliGuard Flow</fullName>
+                <default>false</default>
+                <label>CompliGuard Flow</label>
+            </value>
+            <value>
+                <fullName>CompliGuard Protect</fullName>
+                <default>false</default>
+                <label>CompliGuard Protect</label>
+            </value>
+            <value>
+                <fullName>Conflicts</fullName>
+                <default>false</default>
+                <label>Conflicts</label>
+            </value>
+            <value>
+                <fullName>Contract Express</fullName>
+                <default>false</default>
+                <label>Contract Express</label>
+            </value>
+            <value>
+                <fullName>CRM</fullName>
+                <default>false</default>
+                <label>CRM</label>
+            </value>
+            <value>
+                <fullName>DealCloud</fullName>
+                <default>false</default>
+                <label>DealCloud</label>
+            </value>
+            <value>
+                <fullName>DTE</fullName>
+                <default>false</default>
+                <label>DTE</label>
+            </value>
+            <value>
+                <fullName>DTE Axiom</fullName>
+                <default>false</default>
+                <label>DTE Axiom</label>
+            </value>
+            <value>
+                <fullName>DTE Axiom Mobile</fullName>
+                <default>false</default>
+                <label>DTE Axiom Mobile</label>
+            </value>
+            <value>
+                <fullName>Dun &amp; Bradstreet</fullName>
+                <default>false</default>
+                <label>Dun &amp; Bradstreet</label>
+            </value>
+            <value>
+                <fullName>Experience</fullName>
+                <default>false</default>
+                <label>Experience</label>
+            </value>
+            <value>
+                <fullName>Flow</fullName>
+                <default>false</default>
+                <label>Flow</label>
+            </value>
+            <value>
+                <fullName>Intake</fullName>
+                <default>false</default>
+                <label>Intake</label>
+            </value>
+            <value>
+                <fullName>Intapp Conflicts</fullName>
+                <default>false</default>
+                <label>Intapp Conflicts</label>
+            </value>
+            <value>
+                <fullName>Intapp Conflicts Cloud</fullName>
+                <default>false</default>
+                <label>Intapp Conflicts Cloud</label>
+            </value>
+            <value>
+                <fullName>Intapp Flow</fullName>
+                <default>false</default>
+                <label>Intapp Flow</label>
+            </value>
+            <value>
+                <fullName>Intapp Flow Cloud</fullName>
+                <default>false</default>
+                <label>Intapp Flow Cloud</label>
+            </value>
+            <value>
+                <fullName>Intapp Intake</fullName>
+                <default>false</default>
+                <label>Intapp Intake</label>
+            </value>
+            <value>
+                <fullName>Intapp Intake Cloud</fullName>
+                <default>false</default>
+                <label>Intapp Intake Cloud</label>
+            </value>
+            <value>
+                <fullName>Intapp Integrate</fullName>
+                <default>false</default>
+                <label>Intapp Integrate</label>
+            </value>
+            <value>
+                <fullName>Intapp Open Conflicts</fullName>
+                <default>false</default>
+                <label>Intapp Open Conflicts</label>
+            </value>
+            <value>
+                <fullName>Intapp Open - Experience</fullName>
+                <default>false</default>
+                <label>Intapp Open - Experience</label>
+            </value>
+            <value>
+                <fullName>Intapp Open Intake</fullName>
+                <default>false</default>
+                <label>Intapp Open Intake</label>
+            </value>
+            <value>
+                <fullName>Intapp Open - Terms of Business</fullName>
+                <default>false</default>
+                <label>Intapp Open - Terms of Business</label>
+            </value>
+            <value>
+                <fullName>Intapp Terms</fullName>
+                <default>false</default>
+                <label>Intapp Terms</label>
+            </value>
+            <value>
+                <fullName>Intapp Terms Cloud</fullName>
+                <default>false</default>
+                <label>Intapp Terms Cloud</label>
+            </value>
+            <value>
+                <fullName>Intapp Time</fullName>
+                <default>false</default>
+                <label>Intapp Time</label>
+            </value>
+            <value>
+                <fullName>Intapp Time Capture</fullName>
+                <default>false</default>
+                <label>Intapp Time Capture</label>
+            </value>
+            <value>
+                <fullName>Intapp Time Cloud</fullName>
+                <default>false</default>
+                <label>Intapp Time Cloud</label>
+            </value>
+            <value>
+                <fullName>Intapp Time Cloud - Rekoop</fullName>
+                <default>false</default>
+                <label>Intapp Time Cloud - Rekoop</label>
+            </value>
+            <value>
+                <fullName>Intapp Time Core</fullName>
+                <default>false</default>
+                <label>Intapp Time Core</label>
+            </value>
+            <value>
+                <fullName>Intapp Total Time Management</fullName>
+                <default>false</default>
+                <label>Intapp Total Time Management</label>
+            </value>
+            <value>
+                <fullName>Intapp Walls</fullName>
+                <default>false</default>
+                <label>Intapp Walls</label>
+            </value>
+            <value>
+                <fullName>Integrate</fullName>
+                <default>false</default>
+                <label>Integrate</label>
+            </value>
+            <value>
+                <fullName>Integration Builder/Training</fullName>
+                <default>false</default>
+                <label>Integration Builder/Training</label>
+            </value>
+            <value>
+                <fullName>Integration Builder VM</fullName>
+                <default>false</default>
+                <label>Integration Builder VM</label>
+            </value>
+            <value>
+                <fullName>LegalKey</fullName>
+                <default>false</default>
+                <label>LegalKey</label>
+            </value>
+            <value>
+                <fullName>N/A</fullName>
+                <default>false</default>
+                <label>N/A</label>
+            </value>
+            <value>
+                <fullName>OnePlace - AWS</fullName>
+                <default>false</default>
+                <label>OnePlace - AWS</label>
+            </value>
+            <value>
+                <fullName>OnePlace for Finance</fullName>
+                <default>false</default>
+                <label>OnePlace for Finance</label>
+            </value>
+            <value>
+                <fullName>OnePlace for IT</fullName>
+                <default>false</default>
+                <label>OnePlace for IT</label>
+            </value>
+            <value>
+                <fullName>OnePlace for Leaders and Partners</fullName>
+                <default>false</default>
+                <label>OnePlace for Leaders and Partners</label>
+            </value>
+            <value>
+                <fullName>OnePlace for Marketing</fullName>
+                <default>false</default>
+                <label>OnePlace for Marketing</label>
+            </value>
+            <value>
+                <fullName>OnePlace for Risk</fullName>
+                <default>false</default>
+                <label>OnePlace for Risk</label>
+            </value>
+            <value>
+                <fullName>OnePlace - Salesforce</fullName>
+                <default>false</default>
+                <label>OnePlace - Salesforce</label>
+            </value>
+            <value>
+                <fullName>Portal</fullName>
+                <default>false</default>
+                <label>Portal</label>
+            </value>
+            <value>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+                <label>Pricing</label>
+            </value>
+            <value>
+                <fullName>Rekoop</fullName>
+                <default>false</default>
+                <label>Rekoop</label>
+            </value>
+            <value>
+                <fullName>Relationships</fullName>
+                <default>false</default>
+                <label>Relationships</label>
+            </value>
+            <value>
+                <fullName>RollCall</fullName>
+                <default>false</default>
+                <label>RollCall</label>
+            </value>
+            <value>
+                <fullName>Series 4</fullName>
+                <default>false</default>
+                <label>Series 4</label>
+            </value>
+            <value>
+                <fullName>Software Fulfillment</fullName>
+                <default>false</default>
+                <label>Software Fulfillment</label>
+            </value>
+            <value>
+                <fullName>TB Attorney Rollout</fullName>
+                <default>false</default>
+                <label>TB Attorney Rollout</label>
+            </value>
+            <value>
+                <fullName>Terms</fullName>
+                <default>false</default>
+                <label>Terms</label>
+            </value>
+            <value>
+                <fullName>Time</fullName>
+                <default>false</default>
+                <label>Time</label>
+            </value>
+            <value>
+                <fullName>Time Builder</fullName>
+                <default>false</default>
+                <label>Time Builder</label>
+            </value>
+            <value>
+                <fullName>Walls</fullName>
+                <default>false</default>
+                <label>Walls</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

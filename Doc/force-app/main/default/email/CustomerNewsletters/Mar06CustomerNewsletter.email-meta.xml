@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Mar06 Customer Newsletter</name>
+    <style>none</style>
+    <subject>IntApp Customer Newsletter...</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+We just published our latest customer newsletter and wanted to make sure you received a copy. (If you have images disabled in your email client, I&apos;d advise you to enable them for this message.)  Regards.
+
+
+Customer Newsletter
+
+
+A {
+	COLOR: #003366
+}
+UL {
+	MARGIN-TOP: 1px; MARGIN-BOTTOM: 10px
+}
+TD {
+	FONT-SIZE: 12px; FONT-FAMILY: Tahoma, Verdana, sans-serif
+}
+FORM {
+	MARGIN: 5px
+}
+HR {
+	COLOR: #dbeaf5; HEIGHT: 1px
+}
+.ctrl {
+	FONT-SIZE: 12px; WIDTH: 100%; FONT-FAMILY: Tahoma, Verdana, sans-serif
+}
+.SubTitle {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-WEIGHT: bold; FONT-SIZE: 13px; BACKGROUND: #dbeaf5; PADDING-BOTTOM: 4px; PADDING-TOP: 4px; FONT-FAMILY: Tahoma, Verdana, sans-serif
+}
+.SectionText {
+	FONT-SIZE: 13px; PADDING-BOTTOM: 15px; FONT-FAMILY: Tahoma, Verdana, sans-serif
+}
+.NewsDate {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; FONT-FAMILY: Tahoma, Verdana, sans-serif
+}
+.NewsText {
+	FONT-SIZE: 12px; MARGIN-BOTTOM: 10px; MARGIN-LEFT: 10px; FONT-FAMILY: Tahoma, Verdana, sans-serif
+}
+.fbquote {
+	FONT-SIZE: 12px; FONT-STYLE: italic; FONT-FAMILY: monospace
+}
+.fbauthor {
+	FONT-SIZE: 9px; FONT-FAMILY: Tahoma, Verdana, sans-serif; TEXT-ALIGN: right
+}
+.cright {
+	FONT-SIZE: 12px; BACKGROUND: #4682b4; COLOR: #ffffff; FONT-FAMILY: Tahoma, Verdana, sans-serif; TEXT-ALIGN: right
+}
+.style1 {color: #555555}
+.style4 {
+	color: #003366;
+	font-weight: bold;
+	font-family: Verdana, Arial, Helvetica;
+}
+.style5 {
+	color: #003366;
+	font-family: Verdana, Arial, Helvetica;
+}
+.style6 {font-family: Verdana, Arial, Helvetica}
+.style7 {color: #555555; font-family: Verdana, Arial, Helvetica; }
+
+
+
+
+
+
+
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	 
+ 
+October 2005 edition: 
+
+
+
+
+
+
+ Who Has Joined the IntApp Customer Community?  
+ We&apos;d like to welcome several new firms to the IntApp community, including: 
+
+
+
+
+
+ 
+
+  What are other firms doing with IntApp?
+ 
+We are happy to have an ever-growing list of customers who are using our appliance in innovative ways to solve their firms’ IT integration and business workflow problems. We are thankful to all the customers who participate in our online webinars to share their experiences with their peers from other firms. One such firm is DLA, which is using IntApp to support firm growth during merger activity and beyond by streamlining complex business processes. To watch a recording of DLA’s CIO, Don Jaycox’s presentation, visit: intapp.com.
+
+
+
+.
+
+ 
+
+  Announcing IntApp 3.2  
+
+ IntApp announced availability of its latest product release, version 3.2 last month. This is our most significant release to date and includes several new enhancements in response to direct customer feedback, including:
+
+
+
+  
+Web Services support that will enable firms that are pursuing the goal of integrating web services into their IT environments to use IntApp to interact with service-oriented applications and connect them with legacy systems.  
+
+  
+File management capabilities that expand the appliance’s broad range of supported data repositories to include Windows, Unix and Linux file servers or user workstations.  
+
+  
+Improved reporting tools that now include email attachment functionality to automatically collect and format data extracted from multiple repositories and deliver it to recipients&apos; email inboxes.  
+
+
+
+
+  About a quarter of our customers have been upgraded to the new version so far. The entire upgrade process takes less than an hour to complete and no real-time events are disrupted or lost during the process. Many of our customers who have been upgraded have found the new features to be extremely useful. If you have any questions about the upgrade process, or if you have not been contacted by our support team to schedule your own upgrade, please feel free to contact support@intapp.com.
+
+
+ 
+
+  IntApp 3.2 training videos online 
+In parallel to the 3.2 upgrade process, we have created training videos that contain tutorials on how to quickly use and deploy 3.2 features in your integration projects. To access these videos, please visit the IntApp Resource Center website. If you have any questions about the tutorials or want to further discuss about these new features, please contact support@intapp.com.
+
+
+
+
+ 
+ 
+
+
+  IntApp on the road  
+
+
+We are excited to announce that IntApp will be exhibiting at several trade shows in the coming months including DFTECHEXPO2006 in March, LegalTech WestCoast 2006 in June and ILTA 06 in August. These trade shows are great places to meet our existing and prospective customers and share ideas and expertise with each other. We look forward to seeing you there!
+ 
+
+
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+ | http://www.intapp.com | 
+
+ 
+ 
+ 
+ 
+
+ All information Copyright 2005 Integration Appliance, Inc. All rights 
+ reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_99469245</developerName>
+        <masterLabel>Converted</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>MEMBER_STATUS</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Attended</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Attended –Immediate  Follow  up</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Meeting/Demo - Complete</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Visited Booth</sourceValue>
+            </sourceValues>
+            <value>Converted</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Attended - No Contact</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Meeting/Demo - Scheduled</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Target</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Registered</sourceValue>
+            </sourceValues>
+            <value>Did Not Convert</value>
+        </values>
+    </buckets>
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_7231418</developerName>
+        <masterLabel>Target Accounts</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>Account.Legal_Tier_Split__c</sourceColumnName>
+        <useOther>false</useOther>
+    </buckets>
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_60099790</developerName>
+        <masterLabel>Tier</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>Account.Legal_Tier_Split__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <value>Target Account</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>--None--</sourceValue>
+            </sourceValues>
+            <value>Other</value>
+        </values>
+    </buckets>
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <axisBinding>y</axisBinding>
+            <column>RowCount</column>
+        </chartSummaries>
+        <chartType>HorizontalBarStackedTo100</chartType>
+        <enableHoverLabels>true</enableHoverLabels>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>Account.Legal_Tier_Split__c</groupingColumn>
+        <legendPosition>Right</legendPosition>
+        <location>CHART_TOP</location>
+        <secondaryGroupingColumn>BucketField_99469245</secondaryGroupingColumn>
+        <showAxisLabels>true</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>false</showValues>
+        <size>Medium</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>12</textSize>
+        <title>Account Coverage at ILTA - ALL</title>
+        <titleColor>#000000</titleColor>
+        <titleSize>18</titleSize>
+    </chart>
+    <columns>
+        <field>CAMPAIGN_NAME</field>
+    </columns>
+    <currency>USD</currency>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Legal_Tier_Split__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_99469245</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>ACCOUNT.NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>ILTACON - Coverage ALL</name>
+    <params>
+        <name>scopeid</name>
+        <value>7012J000001Ubyv</value>
+    </params>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CampaignContact</reportType>
+    <scope>one</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+</Report>

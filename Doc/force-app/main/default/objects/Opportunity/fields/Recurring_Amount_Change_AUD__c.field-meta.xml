@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recurring_Amount_Change_AUD__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(TEXT(CurrencyIsoCode),
+  &quot;AUD&quot;,(Maintenance_Amount__c),
+  &quot;CAD&quot;,(Maintenance_Amount__c * 1.308507),
+  &quot;EUR&quot;,(Maintenance_Amount__c * 1.500056),
+  &quot;GBP&quot;,(Maintenance_Amount__c * 1.783791),
+  &quot;NZD&quot;,(Maintenance_Amount__c * 1.082337),
+  &quot;USD&quot;,(Maintenance_Amount__c * 1.351400),
+  0
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Rate:1.351400</inlineHelpText>
+    <label>Recurring Amount Change AUD</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Annualized_First_Year_Software_Net_Total__c</fullName>
+    <externalId>false</externalId>
+    <formula>if(First_Segment_Months__c != 12,
+((Second_Year_Software_Total__c - ((First_Year_Software_Net_Total__c / First_Segment_Months__c) * 12)) / ((First_Year_Software_Net_Total__c / First_Segment_Months__c) * 12)),
+((Second_Year_Software_Total__c - First_Year_Software_Total__c) / First_Year_Software_Total__c))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Annualized First Year Software Net Total</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

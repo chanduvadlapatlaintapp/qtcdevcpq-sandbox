@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reason_Code__c</fullName>
+    <label>Reason Code</label>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Information Update from Sales</fullName>
+                <default>false</default>
+                <label>Information Update from Sales</label>
+            </value>
+            <value>
+                <fullName>Information Update from Client Ops</fullName>
+                <default>false</default>
+                <label>Information Update from Client Ops</label>
+            </value>
+            <value>
+                <fullName>Discrepancy Identification - Order Management</fullName>
+                <default>false</default>
+                <label>Discrepancy Identification - Order Management</label>
+            </value>
+            <value>
+                <fullName>Discrepancy Identification - Billing &amp; Collections</fullName>
+                <default>false</default>
+                <label>Discrepancy Identification - Billing &amp; Collections</label>
+            </value>
+            <value>
+                <fullName>Discrepancy Identification - ARM</fullName>
+                <default>false</default>
+                <label>Discrepancy Identification - ARM</label>
+            </value>
+            <value>
+                <fullName>Contract Terms Changed</fullName>
+                <default>false</default>
+                <label>Contract Terms Changed</label>
+            </value>
+            <value>
+                <fullName>Standalone Credit</fullName>
+                <default>false</default>
+                <label>Standalone Credit</label>
+            </value>
+            <value>
+                <fullName>Information Update from Collections</fullName>
+                <default>false</default>
+                <label>Information Update from Collections</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

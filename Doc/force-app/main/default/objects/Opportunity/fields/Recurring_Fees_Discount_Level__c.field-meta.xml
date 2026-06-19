@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recurring_Fees_Discount_Level__c</fullName>
+    <description>The recurring fees realized, net of any discount applied, compare to our pricebook how?</description>
+    <inlineHelpText>The recurring fees realized, net of any discount applied, compare to our pricebook how?</inlineHelpText>
+    <label>Recurring Fees Discount Level</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Premium Rate</fullName>
+                <default>false</default>
+                <label>Premium Rate</label>
+            </value>
+            <value>
+                <fullName>Standard</fullName>
+                <default>false</default>
+                <label>Standard</label>
+            </value>
+            <value>
+                <fullName>Exceeds MD</fullName>
+                <default>false</default>
+                <label>Exceeds MD</label>
+            </value>
+            <value>
+                <fullName>Exceeds PGL</fullName>
+                <default>false</default>
+                <label>Exceeds PGL</label>
+            </value>
+            <value>
+                <fullName>Exceeds President</fullName>
+                <default>false</default>
+                <label>Exceeds President</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

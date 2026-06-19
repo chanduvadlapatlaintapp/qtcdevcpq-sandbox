@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quality_Issues_Level_1_Other_contract__c</fullName>
+    <label>Quality Issues Level 1(Other-Contract)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Instruction/Notes (Other-Contract/ CRM)</fullName>
+                <default>false</default>
+                <label>Instruction/Notes (Other-Contract/ CRM)</label>
+            </value>
+            <value>
+                <fullName>Other (Other-Contract/CRM)</fullName>
+                <default>false</default>
+                <label>Other (Other-Contract/CRM)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

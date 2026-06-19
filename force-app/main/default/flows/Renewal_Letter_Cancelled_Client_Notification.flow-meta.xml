@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Cancellation_Email</name>
+        <label>Send Cancellation Email</label>
+        <locationX>242</locationX>
+        <locationY>566</locationY>
+        <actionName>SendHTMLEmail</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Create_Email_Sent_Task</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SendTOthisOneEmailAddress</name>
+            <value>
+                <elementReference>$Record.Renewal_Quote__r.Invoicing_Contact_email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>subject</name>
+            <value>
+                <elementReference>Email_Subject</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>HTMLbody</name>
+            <value>
+                <elementReference>Email_Body_HTML</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>orgWideEmailAddressId</name>
+            <value>
+                <elementReference>Get_AR_OrgWide_Email_Address.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>UseSalesforceSignature</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputParameters>
+        <nameSegment>SendHTMLEmail</nameSegment>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Has_Invoicing_Contact_Email</name>
+        <label>Has Invoicing Contact Email?</label>
+        <locationX>374</locationX>
+        <locationY>386</locationY>
+        <defaultConnector>
+            <targetReference>Create_No_Email_Task</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Email Available</defaultConnectorLabel>
+        <rules>
+            <name>Has_Email</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Renewal_Quote__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Renewal_Quote__r.Invoicing_Contact_email__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Renewal_Quote__r.Invoicing_Contact_email__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue></stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Cancellation_Email</targetReference>
+            </connector>
+            <label>Has Email</label>
+        </rules>
+    </decisions>
+    <description>BIZ-74447 - Sends an automated email to the invoicing contact when a Renewal Letter status changes to Cancelled. Logs an Email-type Task on the RL record in both send and no-contact paths. BIZ-82772 - Made the email body, recipient, and sender visible on the sent-email Task by setting TaskSubtype/Type to Email and embedding From/To/Subject/Body in the Description so the activity timeline renders it like the initial RL email.</description>
+    <environments>Default</environments>
+    <interviewLabel>Renewal Letter Cancelled Client Notification {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Renewal Letter Cancelled Client Notification</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Email_Sent_Task</name>
+        <label>Create Email Sent Task</label>
+        <locationX>242</locationX>
+        <locationY>674</locationY>
+        <inputAssignments>
+            <field>ActivityDate</field>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Description</field>
+            <value>
+                <elementReference>Task_Description_Sent</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <elementReference>Email_Subject</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TaskSubtype</field>
+            <value>
+                <stringValue>Email</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Type</field>
+            <value>
+                <stringValue>Email</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
+        <name>Create_No_Email_Task</name>
+        <label>Create No Email Task</label>
+        <locationX>572</locationX>
+        <locationY>566</locationY>
+        <inputAssignments>
+            <field>ActivityDate</field>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <stringValue>Email NOT Sent: No Invoicing Contact Email - Cancellation Notification</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordLookups>
+        <name>Get_AR_OrgWide_Email_Address</name>
+        <label>Get AR OrgWide Email Address</label>
+        <locationX>374</locationX>
+        <locationY>278</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Has_Invoicing_Contact_Email</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Address</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>ar@intapp.com</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>OrgWideEmailAddress</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_AR_OrgWide_Email_Address</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Cancelled</stringValue>
+            </value>
+        </filters>
+        <object>Proforma_Invoice__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>Email_Body_HTML</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;Please be advised that renewal letter &lt;strong&gt;{!$Record.Name}&lt;/strong&gt; has been cancelled.&lt;/p&gt;
+&lt;p&gt;Under most circumstances, a revised renewal letter is sent, and we recommend watching for replacement correspondence.&lt;/p&gt;
+&lt;p&gt;If a new letter is not required for your account, you will not receive further documentation.&lt;/p&gt;
+&lt;p&gt;Should you have any questions or need clarification, please do not hesitate to contact us at ar@intapp.com&lt;/p&gt;
+&lt;p&gt;Intapp Finance Team&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Email_Subject</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Update on Your Renewal Letter - {!$Record.Name}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Task_Description_Sent</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>From: {!Get_AR_OrgWide_Email_Address.DisplayName} &lt;{!Get_AR_OrgWide_Email_Address.Address}&gt;
+To: {!$Record.Renewal_Quote__r.Invoicing_Contact_email__c}
+Subject: {!Email_Subject}
+
+----------
+
+Please be advised that renewal letter {!$Record.Name} has been cancelled.
+
+Under most circumstances, a revised renewal letter is sent, and we recommend watching for replacement correspondence.
+
+If a new letter is not required for your account, you will not receive further documentation.
+
+Should you have any questions or need clarification, please do not hesitate to contact us at ar@intapp.com
+
+Intapp Finance Team</text>
+    </textTemplates>
+</Flow>

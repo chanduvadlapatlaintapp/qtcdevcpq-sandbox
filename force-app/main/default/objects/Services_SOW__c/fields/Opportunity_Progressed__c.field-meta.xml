@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opportunity_Progressed__c</fullName>
+    <description>This field determines if the Opportunity has progressed since the request for services involvement was made.</description>
+    <formula>IF(
+  AND(
+   Opportunity__r.Probability &gt; Opportunity_Probability_at_Request__c,
+   OR(
+     NOT(ISPICKVAL(Opportunity__r.StageName, &quot;Closed Lost&quot;)),
+     NOT(ISPICKVAL(Opportunity__r.StageName, &quot;Closed - No Decision&quot;))
+    )
+  ),
+  TRUE,
+  FALSE
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Opportunity Progressed?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

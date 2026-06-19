@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>SFDCA_Letterhead</letterhead>
+    <name>SFDC CHange Request: Date Changed</name>
+    <style>freeForm</style>
+    <subject>Projected Date Changed: {!Case.Subject}</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

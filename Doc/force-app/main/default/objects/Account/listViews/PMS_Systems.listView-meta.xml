@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PMS_Systems</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Simple_Territory__c</columns>
+    <columns>Time_Entry__c</columns>
+    <columns>Lawyers__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ACCOUNT.TYPE</field>
+        <operation>equals</operation>
+        <value>Customer</value>
+    </filters>
+    <label>PMS Systems</label>
+    <language>en_US</language>
+</ListView>

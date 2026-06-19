@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Default_Letterhead</letterhead>
+    <name>ReleaseNotesApprovalEmail</name>
+    <style>freeForm</style>
+    <subject>A new Release Notes Article requires approval</subject>
+    <textOnly>The following Release Notes article requires approval:
+
+Article Number: {!Release_Note__kav.ArticleNumber}
+Title: {!Release_Note__kav.Title}
+Created By: {!Release_Note__kav.CreatedBy}
+URL: {!Release_Note__kav.Link}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

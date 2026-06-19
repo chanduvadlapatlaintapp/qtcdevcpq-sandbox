@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OSA_Case_Count_Validation</fullName>
+    <active>false</active>
+    <description>This is created as part of BIZ-45115</description>
+    <errorConditionFormula>AND(OR(Case_Count__c=0,ISBLANK(Case_Count__c)),ISPICKVAL(Quote_Stage__c,&apos;Finalize OSA&apos;),!ISBLANK(OSA_Instructions__c))</errorConditionFormula>
+    <errorDisplayField>Number_of_DLIs__c</errorDisplayField>
+    <errorMessage>Quote has non-standard terms selected. Submit a case to Contract Ops for review</errorMessage>
+</ValidationRule>

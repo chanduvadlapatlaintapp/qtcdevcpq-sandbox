@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Advisory_Board_Role__c</fullName>
+    <description>Field created as part of &apos;Intapp Advisory Board Member Project&apos;; Requested as part of Ticket #16470</description>
+    <inlineHelpText>Role of the contact on the Intapp Advisory Board</inlineHelpText>
+    <label>Advisory Board Role</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>CEO/MP Advisory Role</fullName>
+                <default>false</default>
+                <label>CEO/MP Advisory Role</label>
+            </value>
+            <value>
+                <fullName>CFO Advisory Role</fullName>
+                <default>false</default>
+                <label>CFO Advisory Role</label>
+            </value>
+            <value>
+                <fullName>CIO Advisory Role</fullName>
+                <default>false</default>
+                <label>CIO Advisory Role</label>
+            </value>
+            <value>
+                <fullName>CMO Advisory Role</fullName>
+                <default>false</default>
+                <label>CMO Advisory Role</label>
+            </value>
+            <value>
+                <fullName>COO Advisory Role</fullName>
+                <default>false</default>
+                <label>COO Advisory Role</label>
+            </value>
+            <value>
+                <fullName>CPO Advisory Role</fullName>
+                <default>false</default>
+                <label>CPO Advisory Role</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

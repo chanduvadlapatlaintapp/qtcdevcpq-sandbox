@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mailing_Country_Currency_Sync</fullName>
+    <active>false</active>
+    <description>SC-000055</description>
+    <errorConditionFormula>OR(
+  AND(
+    Is_Resource_Active__c=TRUE,
+    MailingCountry=&quot;Australia&quot;, 
+    NOT(ISPICKVAL(CurrencyIsoCode, &quot;AUD&quot;))
+  ),
+  AND(
+    Is_Resource_Active__c=TRUE,
+    MailingCountry=&quot;GB&quot;,
+    NOT(ISPICKVAL(CurrencyIsoCode, &quot;GBP&quot;))
+  ),
+  AND(
+    Is_Resource_Active__c=TRUE,
+    MailingCountry=&quot;UK&quot;,
+    NOT(ISPICKVAL(CurrencyIsoCode, &quot;GBP&quot;))
+  ),
+   AND(
+    Is_Resource_Active__c=TRUE,
+    MailingCountry=&quot;UA&quot;,
+    NOT(ISPICKVAL(CurrencyIsoCode, &quot;USD&quot;))
+  ),
+    AND(
+    Is_Resource_Active__c=TRUE,
+    MailingCountry=&quot;USA&quot;,
+    NOT(ISPICKVAL(CurrencyIsoCode, &quot;USD&quot;))
+  )
+)</errorConditionFormula>
+    <errorDisplayField>CurrencyIsoCode</errorDisplayField>
+    <errorMessage>Please select the correct currency that matches the resource&apos;s Mailing Country.</errorMessage>
+</ValidationRule>

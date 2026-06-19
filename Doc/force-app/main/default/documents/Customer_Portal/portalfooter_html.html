@@ -1,0 +1,139 @@
+<style type="text/css">
+.portalheader, .portalheader a {
+    text-align: left;
+    background-color: white;
+    color: black;
+}
+.portalfooter {
+    top-margin: 10pt;
+    text-align: center;
+}
+.oRight .bPageTitle .secondaryPalette, .oRight .lbHeader, .bPageBlock .pbHeader {
+  background-color: #999999;
+}
+.sidebarBoxTitleIcon {
+  width: 0px;
+}
+.sidebarBox .filter {
+  width: 150px;
+}
+.sidebarBox {
+  padding: 0;
+  width: 198px;
+}
+.sidebarBoxTitle {
+  color: #FFFFFF;
+  background-color: #4E8ABE;
+}
+.sidebarInnerBox {
+  background-color: #FFFFFF;
+  padding: 0;
+  border-color: #4E8ABE #A0BBDC #A0BBDC;
+  border-style: solid;
+  border-width: 1px;
+  margin: 0 0 10px 10px;
+}
+td.oLeft {
+  font-family: Arial,Helvetica,sans-serif;
+  margin: 0 0 10px 10px;
+  padding: 0;
+  border-width: 0x;
+  padding-bottom: 5px;
+  color: #262626;
+  font-size: 90%;
+  overflow: hidden;
+  width: 200px;
+}
+.outerNoSidebar {
+  padding: 0 0 10px;
+}
+#ideaSubtabs ul#nav .ideasCurrentTab div a {
+  color: white;
+}
+#thePage\:mainLayout\:formIdea\:pb\:pbs table td table.multiSelectPicklistTable {
+  display: none;
+}
+label[for="thePage:mainLayout:formIdea:pb:pbs:Categories_unselected"] {
+  display: none;
+}
+span#thePage\:mainLayout\:pbIdeaList\:bottomIdeaFeeds {
+  display: none;
+}
+a.ansCommunityLink {
+  display: none;
+}
+a#pageQuestionView\:ansLayout\:ansBreadcrumb\:answersBreadcrumb\:ansBreadcrumbCommunity {
+  display: none;
+}
+a#pageQuestionList\:ansLayout\:ansBreadcrumb\:answersBreadcrumb\:ansBreadcrumbCommunity {
+  display: none;
+}
+span.ansCategoriesLabel {
+  display: none;
+}
+</style>
+<div class="portalfooter">Copyright &copy; 2013 <a href="http://www.intapp.com/">IntApp, Inc.</a></div>
+
+<!-- <div id="loadingPnl" style="display:none;"> -->
+<!-- 	<div class="waitingSearchDiv" style="background-color: #fbfbfb; height: 100%; opacity: 0.65; width: 100%;"> -->
+<!-- 	 <div class="waitingHolder" style="top: 74.2px; width: 91px;"> -->
+<!-- 	    <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />  -->
+<!-- 	    <span class="waitingDescription">Loading...</span> -->
+<!-- 	  </div> -->
+<!-- 	</div> -->
+<!-- </div> -->
+
+<script>
+	var currentPageURL = window.location.href;
+	if(currentPageURL.indexOf('filter') > -1) {
+		doDefaultSearch ();
+	}
+	
+	//=============================================================================================================
+	// do Default Search based on page Parameter (filter=ArticeType)
+	//=============================================================================================================
+	function doDefaultSearch () {
+		//document.getElementById('loadingPnl').style.display = 'block';
+		try {
+			//alert(window.location.href);
+			Knowledge.toggleBlock('showMore', 'showLess');
+			disableAllCheckBoxes();
+			var checkBoxId = getParameterByName('filter');
+			document.getElementById(checkBoxId).checked = true;
+			//doSearch
+			document.getElementById('spellOff').value = false; 
+			runSearch();
+		} catch (ex) {
+			//alert(ex);
+		}
+		//document.getElementById('loadingPnl').style.display = 'none';
+	}
+	
+	//=============================================================================================================
+	// Disable all checkboxes on current page
+	//=============================================================================================================
+	function disableAllCheckBoxes() {
+		var inputs = document.getElementsByTagName("input"); //or document.forms[0].elements;
+		for (var i = 0; i < inputs.length; i++) {
+		  if (inputs[i].type == "checkbox") {
+		    inputs[i].checked = false;
+		  }
+		}
+	}
+	
+	//=============================================================================================================
+	//Get value from page Parameter
+	//=============================================================================================================
+	function getParameterByName(name)
+	{
+	  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+	  var regexS = "[\\?&]" + name + "=([^&#]*)";
+	  var regex = new RegExp(regexS);
+	  var results = regex.exec(window.location.search);
+	  if(results == null)
+	    return "";
+	  else
+	    return decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+</script>
+

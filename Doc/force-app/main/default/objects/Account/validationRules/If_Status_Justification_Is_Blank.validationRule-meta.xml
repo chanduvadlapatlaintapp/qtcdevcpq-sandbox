@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>If_Status_Justification_Is_Blank</fullName>
+    <active>false</active>
+    <description>BIZ-45074
+Value of Status Justification cannot be blank if value of Status picklist is Inactive or Verification Declined</description>
+    <errorConditionFormula>AND(
+  OR(
+     ISPICKVAL(Status__c, &quot;Inactive&quot;),
+     ISPICKVAL(Status__c, &quot;Verification Declined&quot;)
+  ),
+  ISBLANK(Status_Justification__c)
+)</errorConditionFormula>
+    <errorMessage>Please enter ‘Status Justification’ when inactivating/ declining verification request for the account.</errorMessage>
+</ValidationRule>

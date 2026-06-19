@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_Billing_Frequency__c</fullName>
+    <label>Renewal Billing Frequency</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Quarterly</fullName>
+                <default>false</default>
+                <label>Quarterly</label>
+            </value>
+            <value>
+                <fullName>Semiannual</fullName>
+                <default>false</default>
+                <label>Semiannual</label>
+            </value>
+            <value>
+                <fullName>Quarterly Y1 Only</fullName>
+                <default>false</default>
+                <label>Quarterly Y1 Only</label>
+            </value>
+            <value>
+                <fullName>Semi-annual Y1 Only</fullName>
+                <default>false</default>
+                <label>Semi-annual Y1 Only</label>
+            </value>
+            <value>
+                <fullName>Invoice Plan</fullName>
+                <default>false</default>
+                <label>Invoice Plan</label>
+            </value>
+            <value>
+                <fullName>Trial</fullName>
+                <default>false</default>
+                <label>Trial</label>
+            </value>
+            <value>
+                <fullName>Annual</fullName>
+                <default>false</default>
+                <label>Annual</label>
+            </value>
+            <value>
+                <fullName>No Software</fullName>
+                <default>false</default>
+                <label>No Software</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,16 @@
+<apex:page standardController="SBQQ__Quote__c"
+           sidebar="false"
+           showHeader="false"
+           showChat="false">
+
+<apex:pageMessage summary="Please note that 'Intapp Integration Service - Standard' was added to the quote automatically, please update the price and quantity and save the quote" 
+                  severity="warning" 
+                  strength="3"
+                  rendered="{!SBQQ__Quote__c.counter_fo_allert__c = 20}" />
+                  
+                  <apex:pageMessage summary="Please note that Expires On date is in the past" 
+                  severity="INFO" 
+                  strength="3"
+                  rendered="{!SBQQ__Quote__c.Expires_on_formula_for_allert__c =true}" />
+
+</apex:page>

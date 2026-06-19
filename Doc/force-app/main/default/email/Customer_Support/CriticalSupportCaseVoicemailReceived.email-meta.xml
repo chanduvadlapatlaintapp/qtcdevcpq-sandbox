@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email template when a critical case voicemail is received from the Customer</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>CriticalSupportCaseVoicemailReceived</name>
+    <style>none</style>
+    <subject>❌❌❌❌❌ Critical Support Voicemail Received: {!Case.CaseNumber} ❌❌❌❌❌</subject>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

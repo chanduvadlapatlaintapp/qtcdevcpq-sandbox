@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OrdersThisquarter</fullName>
+    <columns>NAME</columns>
+    <columns>RECORDTYPE</columns>
+    <columns>Account__c</columns>
+    <columns>Product_Component__c</columns>
+    <columns>View_Shipping_Label__c</columns>
+    <columns>Shipping_Postal_Code__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Requested_Ship_Date__c</columns>
+    <columns>Actual_Ship_Date__c</columns>
+    <columns>Appliance_Serial_Number__c</columns>
+    <columns>Order_System_Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>equals</operation>
+        <value>THIS_QUARTER</value>
+    </filters>
+    <label>Orders: This quarter</label>
+</ListView>

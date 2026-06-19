@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deal_Quality__c</fullName>
+    <label>Deal Quality</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Green</fullName>
+                <color>#78C953</color>
+                <default>false</default>
+                <label>Green</label>
+            </value>
+            <value>
+                <fullName>Blue</fullName>
+                <color>#0B6FCE</color>
+                <default>false</default>
+                <label>Blue</label>
+            </value>
+            <value>
+                <fullName>Red</fullName>
+                <color>#CC0000</color>
+                <default>false</default>
+                <label>Red</label>
+            </value>
+            <value>
+                <fullName>N/A</fullName>
+                <color>#BBBBBB</color>
+                <default>false</default>
+                <label>N/A</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

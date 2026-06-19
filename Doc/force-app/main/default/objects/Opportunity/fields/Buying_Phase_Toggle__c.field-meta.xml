@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Buying_Phase_Toggle__c</fullName>
+    <externalId>false</externalId>
+    <formula>Case(Buying_Phase__c,
+  &quot;Not Interested Yet&quot;,&quot;Not Interested Yet&quot;,
+  &quot;Pre-Shopping&quot;,&quot;Pre-Shopping&quot;,
+  &quot;Shopping for a Solution&quot;,&quot;Shopping for a Solution&quot;,
+  &quot;Selected&quot;,&quot;Selected&quot;,
+  &quot;Other&quot;
+)</formula>
+    <label>Buying Phase Toggle</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

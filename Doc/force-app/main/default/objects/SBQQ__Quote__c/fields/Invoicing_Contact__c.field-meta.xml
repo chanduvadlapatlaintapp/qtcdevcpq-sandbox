@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Invoicing_Contact__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The invoicing contact from OP4i and synced via Boomi.</description>
+    <inlineHelpText>The Invoicing Contact is maintained in OP4I, and only the order management and the renewal team should update it in SFDC.</inlineHelpText>
+    <label>Invoicing Contact (Read Only)</label>
+    <referenceTo>Contact</referenceTo>
+    <relationshipLabel>Quotes (Invoicing Contact)</relationshipLabel>
+    <relationshipName>Quotes1</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

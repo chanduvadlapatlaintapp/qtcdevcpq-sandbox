@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OP4I_Pricebook__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(Repstor__c == true,Price_book_Code__c &amp; &apos; &apos; &amp; &apos;Repstor;&apos; , &apos;&apos;) &amp;
+
+IF(FS_Ops_Only__c == true,Price_book_Code__c &amp; &apos; &apos; &amp; &apos;FS Ops Only;&apos; , &apos;&apos;) &amp;
+
+IF(PS_Ops_Only__c == true,Price_book_Code__c &amp; &apos; &apos; &amp; &apos;PS Ops Only;&apos; , &apos;&apos;) &amp;
+
+IF(G_Cloud__c == true,Price_book_Code__c &amp; &apos; &apos; &amp; &apos;G-Cloud;&apos; , &apos;&apos;) &amp;
+
+IF(FS_Sales__c == true,Price_book_Code__c &amp; &apos; &apos; &amp; &apos;FS Sales;&apos; , &apos;&apos;) &amp;
+
+IF(PS_Sales__c== true,Price_book_Code__c &amp; &apos; &apos; &amp; &apos;PS Sales;&apos; , &apos;&apos;) &amp;
+
+IF(Legal_Sales__c== true,Price_book_Code__c &amp; &apos; &apos; &amp; &apos;Legal Sales;&apos; , &apos;&apos;) &amp;
+
+IF(A_C_Sales__c== true,Price_book_Code__c &amp; &apos; &apos; &amp; &apos;AC Sales;&apos; , &apos;&apos;) &amp;
+
+IF(Corporate_Sales__c== true,Price_book_Code__c &amp; &apos; &apos; &amp; &apos;Corporate Sales;&apos; , &apos;&apos;) &amp;
+
+IF(Ops_Only__c== true,Price_book_Code__c &amp; &apos; &apos; &amp; &apos;Ops Only;&apos;, &apos;&apos;) &amp;
+
+IF(Partner_Sales__c == true, Price_book_Code__c &amp; &apos; &apos; &amp; &apos;Partner Sales; &apos; , &apos;&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>OP4I Pricebook</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

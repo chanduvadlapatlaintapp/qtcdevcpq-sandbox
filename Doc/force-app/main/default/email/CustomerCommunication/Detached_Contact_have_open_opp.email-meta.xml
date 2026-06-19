@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Detached Contact have open Opportunity</name>
+    <style>none</style>
+    <subject>{!Contact.Name} have left {!Contract.Account}.</subject>
+    <textOnly>Hi all,  This is a quick note to inform you that I’m in the process of moving the above named contact record between the above named accounts. {!Contact.Name} is moving from {!Contract.Account}.  Below are the Product Customer Contacts {!Contact.Name} was responsible and will now be deleted:  TBD</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_RAG_Status__c</fullName>
+    <label>Customer RAG Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>RED</fullName>
+                <color>#FF0000</color>
+                <default>false</default>
+                <label>RED</label>
+            </value>
+            <value>
+                <fullName>AMBER</fullName>
+                <color>#FFCC33</color>
+                <default>false</default>
+                <label>AMBER</label>
+            </value>
+            <value>
+                <fullName>GREEN</fullName>
+                <color>#57F17C</color>
+                <default>false</default>
+                <label>GREEN</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

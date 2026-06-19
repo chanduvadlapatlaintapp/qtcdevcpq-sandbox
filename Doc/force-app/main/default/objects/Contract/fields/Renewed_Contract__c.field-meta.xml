@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewed_Contract__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Created as part of BIZ-51293. To capture original contract.</description>
+    <label>Renewed Contract</label>
+    <referenceTo>Contract</referenceTo>
+    <relationshipLabel>Contracts (Renewed Contract)</relationshipLabel>
+    <relationshipName>Contracts6</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

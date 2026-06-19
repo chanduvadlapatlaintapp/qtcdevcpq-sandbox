@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Interaction_Type__c</fullName>
+    <description>For sales engagements only, does this activity record the fact that the prospect responded to the sales rep, participated in an online meeting, or met with the sales rep in person?</description>
+    <inlineHelpText>For sales engagements only, does this activity record the fact that the prospect responded to the sales rep, or met with the sales rep in person?</inlineHelpText>
+    <label>Interaction Type</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Communicated with Rep</fullName>
+                <default>false</default>
+                <label>Communicated with Rep</label>
+            </value>
+            <value>
+                <fullName>Online presentation</fullName>
+                <default>false</default>
+                <label>Online presentation</label>
+            </value>
+            <value>
+                <fullName>In-person meeting</fullName>
+                <default>false</default>
+                <label>In-person meeting</label>
+            </value>
+            <value>
+                <fullName>Client Meeting</fullName>
+                <default>false</default>
+                <label>Client Meeting</label>
+            </value>
+            <value>
+                <fullName>Internal Meeting</fullName>
+                <default>false</default>
+                <label>Internal Meeting</label>
+            </value>
+            <value>
+                <fullName>Internal Work</fullName>
+                <default>false</default>
+                <label>Internal Work</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

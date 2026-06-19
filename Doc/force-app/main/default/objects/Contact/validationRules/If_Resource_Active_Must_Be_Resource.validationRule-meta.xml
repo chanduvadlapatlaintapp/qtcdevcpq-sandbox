@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>If_Resource_Active_Must_Be_Resource</fullName>
+    <active>false</active>
+    <description>If the &quot;Is Resource Active&quot; flag is set to true, the &quot;Is Resource&quot; flag should be set to true as well.</description>
+    <errorConditionFormula>AND(
+  NOT($Profile.Id=&quot;00e30000000bvR3&quot;),
+  Is_Resource_Active__c,
+  NOT(Is_Resource__c)
+)</errorConditionFormula>
+    <errorMessage>If &quot;Is Resource Active&quot; is checked, &quot;Is Resource&quot; must be checked too.</errorMessage>
+</ValidationRule>

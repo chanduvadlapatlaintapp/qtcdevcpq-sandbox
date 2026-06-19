@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_Pause_Status__c</fullName>
+    <label>Billing Pause Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Processing Pause</fullName>
+                <default>false</default>
+                <label>Processing</label>
+            </value>
+            <value>
+                <fullName>Received Signature</fullName>
+                <default>false</default>
+                <label>In Force</label>
+            </value>
+            <value>
+                <fullName>Expired</fullName>
+                <default>false</default>
+                <label>Expired</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

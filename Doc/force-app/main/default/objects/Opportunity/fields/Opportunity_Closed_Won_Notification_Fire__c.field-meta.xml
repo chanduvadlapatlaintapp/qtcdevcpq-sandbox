@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opportunity_Closed_Won_Notification_Fire__c</fullName>
+    <description>Field used to track whether or not a notification went on when an Opportunity is Closed Won or meets other critieria from the &quot;Opportunity Closed Won&quot; process builder rule.</description>
+    <label>Opportunity Won Notification Fired</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Sales Notification for greater than 20K</fullName>
+                <default>false</default>
+                <label>Sales Notification for greater than 20K</label>
+            </value>
+            <value>
+                <fullName>Sales Notification for equal or less than 20K</fullName>
+                <default>false</default>
+                <label>Sales Notification for equal or less than 20K</label>
+            </value>
+            <value>
+                <fullName>Training Opportunity Closed</fullName>
+                <default>false</default>
+                <label>Training Opportunity Closed</label>
+            </value>
+            <value>
+                <fullName>Billing Pause</fullName>
+                <default>false</default>
+                <label>Billing Pause</label>
+            </value>
+            <value>
+                <fullName>Email Cancellation</fullName>
+                <default>false</default>
+                <label>Email Cancellation</label>
+            </value>
+            <value>
+                <fullName>Cloud Email Cancellation</fullName>
+                <default>false</default>
+                <label>Cloud Email Cancellation</label>
+            </value>
+            <value>
+                <fullName>Services - Partner Opportunities closure</fullName>
+                <default>false</default>
+                <label>Services - Partner Opportunities closure</label>
+            </value>
+            <value>
+                <fullName>Finance Catch All Notification</fullName>
+                <default>false</default>
+                <label>Finance Catch All Notification</label>
+            </value>
+            <value>
+                <fullName>Legal - Consulting Services</fullName>
+                <default>false</default>
+                <label>Legal - Consulting Services</label>
+            </value>
+            <value>
+                <fullName>Renewals Closed Won</fullName>
+                <default>false</default>
+                <label>Renewals Closed Won</label>
+            </value>
+            <value>
+                <fullName>Renewals Closed Lost</fullName>
+                <default>false</default>
+                <label>Renewals Closed Lost</label>
+            </value>
+            <value>
+                <fullName>Renewal At Risk</fullName>
+                <default>false</default>
+                <label>Renewal At Risk</label>
+            </value>
+            <value>
+                <fullName>OnePlace</fullName>
+                <default>false</default>
+                <label>OnePlace</label>
+            </value>
+            <value>
+                <fullName>Engagement Letter</fullName>
+                <default>false</default>
+                <label>Engagement Letter</label>
+            </value>
+            <value>
+                <fullName>Intapp Prime</fullName>
+                <default>false</default>
+                <label>Intapp Prime</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

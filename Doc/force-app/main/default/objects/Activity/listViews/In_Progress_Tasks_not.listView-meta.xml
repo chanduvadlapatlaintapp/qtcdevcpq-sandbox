@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>In_Progress_Tasks_not</fullName>
+    <columns>TASK.SUBJECT</columns>
+    <columns>TASK.WHO_NAME</columns>
+    <columns>TASK.WHAT_NAME</columns>
+    <columns>TASK.DUE_DATE</columns>
+    <columns>TASK.STATUS</columns>
+    <columns>TASK.PRIORITY</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>TASK.LAST_UPDATE</columns>
+    <columns>UPDATEDBY_USER.ALIAS</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>TASK.STATUS</field>
+        <operation>equals</operation>
+        <value>In Progress</value>
+    </filters>
+    <filters>
+        <field>TASK.CREATED_DATE</field>
+        <operation>greaterOrEqual</operation>
+        <value>10/1/2019 12:00 AM</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.FULL_NAME</field>
+        <operation>contains</operation>
+        <value>holly,paul,sadou,jeff,anthony,adam,lori</value>
+    </filters>
+    <filters>
+        <field>Salesloft_Cadence_ID__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>In Progress Tasks_not SL</label>
+    <language>en_US</language>
+</ListView>

@@ -1,0 +1,16 @@
+<table width="550" cellpadding="5" height="400" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td locked="0" style=" font-family:arial; bLabel:main; color:#000000; font-size:12pt; bEditID:r3st1; background-color:#FFFFFF;" aEditID="c1r1" tEditID="c1r1" >
+<![CDATA[A case was closed with no time entered.&nbsp; It's important we record time spent on each case so we know how well we're doing!<br>
+<br><span style="font-weight: bold;">
+Case:</span> {!Case.CaseNumber}<br><span style="font-weight: bold;">
+Link to Case:</span> <br>
+<br><span style="font-weight: bold;">
+Subject:</span> {!Case.Subject}<br><span style="font-weight: bold;">
+Customer: </span>{!Case.Contact}<br><span style="font-weight: bold;">
+Problem:</span> {!Case.Problem__c}<br><span style="font-weight: bold;">
+Resolution:</span> {!Case.Resolution__c}<br>
+<br>
+<br>]]></td>
+</tr>
+</table>

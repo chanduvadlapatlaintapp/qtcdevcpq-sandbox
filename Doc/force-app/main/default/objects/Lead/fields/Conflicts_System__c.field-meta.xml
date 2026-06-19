@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conflicts_System__c</fullName>
+    <label>Conflicts System</label>
+    <required>false</required>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Accutrac</fullName>
+                <default>false</default>
+                <label>Accutrac</label>
+            </value>
+            <value>
+                <fullName>Autonomy Conflicts Manager</fullName>
+                <default>false</default>
+                <label>Autonomy Conflicts Manager</label>
+            </value>
+            <value>
+                <fullName>Compliguard Conflicts</fullName>
+                <default>false</default>
+                <label>Compliguard Conflicts</label>
+            </value>
+            <value>
+                <fullName>Custom</fullName>
+                <default>false</default>
+                <label>Custom</label>
+            </value>
+            <value>
+                <fullName>Elite Conflicts</fullName>
+                <default>false</default>
+                <label>Elite Conflicts</label>
+            </value>
+            <value>
+                <fullName>LegalKEY Conflicts</fullName>
+                <default>false</default>
+                <label>LegalKEY Conflicts</label>
+            </value>
+            <value>
+                <fullName>MDY Conflicts</fullName>
+                <default>false</default>
+                <label>MDY Conflicts</label>
+            </value>
+            <value>
+                <fullName>ADERANT</fullName>
+                <default>false</default>
+                <label>ADERANT</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

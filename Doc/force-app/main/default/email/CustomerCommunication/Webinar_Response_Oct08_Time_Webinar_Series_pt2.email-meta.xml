@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Response for Time Webinar Series pt 2</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - Oct08 Time Webinar Series pt2</name>
+    <style>none</style>
+    <subject>IntApp Time Builder Webinar</subject>
+    <textOnly>{!Lead.FirstName} {!Lead.LastName}:
+
+Thank you for registering for the IntApp Time Builder webinar.
+Date: Wednesday, November 5
+Time: 10 am Pacific / 1 pm Eastern
+
+
+Video:
+
+Conference URL: http://e-meetings.mci.com/nc/join.php?i=SV56561&amp;p=time&amp;t=c
+Conference/Meeting Number: SV56561
+Conference/Meeting Passcode: time
+
+
+Audio:
+
+Conference Audio Dial In: 888-994-8797 (give operator the passcode: &quot;TIME&quot; and conference leader&apos;s name: &quot;Don Coleman&quot;)
+
+
+
+Please log in and dial the conference audio line 10 minutes prior to the start time.
+
+
+
+http://www.intapp.com
+All information Copyright 2008 IntApp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

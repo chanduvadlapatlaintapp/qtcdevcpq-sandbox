@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Program__c</fullName>
+    <description>SC-000022</description>
+    <label>Program</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>LegalKEY Migration</fullName>
+                <default>false</default>
+                <label>LegalKEY Migration</label>
+            </value>
+            <value>
+                <fullName>Compliguard EOL</fullName>
+                <default>false</default>
+                <label>Compliguard EOL</label>
+            </value>
+            <value>
+                <fullName>TFG Acquisition Migration</fullName>
+                <default>false</default>
+                <label>TFG Acquisition Migration</label>
+            </value>
+            <value>
+                <fullName>Windows 10 / DTE TTM Migration</fullName>
+                <default>false</default>
+                <label>Windows 10 / DTE TTM Migration</label>
+            </value>
+            <value>
+                <fullName>Time Builder to TTM Migration</fullName>
+                <default>false</default>
+                <label>Time Builder to TTM Migration</label>
+            </value>
+            <value>
+                <fullName>Rekoop to Time Cloud Migration</fullName>
+                <default>false</default>
+                <label>Rekoop to Time Cloud Migration</label>
+            </value>
+            <value>
+                <fullName>DTE</fullName>
+                <default>false</default>
+                <label>DTE</label>
+            </value>
+            <value>
+                <fullName>TimeBuilder</fullName>
+                <default>false</default>
+                <label>TimeBuilder</label>
+            </value>
+            <value>
+                <fullName>Rekoop</fullName>
+                <default>false</default>
+                <label>Rekoop</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

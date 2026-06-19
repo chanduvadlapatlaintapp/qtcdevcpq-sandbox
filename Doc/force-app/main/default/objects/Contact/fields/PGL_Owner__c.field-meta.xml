@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PGL_Owner__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+CONTAINS(TEXT(Account.Industry), &apos;Legal&apos;),
+
+IF(
+OR(
+Account.Owner.UserRoleId=&quot;00E50000000sQmp&quot;, /*EMEA Sales*/
+Account.Owner.UserRoleId=&quot;00E500000010Q8v&quot; /*EMEA Sales Reps*/
+),
+
+IF(
+CONTAINS(Department, &apos;Marketing&apos;),
+&apos;Gareth Thomas&apos;,
+
+IF(
+CONTAINS(Department, &apos;Risk&apos;),
+&apos;Daragh McLaughlin&apos;,
+
+IF(
+CONTAINS(Department, &apos;Operations&apos;),
+&apos;Alan Conway&apos;,
+&apos;&apos;
+) /*3 Alan Conway*/
+) /*2 Daragh McLaughlin*/
+), /*1 Gareth Thomas*/
+
+
+IF(
+OR(
+Account.Owner.UserRoleId=&quot;00E500000011cAV&quot;, /*NA Mid-size Law Sales*/
+Account.Owner.UserRoleId=&quot;00E500000011cAa&quot; /*NA Mid-size Law Sales Reps*/
+),
+
+IF(
+CONTAINS(Department, &apos;Marketing&apos;),
+&apos;Chris Whitmore&apos;,
+
+IF(
+CONTAINS(Department, &apos;Risk&apos;),
+&apos;John Sharkey&apos;,
+
+IF(
+CONTAINS(Department, &apos;Operations&apos;),
+&apos;Brent Bourque&apos;,
+&apos;&apos;
+) /*6 Brent Bourque*/
+) /*5 John Sharkey*/
+), /*4 Chris Whitmore*/
+
+IF(
+OR(
+Account.Owner.UserRoleId=&quot;00E500000011cAL&quot;, /*NA Large Law / APAC Sales*/
+Account.Owner.UserRoleId=&quot;00E500000011cAQ&quot; /*NA Large Law / APAC Sales Reps*/
+),
+IF(
+CONTAINS(Department, &apos;Marketing&apos;),
+&apos;Chris Raymond&apos;,
+
+IF(
+CONTAINS(Department, &apos;Risk&apos;),
+&apos;Erick Nerland&apos;,
+
+IF(
+CONTAINS(Department, &apos;Operations&apos;),
+&apos;Brent Bourque&apos;,
+&apos;&apos;
+) /*9 Devin O’Leary*/
+) /*8 Erick Nerland*/
+), /*7 Chris Raymond*/
+&apos;&apos;
+) /*Sales Segment = PS NA North*/
+
+) /*Sales Segment = PS NA South/APAC*/
+
+), /*Sales Segment = PS EMEA*/
+&apos;&apos;
+) /*0 Legal*/</formula>
+    <label>PGL Owner</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

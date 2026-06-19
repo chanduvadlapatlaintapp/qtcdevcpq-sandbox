@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Industry_Simple_Legacy__c</fullName>
+    <description>Tells you whether the Account is a Law Firm in the IntApp 600, outside the IntApp 600, other Professional Services firms, or Some Other Industry.</description>
+    <externalId>false</externalId>
+    <formula>IF(
+  ISPICKVAL(Industry, &quot;Legal&quot;),
+  IF(
+      OR(
+        ISPICKVAL(Legal_Entity_Type__c ,&quot;Firm&quot;),
+        ISPICKVAL(Legal_Entity_Type__c ,&quot;ABS&quot;)
+      ),
+    IF(
+      Intapp_Master_Ranking__c &gt;0, 
+      &quot;Law Firm in 900&quot;, 
+      &quot;Law Firm outside 900&quot;
+    ),
+    &quot;Legal Non-Firm&quot;
+  ),
+    IF(
+      BEGINS(TEXT(Industry), &quot;PS&quot;),
+      &quot;Professional Services Firm&quot;,
+        IF(
+          BEGINS(TEXT(Industry), &quot;FS&quot;),
+          &quot;Financial Services Firm&quot;,
+          &quot;Some Other Industry&quot;
+        )
+    )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Tells you whether the Account is a Law Firm in the IntApp 600, outside the IntApp 600, other Professional Services firms, or Some Other Industry.</inlineHelpText>
+    <label>Industry - Simple (Legacy)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

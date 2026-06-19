@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EMEA_APAC_Intapp_Time_Opportunities</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.NEXT_STEP</columns>
+    <columns>Primary_Business_Problem__c</columns>
+    <columns>Services_Hours_T_M__c</columns>
+    <columns>Services_Amount_Total_Local_Currency__c</columns>
+    <columns>Incumbent_Solution__c</columns>
+    <columns>Primary_Competitor__c</columns>
+    <columns>Firm_Procurement_Team__c</columns>
+    <columns>Project_Budgeted__c</columns>
+    <columns>Project_Start_Date__c</columns>
+    <columns>Contract_Signer__c</columns>
+    <columns>Delivered_Business_Case_ROI__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Opportunity.Sales_Legal</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.CLOSED</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Sales_Territory__c</field>
+        <operation>equals</operation>
+        <value>EMEA,APAC</value>
+    </filters>
+    <filters>
+        <field>Product_Line__c</field>
+        <operation>equals</operation>
+        <value>Intapp Time - Cloud</value>
+    </filters>
+    <label>EMEA / APAC - Intapp Time Opportunities</label>
+    <language>en_US</language>
+</ListView>

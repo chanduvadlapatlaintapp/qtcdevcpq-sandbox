@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OA_Slip_Header__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>lookup to OA Slip Header record</description>
+    <label>OA Slip Header</label>
+    <referenceTo>OA_Slip_Header__c</referenceTo>
+    <relationshipLabel>OA Slip</relationshipLabel>
+    <relationshipName>OA_Slip</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Require_Contract_Number_for_Closed_Won</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+  NOT(RecordType.Name  = &apos;Services - Partner&apos;), /*Services - Partner*/
+NOT(CONTAINS(  $Label.Profile_System_Adminstrator ,$Profile.Name)), /*System Administrator*/
+  NOT(ISCHANGED(CRD_Email__c)),
+  ISPICKVAL( Account.Industry , &quot;Legal&quot;), 
+  ISBLANK( Associated_Contract_OSA__c) , 
+  Validation_Exception__c=FALSE,
+  OR(
+    ISPICKVAL(Proposed_Stage__c,&quot;Closed Won&quot;)))</errorConditionFormula>
+    <errorDisplayField>Associated_Contract_OSA__c</errorDisplayField>
+    <errorMessage>Please enter the OSA number for the In Contract or Closed Won Legal opportunity.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Account.CRD__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c.Amount__c.CONVERT</field>
+    </columns>
+    <columns>
+        <field>Subscription__c.Product_Line__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c.CSM_Health_Rating__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c.Needs_Attention_Count__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>1 AND (2 AND 3) OR (4 AND 5) OR (6 AND 7) OR (8 AND 9)</booleanFilter>
+        <criteriaItems>
+            <column>TYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Customer</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c.CSM_Health_Rating__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>D - At Risk / Anticipated Cancellation</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.At_Risk_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Not At Risk</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c.CSM_Health_Rating__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>D - At Risk / Anticipated Cancellation</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.At_Risk_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>At Risk</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c.Needs_Attention_Count__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>greaterThan</operator>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c.CSM_Health_Rating__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>C - Serious Issue</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c.CSM_Health_Rating__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>C - Serious Issue</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c.Needs_Attention_Count__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Subscription__c.Geography__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>CR Engagement Gaps Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountCustomEntity$Subscription__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Subscription__c.Amount__c.CONVERT</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>DUE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

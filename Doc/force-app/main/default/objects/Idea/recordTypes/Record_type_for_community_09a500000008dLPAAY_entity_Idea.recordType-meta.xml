@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Record_type_for_community_09a500000008dLPAAY_entity_Idea</fullName>
+    <active>true</active>
+    <description>Record type used to associate Idea with a specific zone</description>
+    <label>Intapp Time Cloud: Idea Record Type</label>
+    <picklistValues>
+        <picklist>Categories</picklist>
+        <values>
+            <fullName>CRM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Time Cloud</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status</picklist>
+        <values>
+            <fullName>Complete</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Under Review</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

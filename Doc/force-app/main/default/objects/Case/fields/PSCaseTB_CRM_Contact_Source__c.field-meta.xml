@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSCaseTB_CRM_Contact_Source__c</fullName>
+    <inlineHelpText>If you will be integrating your contacts with Time Builder, select the master source to use for contact data from the drop-down list.</inlineHelpText>
+    <label>CRM Contact Source</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Exchange 2010/2007 Contacts</fullName>
+                <default>false</default>
+                <label>Exchange 2010/2007 Contacts</label>
+            </value>
+            <value>
+                <fullName>Exchange 2003 Contacts</fullName>
+                <default>false</default>
+                <label>Exchange 2003 Contacts</label>
+            </value>
+            <value>
+                <fullName>InterAction Contacts</fullName>
+                <default>false</default>
+                <label>InterAction Contacts</label>
+            </value>
+            <value>
+                <fullName>CRM Integration Not Required</fullName>
+                <default>false</default>
+                <label>CRM Integration Not Required</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

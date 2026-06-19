@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Account_Assignments</name>
+        <label>Account Assignments</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Subsidiary__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>BIZ-61743 Set Subsidiary to Blank on Account after creation
+BIZ-65965 Changed the flow event to restrict the default subsidiary from being sent in integrations</description>
+    <environments>Default</environments>
+    <interviewLabel>Account After Insert {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Account Before Insert</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Account_Assignments</targetReference>
+        </connector>
+        <filterFormula>NOT({!$Setup.Automation_Controls__c.Active__c} &amp;&amp; {!$Setup.Automation_Controls__c.Bypass_Flows__c} &amp;&amp; {!$Setup.Automation_Controls__c.Account_Bypass__c} &amp;&amp; (ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c}) || (NOT(ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c})) &amp;&amp; CONTAINS({!$Setup.Automation_Controls__c.Data_Id__c}, {!$Record.Id}))))</filterFormula>
+        <object>Account</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

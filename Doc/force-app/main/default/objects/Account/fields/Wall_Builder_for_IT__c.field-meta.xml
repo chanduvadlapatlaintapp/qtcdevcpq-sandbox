@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Wall_Builder_for_IT__c</fullName>
+    <inlineHelpText>This version is meant for downstream security enforcement only (no policy management).  No notifications</inlineHelpText>
+    <label>Intapp Walls for IT (DMS Security)</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Suspect</fullName>
+                <default>false</default>
+                <label>Suspect</label>
+            </value>
+            <value>
+                <fullName>Prospect</fullName>
+                <default>false</default>
+                <label>Prospect</label>
+            </value>
+            <value>
+                <fullName>Own it</fullName>
+                <default>false</default>
+                <label>Own it</label>
+            </value>
+            <value>
+                <fullName>Own Partial</fullName>
+                <default>false</default>
+                <label>Own Partial</label>
+            </value>
+            <value>
+                <fullName>Billing Paused</fullName>
+                <default>false</default>
+                <label>Billing Paused</label>
+            </value>
+            <value>
+                <fullName>Lapsed</fullName>
+                <default>false</default>
+                <label>Lapsed</label>
+            </value>
+            <value>
+                <fullName>Compliguard Protect</fullName>
+                <default>false</default>
+                <label>Compliguard Protect</label>
+            </value>
+            <value>
+                <fullName>Prosperoware Milan</fullName>
+                <default>false</default>
+                <label>Prosperoware Milan</label>
+            </value>
+            <value>
+                <fullName>RBRO MasterEthics</fullName>
+                <default>false</default>
+                <label>RBRO MasterEthics</label>
+            </value>
+            <value>
+                <fullName>DocAuto IMPrivate</fullName>
+                <default>false</default>
+                <label>DocAuto IMPrivate</label>
+            </value>
+            <value>
+                <fullName>Wertheim WincWalls</fullName>
+                <default>false</default>
+                <label>Wertheim WincWalls</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Entitled</fullName>
+                <default>false</default>
+                <label>Entitled</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

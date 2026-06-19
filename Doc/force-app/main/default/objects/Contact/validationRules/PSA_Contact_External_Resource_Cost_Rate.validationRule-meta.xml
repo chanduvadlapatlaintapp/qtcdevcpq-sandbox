@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSA_Contact_External_Resource_Cost_Rate</fullName>
+    <active>false</active>
+    <errorConditionFormula>AND( 
+Is_Resource__c, 
+External_Resource__c = false, 
+NOT ISBLANK( External_Resource_Cost_Rate__c ))</errorConditionFormula>
+    <errorMessage>If External Resource is not checked, the External Resource Cost Rate must be blank.</errorMessage>
+</ValidationRule>

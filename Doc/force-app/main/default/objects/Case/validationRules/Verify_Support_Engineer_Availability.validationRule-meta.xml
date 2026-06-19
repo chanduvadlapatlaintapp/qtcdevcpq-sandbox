@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verify_Support_Engineer_Availability</fullName>
+    <active>true</active>
+    <errorConditionFormula>Owner:User.OutOfOffice__c</errorConditionFormula>
+    <errorDisplayField>OwnerId</errorDisplayField>
+    <errorMessage>Please assign this case to a valid support engineer. Make sure that this support engineer is currently in the office. (Check the Support Availability calendar in Outlook to confirm). Thank you.</errorMessage>
+</ValidationRule>

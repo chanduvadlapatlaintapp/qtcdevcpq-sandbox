@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recipient_of_Billing_Pause__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Recipient of Billing Pause</label>
+    <referenceTo>Contact</referenceTo>
+    <relationshipLabel>Opportunities (Recipient of Billing Pause)</relationshipLabel>
+    <relationshipName>Opportunities9</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

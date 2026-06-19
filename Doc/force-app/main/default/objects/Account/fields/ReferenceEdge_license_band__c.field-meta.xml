@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ReferenceEdge_license_band__c</fullName>
+    <label>ReferenceEdge license band</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Under 150</fullName>
+                <default>false</default>
+                <label>Under 150</label>
+            </value>
+            <value>
+                <fullName>150-499</fullName>
+                <default>false</default>
+                <label>150-499</label>
+            </value>
+            <value>
+                <fullName>500-999</fullName>
+                <default>false</default>
+                <label>500-999</label>
+            </value>
+            <value>
+                <fullName>1000-1999</fullName>
+                <default>false</default>
+                <label>1000-1999</label>
+            </value>
+            <value>
+                <fullName>2000+</fullName>
+                <default>false</default>
+                <label>2000+</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

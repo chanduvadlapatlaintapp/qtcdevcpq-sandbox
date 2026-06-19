@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>System_Access_Set_to_Access_Granted</fullName>
+    <active>true</active>
+    <errorConditionFormula>NOT(CONTAINS($Profile.Name, &quot;System Administrator&quot;)) &amp;&amp;
+(ISCHANGED(Box__c) &amp;&amp; ISPICKVAL(Box__c, &quot;Access Granted&quot;))
+&amp;&amp;
+NOT($Profile.Id=&quot;00e30000000bvR3&quot;)</errorConditionFormula>
+    <errorMessage>You can not manually set the access to &quot;Access Granted&quot;. The integration will take care of adjusting this value.</errorMessage>
+</ValidationRule>

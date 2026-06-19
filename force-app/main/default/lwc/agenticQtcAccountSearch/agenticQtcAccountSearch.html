@@ -1,0 +1,55 @@
+<template>
+    <div class="search-container">
+        <div class="search-hero">
+            <h2>Select an Account</h2>
+            <p>Search for an account to begin the amendment process</p>
+            <div class="search-wrapper">
+                <div class="search-box">
+                    <div class="native-search-wrap">
+                        <svg class="search-icon-svg" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.6" fill="none"></circle>
+                            <line x1="12.5" y1="12.5" x2="17.5" y2="17.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></line>
+                        </svg>
+                        <input
+                            type="text"
+                            placeholder="Start typing an account name..."
+                            oninput={handleSearchChange}
+                            class="native-search-input"
+                            autocomplete="off"
+                        />
+                    </div>
+                </div>
+
+                <template if:true={isLoading}>
+                    <c-agentic-qtc-loading message="Searching accounts"></c-agentic-qtc-loading>
+                </template>
+
+                <template if:true={hasResults}>
+                    <div class="results-dropdown">
+                        <template for:each={accounts} for:item="account">
+                            <div key={account.id} class="account-card" onclick={handleAccountClick} data-id={account.id} data-name={account.name}>
+                                <div class="account-icon">
+                                    <lightning-icon icon-name="standard:account" size="small"></lightning-icon>
+                                </div>
+                                <div class="account-info">
+                                    <div class="account-name">{account.name}</div>
+                                    <div class="account-location">{account.location}</div>
+                                </div>
+                                <div class="account-arrow">
+                                    <lightning-icon icon-name="utility:chevronright" size="x-small"></lightning-icon>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+
+                <template if:true={noResults}>
+                    <div class="no-results-dropdown">
+                        <lightning-icon icon-name="utility:search" size="small"></lightning-icon>
+                        <span>No accounts found for "{searchTerm}"</span>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

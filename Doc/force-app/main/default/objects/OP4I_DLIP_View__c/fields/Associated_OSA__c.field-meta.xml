@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Associated_OSA__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Associated OSA</label>
+    <referenceTo>Contract</referenceTo>
+    <relationshipLabel>OP4I DLIP View</relationshipLabel>
+    <relationshipName>OP4I_DLIP_View</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

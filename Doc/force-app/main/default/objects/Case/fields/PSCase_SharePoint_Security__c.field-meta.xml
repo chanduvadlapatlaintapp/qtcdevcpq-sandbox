@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSCase_SharePoint_Security__c</fullName>
+    <label>SharePoint Security</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Sharepoint Client or Matter Sites</fullName>
+                <default>false</default>
+                <label>Sharepoint Client or Matter Sites</label>
+            </value>
+            <value>
+                <fullName>Custom development with the WB API</fullName>
+                <default>false</default>
+                <label>Custom development with the WB API</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

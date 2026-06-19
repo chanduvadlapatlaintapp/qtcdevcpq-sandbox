@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BI_KMPortfolio__c</fullName>
+    <description>This is to designate the Litigation Support application in use at the account. This replaced the old checkbox system.</description>
+    <inlineHelpText>What Business Intelligence software does this account use?</inlineHelpText>
+    <label>BI</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Aderant BI</fullName>
+                <default>false</default>
+                <label>Aderant BI</label>
+            </value>
+            <value>
+                <fullName>BigSquare</fullName>
+                <default>false</default>
+                <label>BigSquare</label>
+            </value>
+            <value>
+                <fullName>Catapult</fullName>
+                <default>false</default>
+                <label>Catapult</label>
+            </value>
+            <value>
+                <fullName>Custom</fullName>
+                <default>false</default>
+                <label>Custom</label>
+            </value>
+            <value>
+                <fullName>DW Quantum</fullName>
+                <default>false</default>
+                <label>DW Quantum</label>
+            </value>
+            <value>
+                <fullName>Elite - Business Objects</fullName>
+                <default>false</default>
+                <label>Elite - Business Objects</label>
+            </value>
+            <value>
+                <fullName>Helm360</fullName>
+                <default>false</default>
+                <label>Helm360</label>
+            </value>
+            <value>
+                <fullName>Iridium</fullName>
+                <default>false</default>
+                <label>Iridium</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Peppermint Technology</fullName>
+                <default>false</default>
+                <label>Peppermint Technology</label>
+            </value>
+            <value>
+                <fullName>QlikView</fullName>
+                <default>false</default>
+                <label>QlikView</label>
+            </value>
+            <value>
+                <fullName>Redwood Analytics</fullName>
+                <default>false</default>
+                <label>Redwood Analytics</label>
+            </value>
+            <value>
+                <fullName>Satori</fullName>
+                <default>false</default>
+                <label>Satori</label>
+            </value>
+            <value>
+                <fullName>Tableau</fullName>
+                <default>false</default>
+                <label>Tableau</label>
+            </value>
+            <value>
+                <fullName>Wilson Legal</fullName>
+                <default>false</default>
+                <label>Wilson Legal</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

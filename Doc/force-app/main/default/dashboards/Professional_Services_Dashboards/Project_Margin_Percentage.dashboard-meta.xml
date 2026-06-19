@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dashboard xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <backgroundEndColor>#FFFFFF</backgroundEndColor>
+    <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
+    <backgroundStartColor>#FFFFFF</backgroundStartColor>
+    <dashboardFilters>
+        <name>Region</name>
+    </dashboardFilters>
+    <dashboardFilters>
+        <name>Product Line</name>
+    </dashboardFilters>
+    <dashboardType>SpecifiedUser</dashboardType>
+    <isGridLayout>false</isGridLayout>
+    <leftSection>
+        <columnSize>Wide</columnSize>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <componentType>Gauge</componentType>
+            <dashboardFilterColumns>
+                <column xsi:nil="true"/>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column xsi:nil="true"/>
+            </dashboardFilterColumns>
+            <displayUnits>Auto</displayUnits>
+            <gaugeMax>100.0</gaugeMax>
+            <gaugeMin>-100.0</gaugeMin>
+            <groupingSortProperties/>
+            <indicatorBreakpoint2>0.0</indicatorBreakpoint2>
+            <indicatorHighColor>#54C254</indicatorHighColor>
+            <indicatorLowColor>#C25454</indicatorLowColor>
+            <indicatorMiddleColor>#54C254</indicatorMiddleColor>
+            <report>Professional_Services_Reports/Project_Margin_Percentage</report>
+            <showPercentage>false</showPercentage>
+            <showRange>false</showRange>
+            <showTotal>true</showTotal>
+            <showValues>false</showValues>
+            <title>Active Projects Margin Percentage</title>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <componentType>Table</componentType>
+            <dashboardFilterColumns>
+                <column xsi:nil="true"/>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column xsi:nil="true"/>
+            </dashboardFilterColumns>
+            <displayUnits>Integer</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <groupingSortProperties/>
+            <indicatorBreakpoint1>0.0</indicatorBreakpoint1>
+            <indicatorBreakpoint2>10.0</indicatorBreakpoint2>
+            <indicatorHighColor>#54C254</indicatorHighColor>
+            <indicatorLowColor>#C25454</indicatorLowColor>
+            <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
+            <report>Professional_Services_Reports/Project_Margin_Percentage</report>
+            <showPicturesOnTables>false</showPicturesOnTables>
+            <sortBy>RowValueAscending</sortBy>
+            <title>Active Projects Margin Percentage</title>
+        </components>
+    </leftSection>
+    <middleSection>
+        <columnSize>Wide</columnSize>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <componentType>Gauge</componentType>
+            <dashboardFilterColumns>
+                <column xsi:nil="true"/>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column xsi:nil="true"/>
+            </dashboardFilterColumns>
+            <displayUnits>Auto</displayUnits>
+            <gaugeMax>100.0</gaugeMax>
+            <gaugeMin>-100.0</gaugeMin>
+            <groupingSortProperties/>
+            <indicatorBreakpoint2>0.0</indicatorBreakpoint2>
+            <indicatorHighColor>#54C254</indicatorHighColor>
+            <indicatorLowColor>#C25454</indicatorLowColor>
+            <indicatorMiddleColor>#54C254</indicatorMiddleColor>
+            <report>Professional_Services_Reports/Closed_Project_Margin_Percentage</report>
+            <showPercentage>false</showPercentage>
+            <showRange>false</showRange>
+            <showTotal>true</showTotal>
+            <showValues>false</showValues>
+            <title>Closed Project Margin Percentage Last FQ</title>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <componentType>Table</componentType>
+            <dashboardFilterColumns>
+                <column xsi:nil="true"/>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column xsi:nil="true"/>
+            </dashboardFilterColumns>
+            <dashboardTableColumn>
+                <column xsi:nil="true"/>
+            </dashboardTableColumn>
+            <dashboardTableColumn>
+                <calculatePercent>false</calculatePercent>
+                <column xsi:nil="true"/>
+                <showTotal>false</showTotal>
+            </dashboardTableColumn>
+            <displayUnits>Integer</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <groupingSortProperties/>
+            <indicatorHighColor>#54C254</indicatorHighColor>
+            <indicatorLowColor>#C25454</indicatorLowColor>
+            <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
+            <report>Professional_Services_Reports/Closed_Project_Margin_Percentage_REgion</report>
+            <showPicturesOnTables>true</showPicturesOnTables>
+            <title>Active Projects Region/Product Line</title>
+        </components>
+    </middleSection>
+    <owner>maiya.hilliard@intapp.com</owner>
+    <rightSection>
+        <columnSize>Medium</columnSize>
+    </rightSection>
+    <runningUser>ameya.thatte@intapp.com</runningUser>
+    <textColor>#000000</textColor>
+    <title>Project Margin Percentage</title>
+    <titleColor>#000000</titleColor>
+    <titleSize>12</titleSize>
+</Dashboard>

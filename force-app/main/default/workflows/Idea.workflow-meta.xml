@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Idea_Created</fullName>
+        <field>Idea_Created__c</field>
+        <literalValue>1</literalValue>
+        <name>Idea Created</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_checkbox_test</fullName>
+        <field>SFDC_Test__c</field>
+        <literalValue>1</literalValue>
+        <name>Update checkbox test</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_the_Users_when_new_comment_added</fullName>
+        <description>Update the Users when new comment added by creator</description>
+        <field>SFDC_Test_checkbox_2__c</field>
+        <literalValue>1</literalValue>
+        <name>Update the Users when new comment - CB2</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Rule Code%3A IDEA-001xFxx</fullName>
+        <actions>
+            <name>Update_the_Users_when_new_comment_added</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: IDEA-001xFxx
+Notify when author add comment on Idea posted
+Checks the checkbox &apos;&apos;Notify when author add comment on Idea p&apos;&apos; when author add comment on Idea posted</description>
+        <formula>LastModifiedById = CreatedById</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A IDEA-002xFxx</fullName>
+        <actions>
+            <name>Update_checkbox_test</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Idea.LastCommentDate</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </criteriaItems>
+        <description>Rule Code: IDEA-002xFxx
+Send Notification to Idea Author
+Checks &quot;Send Notification to Idea Author&quot; checkbox when Last Idea Comment Date equals to today</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A IDEA-003xFxx</fullName>
+        <actions>
+            <name>Idea_Created</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: IDEA-003xFxx
+Notify when Idea Created
+Checks the checkbox &quot;Idea Created&quot; when Idea created</description>
+        <formula>TRUE</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

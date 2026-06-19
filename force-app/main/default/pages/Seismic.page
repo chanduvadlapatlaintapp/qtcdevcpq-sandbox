@@ -1,0 +1,107 @@
+<apex:page standardController="Opportunity" docType="html-5.0" applyHtmlTag="false" applyBodyTag="false" showHeader="false" sidebar="false" standardStylesheets="false" html-style="height:100%; width:100%;">
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Seismic Content Viewer</title>
+	
+	<style type="text/css">
+		BODY, HTML, IFRAME { width: 100%; height: 100%; margin: 0; padding: 0; }
+	</style>
+</head>
+<body>
+    <iframe id="seismicAppContainer" frameborder="no" width="100%" height="100%" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen="true"></iframe>
+	<script type="text/javascript">
+		getParamsReadyToInit();
+        
+        function getParamsReadyToInit(){       	
+			var initialData = '';
+			
+			var pageInfo = {};
+			
+			pageInfo.objectType = 'Opportunity';
+			pageInfo.objectName = '';
+			pageInfo.objectId = '{!Opportunity.Id}';
+			
+			var vfParameter = 'Default Embedded Application|%&|false|%&|true';			
+			pageInfo.applicationName = vfParameter.split('|%&|')[0];
+			
+			pageInfo.hideHeader = vfParameter.split('|%&|')[1];
+			pageInfo.openContentInline = vfParameter.split('|%&|')[2];
+			
+			var isClassic = '' == 'true' ? true : false;
+			pageInfo.enableFullScreenMode = !(isClassic && pageInfo.openContentInline == 'true');
+
+ 	        var contextInfo = initialData.ContextInfo;
+            var credentialInfo = initialData.CredentialInfo;
+                       			
+			pageInfo.backUrl = contextInfo.SFBaseUrl + '/' + pageInfo.objectId.substring(0,15);
+			pageInfo.currentPageBaseUrl = contextInfo.CurrentPageBaseUrl;
+			pageInfo.currentTabLabel = contextInfo.CurrentTabLabel;    
+            
+            var sObjectType = pageInfo.objectType;
+            var sObjectId = pageInfo.objectId;
+            var sObjectName = pageInfo.objectName;
+            var applicationName = pageInfo.applicationName;
+            var openContentDetailInside = pageInfo.openContentInline == 'true';
+            var currentPageBaseUrl = pageInfo.currentPageBaseUrl;
+            var currentTabLabel = pageInfo.currentTabLabel;
+            
+        	var configInfo = {
+	        	applicationName: applicationName,
+	        	showUserAvatar: openContentDetailInside,
+	        	openContentDetailInside: openContentDetailInside,
+	        	showGoBack: false,
+	        	showHeader: pageInfo.hideHeader == 'false',
+	        	enableFullScreenMode: pageInfo.enableFullScreenMode,
+	        	pageId: sObjectId,
+	        	startView: {
+	        		type: 'predictive',
+	        		docCenter: {
+	        		},
+	        		workSpace: {
+	        		},
+	        		predictive: {
+	        			type: 'folder',
+	        			tabTitle: ''
+	        		},
+	    			link: {
+    				}
+	        	}
+	        };
+	        
+	        var iframeDom = document.getElementById('seismicAppContainer');           
+            var embeddedApp = Seismic.IntegratedSDK.loadEmbeddedApplication(iframeDom, contextInfo, credentialInfo, configInfo, sObjectType, sObjectId, sObjectName, currentTabLabel, currentPageBaseUrl);
+			embeddedApp.on('action',function(data){
+	            switch(data.type){
+	        			case Seismic.IntegratedSDK.actions.showDetail:
+	        				handleOpenDetailRequest(pageInfo, data.data);
+	        				break;
+						default:
+							break;
+	        		}
+            });
+        }
+		
+		function handleOpenDetailRequest(pageInfo, data){
+         	var mainPageData = getMainPageData(pageInfo, data); 
+			var url = '' + '#' + $.base64.encode(JSON.stringify(mainPageData));
+			window.top.location.href = url;
+        }
+        
+    	function getMainPageData(pageInfo, data){
+            return {
+				EmbeddAppName: pageInfo.applicationName,
+				SObjectType: pageInfo.objectType,
+				SObjectId: pageInfo.objectId,
+				SObjectName: pageInfo.objectName,
+				DocumentParam: JSON.stringify(data),
+				BackUrl: pageInfo.backUrl,
+				CurrentTabLabel: pageInfo.currentTabLabel
+			};
+        } 
+        
+	</script>
+</body>
+</apex:page>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Master_Terms_Contract_Number__c</fullName>
+    <description>Created as part of BIZ-51704</description>
+    <externalId>false</externalId>
+    <formula>SBQQ__Account__r.Master_Terms_Contract_Number__r.ContractNumber</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Account Master Terms Contract Number</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

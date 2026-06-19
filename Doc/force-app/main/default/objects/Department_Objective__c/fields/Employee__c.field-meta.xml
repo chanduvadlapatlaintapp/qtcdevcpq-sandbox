@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Employee__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Who is responsible for reporting on this objective?</description>
+    <inlineHelpText>Who is responsible for reporting on this objective?</inlineHelpText>
+    <label>Employee</label>
+    <referenceTo>Employee__c</referenceTo>
+    <relationshipLabel>Department Objectives</relationshipLabel>
+    <relationshipName>Department_Objectives</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

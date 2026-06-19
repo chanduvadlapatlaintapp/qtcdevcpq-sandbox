@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>vince@performio.co</contactEmail>
+    <label>Performio SSO</label>
+    <samlConfig>
+        <acsUrl>https://intapp.performio.co/saml/login/alias/eac8de29-589b-4474-86d1-694e874731d0</acsUrl>
+        <encryptionType>AES_128</encryptionType>
+        <entityUrl>https://intapp.performio.co</entityUrl>
+        <issuer>https://intapp.my.salesforce.com/</issuer>
+        <samlNameIdFormat>Unspecified</samlNameIdFormat>
+        <samlSigningAlgoType>SHA1</samlSigningAlgoType>
+        <samlSubjectType>FederationId</samlSubjectType>
+    </samlConfig>
+    <startUrl>https://intapp.performio.co/saml/login/alias/eac8de29-589b-4474-86d1-694e874731d0</startUrl>
+</ConnectedApp>

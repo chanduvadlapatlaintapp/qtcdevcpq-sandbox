@@ -1,0 +1,474 @@
+/* Hide Salesforce header */
+.slds-global-header_container {
+    display: none !important;
+}
+
+:host {
+    display: block;
+    background-color: #f4f6f9;
+    min-height: 100vh;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+:host(.dark-mode) {
+    background-color: #0f172a;
+}
+
+/* ===== LIGHT MODE (DEFAULT) ===== */
+.cpq-container {
+    background-color: #f4f6f9;
+    min-height: 100vh;
+    padding: 0;
+    width: 100%;
+    position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Light Mode Styles - Explicitly define for toggle */
+.cpq-container:not(.dark-mode) {
+    background-color: #f4f6f9 !important;
+}
+
+.cpq-container:not(.dark-mode) .cpq-header {
+    background: linear-gradient(135deg, #0176d3 0%, #014486 100%) !important;
+    color: #ffffff !important;
+}
+
+.cpq-container:not(.dark-mode) .cpq-header-title {
+    color: #ffffff !important;
+}
+
+.cpq-container:not(.dark-mode) .top-section {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #e5e7eb !important;
+}
+
+.cpq-container:not(.dark-mode) .field-label {
+    color: #374151 !important;
+}
+
+.cpq-container:not(.dark-mode) .empty-state-title {
+    color: #374151 !important;
+}
+
+.cpq-container:not(.dark-mode) .empty-state-message {
+    color: #6b7280 !important;
+}
+
+.cpq-container:not(.dark-mode) .action-button {
+    --slds-c-button-brand-color-background: #0176d3;
+    --slds-c-button-brand-color-border: #0176d3;
+}
+
+.cpq-container:not(.dark-mode) .dark-mode-btn {
+    background-color: #f3f4f6 !important;
+    border-color: #d1d5db !important;
+    color: #6b7280 !important;
+}
+
+.cpq-container:not(.dark-mode) .dark-mode-btn:hover {
+    background-color: #e5e7eb !important;
+    color: #374151 !important;
+}
+
+.cpq-container:not(.dark-mode) .slds-input,
+.cpq-container:not(.dark-mode) lightning-input .slds-input,
+.cpq-container:not(.dark-mode) lightning-input input,
+.cpq-container:not(.dark-mode) input[type="date"],
+.cpq-container:not(.dark-mode) input[type="number"],
+.cpq-container:not(.dark-mode) input[type="text"] {
+    background-color: #ffffff !important;
+    border-color: #d1d5db !important;
+    color: #000000 !important;
+}
+
+/* Header Styles */
+.cpq-header {
+    background: linear-gradient(135deg, #0176d3 0%, #014486 100%);
+    color: #ffffff;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 12px rgba(1, 118, 211, 0.3);
+}
+
+.cpq-header-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: #ffffff;
+    letter-spacing: 0.03em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Top Section */
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.25rem 2rem;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.fields-left {
+    display: flex;
+    gap: 2rem;
+    flex: 1;
+    min-width: 300px;
+    align-items: center;
+}
+
+.buttons-right {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.field-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.label-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.field-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    white-space: nowrap;
+    min-width: fit-content;
+    margin: 0;
+}
+
+.field-input {
+    min-width: 200px;
+}
+
+.number-input {
+    min-width: 100px;
+    max-width: 120px;
+}
+
+/* Action Buttons */
+.action-button {
+    min-width: 120px;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+/* Dark Mode Toggle */
+.dark-mode-btn {
+    min-width: 40px;
+    height: 36px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+
+/* Cart Section */
+.cart-section {
+    padding: 0;
+    margin: 1rem 2rem;
+    background-color: transparent;
+    position: relative;
+    height: auto;
+    max-height: calc(100vh - 300px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.cart-section c-guided-selling {
+    display: block;
+    position: relative;
+    height: auto;
+    width: 100%;
+}
+
+/* Empty State */
+.empty-state-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 300px);
+    padding: 2rem;
+}
+
+.empty-state-content {
+    text-align: center;
+    max-width: 500px;
+}
+
+.empty-state-icon {
+    margin-bottom: 1.5rem;
+    --slds-c-icon-color-foreground: #9ca3af;
+}
+
+.empty-state-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #374151;
+    margin: 0 0 1rem 0;
+}
+
+.empty-state-message {
+    font-size: 1rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* Modal Styles */
+.hidden-modal {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+.hidden-backdrop {
+    display: none !important;
+}
+
+.slds-modal__container {
+    max-width: 95vw;
+    width: 95vw;
+    max-height: 95vh;
+    min-height: 85vh;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.slds-modal__content {
+    min-height: calc(85vh - 60px);
+    max-height: calc(95vh - 60px);
+    padding: 0 !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 12px;
+    flex: 1;
+}
+
+/* Close Button */
+.modal-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 50%;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    background-color: #f3f4f6;
+    border-color: #d1d5db;
+    transform: scale(1.05);
+}
+
+.modal-close-btn:focus {
+    outline: 2px solid #0176d3;
+    outline-offset: 2px;
+}
+
+/* ===== DARK MODE ===== */
+.cpq-container.dark-mode {
+    background-color: #0f172a;
+    color: #e2e8f0;
+}
+
+/* Dark Mode Header */
+.cpq-container.dark-mode .cpq-header {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border-bottom: 1px solid #334155;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.cpq-container.dark-mode .cpq-header-title {
+    color: #f1f5f9;
+}
+
+/* Dark Mode Top Section */
+.cpq-container.dark-mode .top-section {
+    background-color: #1e293b;
+    border-bottom-color: #334155;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.cpq-container.dark-mode .field-label {
+    color: #ffffff !important;
+}
+
+/* Dark Mode Action Buttons - Teal Style */
+.cpq-container.dark-mode .action-button {
+    --slds-c-button-brand-color-background: #0d9488;
+    --slds-c-button-brand-color-border: #0d9488;
+    --slds-c-button-brand-color-background-hover: #14b8a6;
+    --slds-c-button-brand-color-border-hover: #14b8a6;
+    background-color: #0d9488 !important;
+    border-color: #0d9488 !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(13, 148, 136, 0.3);
+}
+
+.cpq-container.dark-mode .action-button:hover {
+    background-color: #14b8a6 !important;
+    border-color: #14b8a6 !important;
+    box-shadow: 0 4px 12px rgba(20, 184, 166, 0.4);
+}
+
+/* Dark Mode Toggle Button */
+.cpq-container.dark-mode .dark-mode-btn {
+    background-color: #334155 !important;
+    border-color: #475569 !important;
+    color: #fbbf24 !important;
+}
+
+.cpq-container.dark-mode .dark-mode-btn:hover {
+    background-color: #475569 !important;
+    color: #fcd34d !important;
+}
+
+/* Dark Mode Input Fields */
+.cpq-container.dark-mode .slds-input,
+.cpq-container.dark-mode .slds-input:focus,
+.cpq-container.dark-mode .slds-input:active,
+.cpq-container.dark-mode lightning-input .slds-input,
+.cpq-container.dark-mode lightning-input input,
+.cpq-container.dark-mode input[type="date"],
+.cpq-container.dark-mode input[type="number"],
+.cpq-container.dark-mode input[type="text"] {
+    background-color: #334155 !important;
+    border-color: #475569 !important;
+    border-radius: 6px;
+    color: #000000 !important;
+}
+
+
+
+.cpq-container.dark-mode .slds-input:focus,
+.cpq-container.dark-mode lightning-input .slds-input:focus,
+.cpq-container.dark-mode lightning-input input:focus,
+.cpq-container.dark-mode input[type="date"]:focus,
+.cpq-container.dark-mode input[type="number"]:focus,
+.cpq-container.dark-mode input[type="text"]:focus {
+    border-color: #0d9488 !important;
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.2) !important;
+    color: #000000 !important;
+}
+
+.cpq-container.dark-mode .slds-input::placeholder,
+.cpq-container.dark-mode lightning-input .slds-input::placeholder {
+    color: #64748b !important;
+}
+
+/* Dark Mode Helptext Icon */
+.cpq-container.dark-mode lightning-helptext .slds-icon {
+    fill: #94a3b8;
+}
+
+/* Dark Mode Cart Section */
+.cpq-container.dark-mode .cart-section {
+    background-color: transparent;
+}
+
+.cpq-container.dark-mode .empty-state-title {
+    color: #f1f5f9;
+}
+
+.cpq-container.dark-mode .empty-state-message {
+    color: #94a3b8;
+}
+
+.cpq-container.dark-mode .empty-state-icon {
+    --slds-c-icon-color-foreground: #64748b;
+}
+
+/* Dark Mode Modal */
+.cpq-container.dark-mode .modal-close-btn {
+    background-color: #334155;
+    border-color: #475569;
+    color: #e2e8f0;
+}
+
+.cpq-container.dark-mode .modal-close-btn:hover {
+    background-color: #475569;
+    border-color: #64748b;
+}
+
+.cpq-container.dark-mode .modal-close-btn lightning-icon {
+    --slds-c-icon-color-foreground: #e2e8f0;
+}
+
+.cpq-container.dark-mode .slds-backdrop {
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+/* ===== AI ASSISTANT FLOATING WRAPPER ===== */
+.ai-assistant-wrapper {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    transition: all 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .top-section {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .fields-left {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .buttons-right {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .cpq-header {
+        padding: 1rem;
+    }
+
+    .cpq-header-title {
+        font-size: 1.25rem;
+    }
+
+    /* AI Assistant responsive */
+    .ai-assistant-wrapper {
+        bottom: 16px;
+        right: 16px;
+        left: 16px;
+    }
+}

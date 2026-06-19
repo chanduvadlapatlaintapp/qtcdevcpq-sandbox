@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Only_Administrators_can_edit_Product</fullName>
+    <active>false</active>
+    <description>Only System administrators should be able to edit the product line in the subscription object.</description>
+    <errorConditionFormula>AND(
+   ISCHANGED(Product_Line__c),
+   NOT($User.ProfileId = &quot;00e30000000bvR3&quot;)
+)</errorConditionFormula>
+    <errorMessage>Only System Administrators can edit the product line.</errorMessage>
+</ValidationRule>

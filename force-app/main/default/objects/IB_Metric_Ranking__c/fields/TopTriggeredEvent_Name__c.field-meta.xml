@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TopTriggeredEvent_Name__c</fullName>
+    <label>TopTriggeredEvent Name</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Event for rule &apos;Copy On Insert&apos;</fullName>
+                <default>false</default>
+                <label>Event for rule &apos;Copy On Insert&apos;</label>
+            </value>
+            <value>
+                <fullName>Event for rule &apos;Cycle Test Rule A to B&apos;</fullName>
+                <default>false</default>
+                <label>Event for rule &apos;Cycle Test Rule A to B&apos;</label>
+            </value>
+            <value>
+                <fullName>Event for rule &apos;Cycle Test Rule B to A&apos;</fullName>
+                <default>false</default>
+                <label>Event for rule &apos;Cycle Test Rule B to A&apos;</label>
+            </value>
+            <value>
+                <fullName>Event for rule &apos;join with update&apos;</fullName>
+                <default>false</default>
+                <label>Event for rule &apos;join with update&apos;</label>
+            </value>
+            <value>
+                <fullName>Event for rule &apos;update&apos;</fullName>
+                <default>false</default>
+                <label>Event for rule &apos;update&apos;</label>
+            </value>
+            <value>
+                <fullName>HarnessSpacesTest@Qawin1.SpacesTest (Insert)</fullName>
+                <default>false</default>
+                <label>HarnessSpacesTest@Qawin1.SpacesTest (Insert)</label>
+            </value>
+            <value>
+                <fullName>Mirror HarnessDatatypesSrc.[HARNESSDATATYPESSRC].TABL (UPD)</fullName>
+                <default>false</default>
+                <label>Mirror HarnessDatatypesSrc.[HARNESSDATATYPESSRC].TABL (UPD)</label>
+            </value>
+            <value>
+                <fullName>Mirror HarnessDatatypesSrc.[dbo].tab (INS)</fullName>
+                <default>false</default>
+                <label>Mirror HarnessDatatypesSrc.[dbo].tab (INS)</label>
+            </value>
+            <value>
+                <fullName>Mirror HarnessDatatypesSrc.[dbo].tab (UPD)</fullName>
+                <default>false</default>
+                <label>Mirror HarnessDatatypesSrc.[dbo].tab (UPD)</label>
+            </value>
+            <value>
+                <fullName>Mirror HarnessDatatypesSrc.tab (UPD)</fullName>
+                <default>false</default>
+                <label>Mirror HarnessDatatypesSrc.tab (UPD)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>Welcome to the Salesforce Administrator Home Page! Please take a look around and let your Business Applications team know if you have any improvement suggestions.&lt;br /&gt;
+&lt;br /&gt;
+The following ticketing queues are available to you should you have any issues or questions:&lt;br /&gt;
+&lt;br /&gt;
+IT (&lt;a href=&quot;mailto:it_support@intapp.com&quot;&gt;it_support@intapp.com&lt;/a&gt;) - They are available to assist you with any IT issues such as problems logging into any of our systems or missing permissions&lt;br /&gt;
+&lt;br /&gt;
+PS Ops (&lt;a href=&quot;mailto:ps_ops@intapp.com&quot;&gt;ps_ops@intapp.com&lt;/a&gt;) - PS Ops will assist you with any services related issues such as questions about timecards, time, or project setup&lt;br /&gt;
+&lt;br /&gt;
+Contract Ops (&lt;a href=&quot;mailto:salesops@intapp.com&quot;&gt;salesops@intapp.com&lt;/a&gt;) - Contract&amp;nbsp;Ops (formerly known as Sales Ops) will assist you with any contracts related to the sales process.&lt;br /&gt;
+&lt;br /&gt;
+For any other questions (including Salesforce and reporting questions), please contact your departmental operations contact to assist you. They will then escalate any of your issues to Business Applications (email alias TBD) if needed.&lt;br /&gt;
+- Sales: Matt DeVoll&lt;br /&gt;
+- Marketing: Jason Yu&lt;br /&gt;
+- Product Marketing: Jill Nelson</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>top</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <name>bottomLeft</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <name>bottomRight</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>context</name>
+                    <value>GLOBAL</value>
+                </componentInstanceProperties>
+                <componentName>forceChatter:publisher</componentName>
+                <identifier>forceChatter_publisher</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>context</name>
+                    <value>NEWS</value>
+                </componentInstanceProperties>
+                <componentName>forceChatter:exposedFeed</componentName>
+                <identifier>forceChatter_exposedFeed</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>sidebar</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>Professional Services</masterLabel>
+    <template>
+        <name>home:desktopTemplate</name>
+    </template>
+    <type>HomePage</type>
+</FlexiPage>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contract_Implementation_Hours_Total__c</fullName>
+    <description>This is a roll up summary field summing the Contract Implementation Hours on the related PS Line Items.</description>
+    <inlineHelpText>This is a roll up summary field summing the Contract Implementation Hours on the related PS Line Items.</inlineHelpText>
+    <label>Contract Implementation Hours</label>
+    <summarizedField>PS_Line_Item__c.Contract_Implementation_Hours__c</summarizedField>
+    <summaryForeignKey>PS_Line_Item__c.Case__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

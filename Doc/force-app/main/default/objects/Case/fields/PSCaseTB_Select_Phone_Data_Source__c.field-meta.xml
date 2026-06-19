@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSCaseTB_Select_Phone_Data_Source__c</fullName>
+    <inlineHelpText>If you will be integrating your phone systems with Time Builder, select the data source for your phone call data from the drop-down list.</inlineHelpText>
+    <label>Select Phone Data Source</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Cisco Call Manager 4/5/6/7/8</fullName>
+                <default>false</default>
+                <label>Cisco Call Manager 4/5/6/7/8</label>
+            </value>
+            <value>
+                <fullName>Avaya with IP feed</fullName>
+                <default>false</default>
+                <label>Avaya with IP feed</label>
+            </value>
+            <value>
+                <fullName>Client Provided Call Data - Text File</fullName>
+                <default>false</default>
+                <label>Client Provided Call Data - Text File</label>
+            </value>
+            <value>
+                <fullName>Client Provided Call Data - SQL Database</fullName>
+                <default>false</default>
+                <label>Client Provided Call Data - SQL Database</label>
+            </value>
+            <value>
+                <fullName>Call Data Retrieved from Cost Recovery System</fullName>
+                <default>false</default>
+                <label>Call Data Retrieved from Cost Recovery System</label>
+            </value>
+            <value>
+                <fullName>Phone Import Not Required</fullName>
+                <default>false</default>
+                <label>Phone Import Not Required</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

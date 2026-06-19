@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Intapp_Open_Partner_Status__c</fullName>
+    <label>Intapp Open Partner Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Recruiting</fullName>
+                <default>false</default>
+                <label>Recruiting</label>
+            </value>
+            <value>
+                <fullName>Contracted</fullName>
+                <default>false</default>
+                <label>Contracted</label>
+            </value>
+            <value>
+                <fullName>Trained</fullName>
+                <default>false</default>
+                <label>Trained</label>
+            </value>
+            <value>
+                <fullName>Certified</fullName>
+                <default>false</default>
+                <label>Certified</label>
+            </value>
+            <value>
+                <fullName>Active</fullName>
+                <default>false</default>
+                <label>Active</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

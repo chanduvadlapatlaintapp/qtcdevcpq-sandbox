@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <label>Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Open Requisition</fullName>
+                <default>false</default>
+                <label>Open Requisition</label>
+            </value>
+            <value>
+                <fullName>Candidate(s) Identified</fullName>
+                <default>false</default>
+                <label>Candidate(s) Identified</label>
+            </value>
+            <value>
+                <fullName>Candidate(s) under consideration</fullName>
+                <default>false</default>
+                <label>Candidate(s) under consideration</label>
+            </value>
+            <value>
+                <fullName>Offer Extended</fullName>
+                <default>false</default>
+                <label>Offer Extended</label>
+            </value>
+            <value>
+                <fullName>Position Filled!</fullName>
+                <default>false</default>
+                <label>Position Filled!</label>
+            </value>
+            <value>
+                <fullName>X - Closed Requisition</fullName>
+                <default>false</default>
+                <label>X - Closed Requisition</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

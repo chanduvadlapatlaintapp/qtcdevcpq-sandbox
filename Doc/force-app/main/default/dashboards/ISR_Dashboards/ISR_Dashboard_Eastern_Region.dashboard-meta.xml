@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dashboard xmlns="http://soap.sforce.com/2006/04/metadata">
+    <backgroundEndColor>#FFFFFF</backgroundEndColor>
+    <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
+    <backgroundStartColor>#FFFFFF</backgroundStartColor>
+    <dashboardType>SpecifiedUser</dashboardType>
+    <description>This is the Metrics Dashboard for ISR - Eastern Region
+The goal for opens is 131
+The goal for advances is 99
+The goal for recurring Modules/Seat Sales is: $633,208</description>
+    <isGridLayout>false</isGridLayout>
+    <leftSection>
+        <columnSize>Wide</columnSize>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <componentType>Gauge</componentType>
+            <displayUnits>Auto</displayUnits>
+            <gaugeMax>262.0</gaugeMax>
+            <gaugeMin>0.0</gaugeMin>
+            <groupingSortProperties/>
+            <header>Opens Goals</header>
+            <indicatorBreakpoint1>66.0</indicatorBreakpoint1>
+            <indicatorBreakpoint2>131.0</indicatorBreakpoint2>
+            <indicatorHighColor>#54C254</indicatorHighColor>
+            <indicatorLowColor>#C25454</indicatorLowColor>
+            <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
+            <report>Dashboard_Reports/Opens_trend_East_FHTD</report>
+            <showPercentage>false</showPercentage>
+            <showRange>false</showRange>
+            <showTotal>true</showTotal>
+            <showValues>false</showValues>
+            <title>FY15 H1 Eastern Opens</title>
+        </components>
+    </leftSection>
+    <middleSection>
+        <columnSize>Wide</columnSize>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <componentType>Gauge</componentType>
+            <displayUnits>Auto</displayUnits>
+            <gaugeMax>198.0</gaugeMax>
+            <gaugeMin>0.0</gaugeMin>
+            <groupingSortProperties/>
+            <header>Advances Goals</header>
+            <indicatorBreakpoint1>50.0</indicatorBreakpoint1>
+            <indicatorBreakpoint2>99.0</indicatorBreakpoint2>
+            <indicatorHighColor>#54C254</indicatorHighColor>
+            <indicatorLowColor>#C25454</indicatorLowColor>
+            <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
+            <report>Dashboard_Reports/Advances_trend_East_FHTD</report>
+            <showPercentage>false</showPercentage>
+            <showRange>false</showRange>
+            <showTotal>true</showTotal>
+            <showValues>false</showValues>
+            <title>FY15 H2 Eastern Advances</title>
+        </components>
+    </middleSection>
+    <owner>virginia.barton@intapp.com</owner>
+    <rightSection>
+        <columnSize>Wide</columnSize>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <componentType>Gauge</componentType>
+            <displayUnits>Thousands</displayUnits>
+            <gaugeMax>1266416.0</gaugeMax>
+            <gaugeMin>0.0</gaugeMin>
+            <groupingSortProperties/>
+            <header>Additional Recurring Sales</header>
+            <indicatorBreakpoint1>316604.0</indicatorBreakpoint1>
+            <indicatorBreakpoint2>633208.0</indicatorBreakpoint2>
+            <indicatorHighColor>#54C254</indicatorHighColor>
+            <indicatorLowColor>#C25454</indicatorLowColor>
+            <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
+            <report>Dashboard_Reports/Closed_Recurring_ISR_East_FHTD</report>
+            <showPercentage>false</showPercentage>
+            <showRange>false</showRange>
+            <showTotal>true</showTotal>
+            <showValues>false</showValues>
+            <title>FY15 H2 Eastern Recurring Sales</title>
+        </components>
+    </rightSection>
+    <runningUser>ameya.thatte@intapp.com</runningUser>
+    <textColor>#000000</textColor>
+    <title>ISR Dashboard - Eastern Region</title>
+    <titleColor>#000000</titleColor>
+    <titleSize>12</titleSize>
+</Dashboard>

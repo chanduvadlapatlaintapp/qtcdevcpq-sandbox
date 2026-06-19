@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>CUST_CURRENCY_ISO_CODE</field>
+    </columns>
+    <columns>
+        <field>Intapp_Pricing__c.Price__c</field>
+    </columns>
+    <columns>
+        <field>Intapp_Pricing__c.Gold_Pricing__c</field>
+    </columns>
+    <columns>
+        <field>Intapp_Pricing__c.Platinum_Pricing__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>check CPQ pricing</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Intapp_Pricing__c.Product_Code__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Intapp_Pricing__c.Meter_Type__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Intapp Pricings CPQ Production</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Intapp_Pricing__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

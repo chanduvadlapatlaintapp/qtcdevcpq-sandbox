@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Set_Mailing_Country</fullName>
+    <active>false</active>
+    <description>If the Mailing Country is blank and Contact has a Firm Role, insist that Mailing Country field is filled</description>
+    <errorConditionFormula>AND(NOT(ISBLANK(Role_old__c)),ISBLANK(MailingCountry),NOT(CONTAINS($Profile.Name, &apos;System Administrator&apos;)),NOT(Apex_Context__c))</errorConditionFormula>
+    <errorMessage>This contact has a Firm Role but incomplete mailing information.</errorMessage>
+</ValidationRule>

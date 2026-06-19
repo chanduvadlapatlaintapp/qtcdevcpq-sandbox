@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Proforma_Invoice__c$Name</field>
+    </columns>
+    <columns>
+        <field>Proforma_Invoice__c.Quotes__r$Name</field>
+    </columns>
+    <columns>
+        <field>Proforma_Invoice__c.Quotes__r$Order__c</field>
+    </columns>
+    <columns>
+        <field>Proforma_Invoice__c$State__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Report listing each renewal letter (RL), quote, and order where contract creation failed.</description>
+    <filter>
+        <criteriaItems>
+            <column>Proforma_Invoice__c$State__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Order Contracting Failed</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Renewal Contract Creation Failure</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Renewal_Letters_with_Renewal_Quotes__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Proforma_Invoice__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

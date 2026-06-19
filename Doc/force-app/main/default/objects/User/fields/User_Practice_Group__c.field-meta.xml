@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>User_Practice_Group__c</fullName>
+    <description>If this person is a specialist in one Intapp Practice Group, which one?</description>
+    <inlineHelpText>If this person is a specialist in one Intapp Practice Group, which one?</inlineHelpText>
+    <label>User Practice Group</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Risk</fullName>
+                <color>#E27001</color>
+                <default>false</default>
+                <label>Risk</label>
+            </value>
+            <value>
+                <fullName>Revenue</fullName>
+                <color>#78C953</color>
+                <default>false</default>
+                <label>Revenue</label>
+            </value>
+            <value>
+                <fullName>Integration</fullName>
+                <color>#0B6FCE</color>
+                <default>false</default>
+                <label>Integration</label>
+            </value>
+            <value>
+                <fullName>Multi-Practice</fullName>
+                <color>#F3D904</color>
+                <default>false</default>
+                <label>Multi-Practice</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

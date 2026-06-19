@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Geography__c</fullName>
+    <description>This field is used to calculate the Geography based on the Billing Address. The Geography does not necessarily correspond to the sales territory for this Account, which is captured in the &quot;Simple Territory (Region)&quot; field.</description>
+    <externalId>false</externalId>
+    <formula>IF(
+  BillingCountry=&quot;&quot;, &quot;Unknown&quot;,
+  IF(
+    CONTAINS(&quot;UK:Jersey:France:Scotland:Ireland:Nigeria:Channel Islands:Sweden:Israel:Greece:Germany:Italy:Switzerland:Hungary:Isle of Man:Czech Republic:Spain:Belgium:Lithuania:UAE:Poland:South Africa:Austria:Netherlands:Russia:Norway:Denmark:Cyprus:Luxembourg:Portugal&quot;, BillingCountry), &quot;EMEA&quot;,
+    IF(
+      CONTAINS(&quot;Australia:New Zealand:Singapore:Hong Kong:Malaysia:China:Japan:India&quot;,BillingCountry),&quot;APAC&quot;,
+      IF(
+        CONTAINS(&quot;USA:United States: United States of America:CA:Canada:Mexico:British Virgin Islands&quot;,BillingCountry), &quot;North America&quot;,
+        IF(
+          CONTAINS(&quot;Panama:Chile:Curaçao:Colombia:Cayman Islands:Costa Rica:Brazil:Peru&quot;,BillingCountry),&quot;South America&quot;,
+          &quot;Unknown geography&quot;
+        )
+      )
+    )
+  )
+)</formula>
+    <inlineHelpText>This field is based off of the Billing Country and does not necessarily correspond with the Sales Territory</inlineHelpText>
+    <label>Geography</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

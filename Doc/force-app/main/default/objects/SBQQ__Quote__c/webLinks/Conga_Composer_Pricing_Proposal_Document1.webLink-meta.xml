@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conga_Composer_Pricing_Proposal_Document1</fullName>
+    <availability>online</availability>
+    <description>Created by Conga Solution Manager. Record link: https://intapp--qtc--apxtconga4.sandbox.vf.force.com/aI3D7000000vxnCKAQ.</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>false</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>660</height>
+    <isResizable>false</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Generate Pricing Proposal</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>/apex/APXTConga4__Conga_Composer?SolMgr=1
+&amp;serverUrl={!API.Partner_Server_URL_520}
+&amp;Id={!SBQQ__Quote__c.Id}
+&amp;DV0={!IF(AND(ISPICKVAL(SBQQ__Quote__c.Quote_Stage__c, &quot;Pricing Proposal&quot;),
+OR(ISPICKVAL(SBQQ__Quote__c.ApprovalStatus__c, &quot;Pending Submission&quot; ),ISPICKVAL(SBQQ__Quote__c.ApprovalStatus__c, &quot;Rejected&quot;), ISPICKVAL(SBQQ__Quote__c.ApprovalStatus__c, &quot;Recalled&quot;))), &quot;Internal Use Only&quot;,IF(AND(ISPICKVAL(SBQQ__Quote__c.Quote_Stage__c, &quot;Pricing Proposal&quot;),ISPICKVAL(SBQQ__Quote__c.ApprovalStatus__c, &quot;Approved&quot; )), &quot;Pricing Proposal&quot;, &quot;&quot;))}
+
+&amp;QueryId=[MDQOneTimeDiscount]0Q_001MAQ106508%3Fpv0%3D{!SBQQ__Quote__c.Id},
+[NonMDQQuoteLines]0Q_003MAQ133545%3Fpv0%3D{!SBQQ__Quote__c.Id},
+[MDQQuoteLines]0Q_002MAQ228749%3Fpv0%3D{!SBQQ__Quote__c.Id},
+[QuoteLineMDQYear1]0Q_000MAQ991196%3Fpv0%3D{!SBQQ__Quote__c.Id},
+[ServiceOneTimeCredit]0Q_060MAQ489742%3Fpv0%3D{!SBQQ__Quote__c.Id},
+[TermConditions]0Q_061MAQ603651%3Fpv0%3D{!SBQQ__Quote__c.Id}
+
+&amp;TemplateId=0T_000MAQ969716
+
+&amp;DS7=11
+&amp;DefaultPDF=1
+&amp;FP0=1
+&amp;OFN=Pricing Proposal-{!SBQQ__Quote__c.Account_Name__c}-{!SBQQ__Quote__c.Name}</url>
+    <width>900</width>
+</WebLink>

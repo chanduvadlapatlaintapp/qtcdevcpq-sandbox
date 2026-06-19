@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Third_Party_Passthrough</fullName>
+    <columns>NAME</columns>
+    <columns>Term_Category__c</columns>
+    <columns>Description__c</columns>
+    <columns>SBQQ__Body__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Term_Category__c</field>
+        <operation>equals</operation>
+        <value>Boomi,D&amp;B</value>
+    </filters>
+    <filters>
+        <field>SBQQ__Type__c</field>
+        <operation>equals</operation>
+        <value>Standard</value>
+    </filters>
+    <label>Third Party Passthrough</label>
+    <language>en_US</language>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Check_Contract_Amendment_Count_Match</name>
+        <label>Check Contract Amendment Count Match</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Check_Contract_Amendment_Count</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__QuoteLine__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__QuoteLine__r.SBQQ__Quote__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__QuoteLine__r.SBQQ__Quote__r.SBQQ__Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Amendment</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Contract__r.Amendment_Count__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.SBQQ__QuoteLine__r.SBQQ__Quote__r.Amendment_Count__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Contract_Amendment_Count</targetReference>
+            </connector>
+            <label>Check Contract Amendment Count</label>
+        </rules>
+    </decisions>
+    <description>BIZ-67669 - Update subscription related contract&apos;s amendment count
+BIZ-67339 - Added the Bypass Logic</description>
+    <environments>Default</environments>
+    <interviewLabel>Subscription After Insert {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Subscription After Insert</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Contract_Amendment_Count</name>
+        <label>Update Contract Amendment Count</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Contract__c</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Amendment_Count__c</field>
+            <value>
+                <elementReference>$Record.SBQQ__QuoteLine__r.SBQQ__Quote__r.Amendment_Count__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Contract</object>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_Contract_Amendment_Count_Match</targetReference>
+        </connector>
+        <filterFormula>NOT(
+	{!$Setup.Automation_Controls__c.Active__c} &amp;&amp; 
+	{!$Setup.Automation_Controls__c.Bypass_Flows__c} &amp;&amp; 
+	{!$Setup.Automation_Controls__c.Contractline_Bypass__c} &amp;&amp; 
+	(
+		ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c}) || 
+		(
+			NOT(ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c})) &amp;&amp; 
+			CONTAINS({!$Setup.Automation_Controls__c.Data_Id__c}, {!$Record.Id})
+		)
+	)
+)</filterFormula>
+        <object>SBQQ__Subscription__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

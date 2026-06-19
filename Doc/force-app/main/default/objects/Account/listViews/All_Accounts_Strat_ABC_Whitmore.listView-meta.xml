@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Accounts_Strat_ABC_Whitmore</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ACCOUNT.LAST_ACTIVITY</columns>
+    <columns>ACCOUNT.ADDRESS1_CITY</columns>
+    <columns>ACCOUNT.ADDRESS1_STATE</columns>
+    <columns>License_Band__c</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Legal_Tier_Split__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Legal_Tier_Split__c</field>
+        <operation>equals</operation>
+        <value>STRATEGIC,Tier A,Tier B,Tier C</value>
+    </filters>
+    <filters>
+        <field>Simple_Territory__c</field>
+        <operation>contains</operation>
+        <value>South</value>
+    </filters>
+    <label>All Accounts (Strat, ABC) - Whitmore</label>
+    <language>en_US</language>
+</ListView>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Days_Past_Due__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( 
+  AND( 
+    Due_Date__c&lt; TODAY(), 
+    Invoice_Status__c == &quot;Open&quot;  || 
+    Invoice_Status__c == &quot;Partially Paid&quot;
+  ), 
+  TODAY() - Due_Date__c, 
+  IF( 
+    NOT(ISNULL(Date_Paid_new__c)), 
+    IF( 
+    Date_Paid_new__c - Due_Date__c &gt; 0, 
+    Date_Paid_new__c - Due_Date__c, 
+    null 
+  ), 
+  null 
+  ) 
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Days Past Due</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

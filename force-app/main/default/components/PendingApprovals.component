@@ -1,0 +1,68 @@
+<apex:component controller="PendingApprovalController" access="global">
+    <apex:attribute name="UserID" assignTo="{!usrId}" type="String" description="Id of the Actor"/> 
+            
+<!--            <apex:pageBlock > -->
+<!--                <apex:pageBlockTable value="{!PendingApprovals}" var="piwItem"> -->
+<!--                    <apex:column headerValue="Contract Number" value="{!piwItem.ProcessInstance.TargetObject.Name}"/> -->
+<!--                    <apex:column headerValue="Contract link"> -->
+<!--                        <a href='{!domain}/{!piwItem.ProcessInstance.TargetObjectId}'> {!domain}/{!piwItem.ProcessInstance.TargetObjectId}</a> -->
+<!--                    </apex:column> -->
+<!--                </apex:pageBlockTable> -->
+<!--            </apex:pageBlock> -->
+            
+    <table border="1" style="border-collapse:collapse;" cellpadding="10" valign="top"> 
+        <tr bgcolor="#1797c0">
+            <td><b>Action</b></td>
+            <td><b>Account</b></td>
+            <td><b>Contract</b></td>
+<!--            <td>Contract link </td> -->
+<!--            <td><b>Status</b></td> -->
+            <td><b>Request Comments</b></td>
+            <td><b>Approval Created Date</b></td>
+            <td><b>Approval Status</b></td>
+            <td><b>Contract End Date</b></td>
+        </tr>
+        <apex:repeat value="{!PendingApprovals}" var="piwItem">
+            <tr valign="top">
+                <td>
+                    <a href='{!domain}/p/process/ProcessInstanceWorkitemWizardStageManager?id={!piwItem.pwi.Id}'>Approve/Reject</a>
+                </td>
+                <td>
+                    <a href="{!domain}/{!piwItem.contract.Account.Id}">{!piwItem.contract.Account.Name}</a>
+                </td>
+                <td>
+                    <a href='{!domain}/{!piwItem.pwi.ProcessInstance.TargetObjectId}'>{!piwItem.contract.ContractNumber}</a>
+                </td>
+<!--                <td> -->
+<!--                    <a href='{!domain}/{!piwItem.pwi.ProcessInstance.TargetObjectId}'> {!domain}/{!piwItem.pwi.ProcessInstance.TargetObjectId}</a> -->
+<!--                </td> -->
+
+<!--                <td> -->
+<!--                    {!piwItem.Contract.Status} -->
+<!--                </td> -->
+                <td>
+                    <apex:outputField value="{!piwItem.Contract.Approval_Request_Notes__c}"/>
+                </td>
+                <td>
+                   <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                       <apex:param value="{!piwItem.pwi.ProcessInstance.CreatedDate}" />
+                   </apex:outputText>
+                </td>
+                <td> 
+                    {!piwItem.pwi.ProcessInstance.Status}
+                </td>
+                <td>
+                    <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                        <apex:param value="{!piwItem.Contract.EndDate}" />
+                    </apex:outputText>
+                </td>
+                
+            </tr>
+        </apex:repeat> 
+        <tr bgcolor="#1797c0" >
+            <td colspan="8">
+            	<b>Grand Total: ({!PendingApprovals.size} Contracts)</b>
+            </td>
+        </tr>       
+    </table>
+</apex:component>

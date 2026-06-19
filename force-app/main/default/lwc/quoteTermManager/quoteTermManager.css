@@ -1,0 +1,146 @@
+:host {
+    display: block;
+}
+
+/* ===== Page Header ===== */
+.page-header {
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 1.25rem;
+    background: linear-gradient(135deg, #f0f4f8 0%, #e8ecf2 100%);
+    border-radius: 0.5rem;
+    border-left: 4px solid #207CEC;
+    margin-bottom: 1rem;
+}
+
+.header-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    background: linear-gradient(135deg, #207CEC 0%, #003C80 100%);
+    border-radius: 0.5rem;
+    margin-right: 0.875rem;
+    flex-shrink: 0;
+}
+
+.header-icon lightning-icon {
+    --lwc-colorTextIconDefault: #ffffff;
+}
+
+.header-title {
+    color: #1a1a2e;
+    font-weight: 700;
+    font-size: 1.0625rem;
+}
+
+.header-subtitle {
+    color: #5a6072;
+    font-size: 0.8125rem;
+    margin-top: 0.125rem;
+}
+
+/* ===== Filter Card ===== */
+.filter-card {
+    padding: 1rem 1.25rem;
+    background-color: #ffffff;
+    border: 1px solid #dfe3e8;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* ===== Toolbar ===== */
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background-color: #f8f9fb;
+    border: 1px solid #dfe3e8;
+    border-radius: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.toolbar-spacer {
+    flex: 1;
+}
+
+.record-count {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #3e4a5c;
+    background-color: #e8ecf2;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+}
+
+/* ===== Branded Table ===== */
+.branded-table th {
+    background: linear-gradient(180deg, #003C80 0%, #002a5c 100%) !important;
+    color: #ffffff !important;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    padding: 0.625rem 0.75rem;
+    border-color: #002244 !important;
+}
+
+.branded-table tbody tr:hover {
+    background-color: #f0f6ff !important;
+}
+
+/* ===== Body Cell — constrain rich text editor height ===== */
+.body-col-cell lightning-input-rich-text {
+    display: block;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* ===== Inactive Row ===== */
+.row-inactive {
+    background-color: #fef2f2 !important;
+}
+
+.row-inactive:hover {
+    background-color: #fee2e2 !important;
+}
+
+/* ===== Action Cell ===== */
+.action-cell {
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* ===== Empty State ===== */
+.empty-state {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.empty-state-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    background-color: #f0f2f5;
+    border-radius: 50%;
+    margin-bottom: 0.75rem;
+}
+
+.empty-state-heading {
+    color: #1a1a2e;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.empty-state-text {
+    color: #8e95a5;
+    font-size: 0.875rem;
+}

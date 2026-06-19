@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_21423930</developerName>
+        <masterLabel>Program Status</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>Product_Migration_Placeholder__c.PMP_Stage__c</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>0. Not yet started</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Not yet started</sourceValue>
+            </sourceValues>
+            <value>1.Not Started</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Assessment completed</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Final customer roadmap presentation completed</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Confirmation of workflows in production. PMP closed.</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Opportunity confirmed and created. PMP closed.</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Request Complete</sourceValue>
+            </sourceValues>
+            <value>3.Completed</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>1. Initial communication to client sent</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>2. Meeting with customer scheduled</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>3. Met with customer, discussing options</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>4. Met with customer. Disinclined to move forward</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Initial communication to customer sent</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Success plan created / reviewed with customer</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Success plan being executed</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Assessment scheduled</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Final customer roadmap presentation scheduled</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Awaiting Approvals</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Awaiting Review/Meeting</sourceValue>
+            </sourceValues>
+            <value>2.In Progress</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Cancelled</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Request Cancelled</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>On-Hold</sourceValue>
+            </sourceValues>
+            <value>4.Cancelled or On Hold</value>
+        </values>
+    </buckets>
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <axisBinding>y</axisBinding>
+            <column>RowCount</column>
+        </chartSummaries>
+        <chartType>HorizontalBarStacked</chartType>
+        <enableHoverLabels>true</enableHoverLabels>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>Account.CRD__c</groupingColumn>
+        <legendPosition>Right</legendPosition>
+        <location>CHART_TOP</location>
+        <secondaryGroupingColumn>BucketField_21423930</secondaryGroupingColumn>
+        <showAxisLabels>true</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>false</showValues>
+        <size>Large</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>12</textSize>
+        <titleColor>#000000</titleColor>
+        <titleSize>18</titleSize>
+    </chart>
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>Product_Migration_Placeholder__c.PMP_Stage__c</field>
+    </columns>
+    <columns>
+        <field>Product_Migration_Placeholder__c.T_CSM__c</field>
+    </columns>
+    <columns>
+        <field>USERS.NAME</field>
+    </columns>
+    <columns>
+        <field>Product_Migration_Placeholder__c.Services_Provider__c</field>
+    </columns>
+    <columns>
+        <field>Product_Migration_Placeholder__c.Services_Partner__c</field>
+    </columns>
+    <columns>
+        <field>Product_Migration_Placeholder__c.Implementation_Status__c</field>
+    </columns>
+    <columns>
+        <field>Product_Migration_Placeholder__c.Adoption_Status__c</field>
+    </columns>
+    <columns>
+        <field>Product_Migration_Placeholder__c.Issue_Category__c</field>
+    </columns>
+    <columns>
+        <field>Product_Migration_Placeholder__c.Confidence_in_Conversion__c</field>
+    </columns>
+    <columns>
+        <field>Product_Migration_Placeholder__c.Disposition_to_Project__c</field>
+    </columns>
+    <columns>
+        <field>Product_Migration_Placeholder__c.Disposition_RAG_Status__c</field>
+    </columns>
+    <columns>
+        <field>Product_Migration_Placeholder__c.Customer_Status__c</field>
+    </columns>
+    <columns>
+        <field>Product_Migration_Placeholder__c.Contact_Priority__c</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Product_Migration_Placeholder__c.Status_Next_Steps__c</field>
+    </columns>
+    <currency>GBP</currency>
+    <filter>
+        <criteriaItems>
+            <column>CUST_RECORDTYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Product_Migration_Placeholder__c.CSM_Ops_Request</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_21423930</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.CRD__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>CSM: CSMOps PMPs</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountCustomEntity$Product_Migration_Placeholder__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>DUE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

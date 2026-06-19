@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>Proforma_Invoice__c.Renewal_Start_Date__c</field>
+    </columns>
+    <columns>
+        <field>Proforma_Invoice__c.Status__c</field>
+    </columns>
+    <columns>
+        <field>Proforma_Invoice__c.Account_Name__c</field>
+    </columns>
+    <columns>
+        <field>Proforma_Invoice__c.Intapp_Account_Number__c</field>
+    </columns>
+    <columns>
+        <field>Proforma_Invoice__c.Notes_Comments__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Proforma_Invoice__c.Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>,Initiated,Payment received,Working with Customer for changes,Cancelled,Payment Allocated</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Renewal Letters with Status</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Proforma_Invoice__c@Proforma_Invoice__c.Renewal_Quote__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Proforma_Invoice__c.Due_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

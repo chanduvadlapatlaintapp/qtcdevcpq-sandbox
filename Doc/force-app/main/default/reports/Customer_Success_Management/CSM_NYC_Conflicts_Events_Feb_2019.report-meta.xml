@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Subscription_Contact__c$Subscription__c</field>
+    </columns>
+    <columns>
+        <field>Subscription_Contact__c$Subscription_Account__c</field>
+    </columns>
+    <columns>
+        <field>Subscription_Contact__c$Product_Line__c</field>
+    </columns>
+    <columns>
+        <field>Subscription_Contact__c$Contact__c</field>
+    </columns>
+    <columns>
+        <field>Subscription_Contact__c$Subscription_Contact_Title__c</field>
+    </columns>
+    <columns>
+        <field>Subscription_Contact__c$Role__c</field>
+    </columns>
+    <columns>
+        <field>Subscription_Contact__c$Contact_Email__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>(((((1 AND 2 AND 3)  OR (4 and 5 and 3)) AND 6) OR (7 AND 8))) AND 9</booleanFilter>
+        <criteriaItems>
+            <column>Subscription_Contact__c$Subscription_Account__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>McCarter &amp; English LLP,PJT Partners,Sandler O&apos;Neill,Sullivan &amp; Cromwell LLP,Cadwalader,White &amp; Case,Schulte,Epstein,&quot;Fried, Frank&quot;,Milbank,Sherman,Sullivan,Kobre,Jackson Lewis</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription_Contact__c$Product_Line__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>intapp Open - Conflicts</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription_Contact__c$Role__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Business Owner,IT Owner,Lead User</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription_Contact__c$Product_Line__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Intapp Open - Intake</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription_Contact__c$Subscription_Account__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>Shearman</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription_Contact__c$Subscription_Contact_Title__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Chief Information Officer,Chief Technology Officer</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription_Contact__c$Subscription_Account__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>White &amp; Case LLP</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription_Contact__c$Product_Line__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>TFG - Other</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription_Contact__c$Contact__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Will McDonald,Albert Chan,Peter Alcazar</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>CSM: NYC Conflicts Events - Feb 2019</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Product_Customer_Contacts__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Subscription_Contact__c$Subscription_Account__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Subscription_Contact__c$Audited_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

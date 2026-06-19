@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status_Field_update_sequence</fullName>
+    <active>false</active>
+    <description>Active field and End Date field should be limited and depended on Status values</description>
+    <errorConditionFormula>OR( 
+   AND( 
+       $User.ProfileId != &quot;00e30000000bvR3&quot;,   /*System Administrator*/
+       ISPICKVAL(Status , &quot;Planned&quot;), 
+EndDate &lt;= TODAY()	
+), 
+AND( 
+$User.ProfileId != &quot;00e30000000bvR3&quot;,   /*System Administrator*/
+OR(
+ISPICKVAL(Status , &quot;Approved&quot;),
+ISPICKVAL(Status , &quot;In Progress&quot;)
+),
+OR(
+ISBLANK(EndDate),
+EndDate &lt;= TODAY()
+)
+),
+AND( 
+$User.ProfileId != &quot;00e30000000bvR3&quot;,   /*System Administrator*/
+ISPICKVAL(Status , &quot;Completed&quot;),
+ISBLANK(EndDate)
+) 
+)</errorConditionFormula>
+    <errorDisplayField>EndDate</errorDisplayField>
+    <errorMessage>Campaign End Date should not be NULL for Campaign Status = &apos;Approved&apos; OR &apos;In Progress&apos; OR &apos;Completed&apos; 
+OR
+should not be a past date for Campaign Status = &apos;Planned&apos; OR &apos;Approved&apos; OR &apos;In Progress&apos; status.</errorMessage>
+</ValidationRule>

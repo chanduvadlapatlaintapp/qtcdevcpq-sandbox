@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Open_Implementation_Status__c</fullName>
+    <label>Open Implementation Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Not Yet Started</fullName>
+                <default>false</default>
+                <label>Not Yet Started</label>
+            </value>
+            <value>
+                <fullName>Stalled</fullName>
+                <default>false</default>
+                <label>Stalled</label>
+            </value>
+            <value>
+                <fullName>Implementing</fullName>
+                <default>false</default>
+                <label>Implementing</label>
+            </value>
+            <value>
+                <fullName>Testing: IT</fullName>
+                <default>false</default>
+                <label>Testing: IT</label>
+            </value>
+            <value>
+                <fullName>Testing: User</fullName>
+                <default>false</default>
+                <label>Testing: User</label>
+            </value>
+            <value>
+                <fullName>Production: Partial</fullName>
+                <default>false</default>
+                <label>Production: Partial</label>
+            </value>
+            <value>
+                <fullName>Production: Full</fullName>
+                <default>false</default>
+                <label>Production: Full</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

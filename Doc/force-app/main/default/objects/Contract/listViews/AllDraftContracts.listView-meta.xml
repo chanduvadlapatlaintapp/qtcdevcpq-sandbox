@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AllDraftContracts</fullName>
+    <columns>CONTRACT.CONTRACT_NUMBER</columns>
+    <columns>CONTRACT.NAME</columns>
+    <columns>Total_Contract_Value__c</columns>
+    <columns>CONTRACT.START_DATE</columns>
+    <columns>CONTRACT.STATUS</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>CONTRACT.CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CONTRACT.START_DATE</field>
+        <operation>equals</operation>
+        <value>1/1/2025</value>
+    </filters>
+    <filters>
+        <field>CONTRACT.START_DATE</field>
+        <operation>equals</operation>
+        <value>1/1/2025</value>
+    </filters>
+    <label>All Draft Contracts</label>
+</ListView>

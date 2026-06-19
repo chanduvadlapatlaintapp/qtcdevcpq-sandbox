@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RIsk_Segments__c</fullName>
+    <description>By looking at firm practice groups, indicates the risk solution segments to which the firm belongs</description>
+    <externalId>false</externalId>
+    <formula>IF ( Intapp_Master_Ranking__c  &lt;=  331, &quot;Ethics; &quot;, &quot;&quot;) &amp;
+IF (OR (INCLUDES(Firm_Practice_Groups__c  , &quot;M&amp;A - Top-Ranked&quot;), INCLUDES(Firm_Practice_Groups__c , &quot;Securities &amp; CapMrkts - Top-Ranked&quot;)), &quot;Price-Sensitive; &quot;, &quot;&quot;) &amp;
+IF (OR (INCLUDES(Firm_Practice_Groups__c  , &quot;Health Care - Top-Ranked&quot;), INCLUDES(Firm_Practice_Groups__c , &quot;Labor &amp; Employment - Top-Ranked&quot;)), &quot;Privacy; &quot;, &quot;&quot;) &amp;
+IF ( Intapp_Master_Ranking__c  &lt;=  25, &quot;Jurisdictions; &quot;, &quot;&quot;)</formula>
+    <inlineHelpText>By looking at firm practice groups, indicates the risk solution segments to which the firm belongs</inlineHelpText>
+    <label>Risk Segments</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

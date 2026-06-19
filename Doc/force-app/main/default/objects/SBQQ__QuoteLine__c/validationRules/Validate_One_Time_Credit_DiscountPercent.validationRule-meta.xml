@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_One_Time_Credit_DiscountPercent</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+ISPICKVAL(Services_Product_Type__c, &apos;T&amp;M&apos;),
+NOT(ISBLANK(SBQQ__PartnerDiscount__c)),
+((SBQQ__PartnerDiscount__c * 100) &lt;&gt; FLOOR(SBQQ__PartnerDiscount__c * 100))
+)</errorConditionFormula>
+    <errorMessage>The One-Time Credit results in a non-whole-number discount. Please adjust the credit or totals so the discount percent is a whole number.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prospect_is_Leaning__c</fullName>
+    <description>If we are in a competitive deal, which way is the prospect leaning?</description>
+    <inlineHelpText>If we are in a competitive deal, which way is the prospect leaning?</inlineHelpText>
+    <label>Prospect is Leaning</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Towards us</fullName>
+                <default>false</default>
+                <label>Towards us</label>
+            </value>
+            <value>
+                <fullName>It could go either way</fullName>
+                <default>false</default>
+                <label>It could go either way</label>
+            </value>
+            <value>
+                <fullName>Towards our competitor</fullName>
+                <default>false</default>
+                <label>Towards our competitor</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

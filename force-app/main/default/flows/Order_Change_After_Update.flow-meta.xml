@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_email_to_OM_Order_management_team</name>
+        <label>Send email to OM &amp; Contract ops team</label>
+        <locationX>182</locationX>
+        <locationY>1439</locationY>
+        <actionName>Order_Change__c.Update_Billing_Fields_in_Order_Notification</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Order_Change__c.Update_Billing_Fields_in_Order_Notification</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Bill_to_contact</name>
+        <label>Assign Bill to contact</label>
+        <locationX>50</locationX>
+        <locationY>839</locationY>
+        <assignmentItems>
+            <assignToReference>get_order.BillToContactId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.New_Invoicing_Contact__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Order1</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_PO_number</name>
+        <label>Assign PO number</label>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
+        <assignmentItems>
+            <assignToReference>get_order.PO_Number__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.New_PO_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Bill_to_contact</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Check_Bill_to_contact</name>
+        <label>Check Bill to contact</label>
+        <locationX>182</locationX>
+        <locationY>731</locationY>
+        <defaultConnector>
+            <targetReference>Update_Order1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>If_new_bill_to_contact</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.New_Invoicing_Contact__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Bill_to_contact</targetReference>
+            </connector>
+            <label>If new bill to contact</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_PO_number</name>
+        <label>Check PO number</label>
+        <locationX>182</locationX>
+        <locationY>431</locationY>
+        <defaultConnector>
+            <targetReference>Check_Bill_to_contact</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>If_new_PO_number</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.New_PO_Number__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_PO_number</targetReference>
+            </connector>
+            <label>If new PO number</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Validate_Approval_Execution</name>
+        <label>Validate Approval Execution</label>
+        <locationX>182</locationX>
+        <locationY>1139</locationY>
+        <defaultConnector>
+            <targetReference>Send_email_to_OM_Order_management_team</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Order_Change_not_approved_by_Order_Management</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Order_Change_Status__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Approved by Order Management</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_the_status_as_CHange_applied_to_Order_change</targetReference>
+            </connector>
+            <label>Order Change not approved by Order Management</label>
+        </rules>
+    </decisions>
+    <description>BIZ-76329 - Removing the email notification to customer
+BIZ-64703 Added a decision to check Order Change Status
+BIZ-64513 Removed Assignments
+BIZ-72119 - Removed All logics excepts PO Number and Invoice Contact. Remove Status check for PO Number</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>BillingCityFormula</name>
+        <dataType>String</dataType>
+        <expression>IF((ISBLANK({!$Record.Billing_Address_New__City__s})  || ({!$Record.Billing_Address_New__City__s} = {!$Record.Billing_Address_Old__City__s})), {!$Record.Billing_Address_Old__City__s}, {!$Record.Billing_Address_New__City__s})</expression>
+    </formulas>
+    <formulas>
+        <name>BillingCountryCodeFormula</name>
+        <dataType>String</dataType>
+        <expression>IF((ISBLANK(TEXT({!$Record.Billing_Address_New__CountryCode__s})) || (TEXT({!$Record.Billing_Address_New__CountryCode__s}) = TEXT({!$Record.Billing_Address_Old__CountryCode__s}))), TEXT({!$Record.Billing_Address_Old__CountryCode__s}), TEXT({!$Record.Billing_Address_New__CountryCode__s}))</expression>
+    </formulas>
+    <formulas>
+        <name>BillingGeoCodeAccuracyFormula</name>
+        <dataType>String</dataType>
+        <expression>IF((ISBLANK(TEXT({!$Record.Billing_Address_New__GeocodeAccuracy__s})) || (TEXT({!$Record.Billing_Address_New__GeocodeAccuracy__s}) = TEXT({!$Record.Billing_Address_Old__GeocodeAccuracy__s}))),TEXT({!$Record.Billing_Address_Old__GeocodeAccuracy__s}), TEXT({!$Record.Billing_Address_New__GeocodeAccuracy__s}))</expression>
+    </formulas>
+    <formulas>
+        <name>BillingLatitudeFormula</name>
+        <dataType>Number</dataType>
+        <expression>IF((ISBLANK({!$Record.Billing_Address_New__Latitude__s})  || ({!$Record.Billing_Address_New__Latitude__s} = {!$Record.Billing_Address_Old__Latitude__s})), {!$Record.Billing_Address_Old__Latitude__s}, {!$Record.Billing_Address_New__Latitude__s})</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>BillingLongitudeFormula</name>
+        <dataType>Number</dataType>
+        <expression>IF((ISBLANK({!$Record.Billing_Address_New__Longitude__s}) || ({!$Record.Billing_Address_New__Longitude__s} = {!$Record.Billing_Address_Old__Longitude__s})), {!$Record.Billing_Address_Old__Longitude__s}, {!$Record.Billing_Address_New__Longitude__s})</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>BillingPostalCodeFormula</name>
+        <dataType>String</dataType>
+        <expression>IF((ISBLANK({!$Record.Billing_Address_New__PostalCode__s}) || ({!$Record.Billing_Address_New__PostalCode__s} = {!$Record.Billing_Address_Old__PostalCode__s})), {!$Record.Billing_Address_Old__PostalCode__s}, {!$Record.Billing_Address_New__PostalCode__s})</expression>
+    </formulas>
+    <formulas>
+        <name>BillingStateCodeFormula</name>
+        <dataType>String</dataType>
+        <expression>IF((ISBLANK(TEXT({!$Record.Billing_Address_New__StateCode__s})) || (TEXT({!$Record.Billing_Address_New__StateCode__s}) = TEXT({!$Record.Billing_Address_Old__StateCode__s}))), TEXT({!$Record.Billing_Address_Old__StateCode__s}), TEXT({!$Record.Billing_Address_New__StateCode__s}))</expression>
+    </formulas>
+    <formulas>
+        <name>BillingStreetFormula</name>
+        <dataType>String</dataType>
+        <expression>IF((ISBLANK({!$Record.Billing_Address_New__Street__s}) || ({!$Record.Billing_Address_New__Street__s} = {!$Record.Billing_Address_Old__Street__s})), {!$Record.Billing_Address_Old__Street__s}, {!$Record.Billing_Address_New__Street__s})</expression>
+    </formulas>
+    <formulas>
+        <name>PaymentTermsFormula</name>
+        <dataType>String</dataType>
+        <expression>IF(ISNULL(TEXT({!$Record.Payment_terms_New__c})), TEXT({!$Record.Payment_terms_Old__c}), TEXT({!$Record.Payment_terms_New__c}))</expression>
+    </formulas>
+    <formulas>
+        <name>ShippingCityFormula</name>
+        <dataType>String</dataType>
+        <expression>IF((ISBLANK({!$Record.Shipping_Address_New__City__s})  || ({!$Record.Shipping_Address_New__City__s} = {!$Record.Shipping_Address_Old__City__s})), {!$Record.Shipping_Address_Old__City__s}, {!$Record.Shipping_Address_New__City__s})</expression>
+    </formulas>
+    <formulas>
+        <name>ShippingCountryCodeFormula</name>
+        <dataType>String</dataType>
+        <expression>IF((ISBLANK(TEXT({!$Record.Shipping_Address_New__CountryCode__s})) || (TEXT({!$Record.Shipping_Address_New__CountryCode__s}) = TEXT({!$Record.Shipping_Address_Old__CountryCode__s}))), TEXT({!$Record.Shipping_Address_Old__CountryCode__s}), TEXT({!$Record.Shipping_Address_New__CountryCode__s}))</expression>
+    </formulas>
+    <formulas>
+        <name>ShippingGeoCodeAccuracyFormula</name>
+        <dataType>String</dataType>
+        <expression>IF((ISBLANK(TEXT({!$Record.Shipping_Address_New__GeocodeAccuracy__s})) || (TEXT({!$Record.Shipping_Address_New__GeocodeAccuracy__s}) = TEXT({!$Record.Shipping_Address_Old__GeocodeAccuracy__s}))),TEXT({!$Record.Shipping_Address_Old__GeocodeAccuracy__s}), TEXT({!$Record.Shipping_Address_New__GeocodeAccuracy__s}))</expression>
+    </formulas>
+    <formulas>
+        <name>ShippingLatitudeFormula</name>
+        <dataType>Number</dataType>
+        <expression>IF((ISBLANK({!$Record.Shipping_Address_New__Latitude__s})  || ({!$Record.Shipping_Address_New__Latitude__s} = {!$Record.Shipping_Address_Old__Latitude__s})), {!$Record.Shipping_Address_Old__Latitude__s}, {!$Record.Shipping_Address_New__Latitude__s})</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>ShippingLongitudeFormula</name>
+        <dataType>Number</dataType>
+        <expression>IF((ISBLANK({!$Record.Shipping_Address_New__Longitude__s}) || ({!$Record.Shipping_Address_New__Longitude__s} = {!$Record.Shipping_Address_Old__Longitude__s})), {!$Record.Shipping_Address_Old__Longitude__s}, {!$Record.Shipping_Address_New__Longitude__s})</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>ShippingPostalCodeFormula</name>
+        <dataType>String</dataType>
+        <expression>IF((ISBLANK({!$Record.Shipping_Address_New__PostalCode__s}) || ({!$Record.Shipping_Address_New__PostalCode__s} = {!$Record.Shipping_Address_Old__PostalCode__s})), {!$Record.Shipping_Address_Old__PostalCode__s}, {!$Record.Shipping_Address_New__PostalCode__s})</expression>
+    </formulas>
+    <formulas>
+        <name>ShippingStateCodeFormula</name>
+        <dataType>String</dataType>
+        <expression>IF((ISBLANK(TEXT({!$Record.Shipping_Address_New__StateCode__s})) || (TEXT({!$Record.Shipping_Address_New__StateCode__s}) = TEXT({!$Record.Shipping_Address_Old__StateCode__s}))), TEXT({!$Record.Shipping_Address_Old__StateCode__s}), TEXT({!$Record.Shipping_Address_New__StateCode__s}))</expression>
+    </formulas>
+    <formulas>
+        <name>ShippingStreetFormula</name>
+        <dataType>String</dataType>
+        <expression>IF((ISBLANK({!$Record.Shipping_Address_New__Street__s}) || ({!$Record.Shipping_Address_New__Street__s} = {!$Record.Shipping_Address_Old__Street__s})), {!$Record.Shipping_Address_Old__Street__s}, {!$Record.Shipping_Address_New__Street__s})</expression>
+    </formulas>
+    <formulas>
+        <name>usermailid</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.CreatedBy.Email}</expression>
+    </formulas>
+    <interviewLabel>Order Change {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Order Change After Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>get_order</name>
+        <label>get order</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_PO_number</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Order__r.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Order</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Order1</name>
+        <label>Update Order1</label>
+        <locationX>182</locationX>
+        <locationY>1031</locationY>
+        <connector>
+            <targetReference>Validate_Approval_Execution</targetReference>
+        </connector>
+        <inputReference>get_order</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_the_status_as_CHange_applied_to_Order_change</name>
+        <label>Update the status as CHange applied to Order change</label>
+        <locationX>50</locationX>
+        <locationY>1247</locationY>
+        <connector>
+            <targetReference>Send_email_to_OM_Order_management_team</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Order_Change_Status__c</field>
+            <value>
+                <stringValue>Change Applied to Order</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>get_order</targetReference>
+        </connector>
+        <filterLogic>(1 AND 2 AND 3) OR (1 AND 4)</filterLogic>
+        <filters>
+            <field>Order_Change_Status__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Order_Change_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Approved by Order Management</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Billed_Amount__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Order_Change_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Billing Approval</stringValue>
+            </value>
+        </filters>
+        <object>Order_Change__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>EmailTemplateforRevenueTeam</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Order Change: {!$Record.Id} Notification</text>
+    </textTemplates>
+    <textTemplates>
+        <name>RevenueTeamNotification</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>This is to notify you on the Order Change: {!$Record.Id}</text>
+    </textTemplates>
+    <variables>
+        <name>emailcollection</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <elementReference>$User.Email</elementReference>
+        </value>
+    </variables>
+    <variables>
+        <name>OPList</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>OrderItem</objectType>
+    </variables>
+    <variables>
+        <name>OrderProdUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>OrderItem</objectType>
+    </variables>
+    <variables>
+        <name>Useremail</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue>seena.nair@intapp.com</stringValue>
+        </value>
+    </variables>
+</Flow>

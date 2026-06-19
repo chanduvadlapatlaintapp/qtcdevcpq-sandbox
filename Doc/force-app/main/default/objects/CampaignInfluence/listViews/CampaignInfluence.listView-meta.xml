@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CampaignInfluence</fullName>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CAMPAIGN.TYPE</field>
+        <operation>notEqual</operation>
+        <value>List Import,Operational</value>
+    </filters>
+    <filters>
+        <field>CM.RESPONDED</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>CAMPAIGN.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Planned,Aborted</value>
+    </filters>
+    <filters>
+        <field>OCR.ROLE</field>
+        <operation>notEqual</operation>
+        <value>Detractor</value>
+    </filters>
+    <filters>
+        <field>CAMPAIGN.RECORDTYPE</field>
+        <operation>notEqual</operation>
+        <value>Campaign.Archived_Campaigns</value>
+    </filters>
+    <label>CampaignInfluence</label>
+    <language>en_US</language>
+    <sharedTo></sharedTo>
+</ListView>

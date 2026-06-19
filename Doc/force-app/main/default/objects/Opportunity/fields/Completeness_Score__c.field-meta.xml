@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Completeness_Score__c</fullName>
+    <formula>Completeness_Score_Expression__c*
+CASE(Probability,
+  0,1,
+  0.1,1,
+  0.2,0.33,
+  0.25,0.2,
+  0.3,0.2,
+  0.15
+)+
+Completeness_Score_Investigation__c*
+CASE(Probability,
+  0,0,
+  0.1,0,
+  0.2,0.67,
+  0.25,0.4,
+  0.3,0.4,
+  0.3
+)+
+Completeness_Score_Business_Case__c*
+CASE(Probability,
+  0,0,
+  0.1,0,
+  0.2,0,
+  0.25,0.4,
+  0.3,0.4,
+  0.3
+)+
+Completeness_Score_Evaluation__c*
+CASE(Probability,
+  0,0,
+  0.1,0,
+  0.2,0,
+  0.25,0,
+  0.3,0,
+  0.25
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Completeness Score</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Percent</type>
+</CustomField>

@@ -1,0 +1,210 @@
+<apex:page standardController="Contract">
+  <!-- Begin Default Content REMOVE THIS -->
+ 
+    <!-- Main Body Starts Here -->
+    <!-- <form id="contractCreation" name="contractCreation"> -->
+    <apex:form >
+    <table class="outer" width="100%" border="0" cellspacing="0" cellpadding="0">
+        <!-- Start page content table -->
+        
+        <tr>
+            <td class="oRight">
+                <!-- Start page content --> 
+                <a name="skiplink">
+                <img src="/s.gif" height="1" width="1" alt="Content Starts Here" class="skiplink"></img>
+                </a>
+                <div class="bPageTitle">
+
+                    <div class="ptBody secondaryPalette">
+                        <div class="content">
+                            <img src="/s.gif" alt="Contract"  class="pageTitleIcon"><h1 class="pageType">IntApp Contract Wizard
+                            <span  class="titleSeparatingColon">
+                            :
+                            </span>
+                            </h1><h2 class="pageDescription"><div id="opportunityNameHeader"></div></h2>
+                            <div class="blank">
+                                &nbsp;
+                            </div>
+
+                        </div>
+                        <div class="links">
+                            
+                        </div>
+                    </div>
+                    <div class="ptBreadcrumb">
+                        
+                    </div>
+                </div>
+                
+                
+                <div class="bPageBlock secondaryPalette" id="ep">
+                    <div class="pbHeader">
+
+                        <TABLE  cellpadding="0" cellspacing="0" border="0">
+                            <TR>
+                                <TD class="pbTitle"><img src="/s.gif" alt="" title="" width="1" height="1" class="minWidth">
+                                    <h2 class="mainTitle">Contract Information</h2>
+                                </TD>
+                            </TR>
+                        </TABLE>
+                    </div>                    
+                   <div class="pbBody">
+
+                        <div class="pbSubheader tertiaryPalette" id="head_01B30000001VaWc_ep">
+                                <h3>Description</h3>
+                        </div>
+                        <div class="pbSubsection">
+                            <TABLE  class="detailList" cellpadding="0" cellspacing="0" border="0">
+                                <TR>
+                                    <TD class="labelCol last">&nbsp;</TD>
+                                    <TD class="dataCol col02 last">&nbsp;</TD>
+
+                                    <TD class="labelCol last">&nbsp;</TD>
+                                    <TD class="dataCol last">&nbsp;</TD>
+                                </TR>
+                                <TR>
+                                    <TD class="labelCol">For Account</TD>
+                                    <TD class="dataCol col02"><!-- <apex:inputField value=""/>--><div id="contractAccountName"></div></TD>                                    
+                                </TR>
+                                <TR>
+                                    <TD class="labelCol">Contract Name</TD>
+
+                                    <TD class="dataCol col02"><input size=30 type=text name="contractName" id="contractName"></TD>                                    
+                                </TR>
+
+
+                                <TR>
+                                    <TD class="labelCol last">&nbsp;</TD>
+                                    <TD class="dataCol col02 last">&nbsp;</TD>
+                                    <TD class="labelCol last">&nbsp;</TD>
+                                    <TD class="dataCol last">&nbsp;</TD>
+                                </TR>
+
+                            </TABLE>
+                        </div>
+                        <div class="pbSubheader tertiaryPalette" id="head_01B30000001VaWc_ep">
+                            <h3>Contract Details</h3>
+                        </div>
+                        <div class="pbSubsection">
+                       
+                        <TABLE  class="detailList" cellpadding="0" cellspacing="0" border="0">
+                                <TR>
+
+                                    <TD class="labelCol last">&nbsp;</TD>
+                                    <TD class="dataCol col02 last">&nbsp;</TD>
+                                    <TD class="labelCol last">&nbsp;</TD>
+                                    <TD class="dataCol last">&nbsp;</TD>
+                                </TR>
+                                <TR>
+                                    <TD class="labelCol">Start Date</TD>
+                                    <TD class="dataCol col02"><input  class="format-m-d-y divider-dash" size=15 type=text name="startDate" id="startDate" readonly>
+
+                                    </TD>                                    
+                                </TR>
+                                <TR>
+                                    <TD class="labelCol">Valid Through Date</TD>
+                                    <TD class="dataCol col02"><input class="format-m-d-y divider-dash" size=15 type=text name="validThroughDate" id="validThroughDate" readonly>
+                                   </TD>                                    
+                                </TR>
+                                <TR>
+                                    <TD class="labelCol">Recipient Name</TD>
+
+                                    <TD class="dataCol col02"><div id="contractRecipSelectHtml">Loading...</div></TD>                                    
+                                </TR>
+                                <TR>
+                                    <TD class="labelCol">Recipient Title</TD>
+                                    <TD class="dataCol col02"><input size=20 type=text name="contractRecipientTitle" id="contractRecipientTitle"></TD>                                    
+                                </TR>
+                                <TR>
+                                    <TD class="labelCol">Recipient Phone Number</TD>
+
+                                    <TD class="dataCol col02"><input size=20 type=text name="contractRecipientPhone" id="contractRecipientPhone"></TD>                                    
+                                </TR>
+                                <TR>
+                                    <TD class="labelCol last">&nbsp;</TD>
+                                    <TD class="dataCol col02 last">&nbsp;</TD>
+                                    <TD class="labelCol last">&nbsp;</TD>
+                                    <TD class="dataCol last">&nbsp;</TD>
+                                </TR>
+                            </TABLE>
+
+                                    
+                                
+                        </div>
+                        <div class="pbSubheader tertiaryPalette" id="head_01B30000001VaWc_ep">
+                            <h3>Products</h3>&nbsp;&nbsp;&nbsp;&nbsp;<input value=" Incorrect products? Return to Opportunity "  class="btn" type="button" title="Delete" onclick="returnToOppy()" name="del">
+                        </div>
+                        <br>
+                        <div class="pbSubsection">
+                        <div id="productListHtml">Loading... Test</div>
+                        </div>
+
+                        
+                        <div class="pbSubheader tertiaryPalette" id="head_01B30000001VaWc_ep">
+                            <h3>Financial Terms</h3>
+                        </div>
+                        
+                        <div class="pbSubsection">
+                            <TABLE  class="detailList" cellpadding="0" cellspacing="0" border="0">
+                                <TR>
+                                    <TD class="labelCol">Total Amount</TD>
+                                    <TD class="dataCol col02"><input size=10 type=text name="totalOpportunityPrice" id="totalOpportunityPrice" value="0.00" disabled></TD>
+
+                                    <TD class="labelCol"></TD>
+                                    <TD class="dataCol"></TD>
+                                </TR>
+                                <TR>
+                                    <TD class="labelCol">Special Terms</TD>
+                                    <TD class="dataCol col02"><textarea rows=3 cols=50 name="specialTerms" id="specialTerms"></textarea></TD>
+                                    <TD class="labelCol"></TD>
+                                    <TD class="dataCol"></TD>
+
+                                </TR>
+                            </TABLE>
+                        </div>
+                        <div class="pbSubheader tertiaryPalette" id="head_01B30000001VaWc_ep">
+                            <h3>Other</h3>
+                        </div>
+                        
+                        <div class="pbSubsection">
+                            <TABLE  class="detailList" cellpadding="0" cellspacing="0" border="0">
+
+                                <TR>
+                                    <TD class="labelCol">Notes</TD>
+                                    <TD class="dataCol col02"><textarea rows=3 cols=50 name="notes" id="notes"></textarea></TD>
+                                    <TD class="labelCol"></TD>
+                                    <TD class="dataCol"></TD>
+                                </TR>
+
+                            </TABLE>
+
+                        </div>
+                        <div id="messages">
+                        
+                        </div>
+                        <div class="pbSubheader tertiaryPalette" id="head_01B30000001VaWc_ep">
+                            <input value=" Create Contract "  class="btn" type="button" title="Edit" onclick="if (window.confirm('Are you sure?')) processForm()" name="Create Order">
+                            <input value=" Cancel and Return To Opportunity "  class="btn" type="button" title="Delete" onclick="returnToOppy()" name="del">
+                            </h3>
+                   </div>
+                    </div>
+
+                    <div class="pbFooter secondaryPalette">
+                        <div class="bg">
+                        </div>
+                    </div>
+                </div>
+                
+
+
+                <!-- End page content --></td>
+        </tr>
+        
+    </table>
+
+    </apex:form>
+    
+</body>
+
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <calculatedFormula>Opportunity.Services_Amount_Total__c.CONVERT:SUM/Opportunity.Services_Hours_Total__c:SUM</calculatedFormula>
+        <datatype>number</datatype>
+        <developerName>FORMULA1</developerName>
+        <isActive>false</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Services Amount/Hour</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_3429130</developerName>
+        <masterLabel>Project Type</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>TYPE</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Legal - Acquired Add-on Module</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Legal - Acquired New Customer</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Legal - Acquired New Product</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Legal - Add-on module</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Legal - Assessment/POC</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Legal - New Customer</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Legal - New Product</sourceValue>
+            </sourceValues>
+            <value>Implementations</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Legal - Additional Services</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>License Conversion - Recurring Decrease</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>License Conversion - Recurring Increase</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Legal - Services Change Request</sourceValue>
+            </sourceValues>
+            <value>Upgrades/Other</value>
+        </values>
+        <values>
+            <value>TFG Conversions</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Legal - Consulting Services</sourceValue>
+            </sourceValues>
+            <value>Consulting</value>
+        </values>
+    </buckets>
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_18873066</developerName>
+        <masterLabel>Simple Product</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>Opportunity.Product_Line__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <value>Integration</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Walls - On Prem</sourceValue>
+            </sourceValues>
+            <value>Walls</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Time - On Prem</sourceValue>
+            </sourceValues>
+            <value>Time</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Time - Cloud</sourceValue>
+            </sourceValues>
+            <value>Intapp Time - Cloud</value>
+        </values>
+        <values>
+            <value>Open</value>
+        </values>
+        <values>
+            <value>Terms</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Records Management</sourceValue>
+            </sourceValues>
+            <value>Compliguard/LegalKEY</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>Opportunity.Associated_Contract_OSA__c</field>
+    </columns>
+    <columns>
+        <field>CLOSE_DATE</field>
+    </columns>
+    <columns>
+        <field>ACCOUNT_NAME</field>
+    </columns>
+    <columns>
+        <field>OPPORTUNITY_NAME</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Opportunity.Services_Hours_Total__c</field>
+    </columns>
+    <columns>
+        <field>Opportunity.Services_Amount_Total__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Opportunity.Services_Amount_Total__c.CONVERT</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>(1 AND (2 OR 4) AND 3) AND 5</booleanFilter>
+        <criteriaItems>
+            <column>STAGE_NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Closed Won</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Opportunity.Services_Hours_Total__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>TYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Legal - Services Change Request Internal</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Opportunity.Services_Amount_Total__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>USD 0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Opportunity.Fulfilling_Entity__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Intapp,Partner - Intapp paper,Partner - Intapp paper (blended)</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Opportunity.Services_Project_Type__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Opportunity.Product_Line__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>QTD Services Bookings Detail Q4 FY 22</name>
+    <params>
+        <name>open</name>
+        <value>all</value>
+    </params>
+    <params>
+        <name>probability</name>
+        <value>&gt;0</value>
+    </params>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Opportunity</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>OPPORTUNITY_NAME</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>CLOSE_DATE</dateColumn>
+        <endDate>2022-06-30</endDate>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2022-04-01</startDate>
+    </timeFrameFilter>
+</Report>

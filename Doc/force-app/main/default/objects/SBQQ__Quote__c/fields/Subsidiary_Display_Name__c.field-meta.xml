@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Subsidiary_Display_Name__c</fullName>
+    <description>Displays the Subsidiary name without the internal numeric prefix (e.g. &quot;Intapp Ireland Limited&quot; instead of &quot;40:Intapp Ireland Limited&quot;). Used in Conga Composer renewal templates. Created as part of BIZ-80323.</description>
+    <externalId>false</externalId>
+    <formula>IF(
+    CONTAINS(TEXT(Subsidiary__c), &quot;:&quot;),
+    IF(
+        CONTAINS(&quot;0123456789&quot;, LEFT(TRIM(MID(TEXT(Subsidiary__c), FIND(&quot;:&quot;, TEXT(Subsidiary__c)) + 1, LEN(TEXT(Subsidiary__c)))), 1)),
+        TRIM(MID(
+            TRIM(MID(TEXT(Subsidiary__c), FIND(&quot;:&quot;, TEXT(Subsidiary__c)) + 1, LEN(TEXT(Subsidiary__c)))),
+            FIND(&quot; &quot;, TRIM(MID(TEXT(Subsidiary__c), FIND(&quot;:&quot;, TEXT(Subsidiary__c)) + 1, LEN(TEXT(Subsidiary__c))))) + 1,
+            LEN(TEXT(Subsidiary__c))
+        )),
+        TRIM(MID(TEXT(Subsidiary__c), FIND(&quot;:&quot;, TEXT(Subsidiary__c)) + 1, LEN(TEXT(Subsidiary__c))))
+    ),
+    TEXT(Subsidiary__c)
+)</formula>
+    <label>Subsidiary Display Name</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

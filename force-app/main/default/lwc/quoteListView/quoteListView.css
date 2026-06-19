@@ -1,0 +1,200 @@
+/* Styles for quote list view */
+:host {
+    display: block;
+    min-height: 100vh;
+}
+
+/* Global dark mode styles that can penetrate shadow DOM */
+:host(.dark-mode),
+:host([class*="dark-mode"]) {
+    --slds-c-card-color-background: #1e293b;
+    --slds-c-card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+.quote-list-container {
+    min-height: 100vh;
+    padding: 1rem;
+    background-color: #ffffff;
+    transition: background-color 0.3s ease;
+}
+
+/* Dark Mode Toggle Button - Light Mode */
+.quote-list-container .dark-mode-btn {
+    background-color: #f3f4f6;
+    border-color: #d1d5db;
+    color: #6b7280;
+}
+
+.quote-list-container .dark-mode-btn:hover {
+    background-color: #e5e7eb;
+    color: #374151;
+}
+
+/* Dark Mode Styles */
+.quote-list-container.dark-mode {
+    background-color: #0f172a !important;
+    color: #f1f5f9;
+}
+
+.quote-list-container.dark-mode :host {
+    background-color: #0f172a !important;
+}
+
+/* Target lightning-card using CSS custom properties and direct styling */
+.quote-list-container.dark-mode lightning-card,
+.quote-list-container.dark-mode .quote-card {
+    --slds-c-card-color-background: #1e293b !important;
+    --slds-c-card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Use ::part() if available, otherwise use deep selectors */
+.quote-list-container.dark-mode lightning-card ::part(card) {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+}
+
+/* Target all card elements - using more aggressive selectors */
+.quote-list-container.dark-mode lightning-card .slds-card,
+.quote-list-container.dark-mode lightning-card > div,
+.quote-list-container.dark-mode lightning-card [class*="slds-card"],
+.quote-list-container.dark-mode .quote-card .slds-card,
+.quote-list-container.dark-mode .quote-card > div,
+.quote-list-container.dark-mode .quote-card [class*="slds-card"] {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+}
+
+.quote-list-container.dark-mode .quote-card-body {
+    background-color: #1e293b !important;
+}
+
+.quote-list-container.dark-mode .slds-card__header,
+.quote-list-container.dark-mode lightning-card .slds-card__header {
+    background-color: #1e293b !important;
+    border-bottom-color: #334155 !important;
+    padding: 1rem !important;
+}
+
+.quote-list-container.dark-mode .slds-card__header-title,
+.quote-list-container.dark-mode .slds-card__header-title h2,
+.quote-list-container.dark-mode .slds-card__header-title .slds-text-heading_small,
+.quote-list-container.dark-mode lightning-card .slds-card__header-title,
+.quote-list-container.dark-mode lightning-card .slds-card__header-title h2 {
+    color: #f1f5f9 !important;
+}
+
+.quote-list-container.dark-mode .slds-card__body,
+.quote-list-container.dark-mode lightning-card .slds-card__body {
+    background-color: #1e293b !important;
+}
+
+.quote-list-container.dark-mode .slds-m-around_medium {
+    background-color: #1e293b !important;
+}
+
+/* Table Styles - More specific selectors */
+.quote-list-container.dark-mode table.slds-table,
+.quote-list-container.dark-mode .slds-table {
+    background-color: #1e293b !important;
+    color: #f1f5f9 !important;
+    border-color: #334155 !important;
+}
+
+.quote-list-container.dark-mode table.slds-table thead th,
+.quote-list-container.dark-mode .slds-table thead th {
+    background-color: #334155 !important;
+    color: #e2e8f0 !important;
+    border-bottom-color: #475569 !important;
+    border-top-color: #475569 !important;
+    border-left-color: #475569 !important;
+    border-right-color: #475569 !important;
+}
+
+.quote-list-container.dark-mode table.slds-table tbody tr,
+.quote-list-container.dark-mode .slds-table tbody tr {
+    background-color: #1e293b !important;
+    border-bottom-color: #334155 !important;
+    color: #e2e8f0 !important;
+}
+
+.quote-list-container.dark-mode table.slds-table tbody tr:nth-child(even),
+.quote-list-container.dark-mode .slds-table tbody tr:nth-child(even) {
+    background-color: #1e293b !important;
+}
+
+.quote-list-container.dark-mode table.slds-table tbody tr:hover,
+.quote-list-container.dark-mode .slds-table tbody tr:hover {
+    background-color: #334155 !important;
+}
+
+.quote-list-container.dark-mode table.slds-table tbody td,
+.quote-list-container.dark-mode .slds-table tbody td {
+    background-color: transparent !important;
+    color: #e2e8f0 !important;
+    border-color: #334155 !important;
+}
+
+.quote-list-container.dark-mode table.slds-table tbody tr:nth-child(even) td,
+.quote-list-container.dark-mode .slds-table tbody tr:nth-child(even) td {
+    background-color: transparent !important;
+}
+
+.quote-list-container.dark-mode table.slds-table tbody td a,
+.quote-list-container.dark-mode .slds-table tbody td a {
+    color: #0ea5e9 !important;
+}
+
+.quote-list-container.dark-mode table.slds-table tbody td a:hover,
+.quote-list-container.dark-mode .slds-table tbody td a:hover {
+    color: #38bdf8 !important;
+    text-decoration: underline;
+}
+
+.quote-list-container.dark-mode .slds-text-heading_medium,
+.quote-list-container.dark-mode .slds-text-body_regular {
+    color: #94a3b8 !important;
+}
+
+.quote-list-container.dark-mode .slds-text-color_error {
+    color: #f87171 !important;
+}
+
+.quote-list-container.dark-mode .dark-mode-btn {
+    background-color: #334155 !important;
+    border-color: #475569 !important;
+    color: #fbbf24 !important;
+}
+
+.quote-list-container.dark-mode .dark-mode-btn:hover {
+    background-color: #475569 !important;
+    color: #fcd34d !important;
+}
+
+.quote-list-container.dark-mode lightning-button {
+    --slds-c-button-brand-color-background: #0d9488;
+    --slds-c-button-brand-color-border: #0d9488;
+    --slds-c-button-brand-color-background-hover: #14b8a6;
+    --slds-c-button-brand-color-border-hover: #14b8a6;
+}
+
+.quote-list-container.dark-mode .slds-table_bordered tbody td,
+.quote-list-container.dark-mode .slds-table_bordered tbody th,
+.quote-list-container.dark-mode table.slds-table_bordered tbody td,
+.quote-list-container.dark-mode table.slds-table_bordered tbody th {
+    border-color: #334155 !important;
+}
+
+.quote-list-container.dark-mode .slds-table_bordered thead th,
+.quote-list-container.dark-mode table.slds-table_bordered thead th {
+    border-color: #475569 !important;
+}
+
+.quote-list-container.dark-mode .slds-table_striped tbody tr:nth-child(even),
+.quote-list-container.dark-mode table.slds-table_striped tbody tr:nth-child(even) {
+    background-color: #1e293b !important;
+}
+
+.quote-list-container.dark-mode .slds-table_striped tbody tr:nth-child(odd),
+.quote-list-container.dark-mode table.slds-table_striped tbody tr:nth-child(odd) {
+    background-color: #1e293b !important;
+}

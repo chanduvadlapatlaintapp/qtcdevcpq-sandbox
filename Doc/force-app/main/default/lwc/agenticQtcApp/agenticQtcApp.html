@@ -1,0 +1,97 @@
+<template>
+    <div class={appContainerClass}>
+        <header class="app-header">
+            <div class="header-left">
+                <div class="logo-icon">QTC</div>
+                <div class="header-title">
+                    <h1>Agentic QTC</h1>
+                    <span class="header-subtitle">Quote-to-Contract Automation</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <template if:true={selectedAccountName}>
+                    <div class="breadcrumb">
+                        <span class="breadcrumb-item clickable" onclick={handleBackToAccounts}>{selectedAccountName}</span>
+                        <template if:true={selectedContractNumber}>
+                            <span class="breadcrumb-separator">&rsaquo;</span>
+                            <span class="breadcrumb-item clickable" onclick={handleBackToContracts}>{selectedContractNumber}</span>
+                        </template>
+                    </div>
+                </template>
+                <button class="dark-mode-toggle" onclick={handleToggleTheme} title={themeLabel}>
+                    <template if:true={isDarkMode}>
+                        <!-- Sun icon: shown in dark mode to switch to light -->
+                        <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </template>
+                    <template if:false={isDarkMode}>
+                        <!-- Crescent moon icon: shown in light mode to switch to dark -->
+                        <svg class="theme-icon" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </template>
+                    <span>{themeLabel}</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            <div class="content-area">
+                <template if:true={isAccountSearchPage}>
+                    <c-agentic-qtc-account-search
+                        onaccountselected={handleAccountSelected}>
+                    </c-agentic-qtc-account-search>
+                </template>
+
+                <template if:true={isOsaSelectorPage}>
+                    <c-agentic-qtc-osa-selector
+                        account-id={selectedAccountId}
+                        account-name={selectedAccountName}
+                        oncontractselected={handleContractSelected}
+                        onback={handleBackToAccounts}>
+                    </c-agentic-qtc-osa-selector>
+                </template>
+
+                <template if:true={isQuoteEditorPage}>
+                    <c-agentic-qtc-quote-editor
+                        contract-id={selectedContractId}
+                        contract-number={selectedContractNumber}
+                        account-id={selectedAccountId}
+                        account-name={selectedAccountName}
+                        existing-quote-id={selectedExistingQuoteId}
+                        initial-subscription-tcv={selectedSubscriptionTcv}
+                        currency-iso-code={selectedCurrencyIsoCode}
+                        onback={handleBackToContracts}
+                        onquoteloaded={handleQuoteLoaded}>
+                    </c-agentic-qtc-quote-editor>
+                </template>
+            </div>
+
+            <!-- VK: agenticQtcChatSidebar dependency removed from this deploy.
+                 Re-enable when the QTC Assistant feature is ready.
+            <template if:true={showChatSidebar}>
+                <c-agentic-qtc-chat-sidebar
+                    account-id={selectedAccountId}
+                    account-name={selectedAccountName}
+                    contract-id={selectedContractId}
+                    quote-id={currentQuoteId}
+                    current-page={currentPage}
+                    onnavigateaccount={handleChatAccountNav}
+                    onnavigatecontract={handleChatContractNav}
+                    onrefreshlines={handleRefreshLines}>
+                </c-agentic-qtc-chat-sidebar>
+            </template>
+            -->
+
+        </div>
+    </div>
+</template>

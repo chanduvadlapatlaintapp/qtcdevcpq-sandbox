@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OP4I_Sales_Segment_Number__c</fullName>
+    <description>Stores the number from OP4i Sales Segment Field. Created as part of BIZ-71373</description>
+    <externalId>false</externalId>
+    <formula>VALUE(LEFT(OP4I_Sales_Segment__c, 2))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>OP4I Sales Segment Number</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

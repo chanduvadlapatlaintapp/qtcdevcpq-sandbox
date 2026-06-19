@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_Entry_Simple__c</fullName>
+    <description>What Time Entry system does this account have?</description>
+    <externalId>false</externalId>
+    <formula>IF(
+  OR(
+    INCLUDES(Time_Entry__c, &quot;Aderant CMS&quot;),
+    INCLUDES(Time_Entry__c, &quot;Aderant Expert&quot;),
+    INCLUDES(Time_Entry__c, &quot;Aderant Expert 7&quot;),
+    INCLUDES(Time_Entry__c, &quot;Aderant Expert 8&quot;),
+    INCLUDES(Time_Entry__c, &quot;Aderant Expert (Unknown)&quot;),
+    INCLUDES(Time_Entry__c, &quot;Aderant (Unknown)&quot;),
+    INCLUDES(Time_Entry__c, &quot;Keystone Time Manager&quot;)),
+  &quot;Aderant&quot;,
+  IF(
+    OR(
+      INCLUDES(Time_Entry__c, &quot;Carpe Diem&quot;),
+      INCLUDES(Time_Entry__c,&quot;Tikit Carpe Diem 2014&quot;),
+      INCLUDES(Time_Entry__c,&quot;Tikit Carpe Diem Classic&quot;),
+      INCLUDES(Time_Entry__c,&quot;Tikit Carpe Diem Enterprise/TimeKM&quot;),
+      INCLUDES(Time_Entry__c, &quot;Time KM&quot;)),
+    &quot;Tikit&quot;,
+     IF(
+       OR(
+         INCLUDES(Time_Entry__c, &quot;Elite 3E&quot;),
+         INCLUDES(Time_Entry__c, &quot;Elite WebView 5.3+&quot;),
+         INCLUDES(Time_Entry__c, &quot;Elite Webview pre-5.3&quot;),
+         INCLUDES(Time_Entry__c, &quot;Elite (Unknown)&quot;),
+         INCLUDES(Time_Entry__c, &quot;Pilgrim Lawsoft Time Recording&quot;)),
+       &quot;Elite&quot;,
+         IF(
+           OR(
+             INCLUDES(Time_Entry__c, &quot;Intapp Time&quot;),
+             INCLUDES(Time_Entry__c, &quot;Time Builder&quot;),
+             INCLUDES(Time_Entry__c, &quot;DTE&quot;),
+             INCLUDES(Time_Entry__c, &quot;DTE Mobile&quot;),
+             INCLUDES(Time_Entry__c, &quot;DTE Axiom&quot;),
+             INCLUDES(Time_Entry__c, &quot;Rekoop&quot;)),
+           &quot;Intapp Time&quot;,
+           IF(
+             INCLUDES(Time_Entry__c, &quot;Peppermint Technology&quot;),
+             &quot;Peppermint Technology&quot;,
+             IF(
+               ISBLANK(Time_Entry__c),
+               &quot;Unknown&quot;,
+               &quot;Other&quot;))))))</formula>
+    <inlineHelpText>What Time Entry system does this account have?</inlineHelpText>
+    <label>Time Entry - Simple</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

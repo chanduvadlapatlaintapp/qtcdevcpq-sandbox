@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Metric__c</fullName>
+    <label>Metric</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Usage_Type__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Unique Logins</fullName>
+                <default>false</default>
+                <label>Unique Logins</label>
+            </value>
+            <value>
+                <fullName>Total Logins</fullName>
+                <default>false</default>
+                <label>Total Logins</label>
+            </value>
+            <value>
+                <fullName>Avg Logins per Timekeeper</fullName>
+                <default>false</default>
+                <label>Avg Logins per Timekeeper</label>
+            </value>
+            <value>
+                <fullName>Hours Spent in Web App</fullName>
+                <default>false</default>
+                <label>Hours Spent in Web App</label>
+            </value>
+            <value>
+                <fullName>Avg Web App Hrs per Timekeeper</fullName>
+                <default>false</default>
+                <label>Avg Web App Hrs per Timekeeper</label>
+            </value>
+            <value>
+                <fullName>% of Enabled Logging In</fullName>
+                <default>false</default>
+                <label>% of Enabled Logging In</label>
+            </value>
+            <value>
+                <fullName>Unique Timekeepers</fullName>
+                <default>false</default>
+                <label>Unique Timekeepers</label>
+            </value>
+            <value>
+                <fullName>Total Count</fullName>
+                <default>false</default>
+                <label>Total Count</label>
+            </value>
+            <value>
+                <fullName>Avg per Timekeeper</fullName>
+                <default>false</default>
+                <label>Avg per Timekeeper</label>
+            </value>
+            <value>
+                <fullName>Hrs Spent Reviewing Journal</fullName>
+                <default>false</default>
+                <label>Hrs Spent Reviewing Journal</label>
+            </value>
+            <value>
+                <fullName>Avg Hrs per Timekeeper</fullName>
+                <default>false</default>
+                <label>Avg Hrs per Timekeeper</label>
+            </value>
+            <value>
+                <fullName>% of Enabled Using Journal</fullName>
+                <default>false</default>
+                <label>% of Enabled Using Journal</label>
+            </value>
+            <value>
+                <fullName>Hrs Spent in Printable View</fullName>
+                <default>false</default>
+                <label>Hrs Spent in Printable View</label>
+            </value>
+            <value>
+                <fullName>% of Enabled Using Printable View</fullName>
+                <default>false</default>
+                <label>% of Enabled Using Printable View</label>
+            </value>
+            <value>
+                <fullName>% of Enabled Using QuickNotes</fullName>
+                <default>false</default>
+                <label>% of Enabled Using QuickNotes</label>
+            </value>
+            <value>
+                <fullName>Total Unique Timekeepers</fullName>
+                <default>false</default>
+                <label>Total Unique Timekeepers</label>
+            </value>
+            <value>
+                <fullName>% of Enabled Timekeepers</fullName>
+                <default>false</default>
+                <label>% of Enabled Timekeepers</label>
+            </value>
+            <value>
+                <fullName>Avg Logins per Assistant</fullName>
+                <default>false</default>
+                <label>Avg Logins per Assistant</label>
+            </value>
+            <value>
+                <fullName>Avg Web App Hrs per Assistant</fullName>
+                <default>false</default>
+                <label>Avg Web App Hrs per Assistant</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Timekeepers - Journal Usage</controllingFieldValue>
+            <controllingFieldValue>Timekeepers - Printable View Usage</controllingFieldValue>
+            <controllingFieldValue>Timekeepers - Quick Note Usage</controllingFieldValue>
+            <valueName>Unique Timekeepers</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Timekeepers - Journal Usage</controllingFieldValue>
+            <controllingFieldValue>Timekeepers - Printable View Usage</controllingFieldValue>
+            <controllingFieldValue>Timekeepers - Quick Note Usage</controllingFieldValue>
+            <valueName>Total Count</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Timekeepers - Journal Usage</controllingFieldValue>
+            <controllingFieldValue>Timekeepers - Printable View Usage</controllingFieldValue>
+            <controllingFieldValue>Timekeepers - Quick Note Usage</controllingFieldValue>
+            <valueName>Avg per Timekeeper</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Timekeepers - Journal Usage</controllingFieldValue>
+            <valueName>Hrs Spent Reviewing Journal</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Timekeepers - Journal Usage</controllingFieldValue>
+            <valueName>Avg Hrs per Timekeeper</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Timekeepers - Journal Usage</controllingFieldValue>
+            <valueName>% of Enabled Using Journal</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Timekeepers - Web Application Usage</controllingFieldValue>
+            <controllingFieldValue>Assistants - Web Application  Usage</controllingFieldValue>
+            <valueName>Unique Logins</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Timekeepers - Web Application Usage</controllingFieldValue>
+            <controllingFieldValue>Assistants - Web Application  Usage</controllingFieldValue>
+            <valueName>Total Logins</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Timekeepers - Web Application Usage</controllingFieldValue>
+            <valueName>Avg Logins per Timekeeper</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Timekeepers - Web Application Usage</controllingFieldValue>
+            <controllingFieldValue>Assistants - Web Application  Usage</controllingFieldValue>
+            <valueName>Hours Spent in Web App</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Timekeepers - Web Application Usage</controllingFieldValue>
+            <valueName>Avg Web App Hrs per Timekeeper</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Timekeepers - Web Application Usage</controllingFieldValue>
+            <valueName>% of Enabled Logging In</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Timekeepers - Printable View Usage</controllingFieldValue>
+            <valueName>Hrs Spent in Printable View</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Timekeepers - Printable View Usage</controllingFieldValue>
+            <valueName>% of Enabled Using Printable View</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Timekeepers - Quick Note Usage</controllingFieldValue>
+            <valueName>% of Enabled Using QuickNotes</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Total Timekeeper Usage</controllingFieldValue>
+            <valueName>Total Unique Timekeepers</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Total Timekeeper Usage</controllingFieldValue>
+            <valueName>% of Enabled Timekeepers</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Assistants - Web Application  Usage</controllingFieldValue>
+            <valueName>Avg Logins per Assistant</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Assistants - Web Application  Usage</controllingFieldValue>
+            <valueName>Avg Web App Hrs per Assistant</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

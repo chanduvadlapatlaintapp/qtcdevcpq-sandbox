@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Candidate_Sourcing__c</fullName>
+    <label>Candidate Sourcing Strategy</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Outsource to Professional Recruiter</fullName>
+                <default>false</default>
+                <label>Outsource to Professional Recruiter</label>
+            </value>
+            <value>
+                <fullName>Campus Recruiting</fullName>
+                <default>false</default>
+                <label>Campus Recruiting</label>
+            </value>
+            <value>
+                <fullName>Internal Recruiting</fullName>
+                <default>false</default>
+                <label>Internal Recruiting</label>
+            </value>
+            <value>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+                <label>External Referral</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

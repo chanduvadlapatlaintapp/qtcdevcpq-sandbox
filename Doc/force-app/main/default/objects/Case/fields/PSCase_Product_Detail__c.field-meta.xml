@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSCase_Product_Detail__c</fullName>
+    <label>Product Detail</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Wall Builder Standard</fullName>
+                <default>false</default>
+                <label>Wall Builder Standard</label>
+            </value>
+            <value>
+                <fullName>Wall Builder for Memo Management</fullName>
+                <default>false</default>
+                <label>Wall Builder for Memo Management</label>
+            </value>
+            <value>
+                <fullName>Wall Builder for DM Security</fullName>
+                <default>false</default>
+                <label>Wall Builder for DM Security</label>
+            </value>
+            <value>
+                <fullName>Wall Builder Upgrade</fullName>
+                <default>false</default>
+                <label>Wall Builder Upgrade</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

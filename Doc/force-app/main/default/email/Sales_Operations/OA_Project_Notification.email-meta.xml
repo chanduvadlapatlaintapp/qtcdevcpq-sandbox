@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Template to send when OA Project is created</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>OA Project Created</name>
+    <style>none</style>
+    <subject>Project {!Project__c.Name} has been created</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

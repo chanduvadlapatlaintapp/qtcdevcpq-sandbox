@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Term_Category__c</fullName>
+    <description>This enables us to group the types of terms, e.g., Master Term, or Product Term.</description>
+    <inlineHelpText>This enables us to group the types of terms, e.g., Master Term, or Product Term.</inlineHelpText>
+    <label>Term Category</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Master Term</fullName>
+                <default>false</default>
+                <label>Master Term</label>
+            </value>
+            <value>
+                <fullName>After Hours Support</fullName>
+                <default>false</default>
+                <label>After Hours Support</label>
+            </value>
+            <value>
+                <fullName>Boomi</fullName>
+                <default>false</default>
+                <label>Boomi</label>
+            </value>
+            <value>
+                <fullName>D&amp;B</fullName>
+                <default>false</default>
+                <label>D&amp;B</label>
+            </value>
+            <value>
+                <fullName>MSSA related</fullName>
+                <default>false</default>
+                <label>MSSA related</label>
+            </value>
+            <value>
+                <fullName>Initial Term</fullName>
+                <default>false</default>
+                <label>Initial Term</label>
+            </value>
+            <value>
+                <fullName>Old Payment Terms - Deactivate</fullName>
+                <default>false</default>
+                <label>Old Payment Terms - Deactivate</label>
+            </value>
+            <value>
+                <fullName>Prime T&amp;C Attachment Term</fullName>
+                <default>false</default>
+                <label>Prime T&amp;C Attachment Term</label>
+            </value>
+            <value>
+                <fullName>NPI</fullName>
+                <default>false</default>
+                <label>NPI</label>
+            </value>
+            <value>
+                <fullName>Payment Terms</fullName>
+                <default>false</default>
+                <label>Payment Terms</label>
+            </value>
+            <value>
+                <fullName>Product</fullName>
+                <default>false</default>
+                <label>Product</label>
+            </value>
+            <value>
+                <fullName>ROR</fullName>
+                <default>false</default>
+                <label>ROR</label>
+            </value>
+            <value>
+                <fullName>Services Term FF</fullName>
+                <default>false</default>
+                <label>Services Term FF</label>
+            </value>
+            <value>
+                <fullName>SOW</fullName>
+                <default>false</default>
+                <label>SOW</label>
+            </value>
+            <value>
+                <fullName>Supersession</fullName>
+                <default>false</default>
+                <label>Supersession</label>
+            </value>
+            <value>
+                <fullName>Tax</fullName>
+                <default>false</default>
+                <label>Tax</label>
+            </value>
+            <value>
+                <fullName>Trial</fullName>
+                <default>false</default>
+                <label>Trial</label>
+            </value>
+            <value>
+                <fullName>Premium Support</fullName>
+                <default>false</default>
+                <label>Premium Support</label>
+            </value>
+            <value>
+                <fullName>Co-Marketing Agreement</fullName>
+                <default>false</default>
+                <label>Co-Marketing Agreement</label>
+            </value>
+            <value>
+                <fullName>Services Effective Date</fullName>
+                <default>false</default>
+                <label>Services Effective Date</label>
+            </value>
+            <value>
+                <fullName>Termination for Convenience</fullName>
+                <default>false</default>
+                <label>Termination for Convenience</label>
+            </value>
+            <value>
+                <fullName>Co-Marketing</fullName>
+                <default>false</default>
+                <label>Co-Marketing</label>
+            </value>
+            <value>
+                <fullName>Master Agreement</fullName>
+                <default>false</default>
+                <label>Master Agreement</label>
+            </value>
+            <value>
+                <fullName>Future Pricing Commitment</fullName>
+                <default>false</default>
+                <label>Future Pricing Commitment</label>
+            </value>
+            <value>
+                <fullName>Right of Return</fullName>
+                <default>false</default>
+                <label>Right of Return</label>
+            </value>
+            <value>
+                <fullName>SFA Cap</fullName>
+                <default>false</default>
+                <label>SFA Cap</label>
+            </value>
+            <value>
+                <fullName>Software Payment Terms</fullName>
+                <default>false</default>
+                <label>Software Payment Terms</label>
+            </value>
+            <value>
+                <fullName>Service Payment Terms</fullName>
+                <default>false</default>
+                <label>Service Payment Terms</label>
+            </value>
+            <value>
+                <fullName>Twilio &amp; BEE</fullName>
+                <default>false</default>
+                <label>Twilio &amp; BEE</label>
+            </value>
+            <value>
+                <fullName>After Hours</fullName>
+                <default>false</default>
+                <label>After Hours</label>
+            </value>
+            <value>
+                <fullName>S&amp;P</fullName>
+                <default>false</default>
+                <label>S&amp;P</label>
+            </value>
+            <value>
+                <fullName>Cherre</fullName>
+                <default>false</default>
+                <label>Cherre</label>
+            </value>
+            <value>
+                <fullName>Qorus</fullName>
+                <default>false</default>
+                <label>Qorus</label>
+            </value>
+            <value>
+                <fullName>Prime</fullName>
+                <default>false</default>
+                <label>Prime</label>
+            </value>
+            <value>
+                <fullName>Services</fullName>
+                <default>false</default>
+                <label>Services</label>
+            </value>
+            <value>
+                <fullName>Named User</fullName>
+                <default>false</default>
+                <label>Named User</label>
+            </value>
+            <value>
+                <fullName>DealCloud Pre-v11</fullName>
+                <default>false</default>
+                <label>DealCloud Pre-v11</label>
+            </value>
+            <value>
+                <fullName>Monthly/ Unit Price</fullName>
+                <default>false</default>
+                <label>Monthly/ Unit Price</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

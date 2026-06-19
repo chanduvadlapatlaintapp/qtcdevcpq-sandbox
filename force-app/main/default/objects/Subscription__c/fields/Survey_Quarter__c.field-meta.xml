@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Survey_Quarter__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(Earliest_Term_Start_Date_Quarter__c=1, 3, 
+IF(Earliest_Term_Start_Date_Quarter__c=2, 4, 
+IF(Earliest_Term_Start_Date_Quarter__c=3, 1, 
+IF(Earliest_Term_Start_Date_Quarter__c=4, 2, 0
+))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Survey Quarter</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

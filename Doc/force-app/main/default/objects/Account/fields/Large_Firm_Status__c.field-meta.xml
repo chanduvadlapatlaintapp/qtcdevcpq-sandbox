@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Large_Firm_Status__c</fullName>
+    <description>Firms ranked 1-330 are large. Firms ranked 330-1300 are mid-size. Firms smaller than 1300 are Outside Target.</description>
+    <externalId>false</externalId>
+    <formula>IF(
+  NOT(ISPICKVAL(Industry, &quot;Legal&quot;)),
+  &quot;Non Law Firm&quot;,
+  IF(
+    ISBLANK(Intapp_Master_Ranking__c),
+    &quot;Outside Intapp 900&quot;,
+    IF(
+      Intapp_Master_Ranking__c &lt;= 330,
+      &quot;Large Firm (#1-330)&quot;,
+      &quot;Mid-size Firm(#331-900)&quot;
+    )
+  )
+)</formula>
+    <inlineHelpText>Firms ranked 1-330 are large. Firms ranked 330-1300 are mid-size. Firms smaller than 1300 are Outside Target.</inlineHelpText>
+    <label>Large Firm Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

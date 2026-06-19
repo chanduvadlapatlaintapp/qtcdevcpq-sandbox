@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>Account.Intapp_Master_Ranking__c</field>
+    </columns>
+    <columns>
+        <field>ADDRESS1_CITY</field>
+    </columns>
+    <columns>
+        <field>TYPE</field>
+    </columns>
+    <columns>
+        <field>Account.DMSPortfolio__c</field>
+    </columns>
+    <columns>
+        <field>Account.Intake__c</field>
+    </columns>
+    <columns>
+        <field>Account.Conflicts__c</field>
+    </columns>
+    <columns>
+        <field>Account.WorkflowPortfolio__c</field>
+    </columns>
+    <columns>
+        <field>Account.Records_ManagementPortfolio__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>all legalkey and tfg clients to convert to open</description>
+    <filter>
+        <booleanFilter>(1 or 2 or 3 or 4 or 5)</booleanFilter>
+        <criteriaItems>
+            <column>Account.Conflicts__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>includes</operator>
+            <value>LegalKEY Conflicts</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Records_ManagementPortfolio__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>includes</operator>
+            <value>LegalKEY Records</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Conflicts__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Compliguard Conflicts</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Intake__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Frayman Compliflow NBI</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Intake__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>LegalKey NBI</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>LegalKEY TFG Targets List</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountList</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>ADDRESS1_CITY</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <endDate>2007-12-31</endDate>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2000-01-01</startDate>
+    </timeFrameFilter>
+</Report>

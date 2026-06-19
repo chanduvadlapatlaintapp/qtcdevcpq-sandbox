@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>CUST_ID</field>
+    </columns>
+    <columns>
+        <field>SBQQ__Quote__c.Quote_Stage__c</field>
+    </columns>
+    <columns>
+        <field>SBQQ__Quote__c.Opportunity_Stage__c</field>
+    </columns>
+    <columns>
+        <field>SBQQ__Quote__c.OSA_Auto_Number__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Integration Failures - Quotes</description>
+    <filter>
+        <criteriaItems>
+            <column>SBQQ__Quote__c.OP4I_Error__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>SBQQ__Quote__c.OP4I_Error__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Integration Failures - Quotes</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$SBQQ__Quote__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>SBQQ__Quote__c.Booking_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

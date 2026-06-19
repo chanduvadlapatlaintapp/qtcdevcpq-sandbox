@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>SBQQ__Quote__c</entityName>
+    <fieldName>Quote_Stage__c</fieldName>
+    <masterLabel>Draft Quote Stage Path</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>Bill_To_Account__c</fieldNames>
+        <fieldNames>Ship_To_Account__c</fieldNames>
+        <fieldNames>Software_Payment_Terms__c</fieldNames>
+        <fieldNames>Bill_To_Address__c</fieldNames>
+        <fieldNames>Ship_To_Address__c</fieldNames>
+        <picklistValueName>Configure Products</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Subsidiary__c</fieldNames>
+        <fieldNames>OSA_Signature_Date__c</fieldNames>
+        <fieldNames>Booking_Date__c</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;In order to update the &lt;/span&gt;&lt;strong style=&quot;font-size: 13px;&quot;&gt;Quote Stage&lt;/strong&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt; to &lt;/span&gt;&lt;strong style=&quot;font-size: 13px;&quot;&gt;Contract Executed&lt;/strong&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;, following fields are mandatory to be filled in&lt;/span&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Subsidiary&lt;/li&gt;&lt;li&gt;OSA Signature Date&lt;/li&gt;&lt;li&gt;Booking Date&lt;/li&gt;&lt;li&gt;Software Delivery Contact&lt;/li&gt;&lt;li&gt;Invoicing Contact&lt;/li&gt;&lt;/ol&gt;</info>
+        <picklistValueName>Contract Executed</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Services_Terms__c</fieldNames>
+        <fieldNames>SOW_Status__c</fieldNames>
+        <fieldNames>Bill_To_Address__c</fieldNames>
+        <fieldNames>Ship_To_Address__c</fieldNames>
+        <info>&lt;p&gt;In order to update the &lt;strong style=&quot;font-size: 13px;&quot;&gt;Quote Stage&lt;/strong&gt; to &lt;strong style=&quot;font-size: 13px;&quot;&gt;OSA&lt;/strong&gt;, following fields are mandatory to be filled in:&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Contract Master Terms&lt;/li&gt;&lt;li&gt;Software Billing Frequency&lt;/li&gt;&lt;li&gt;Software Days Payment Due (Next x,1st Yr)&lt;/li&gt;&lt;li&gt;Bill-to Address&lt;/li&gt;&lt;li&gt;Ship-to Address&lt;/li&gt;&lt;li&gt;Services Payment terms&lt;/li&gt;&lt;li&gt;SOW Status&lt;/li&gt;&lt;li&gt;If services product are added make sure its Psops approved&lt;/li&gt;&lt;/ol&gt;</info>
+        <picklistValueName>Finalize OSA</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>Draft_Quote</recordTypeName>
+</PathAssistant>

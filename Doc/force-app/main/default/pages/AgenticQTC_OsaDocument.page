@@ -1,0 +1,590 @@
+<!--
+    @description Visualforce page rendered as PDF for the native Salesforce OSA generation.
+                 Layout exactly mirrors the Conga Composer "Amendment to Order and Sale Agreement"
+                 template used by the Intapp field team.
+
+                 Page structure (matches Conga template):
+                   Page 1
+                   ├── Header: Intapp logo + "Amendment to Order and Sale Agreement" title
+                   ├── 3-column address block: Intapp | Customer: | Bill To:
+                   ├── Terms grid: 3-row × 2-col, "Label: Value" inline per Conga
+                   ├── Subscription table — lines grouped by Year 1, Year 2, … with subtotals
+                   ├── Grand total row
+                   ├── Disclaimer paragraph
+                   └── "Terms and Conditions:" section header + body
+                   Page 2
+                   └── "Agreed to by:" — customer-only signature block (Conga style)
+                   All pages
+                   └── Fixed footer: "Amendment to OSA #XXXXX  AccountName  Integration Appliance (US)"
+
+                 Appendix (optional, if related docs were uploaded in Step 1)
+                   └── Per-document metadata rows
+
+                 Rendering engine: Flying Saucer (iText-based) — supports CSS 2.1 only.
+                 All layout uses table-based positioning for cross-platform reliability.
+
+    @controller  AgenticQTC_NativePdfController
+    @author      AgenticQTC Team
+    @date        2026-05-22
+    @jira        BIZ-81419
+-->
+<apex:page controller="AgenticQTC_NativePdfController"
+           renderAs="pdf"
+           showHeader="false"
+           sidebar="false"
+           standardStylesheets="false"
+           applyHtmlTag="true"
+           applyBodyTag="false"
+           contentType="application/pdf#OSA_Document.pdf">
+
+<head>
+<style>
+    /* ── Page layout ──────────────────────────────────────────────────────── */
+    @page {
+        size: letter portrait;
+        margin: 0.6in 0.65in 0.9in 0.65in;
+    }
+    /* Tighter top margin on first page to accommodate the logo row */
+    @page :first {
+        margin-top: 0.45in;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 9.5pt;
+        color: #1a1a1a;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* ── Fixed footer — repeats on every page ──────────────────────────── */
+    .page-footer {
+        position: fixed;
+        bottom: -0.65in;
+        left: 0;
+        right: 0;
+        font-size: 7pt;
+        color: #888888;
+        text-align: center;
+        border-top: 0.5pt solid #cccccc;
+        padding-top: 4pt;
+    }
+
+    /* ── Intapp logo area ─────────────────────────────────────────────── */
+    .logo-img {
+        height: 32pt;
+        display: block;
+    }
+
+    /* ── Document title (right-aligned next to logo) ──────────────────── */
+    .doc-title-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 12pt;
+    }
+    .doc-title-table td {
+        vertical-align: middle;
+        padding: 0;
+    }
+    .doc-title-text {
+        font-size: 14pt;
+        font-weight: bold;
+        color: #1b2a4a;
+        text-align: right;
+        white-space: nowrap;
+    }
+
+    /* ── Thin navy rule under the header ──────────────────────────────── */
+    .header-rule {
+        border: none;
+        border-top: 1.5pt solid #1b2a4a;
+        margin: 0 0 12pt 0;
+    }
+
+    /* ── 3-column address block ───────────────────────────────────────── */
+    .addr-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 16pt;
+    }
+    .addr-table td {
+        width: 33.33%;
+        vertical-align: top;
+        padding: 0 10pt 0 0;
+        font-size: 8.5pt;
+        line-height: 1.55;
+    }
+    /* Conga style: bold mixed-case label, no all-caps, no letter-spacing */
+    .addr-col-head {
+        font-size: 8.5pt;
+        font-weight: bold;
+        color: #1a1a1a;
+        margin-bottom: 3pt;
+        display: block;
+    }
+    .addr-company {
+        font-weight: bold;
+        font-size: 9pt;
+    }
+
+    /* ── Terms grid — 3 rows × 2 cols, "Label: Value" inline (Conga style) ── */
+    .terms-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 16pt;
+    }
+    .terms-table td {
+        border: 0.5pt solid #bfc9d9;
+        padding: 4pt 8pt;
+        font-size: 8.5pt;
+        width: 50%;
+    }
+    /* Bold inline label — e.g. "Date:" */
+    .terms-label {
+        font-weight: bold;
+        color: #1a1a1a;
+    }
+    /* Plain value after the label */
+    .terms-value {
+        color: #1a1a1a;
+    }
+
+    /* ── Subscription table ───────────────────────────────────────────── */
+    .sub-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 0;
+        font-size: 8.5pt;
+    }
+    .sub-table th {
+        background-color: #1b2a4a;
+        color: #ffffff;
+        font-weight: bold;
+        padding: 5pt 7pt;
+        border: 0.5pt solid #1b2a4a;
+        text-align: left;
+        font-size: 8pt;
+    }
+    .sub-table th.right  { text-align: right; }
+    .sub-table th.center { text-align: center; }
+    .sub-table td {
+        padding: 4pt 7pt;
+        border: 0.5pt solid #d0dae6;
+        vertical-align: top;
+    }
+    .sub-table tr.even td { background-color: #f5f8fc; }
+    .sub-table td.right   { text-align: right; }
+    .sub-table td.center  { text-align: center; }
+
+    /* Year subtotal row */
+    .sub-table tr.year-subtotal td {
+        background-color: #dce9f5;
+        font-weight: bold;
+        font-size: 8.5pt;
+        color: #1b2a4a;
+        border-top: 1pt solid #1b2a4a;
+        border-bottom: 0.5pt solid #aabcd4;
+    }
+
+    /* Grand total row */
+    .sub-table tr.grand-total td {
+        background-color: #1b2a4a;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 9pt;
+        border-top: 1.5pt solid #0d1a2e;
+    }
+
+    /* ── Disclaimer + Terms and Conditions section ──────────────────── */
+    .disclaimer {
+        font-size: 7.5pt;
+        color: #555555;
+        line-height: 1.5;
+        margin: 14pt 0 10pt 0;
+    }
+    .tc-heading {
+        font-size: 10pt;
+        font-weight: bold;
+        color: #1b2a4a;
+        margin: 0 0 6pt 0;
+        border-bottom: 1pt solid #1b2a4a;
+        padding-bottom: 3pt;
+    }
+
+    /* ── Page break ───────────────────────────────────────────────────── */
+    .page-break { page-break-before: always; }
+
+    /* ── Signature block — Conga style: customer-only, form rows ─────── */
+    .sig-heading {
+        font-size: 11pt;
+        font-weight: bold;
+        color: #1b2a4a;
+        margin: 0 0 10pt 0;
+    }
+    .sig-party-name {
+        font-size: 9pt;
+        font-weight: bold;
+        color: #1b2a4a;
+        margin-bottom: 4pt;
+        display: block;
+    }
+    /* Form-row table: label (narrow) + underline (stretches) on same row */
+    .sig-form-table {
+        width: 58%;
+        border-collapse: collapse;
+        margin-top: 6pt;
+    }
+    .sig-form-table tr {
+        height: 22pt;
+    }
+    .sig-form-label {
+        font-size: 8pt;
+        color: #444444;
+        white-space: nowrap;
+        padding-right: 8pt;
+        vertical-align: bottom;
+        padding-bottom: 2pt;
+    }
+    .sig-form-line {
+        border-bottom: 0.75pt solid #333333;
+        vertical-align: bottom;
+    }
+    /* Effective Date row — no underline, just text */
+    .sig-effective-row td {
+        padding-top: 4pt;
+        vertical-align: bottom;
+        border-bottom: none;
+    }
+    .sig-effective-value {
+        font-size: 8pt;
+        color: #444444;
+    }
+
+    /* ── Appendix ─────────────────────────────────────────────────────── */
+    .appendix-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 8.5pt;
+        margin-top: 8pt;
+    }
+    .appendix-table th {
+        background-color: #1b2a4a;
+        color: #ffffff;
+        padding: 4pt 7pt;
+        text-align: left;
+        font-size: 8pt;
+    }
+    .appendix-table td {
+        padding: 4pt 7pt;
+        border: 0.5pt solid #d0dae6;
+    }
+    .appendix-table tr.even td { background-color: #f5f8fc; }
+
+    /* ── Cover page (sourced from SBQQ "OSA First Page" template) ────────── */
+    /* Inline font-size values from the SBQQ markup are px-in-source but resolved
+       to pt by the controller (loadCoverPage / resolveQuoteTokens), so they drive
+       the heading hierarchy on their own and don't need !important overrides. */
+    .cover-page { font-size: 9pt; line-height: 1.25; }
+    .cover-page p { margin: 0 0 3pt 0; }
+    .cover-page ol, .cover-page ul { margin: 2pt 0 6pt 18pt; padding: 0; }
+    .cover-page li { margin: 1pt 0; }
+    .cover-page li span { display: inline; margin: 0; }
+    .cover-page table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 2pt 0 8pt 0;
+        page-break-inside: avoid;
+    }
+    .cover-page td, .cover-page th {
+        border: 0.5pt solid #333;
+        padding: 3pt 6pt;
+        vertical-align: middle;
+        /* Override inline white-space:nowrap on the tax-exemption row that
+           otherwise expands the question cell past its 50% width. */
+        white-space: normal !important;
+    }
+    /* Cells use empty <p>&#160;</p> for vertical padding — keep them, but don't
+       let .cover-page p's outer margin double the cell height. */
+    .cover-page td p { margin: 0; }
+    .cover-page-break { page-break-after: always; }
+</style>
+</head>
+
+<body>
+
+    <!-- ── Fixed footer (appears on every page; hidden in cover-only mode) ──── -->
+    <apex:outputPanel rendered="{!NOT(coverOnly)}" layout="block" styleClass="page-footer">
+        <apex:outputText value="{!footerText}" />
+    </apex:outputPanel>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- COVER PAGE — Instructions + Contact / Delivery / Invoicing sections -->
+    <!-- Source: SBQQ Quote Template "OSA First Page" → TemplateContent      -->
+    <!-- records, rendered via AgenticQTC_NativePdfController.loadCoverPage  -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <apex:outputPanel rendered="{!hasCoverPage}" layout="block" styleClass="cover-page">
+        <apex:repeat value="{!coverHtmlBlocks}" var="block">
+            <apex:outputText value="{!block}" escape="false" />
+        </apex:repeat>
+        <!-- Page break is only needed when the OSA body follows. In cover-only
+             renders (Conga prepend path), the cover IS the document. -->
+        <apex:outputPanel rendered="{!NOT(coverOnly)}" layout="block" styleClass="cover-page-break"/>
+    </apex:outputPanel>
+
+    <apex:outputPanel rendered="{!NOT(coverOnly)}">
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- PAGE 1                                                              -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+
+    <!-- ── Header: logo (left) + document title (right) ────────────────── -->
+    <table class="doc-title-table">
+        <tr>
+            <td style="width:40%">
+                <apex:image url="{!$Resource.intapp_logo}" styleClass="logo-img"
+                            alt="Intapp" />
+            </td>
+            <td>
+                <div class="doc-title-text">Amendment to Order and Sale Agreement</div>
+            </td>
+        </tr>
+    </table>
+
+    <hr class="header-rule" />
+
+    <!-- ── 3-column address block ───────────────────────────────────────── -->
+    <table class="addr-table">
+        <tr>
+            <!-- Col 1: Intapp "From" address — no column header (Conga style) -->
+            <td>
+                <div class="addr-company">{!intappAddrLine1}</div>
+                <div>{!intappAddrLine2}</div>
+                <div>{!intappAddrLine3}</div>
+                <div>{!intappAddrLine4}</div>
+                <div>{!intappAddrLine5}</div>
+                <div>{!intappAddrLine6}</div>
+                <div>{!intappAddrLine7}</div>
+            </td>
+
+            <!-- Col 2: Customer billing address -->
+            <td>
+                <span class="addr-col-head">Customer:</span>
+                <div class="addr-company"><apex:outputText value="{!accountName}" /></div>
+                <apex:outputPanel rendered="{!NOT(ISBLANK(billingStreet))}">
+                    <div><apex:outputText value="{!billingStreet}" /></div>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!NOT(ISBLANK(billingCityLine))}">
+                    <div><apex:outputText value="{!billingCityLine}" /></div>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!NOT(ISBLANK(billingCountry))}">
+                    <div><apex:outputText value="{!billingCountry}" /></div>
+                </apex:outputPanel>
+            </td>
+
+            <!-- Col 3: Bill To -->
+            <td>
+                <span class="addr-col-head">Bill To:</span>
+                <div class="addr-company"><apex:outputText value="{!accountName}" /></div>
+                <apex:outputPanel rendered="{!NOT(ISBLANK(billingStreet))}">
+                    <div><apex:outputText value="{!billingStreet}" /></div>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!NOT(ISBLANK(billingCityLine))}">
+                    <div><apex:outputText value="{!billingCityLine}" /></div>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!NOT(ISBLANK(billingCountry))}">
+                    <div><apex:outputText value="{!billingCountry}" /></div>
+                </apex:outputPanel>
+            </td>
+        </tr>
+    </table>
+
+    <!-- ── Terms grid — 3 rows × 2 cols — "Label: Value" inline (Conga) ── -->
+    <table class="terms-table">
+        <tr>
+            <td>
+                <span class="terms-label">Date:</span>&#160;<span class="terms-value"><apex:outputText value="{!documentDate}" /></span>
+            </td>
+            <td>
+                <span class="terms-label">Quoted In:</span>&#160;<span class="terms-value"><apex:outputText value="{!currencyCode}" /></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="terms-label">Amendment to OSA No.:</span>&#160;<span class="terms-value"><apex:outputText value="{!osaNumber}" /></span>
+            </td>
+            <td>
+                <span class="terms-label">Expires On:</span>&#160;<span class="terms-value"><apex:outputText value="{!expiresFormatted}" /></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="terms-label">Amendment No.:</span>&#160;<span class="terms-value"><apex:outputText value="{!amendmentNumber}" /></span>
+            </td>
+            <td>
+                <span class="terms-label">Version:</span>&#160;<span class="terms-value"><apex:outputText value="{!versionNumber}" /></span>
+            </td>
+        </tr>
+    </table>
+
+    <!-- ── Subscription heading ─────────────────────────────────────────── -->
+    <p style="font-size:9.5pt; font-weight:bold; color:#1a1a1a; margin:0 0 5pt 0">Subscription:</p>
+
+    <!-- ── Subscription table ───────────────────────────────────────────── -->
+    <table class="sub-table">
+        <thead>
+            <tr>
+                <th style="width:11%">Product Code</th>
+                <th style="width:34%">Product Name</th>
+                <th style="width:12%">Support Level</th>
+                <th style="width:12%">Start Date</th>
+                <th style="width:12%">End Date</th>
+                <th class="right" style="width:19%">Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <apex:repeat value="{!yearGroups}" var="group">
+                <apex:repeat value="{!group.lines}" var="line">
+                    <tr class="{!line.rowCssClass}">
+                        <td>
+                            <apex:outputText rendered="{!line.hasProductCode}" value="{!line.productCode}" />
+                        </td>
+                        <td><apex:outputText value="{!line.productName}" /></td>
+                        <td>
+                            <apex:outputText rendered="{!line.hasSupportLevel}" value="{!line.supportLevel}" />
+                        </td>
+                        <td>
+                            <apex:outputText rendered="{!line.hasStartDate}" value="{!line.startDateFormatted}" />
+                        </td>
+                        <td>
+                            <apex:outputText rendered="{!line.hasEndDate}" value="{!line.endDateFormatted}" />
+                        </td>
+                        <td class="right">
+                            <apex:outputText value="{0, number, #,##0}">
+                                <apex:param value="{!line.quantity}" />
+                            </apex:outputText>
+                            <apex:outputPanel rendered="{!line.hasQuantityUnit}">
+                                &#160;<apex:outputText value="{!line.quantityUnit}" />
+                            </apex:outputPanel>
+                        </td>
+                    </tr>
+                </apex:repeat>
+
+                <!-- Year subtotal row -->
+                <tr class="year-subtotal">
+                    <td colspan="5" style="text-align:right; padding-right:10pt">
+                        <apex:outputText value="{!group.label}" />:
+                    </td>
+                    <td style="text-align:right">
+                        <apex:outputText value="{!group.subtotalFormatted}" />
+                    </td>
+                </tr>
+            </apex:repeat>
+
+            <!-- Grand total row -->
+            <tr class="grand-total">
+                <td colspan="5" style="text-align:right; padding-right:10pt">
+                    Total Subscription Fees:
+                </td>
+                <td style="text-align:right">
+                    <apex:outputText value="{!grandTotalFormatted}" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ── Disclaimer paragraph ─────────────────────────────────────────── -->
+    <p class="disclaimer">
+        The Monthly/Unit Price shown above has been rounded to two decimal places for display
+        purposes. As many as eight decimal places may be present in the actual price. The totals
+        for this order were calculated using the actual price, rather than the Monthly/Unit Price
+        displayed above, and are the true and binding totals for this order.
+    </p>
+
+    <!-- ── Terms &amp; Conditions section header ────────────────────────── -->
+    <p class="tc-heading">Terms &amp; Conditions:</p>
+    <p style="font-size:8pt; color:#444444; line-height:1.5; margin:0 0 8pt 0">
+        This amendment is governed by and incorporates by reference the terms and conditions
+        of the Order and Sale Agreement between Integration Appliance, Inc. and&#160;<apex:outputText value="{!accountName}" />, including all schedules and exhibits
+        thereto. In the event of any conflict between this amendment and the OSA, this
+        amendment shall control with respect to the subject matter hereof.
+    </p>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- PAGE 2: Signature block — customer-only, Conga form style           -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <div class="page-break"></div>
+
+    <p class="sig-heading">Agreed to by:</p>
+
+    <span class="sig-party-name"><apex:outputText value="{!accountName}" /></span>
+
+    <!-- Form-row table: label (left, no-wrap) + underline (right, stretches) -->
+    <table class="sig-form-table">
+        <tr>
+            <td class="sig-form-label">Authorized Signature</td>
+            <td class="sig-form-line"></td>
+        </tr>
+        <tr>
+            <td class="sig-form-label">Name</td>
+            <td class="sig-form-line"></td>
+        </tr>
+        <tr>
+            <td class="sig-form-label">Title</td>
+            <td class="sig-form-line"></td>
+        </tr>
+        <tr>
+            <td class="sig-form-label">Signature Date</td>
+            <td class="sig-form-line"></td>
+        </tr>
+        <!-- Effective Date — pre-filled text, no underline (matches Conga) -->
+        <tr class="sig-effective-row">
+            <td class="sig-form-label">Effective Date</td>
+            <td class="sig-effective-value">&#160;<apex:outputText value="{!documentDate}" /></td>
+        </tr>
+    </table>
+
+    <!-- ── Purchase Order notice ────────────────────────────────────────── -->
+    <p style="font-size:8pt; color:#555555; margin-top:20pt">
+        If a Purchase Order is required, please provide the PO number to your Intapp
+        representative prior to execution. The absence of a PO number does not affect the
+        binding nature of this amendment.
+    </p>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- APPENDIX (optional — only rendered when related docs exist)         -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <apex:outputPanel rendered="{!hasRelatedDocs}">
+        <div class="page-break"></div>
+        <p class="sig-heading" style="margin-bottom:8pt">Appendix — Additional Documents</p>
+        <p style="font-size:8pt; color:#555555; margin:0 0 10pt 0">
+            The following documents were uploaded by the account team and form part of this
+            amendment package. Full copies are attached separately in Salesforce Files.
+        </p>
+        <table class="appendix-table">
+            <thead>
+                <tr>
+                    <th style="width:40%">Document Name</th>
+                    <th style="width:20%">Type</th>
+                    <th style="width:15%">File Format</th>
+                    <th style="width:15%">Size (KB)</th>
+                    <th style="width:10%">Version ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <apex:repeat value="{!relatedDocs}" var="doc">
+                    <tr>
+                        <td><apex:outputText value="{!doc.name}" /></td>
+                        <td><apex:outputText value="{!doc.documentType}" /></td>
+                        <td><apex:outputText value="{!doc.fileType}" /></td>
+                        <td><apex:outputText value="{!doc.fileSizeKb}" /></td>
+                        <td style="font-size:7pt"><apex:outputText value="{!doc.versionId}" /></td>
+                    </tr>
+                </apex:repeat>
+            </tbody>
+        </table>
+    </apex:outputPanel>
+
+    </apex:outputPanel> <!-- end NOT(coverOnly) wrapper around OSA body -->
+
+</body>
+</apex:page>

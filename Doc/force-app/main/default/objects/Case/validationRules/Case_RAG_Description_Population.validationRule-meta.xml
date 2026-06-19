@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Case_RAG_Description_Population</fullName>
+    <active>true</active>
+    <description>When a case is set to &apos;Amber&apos; or &apos;Red&apos;, the &quot;Description&quot; field needs to be populated with an explanation.</description>
+    <errorConditionFormula>AND(
+   OR(
+      ISPICKVAL(PSCase_Overall_Health__c , &apos;Red&apos;) ,
+      ISPICKVAL(PSCase_Overall_Health__c , &apos;Amber&apos;)),
+   ISBLANK( Description ),
+   IsClosed = FALSE,
+   NOT($Profile.Id = &apos;00e30000000bvR3&apos;)
+)</errorConditionFormula>
+    <errorDisplayField>Description</errorDisplayField>
+    <errorMessage>Please provide a description as to why the overall health is &apos;Amber&apos; or &apos;Red&apos;.</errorMessage>
+</ValidationRule>

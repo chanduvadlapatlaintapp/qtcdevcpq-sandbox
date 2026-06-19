@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FeeEarner_Qty_Must_Be_in_Multiples_of_50</fullName>
+    <active>false</active>
+    <description>The quantity entered must be in multiples of 50 for Fee Earner Meter Type.</description>
+    <errorConditionFormula>AND( (TEXT(Meter_Type__c) =&quot;Fee Earners&quot;), 
+License_Product__c = TRUE, 
+NOT(ISPICKVAL(SBQQ__Product__r.Product_Group__c, &quot;Ops Only - Do Not Use&quot;)),
+NOT(ISPICKVAL(SBQQ__Product__r.Product_Group__c, &quot;Legacy OnePlace licenses&quot;)),
+SBQQ__Product__r.Item_Master_Product__r.Intapp_Item_Master_Number__c != &quot;EX-01542&quot;,
+SBQQ__Product__r.Item_Master_Product__r.Intapp_Item_Master_Number__c != &quot;BU-00989&quot;,
+SBQQ__Product__r.Item_Master_Product__r.Intapp_Item_Master_Number__c != &quot;TM-01544&quot;,
+SBQQ__Product__r.Item_Master_Product__r.Intapp_Item_Master_Number__c != &quot;PR-01543&quot;,
+SBQQ__Product__r.Item_Master_Product__r.Intapp_Item_Master_Number__c != &quot;IN-01465&quot;,
+SBQQ__Product__r.Item_Master_Product__r.Intapp_Item_Master_Number__c != &quot;CO-01466&quot;,
+$Profile.Name&lt;&gt;&quot;Standard User - Sales Operations&quot;,
+$User.Id &lt;&gt; &quot;00550000002q64G&quot; /*Jennifer Richard*/, 
+(OR( 
+(CONTAINS(TEXT(SBQQ__Quantity__c/50),&quot;.1&quot;)), 
+(CONTAINS(TEXT(SBQQ__Quantity__c/50),&quot;.2&quot;)), 
+(CONTAINS(TEXT(SBQQ__Quantity__c/50),&quot;.3&quot;)), 
+(CONTAINS(TEXT(SBQQ__Quantity__c/50),&quot;.4&quot;)), 
+(CONTAINS(TEXT(SBQQ__Quantity__c/50),&quot;.5&quot;)), 
+(CONTAINS(TEXT(SBQQ__Quantity__c/50),&quot;.6&quot;)), 
+(CONTAINS(TEXT(SBQQ__Quantity__c/50),&quot;.7&quot;)), 
+(CONTAINS(TEXT(SBQQ__Quantity__c/50),&quot;.8&quot;)), 
+(CONTAINS(TEXT(SBQQ__Quantity__c/50),&quot;.9&quot;)), 
+(CONTAINS(TEXT(SBQQ__Quantity__c/50),&quot;.01&quot;)), 
+(CONTAINS(TEXT(SBQQ__Quantity__c/50),&quot;.02&quot;)), 
+(CONTAINS(TEXT(SBQQ__Quantity__c/50),&quot;.03&quot;)), 
+(CONTAINS(TEXT(SBQQ__Quantity__c/50),&quot;.04&quot;)), 
+(CONTAINS(TEXT(SBQQ__Quantity__c/50),&quot;.05&quot;)), 
+(CONTAINS(TEXT(SBQQ__Quantity__c/50),&quot;.06&quot;)), 
+(CONTAINS(TEXT(SBQQ__Quantity__c/50),&quot;.07&quot;)), 
+(CONTAINS(TEXT(SBQQ__Quantity__c/50),&quot;.08&quot;)), 
+(CONTAINS(TEXT(SBQQ__Quantity__c/50),&quot;.09&quot;)) 
+)) 
+)</errorConditionFormula>
+    <errorMessage>The quantity entered must be in multiples of 50 for Fee Earner Meter Type.</errorMessage>
+</ValidationRule>

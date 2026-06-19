@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Create_Deprovision_Portal_User</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Create/Deprovision Portal User</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!requireScript(&quot;/soap/ajax/32.0/connection.js&quot;)}
+
+var contact = new sforce.SObject(&quot;Contact&quot;);
+contact.Id = &quot;{!Contact.Id}&quot;;
+contact.PortalAccount__c = &quot;{!Contact.PortalAccount__c}&quot;;
+
+if ((contact.PortalAccount__c == &apos;&apos;) || (contact.PortalAccount__c == &apos;AccountDeprovisioned&apos;) ) {
+  contact.PortalAccount__c = &apos;AccountCreated&apos;;
+}
+
+else if (contact.PortalAccount__c == &apos;AccountCreated&apos;)
+  contact.PortalAccount__c = &apos;DeprovisioningAccount&apos;;
+
+sforce.connection.update([contact]);
+window.location.reload();</url>
+</WebLink>

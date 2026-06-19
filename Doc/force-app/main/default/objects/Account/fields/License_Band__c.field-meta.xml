@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>License_Band__c</fullName>
+    <description>Based on the number of Lawyers, what is the license band for this account?</description>
+    <externalId>false</externalId>
+    <formula>IF( 
+  Lawyers__c &lt;= 50, 50,
+  IF(
+    Lawyers__c &lt;= 500, 
+    MCEILING(Lawyers__c/25) * 25, 
+    MCEILING(Lawyers__c/50) * 50
+  )
+)</formula>
+    <inlineHelpText>Based on the number of lawyers, what is the license band for this account?</inlineHelpText>
+    <label>License Band (Lawyers / Professionals)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

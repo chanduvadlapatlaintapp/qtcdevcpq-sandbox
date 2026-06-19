@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_37515868</developerName>
+        <masterLabel>Simple Titles</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>Contact.Standard_Title__c</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>2. CEO / MP / President</sourceValue>
+            </sourceValues>
+            <value>CEO/MP</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>6. COO / Executive Director / EVP</sourceValue>
+            </sourceValues>
+            <value>COO/Exec Director</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>7. CFO / Finance Director / SVP</sourceValue>
+            </sourceValues>
+            <value>CFO/Finance Director</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>8. GC / Risk Partner / CCO / CRO</sourceValue>
+            </sourceValues>
+            <value>GC/Risk Lead</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>9. CIO / CTO / IT Director</sourceValue>
+            </sourceValues>
+            <value>CIO/IT Director</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>11. Pricing Leader</sourceValue>
+            </sourceValues>
+            <value>Pricing Leader</value>
+        </values>
+    </buckets>
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <aggregate>Sum</aggregate>
+            <axisBinding>y</axisBinding>
+            <column>Account.Account_Count__c</column>
+        </chartSummaries>
+        <chartType>VerticalColumnStacked</chartType>
+        <enableHoverLabels>true</enableHoverLabels>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>Account.Simple_Territory__c</groupingColumn>
+        <legendPosition>Bottom</legendPosition>
+        <location>CHART_TOP</location>
+        <secondaryGroupingColumn>Account.Legal_Tier_Split__c</secondaryGroupingColumn>
+        <showAxisLabels>true</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>false</showValues>
+        <size>Large</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>12</textSize>
+        <title>Save the Date email outreach</title>
+        <titleColor>#000000</titleColor>
+        <titleSize>18</titleSize>
+    </chart>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.Account_Count__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Contact.Contact_Count__c</field>
+    </columns>
+    <columns>
+        <field>FIRST_NAME</field>
+    </columns>
+    <columns>
+        <field>LAST_NAME</field>
+    </columns>
+    <columns>
+        <field>TITLE</field>
+    </columns>
+    <columns>
+        <field>ADDRESS2_CITY</field>
+    </columns>
+    <columns>
+        <field>ADDRESS2_STATE</field>
+    </columns>
+    <columns>
+        <field>ADDRESS2_COUNTRY</field>
+    </columns>
+    <columns>
+        <field>Contact.Role_old__c</field>
+    </columns>
+    <columns>
+        <field>EMAIL</field>
+    </columns>
+    <columns>
+        <field>OWNER_FULL_NAME</field>
+    </columns>
+    <columns>
+        <field>TYPE</field>
+    </columns>
+    <columns>
+        <field>Account.CSM_Health_Rating__c</field>
+    </columns>
+    <columns>
+        <field>Contact.Active_Campaign_Count__c</field>
+    </columns>
+    <currency>GBP</currency>
+    <description>Configured to the specifications set by Jessica Lee - Matrix view</description>
+    <filter>
+        <booleanFilter>((1 AND 2 AND 3 AND ((4 AND 5) OR 6)) AND 7 AND (8 OR 9))</booleanFilter>
+        <criteriaItems>
+            <column>EMAIL</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contact.Opt_Out__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>excludes</operator>
+            <value>All Marketing,Telemarketer Opt Out</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>TYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Customer,Customer - LegalKEY Only</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.CSM_Health_Rating__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Green</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>TYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Prospect</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Legal_Tier_Split__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Tier A,Tier B,Tier C</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contact.Role_old__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Firm Management,IT Leader,Integration Leader,IT Staff,IT Security,Risk Leader,Risk Staff / Conflicts,Records,Finance Management,Finance Staff,Business Development Leader,Marketing Leader,Pricing Leader,Business Development Staff,Marketing Staff,Knowledge Leader,Managing Partner,Non-Law Firm Risk Leader,Non-Sales Risk Ecosystem,PGL - Litigation,PGL - Health Care,PGL - Capital Markets,PGL - Corporate,PGL - Labor/Employment,PGL - M&amp;A,Tech Partner,SLL – Audit,SLL - Audit,SLL – Tax,SLL - Tax</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contact.Standard_Title__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>1. Senior Partner / Chairman,2. CEO / MP / President,3. Sector Group Leader / Industry Group Leader,4. Client Relationship Partner / Key Client Partner,5. PGL,6. COO / Executive Director / EVP,7. CFO / Finance Director / SVP,8. GC / Risk Partner / CCO / CRO,9. CIO / CTO / IT Director,10. CMO / Marketing Leader / Business Development Leader,11. Pricing Leader,12. CHRO / HR Leader,13. Knowledge Leader / Information Services Leader,14. Partner and Others</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_37515868</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Simple_Territory__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Legal_Tier_Split__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>2019 -- Connect19 LDN / NYC (Matrix)</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>ContactList</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

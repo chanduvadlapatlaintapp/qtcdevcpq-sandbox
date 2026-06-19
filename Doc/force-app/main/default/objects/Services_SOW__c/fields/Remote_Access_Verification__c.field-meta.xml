@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Remote_Access_Verification__c</fullName>
+    <description>It&apos;s very important that we ensure that remote access complies with our request on the configurators. Otherwise, or project hours will be significantly higher.</description>
+    <inlineHelpText>It&apos;s very important that we ensure that remote access complies with our request on the configurators. Otherwise, or project hours will be significantly higher.</inlineHelpText>
+    <label>Remote Access Verification</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Unfettered VPN</fullName>
+                <default>false</default>
+                <label>Unfettered VPN</label>
+            </value>
+            <value>
+                <fullName>Unfettered Citrix</fullName>
+                <default>false</default>
+                <label>Unfettered Citrix</label>
+            </value>
+            <value>
+                <fullName>Remote Access Restrictions</fullName>
+                <default>false</default>
+                <label>Remote Access Restrictions</label>
+            </value>
+            <value>
+                <fullName>New Client - Unknown</fullName>
+                <default>false</default>
+                <label>New Client - Unknown</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

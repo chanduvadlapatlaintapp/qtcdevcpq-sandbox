@@ -1,0 +1,96 @@
+<apex:page controller="WaveQuotasController" sidebar="false">
+     <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+     <!-- Salesforce AJAX Toolkit Source -->
+     <script src="../../soap/ajax/36.0/connection.js" type="text/javascript"></script>
+     <!--<apex:stylesheet value="{!URLFOR($Resource.SLDSv0122, 'assets/styles/salesforce-lightning-design-system-vf.css')}"/>   -->   
+     <apex:pageMessages ></apex:pageMessages>
+     <apex:form styleClass="slds" id="formid"> 
+     
+         <apex:pageBlock id="pblock">    
+            
+            <apex:pageBlockSection collapsible="false" title="Filter By" columns="1">
+                
+                <apex:pageblockSectionItem >
+                    <apex:outputLabel value="Rep :"/>
+                    
+                    <apex:selectList size="1" value="{!selectedRep}">
+                        <apex:selectOptions value="{!repsDropDwn}"/>
+                        <apex:actionSupport status="status" action="{!processData}" event="onchange" reRender="formid,pblock"/>
+                    </apex:selectList> 
+                </apex:pageblockSectionItem>        
+               
+                <apex:pageblockSectionItem >
+                    <apex:outputLabel value="Practice :"/>
+                    <apex:selectList size="1" value="{!selectedPract}" >
+                        <apex:selectOptions value="{!practiseDropDwn}"/>
+                        <apex:actionSupport status="status" action="{!processData}" event="onchange" reRender="formid,pblock"/>
+                    </apex:selectList>
+                </apex:pageblockSectionItem>
+                <apex:pageblockSectionItem >
+                    <apex:outputLabel value="Fiscal Year:"/>
+                        <apex:selectList value="{!selectedFical}" multiselect="false" size="1">
+                            <apex:selectOptions value="{!ficalOptions}"/>
+                            <apex:actionSupport status="status" action="{!processData}" event="onchange" reRender="formid,pblock"/>
+                        </apex:selectList>
+                </apex:pageblockSectionItem>
+                
+             
+                
+                 <apex:pageblockSectionItem >
+                        <apex:commandButton value="Save" status="status" action="{!updateRecords}" reRender="formid,pblock" style="float:right;"/>
+                 </apex:pageblockSectionItem> 
+           </apex:pageBlockSection>
+
+        <br/><br/>
+            <apex:pageBlockTable value="{!waveQuotaWrapList}" var="l" id="pbTable">                
+                <apex:column headerValue="Rep"  >
+                    <apex:outputText value="{!l.rep}"/>                      
+                </apex:column> 
+                <apex:column headerValue="Practice" >
+                    <apex:outputText value="{!l.practice}"/>                      
+                </apex:column> 
+                <apex:column headerValue="Q1" >
+                     <apex:inputField value="{!l.q1WaveQuotaRec.Quota_Amount__c}"/>     
+                </apex:column> 
+                <apex:column headerValue="Q2" >
+                     <apex:inputField value="{!l.q2WaveQuotaRec.Quota_Amount__c}"/>                         
+                </apex:column> 
+                <apex:column headerValue="Q3" >
+                     <apex:inputField value="{!l.q3WaveQuotaRec.Quota_Amount__c}"/>                      
+                </apex:column> 
+                <apex:column headerValue="Q4" >
+                     <apex:inputField value="{!l.q4WaveQuotaRec.Quota_Amount__c}"/>                      
+                </apex:column>  
+                <!-- <apex:column headerValue="Qtr Ids" >
+                   <apex:outputText value="{!l.qtrIds}"/>                     
+                </apex:column> -->      
+            </apex:pageBlockTable>            
+           
+         </apex:pageBlock>
+         
+
+        <apex:actionStatus id="status">
+    <apex:facet name="start">
+    <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.25; z-index: 1000; background-color: black;">
+        &nbsp;
+    </div>
+    <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 15% 50%">
+        <div style="display: inline-block; padding: 2px; background-color: #fff; width: 125px;">
+            <img src="/img/loading.gif" style="float: left; margin: 8px;" />
+            <span style="display: inline-block; padding: 10px 0px;">Please Wait...</span>
+        </div>
+    </div>
+    </apex:facet>
+</apex:actionStatus>
+    </apex:form>    
+    
+    <style>
+     .apexp .bPageBlock.apexDefaultPageBlock .pbBody .pbSubheader {
+background-color: #1FC4E2;
+} 
+    </style>
+    </html> 
+    
+
+</apex:page>

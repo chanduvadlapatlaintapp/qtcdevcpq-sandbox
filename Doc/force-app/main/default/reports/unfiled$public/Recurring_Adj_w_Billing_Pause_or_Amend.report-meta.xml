@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Opportunity$Name</field>
+    </columns>
+    <columns>
+        <field>Opportunity$Associated_Contract_OSA__c</field>
+    </columns>
+    <columns>
+        <field>Opportunity.SBQQ__Contracts__r$Amendment_Status__c</field>
+    </columns>
+    <columns>
+        <field>Opportunity.SBQQ__Contracts__r$Billing_Pause_Status__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Recurring Adj w Billing Pause or Amend in Force</description>
+    <filter>
+        <booleanFilter>(1 AND 2) AND (3 OR 4)</booleanFilter>
+        <criteriaItems>
+            <column>Opportunity$Type</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Legal - Recurring Adjustment,Recurring Adjustment</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Opportunity$StageName</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Recurring Adjustment,Closed Won</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Opportunity.SBQQ__Contracts__r$Billing_Pause_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Received Signature</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Opportunity.SBQQ__Contracts__r$Amendment_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Amendment In Force</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Opportunity$Account</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Recurring Adj w Billing Pause or Amend</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Opportunities_and_Contracts__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Opportunity$Created_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSCase_Records_Security__c</fullName>
+    <label>Records Security</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Elite Records</fullName>
+                <default>false</default>
+                <label>Elite Records</label>
+            </value>
+            <value>
+                <fullName>LegalKEY (4.18 or older)</fullName>
+                <default>false</default>
+                <label>LegalKEY (4.18 or older)</label>
+            </value>
+            <value>
+                <fullName>LegalKEY (4.19 or newer)</fullName>
+                <default>false</default>
+                <label>LegalKEY (4.19 or newer)</label>
+            </value>
+            <value>
+                <fullName>FileSurf Records</fullName>
+                <default>false</default>
+                <label>FileSurf Records</label>
+            </value>
+            <value>
+                <fullName>Interwoven Records</fullName>
+                <default>false</default>
+                <label>Interwoven Records</label>
+            </value>
+            <value>
+                <fullName>Accutrac Records</fullName>
+                <default>false</default>
+                <label>Accutrac Records</label>
+            </value>
+            <value>
+                <fullName>Other RMS</fullName>
+                <default>false</default>
+                <label>Other RMS</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

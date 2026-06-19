@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Kickoff_Date_greater_than_open_date</fullName>
+    <active>false</active>
+    <description>The kickoff date can n ever be before the case was opened. When cloning a case, this is often overlooked.</description>
+    <errorConditionFormula>PSCase_Kickoff_Meeting_Date__c &lt; DATEVALUE(CreatedDate)</errorConditionFormula>
+    <errorDisplayField>PSCase_Kickoff_Meeting_Date__c</errorDisplayField>
+    <errorMessage>Please update the kickoff date to be later than the opened date.</errorMessage>
+</ValidationRule>

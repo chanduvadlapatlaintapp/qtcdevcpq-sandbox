@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Default_Letterhead</letterhead>
+    <name>AnnouncementRejectedEmail</name>
+    <style>freeForm</style>
+    <subject>A new Announcement Article has been rejected</subject>
+    <textOnly>The following Announcement article has been rejected:
+
+Article Number: {!Announcement__kav.ArticleNumber}
+Title: {!Announcement__kav.Title}
+Created By: {!Announcement__kav.CreatedBy}
+URL: {!Announcement__kav.Link}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

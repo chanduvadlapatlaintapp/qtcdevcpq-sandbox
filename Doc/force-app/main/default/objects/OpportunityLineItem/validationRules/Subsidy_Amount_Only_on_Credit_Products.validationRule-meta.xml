@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Subsidy_Amount_Only_on_Credit_Products</fullName>
+    <active>false</active>
+    <description>The Subsidy Amount and Type fields can only be populated for credit products.</description>
+    <errorConditionFormula>AND(
+   NOT(CONTAINS(Product_Type__c, &quot;Discount&quot;)),
+  OR(
+    NOT(ISBLANK(Subsidy_Amount__c)),
+    NOT(ISBLANK(TEXT(Subsidy_Type__c)))
+   )
+)</errorConditionFormula>
+    <errorDisplayField>Subsidy_Amount__c</errorDisplayField>
+    <errorMessage>Subsidy Amount and Subsidy Type are only to be filled in for credit products.</errorMessage>
+</ValidationRule>

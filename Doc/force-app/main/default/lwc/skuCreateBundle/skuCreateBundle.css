@@ -1,0 +1,123 @@
+:host {
+    display: block;
+    font-family: 'Manrope', Arial, sans-serif;
+}
+
+/* ===== Page Header ===== */
+.page-header {
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 1.25rem;
+    background: linear-gradient(135deg, #f0f4f8 0%, #e8ecf2 100%);
+    border-radius: 0.5rem;
+    border-left: 4px solid #207CEC;
+    margin-bottom: 1rem;
+}
+
+.header-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    background: linear-gradient(135deg, #207CEC 0%, #003C80 100%);
+    border-radius: 0.5rem;
+    margin-right: 0.875rem;
+    flex-shrink: 0;
+}
+
+.header-icon lightning-icon {
+    --lwc-colorTextIconDefault: #ffffff;
+}
+
+.header-title {
+    color: #073C7D;
+    font-weight: 700;
+    font-size: 1.0625rem;
+}
+
+.header-subtitle {
+    color: #536E8D;
+    font-size: 0.8125rem;
+    margin-top: 0.125rem;
+}
+
+/* ===== Success Card ===== */
+.success-card {
+    background: linear-gradient(135deg, #e6faf7 0%, #f0fdfb 100%);
+    border: 1px solid #a3e8d8;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px rgba(34, 236, 207, 0.1);
+    padding: 2rem;
+    text-align: center;
+}
+
+.success-icon {
+    display: inline-block;
+    padding: 0.75rem;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    margin-bottom: 0.75rem;
+}
+
+.success-subtitle {
+    color: #536E8D;
+}
+
+/* ===== Branded Table ===== */
+.branded-table th {
+    background: linear-gradient(180deg, #003C80 0%, #002a5c 100%) !important;
+    color: #ffffff !important;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    padding: 0.625rem 0.75rem;
+    border-color: #002244 !important;
+}
+
+.branded-table tbody tr:hover {
+    background-color: #f0f6ff !important;
+}
+
+/* ===== Toolbar ===== */
+.toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 1rem;
+    background-color: #FAFAF9;
+    border: 1px solid #E6E6E6;
+    border-radius: 0.5rem;
+}
+
+/* ===== Empty State ===== */
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+}
+
+.empty-state-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: #F4F7FA;
+    border-radius: 50%;
+    margin-bottom: 0.75rem;
+}
+
+.empty-state-heading {
+    color: #073C7D;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.empty-state-text {
+    color: #A4B9D7;
+    font-size: 0.875rem;
+}

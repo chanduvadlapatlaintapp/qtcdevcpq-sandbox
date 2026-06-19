@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Needs_Attention_Count__c</fullName>
+    <label>Needs Attention Count</label>
+    <summaryFilterItems>
+        <field>CR_Engagement__c.CR_Engagement_Status__c</field>
+        <operation>equals</operation>
+        <value>Not Started, In Process</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>CR_Engagement__c.CR_Engagement_Type__c</field>
+        <operation>equals</operation>
+        <value>C - Needs Attention</value>
+    </summaryFilterItems>
+    <summaryForeignKey>CR_Engagement__c.Subscription__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

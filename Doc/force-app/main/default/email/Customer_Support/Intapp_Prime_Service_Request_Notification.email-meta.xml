@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Intapp Prime Service Request Notification</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>PS_Survey_Letterhead</letterhead>
+    <name>Intapp Prime Service Request Notification</name>
+    <style>freeForm</style>
+    <subject>Intapp Prime Request from {!Case.Account}</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

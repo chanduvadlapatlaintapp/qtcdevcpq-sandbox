@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OP4I_Deal_Owner__c</fullName>
+    <description>BIZ-71666 - Deal Owner value integrated from OP4i</description>
+    <externalId>false</externalId>
+    <formula>/* BIZ-80912 - Deal Owner Name (Source System: SFDC / OP4I) */
+SBQQ__Opportunity2__r.Owner.FirstName &amp; &quot; &quot; &amp; SBQQ__Opportunity2__r.Owner.LastName</formula>
+    <label>OP4I Deal Owner</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

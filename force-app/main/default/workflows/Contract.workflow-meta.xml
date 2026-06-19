@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Amendment_Ready_to_Send</fullName>
+        <ccEmails>contractsops@intapp.com.invalid</ccEmails>
+        <ccEmails>FS_ContractsOps@intapp.com.invalid</ccEmails>
+        <description>Amendment Ready to Send</description>
+        <protected>false</protected>
+        <senderAddress>sfdc_donotreply@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales_Operations/Amendment_Ready_To_Send</template>
+    </alerts>
+    <alerts>
+        <fullName>ContractExecutedPleaseInvoice</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <description>Contract Executed Please Invoice</description>
+        <protected>false</protected>
+        <senderAddress>sfdc_donotreply@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>All/ContractExecuted</template>
+    </alerts>
+    <alerts>
+        <fullName>ContractReadytoSend</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <description>Contract Ready to Send</description>
+        <protected>false</protected>
+        <senderAddress>sfdc_donotreply@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>InternalNotification/ContractReadytoSend</template>
+    </alerts>
+    <alerts>
+        <fullName>ContractReadytoSend_Exception</fullName>
+        <description>Contract Ready to Send - Exception</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>Change_Requestor__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>sfdc_donotreply@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>InternalNotification/ContractReadytoSend</template>
+    </alerts>
+    <alerts>
+        <fullName>Contract_Approval_Received</fullName>
+        <ccEmails>Contractsops@intapp.com.invalid</ccEmails>
+        <ccEmails>FS_ContractsOps@intapp.com.invalid</ccEmails>
+        <description>Contract Approval Rejected</description>
+        <protected>false</protected>
+        <senderAddress>sfdc_donotreply@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales_Operations/Contract_Approval_Received</template>
+    </alerts>
+    <alerts>
+        <fullName>Contract_Executed_Please_Invoice_1</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <description>Contract Executed Please Invoice 1</description>
+        <protected>false</protected>
+        <senderAddress>sfdc_donotreply@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>All/ContractExecuted</template>
+    </alerts>
+    <alerts>
+        <fullName>Contract_Recalled_Exception</fullName>
+        <ccEmails>contractsops@intapp.com.invalid</ccEmails>
+        <ccEmails>FS_ContractsOps@intapp.com.invalid</ccEmails>
+        <description>Contract Recalled - Exception</description>
+        <protected>false</protected>
+        <senderAddress>sfdc_donotreply@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales_Operations/Contract_Recalled_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>Contract_Recalled_Standard</fullName>
+        <ccEmails>contractsops@intapp.com.invalid</ccEmails>
+        <ccEmails>FS_ContractsOps@intapp.com.invalid</ccEmails>
+        <description>Contract Recalled - Standard</description>
+        <protected>false</protected>
+        <senderAddress>sfdc_donotreply@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales_Operations/Contract_Recalled_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>Contract_Reference_Program_email_notification</fullName>
+        <ccEmails>Marketing_Operations@intapp.com.invalid</ccEmails>
+        <description>Contract Reference Program email notification</description>
+        <protected>false</protected>
+        <senderAddress>sfdc_donotreply@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>All/Reference_Program_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>Contract_Rejected</fullName>
+        <ccEmails>Contractsops@intapp.com.invalid</ccEmails>
+        <ccEmails>FS_ContractsOps@intapp.com.invalid</ccEmails>
+        <description>Contract Rejected</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>sfdc_donotreply@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales_Operations/Contract_Rejected</template>
+    </alerts>
+    <alerts>
+        <fullName>Contract_Rejected_Exception</fullName>
+        <ccEmails>Contractsops@intapp.com.invalid</ccEmails>
+        <ccEmails>FS_ContractsOps@intapp.com.invalid</ccEmails>
+        <description>Contract Rejected - Exception</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>sfdc_donotreply@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>All/Contract_Rejected_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>Contract_Rejected_Notification</fullName>
+        <ccEmails>contractsops@intapp.com.invalid</ccEmails>
+        <ccEmails>FS_ContractsOps@intapp.com.invalid</ccEmails>
+        <description>Contract Rejected Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>sfdc_donotreply@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales_Operations/Contract_Approval_Received</template>
+    </alerts>
+    <alerts>
+        <fullName>Contract_Rejected_Standard</fullName>
+        <ccEmails>Contractsops@intapp.com.invalid</ccEmails>
+        <ccEmails>FS_ContractsOps@intapp.com.invalid</ccEmails>
+        <description>Contract Rejected - Standard</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>sfdc_donotreply@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>All/Contract_Rejected_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>Contract_Superseded</fullName>
+        <ccEmails>Contractsops@intapp.com.invalid</ccEmails>
+        <ccEmails>FS_ContractsOps@intapp.com.invalid</ccEmails>
+        <description>Contract Superseded</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <senderAddress>sfdc_donotreply@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>All/Contract_Superseded</template>
+    </alerts>
+    <alerts>
+        <fullName>EmailtoKyle</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <description>Email to Kyle</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>InternalNotification/ShippingCompleteNotification_d_2</template>
+    </alerts>
+    <alerts>
+        <fullName>Internal_Change_Request_Ready_to_be_Processed</fullName>
+        <ccEmails>Contractsops@intapp.com.invalid</ccEmails>
+        <ccEmails>FS_ContractsOps@intapp.com.invalid</ccEmails>
+        <description>Internal Change Request Ready to be Processed</description>
+        <protected>false</protected>
+        <senderAddress>sfdc_donotreply@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales_Operations/Internal_Change_Request_Ready_to_be_Processed</template>
+    </alerts>
+    <alerts>
+        <fullName>Jason_s_Email_Alert</fullName>
+        <description>Jason&apos;s Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>jason.wood@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>sfdc_donotreply@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales_Operations/Contract_Approval_Requested</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_Contract_owner_of_the_request_Excep</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <description>Notify Contract owner of the request - Excep</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>Change_Requestor__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>sfdc_donotreply@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales_Operations/Contract_Approval_Submitted_Notification_Excep</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_Contract_owner_of_the_request_Std</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <description>Notify Contract owner of the request - Std</description>
+        <protected>false</protected>
+        <senderAddress>sfdc_donotreply@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales_Operations/Contract_Approval_Submitted_Notification_Std</template>
+    </alerts>
+    <alerts>
+        <fullName>Rekoop_Contract_Executed</fullName>
+        <ccEmails>Contractsops@intapp.com.invalid</ccEmails>
+        <ccEmails>FS_ContractsOps@intapp.com.invalid</ccEmails>
+        <description>Rekoop Contract Executed</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>jason.wood@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>sfdc_donotreply@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>All/Rekoop_Contract_Executed</template>
+    </alerts>
+    <alerts>
+        <fullName>VerifyShippingInformation</fullName>
+        <description>Verify Shipping Information</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>greg.gardner@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>vera.friss@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>InternalNotification/VerifyShippingInformation</template>
+    </alerts>
+    <alerts>
+        <fullName>trial_expired</fullName>
+        <ccEmails>Contractsops@intapp.com.invalid</ccEmails>
+        <ccEmails>FS_ContractsOps@intapp.com.invalid</ccEmails>
+        <description>deactivate a trial</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>bizappsdev@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>sfdc_donotreply@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Customer_Support/deactivate_a_trial</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Approval_counter</fullName>
+        <field>Approval_counter__c</field>
+        <formula>Approval_counter__c +1</formula>
+        <name>Approval counter</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Contract_Approval_Status_to_Approved</fullName>
+        <field>Approval_Status__c</field>
+        <formula>&apos;Approved&apos;</formula>
+        <name>Set Contract Approval Status to Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Contract_Approval_Status_to_Pending</fullName>
+        <field>Approval_Status__c</field>
+        <formula>&apos;Pending&apos;</formula>
+        <name>Set Contract Approval Status to Pending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Contract_Approval_Status_to_Rejected</fullName>
+        <field>Approval_Status__c</field>
+        <formula>&apos;Rejected&apos;</formula>
+        <name>Set Contract Approval Status to Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Status_to_approved_to_send</fullName>
+        <description>When a contract is approved, set the contract stage to &quot;Quote approved to send to customer&quot;</description>
+        <field>Status</field>
+        <literalValue>Quote approved to send to customer</literalValue>
+        <name>Set Status to approved to send</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Status_Rejected</fullName>
+        <field>Status</field>
+        <literalValue>Recalled/Rejected</literalValue>
+        <name>Status Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Status_recalled</fullName>
+        <field>Status</field>
+        <literalValue>Recalled</literalValue>
+        <name>Status Recalled</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Contract_Status</fullName>
+        <field>Status</field>
+        <literalValue>Waiting for Specialist approval to send</literalValue>
+        <name>Update Contract Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Veras_Email_Address</fullName>
+        <field>Vera_s_Email_Address__c</field>
+        <formula>&quot;vera.friss@intapp.com&quot;</formula>
+        <name>Vera&apos;s Email Address</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>non_standard_cloud_location</fullName>
+        <field>Non_standard_Cloud_Data_Location__c</field>
+        <literalValue>1</literalValue>
+        <name>non standard cloud location</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Rule Code%3A CTR-002xxxT</fullName>
+        <actions>
+            <name>PrepareBridgewayAppliance</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.Name</field>
+            <operation>contains</operation>
+            <value>Bridgeway</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Contract.Status</field>
+            <operation>contains</operation>
+            <value>contract finalized</value>
+        </criteriaItems>
+        <description>Rule Code: CTR-002xxxT
+Bridgeway Closing
+Creates and assign a task to the SE&apos;s and Accounting with instructions for proceeding, When a Bridgeway deal closes</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTR-003xxxT</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.Name</field>
+            <operation>contains</operation>
+            <value>Bridgeway</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Contract.Status</field>
+            <operation>contains</operation>
+            <value>shipping data entered</value>
+        </criteriaItems>
+        <description>Rule Code: CTR-003xxxT
+Bridgeway Invoice
+Creates and assign a task to accounting When the shipping is completed</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTR-009Exxx</fullName>
+        <actions>
+            <name>ContractExecutedPleaseInvoice</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Contract.Status</field>
+            <operation>equals</operation>
+            <value>In Force</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Contract.OSA_Type__c</field>
+            <operation>notEqual</operation>
+            <value>Legacy Rekoop Paper,Services Change Order (Internal)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Contract.OSA_Type__c</field>
+            <operation>equals</operation>
+            <value>Services Change Order</value>
+        </criteriaItems>
+        <description>Rule Code: CTR-009Exxx
+Send Invoice
+Sends an email notification when contract status changes to &quot;In Force&quot;</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTR-013xFxx</fullName>
+        <actions>
+            <name>Veras_Email_Address</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTR-013xFxx
+Populate Vera&apos;s Email Address
+Populates Vera&apos;s email address so that she can be copied on the emails that the contacts receive.</description>
+        <formula>TRUE</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTR-015Exxx</fullName>
+        <actions>
+            <name>Jason_s_Email_Alert</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTR-015Exxx
+Stephen&apos;s Email Notification
+Sends an email notification to Jason whenever Stephen is the approver on a record</description>
+        <formula>AND(   ISCHANGED(Approval_Status__c),   Approval_Status__c=&quot;Pending&quot;,   OR(      Approver_1__r.LastName=&quot;Robertson&quot;,      Approver_2__r.LastName=&quot;Robertson&quot;,      Approver_3__r.LastName=&quot;Robertson&quot;,      Approver_4__r.LastName=&quot;Robertson&quot;,      Approver_5__r.LastName=&quot;Robertson&quot;,      Approver_6__r.LastName=&quot;Robertson&quot;,      Exception_Approver_1__r.LastName=&quot;Robertson&quot;,      Exception_Approver_2__r.LastName=&quot;Robertson&quot;,      Exception_Approver_3__r.LastName=&quot;Robertson&quot;,      Exception_Approver_4__r.LastName=&quot;Robertson&quot;,      Exception_Approver_5__r.LastName=&quot;Robertson&quot; ) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTR-016Exxx</fullName>
+        <actions>
+            <name>Rekoop_Contract_Executed</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Contract.Status</field>
+            <operation>equals</operation>
+            <value>Contract Executed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Contract.OSA_Type__c</field>
+            <operation>equals</operation>
+            <value>Legacy Rekoop Paper</value>
+        </criteriaItems>
+        <description>Rule Code: CTR-016Exxx
+Send Invoice - Rekoop
+Sends an email notification when contract status changes to &quot;Contract Executed&quot;</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTR-022Exxx</fullName>
+        <actions>
+            <name>Contract_Reference_Program_email_notification</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Contract.Status</field>
+            <operation>equals</operation>
+            <value>Contract Executed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Contract.OSA_Type__c</field>
+            <operation>notEqual</operation>
+            <value>Services Change Order (Internal),Legacy Rekoop Paper</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Contract.Reference_Program__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <description>Rule Code: CTR-022Exxx
+Reference Program Notification
+Sends an email notification when Reference Program checkbox is checked on Contract record along with Contract closure.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTR-025Exxx</fullName>
+        <active>true</active>
+        <description>Rule Code: CTR-025Exxx
+Contract Created Notification with Opportunity fulfilling entity = Intapp
+Sends an email notification to sales op&apos;s that a contract has been created.</description>
+        <formula>AND( NOT(ISBLANK( SBQQ__Opportunity__c )), ISPICKVAL(SBQQ__Opportunity__r.Fulfilling_Entity__c, &apos;Intapp&apos;) )</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTR-026Exxx</fullName>
+        <active>true</active>
+        <description>Rule Code: CTR-026Exxx
+Contract Updated with Opportunity where Fulfilling Entity = Intapp Notification
+Sends an email notification to sales op&apos;s that a contract has been created.</description>
+        <formula>AND( PRIORVALUE(SBQQ__Opportunity__c) = &apos;&apos;, ISCHANGED( SBQQ__Opportunity__c ),  ISPICKVAL(SBQQ__Opportunity__r.Fulfilling_Entity__c, &apos;Intapp&apos;) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTR-044Exxx</fullName>
+        <actions>
+            <name>trial_expired</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Contract.Status</field>
+            <operation>equals</operation>
+            <value>Cancelled / Lapsed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Contract.Type__c</field>
+            <operation>equals</operation>
+            <value>Trial</value>
+        </criteriaItems>
+        <description>Rule Code: CTR-044Exxx
+Deactivate Trial notification</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule code%3A CTR-100xFxx</fullName>
+        <actions>
+            <name>non_standard_cloud_location</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Contract.Non_Standard_Cloud_Location__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Contract: Non-Standard Cloud Location - this dealNOT EQUAL TOnull</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <tasks>
+        <fullName>ActivateContract</fullName>
+        <assignedTo>system@intapp.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>Payment received. 
+1.  Verify all documents have been received, are attached in SalesForce, and activate contract.
+2. Ensure opp amount matches invoice amount
+3. Ensure acct type is customer
+4. Ensure all other acct contracts are void</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Activate Contract</subject>
+    </tasks>
+    <tasks>
+        <fullName>Appliancereadytoship</fullName>
+        <assignedTo>bizappsdev@intapp.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>Contract is ready, configure and send the appliance, then update SF with the shipping data. When you switch the contract to &quot;Shipping data entered...&quot; a task will automatically be sent to accounting to send an invoice when the appliance is received.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Appliance ready to ship</subject>
+    </tasks>
+    <tasks>
+        <fullName>Appliancereadytoship_d_2</fullName>
+        <assignedTo>bizappsdev@intapp.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>Contract is ready, configure and send the appliance, then update SF with the shipping data. When you switch the contract to &quot;Shipping data entered...&quot; a task will automatically be sent to accounting to send an invoice when the appliance is received.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Appliance ready to ship.</subject>
+    </tasks>
+    <tasks>
+        <fullName>Evalappliancereadytoship</fullName>
+        <assignedTo>bizappsdev@intapp.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>Contract is ready, configure and send the appliance, then update SF with the shipping data.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Eval appliance ready to ship</subject>
+    </tasks>
+    <tasks>
+        <fullName>PrepareBridgewayAppliance</fullName>
+        <assignedTo>bizappsdev@intapp.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>Email Tony Navarro for customer Project Lead info, shipping info, a blank Config. doc. After Config. Doc is received (or 30 days), send appliance, notify Tony w/ shipping data, and update SF.com shipping data. Switch contract to &quot;shipping data entered...&quot;</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Prepare Bridgeway Appliance</subject>
+    </tasks>
+    <tasks>
+        <fullName>PrepareanInvoiceServicesOnlyContract_Mai</fullName>
+        <assignedTo>valerie.dendinger@intapp.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>A services-only contract has been executed, please invoice.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Prepare an Invoice (Services Only Contract)</subject>
+    </tasks>
+    <tasks>
+        <fullName>PrepareanInvoice_Mai</fullName>
+        <assignedTo>valerie.dendinger@intapp.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>A contract has been executed, please prepare an invoice.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Prepare an Invoice</subject>
+    </tasks>
+</Workflow>

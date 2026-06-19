@@ -1,0 +1,1035 @@
+<template>
+    <div class={containerClass}>
+
+        <!-- ══════════════════════════════════════════════════════════════════
+             TOP HEADER — full width, always visible
+             ══════════════════════════════════════════════════════════════════ -->
+        <div class="top-header">
+
+            <!-- Brand -->
+            <div class="th-brand">
+                <div class="th-logo">QTC</div>
+                <div class="th-brand-text">
+                    <span class="th-brand-title">QTC Test Runner</span>
+                    <span class="th-brand-sub">Playwright CI/CD</span>
+                </div>
+            </div>
+
+            <!-- Run info (only when a run is selected) -->
+            <template if:true={activeRunId}>
+                <span class="th-sep"></span>
+                <div class="th-run-info">
+                    <span class="run-id-chip">{activeRun.name}</span>
+                    <span class={headerStatusClass}>
+                        <span class="rh-status-icon">{headerStatusIcon}</span>
+                        {headerStatusLabel}
+                    </span>
+                    <template if:true={isRunning}>
+                        <span class="live-dot" title="In progress"></span>
+                    </template>
+                    <span class="run-suite-tag">{activeRun.testSuite}</span>
+                    <template if:true={activeRun.accountName}>
+                        <span class="rh-account-badge" title={activeRun.accountName}>🏢 {activeRun.accountName}</span>
+                    </template>
+                    <template if:true={activeRun.agentId}>
+                        <span class="rh-agent-badge">{activeRun.agentId}</span>
+                    </template>
+                    <template if:true={activeRun.requestedByName}>
+                        <span class="rh-requester">by {activeRun.requestedByName}</span>
+                    </template>
+                </div>
+            </template>
+
+            <!-- Spacer pushes timestamps + actions to the right -->
+            <div class="th-spacer"></div>
+
+            <!-- Q → S → F timeline -->
+            <template if:true={activeRunId}>
+                <div class="th-ts-group">
+                    <span class="rh-ts">
+                        <span class="rh-ts-lbl">Q</span>
+                        <span class="rh-ts-val">{activeRunCreatedAt}</span>
+                    </span>
+                    <template if:true={activeRun.startedAt}>
+                        <span class="rh-ts-arr">›</span>
+                        <span class="rh-ts">
+                            <span class="rh-ts-lbl">S</span>
+                            <span class="rh-ts-val">{activeRunStartedAt}</span>
+                        </span>
+                    </template>
+                    <template if:true={activeRun.completedAt}>
+                        <span class="rh-ts-arr">›</span>
+                        <span class="rh-ts rh-ts-done">
+                            <span class="rh-ts-lbl">F</span>
+                            <span class="rh-ts-val">{activeRunCompletedAt}</span>
+                        </span>
+                    </template>
+                </div>
+            </template>
+
+            <!-- Actions: theme + refresh -->
+            <div class="th-actions">
+                <button class="btn btn-ghost btn-sm" onclick={handleToggleTheme} title={themeLabel}>
+                    <template if:true={isDarkMode}>
+                        <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </template>
+                    <template if:false={isDarkMode}>
+                        <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor"
+                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </template>
+                    {themeLabel}
+                </button>
+                <button class="btn btn-ghost btn-sm" onclick={handleRefreshHistory} title="Refresh history">
+                    <svg class="btn-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M13.5 8A5.5 5.5 0 1 1 8 2.5" stroke-linecap="round"/>
+                        <path d="M8 .5L11 3 8 5.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Refresh
+                </button>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════════════
+             CONTROL BAR — full width, always visible
+             ══════════════════════════════════════════════════════════════════ -->
+        <div class="control-bar">
+
+            <!-- ── Row 1: run configuration ── -->
+            <div class="cb-row cb-row-config">
+
+            <!-- Account search (typeahead) — single or multi mode -->
+            <div class="cb-field-block">
+                <div class="cb-label-row">
+                    <label class="cb-label">Search Account</label>
+                    <template if:true={showAccountModeToggle}>
+                        <div class="runner-seg">
+                            <button class={singleModeBtnClass}
+                                    data-mode="single"
+                                    onclick={handleAccountModeChange}
+                                    disabled={isRunning}>Single</button>
+                            <button class={multiModeBtnClass}
+                                    data-mode="multi"
+                                    onclick={handleAccountModeChange}
+                                    disabled={isRunning}>Multi</button>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- ── Single-account picker ── -->
+                <template if:false={isMultiAccountMode}>
+                    <div class={acctSelectWrapClass}>
+                        <template if:true={hasSelectedAccount}>
+                            <div class="acct-selected" title={selectedAccountName}>
+                                <svg class="acct-selected-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1.5c-2.7 0-5 1.4-5 3.2V14h10v-1.3c0-1.8-2.3-3.2-5-3.2z"/>
+                                </svg>
+                                <span class="acct-selected-name">{selectedAccountName}</span>
+                                <button class="acct-clear-btn"
+                                        onclick={handleClearAccount}
+                                        disabled={isRunning}
+                                        title="Change account">✕</button>
+                            </div>
+                        </template>
+
+                        <template if:false={hasSelectedAccount}>
+                            <div class="acct-search-outer">
+                                <svg class="acct-search-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                                    <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.6"></circle>
+                                    <line x1="12.5" y1="12.5" x2="17.5" y2="17.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></line>
+                                </svg>
+                                <input type="text"
+                                       class="acct-search-input"
+                                       placeholder="Search account…"
+                                       value={accountSearchTerm}
+                                       oninput={handleAccountSearchChange}
+                                       onkeydown={handleAccountKeydown}
+                                       onfocus={handleAccountFocus}
+                                       onblur={handleAccountBlur}
+                                       disabled={isRunning}
+                                       autocomplete="off" />
+                                <template if:true={isSearchingAccounts}>
+                                    <span class="acct-search-spinner"></span>
+                                </template>
+                            </div>
+
+                            <template if:true={showAccountResults}>
+                                <ul class="acct-results">
+                                    <template for:each={accountResultRows} for:item="acct">
+                                        <li key={acct.id}
+                                            class={acct.itemClass}
+                                            data-id={acct.id}
+                                            data-name={acct.name}
+                                            onmousedown={handleAccountSelect}>
+                                            <span class="acct-result-name">{acct.name}</span>
+                                            <template if:true={acct.location}>
+                                                <span class="acct-result-loc">{acct.location}</span>
+                                            </template>
+                                        </li>
+                                    </template>
+                                </ul>
+                            </template>
+
+                            <template if:true={showAccountNoResults}>
+                                <div class="acct-no-results">No accounts found for "{accountSearchTerm}"</div>
+                            </template>
+                        </template>
+                    </div>
+                </template>
+
+                <!-- ── Multi-account picker ── -->
+                <template if:true={isMultiAccountMode}>
+                    <div class="multi-acct-picker">
+                        <!-- Selected account chips -->
+                        <div class="multi-acct-chips">
+                            <template for:each={selectedAccounts} for:item="acct">
+                                <span key={acct.id} class="multi-acct-chip">
+                                    <span class="chip-name">{acct.name}</span>
+                                    <button class="chip-remove"
+                                            data-id={acct.id}
+                                            onclick={handleRemoveMultiAcct}
+                                            disabled={isRunning}
+                                            title="Remove">✕</button>
+                                </span>
+                            </template>
+                            <template if:true={showMultiAcctCount}>
+                                <span class="multi-acct-count">{multiAcctCountLabel}</span>
+                            </template>
+                        </div>
+
+                        <!-- Add-account search (hidden once max reached) -->
+                        <template if:true={canAddMoreAccounts}>
+                            <div class="acct-search-outer">
+                                <svg class="acct-search-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                                    <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.6"></circle>
+                                    <line x1="12.5" y1="12.5" x2="17.5" y2="17.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></line>
+                                </svg>
+                                <input type="text"
+                                       class="acct-search-input"
+                                       placeholder="Add account…"
+                                       value={multiAcctSearchTerm}
+                                       oninput={handleMultiAcctSearchChange}
+                                       onfocus={handleMultiAcctFocus}
+                                       onblur={handleMultiAcctBlur}
+                                       disabled={isRunning}
+                                       autocomplete="off" />
+                                <template if:true={isSearchingMultiAcct}>
+                                    <span class="acct-search-spinner"></span>
+                                </template>
+                            </div>
+
+                            <template if:true={showMultiAcctResults}>
+                                <ul class="acct-results">
+                                    <template for:each={multiAcctFilteredResults} for:item="acct">
+                                        <li key={acct.id}
+                                            class={acct.itemClass}
+                                            data-id={acct.id}
+                                            data-name={acct.name}
+                                            onmousedown={handleMultiAcctSelect}>
+                                            <span class="acct-result-name">{acct.name}</span>
+                                            <template if:true={acct.location}>
+                                                <span class="acct-result-loc">{acct.location}</span>
+                                            </template>
+                                        </li>
+                                    </template>
+                                </ul>
+                            </template>
+
+                            <template if:true={showMultiAcctNoResults}>
+                                <div class="acct-no-results">No accounts found for "{multiAcctSearchTerm}"</div>
+                            </template>
+                        </template>
+
+                    </div>
+                </template>
+            </div>
+
+            <!-- Contract selector — single mode only, shown once an account is selected -->
+            <template if:false={isMultiAccountMode}>
+                <template if:true={hasSelectedAccount}>
+                    <div class="cb-field-block">
+                        <label class="cb-label">Contract <span class="cb-optional">(optional)</span></label>
+                        <div class="suite-select-wrap">
+                            <div class={contractDropdownClass} onclick={handleToggleContractDropdown}>
+                                <span class="custom-dd-value">{selectedContractLabel}</span>
+                                <svg class="select-chevron" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M1 1l4 4 4-4"></path>
+                                </svg>
+                            </div>
+                            <template if:true={_contractDropdownOpen}>
+                                <ul class="custom-dd-list">
+                                    <li class="custom-dd-item custom-dd-item-clear"
+                                        data-value=""
+                                        onclick={handleContractItemSelect}>Select Contract</li>
+                                    <template for:each={contractOptions} for:item="c">
+                                        <li key={c.value}
+                                            class={c.itemClass}
+                                            data-value={c.value}
+                                            onclick={handleContractItemSelect}>{c.label}</li>
+                                    </template>
+                                </ul>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Quote selector — optional, shown once a contract is selected -->
+                <template if:true={selectedContractId}>
+                    <div class="cb-field-block">
+                        <label class="cb-label">Quote <span class="cb-optional">(optional)</span></label>
+                        <div class="suite-select-wrap">
+                            <div class={quoteDropdownClass} onclick={handleToggleQuoteDropdown}>
+                                <span class="custom-dd-value">{selectedQuoteLabel}</span>
+                                <svg class="select-chevron" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M1 1l4 4 4-4"></path>
+                                </svg>
+                            </div>
+                            <template if:true={_quoteDropdownOpen}>
+                                <ul class="custom-dd-list">
+                                    <li class="custom-dd-item custom-dd-item-clear"
+                                        data-value=""
+                                        onclick={handleQuoteItemSelect}>Select Quote</li>
+                                    <template for:each={quoteOptions} for:item="q">
+                                        <li key={q.value}
+                                            class={q.itemClass}
+                                            data-value={q.value}
+                                            onclick={handleQuoteItemSelect}>{q.label}</li>
+                                    </template>
+                                </ul>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+            </template>
+
+            <!-- Module selector (pick first → filters the Spec list) -->
+            <div class="cb-field-block">
+                <label class="cb-label">Select Module</label>
+                <div class="suite-select-wrap">
+                    <div class={moduleDropdownClass} onclick={handleToggleModuleDropdown}>
+                        <span class="custom-dd-value">{selectedModuleLabel}</span>
+                        <svg class="select-chevron" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M1 1l4 4 4-4"></path>
+                        </svg>
+                    </div>
+                    <template if:true={_moduleDropdownOpen}>
+                        <ul class="custom-dd-list">
+                            <template for:each={moduleOptions} for:item="mod">
+                                <li key={mod.value}
+                                    class={mod.itemClass}
+                                    data-value={mod.value}
+                                    onclick={handleModuleItemSelect}>{mod.label}</li>
+                            </template>
+                        </ul>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Suite (spec) selector — filtered by the selected Module -->
+            <div class="cb-field-block">
+                <label class="cb-label">Select Spec</label>
+                <div class="suite-select-wrap">
+                    <div class={specDropdownClass} onclick={handleToggleSpecDropdown}>
+                        <span class="custom-dd-value">{selectedSpecLabel}</span>
+                        <svg class="select-chevron" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M1 1l4 4 4-4"></path>
+                        </svg>
+                    </div>
+                    <template if:true={_specDropdownOpen}>
+                        <ul class="custom-dd-list">
+                            <template for:each={suiteOptions} for:item="opt">
+                                <li key={opt.value}
+                                    class={opt.itemClass}
+                                    data-value={opt.value}
+                                    onclick={handleSpecItemSelect}>{opt.label}</li>
+                            </template>
+                        </ul>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Runner selector -->
+            <div class="runner-row">
+                <span class="runner-via-lbl">via</span>
+                <div class="runner-seg">
+                    <template for:each={runnerOptions} for:item="r">
+                        <button key={r.value}
+                                class={r.btnClass}
+                                data-runner={r.value}
+                                onclick={handleRunnerChange}
+                                disabled={isRunning}
+                                title={r.title}>
+                            {r.label}
+                        </button>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Run + cancel -->
+            <div class="run-action-row">
+                <button class={runBtnClass} onclick={handleRunTests} disabled={runButtonDisabled} title={runButtonLabel}>
+                    <template if:true={isCreating}>
+                        <span class="btn-spinner"></span>
+                    </template>
+                    <template if:false={isCreating}>
+                        <template if:true={isRunning}>
+                            <span class="btn-pulse-ring"></span>
+                        </template>
+                        <template if:false={isRunning}>
+                            <svg class="btn-icon-svg" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M3 2.5l10 5.5-10 5.5z"/>
+                            </svg>
+                        </template>
+                    </template>
+                    {runButtonLabel}
+                </button>
+
+                <template if:true={activeRunId}>
+                    <button class="btn btn-cancel"
+                            onclick={handleCancel}
+                            disabled={cancelButtonDisabled}
+                            title="Cancel run">
+                        <svg class="btn-icon-svg" viewBox="0 0 16 16" fill="currentColor">
+                            <rect x="3" y="3" width="10" height="10" rx="1.5"/>
+                        </svg>
+                        Cancel
+                    </button>
+                </template>
+            </div>
+
+            </div><!-- /cb-row-config -->
+
+            <!-- ── Row 2: toolbar (pass rate, history, actions) ── -->
+            <div class="cb-row cb-row-toolbar">
+
+            <!-- Spacer -->
+            <div class="cb-spacer"></div>
+
+            <!-- Pass rate (inline) -->
+            <div class="cb-passrate">
+                <div class="cb-pr-top">
+                    <span class="cb-pr-lbl">Pass Rate</span>
+                    <span class="cb-pr-runs">{runPassRate.label}</span>
+                </div>
+                <div class="cb-pr-mid">
+                    <span class={passRatePctClass}>{runPassRate.percent}%</span>
+                    <div class="pass-rate-bar">
+                        <div class={passRateClass} style={passRateBarStyle}></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Re-run + Export (beside the Recent Runs picker) -->
+            <template if:true={activeRunId}>
+                <button class="btn btn-ghost cb-rerun-btn" onclick={handleReRun} disabled={reRunDisabled} title="Re-run this suite on the same account">
+                    <svg class="btn-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M13.5 8A5.5 5.5 0 1 1 8 2.5" stroke-linecap="round"/>
+                        <path d="M8 .5L11 3 8 5.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Re-run
+                </button>
+            </template>
+            <template if:true={hasRichResults}>
+                <button class="btn btn-ghost cb-rerun-btn" onclick={handleExportJson} title="Download results as JSON">
+                    <svg class="btn-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M8 1.5v8M5 7l3 3 3-3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2.5 11.5v2h11v-2" stroke-linecap="round"/>
+                    </svg>
+                    Export
+                </button>
+            </template>
+
+            <!-- Recent runs dropdown -->
+            <div class="cb-history">
+                <button class="history-dd-btn" onclick={handleToggleRunDropdown} title="Recent runs">
+                    <svg class="btn-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
+                        <circle cx="8" cy="8" r="6.5"/>
+                        <path d="M8 4.5V8l2.5 1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="history-dd-text">
+                        <span class="history-dd-label">{runDropdownLabel}</span>
+                        <template if:true={runDropdownSub}>
+                            <span class="history-dd-sub">{runDropdownSub}</span>
+                        </template>
+                    </span>
+                    <template if:true={isLoadingHistory}>
+                        <span class="loading-dots"><span></span><span></span><span></span></span>
+                    </template>
+                    <svg class="history-dd-chev" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M1 1l4 4 4-4"></path>
+                    </svg>
+                </button>
+
+                <template if:true={showRunDropdown}>
+                    <div class="history-dd-panel" style={_dropdownStyle} onclick={handleDropdownPanelClick}>
+                        <div class="history-dd-hdr">
+                            <span class="history-list-title">RECENT RUNS</span>
+                        </div>
+                        <div class="history-filter-wrap">
+                            <svg class="history-filter-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                                <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.6"></circle>
+                                <line x1="12.5" y1="12.5" x2="17.5" y2="17.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></line>
+                            </svg>
+                            <input type="text"
+                                   class="history-filter-input"
+                                   placeholder="Filter by name, spec and account"
+                                   value={historyFilter}
+                                   oninput={handleHistoryFilterChange}
+                                   onclick={handleDropdownPanelClick}
+                                   autocomplete="off" />
+                        </div>
+                        <template if:true={_isSearchingHistory}>
+                            <div class="history-searching">
+                                <span class="row-spinner"></span>
+                                <span>Searching all runs…</span>
+                            </div>
+                        </template>
+                        <ul class="history-list">
+                            <template if:false={_isSearchingHistory}>
+                                <template for:each={sidebarRuns} for:item="run">
+                                    <li key={run.id}
+                                        class={run.historyItemClass}
+                                        data-id={run.id}
+                                        onclick={handleHistoryRowClick}>
+                                        <div class="hi-line1">
+                                            <template if:true={run.isPlaceholder}>
+                                                <span class="row-spinner"></span>
+                                            </template>
+                                            <span class={run.dotClass}></span>
+                                            <div class="hi-name-group">
+                                                <span class="hi-name">{run.name}</span>
+                                                <template if:true={run.specLabel}>
+                                                    <span class="hi-sep">|</span>
+                                                    <span class="hi-spec" title={run.specLabel}>{run.specLabel}</span>
+                                                </template>
+                                            </div>
+                                            <span class={run.statusTextClass}>{run.statusLabel}</span>
+                                        </div>
+                                        <div class="hi-line2">
+                                            <span class="hi-date">{run.createdDateDisplay}</span>
+                                            <span class="hi-dur">{run.durationDisplay}</span>
+                                        </div>
+                                    </li>
+                                </template>
+                                <template if:false={hasFilteredRuns}>
+                                    <li class="history-empty">{noRunsMessage}</li>
+                                </template>
+                            </template>
+                        </ul>
+                    </div>
+                </template>
+            </div>
+
+            </div><!-- /cb-row-toolbar -->
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════════════
+             MAIN PANEL
+             ══════════════════════════════════════════════════════════════════ -->
+        <div class="main-panel">
+
+            <!-- No run selected -->
+            <template if:false={activeRunId}>
+                <div class="no-run-state">
+                    <div class="no-run-card">
+                        <div class="no-run-icon">🧪</div>
+                        <p class="no-run-title">No run selected</p>
+                        <p class="no-run-text">Search an account, select a suite, and click <strong>Run</strong> — or pick a past run from <strong>Recent Runs</strong>.</p>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Run detail -->
+            <template if:true={activeRunId}>
+
+                <!-- Status pills (info / warn / error) -->
+                <template if:true={waitingForAgent}>
+                    <div class="run-pill run-pill-info">
+                        <svg class="msg-icon" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 3.5a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zm0 2.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V7.5A.5.5 0 0 1 8 7z"/>
+                        </svg>
+                        Waiting for the local qtc-runner agent to pick up this job…
+                    </div>
+                </template>
+                <template if:true={showStuckWarning}>
+                    <div class="run-pill run-pill-warn">
+                        <svg class="msg-icon" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M8 1L15 14H1L8 1zm0 3.5v4.25h-.5l-.5.25v.75h2v-.75l-.5-.25H8V4.5h.001zm-1 7.25a1 1 0 1 0 2 0 1 1 0 0 0-2 0z"/>
+                        </svg>
+                        <strong>Agent not responding.</strong> Runner in-progress for over 22 min. Check agent logs or restart.
+                    </div>
+                </template>
+                <template if:true={activeRun.errorMessage}>
+                    <div class="run-pill run-pill-error">
+                        <svg class="msg-icon" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm-.75 3.5h1.5v5h-1.5v-5zm.75 7.5a.875.875 0 1 1 0-1.75.875.875 0 0 1 0 1.75z"/>
+                        </svg>
+                        {activeRun.errorMessage}
+                    </div>
+                </template>
+
+                <!-- ── Running spinner — in progress with no results yet ── -->
+                <template if:true={showRunningSpinner}>
+                    <div class="running-state">
+                        <div class="running-spinner"></div>
+                        <p class="running-text">{runningStateText}</p>
+                        <template if:true={hasSelectedSpecDescription}>
+                            <p class="running-spec-desc">{selectedSpecDescription}</p>
+                        </template>
+                    </div>
+                </template>
+
+                <!-- ── Result section — only when the run produced output ── -->
+                <template if:true={hasResults}>
+
+                <!-- ── Metric strip (spans full width) ──────────────────── -->
+                <template if:true={hasMetricStrip}>
+                    <div class="metric-strip">
+                        <template for:each={metricStripItems} for:item="ms">
+                            <div key={ms.id} class={ms.cardClass}>
+                                <div class="ms-card-lbl">{ms.label}</div>
+
+                                <!-- Primary value: external link or value parts -->
+                                <template if:true={ms.isLink}>
+                                    <a class="ms-card-primary ms-card-link" href={ms.href} target="_blank">
+                                        <span class="ms-num ms-num-link">{ms.primary}</span>
+                                        <svg class="ms-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <path d="M6 3.5H3.5v9h9V10" stroke-linecap="round"/>
+                                            <path d="M9.5 3.5h3v3M12.5 3.5L7 9" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                </template>
+                                <template if:false={ms.isLink}>
+                                    <div class="ms-card-primary">
+                                        <template for:each={ms.parts} for:item="p">
+                                            <span key={p.id} class={p.cls}>{p.text}</span>
+                                        </template>
+                                    </div>
+                                </template>
+
+                                <!-- Optional progress bar -->
+                                <template if:true={ms.showProgress}>
+                                    <div class="ms-bar">
+                                        <div class={ms.progressClass} style={ms.progressStyle}></div>
+                                    </div>
+                                </template>
+
+                                <!-- Sub-line: plain text and/or pills -->
+                                <template if:true={ms.subParts.length}>
+                                    <div class="ms-card-sub">
+                                        <template for:each={ms.subParts} for:item="sp">
+                                            <span key={sp.id} class={sp.cls}>{sp.text}</span>
+                                        </template>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+
+                <!-- ── Tab bar ─────────────────────────────────────────── -->
+                <div class="tab-bar">
+                    <template for:each={tabs} for:item="tab">
+                        <button key={tab.id}
+                                class={tab.btnClass}
+                                data-tab={tab.id}
+                                onclick={handleTabClick}>
+                            <span class="tab-icon">{tab.icon}</span>
+                            <span class="tab-label">{tab.label}</span>
+                            <template if:true={tab.badge}>
+                                <span class={tab.badgeClass}>{tab.badge}</span>
+                            </template>
+                        </button>
+                    </template>
+                </div>
+
+                <!-- ── Tab panel ────────────────────────────────────────── -->
+                <div class="tab-panel">
+
+                    <!-- ── Screenshots ──────────────────────────────────── -->
+                    <template if:true={activeTabIsScreenshots}>
+
+                        <template if:true={videoLoadError}>
+                            <div class="media-error">
+                                <span class="media-error-icon">⚠️</span>
+                                <span>Couldn't load the recording.
+                                    <a href={videoSrc} target="_blank">Open it directly</a>.
+                                </span>
+                            </div>
+                        </template>
+
+                        <template if:true={hasScreenshotGrid}>
+                            <div class="screenshot-grid">
+
+                                <!-- Video tile (first in the grid) -->
+                                <template if:true={showVideoTile}>
+                                    <div class="screenshot-wrap video-tile"
+                                         onclick={handleOpenVideo}
+                                         role="button"
+                                         tabindex="0"
+                                         title="Play recording">
+                                        <div class="video-tile-media">
+                                            <video class="video-tile-vid" preload="metadata" src={videoSrc} muted onerror={handleVideoError}></video>
+                                            <div class="video-thumb-overlay">
+                                                <span class="video-thumb-play">▶</span>
+                                            </div>
+                                        </div>
+                                        <div class="screenshot-footer">
+                                            <span class="screenshot-lbl">🎬 Test Recording</span>
+                                            <span class="screenshot-zoom-hint">▶</span>
+                                        </div>
+                                    </div>
+                                </template>
+
+                                <!-- Screenshots -->
+                                <template for:each={activeRunImages} for:item="img" for:index="idx">
+                                    <div key={img.id}
+                                         class="screenshot-wrap"
+                                         data-index={idx}
+                                         onclick={handleImageClick}
+                                         role="button"
+                                         tabindex="0">
+                                        <img class="screenshot-img" src={img.downloadUrl} alt={img.title} onerror={handleImageError} />
+                                        <div class="screenshot-footer">
+                                            <span class="screenshot-lbl">{img.title}</span>
+                                            <span class="screenshot-zoom-hint">🔍</span>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+
+                        <template if:false={hasScreenshotGrid}>
+                            <div class="tab-empty">
+                                <span>📷</span>
+                                <p>No screenshots yet for this run.</p>
+                            </div>
+                        </template>
+                    </template>
+
+                    <!-- ── UI↔DB Cross-Check ─────────────────────────────── -->
+                    <template if:true={activeTabIsCrosscheck}>
+                        <template if:true={hasMismatchRows}>
+                            <div class="tbl-wrap">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-idx">#</th>
+                                            <th class="col-product">Product</th>
+                                            <th class="col-num">Seg</th>
+                                            <th class="col-num">UI Before</th>
+                                            <th class="col-num">UI After</th>
+                                            <th class="col-num">DB Prior</th>
+                                            <th class="col-num">DB After</th>
+                                            <th class="col-num">Cost Before</th>
+                                            <th class="col-num">Cost After</th>
+                                            <th class="col-match">Match</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template for:each={richMismatchRows} for:item="mx">
+                                            <tr key={mx.keyId} class={mx.rowClass}>
+                                                <td class="td-idx">{mx.idx}</td>
+                                                <td class="td-product">{mx.product}</td>
+                                                <td class="td-num td-muted">{mx.segOcc}</td>
+                                                <td class="td-num">{mx.uiBefore}</td>
+                                                <td class="td-num td-bold">{mx.uiAfter}</td>
+                                                <td class="td-num td-muted">{mx.dbPrior}</td>
+                                                <td class="td-num td-bold">{mx.dbAfter}</td>
+                                                <td class="td-num td-muted">{mx.costBefore}</td>
+                                                <td class="td-num td-bold">{mx.costAfter}</td>
+                                                <td class="td-match">{mx.statusIcon}</td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </template>
+                        <template if:false={hasMismatchRows}>
+                            <div class="tab-empty"><span>🔀</span><p>No cross-check data for this run.</p></div>
+                        </template>
+                    </template>
+
+                    <!-- ── DB Lines ─────────────────────────────────────── -->
+                    <template if:true={activeTabIsDb}>
+                        <template if:true={hasRichDbRows}>
+                            <div class="tbl-wrap">
+                                <table class="data-table data-table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-idx">#</th>
+                                            <th class="col-product">Product</th>
+                                            <th class="col-num">Seg</th>
+                                            <th class="col-num">Prior Qty</th>
+                                            <th class="col-num">DB Qty</th>
+                                            <th class="col-num">Cust Price</th>
+                                            <th class="col-num">Discount</th>
+                                            <th class="col-num">Net Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template for:each={richDbRows} for:item="row">
+                                            <tr key={row.keyId}>
+                                                <td class="td-idx">{row.index}</td>
+                                                <td class="td-product">
+                                                    {row.product}
+                                                    <template if:true={row.isBundleBool}>
+                                                        <span class="bundle-tag">bundle</span>
+                                                    </template>
+                                                </td>
+                                                <td class="td-num td-mono">{row.segIndexFmt}</td>
+                                                <td class="td-num td-mono td-muted">{row.priorQtyFmt}</td>
+                                                <td class="td-num td-mono td-bold td-blue">{row.dbQty}</td>
+                                                <td class="td-num td-mono">{row.custPriceFmt}</td>
+                                                <td class="td-num td-mono">{row.discountFmt}</td>
+                                                <td class="td-num td-mono">{row.netTotalFmt}</td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </template>
+                        <template if:false={hasRichDbRows}>
+                            <div class="tab-empty"><span>🗄️</span><p>No DB verification data for this run.</p></div>
+                        </template>
+                    </template>
+
+                    <!-- ── Metrics ─────────────────────────────────────── -->
+                    <template if:true={activeTabIsMetrics}>
+                        <template if:true={hasRichResults}>
+                            <!-- KPI strip — full width -->
+                            <div class="kpi-grid">
+                                <template for:each={richSummaryKpis} for:item="kpi">
+                                    <div key={kpi.id} class="kpi-card">
+                                        <div class="kpi-lbl">{kpi.label}</div>
+                                        <div class={kpi.valClass}>{kpi.value}</div>
+                                    </div>
+                                </template>
+                            </div>
+                            <!-- Split panes -->
+                            <div class="metrics-split">
+                                <!-- LEFT: Header Metrics -->
+                                <div class="metrics-split-pane">
+                                    <div class="split-pane-hdr">💰 Header Metrics — Before / After Save</div>
+                                    <template if:true={hasRichMetrics}>
+                                        <div class="metrics-flex-tbl">
+                                            <div class="mft-row mft-header">
+                                                <span class="mft-cell mft-label">Metric</span>
+                                                <span class="mft-cell mft-val">Before Save</span>
+                                                <span class="mft-cell mft-val">After Save</span>
+                                            </div>
+                                            <template for:each={richMetrics} for:item="m">
+                                                <div key={m.id} class="mft-row">
+                                                    <span class="mft-cell mft-label mft-bold">{m.label}</span>
+                                                    <span class="mft-cell mft-val mft-mono">{m.before}</span>
+                                                    <span class="mft-cell mft-val mft-mono mft-green">{m.after}</span>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </template>
+                                    <template if:false={hasRichMetrics}>
+                                        <div class="split-pane-empty">No header metrics captured.</div>
+                                    </template>
+                                </div>
+                                <!-- RIGHT: Line Quantity Assertions -->
+                                <div class="metrics-split-pane metrics-split-pane-right">
+                                    <div class="split-pane-hdr">
+                                        ✅ Line Quantity Assertions
+                                        <template if:true={hasRichLineRows}>
+                                            <span class="section-count">{richLineRows.length} lines</span>
+                                        </template>
+                                    </div>
+                                    <template if:true={hasRichLineRows}>
+                                        <div class="tbl-wrap">
+                                            <table class="data-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="col-idx">#</th>
+                                                        <th class="col-product">Product / Segment</th>
+                                                        <th class="col-num">Before</th>
+                                                        <th class="col-num">Expected</th>
+                                                        <th class="col-num">Actual</th>
+                                                        <th class="col-num">Delta</th>
+                                                        <th class="col-match">Result</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <template for:each={richLineRows} for:item="row">
+                                                        <tr key={row.keyId} class={row.rowClass}>
+                                                            <td class="td-idx">{row.index}</td>
+                                                            <td class="td-product">{row.label}</td>
+                                                            <td class="td-num td-mono">{row.before}</td>
+                                                            <td class="td-num td-mono">{row.expected}</td>
+                                                            <td class="td-num td-mono">{row.actual}</td>
+                                                            <td class="td-num td-mono td-green">{row.deltaStr}</td>
+                                                            <td class="td-match">{row.statusText}</td>
+                                                        </tr>
+                                                    </template>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </template>
+                                    <template if:false={hasRichLineRows}>
+                                        <div class="split-pane-empty">No line assertion data.</div>
+                                    </template>
+                                </div>
+                            </div>
+                        </template>
+                        <template if:false={hasRichResults}>
+                            <div class="tab-empty"><span>💰</span><p>No metrics data for this run.</p></div>
+                        </template>
+                    </template>
+
+                    <!-- ── Anomalies ─────────────────────────────────────── -->
+                    <template if:true={activeTabIsAnomalies}>
+                        <template if:true={hasRichAnomalies}>
+                            <div class="tbl-wrap">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-sev">Severity</th>
+                                            <th class="col-type">Type</th>
+                                            <th>Detail</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template for:each={richAnomalyRows} for:item="row">
+                                            <tr key={row.keyId}>
+                                                <td><span class={row.badgeClass}>{row.severity}</span></td>
+                                                <td class="td-type">{row.type}</td>
+                                                <td class="td-detail">{row.detail}</td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </template>
+                        <template if:false={hasRichAnomalies}>
+                            <div class="tab-empty tab-empty-ok"><span>✅</span><p>No anomalies detected in this run.</p></div>
+                        </template>
+                    </template>
+
+                    <!-- ── Spec (Playwright test results) ────────────────── -->
+                    <template if:true={activeTabIsSpec}>
+                        <template if:true={hasTestResults}>
+                            <div class="tbl-wrap">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-product">Test Name</th>
+                                            <th class="col-status">Status</th>
+                                            <th class="col-dur">Duration</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template for:each={activeRun.testResults} for:item="tr">
+                                            <tr key={tr.id} class={tr.rowClass}>
+                                                <td class="td-product">{tr.testName}</td>
+                                                <td><span class={tr.statusClass}>{tr.status}</span></td>
+                                                <td class="td-dur td-mono">{tr.durationDisplay}</td>
+                                            </tr>
+                                            <template if:true={tr.hasError}>
+                                                <tr key={tr.id} class="tr-error-row">
+                                                    <td colspan="3" class="td-error-inline">
+                                                        <span class="error-label">↳ Error:</span> {tr.errorMessage}
+                                                    </td>
+                                                </tr>
+                                            </template>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </template>
+                        <template if:false={hasTestResults}>
+                            <div class="tab-empty"><span>🎭</span><p>No spec results yet for this run.</p></div>
+                        </template>
+                    </template>
+
+                    <!-- ── Log ───────────────────────────────────────────── -->
+                    <template if:true={activeTabIsLog}>
+                        <template if:true={hasLogOutput}>
+                            <div class="log-output-wrap">
+                                <pre class="log-output">{logOutputText}</pre>
+                            </div>
+                        </template>
+                        <template if:false={hasLogOutput}>
+                            <div class="tab-empty"><span>📋</span><p>No log output for this run.</p></div>
+                        </template>
+                    </template>
+
+                </div>
+                <!-- /tab-panel -->
+
+                </template>
+                <!-- /if:true={hasResults} -->
+
+            </template>
+            <!-- /if:true={activeRunId} -->
+
+        </div>
+        <!-- /main-panel -->
+
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         Video Popup
+         ══════════════════════════════════════════════════════════════════ -->
+    <template if:true={showVideoModal}>
+        <div class="lb-overlay" onclick={handleVideoOverlayClick} role="dialog" aria-modal="true" aria-label="Test recording">
+            <div class="lb-box video-modal-box">
+                <div class="lb-header">
+                    <span class="lb-title">🎬 Test Recording</span>
+                    <a class="video-dl-btn" href={videoSrc} target="_blank">⬇ Download</a>
+                    <button class="lb-close" onclick={handleCloseVideo} title="Close (Esc)">✕</button>
+                </div>
+                <div class="video-modal-body">
+                    <video class="video-modal-vid" controls autoplay preload="metadata" src={videoSrc}></video>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         Screenshot Lightbox
+         ══════════════════════════════════════════════════════════════════ -->
+    <template if:true={lightboxOpen}>
+        <!-- eslint-disable-next-line -->
+        <div class="lb-overlay"
+             onclick={handleOverlayClick}
+             onkeydown={handleLightboxKeydown}
+             tabindex="-1"
+             role="dialog"
+             aria-modal="true"
+             aria-label={lightboxTitle}>
+            <div class="lb-box">
+                <div class="lb-header">
+                    <span class="lb-title">{lightboxTitle}</span>
+                    <span class="lb-counter">{lightboxCounter}</span>
+                    <button class="lb-close" onclick={handleCloseLightbox} title="Close (Esc)">✕</button>
+                </div>
+                <div class="lb-img-wrap">
+                    <img class="lb-img" src={lightboxSrc} alt={lightboxTitle} />
+                </div>
+                <template if:true={lightboxHasPrev}>
+                    <button class="lb-nav lb-prev" onclick={handleLightboxPrev} title="Previous (←)">&#8249;</button>
+                </template>
+                <template if:true={lightboxHasNext}>
+                    <button class="lb-nav lb-next" onclick={handleLightboxNext} title="Next (→)">&#8250;</button>
+                </template>
+            </div>
+        </div>
+    </template>
+
+</template>

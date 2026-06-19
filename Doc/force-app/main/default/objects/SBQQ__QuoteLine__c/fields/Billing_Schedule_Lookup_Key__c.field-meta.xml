@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_Schedule_Lookup_Key__c</fullName>
+    <description>Concatenated key assigned via price rule and used to query/return the correct Billing Schedule mdt record: Contract_Year__c + “ “ + SBQQ__BillingFrequency__c+ &quot;-&quot; + Quote__r.Number_of_Days_In_Advance__c + “-” + Num_Invoices_Per_Year__c</description>
+    <externalId>false</externalId>
+    <label>Billing Schedule Lookup Key</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

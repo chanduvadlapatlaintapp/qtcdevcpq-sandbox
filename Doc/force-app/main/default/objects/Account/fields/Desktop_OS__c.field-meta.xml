@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Desktop_OS__c</fullName>
+    <label>Desktop OS</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Windows 2000</fullName>
+                <default>false</default>
+                <label>Windows 2000</label>
+            </value>
+            <value>
+                <fullName>Windows XP (32-bit)</fullName>
+                <default>false</default>
+                <label>Windows XP (32-bit)</label>
+            </value>
+            <value>
+                <fullName>Windows XP (64-bit)</fullName>
+                <default>false</default>
+                <label>Windows XP (64-bit)</label>
+            </value>
+            <value>
+                <fullName>Windows Vista (32-bit)</fullName>
+                <default>false</default>
+                <label>Windows Vista (32-bit)</label>
+            </value>
+            <value>
+                <fullName>Windows Vista (64-bit)</fullName>
+                <default>false</default>
+                <label>Windows Vista (64-bit)</label>
+            </value>
+            <value>
+                <fullName>Windows 7 (32-bit)</fullName>
+                <default>false</default>
+                <label>Windows 7 (32-bit)</label>
+            </value>
+            <value>
+                <fullName>Windows 7 (64-bit)</fullName>
+                <default>false</default>
+                <label>Windows 7 (64-bit)</label>
+            </value>
+            <value>
+                <fullName>Windows 8</fullName>
+                <default>false</default>
+                <label>Windows 8</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>6</visibleLines>
+</CustomField>

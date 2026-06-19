@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Terms_Services__c</fullName>
+    <label>Payment Terms - Services</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Net 30 or Better</fullName>
+                <default>false</default>
+                <label>Net 30 or Better</label>
+            </value>
+            <value>
+                <fullName>Date Certain: 50-25-25</fullName>
+                <default>false</default>
+                <label>Date Certain: 50-25-25</label>
+            </value>
+            <value>
+                <fullName>Date Certain: 33-33-33</fullName>
+                <default>false</default>
+                <label>Date Certain: 33-33-33</label>
+            </value>
+            <value>
+                <fullName>Non Standard</fullName>
+                <default>false</default>
+                <label>Non Standard</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,506 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<link  href="/sCSS/Theme2/default/elements.css" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" type="text/css" />
+<link  href="/sCSS/Theme2/default/common.css" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" type="text/css" />
+<link  href="/css/assistive.css" media="aural,braille,embossed" rel="stylesheet" type="text/css" />
+<style>
+/* People */
+.searchResults .custom15 .primaryPalette, .searchResults .custom15 .secondaryPalette { background-color: #D95D2E;  border-color: #D95D2E; }
+.customTab15 .primaryPalette, .customTab15 .secondaryPalette { background-color: #D95D2E;  border-color: #D95D2E; color: #ffffff; }
+.customTab15 .tertiaryPalette { background-color: #D18361;  border-color: #D18361; }
+.customTab15 .tab .currentTab { background-image: url(/dimg/leftD95D2E.gif); }
+.customTab15 .tab .currentTab div { background-image: url(/dimg/rightD95D2E.gif); }
+.customTab15 .tabNavigation { background-image: url(/dimg/bgD95D2E.gif); }
+
+.custom15 .mruIcon { background-image: url(/img/icon/people16.gif);
+    width:16px;
+    height:16px; }
+.customTab15 .pageTitleIcon { background-image: url(/img/icon/people32.png);
+    width:32px;
+    height:32px; }
+.custom15 .relatedListIcon { background-image: url(/img/icon/people24.png);
+    width:24px;
+    height:24px; }
+</style>
+
+<script type="text/javascript" src="/js/functions.js"></script>
+<script src="/soap/ajax/8.0/connection.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+
+function isNumeric(sText){
+
+   var ValidChars = "0123456789.";
+   var IsNumber = true;
+   var Char;
+
+
+   for (i = 0; i < sText.length && IsNumber == true; i++)
+      {
+      Char = sText.charAt(i);
+      if (ValidChars.indexOf(Char) == -1)
+         {
+         IsNumber = false;
+         }
+      }
+   return IsNumber;
+}
+
+function getAttachments(queryAppend) {
+
+    //function contains all code to execute after page is rendered
+    var state = { //state that you need when the callback is called
+    output : document.getElementById("output"),
+    startTime : new Date().getTime()};
+
+    var callback = {
+        //call layoutResult if the request is successful
+        onSuccess: layoutResults,
+        //call queryFailed if the api request fails
+        onFailure: queryFailed,
+        source: state
+    };
+
+        var query = "Select a.Id,a.ContentType,a.ParentId,a.Parent.Type,a.Parent.Name,a.OwnerId, a.Owner.Name, a.Name, a.LastModifiedDate, a.BodyLength From Attachment a ";
+        if(queryAppend!=null) query += queryAppend;
+        query += " LIMIT 250 ";
+        sforce.connection.batchSize="251";
+        state.output.innerHTML = '<div> Please wait while we retrieve your records. <br/><br/><img align="middle" src="/img/waiting_dots.gif" alt="Please wait..." width="196" height="20" title="Please wait..." /></div>';
+        //alert("call");
+        sforce.connection.query(query,callback);
+        resizeIframe();
+}
+
+function filterAttachments(){
+    var sort = document.filter.sort.value;
+    var order = document.filter.order.value;
+    var lthan = trim(document.filter.lthan.value);
+    var gthan = trim(document.filter.gthan.value);
+    var ff1 = document.filter.filterField1.value;
+    var fv1 = trim(document.filter.filterValue1.value);
+    var ff2 = document.filter.filterField2.value;
+    var fv2 = trim(document.filter.filterValue2.value);
+    
+    var query = null;
+    if(gthan != "" || lthan != ""){
+
+        if(gthan!=""){
+            if(isNumeric(gthan)){
+                query = "WHERE";
+                query += " a.BodyLength > ";
+                query += gthan;
+            }
+            else{
+                alert("Please select numeric value for Greater Than.");
+                return;
+            }
+        }
+
+        if(lthan!=""){
+            if(isNumeric(lthan)){
+                if(query != null){
+                    query+=" AND ";
+                }
+                else{
+                    query = "WHERE";
+                }
+                query += " a.BodyLength < ";
+                query += lthan;
+            }
+            else{
+                alert("Please select numeric value for Less Than.");
+                return;
+            }
+        }
+    }
+       	//Filter #1
+   	if(ff1 != "none" && fv1 != ""){
+   		if(query == null){
+   		 	query = " WHERE ";
+   		}
+   		else { 
+   			query += " AND  "; 
+   		}
+   		
+   		query += ff1;
+   		query += " = '";
+   		query += fv1;
+   		query += "'";	
+   	}
+   	
+   	//Filter #2
+   	if(ff2 != "none" && fv2 != ""){
+   		if(query == null){
+   		 	query = " WHERE ";
+   		}
+   		else { 
+   			query += "  AND  "; 
+   		}
+   		query += ff2;
+   		query += " = '";
+   		query += fv2;
+   		query += "'";
+   	}
+   	
+    if(sort!="none"){
+        if(query!=null){
+            query += " ORDER BY ";
+        }
+        else{
+            query = " ORDER BY ";
+        }
+
+        query += sort;
+        query += " ";
+        query += order;
+    }
+
+        //alert(query);
+        getAttachments(query);
+}
+
+function resizeIframe(){
+	//alert("ResizeIframe().. resize called");
+   var iframe = parent.document.getElementById('itarget');
+    if(window.addEventListener) {
+        window.addEventListener("resize", resizeIframecaller, false);
+        window.addEventListener("load", resizeIframecaller, false);
+    } else {
+        window.attachEvent("resize", resizeIframecaller);
+        window.attachEvent("load", resizeIframecaller);
+    }
+    var height = document.body.scrollHeight;
+  	var width = document.body.scrollWidth;
+    iframe.style.height = (height + 50) + 'px';
+}
+
+function resizeIframecaller(){
+resizeIframe();
+}
+function queryFailed(error, source) {
+    source.output.innerHTML = "An error has occurred: " + error;
+    resizeIframe();
+}
+
+/**
+* This method will be called when the toolkit receives a successful
+* response from the server.
+* @queryResult - result that server returned
+* @source - state passed into the query method call.
+*/
+function layoutResults(queryResult, source) {
+    if (queryResult.size > 0) {
+        var output = '<table class="list" border="0" cellspacing="0" cellpadding="0" width="100%">';
+        output += '<tr class="headerRow">';
+        output += '<th class="actionColumn" scope="col"><input value="" title="Toggle All Rows" onclick="javascript:SelectAllOrNoneByCheckbox(document.forms[';
+        output += "'Attachments'";
+        output += '],';
+        output += "'attachments'";
+        output += ', this);" id="allBox" name="allBox" type="checkbox">&nbsp;</th>';
+        output += '<th scope="col" class="">Name</th>';
+        output += '<th scope="col" class="">Parent Name</th>';
+        output += '<th scope="col" class="">Parent Type</th>';
+        output += '<th scope="col" class="numericalColumn">File Size<br/>(in bytes)</th>';
+        output += '<th scope="col" class="">Owner Name</th>';
+         output += '<th scope="col" class="">Content Type</th>';
+        output += '<th scope="col" class="">Last Modified Date</th>';
+        output += '</tr>';
+
+    //get the records array
+    var records = queryResult.getArray('records');
+
+    var tabIndex = 0;
+    //loop through the records and construct html string
+    for (var i = 0; i < records.length; i++) {
+        var attachment = records[i];
+        rowClass = 'dataRow';
+        if(i%2 == 0) rowClass +=' even ';
+        else rowClass += ' odd ';
+        if (i == 0) rowClass += ' first';
+        else if(i == (records.length - 1)) rowClass += ' last ';
+        output += '<tr id="" class="' + rowClass + '" onblur="if (window.hiOff){hiOff(this);}" onfocus="if (window.hiOn){hiOn(this);}" onmouseout="if (window.hiOff){hiOff(this);}" onmouseover="if (window.hiOn){hiOn(this);}">';
+        output += '<td class="actionColumn" width="25"><input value="'+attachment.Id+'" onclick="javascript:updateToggleAllBox(this.form,';
+        output += "'attachments'";
+        output += ');" id="attachments'+i+'" name="attachments" type="checkbox"></td>';
+        output += '<td class="dataCell"><a href="/servlet/servlet.FileDownload?file='+attachment.Id+'" target="_blank">'+ attachment.Name + '</a></td>';
+
+        if(attachment.Parent != null && attachment.Parent.Name != null){
+        output += '<td class="dataCell"><a href="/' + attachment.ParentId + '" target="_blank">' + attachment.Parent.Name + '</a></td>';
+}else{
+output += '<td class="dataCell"></td>';
+}
+         if(attachment.Parent != null && attachment.Parent.Type != null){
+        output += '<td class="dataCell">' + attachment.Parent.Type + '</td>';
+        }else{
+output += '<td class="dataCell"></td>';
+}
+        output += '<td class="dataCell numericalColumn">' + attachment.getInt('BodyLength') + '</td>';
+        output += '<td class="dataCell"><a href="/' + attachment.OwnerId + '" target="_blank">' + attachment.Owner.Name + '</a></td>';
+        output += '<td class="dataCell">' + attachment.ContentType + '</td>';
+        output += '<td class="dataCell DateElement">' + attachment.getDateTime('LastModifiedDate') + '</td>';
+        output += '</tr>';
+    }
+    output += '</table>';
+
+    //render the generated html string
+    source.output.innerHTML = output;
+
+    } else {
+        source.output.innerHTML = "No records were found matching the selected criteria. Please modify report criteria and try again. This may also happen because there are no attachment records.";
+    }
+    //alert("Inside layout..resize");
+    resizeIframe();
+}
+
+function trim(s) {
+  s = s.replace( /^\s+/g, "" );// front
+  return s.replace( /\s+$/g, "" );// back
+}
+
+function formSubmit(event){
+    var Ids = new Array();
+    var a = document.Attachments.attachments;
+    if(a!=null){
+        if(a.length != undefined){
+	        for(var i=0;i<a.length;i++){
+	            if(a[i].checked){
+	                a[i].value = trim(a[i].value);
+	                Ids.push(a[i].value);
+	            }
+	        }
+	    }
+	    else if(a.checked && a.length == undefined){
+	                a.value = trim(a.value);
+	                //alert(a.value);
+	                Ids.push(a.value);
+	    }
+        if(Ids.length > 0){
+            var state = { //state required when the callback is called
+                        output : document.getElementById("output"),
+                        startTime : new Date().getTime()};
+
+            var callback = {
+                            //call returnCall if the request is successful
+                            onSuccess: returnCall,
+                            //call queryFailed if the api request fails
+                            onFailure: queryFailed,
+                            source: state
+                           };
+            sforce.connection.deleteIds(Ids,callback);
+           }
+           else{
+               alert("No attachments selected. Please select atleast one attachment");
+           }
+    }
+    else{
+        alert("No attachments available.");
+    }
+}
+
+function returnCall(result) {
+    //Iterate over result array to verify success on attachment delete.
+    var failed = new Array();
+    for(var i=0;i<result.length;i++){
+        if (!result[i].getBoolean("success")) {
+            failed.push(result[i].id);
+        }
+    //       info : document.getElementById("info");
+    //       info += '<font color="red">failed to create comment</font>' + result[0];
+    }
+    if(failed.length > 0) alert("The following attachments were not deleted: " + failed);
+    getAttachments();
+}
+
+function setupPage(){
+    getAttachments();
+}
+</script>
+</head>
+<body onload="setupPage();" class="custom customTab15">
+<div class="bPageTitle">
+    <div class="ptBody secondaryPalette">
+        <div class="content">
+          <h2 class="pageDescription">Attachment Manager</h2>
+            <div class="blank">&nbsp;</div>
+        </div>
+        <br/>
+           <br/>
+    </div>
+    <div class="ptBreadcrumb"></div>
+</div>
+
+<div class="bPageBlock bEditBlock secondaryPalette" id="ep">
+	<div class="pbBody">            
+            <div class="pbSubheader first tertiaryPalette" id="head_1_ep">
+                 <h3>Attachment Report Filters</h3>
+            </div>
+            <div class="pbSubsection" id="div">
+                    <table class="list" border="0" cellpadding="0" cellspacing="0">
+                        <tbody><tr>
+                            <td class="dataCol last">
+                                <div id="output2">
+                                    <table class="toolsContent">
+                                          <tbody>
+                                            <tr>
+                                              <td>
+                                                    <div class="toolsContentRight">
+                                                  <div class="bSubBlock secondaryPalette">
+                                                    <div class="lbBody">
+                                                      <div class="bSummary">
+                                                        <form name="filter" method="get" id="filter" action="javascript:filterAttachments()">
+                                                          <table cellspacing="0" cellpadding="0" border="0">
+                                                            <tbody>
+                                                              <tr>
+                                                                <td><label for="scope"><span class="requiredMark">*</span>Sort By:</label></td>
+                                                                <td><select name="sort" id="scope">
+                                                                    <option selected="selected" value="none">Default</option>
+                                                                    <option value=" a.Name ">Name</option>
+                                                                    <option value=" a.Parent.Name ">Parent Name</option>
+                                                                    <option value=" a.Parent.Type ">Parent Type</option>
+                                                                    <option value=" a.BodyLength ">File Size</option>
+                                                                    <option value=" a.Owner.Name ">Owner Name</option>
+                                                                    <option value=" a.ContentType ">ContentType</option>
+                                                                    <option value=" a.LastModifiedDate ">Last Modified Date</option>
+                                                                  </select>
+                                                                 </td>
+                                                                  <td><label for="scope">In Order:</label></td>
+                                                                <td><select name="order" id="scope">
+                                                                    <option selected="selected" value="ASC">Ascending</option>
+                                                                    <option value="DESC">Descending</option>
+                                                                  </select>
+                                                                 </td>
+                                                              </tr>
+                                                              <tr>
+                                                                  <td>File Size</td>
+                                                                <td>Greater Than (bytes):</td>
+                                                                <td><input type="text" name="gthan" size="8" id="gthan"/></td>
+                                                                <td>Less Than (bytes):</td>
+                                                                <td><input type="text" name="lthan" size="8" id="lthan"/></td>
+                                                              </tr>
+                                                              <tr>
+                                                               <td><label for="filterField1">Filter Criteria #1</label></td><td></td>
+                                                               <td><label for="filterField1">Filter Criteria #2</label></td><td></td>
+                                                			   </tr>
+                                                               <tr>
+                                                               <td>
+                                                               <select name="filterField1" id="filterField1">
+                                                                    <option selected="selected" value="none">--None--</option>
+                                                                    <option value=" a.Name ">Name</option>
+                                                                    <option value=" a.Parent.Id ">Parent Id</option>
+                                                                    <option value=" a.Parent.Name ">Parent Name</option>
+                                                                    <option value=" a.Parent.Type ">Parent Type</option>
+                                                                    <option value=" a.Owner.Name ">Owner Name</option>
+                                                                    <option value=" a.ContentType ">ContentType</option>
+                                                                  </select>                                                               
+                                                                </td>
+                                                               <td><input type="text" name="filterValue1" id="filterValue1"/></td>
+                                                               <td><select name="filterField2" id="filterField2">
+                                                                    <option selected="selected" value="none">--None--</option>
+                                                                    <option value=" a.Name ">Name</option>
+                                                                    <option value=" a.Parent.Id ">Parent Id</option>
+                                                                    <option value=" a.Parent.Name ">Parent Name</option>
+                                                                    <option value=" a.Parent.Type ">Parent Type</option>
+                                                                    <option value=" a.Owner.Name ">Owner Name</option>
+                                                                    <option value=" a.ContentType ">ContentType</option>
+                                                                  </select>                                                               
+                                                                </td>
+                                                               <td><input type="text" name="filterValue2" id="filterValue2"/></td>
+                                                               </tr>
+                                                              <tr><td><input type="submit" title="Run Report" name="go" class="btn" value="Run Report"/></td><td>(Report retrieves only the first 250 matching records)</td></tr>
+                                                            </tbody>
+                                                          </table>
+                                                        </form>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div></td>
+                                            </tr>
+                                          </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                            <td class="labelCol empty">&nbsp;</td>
+                            <td class="dataCol empty">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="labelCol empty">&nbsp;</td>
+                            <td class="data2Col empty">&nbsp;
+                                <!-- WrappingClass -->
+                                <!-- End ListElement -->
+                            </td>
+                            <td class="labelCol empty">&nbsp;</td>
+                            <td class="dataCol empty">&nbsp;</td>
+                        </tr>
+                    </tbody>
+					</table>
+            </div>
+          
+            <div class="pbSubheader first tertiaryPalette" id="head_1_ep">
+                    <h3>Attachments</h3>
+            </div>
+                        <div class="pbHeader">
+	            <form action="javascript:formSubmit();" enctype="application/x-www-form-urlencoded" name="TopButtons" id="topbuttons" method="POST">
+	            <table border="0" cellpadding="0" cellspacing="0">
+	                <tbody><tr>
+	                	<td class="pbTitle"><img src="/img/s.gif" alt="" class="minWidth" title="" height="1" width="1">
+	                        <h2 class="mainTitle">&nbsp;</h2>
+	                    </td>
+	                    <td class="pbButton">
+	                        <input value="Delete" class="btn" tabindex="23" title="Delete" name="delete" type="submit"/>
+	                    	<input value="Calculate Total Storage Use" class="btn" tabindex="23" title="Calculate Storage Use" name="storage" type="button" onclick="javascript:openPopupFocusEscapePounds('{!$SControl.attachMgr__StorageUsageCalculator}', 'Storage Calculator', 350, 250, 'width=350,height=250,resizable=yes,toolbar=no,status=no,scrollbars=yes,menubar=no,directories=no,location=no,dependant=no', false, false);"/>
+	                    </td>
+	                </tr>
+	            </tbody></table>
+	            </form>
+        	</div>
+        	<div class="pbSubsection" id="div">
+        		<form action="javascript:formSubmit();" enctype="application/x-www-form-urlencoded" name="Attachments" id="Attachments" method="POST">
+                    <table class="list" border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+						<tr>
+                            <td class="labelCol last"></td>
+                            <td class="dataCol last">
+                                <div id="output"></div>
+                            </td>
+                            <td class="labelCol empty">&nbsp;</td>
+                            <td class="dataCol empty">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="labelCol empty">&nbsp;</td>
+                            <td class="data2Col empty">&nbsp;
+                                <!-- WrappingClass -->
+                                <!-- End ListElement -->
+                            </td>
+                            <td class="labelCol empty">&nbsp;</td>
+                            <td class="dataCol empty">&nbsp;</td>
+                        </tr>
+                    	</tbody>
+					</table>
+				</form>
+			</div>
+	        <div class="pbHeader">
+	            <form action="javascript:formSubmit();" enctype="application/x-www-form-urlencoded" name="BottomButtons" id="bottombuttons" method="POST">
+	            <table border="0" cellpadding="0" cellspacing="0">
+	                <tbody>
+					<tr>
+	                    <td class="pbTitle"><img src="/img/s.gif" alt="" class="minWidth" title="" height="1" width="1">
+	                        <h2 class="mainTitle">&nbsp;</h2>
+	                    </td>
+	                    <td class="pbButton">
+	                        <input value="Delete" class="btn" tabindex="23" title="Delete" name="delete" type="submit">
+	                    	<input value="Calculate Total Storage Use" class="btn" tabindex="23" title="Calculate Storage Use" name="storage" type="button" onclick="javascript:openPopupFocusEscapePounds('{!$SControl.attachMgr__StorageUsageCalculator}', 'Storage Calculator', 350, 250, 'width=350,height=250,resizable=yes,toolbar=no,status=no,scrollbars=yes,menubar=no,directories=no,location=no,dependant=no', false, false);"/>
+	                    </td>
+	                </tr>
+	            	</tbody>
+				</table>
+	            </form>
+	        </div>
+	</div>
+	<div class="pbFooter secondaryPalette">
+          	<div class="bg"></div>
+	</div>           
+</div>
+</body>
+</html>

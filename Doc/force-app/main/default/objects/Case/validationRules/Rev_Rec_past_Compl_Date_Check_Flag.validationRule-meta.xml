@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Rev_Rec_past_Compl_Date_Check_Flag</fullName>
+    <active>false</active>
+    <description>If the revenue recognition date is later than the expected completion date, the revenue delay flag must be checked.</description>
+    <errorConditionFormula>AND(
+ IsClosed = FALSE,
+ Revenue_Recognition_Delay__c = FALSE,
+ Project_Exp_Rev_Rec_Date__c  &gt;  PSCase_Project_Exp_Compl_Date__c 
+)</errorConditionFormula>
+    <errorDisplayField>Revenue_Recognition_Delay__c</errorDisplayField>
+    <errorMessage>Please check the revenue delay flag or adjust the project dates</errorMessage>
+</ValidationRule>

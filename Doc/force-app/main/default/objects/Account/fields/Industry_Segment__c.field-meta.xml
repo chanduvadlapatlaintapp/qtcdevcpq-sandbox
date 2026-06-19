@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Industry_Segment__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(AND(ISPICKVAL(Industry, &quot;Legal&quot;),ISPICKVAL(Legal_Entity_Type__c ,&quot;Firm&quot;)), 
+  &quot;Law Firm&quot;, 
+   IF(OR(ISPICKVAL(Industry, &quot;Accounting&quot;), ISPICKVAL(Industry, &quot;Consulting&quot;)),
+      &quot;Accounting/Consulting Firm&quot;, 
+        &quot;Other&quot;
+) 
+)</formula>
+    <label>Industry Segment</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

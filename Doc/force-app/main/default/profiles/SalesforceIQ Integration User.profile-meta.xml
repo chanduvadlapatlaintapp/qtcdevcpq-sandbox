@@ -1,0 +1,3018 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Profile xmlns="http://soap.sforce.com/2006/04/metadata">
+    <custom>false</custom>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Account_AfterUpdate</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Account_After_Insert</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Account_After_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Account_After_Update_TimeBased</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Account_Before_Insert_Or_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Account_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Approval_Before_Insert</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Approval_Chain_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Approval_Condition_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Approval_Email_Template</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Approval_Rule_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Approval_Variable_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Approval_created_or_updated</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Approval_screen_flow_for_comments</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Approver_Before_Insert</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Approver_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Approver_Matrix_Before_Insert</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Approver_Matrix_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Auto_Populate_Pricebook_value</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>BIZ_203_Reset_Approval_Status</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Block_Pricings_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Campaign_influence_list_autolaunched</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Case_After_Insert</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Case_Before_Delete</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Case_Before_Insert</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Case_Before_Insert_And_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Case_Comment_check_publick</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Case_Deal_Creation_Request</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Case_Status_from_email_from_or_to_Customer</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Client_Application_Portfolio</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Collect_Information_Product_Customer</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Collect_PODS</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Collect_item_master_number_from_quote_lines</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Configuration_Rule_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Contract_After_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Contract_Amend</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Contract_Approvers_Assignment_Flow</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Contract_Before_Insert</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Contract_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Contract_Renewal_Quote_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Contract_SFA_Override_Screen_Flow</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Copy_PortalAccount_To_ShowPortalAccount</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Create_Champion_Contact_Role</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Create_Task</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Custom_Action_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Custom_Action_Condition_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Custom_Script_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Deal_Checklist</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Delete_PCC_from_Detached_Contact</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Delete_Undefined_cases_older_than_3_monts</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Early_Resouce_Request_Created</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Enhanced_Items_to_Approve</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Error_Condition_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Expiration_automation</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Expiration_automation_Amendment</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Flow_Link_PC_to_OAPrj</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Flow_On_Account_Before_Insert_Or_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>GearsetCloneSupportFlowBlockPrice</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>GearsetCloneSupportFlowConfigurationAttribute</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>GearsetCloneSupportFlowConfigurationRule</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>GearsetCloneSupportFlowCost</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>GearsetCloneSupportFlowDimension</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>GearsetCloneSupportFlowLineColumn</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>GearsetCloneSupportFlowLocalization</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>GearsetCloneSupportFlowLookupQuery</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>GearsetCloneSupportFlowOptionConstraint</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>GearsetCloneSupportFlowPriceAction</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>GearsetCloneSupportFlowPriceCondition</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>GearsetCloneSupportFlowPriceRule</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>GearsetCloneSupportFlowProduct2</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>GearsetCloneSupportFlowProductFeature</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>GearsetCloneSupportFlowProductOption</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>GearsetCloneSupportFlowQuoteTemplate</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>GearsetCloneSupportFlowTemplateSection</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>IIS</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Idea_Account</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Item_Master_Product_After_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>L2A_Owner_Assignment</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Latest_Approval_Cooments_Flow</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>LoB_Subsidiary_Error</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>LookupData_Before_Insert</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>MigrationQuoteLineAfterInsertUpdate</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>New_Closed_Won_Notifications</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Notify_Owner_of_Open_Opp_ty_Economic_buyer</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Notify_Support_overdue_0</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Notify_Support_overdue_10</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Notify_Support_overdue_20</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Notify_Support_overdue_30</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Notify_Support_overdue_40</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Notify_Support_overdue_50</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Notify_Support_overdue_60</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Notify_owner_of_Open_Opp_ty</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>OA_Project_PC_Link_Flow_Launcher</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>OSA_Review_Notification</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>OpportunityLineItem_After_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>OpportunityLineItem_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Opportunity_After_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Opportunity_After_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Opportunity_Before_Insert</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Opportunity_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Opportunity_Line_Item_After_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Order_After_Insert</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Order_After_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Order_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Order_Before_Update_Mark_Contracted</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Order_Change_After_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Order_Change_Request</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Order_Product_After_Insert</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Order_Product_Before_Insert_or_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Order_header_created</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>POD</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Populate_Dedicated_Support_Engineer</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Post_to_System_Changes_Chatter_GRoup</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Price_Action_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Price_Condition_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Price_Rule_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Product_Action_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Product_After_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Product_Rule_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Product_release</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Products_Owned_Number</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Products_from_ADD_opportunities_ACV</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Products_from_NEW_opportunities</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Proforma_Invoice_Scheduled</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>QL_OP4I_Deal_Line_ID_Null_Event_Record</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>QL_OP4I_Deal_Line_ID_Null_Records_to_be_Deleted</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>QL_To_be_Deleted_When_OP4I_DLI_Null_and_user_Bizapp</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>QTC_Contract_Renewal_Scheduled_Process</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>QTC_GreenBoxApproveAll</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>QTC_GreenboxReassign</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>QuoteLine_Create_Update_Enable_Notification</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_After_Create</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_After_Insert</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_After_Insert_And_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_After_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_After_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_Approval_Changes</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_Before_Insert</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_Before_Update_Operations</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_Contract_Consolidation</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_Create_Populate_the_expiration_date</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_Document_Before_Insert</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_Document_Delete</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_Document_Generate_Date_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_Document_Generation</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_Line_After_Insert</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_Line_Before_Delete</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_Line_Before_Insert</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_Line_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_Line_Before_Insert_flow</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_Line_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_OSA_Approval</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_Renewal_Letter_Create_Scheduled_Flow</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_Submit_for_Approval</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_Term_After_Insert</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_Term_Before_Insert</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_Update_The_Default_Bill_to_and_Ship_to_Address</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Quote_update_bill_to_and_ship_to_accounts</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>ReferenceEdge_CC_Account_Owners</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Remove_contract_link</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Renewal_Letter_Adjustment</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Renewal_Letter_After_Insert</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Renewal_Letter_Cancelled_Client_Notification</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Renewal_Letter_Scheduled_Activate_Orders</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Renewal_Letter_Scheduled_Contract_Activated_Orders</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Request_Ops_Button</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Request_Ops_Support_Fields</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Resource_Summary_Before_Insert_update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>SFDC_Invoice_Project_posting</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Salesloft_Email_Click_Task_Editor</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Search_Filter_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Send_HTML_Email_Testflow</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Send_Proforma_Invoice</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Ser_status_quote_approval_recalled</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Ser_status_quote_approval_rejected</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Service_Schedule_Flow</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Set_License_Product_Lookup</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Set_the_Quote_Fields_To_True</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Submit_for_governance_screenflow</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Subscription_After_Insert</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Subscription_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Summary_Variable_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Task_After_Insert_update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Term_Condition_Before_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Term_Quote</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Update_Account_Name</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Update_Approval_Comment_on_Quote</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Update_Approval_Matrix_Name</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Update_Billing_day_Override_billing_date_in_Order</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Update_Contact_Title</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Update_Contract_Line_of_Business</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Update_Custom_Master_Term_on_Quote</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Update_Hot_List_PMP</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Update_Opportunity_Line_of_Business</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Update_Product_Line_LKP_on_Case</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Update_Proposal_status</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Update_QL_s_Billing_Freq_from_Quote</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Update_Status_from_Case_Comment</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Update_Subsidiary_on_Contract</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Update_Task_Status</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Update_contract_link</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Updates_Date_Time_for_Account_Name_Change</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>User_Badge_After_Insert</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Vacation</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Validation_Checklist_After_Insert_Update</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>Waiting_on_Customer</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>count_SOW</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>csm_product_status_to_case_one_field</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>custom_quote_term</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>pod_test</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>populate_earlier_release_date</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>set_quote_status_to_processed</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>trial_expiration</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>false</enabled>
+        <flow>update_contract_on_quotes</flow>
+    </flowAccesses>
+    <layoutAssignments>
+        <layout>ACV_Allocation__c-ACV Allocation Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AI_Settings__mdt-AI Settings Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account-Account Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account-Account Layout</layout>
+        <recordType>Account.LegalAccounts</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account-Accounts - Accounting Layout</layout>
+        <recordType>Account.Accounts_Accounting</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account-Accounts - Financial Services Layout</layout>
+        <recordType>Account.Accounts_Financial_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account-Accounts - Partner Layout</layout>
+        <recordType>Account.Accounts_Partners</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AccountBrand-Account Brand Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AccountContactRelation-Account Contact Relationship Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AccountContactRole-Account Contact Role Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AccountTeamMember-Account Team Member Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account_CSM_Health_Rate_Snapshot__c-Account CSM Health Rate Snapshot Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account_Campaign_Link__c-Account Campaign Link Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account_Field_History__c-Account Field History Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account_Location__c-Account Location Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account_Objective__c-Account Objective Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account_Plan_Key_Player2__c-Key Player Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account_Plan__c-Account Plan Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account_Tier_Configuration__mdt-Account Tier Configuration Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ActionPlan-Action Plan Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ActionPlanItemDependency-Action Plan Item Dependency Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ActionPlanTemplate-Action Plan Template Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ActionPlanTemplateItem-Action Plan Template Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ActionPlanTemplateItemValue-Action Plan Template Item Value Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ActionPlanTemplateVersion-Action Plan Template Version Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ActionPlnTmplItmDependency-Action Plan Template Item Dependency Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Address__c-Address Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Advances_Productivity_Snapshot_2__c-Advances Productivity Snapshot Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Advances_Productivity__c-Advances Productivity Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AgenticQTC_AmendmentJob__c-AgenticQTC Amendment Job Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AgenticQTC_Config__mdt-AgenticQTC Config Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Allocations_Product__c-Allocations Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Allowed_Deal_Type_For_Sync__mdt-Allowed Deal Type For Sync Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Announcement__kav-Announcement Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Appliance__c-Appliance Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Application_Type_Attributes__c-Application Type %26 Attributes Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ApprovalSubmission-Approval Submission Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ApprovalSubmissionDetail-Approval Submission Detail Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ApprovalWorkItem-Approval Work Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Approval_Level_Matrix__mdt-Approval Level Matrix Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Approvers_Matrix__c-Approver Matrix Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-Asset Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AssetAction-Asset Action Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AssetActionSource-Asset Action Source Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AssetRelationship-Asset Relationship Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AssetStatePeriod-Asset State Period Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AuthorizationForm-Authorization Form Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AuthorizationFormConsent-Authorization Form Consent Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AuthorizationFormDataUse-Authorization Form Data Use Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AuthorizationFormText-Authorization Form Text Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>BackgroundOperation-Background Operation Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Billing_Schedule__c-Billing Schedule Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Block_Pricing__c-Block Pricing Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Budget_Detail__c-Budget Detail Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Budget_Tracking__c-Budget Tracking Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Budget__c-Budget Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>BuildDetails__c-Build Detail Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>BusinessBrand-Business Brand Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CR_Engagement__c-CR Engagement Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Campaign-Campaign Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Campaign-Campaign Layout</layout>
+        <recordType>Campaign.Archived_Campaigns</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Campaign-Campaign Layout</layout>
+        <recordType>Campaign.Master_Record_Type</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CampaignInfluenceModel-Campaign Influence Model Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CampaignMember-Campaign Member Page Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CampaignMemberStatus-Campaign Member Status Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Acute Situation Alert</layout>
+        <recordType>Case.Acute_Situation_Alert</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Customer Maintenance Layout</layout>
+        <recordType>Case.PostSaleCustomerMaintenance</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Customer Success - Default</layout>
+        <recordType>Case.Customer_Success_IntApp_Open</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Customer Success - Default</layout>
+        <recordType>Case.Customer_Success_Integration_Builder</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Customer Success - Default</layout>
+        <recordType>Case.Customer_Success_Other</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Customer Success - Default</layout>
+        <recordType>Case.Customer_Success_Time_Builder</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Customer Success - Default</layout>
+        <recordType>Case.Customer_Success_Wall_Builder</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Executive Support</layout>
+        <recordType>Case.Executive_Support</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Executive Support</layout>
+        <recordType>Case.Executive_Support_Case</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-FRU</layout>
+        <recordType>Case.FRU</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Feature Request</layout>
+        <recordType>Case.FeatureRequest</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Feedback%3A Time Builder</layout>
+        <recordType>Case.FeedbackTimeBuilder</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Implementation - Activity Tracker</layout>
+        <recordType>Case.Implementation_Activity_Tracker</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Implementation - CID</layout>
+        <recordType>Case.Implementation_CID</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Implementation - Generic</layout>
+        <recordType>Case.Implementation_DTE_Axiom</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Implementation - Generic</layout>
+        <recordType>Case.Implementation_Generic</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Implementation - Generic</layout>
+        <recordType>Case.SalesDemo</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Implementation - Open</layout>
+        <recordType>Case.Implementation_Open</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Implementation - Time Builder</layout>
+        <recordType>Case.Implementation_Time_Builder</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Implementation - Time Builder Pilot %26 Rollout</layout>
+        <recordType>Case.Implementation_Time_Builder_Pilot_Rollout</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Implementation - Wall Builder</layout>
+        <recordType>Case.Implementation_Wall_Builder</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Implementation%2FProfessional Services Layout</layout>
+        <recordType>Case.PostsaleImplementation</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Implementation%2FProfessional Services Layout</layout>
+        <recordType>Case.RiskManagementCase</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Internal - Salesforce Change Request</layout>
+        <recordType>Case.Internal_Operations_Change_Request</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-OSA Support</layout>
+        <recordType>Case.OSA_Support</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Other Layout</layout>
+        <recordType>Case.Other</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Partner Management</layout>
+        <recordType>Case.Partner_Managment</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Procurement</layout>
+        <recordType>Case.Procurement</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-RMA</layout>
+        <recordType>Case.RMA</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Sales Call Layout</layout>
+        <recordType>Case.SalesBusinessteamsupport</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Support</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Support Case for Intapp users</layout>
+        <recordType>Case.Support</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-SupportSurvey</layout>
+        <recordType>Case.SupportSurvey</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Survey</layout>
+        <recordType>Case.Survey</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Time Builder Assessment</layout>
+        <recordType>Case.Time_Builder_Assessment</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Training Layout</layout>
+        <recordType>Case.PostsaleTraining</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Close Case Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Close Case Layout</layout>
+        <recordType>Case.Executive_Support</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Close Case Layout</layout>
+        <recordType>Case.Other</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Close Case Layout</layout>
+        <recordType>Case.PostSaleCustomerMaintenance</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Close Case Layout</layout>
+        <recordType>Case.PostsaleImplementation</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Close Case Layout</layout>
+        <recordType>Case.PostsaleTraining</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Close Case Layout</layout>
+        <recordType>Case.RMA</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Close Case Layout</layout>
+        <recordType>Case.SalesBusinessteamsupport</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Close Case Layout</layout>
+        <recordType>Case.SalesDemo</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Procurement Order Closing</layout>
+        <recordType>Case.Procurement</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Support Close Case Layout</layout>
+        <recordType>Case.Support</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case_Access_Contact__c-Case Access Contact Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case_Contract_Link__c-Case Contract Link Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case_Deflection__kav-Case Deflection Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Certification__c-Certification Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Client_Application_portfolio__c-Application portfolio Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CollaborationGroup-Group Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Collection_Order__c-Appliance Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Collection_Order__c-Appliance Layout</layout>
+        <recordType>Collection_Order__c.Appliance</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Collection_Order__c-Appliance Layout</layout>
+        <recordType>Collection_Order__c.Other</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CommSubscription-Communication Subscription Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CommSubscriptionChannelType-Communication Subscription Channel Type Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CommSubscriptionConsent-Communication Subscription Consent Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CommSubscriptionTiming-Communication Subscription Timing Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CommunityMemberLayout-Community Member Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Company_Objective__c-Company Objective Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Competitor__c-Competitor Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Connection__c-Connection Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ConsumptionRate-Consumption Rate Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ConsumptionSchedule-Consumption Schedule Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contact-Contact Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contact-Contact Layout</layout>
+        <recordType>Contact.Contact</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contact-PSA Resource Layout</layout>
+        <recordType>Contact.PSA_Resource</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ContactPointAddress-Contact Point Address Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ContactPointEmail-Contact Point Email Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ContactPointPhone-Contact Point Phone Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ContentAsset-Asset File Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ContentLink-Content Link Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ContentSource-Content Source Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ContentVersion-General</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contract-Contract Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contract-Contract Layout</layout>
+        <recordType>Contract.PartnerEvalContract</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contract-Contract Layout</layout>
+        <recordType>Contract.StandardDirect</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contract_Draft__c-Contract Draft Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contract_Product_Component__c-Contract Component Line Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contract_Product_Line__c-Contract Product Line Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Country_Info__mdt-Country Info Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Customer-Customer Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Customer_Team_Member__c-Customer Team Member Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DataMigration__mdt-DataMigration Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DataUsePurpose-Data Use Purpose Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Deal_Strength_Snapshot__c-Deal Strength Snapshot Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Deferral_Invoice_Link__c-Deferral Invoice Link Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DelegatedAccount-External Managed Account Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Department_Objective__c-Department Objective Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Department__c-Department Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Download__kav-Download Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DuplicateRecordItem-Duplicate Record Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DuplicateRecordSet-Duplicate Record Set Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Early_Adopter_Program__c-Early Adopter Program Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>EmailMessage-Email Message Layout - Email-to-Case</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Employee__c-Employee Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>EngagementChannelType-Engagement Channel Type Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Error_Log__c-Error Log Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Event-Event Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Expense_Reimbursement__c-Expense Reimbursement Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FAQ__kav-FAQ Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FeedItem-Feed Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Field_History_Config__mdt-Field History Configuration Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Field_History__c-Field History Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Field_Tracking__mdt-Field Tracking Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FinanceBalanceSnapshot-Finance Balance Snapshot Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FinanceTransaction-Finance Transaction Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FlowInterview-Flow Interview Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FlowOrchestrationWorkItem-Orchestration Work Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FlowRecord-Flow Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>General_Information__kav-General Information Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Generic_Key_Value_Setting__mdt-Generic Key Value Setting Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Geography__c-Geography Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Ghost_QuoteLine_Reconciliation__c-Ghost QuoteLine Reconciliation Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>GitHub_Actions_Config__mdt-GitHub Actions Config Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>GitHub_Settings__mdt-GitHub Settings Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Global-Global Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Historical_Rankings__c-Historical Rankings Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>How_To__kav-How-To Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>IB_Metric_Ranking__c-IB Metric Ranking Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>IB_Summary_Metric__c-IB Summary Metric Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ILT_Attendee__c-ILT Attendee Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ILT__c-ILT Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ISM_Material_with_OPC_Snapshot__c-ISM Material with OPC Snapshot Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Idea-Idea Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Image-Image Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Individual-Individual Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Intapp_Internal_Request__c-Initiative Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Intapp_Internal_Request__c-Initiative Layout</layout>
+        <recordType>Intapp_Internal_Request__c.Initiative</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Intapp_Internal_Request__c-Ticket Layout</layout>
+        <recordType>Intapp_Internal_Request__c.Ticket</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Intapp_Pricing__c-Intapp Pricing Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Intapp_Resource__c-Intapp Resource Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Integration_Datasource__mdt-Integration System Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Integration_Error__c-Integration Error Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Integration_Log__c-Integration Log Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Integration_Rule__mdt-Integration config Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Integration__c-Integration Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Integration_mapping__mdt-Integration mapping Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Invoice_Data__c-Invoice_Data Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Invoice_Subscription_Link__c-Invoice Subscription Link Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Invoice_Template__mdt-Address DealCloud Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Invoice_User_Note__c-Invoice User Note Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Invoice__c-Invoice Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Issue__kav-Issue Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Item_Master_Product__c-Item Master Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Item_Master_Subscription_Link__c-Product Master to Product Link Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Key_Players__c-Key Player Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Knowledge_Base__kav-Knowledge Base Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Lead-Lead Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Lead-Lead Layout</layout>
+        <recordType>Lead.ProspectLead</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Lead-Lead Layout</layout>
+        <recordType>Lead.SuspectLead</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Lead-Partner Layout</layout>
+        <recordType>Lead.PartnerLead</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LegalEntity-Legal Entity Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>License_Basis_Item_Master_Link__c-License Basis Item Master Link Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>License_Basis__c-License Basis Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ListEmail-List Email Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Location-Location Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Location__c-Location Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Macro-Macro Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Market_Snapshots__c-Market Snapshot Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>MessagingEndUser-Messaging User Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>MessagingSession-Messaging Session Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>NDA__c-NDA Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>NS_Invoice_Line_Item__c-NS Invoice Line Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>NS_Payment__c-NS Payment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>News_Alert__c-News%2FAlert Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>News_Alert__c-News%2FAlert Layout</layout>
+        <recordType>News_Alert__c.Flash_Alert</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>News_Alert__c-News%2FAlert Layout</layout>
+        <recordType>News_Alert__c.Product_News</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OA_Slip_Header__c-OA Slip Header Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OA_Slip__c-OA Slip Object Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OP4I_DLIP_View__c-OP4I DLIP View Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OP4I_Entitlement_Renewal_View__c-OP4I Entitlement Renewal View Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OP4I_Entitlement_View__c-OP4I Entitlement View Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Open_Support_Cases_Snapshot__c-Open Support Cases Snapshot Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Openings_Productivity_Snapshot__c-Openings Productivity Snapshot Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Openings_Productivity__c-Openings Productivity Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Account Management %2F Renewal Opportunity Layout</layout>
+        <recordType>Opportunity.Legal_Renewal</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Legal - Billing Paused %2F Restarted</layout>
+        <recordType>Opportunity.Legal_Billing_Pause_Restart</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Legal - Cancellation</layout>
+        <recordType>Opportunity.Legal_Cancellation</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Legal - Change Request %2F Services Initiated</layout>
+        <recordType>Opportunity.Legal_Services_Only</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Legal - End User License</layout>
+        <recordType>Opportunity.Legal_Annual_End_User_License</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Quota Credit Adjustment</layout>
+        <recordType>Opportunity.Quota_Credit_Adjustment</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Sales - Legal</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Sales - Legal</layout>
+        <recordType>Opportunity.Legal_Flow</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Sales - Legal</layout>
+        <recordType>Opportunity.Legal_Integration</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Sales - Legal</layout>
+        <recordType>Opportunity.Legal_Legacy</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Sales - Legal</layout>
+        <recordType>Opportunity.Legal_Open</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Sales - Legal</layout>
+        <recordType>Opportunity.Legal_Time</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Sales - Legal</layout>
+        <recordType>Opportunity.Legal_Walls</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Sales - Legal</layout>
+        <recordType>Opportunity.Migration_Opportunity</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Sales - Legal</layout>
+        <recordType>Opportunity.Sales_Emerging_Markets</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Sales - Legal</layout>
+        <recordType>Opportunity.Sales_Legal</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Services - Partner</layout>
+        <recordType>Opportunity.Consulting_Services_Internal</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Services - Partner</layout>
+        <recordType>Opportunity.Services_Partner</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-TFG Services</layout>
+        <recordType>Opportunity.Legal_TFG_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Training</layout>
+        <recordType>Opportunity.Training</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OpportunityContactRole-Opportunity Contact Role Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OpportunityLineItem-Opportunity Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OpportunityTeamMember-Opportunity Team Member Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order-Order Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OrderItem-Order Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order_Change__c-Order Change Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order_Header__c-Appliance Hardware</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order_Header__c-Appliance Hardware</layout>
+        <recordType>Order_Header__c.ApplianceHardware</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order_Header__c-Appliance Hardware</layout>
+        <recordType>Order_Header__c.Evaluation</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order_Header__c-Appliance Hardware</layout>
+        <recordType>Order_Header__c.FreeS4Upgrade2006customer</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order_Header__c-Appliance Hardware</layout>
+        <recordType>Order_Header__c.Partner</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order_Header__c-Other</layout>
+        <recordType>Order_Header__c.Other</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order_Header__c-RMA</layout>
+        <recordType>Order_Header__c.RMA</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order_Header__c-TotalTesting</layout>
+        <recordType>Order_Header__c.Development</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order_Header__c-Virtual Edition Key</layout>
+        <recordType>Order_Header__c.VirtualEditionKey</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order_Header__c-Virtual Edition Media</layout>
+        <recordType>Order_Header__c.Cloud_Tenant</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order_Header__c-Virtual Edition Media</layout>
+        <recordType>Order_Header__c.Virtual_Edition_Media</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PMP_Feature__c-PMP Feature Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PODSoftwareDeliveryMapping__c-PODSoftwareDeliveryMapping Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PS_Line_Item__c-PS Line Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Partner__kav-Partner Article Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PartyConsent-Party Consent Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Personal_Objective__c-Objective Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Pipeline_Snapshot__c-Pipeline Snapshot Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Practice_Group__c-Practice Group Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Pricebook2-Price Book Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PricebookEntry-Price Book Entry Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Pricing_Tier_Configuration__mdt-Pricing Tier Configuration Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ProcessException-Process Exception Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product2-Other Users</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product2-Other Users</layout>
+        <recordType>Product2.Product</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product2-Other Users</layout>
+        <recordType>Product2.Service</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ProductConsumptionSchedule-Product Consumption Schedule Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Component_Link__c-Product Component Link Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Component__c-Administrator - Hardware</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Component__c-Administrator - Hardware</layout>
+        <recordType>Product_Component__c.Hardware</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Component__c-Administrator - Hardware</layout>
+        <recordType>Product_Component__c.Service</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Component__c-Administrator - Hardware</layout>
+        <recordType>Product_Component__c.Software</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Customer_Case_Link__c-Product Customer - Case Link Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Customer_Opportunity_Link__c-Product Customer - Opportunity Link Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Document_Mapping__mdt-Product Document Mapping Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Feature__c-Product Feature Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Line__c-Product Line Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Botany</layout>
+        <recordType>Product_Migration_Placeholder__c.Botany</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Botany</layout>
+        <recordType>Product_Migration_Placeholder__c.Executive_Owner</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-CSM Ops Request</layout>
+        <recordType>Product_Migration_Placeholder__c.CSM_Ops_Request</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Cloud IDM Migration</layout>
+        <recordType>Product_Migration_Placeholder__c.Cloud_IDM_Migration</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Cloud Readiness</layout>
+        <recordType>Product_Migration_Placeholder__c.Cloud_Readiness</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Conflicts Elasticsearch Issue</layout>
+        <recordType>Product_Migration_Placeholder__c.Conflicts_Elasticsearch_Issue</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Experience Success</layout>
+        <recordType>Product_Migration_Placeholder__c.Experience_Success</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Flow Success</layout>
+        <recordType>Product_Migration_Placeholder__c.Flow_Success</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Hot List</layout>
+        <recordType>Product_Migration_Placeholder__c.Hot_List</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-OP SF CRM AOI Defect</layout>
+        <recordType>Product_Migration_Placeholder__c.OP_SF_CRM_AOI_Defect</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Product Migration Placeholder - LK</layout>
+        <recordType>Product_Migration_Placeholder__c.LegalKey</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Product Migration Placeholder Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Project Raptor</layout>
+        <recordType>Product_Migration_Placeholder__c.Project_Raptor</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Rekoop%2FTime Cloud%2FSilverlight EOS</layout>
+        <recordType>Product_Migration_Placeholder__c.Rekoop_Time_Cloud_Silverlight_EOS</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Relationships Success</layout>
+        <recordType>Product_Migration_Placeholder__c.Relationships_Success</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Sanctions List Service Issue</layout>
+        <recordType>Product_Migration_Placeholder__c.Sanctions_List_Service_Issue</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Terms Success</layout>
+        <recordType>Product_Migration_Placeholder__c.Terms_Success</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Time %2F FMS Migration</layout>
+        <recordType>Product_Migration_Placeholder__c.Time_FMS_Migration</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Time 8 Reference Program</layout>
+        <recordType>Product_Migration_Placeholder__c.Time_8_Reference_Program</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Time 8 SWAT</layout>
+        <recordType>Product_Migration_Placeholder__c.Time_8_SWAT</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Time Mobile TLS Program</layout>
+        <recordType>Product_Migration_Placeholder__c.Time_Mobile_TLS_Program</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Time Web Vulnerability</layout>
+        <recordType>Product_Migration_Placeholder__c.Time_Web_Vulnerability</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Walls Compound Document Issue</layout>
+        <recordType>Product_Migration_Placeholder__c.Walls_Compound_Document_Issue</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Walls Defense</layout>
+        <recordType>Product_Migration_Placeholder__c.Walls_Defense</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Migration_Placeholder__c-Watch List Issue</layout>
+        <recordType>Product_Migration_Placeholder__c.Watch_List_Issue</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Ownership_Detail__c-Product Ownership Detail Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Plan__c-Product Plan Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Plan__c-Product Plan Layout</layout>
+        <recordType>Product_Plan__c.Intapp_Open</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Plan__c-Product Plan Layout</layout>
+        <recordType>Product_Plan__c.Intapp_Time</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Plan__c-Product Plan Layout</layout>
+        <recordType>Product_Plan__c.Integration</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Plan__c-Product Plan Layout</layout>
+        <recordType>Product_Plan__c.Walls</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Release__c-Product Release Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Rollup__c-Product Rollup Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Proforma_Invoice__c-Performa Invoice Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Project_Access_Contact__c-Project Access Contact Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Project_Component__c-Project Component Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Project_Snapshot__c-Project Snapshot Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Project__c-Project Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Proposal__c-Proposal Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>QLI_Field_Mapping__mdt-QLI Field Mapping Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>QTC_Mig_OrderHeaders__c-QTC_Mig_OrderHeaders Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>QTC_Mig_OrderProducts__c-QTC_Mig_OrderProducts Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>QTC_Product_Mapping__c-QTC Product Mapping Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>QtC_Mig_CreditMemoLines_Alloc_Temp_Table__c-QtC Mig CreditMemoLines Alloc Temp Table Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>QtC_Mig_CreditMemoLines_Temp_Table__c-QtC Mig CreditMemo Lines Temp Table Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>QtC_Mig_CreditMemo_Temp_Table__c-QtC Mig CreditMemo Temp Table Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>QtC_Mig_Invoice_Lines_Temp_Table__c-QtC Mig Invoice Lines Temp Table Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>QtC_Mig_Invoice_Temp_Table__c-QtC Mig Invoice Temp Table Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>QtC_Mig_PaymentAlloc_Temp_Table__c-QtC Mig PaymentAlloc Temp Table Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>QtC_Mig_Payments_Temp_Table__c-QtC Mig Payments Temp Table Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Quarterly_Opportunity_Trends_Snapshot__c-Quarterly Opportunity Trends Snapshot Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Question-Question Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>QuickText-Quick Text Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Quote-OSA%3A Services Only</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Quote-OSA%3A Services Only</layout>
+        <recordType>Quote.OSA_Services_Only</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>QuoteLineItem-Quote Line Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>RD_Defferals__c-Deferral Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Reference_Event__c-Reference Event Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Related_Account__c-Feature Account Association Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Release_Note__kav-Release Note Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Requisitions__c-Requisition Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Resource_Summary__c-Resource Summary Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Responsibility__c-Responsibility Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Rollup_Setting__mdt-Rollup Setting Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SBQQ__LookupData__c-ACV</layout>
+        <recordType>SBQQ__LookupData__c.ACV</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SBQQ__LookupData__c-Static Bundle Layout</layout>
+        <recordType>SBQQ__LookupData__c.Static_Bundle</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SBQQ__QuoteLine__c-Quote Line Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SBQQ__QuoteTemplate__c-Quote Template Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SBQQ__QuoteTerm__c-Quote Term Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SBQQ__Quote__c-Quote Layout</layout>
+        <recordType>SBQQ__Quote__c.Approved_Quote</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SBQQ__Quote__c-Quote Layout</layout>
+        <recordType>SBQQ__Quote__c.Old_Payment_Terms</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SBQQ__Quote__c-Quote Layout IntApp</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SBQQ__Quote__c-Quote Layout IntApp</layout>
+        <recordType>SBQQ__Quote__c.Draft_Quote</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SBQQ__Quote__c-Quote Layout IntApp</layout>
+        <recordType>SBQQ__Quote__c.New_Quote_terms</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SFDC_Application__c-Application Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SFDC_Candidate__c-Candidate Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SFDC_Channel_Budget__c-Budget Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SFDC_MDF_Claim__c-Channel Manager Claim Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SFDC_MDF__c-Channel Manager Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SFDC_Named_Caller__c-Named Caller Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SFDC_Position__c-Position Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SFDC_Services_Project__c-SFDC Services Project Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SFDC_Survey__c-Consulting</layout>
+        <recordType>SFDC_Survey__c.Consulting</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SFDC_Survey__c-Manual</layout>
+        <recordType>SFDC_Survey__c.Manual</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SFDC_Survey__c-Survey Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SFDC_Survey__c-Survey Layout</layout>
+        <recordType>SFDC_Survey__c.NPS</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SKU_Config_Staging_Entry__c-SKU Config Staging Entry Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SKU_Config_Staging__c-SKU Config Staging Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SRT_Translation__c-SRT Translation Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Sales_Engineering_Queue_Snapshot__c-Sales Engineering Queue Snapshot Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Sales_Funnel_OPC_Snapshot__c-Sales Funnel OPC Snapshot Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Sales_Funnel_Snapshot__c-Sales Funnel Snapshot Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Sales_Productivity_Snapshot__c-Sales Productivity Snapshot Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Sales_Productivity_with_OPC_Snapshot__c-Sales Productivity with OPC Snapshot Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Scorecard-Scorecard Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ScorecardAssociation-Scorecard Association Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ScorecardMetric-Scorecard Metric Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Select_Bundle_Lines__c-Select Bundle Lines Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Seller-Seller Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Services_SOW_Settings__c-Services SOW Settings Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Services_SOW__c-Early Resource Tracking</layout>
+        <recordType>Services_SOW__c.Early_Resource_Tracking</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Services_SOW__c-RFP Request</layout>
+        <recordType>Services_SOW__c.RFP_Request</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Services_SOW__c-SOW Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Services_SOW__c-SOW Layout</layout>
+        <recordType>Services_SOW__c.SOW</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SharingRecordCollection-Record Collection Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Software_Configuration__c-Software Configuration Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Software_License__c-Software License Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Software_Maintenance__c-Software Maintenance Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Solution-Resource Center Layout</layout>
+        <recordType>Solution.ResourceCenter</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Solution-Solution Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Solution-Solution Layout</layout>
+        <recordType>Solution.Standard</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Solution_Selling_Advances_Trend__c-Solution Selling Advances Trend Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Solution_Selling_Snapshot__c-Solution Selling Snapshot Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Solutions_Selling_Material__c-ISM Material Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Solutions_Selling_Material__c-ISM Material Layout</layout>
+        <recordType>Solutions_Selling_Material__c.Other_Solution_Selling_Material</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Solutions_Selling_Material__c-Power Sponsor Layout</layout>
+        <recordType>Solutions_Selling_Material__c.Power_Sponsor_Confirmation_Email</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Solutions_Selling_Material__c-Sponsor Layout</layout>
+        <recordType>Solutions_Selling_Material__c.Sponsor_Confirmation_Email</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Strategic_Customer_Deliverable__c-Strategic Customer Deliverable Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Strategic_Customer_Program__c-Strategic Customer Program Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Subscription_Contact__c-Subscription Contact Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Subscription_Contract_Link__c-Subscription Contract Link Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Subscription_History_Snapshot__c-Subscription History Snapshot Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Subscription_Snapshot__c-Subscription Snapshot Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Subscription_Team_Member__c-Subscription Team Member Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Subscription__c-Subscription Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Subsidiary_Business_Identifier__mdt-Subsidiary Business Identifier Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Subsidiary_Contract_Master_Term_Mapping__mdt-Subsidiary Contract Master Term Mapping Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Success_Criteria__c-Delivery</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Success_Criteria__c-Delivery</layout>
+        <recordType>Success_Criteria__c.Delivery</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Success_Criteria__c-Operational%2FBusiness</layout>
+        <recordType>Success_Criteria__c.Business</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Success_Criteria__c-Operational%2FBusiness</layout>
+        <recordType>Success_Criteria__c.Operational</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Success_Plan__c-Business Objective Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Supported_Environment__kav-Supported Environment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Survey_Request__c-Survey Request Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>System_Change__c-System Change Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Task-Client Advisory Group</layout>
+        <recordType>Task.Client_Advisory_Group</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Task-Client Advocacy</layout>
+        <recordType>Task.Client_Advocacy</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Task-Discovery Call</layout>
+        <recordType>Task.Discovery_Call</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Task-Task Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Task-Task Layout</layout>
+        <recordType>Task.Governance</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Scopers__c-Technical Scoper Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Term_Invoice_Link__c-Term Invoice Link Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Term_Quote__c-Term Quote Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Term__c-Term Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Test_Result__c-Test Result Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Test_Run__c-Test Run Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Time_Billing__c-Time Billing Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Time_Builder_Summary_Metric__c-Time Builder Summary Metric Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Time_Builder_Summary_Metric__c-Time Builder Summary Metric Layout</layout>
+        <recordType>Time_Builder_Summary_Metric__c.Count</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Time_Builder_Timeline_Metric__c-Time Builder Timeline Metric Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Time_Entry_Compliance_Snapshot__c-Time Entry Compliance Snapshot Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>TriggerSettings__mdt-Trigger Setting Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Troubleshooting__kav-Troubleshooting Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>User-User Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>UserAlt-User Profile Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>UserAppMenuItem-Application Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>User_Guide__kav-User Guide Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Utilization_Snapshot__c-Utilization Snapshot Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Vacation__c-Out of Office Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Validation_Checklist__c-Validation Checklist Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VoiceCall-Voice Call Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Wall_Builder_Summary_Metric__c-Wall Builder Summary Metric Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Wave_Quota__c-Wave Quota Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>qtc_BillingSchedule__mdt-QTC Billing Schedule Layout</layout>
+    </layoutAssignments>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Account.Accounts_Accounting</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Account.Accounts_Financial_Services</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Account.Accounts_Partners</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
+        <recordType>Account.LegalAccounts</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Campaign.Archived_Campaigns</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Campaign.Master_Record_Type</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Case.Acute_Situation_Alert</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Case.Executive_Support</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Case.Executive_Support_Case</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Case.Internal_Operations_Change_Request</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Case.OSA_Support</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
+        <recordType>Case.Support</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Case.SupportSurvey</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Case.Survey</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
+        <recordType>Collection_Order__c.Appliance</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Collection_Order__c.Other</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Contact.Contact</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Contact.PSA_Resource</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Intapp_Internal_Request__c.Initiative</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Intapp_Internal_Request__c.Ticket</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Lead.PartnerLead</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Lead.ProspectLead</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
+        <recordType>Lead.SuspectLead</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>News_Alert__c.Flash_Alert</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>News_Alert__c.Product_News</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Opportunity.Consulting_Services_Internal</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Opportunity.Legal_Annual_End_User_License</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Opportunity.Legal_Billing_Pause_Restart</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Opportunity.Legal_Cancellation</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Opportunity.Legal_Legacy</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Opportunity.Legal_Renewal</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Opportunity.Legal_Services_Only</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Opportunity.Legal_TFG_Services</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Opportunity.Migration_Opportunity</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Opportunity.Quota_Credit_Adjustment</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Opportunity.Sales_Emerging_Markets</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
+        <recordType>Opportunity.Sales_Legal</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Opportunity.Services_Partner</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Opportunity.Training</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
+        <recordType>Order_Header__c.VirtualEditionKey</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Order_Header__c.Virtual_Edition_Media</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product2.Product</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product2.Service</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Component__c.Hardware</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Component__c.Service</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Component__c.Software</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.Botany</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.CSM_Ops_Request</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.Cloud_IDM_Migration</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.Cloud_Readiness</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.Conflicts_Elasticsearch_Issue</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Product_Migration_Placeholder__c.Executive_Owner</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.Experience_Success</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.Flow_Success</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.Hot_List</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.LegalKey</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.OP_SF_CRM_AOI_Defect</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.Project_Raptor</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.Rekoop_Time_Cloud_Silverlight_EOS</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.Relationships_Success</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.Sanctions_List_Service_Issue</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.Terms_Success</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.Time_8_Reference_Program</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.Time_8_SWAT</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.Time_FMS_Migration</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.Time_Mobile_TLS_Program</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.Time_Web_Vulnerability</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.Walls_Compound_Document_Issue</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.Walls_Defense</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Migration_Placeholder__c.Watch_List_Issue</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Plan__c.Intapp_Open</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Product_Plan__c.Intapp_Time</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Plan__c.Integration</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product_Plan__c.Walls</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Quote.OSA_Services_Only</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>SBQQ__LookupData__c.ACV</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>SBQQ__LookupData__c.SFA</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>SBQQ__LookupData__c.Static_Bundle</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>SBQQ__Quote__c.Approved_Quote</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>SBQQ__Quote__c.Draft_Quote</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>SBQQ__Quote__c.New_Quote_terms</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>SBQQ__Quote__c.Old_Payment_Terms</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>SFDC_Survey__c.Consulting</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>SFDC_Survey__c.Manual</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>SFDC_Survey__c.NPS</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Services_SOW__c.Early_Resource_Tracking</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Services_SOW__c.RFP_Request</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Services_SOW__c.SOW</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Solution.ResourceCenter</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Solution.Standard</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Solutions_Selling_Material__c.Other_Solution_Selling_Material</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Solutions_Selling_Material__c.Power_Sponsor_Confirmation_Email</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Solutions_Selling_Material__c.Sponsor_Confirmation_Email</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Success_Criteria__c.Business</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Success_Criteria__c.Delivery</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Success_Criteria__c.Operational</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Task.Client_Advisory_Group</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Task.Client_Advocacy</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Task.Discovery_Call</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Task.Governance</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Time_Builder_Summary_Metric__c.Count</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <userLicense>SalesforceIQ Integration User</userLicense>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>AddDirectMessageMembers</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>AllowViewEditConvertedLeads</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ApexRestServices</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ApiEnabled</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ApiUserOnly</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>EnableCommunityAppLauncher</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>PasswordNeverExpires</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>RemoveDirectMessageMembers</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>RunReports</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ShowCompanyNameAsUserBadge</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>UseWebLink</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewAllData</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewAllForecasts</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewDeveloperName</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewEventLogFiles</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewPublicDashboards</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewPublicReports</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewRoles</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewSetup</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewUserPII</name>
+    </userPermissions>
+</Profile>

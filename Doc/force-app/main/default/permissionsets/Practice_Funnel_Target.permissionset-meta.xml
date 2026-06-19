@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>SC-000011
+Gives users the ability to view and edit the Practice Funnel Target fields on the Account and Opportunity records.</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Practice_Funnel_Target__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.Practice_Funnel_Target__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Practice Funnel Target</label>
+    <license>Salesforce</license>
+</PermissionSet>

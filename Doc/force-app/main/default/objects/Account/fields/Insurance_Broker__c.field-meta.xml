@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Insurance_Broker__c</fullName>
+    <description>Name of Insurance Broker</description>
+    <label>Insurance Broker</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Aon</fullName>
+                <default>false</default>
+                <label>Aon</label>
+            </value>
+            <value>
+                <fullName>Arthur J Gallagher</fullName>
+                <default>false</default>
+                <label>Arthur J Gallagher</label>
+            </value>
+            <value>
+                <fullName>Marsh</fullName>
+                <default>false</default>
+                <label>Marsh</label>
+            </value>
+            <value>
+                <fullName>Paragon</fullName>
+                <default>false</default>
+                <label>Paragon</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

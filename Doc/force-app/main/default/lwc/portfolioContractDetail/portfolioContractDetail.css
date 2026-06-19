@@ -1,0 +1,299 @@
+/* ==============================
+   Portfolio Contract Detail Tab
+   Intapp Design Language
+   ============================== */
+
+:host {
+    display: block;
+}
+
+.pcd-root {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Filters */
+.pcd-filters {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.pcd-select {
+    padding: 7px 12px;
+    border: 1px solid #E6E6E6;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: 'Manrope', Arial, sans-serif;
+    background: #fff;
+    color: #536E8D;
+    cursor: pointer;
+    outline: none;
+}
+
+.pcd-select:focus {
+    border-color: #207CEC;
+    box-shadow: 0 0 0 2px rgba(32,124,236,0.1);
+}
+
+.pcd-expand-btn {
+    padding: 7px 14px;
+    border: 1px solid #E6E6E6;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: 'Manrope', Arial, sans-serif;
+    background: #fff;
+    color: #536E8D;
+    cursor: pointer;
+}
+
+.pcd-expand-btn:hover {
+    background: #FAFAF9;
+}
+
+.pcd-line-count {
+    margin-left: auto;
+    font-size: 12px;
+    color: #A4B9D7;
+}
+
+/* Table Container */
+.pcd-table-wrap {
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #E6E6E6;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.pcd-table-scroll {
+    overflow-x: auto;
+}
+
+.pcd-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    table-layout: auto;
+}
+
+/* Header */
+.th-cell {
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 700;
+    color: #536E8D;
+    background: #FAFAF9;
+    border-bottom: 2px solid #E6E6E6;
+    cursor: pointer;
+    white-space: nowrap;
+    user-select: none;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    position: relative;
+    overflow: visible;
+}
+
+.th-cell:hover {
+    background: #F4F7FA;
+}
+
+.th-label {
+    pointer-events: none;
+}
+
+/* Column resize handle */
+.th-resize {
+    position: absolute;
+    top: 0;
+    right: -2px;
+    width: 5px;
+    height: 100%;
+    cursor: col-resize;
+    z-index: 1;
+    border-right: 1px solid #E6E6E6;
+}
+
+.th-resize:hover,
+.th-resize-active {
+    border-right: 2px solid #207CEC;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* Group Header Row */
+.tr-group {
+    cursor: pointer;
+    background: #F4F7FA;
+}
+
+.tr-group:hover {
+    background: #EDF1F7;
+}
+
+.td-group {
+    padding: 8px 12px;
+    font-weight: 600;
+    color: #073C7D;
+    border-bottom: 1px solid #E6E6E6;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.group-expand {
+    margin-right: 8px;
+    display: inline-block;
+    font-size: 10px;
+    transition: transform 0.15s;
+}
+
+.group-label {
+    font-weight: 600;
+}
+
+.group-count {
+    font-weight: 400;
+    color: #536E8D;
+    margin-left: 12px;
+}
+
+.group-summary {
+    float: right;
+    font-weight: 500;
+    color: #536E8D;
+    font-size: 11px;
+}
+
+/* Data Rows */
+.tr-row {
+    background: #fff;
+}
+
+.tr-row:hover {
+    background: #FAFAF9;
+}
+
+.tr-expiring {
+    background: #FBF3EF;
+    border-left: 3px solid #D2794D;
+}
+
+.tr-expiring:hover {
+    background: #F5E8E0;
+}
+
+.td-cell {
+    padding: 8px 12px;
+    border-bottom: 1px solid #F4F7FA;
+    color: #536E8D;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+/* Status Badge */
+.status-badge {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.status-active {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-partial {
+    background: #FBF3EF;
+    color: #9F5028;
+}
+
+/* Grand Total Row */
+.tr-total {
+    background: #EBF4FE;
+    font-weight: 600;
+}
+
+.td-total {
+    padding: 10px 12px;
+    border-top: 2px solid #207CEC;
+    color: #073C7D;
+}
+
+.td-total-label {
+    font-weight: 700;
+}
+
+/* Invoice Link */
+.invoice-link {
+    color: #207CEC;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.invoice-link:hover {
+    text-decoration: underline;
+    color: #003C80;
+}
+
+/* Payment Status Badges */
+.status-paid {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-unpaid {
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+/* Current Period Row */
+.tr-current-period {
+    background: #EBF4FE;
+    border-left: 3px solid #207CEC;
+}
+
+.tr-current-period:hover {
+    background: #D5E6FB;
+}
+
+/* Previous Contract Row */
+.tr-previous-contract {
+    background: #F5F0FF;
+    border-left: 3px solid #501AFF;
+}
+
+.tr-previous-contract:hover {
+    background: #EDE5FF;
+}
+
+/* Invoice Loading Indicator */
+.pcd-invoice-loading {
+    padding: 4px 10px;
+    font-size: 11px;
+    color: #207CEC;
+    background: #EBF4FE;
+    border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}

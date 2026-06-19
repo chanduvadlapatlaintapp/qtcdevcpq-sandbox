@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Number_of_Days_In_Advance__c</fullName>
+    <description>Deprecated per BIZ-64710
+Determines the number of days in advance of the Subscription Term Start Date that invoices should be generated for this Quote Line.</description>
+    <label>DEPRECATED Num Days In Advance</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Num_Days_In_Advance_of_Sub_Start</valueSetName>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Order_change_fields_updated_in_Order_for_Customer_notification</fullName>
+        <description>Order change fields updated in Order for Customer notification</description>
+        <protected>false</protected>
+        <recipients>
+            <field>New_Invoicing_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>Old_Invoicing_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Billing_Fields_Updated_in_the_Order</template>
+    </alerts>
+    <alerts>
+        <fullName>Update_Billing_Fields_in_Order_Notification</fullName>
+        <description>Update Billing Fields in OM Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Billing_Fields_Updated_in_the_Order</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Order_change_status_as_Billing_approved</fullName>
+        <field>Order_Change_Status__c</field>
+        <literalValue>Billing Approval</literalValue>
+        <name>Order change status as Billing approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_status_as_Billing_ops_approved</fullName>
+        <field>Order_Change_Status__c</field>
+        <literalValue>Billing Approval</literalValue>
+        <name>Update status as Billing ops approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_status_as_Contract_Ops</fullName>
+        <field>Order_Change_Status__c</field>
+        <literalValue>Validated by Contract Ops</literalValue>
+        <name>Update status as Contract Ops</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_status_as_Order_Management</fullName>
+        <field>Order_Change_Status__c</field>
+        <literalValue>Approved by Order Management</literalValue>
+        <name>Update status as Order Management</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_status_as_Pending</fullName>
+        <field>Order_Change_Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Update status as Pending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_status_as_Rejected</fullName>
+        <field>Order_Change_Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>Update status as Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+</Workflow>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Appliance_Model__c</fullName>
+    <label>Appliance Model</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>MODEL_3_110</fullName>
+                <default>false</default>
+                <label>MODEL_3_110</label>
+            </value>
+            <value>
+                <fullName>MODEL_3_230</fullName>
+                <default>false</default>
+                <label>MODEL_3_230</label>
+            </value>
+            <value>
+                <fullName>MODEL_3_440</fullName>
+                <default>false</default>
+                <label>MODEL_3_440</label>
+            </value>
+            <value>
+                <fullName>MODEL_VMWARE</fullName>
+                <default>false</default>
+                <label>MODEL_VMWARE</label>
+            </value>
+            <value>
+                <fullName>MODEL_HYPERV</fullName>
+                <default>false</default>
+                <label>MODEL_HYPERV</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

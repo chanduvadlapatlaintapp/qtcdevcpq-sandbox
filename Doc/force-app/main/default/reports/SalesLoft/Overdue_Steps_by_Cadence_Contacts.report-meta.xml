@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>text</bucketType>
+        <developerName>BucketField_50710016</developerName>
+        <masterLabel>SDR</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>Account.Sales_Development_Representative__c</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Holly Stirk</sourceValue>
+            </sourceValues>
+            <value>Holly</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Paul Talaga</sourceValue>
+            </sourceValues>
+            <value>Paul</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Sadou Diallo</sourceValue>
+            </sourceValues>
+            <value>Sadou</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Kevin Shephard</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Lori Hamel</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Adam Nelson</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Other</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>&quot;&quot;</sourceValue>
+            </sourceValues>
+            <value>Jeff</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Anthony Rocca</sourceValue>
+            </sourceValues>
+            <value>Anthony</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>FIRST_NAME</field>
+    </columns>
+    <columns>
+        <field>LAST_NAME</field>
+    </columns>
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>Account.Legal_Tier_Split__c</field>
+    </columns>
+    <columns>
+        <field>Account.Sales_Development_Representative__c</field>
+    </columns>
+    <columns>
+        <field>TITLE</field>
+    </columns>
+    <columns>
+        <field>PHONE1</field>
+    </columns>
+    <columns>
+        <field>EMAIL</field>
+    </columns>
+    <columns>
+        <field>Contact.LinkedIn_Profile__c</field>
+    </columns>
+    <currency>USD</currency>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_50710016</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Overdue Steps by Cadence (Contacts)</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>ContactList</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>LAST_UPDATE</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

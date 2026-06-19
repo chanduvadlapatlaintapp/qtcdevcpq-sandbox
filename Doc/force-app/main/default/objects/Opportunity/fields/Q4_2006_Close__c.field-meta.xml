@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Q4_2006_Close__c</fullName>
+    <description>A temporary field created in Q4 2006 to help monitor opportunities - should be revised/removed by Q1  2007</description>
+    <label>Q4 2006 Close</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>1. Commit</fullName>
+                <default>false</default>
+                <label>1. Commit</label>
+            </value>
+            <value>
+                <fullName>2. Should Close</fullName>
+                <default>false</default>
+                <label>2. Should Close</label>
+            </value>
+            <value>
+                <fullName>3. I Don&apos;t Know</fullName>
+                <default>false</default>
+                <label>3. I Don&apos;t Know</label>
+            </value>
+            <value>
+                <fullName>4. Not a chance</fullName>
+                <default>false</default>
+                <label>4. Not a chance</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

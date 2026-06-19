@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AVA_SalesTaxAmount__c</fullName>
+    <description>BIZ-63814</description>
+    <formula>IF( ISBLANK(Renewal_Quote__r.AVA_SFCPQ__SalesTaxAmount__c),0, Renewal_Quote__r.AVA_SFCPQ__SalesTaxAmount__c )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>AVA_SalesTaxAmount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

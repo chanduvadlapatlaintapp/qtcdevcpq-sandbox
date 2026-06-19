@@ -1,0 +1,756 @@
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+    </template>
+
+    <div class="slds-p-around_medium">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="header-icon">
+                <lightning-icon icon-name="utility:new" size="x-small"></lightning-icon>
+            </div>
+            <div>
+                <h2 class="header-title">New SKU Launch</h2>
+                <p class="header-subtitle">Launch new SKUs from Questionnaire Excel upload</p>
+            </div>
+        </div>
+
+        <!-- Progress Indicator -->
+        <div class="slds-m-bottom_medium">
+            <lightning-progress-indicator current-step={currentStep} type="path" variant="base">
+                <template for:each={steps} for:item="step">
+                    <lightning-progress-step key={step.value} label={step.label}
+                        value={step.value}></lightning-progress-step>
+                </template>
+            </lightning-progress-indicator>
+        </div>
+
+        <!-- ======================== STEP 1: Upload Questionnaire ======================== -->
+        <template if:true={isStep1}>
+            <div class="step-card">
+                <h3 class="step-card__title">Upload Questionnaire</h3>
+                <p class="step-card__subtitle">Upload the Excel workbook (.xlsx) with SKU Details, Pricing, and Bundles tabs</p>
+
+                <template if:false={isParsed}>
+                    <div class={uploadZoneClass}
+                         onclick={handleUploadZoneClick}
+                         ondragover={handleDragOver}
+                         ondragleave={handleDragLeave}
+                         ondrop={handleDrop}>
+                        <lightning-icon icon-name="utility:upload" size="large"
+                            alternative-text="Upload"></lightning-icon>
+                        <p class="upload-zone__text">Drop your .xlsx file here or click to browse</p>
+                        <input type="file" accept=".xlsx,.xls"
+                            class="upload-zone__input"
+                            onchange={handleFileUpload} />
+                    </div>
+                </template>
+
+                <template if:true={isParsed}>
+                    <div class="file-badge">
+                        <lightning-icon icon-name="doctype:excel" size="small"></lightning-icon>
+                        <span class="file-badge__name">{uploadFileName}</span>
+                        <lightning-button-icon icon-name="utility:close" variant="bare"
+                            alternative-text="Remove" onclick={handleRemoveFile}
+                            class="file-badge__remove">
+                        </lightning-button-icon>
+                    </div>
+
+                    <!-- Parse Summary Cards -->
+                    <div class="summary-cards">
+                        <div class="summary-card summary-card--blue">
+                            <div class="summary-card__value">{skuCount}</div>
+                            <div class="summary-card__label">Products</div>
+                        </div>
+                        <div class="summary-card summary-card--purple">
+                            <div class="summary-card__value">{pricingRowCount}</div>
+                            <div class="summary-card__label">Pricing Rows</div>
+                        </div>
+                        <div class="summary-card summary-card--green">
+                            <div class="summary-card__value">{totalPriceEntries}</div>
+                            <div class="summary-card__label">Price Entries</div>
+                        </div>
+                        <template if:true={hasBundles}>
+                            <div class="summary-card summary-card--navy">
+                                <div class="summary-card__value">{bundleRowCount}</div>
+                                <div class="summary-card__label">Bundle Rows</div>
+                            </div>
+                        </template>
+                        <template if:true={hasQuoteTerms}>
+                            <div class="summary-card summary-card--teal">
+                                <div class="summary-card__value">{quoteTermCount}</div>
+                                <div class="summary-card__label">Quote Terms</div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+
+                <template if:true={parseError}>
+                    <div class="error-box slds-m-top_medium">
+                        <lightning-icon icon-name="utility:error" size="x-small" variant="error"></lightning-icon>
+                        <span>{parseError}</span>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- ======================== STEP 2: SKU Details Review ======================== -->
+        <template if:true={isStep2}>
+            <div class="step-card">
+                <h3 class="step-card__title">SKU Details Review</h3>
+                <p class="step-card__subtitle">Review the {skuCount} products parsed from the SKU Details tab</p>
+                <p class="step-card__hint">To make changes, update the questionnaire and re-upload.</p>
+
+                <template for:each={skuDetailCards} for:item="card">
+                    <div key={card.key} class="product-card">
+                        <div class="product-card__header" data-index={card.index}
+                            onclick={handleToggleProduct} role="button" tabindex="0">
+                            <div class="product-card__info">
+                                <span class="product-card__code">{card.productCode}</span>
+                                <span class="product-card__name">{card.productName}</span>
+                                <template if:true={card.isBundle}>
+                                    <span class="badge badge--bundle">Bundle</span>
+                                </template>
+                            </div>
+                            <lightning-icon icon-name={card.expandIcon} size="xx-small"></lightning-icon>
+                        </div>
+
+                        <template if:true={card.isExpanded}>
+                            <div class="product-card__body">
+                                <!-- Item Master Fields -->
+                                <template if:true={card.itemMasterFields.length}>
+                                    <div class="field-group">
+                                        <h4 class="field-group__title">Item Master</h4>
+                                        <div class="field-grid">
+                                            <template for:each={card.itemMasterFields} for:item="f">
+                                                <div key={f.key} class="field-item">
+                                                    <span class="field-item__label">{f.label}</span>
+                                                    <span class="field-item__value">{f.value}</span>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </template>
+
+                                <!-- Product Fields -->
+                                <template if:true={card.productFields.length}>
+                                    <div class="field-group">
+                                        <h4 class="field-group__title">Product</h4>
+                                        <div class="field-grid">
+                                            <template for:each={card.productFields} for:item="f">
+                                                <div key={f.key} class="field-item">
+                                                    <span class="field-item__label">{f.label}</span>
+                                                    <span class="field-item__value">{f.value}</span>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </template>
+
+                                <!-- Sub-Vertical Fields -->
+                                <template if:true={card.subVerticalFields.length}>
+                                    <div class="field-group">
+                                        <h4 class="field-group__title">Sub-Verticals</h4>
+                                        <div class="field-grid">
+                                            <template for:each={card.subVerticalFields} for:item="f">
+                                                <div key={f.key} class="field-item">
+                                                    <span class="field-item__label">{f.label}</span>
+                                                    <span class="field-item__value">{f.value}</span>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </template>
+
+                                <!-- NetSuite Fields -->
+                                <template if:true={card.netsuiteFields.length}>
+                                    <div class="field-group">
+                                        <h4 class="field-group__title">NetSuite</h4>
+                                        <div class="field-grid">
+                                            <template for:each={card.netsuiteFields} for:item="f">
+                                                <div key={f.key} class="field-item">
+                                                    <span class="field-item__label">{f.label}</span>
+                                                    <span class="field-item__value">{f.value}</span>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- ======================== STEP 3: Pricing Review ======================== -->
+        <template if:true={isStep3}>
+            <div class="step-card">
+                <h3 class="step-card__title">Pricing Review</h3>
+                <p class="step-card__subtitle">Review tier-based pricing across {pricingRowCount} product × meter type combinations</p>
+                <p class="step-card__hint">To make changes, update the questionnaire and re-upload.</p>
+
+                <!-- Product Filter -->
+                <div class="filter-bar slds-m-bottom_medium">
+                    <lightning-combobox label="Filter by Product" value={selectedPricingProduct}
+                        options={pricingProductOptions} onchange={handlePricingProductChange}
+                        variant="label-inline">
+                    </lightning-combobox>
+                </div>
+
+                <!-- Pricing Cards -->
+                <template for:each={filteredPricingRows} for:item="pr">
+                    <div key={pr.key} class="pricing-card">
+                        <div class="pricing-card__header">
+                            <div>
+                                <span class="pricing-card__code">{pr.productCode}</span>
+                                <span class="pricing-card__name">{pr.productName}</span>
+                            </div>
+                        </div>
+
+                        <!-- Pricing Attributes -->
+                        <div class="pricing-card__attributes">
+                            <template if:true={pr.meterType}>
+                                <div class="pricing-attribute">
+                                    <span class="pricing-attribute__label">Meter Type</span>
+                                    <span class="pricing-attribute__value">{pr.meterType}</span>
+                                </div>
+                            </template>
+                            <div class="pricing-attribute">
+                                <span class="pricing-attribute__label">Eligible for Premium</span>
+                                <span class="pricing-attribute__value">{pr.eligibleForPremium}</span>
+                            </div>
+                            <template if:true={pr.legalSales}>
+                                <div class="pricing-attribute">
+                                    <span class="pricing-attribute__label">Legal Sales</span>
+                                    <span class="pricing-attribute__value">Active</span>
+                                </div>
+                            </template>
+                            <template if:true={pr.acSales}>
+                                <div class="pricing-attribute">
+                                    <span class="pricing-attribute__label">A&C Sales</span>
+                                    <span class="pricing-attribute__value">Active</span>
+                                </div>
+                            </template>
+                            <template if:true={pr.fsSales}>
+                                <div class="pricing-attribute">
+                                    <span class="pricing-attribute__label">FS Sales</span>
+                                    <span class="pricing-attribute__value">Active</span>
+                                </div>
+                            </template>
+                            <template if:true={pr.corporateSales}>
+                                <div class="pricing-attribute">
+                                    <span class="pricing-attribute__label">Corporate Sales</span>
+                                    <span class="pricing-attribute__value">Active</span>
+                                </div>
+                            </template>
+                            <template if:true={pr.opsOnly}>
+                                <div class="pricing-attribute">
+                                    <span class="pricing-attribute__label">Ops Only</span>
+                                    <span class="pricing-attribute__value">Active</span>
+                                </div>
+                            </template>
+                        </div>
+
+                        <!-- Price Tables by Currency -->
+                        <div class="pricing-card__tables">
+                            <template for:each={pr.currencyGroups} for:item="cg">
+                                <div key={cg.key} class="currency-table">
+                                    <h5 class="currency-table__title">{cg.currency}</h5>
+                                    <table class="mini-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Tier</th>
+                                                <th>Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <template for:each={cg.prices} for:item="p">
+                                                <tr key={p.key}>
+                                                    <td>{p.tier}</td>
+                                                    <td>{p.price}</td>
+                                                </tr>
+                                            </template>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- ======================== STEP 4: Bundles Review ======================== -->
+        <template if:true={isStep4}>
+            <div class="step-card">
+                <template if:true={hasBundles}>
+                    <h3 class="step-card__title">Bundles Review</h3>
+                    <p class="step-card__subtitle">Review {bundleRowCount} bundle allocation rows</p>
+                    <p class="step-card__hint">To make changes, update the questionnaire and re-upload.</p>
+
+                    <template for:each={bundleGroups} for:item="bg">
+                        <div key={bg.key} class="bundle-card">
+                            <div class="bundle-card__header">
+                                <lightning-icon icon-name="utility:bundle_config" size="small"></lightning-icon>
+                                <div>
+                                    <span class="bundle-card__code">{bg.parentCode}</span>
+                                    <span class="bundle-card__name">{bg.parentName}</span>
+                                </div>
+                                <span class="pill">{bg.componentCount} components</span>
+                            </div>
+
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered branded-table">
+                                <thead>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th style="width:160px;">IM Number</th>
+                                        <th style="width:120px;">ACV %</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={bg.components} for:item="comp">
+                                        <tr key={comp.key}>
+                                            <td>{comp.productName}</td>
+                                            <td>{comp.imNumber}</td>
+                                            <td>{comp.acvPercent}</td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </template>
+                </template>
+
+                <template if:false={hasBundles}>
+                    <div class="empty-state">
+                        <lightning-icon icon-name="utility:info" size="medium"></lightning-icon>
+                        <h3>No Bundles</h3>
+                        <p>No bundle products are included in this upload. Bundle creation will be skipped.</p>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- ======================== STEP 5: Quote Terms Review ======================== -->
+        <template if:true={isStep5}>
+            <div class="step-card">
+                <template if:true={hasQuoteTerms}>
+                    <h3 class="step-card__title">Quote Terms Review</h3>
+                    <p class="step-card__subtitle">Review {quoteTermCount} quote terms to be created</p>
+                    <p class="step-card__hint">To make changes, update the questionnaire and re-upload.</p>
+
+                    <template for:each={quoteTermDisplayRows} for:item="qt">
+                        <div key={qt.key} class="qt-card">
+                            <div class="qt-card__header">
+                                <span class="qt-card__code">{qt.productCode}</span>
+                                <span class="qt-card__name">{qt.productName}</span>
+                                <span class="qt-card__number">Term #{qt.termNumber}</span>
+                            </div>
+                            <template if:true={qt.quoteDescription}>
+                                <div class="qt-card__description">
+                                    <span class="qt-card__description-label">Quote Description</span>
+                                    <span class="qt-card__description-value">{qt.quoteDescription}</span>
+                                </div>
+                            </template>
+                            <p class="qt-card__body">{qt.body}</p>
+                        </div>
+                    </template>
+                </template>
+
+                <template if:false={hasQuoteTerms}>
+                    <div class="empty-state">
+                        <lightning-icon icon-name="utility:info" size="medium"></lightning-icon>
+                        <h3>No Quote Terms</h3>
+                        <p>No Quote Terms tab was found in the workbook. Proceeding without quote term creation.</p>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- ======================== STEP 6: Launch & Results ======================== -->
+        <template if:true={isStep6}>
+            <div class="step-card">
+                <h3 class="step-card__title">Launch & Results</h3>
+
+                <!-- Pre-Launch Summary -->
+                <template if:false={hasLaunched}>
+                    <p class="step-card__subtitle">Ready to create records in Salesforce</p>
+
+                    <div class="summary-cards slds-m-bottom_large">
+                        <template for:each={preLaunchStats} for:item="stat">
+                            <div key={stat.key} class="summary-card summary-card--navy">
+                                <lightning-icon icon-name={stat.icon} size="x-small"></lightning-icon>
+                                <div class="summary-card__value">{stat.value}</div>
+                                <div class="summary-card__label">{stat.label}</div>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Expandable Data Summary -->
+                    <div class="launch-summary slds-m-bottom_medium">
+                        <!-- SKU Details Summary -->
+                        <div class="launch-summary__section">
+                            <div class="launch-summary__header" data-section="skuDetails" onclick={handleToggleLaunchSection} role="button" tabindex="0">
+                                <lightning-icon icon-name={skuSummaryIcon} size="xx-small" class="slds-m-right_x-small"></lightning-icon>
+                                <span class="launch-summary__title">SKU Details ({skuCount} products)</span>
+                            </div>
+                            <template if:true={isSkuSummaryExpanded}>
+                                <div class="launch-summary__body">
+                                    <template for:each={skuSummaryRows} for:item="sku">
+                                        <div key={sku.key} class="launch-summary__row launch-summary__row--detailed">
+                                            <div class="launch-summary__row-main">
+                                                <span class="launch-summary__code">{sku.productCode}</span>
+                                                <span class="launch-summary__name">{sku.productName}</span>
+                                                <template if:true={sku.isBundle}><span class="badge badge--bundle">Bundle</span></template>
+                                            </div>
+                                            <div class="launch-summary__row-meta">
+                                                <template if:true={sku.productType}><span class="launch-summary__meta-item">Type: {sku.productType}</span></template>
+                                                <template if:true={sku.revenueType}><span class="launch-summary__meta-item">Revenue: {sku.revenueType}</span></template>
+                                                <template if:true={sku.productLine}><span class="launch-summary__meta-item">Line: {sku.productLine}</span></template>
+                                                <template if:true={sku.productFamily}><span class="launch-summary__meta-item">Family: {sku.productFamily}</span></template>
+                                                <template if:true={sku.pricingBasis}><span class="launch-summary__meta-item">Pricing: {sku.pricingBasis}</span></template>
+                                                <template if:true={sku.sfdcPricebook}><span class="launch-summary__meta-item">Pricebook: {sku.sfdcPricebook}</span></template>
+                                                <template if:true={sku.deploymentType}><span class="launch-summary__meta-item">Deploy: {sku.deploymentType}</span></template>
+                                                <template if:true={sku.subscriptionType}><span class="launch-summary__meta-item">Sub: {sku.subscriptionType}</span></template>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </div>
+                            </template>
+                        </div>
+
+                        <!-- Pricing Summary -->
+                        <div class="launch-summary__section">
+                            <div class="launch-summary__header" data-section="pricing" onclick={handleToggleLaunchSection} role="button" tabindex="0">
+                                <lightning-icon icon-name={pricingSummaryIcon} size="xx-small" class="slds-m-right_x-small"></lightning-icon>
+                                <span class="launch-summary__title">Pricing ({pricingRowCount} rows, {totalPriceEntries} price entries)</span>
+                            </div>
+                            <template if:true={isPricingSummaryExpanded}>
+                                <div class="launch-summary__body">
+                                    <template for:each={pricingSummaryRows} for:item="pr">
+                                        <div key={pr.key} class="launch-summary__row launch-summary__row--detailed">
+                                            <div class="launch-summary__row-main">
+                                                <span class="launch-summary__code">{pr.productCode}</span>
+                                                <span class="launch-summary__name">{pr.productName}</span>
+                                                <template if:true={pr.meterType}><span class="launch-summary__meta-item">Meter: {pr.meterType}</span></template>
+                                                <template if:true={pr.eligibleForPremium}><span class="launch-summary__meta-item">Eligible for Premium: {pr.eligibleForPremium}</span></template>
+                                                <span class="launch-summary__detail">{pr.priceCount} prices</span>
+                                            </div>
+                                            <div class="launch-summary__row-meta">
+                                                <template if:true={pr.legalSales}><span class="launch-summary__meta-item">Legal Sales</span></template>
+                                                <template if:true={pr.acSales}><span class="launch-summary__meta-item">A&C Sales</span></template>
+                                                <template if:true={pr.fsSales}><span class="launch-summary__meta-item">FS Sales</span></template>
+                                                <template if:true={pr.corporateSales}><span class="launch-summary__meta-item">Corporate Sales</span></template>
+                                                <template if:true={pr.opsOnly}><span class="launch-summary__meta-item">Ops Only</span></template>
+                                                <template if:true={pr.currencySummary}><span class="launch-summary__meta-item">{pr.currencySummary}</span></template>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </div>
+                            </template>
+                        </div>
+
+                        <!-- Bundles Summary -->
+                        <template if:true={hasBundles}>
+                            <div class="launch-summary__section">
+                                <div class="launch-summary__header" data-section="bundles" onclick={handleToggleLaunchSection} role="button" tabindex="0">
+                                    <lightning-icon icon-name={bundlesSummaryIcon} size="xx-small" class="slds-m-right_x-small"></lightning-icon>
+                                    <span class="launch-summary__title">Bundles ({bundleRowCount} rows)</span>
+                                </div>
+                                <template if:true={isBundlesSummaryExpanded}>
+                                    <div class="launch-summary__body">
+                                        <template for:each={bundleGroups} for:item="bg">
+                                            <div key={bg.key} class="launch-summary__row launch-summary__row--detailed">
+                                                <div class="launch-summary__row-main">
+                                                    <span class="launch-summary__code">{bg.parentCode}</span>
+                                                    <span class="launch-summary__name">{bg.parentName}</span>
+                                                    <span class="badge badge--bundle">{bg.componentCount} components</span>
+                                                </div>
+                                                <div class="launch-summary__row-meta">
+                                                    <template for:each={bg.components} for:item="comp">
+                                                        <span key={comp.key} class="launch-summary__meta-item">{comp.imNumber} ({comp.acvPercent})</span>
+                                                    </template>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+
+                        <!-- Quote Terms Summary -->
+                        <template if:true={hasQuoteTerms}>
+                            <div class="launch-summary__section">
+                                <div class="launch-summary__header" data-section="quoteTerms" onclick={handleToggleLaunchSection} role="button" tabindex="0">
+                                    <lightning-icon icon-name={quoteTermsSummaryIcon} size="xx-small" class="slds-m-right_x-small"></lightning-icon>
+                                    <span class="launch-summary__title">Quote Terms ({quoteTermCount})</span>
+                                </div>
+                                <template if:true={isQuoteTermsSummaryExpanded}>
+                                    <div class="launch-summary__body">
+                                        <template for:each={quoteTermSummaryRows} for:item="qt">
+                                            <div key={qt.key} class="qt-card">
+                                                <div class="qt-card__header">
+                                                    <span class="qt-card__code">{qt.productCode}</span>
+                                                    <span class="qt-card__name">{qt.productName}</span>
+                                                    <span class="qt-card__number">Term #{qt.termNumber}</span>
+                                                </div>
+                                                <template if:true={qt.quoteDescription}>
+                                                    <div class="qt-card__description">
+                                                        <span class="qt-card__description-label">Quote Description</span>
+                                                        <span class="qt-card__description-value">{qt.quoteDescription}</span>
+                                                    </div>
+                                                </template>
+                                                <p class="qt-card__body">{qt.body}</p>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Validation Errors -->
+                    <template if:true={hasValidationErrors}>
+                        <div class="error-box slds-m-bottom_medium">
+                            <h4>Validation Errors</h4>
+                            <ul>
+                                <template for:each={validationErrors} for:item="err">
+                                    <li key={err}>{err}</li>
+                                </template>
+                            </ul>
+                        </div>
+                    </template>
+
+                    <!-- Validation Warnings -->
+                    <template if:true={validationWarnings.length}>
+                        <div class="warning-box slds-m-bottom_medium">
+                            <h4>Warnings</h4>
+                            <ul>
+                                <template for:each={validationWarnings} for:item="warn">
+                                    <li key={warn}>{warn}</li>
+                                </template>
+                            </ul>
+                        </div>
+                    </template>
+
+                    <!-- Processing indicator (inline, no Launch button here) -->
+                    <template if:true={isProcessing}>
+                        <div class="launch-actions">
+                            <lightning-spinner alternative-text="Processing..." size="small"></lightning-spinner>
+                            <span class="processing-text">Creating records... This may take a moment.</span>
+                        </div>
+                    </template>
+                </template>
+
+                <!-- Launch Results -->
+                <template if:true={hasLaunchResult}>
+                    <p class="step-card__subtitle">Launch completed</p>
+
+                    <!-- Result Summary Cards -->
+                    <div class="summary-cards slds-m-bottom_large">
+                        <div class="summary-card summary-card--green">
+                            <div class="summary-card__value">{launchResult.totalSuccess}</div>
+                            <div class="summary-card__label">Records Created</div>
+                        </div>
+                        <div class="summary-card summary-card--red">
+                            <div class="summary-card__value">{launchResult.totalErrors}</div>
+                            <div class="summary-card__label">Errors</div>
+                        </div>
+                    </div>
+
+                    <!-- Per-Step Results -->
+                    <div class="step-results">
+                        <template for:each={launchStepResults} for:item="sr">
+                            <div key={sr.key} class={sr.statusClass}>
+                                <div class="step-status__header">
+                                    <lightning-icon icon-name={sr.statusIcon} size="xx-small"></lightning-icon>
+                                    <span class="step-status__name">{sr.objectName}</span>
+                                    <span class="step-status__count">
+                                        {sr.successCount} / {sr.totalCount}
+                                    </span>
+                                </div>
+                                <template if:true={sr.hasErrors}>
+                                    <div class="step-status__errors">
+                                        <template for:each={sr.errors} for:item="err">
+                                            <p key={err} class="step-status__error-line">{err}</p>
+                                        </template>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Navigate to Created Products -->
+                    <template if:true={hasCreatedProducts}>
+                        <div class="created-products slds-m-top_large">
+                            <h4 class="created-products__title">
+                                <lightning-icon icon-name="utility:package" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                                Created Products
+                            </h4>
+
+                            <!-- Single Product: prominent view button -->
+                            <template if:true={isSingleProduct}>
+                                <div class="created-products__single">
+                                    <lightning-button label={singleProductLabel} variant="brand"
+                                        icon-name="utility:open" icon-position="right"
+                                        data-product-id={singleProductId}
+                                        onclick={handleViewProduct}>
+                                    </lightning-button>
+                                </div>
+                            </template>
+
+                            <!-- Multiple Products: list with view links -->
+                            <template if:false={isSingleProduct}>
+                                <div class="created-products__list">
+                                    <template for:each={createdProducts} for:item="prod">
+                                        <div key={prod.key} class="created-products__row">
+                                            <div class="created-products__info">
+                                                <span class="created-products__code">{prod.productCode}</span>
+                                                <span class="created-products__name">{prod.productName}</span>
+                                            </div>
+                                            <lightning-button-icon icon-name="utility:open"
+                                                alternative-text="View product"
+                                                title="View in Update Product"
+                                                variant="brand"
+                                                data-product-id={prod.productId}
+                                                onclick={handleViewProduct}>
+                                            </lightning-button-icon>
+                                        </div>
+                                    </template>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+
+                    <!-- Start Over -->
+                    <div class="slds-m-top_large slds-text-align_center">
+                        <lightning-button label="Start New Launch" variant="neutral"
+                            onclick={handleStartOver} icon-name="utility:refresh">
+                        </lightning-button>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- ======================== Navigation Buttons ======================== -->
+        <template if:false={hideNavButtons}>
+            <div class="nav-buttons">
+                <template if:true={canGoPrevious}>
+                    <lightning-button label="Previous" variant="neutral"
+                        onclick={handlePrevious} icon-name="utility:chevronleft">
+                    </lightning-button>
+                </template>
+                <template if:true={canGoNext}>
+                    <lightning-button label={nextButtonLabel} variant="brand"
+                        onclick={handleNext} icon-name="utility:chevronright"
+                        icon-position="right">
+                    </lightning-button>
+                </template>
+                <template if:true={showLaunchInNav}>
+                    <lightning-button label="Launch" variant="brand"
+                        onclick={handleLaunch} disabled={isProcessing}>
+                    </lightning-button>
+                </template>
+            </div>
+        </template>
+    </div>
+
+    <!-- ======================== Product Line Creation Modal ======================== -->
+    <template if:true={showProductLineModal}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        onclick={handleCloseProductLineModal}>
+                        <lightning-icon icon-name="utility:close" size="small" variant="inverse"></lightning-icon>
+                    </button>
+                    <h2 class="slds-modal__title">{productLineModalTitle}</h2>
+                    <p class="slds-text-body_small slds-m-top_xx-small">
+                        This Product Line was not found in the org. Fill in the details to create it.
+                        ({productLineProgress})
+                    </p>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <div class="slds-grid slds-wrap slds-gutters_small">
+                        <div class="slds-col slds-size_1-of-2 slds-m-bottom_small">
+                            <lightning-input label="Product Line Name" value={currentMissingPLName}
+                                disabled></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-m-bottom_small">
+                            <lightning-combobox label="Product Family" data-field="productFamily"
+                                value={newPLProductFamily} options={productFamilyOptions}
+                                onchange={handlePLFieldChange}></lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-m-bottom_small">
+                            <lightning-combobox label="Deployment" data-field="deployment"
+                                value={newPLDeployment} options={deploymentOptions}
+                                onchange={handlePLFieldChange}></lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-m-bottom_small">
+                            <lightning-combobox label="Business Unit" data-field="businessUnit"
+                                value={newPLBusinessUnit} options={businessUnitOptions}
+                                onchange={handlePLFieldChange}></lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-m-bottom_small">
+                            <lightning-input label="IMP Prefix" data-field="impPrefix"
+                                value={newPLImpPrefix}
+                                onchange={handlePLFieldChange}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-m-bottom_small slds-p-top_large">
+                            <lightning-input type="checkbox" label="Cloud Addendum Required"
+                                data-field="cloudAddendum" checked={newPLCloudAddendum}
+                                onchange={handlePLFieldChange}></lightning-input>
+                        </div>
+                    </div>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning-button label="Skip" variant="neutral"
+                        onclick={handleSkipProductLine} class="slds-m-right_small"></lightning-button>
+                    <lightning-button label="Create Product Line" variant="brand"
+                        onclick={handleCreateProductLine}></lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <!-- ======================== Product Rollup Creation Modal ======================== -->
+    <template if:true={showProductRollupModal}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        onclick={handleCloseProductRollupModal}>
+                        <lightning-icon icon-name="utility:close" size="small" variant="inverse"></lightning-icon>
+                    </button>
+                    <h2 class="slds-modal__title">{productRollupModalTitle}</h2>
+                    <p class="slds-text-body_small slds-m-top_xx-small">
+                        This Product Rollup was not found in the org. Select a Product Line and create it.
+                        ({productRollupProgress})
+                    </p>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <div class="slds-grid slds-wrap slds-gutters_small">
+                        <div class="slds-col slds-size_1-of-2 slds-m-bottom_small">
+                            <lightning-input label="Product Rollup Name" value={currentMissingPRName}
+                                disabled></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-m-bottom_small">
+                            <lightning-combobox label="Product Line" data-field="productLine"
+                                value={newPRProductLine} options={productLineOptionsForRollup}
+                                onchange={handlePRFieldChange} required></lightning-combobox>
+                        </div>
+                    </div>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning-button label="Skip" variant="neutral"
+                        onclick={handleSkipProductRollup} class="slds-m-right_small"></lightning-button>
+                    <lightning-button label="Create Product Rollup" variant="brand"
+                        onclick={handleCreateProductRollup}></lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

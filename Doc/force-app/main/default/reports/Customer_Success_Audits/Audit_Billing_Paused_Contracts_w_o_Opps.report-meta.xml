@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CONTRACT_NUMBER</field>
+    </columns>
+    <columns>
+        <field>ACCOUNT_NAME</field>
+    </columns>
+    <columns>
+        <field>CONTRACT_NAME</field>
+    </columns>
+    <columns>
+        <field>Contract.Billing_Pause_Status__c</field>
+    </columns>
+    <crossFilters>
+        <criteriaItems>
+            <column>Type</column>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Legal - Billing Paused/Restarted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>StageName</column>
+            <isUnlocked>false</isUnlocked>
+            <operator>notContain</operator>
+            <value>should never</value>
+        </criteriaItems>
+        <operation>without</operation>
+        <primaryTableColumn>CONTRACT_ID</primaryTableColumn>
+        <relatedTable>Opportunity</relatedTable>
+        <relatedTableJoinColumn>Associated_Contract_OSA__c</relatedTableJoinColumn>
+    </crossFilters>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Contract.Billing_Pause_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Processing Pause</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.CRD__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Audit: Billing Pause Contracts w/o Opps</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>ContractList</reportType>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>START_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_Entry_Mobile__c</fullName>
+    <description>To indicate what mobile time tracking application is being used at the firm.</description>
+    <inlineHelpText>What product does this account use for mobile time entry?</inlineHelpText>
+    <label>Time Entry - Mobile</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Aderant</fullName>
+                <default>false</default>
+                <label>Aderant</label>
+            </value>
+            <value>
+                <fullName>Airtime</fullName>
+                <default>false</default>
+                <label>Airtime</label>
+            </value>
+            <value>
+                <fullName>APS</fullName>
+                <default>false</default>
+                <label>APS</label>
+            </value>
+            <value>
+                <fullName>Custom</fullName>
+                <default>false</default>
+                <label>Custom</label>
+            </value>
+            <value>
+                <fullName>DTE Axiom Mobile</fullName>
+                <default>false</default>
+                <label>DTE Axiom Mobile</label>
+            </value>
+            <value>
+                <fullName>DTE InHand</fullName>
+                <default>false</default>
+                <label>DTE InHand</label>
+            </value>
+            <value>
+                <fullName>Element 55/MakeTime</fullName>
+                <default>false</default>
+                <label>Element 55/MakeTime</label>
+            </value>
+            <value>
+                <fullName>Elite Wireless T&amp;E</fullName>
+                <default>false</default>
+                <label>Elite Wireless T&amp;E</label>
+            </value>
+            <value>
+                <fullName>Fidelis</fullName>
+                <default>false</default>
+                <label>Fidelis</label>
+            </value>
+            <value>
+                <fullName>Intapp Time</fullName>
+                <default>false</default>
+                <label>Intapp Time</label>
+            </value>
+            <value>
+                <fullName>iTimeKeep</fullName>
+                <default>false</default>
+                <label>iTimeKeep</label>
+            </value>
+            <value>
+                <fullName>METAmessage</fullName>
+                <default>false</default>
+                <label>METAmessage</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Onset Technologies</fullName>
+                <default>false</default>
+                <label>Onset Technologies</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Rekoop</fullName>
+                <default>false</default>
+                <label>Rekoop</label>
+            </value>
+            <value>
+                <fullName>SmartTime</fullName>
+                <default>false</default>
+                <label>SmartTime</label>
+            </value>
+            <value>
+                <fullName>Tikit Carpe Diem Mobile</fullName>
+                <default>false</default>
+                <label>Tikit Carpe Diem Mobile</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

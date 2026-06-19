@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Cases</fullName>
+    <availability>online</availability>
+    <description>Link to all cases for this account</description>
+    <displayType>link</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Account Cases</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>https://na3.salesforce.com/500?rlid=RelatedCaseList&amp;id={!Case.AccountId}</url>
+</WebLink>

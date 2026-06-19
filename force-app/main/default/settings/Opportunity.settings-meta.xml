@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpportunitySettings xmlns="http://soap.sforce.com/2006/04/metadata">
+    <autoActivateNewReminders>true</autoActivateNewReminders>
+    <customizableProductSchedulesEnabled>false</customizableProductSchedulesEnabled>
+    <doesEnforceStandardOpportunitySaveLogic>true</doesEnforceStandardOpportunitySaveLogic>
+    <enableExpandedPipelineInspectionSetup>false</enableExpandedPipelineInspectionSetup>
+    <enableFindSimilarOpportunities>true</enableFindSimilarOpportunities>
+    <enableOpportunityFieldHistoryTracking>true</enableOpportunityFieldHistoryTracking>
+    <enableOpportunityInsightsInMobile>false</enableOpportunityInsightsInMobile>
+    <enableOpportunityTeam>true</enableOpportunityTeam>
+    <enablePipelineInspection>false</enablePipelineInspection>
+    <enablePipelineInspectionSingleCategoryRollup>false</enablePipelineInspectionSingleCategoryRollup>
+    <enableServiceCaseInsights>false</enableServiceCaseInsights>
+    <enableUpdateReminders>true</enableUpdateReminders>
+    <findSimilarOppFilter>
+        <similarOpportunitiesDisplayColumns>OPPORTUNITY.NAME</similarOpportunitiesDisplayColumns>
+        <similarOpportunitiesDisplayColumns>ACCOUNT.NAME</similarOpportunitiesDisplayColumns>
+        <similarOpportunitiesDisplayColumns>CORE.USERS.FULL_NAME</similarOpportunitiesDisplayColumns>
+        <similarOpportunitiesDisplayColumns>OPPORTUNITY.STAGE_NAME</similarOpportunitiesDisplayColumns>
+        <similarOpportunitiesDisplayColumns>OPPORTUNITY.CLOSE_DATE</similarOpportunitiesDisplayColumns>
+        <similarOpportunitiesMatchFields>OPPORTUNITY.ACCOUNT</similarOpportunitiesMatchFields>
+        <similarOpportunitiesMatchFields>Opportunity.OpportunityCompetitors</similarOpportunitiesMatchFields>
+        <similarOpportunitiesMatchFields>Opportunity.OpportunityLineItems</similarOpportunitiesMatchFields>
+        <similarOpportunitiesMatchFields>Opportunity.OpportunityContactRoles</similarOpportunitiesMatchFields>
+        <similarOpportunitiesMatchFields>Practice_Group__c</similarOpportunitiesMatchFields>
+        <similarOpportunitiesMatchFields>POC_ROR__c</similarOpportunitiesMatchFields>
+    </findSimilarOppFilter>
+    <oppAmountDealMotionEnabled>true</oppAmountDealMotionEnabled>
+    <oppCloseDateDealMotionEnabled>true</oppCloseDateDealMotionEnabled>
+    <promptToAddProducts>false</promptToAddProducts>
+    <pushCountEnabled>true</pushCountEnabled>
+    <simpleOppCreateFromContact>false</simpleOppCreateFromContact>
+    <simpleOppCreateFromEvent>false</simpleOppCreateFromEvent>
+</OpportunitySettings>

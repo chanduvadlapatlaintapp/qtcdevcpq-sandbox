@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_converted_formula_fields</name>
+        <label>Assign converted formula fields</label>
+        <locationX>545</locationX>
+        <locationY>287</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.OP4I_Contract_Number__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>OP4IContractNumber</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.OP4I_OSA__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>OP4IOSA</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Related_Opportunity__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>RelatedOpportunity</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>getLastSubscription</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Last_segment</name>
+        <label>Assign Last segment</label>
+        <locationX>413</locationX>
+        <locationY>611</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Last_Segment_Subscription__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>getLastSubscription.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_Renewal_Uplift</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Renewal_Price_Not_Segment</name>
+        <label>Assign Renewal Price Not Segment</label>
+        <locationX>215</locationX>
+        <locationY>1127</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.SBQQ__RenewalPrice__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>UnsegmentedRenewalPrice</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_SubscriptionType_OR_Distributor_Discount</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Renewal_Price_Segmented</name>
+        <label>Assign Renewal Price Segmented</label>
+        <locationX>479</locationX>
+        <locationY>1127</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.SBQQ__RenewalPrice__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>SegmentedRenewalPrice</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_SubscriptionType_OR_Distributor_Discount</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Renewal_Uplift</name>
+        <label>Assign Renewal Uplift</label>
+        <locationX>545</locationX>
+        <locationY>803</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Uplifted_Renewal_Amount__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>calculateUpliftRenewalAmount</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Verify_Migrated_Renewal_Price_Blank</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Subscription_Type</name>
+        <label>Assign Subscription Type</label>
+        <locationX>116</locationX>
+        <locationY>1619</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.SBQQ__SubscriptionType__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>One-time</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.SBQQ__ProductSubscriptionType__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>One-time</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.SBQQ__TerminatedDate__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>TerminationDateFormula</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Subscription_Type</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Termination_Date</name>
+        <label>Assign Termination Date</label>
+        <locationX>50</locationX>
+        <locationY>1919</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.SBQQ__TerminatedDate__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>TerminationDateFormula</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_Distributor_Discount_Null</name>
+        <label>Set Distributor Discount Null</label>
+        <locationX>314</locationX>
+        <locationY>2027</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.SBQQ__DistributorDiscount__c</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Check_Credit_Lines</name>
+        <label>Check Credit Lines</label>
+        <locationX>248</locationX>
+        <locationY>1511</locationY>
+        <defaultConnector>
+            <targetReference>Check_Subscription_Type</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Credit_Lines</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Quantity__c</leftValueReference>
+                <operator>LessThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Contract__r.SBQQ__Quote__r.Renewal_Quote_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Consolidated-Quote</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Subscription_Type</targetReference>
+            </connector>
+            <label>Credit Lines</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Segment_Index_Null</name>
+        <label>Check Segment Index Null</label>
+        <locationX>545</locationX>
+        <locationY>503</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Renewal_Uplift</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Segment_Index_Not_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>getLastSubscription.SBQQ__SegmentIndex__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>1.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Id</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>getLastSubscription.Id</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Last_segment</targetReference>
+            </connector>
+            <label>Segment Index Not Null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Subscription_Type</name>
+        <label>Check Subscription Type</label>
+        <locationX>248</locationX>
+        <locationY>1811</locationY>
+        <defaultConnector>
+            <targetReference>Distributor_Disocunt_Not_Null</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>One_Time</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__SubscriptionType__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>One-time</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Termination_Date</targetReference>
+            </connector>
+            <label>One-Time</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Moving Entry Condition to a decision element</description>
+        <name>Check_SubscriptionType_OR_Distributor_Discount</name>
+        <label>Check SubscriptionType OR Distributor Discount</label>
+        <locationX>545</locationX>
+        <locationY>1403</locationY>
+        <defaultConnectorLabel>False</defaultConnectorLabel>
+        <rules>
+            <name>True1</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__SubscriptionType__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>One-time</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__DistributorDiscount__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_Credit_Lines</targetReference>
+            </connector>
+            <label>True</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Distributor_Disocunt_Not_Null</name>
+        <label>Distributor Disocunt Not Null</label>
+        <locationX>446</locationX>
+        <locationY>1919</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__DistributorDiscount__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Distributor_Discount_Null</targetReference>
+            </connector>
+            <label>True</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Verify_Last_Segment_Subscription</name>
+        <label>Verify Last Segment Subscription</label>
+        <locationX>347</locationX>
+        <locationY>1019</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Renewal_Price_Segmented</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Last_Segment_Subscription</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Last_Segment_Subscription__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Renewal_Price_Not_Segment</targetReference>
+            </connector>
+            <label>Last Segment Subscription</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Verify_Migrated_Renewal_Price_Blank</name>
+        <label>Verify Migrated Renewal Price Blank</label>
+        <locationX>545</locationX>
+        <locationY>911</locationY>
+        <defaultConnector>
+            <targetReference>Check_SubscriptionType_OR_Distributor_Discount</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Renewal_Price_Blank_Migrated_Subscription</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__RenewalPrice__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__RevisedSubscription__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Verify_Last_Segment_Subscription</targetReference>
+            </connector>
+            <label>Renewal Price Blank Migrated Subscription</label>
+        </rules>
+    </decisions>
+    <description>BIZ-68137 Don&apos;t Populate renewal price for amendment of migrated contracts
+BIZ-65926 Populate Renewal Price for Migrated Contracts
+BIZ-65119 populate last segment subscription and renewal amount
+To populate the Termination date for One-Time products or services. Created as part of BIZ-51230.
+BIZ-53196
+BIZ-68197 - Updated the logic to set Renewal Price regardless of the segment index
+BIZ-68888 - Added Logic to populate Original Opportunity Product on Subscription
+BIZ-67339 - Added the Bypass Logic</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>calculateUpliftRenewalAmount</name>
+        <dataType>Currency</dataType>
+        <expression>IF({!getLastSubscription.SBQQ__SegmentIndex__c} &gt; 1, 
+({!getLastSubscription.SBQQ__NetPrice__c}*(1+({!$Record.SBQQ__Contract__r.SBQQ__RenewalUpliftRate__c}/100))),
+({!$Record.SBQQ__NetPrice__c} * (1+({!$Record.SBQQ__Contract__r.SBQQ__RenewalUpliftRate__c}/100))))</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>OP4IContractNumber</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.SBQQ__Contract__r.SBQQ__Quote__r.OP4I_Contract_Number__c}</expression>
+    </formulas>
+    <formulas>
+        <name>OP4IOSA</name>
+        <dataType>String</dataType>
+        <expression>IF({!$Record.SBQQ__Contract__r.Renewed_Contract__c}!= null, CASESAFEID({!$Record.SBQQ__Contract__r.Renewed_Contract__c}),CASESAFEID( {!$Record.SBQQ__Contract__c}))</expression>
+    </formulas>
+    <formulas>
+        <name>RelatedOpportunity</name>
+        <dataType>String</dataType>
+        <expression>CASESAFEID({!$Record.SBQQ__QuoteLine__r.SBQQ__Quote__r.SBQQ__Opportunity2__c})</expression>
+    </formulas>
+    <formulas>
+        <name>SegmentedRenewalPrice</name>
+        <dataType>Currency</dataType>
+        <expression>{!$Record.Last_Segment_Subscription__r.SBQQ__NetPrice__c}/{!SegmentMonths}</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>SegmentMonths</name>
+        <dataType>Number</dataType>
+        <expression>IF(DAY({!getLastSubscription.SBQQ__SegmentEndDate__c}) &lt; DAY({!getLastSubscription.SBQQ__SegmentStartDate__c}),
+MONTH({!getLastSubscription.SBQQ__SegmentEndDate__c}) + (12*(YEAR({!getLastSubscription.SBQQ__SegmentEndDate__c})- YEAR({!getLastSubscription.SBQQ__SegmentStartDate__c}))) -
+MONTH({!getLastSubscription.SBQQ__SegmentStartDate__c}),
+MONTH({!getLastSubscription.SBQQ__SegmentEndDate__c}) + (12*(YEAR({!getLastSubscription.SBQQ__SegmentEndDate__c})-YEAR({!getLastSubscription.SBQQ__SegmentStartDate__c}))) -
+MONTH({!getLastSubscription.SBQQ__SegmentStartDate__c}) + 1)</expression>
+        <scale>0</scale>
+    </formulas>
+    <formulas>
+        <name>TerminationDateFormula</name>
+        <dataType>Date</dataType>
+        <expression>TODAY() - 1</expression>
+    </formulas>
+    <formulas>
+        <name>unsegmentedMonths</name>
+        <dataType>Number</dataType>
+        <expression>IF(DAY({!$Record.SBQQ__SegmentEndDate__c}) &lt; DAY({!$Record.SBQQ__SegmentStartDate__c}),
+MONTH({!$Record.SBQQ__SegmentEndDate__c}) + (12*(YEAR({!$Record.SBQQ__SegmentEndDate__c})- YEAR({!$Record.SBQQ__SegmentStartDate__c}))) -
+MONTH({!$Record.SBQQ__SegmentStartDate__c}),
+MONTH({!$Record.SBQQ__SegmentEndDate__c}) + (12*(YEAR({!$Record.SBQQ__SegmentEndDate__c})-YEAR({!$Record.SBQQ__SegmentStartDate__c}))) -
+MONTH({!$Record.SBQQ__SegmentStartDate__c}) + 1)</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>UnsegmentedRenewalPrice</name>
+        <dataType>Currency</dataType>
+        <expression>{!$Record.SBQQ__NetPrice__c}/{!unsegmentedMonths}</expression>
+        <scale>2</scale>
+    </formulas>
+    <interviewLabel>Subscription Before Insert Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Subscription Before Insert Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>getLastSubscription</name>
+        <label>getLastSubscription</label>
+        <locationX>545</locationX>
+        <locationY>395</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_Segment_Index_Null</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>SBQQ__Product__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Product__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>SBQQ__Contract__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Contract__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>SBQQ__SegmentKey__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.SBQQ__SegmentKey__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SBQQ__Subscription__c</object>
+        <sortField>SBQQ__SegmentIndex__c</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>419</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Assign_converted_formula_fields</targetReference>
+        </connector>
+        <filterFormula>NOT(
+	{!$Setup.Automation_Controls__c.Active__c} &amp;&amp; 
+	{!$Setup.Automation_Controls__c.Bypass_Flows__c} &amp;&amp; 
+	{!$Setup.Automation_Controls__c.Contractline_Bypass__c} &amp;&amp; 
+	(
+		ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c}) || 
+		(
+			NOT(ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c})) &amp;&amp; 
+			CONTAINS({!$Setup.Automation_Controls__c.Data_Id__c}, {!$Record.Id})
+		)
+	)
+)</filterFormula>
+        <object>SBQQ__Subscription__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

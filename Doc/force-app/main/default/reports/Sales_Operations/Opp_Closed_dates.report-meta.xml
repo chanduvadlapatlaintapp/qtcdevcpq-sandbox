@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Contract.Opportunity__r$Id</field>
+    </columns>
+    <columns>
+        <field>Contract$EndDate</field>
+    </columns>
+    <columns>
+        <field>Contract$CompanySignedDate</field>
+    </columns>
+    <columns>
+        <field>Contract$ContractNumber</field>
+    </columns>
+    <columns>
+        <field>Contract$Account</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Contract$Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Standard,Software Only,Support</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contract.Opportunity__r$Type</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>,Legal - Recurring Adjustment,Recurring Adjustment,Legal - Billing Paused - Customer,Legal - Billing Paused - Product,Legal - Billing Restarted - Customer,Legal - Billing Restarted - Product,Legal - CPI / Recurring Increase,Legal - Billing Paused/Restarted,Cancellation - Customer,Cancellation - Module,Cancellation - Product,Cancellation - Recurring Adjustment,Downgrade - CPI,Downgrade - Product,Practice Credit Adjustment,Product Credit Adjustment,Reseller - Other,Legal - Acquired New Customer,Legal - Acquired New Product,Acquired New Product,Legal - Additional Services,Additional Services,Legal - Services Change Request,Services Change Request,Legal - Services Change Request Internal,Legal - Consulting Services,Consulting Services</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contract.Opportunity__r$StageName</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Closed Won</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Opp Closed dates</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Contracts_with_Opportunities__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Contract$EndDate</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Contract$EndDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2014-07-01</startDate>
+    </timeFrameFilter>
+</Report>

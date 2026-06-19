@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Allows assigned users to edit fields &quot;Primary Service Provider&quot; and &quot;Secondary Service Provider&quot; on the Account.</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Primary_Services_Provider__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Secondary_Services_Provider__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Edit Service Provider Field</label>
+    <license>Salesforce</license>
+</PermissionSet>

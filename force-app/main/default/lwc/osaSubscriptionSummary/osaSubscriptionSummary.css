@@ -1,0 +1,176 @@
+/*
+ * ── SLDS2 Global Token Mapping ────────────────────────────────────────────────
+ * All colours reference --slds-g-* global styling hooks where a match exists.
+ * Year 4 (purple) and Year 6 (charcoal) have no SLDS2 semantic equivalents
+ * and retain explicit hex values as documented exceptions.
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+:host {
+  /* ── Year segment palette (SLDS2 semantic tokens) ── */
+  --osa-y1: var(--slds-g-color-brand-base-50); /* #0176d3  brand blue    */
+  --osa-y1-bg: var(--slds-g-color-brand-base-95); /* #eef4ff  brand light   */
+  --osa-y2: var(--slds-g-color-success-base-50); /* #2e844a  success green */
+  --osa-y2-bg: var(--slds-g-color-palette-green-95, #cdefc4);
+  --osa-y3: var(--slds-g-color-warning-base-60); /* #dd7a01  warning orange */
+  --osa-y3-bg: var(--slds-g-color-palette-orange-95, #fce4c8);
+  --osa-y4: #5c4ee5; /* no SLDS2 purple token  */
+  --osa-y4-bg: #ede9ff;
+  --osa-y5: var(--slds-g-color-error-base-50); /* #ea001e  error red     */
+  --osa-y5-bg: var(--slds-g-color-palette-red-95, #ffdede);
+  --osa-y6: var(--slds-g-color-neutral-base-20, #444444); /* charcoal neutral */
+  --osa-y6-bg: var(--slds-g-color-surface-2); /* #f3f3f3  light surface */
+
+  /* ── Shared semantic tokens ── */
+  --osa-neutral: var(--slds-g-color-on-surface-1); /* #757575  muted text    */
+  --osa-border: var(--slds-g-color-border-base-1); /* #c9c9c9  base border   */
+}
+
+/* ── Segment wrapper ─────────────────────────────────────────────────────── */
+.osa-segment {
+  border: 1px solid var(--osa-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* ── Collapsed header ────────────────────────────────────────────────────── */
+.osa-seg-header {
+  background: var(--slds-g-color-surface-2); /* light neutral surface  */
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.osa-seg-header:hover {
+  background: var(--slds-g-color-surface-3); /* slightly darker on hover */
+}
+
+.osa-seg-header.osa-seg-open {
+  background: var(--slds-g-color-surface-1); /* white when expanded     */
+  border-bottom: 1px solid var(--osa-border);
+}
+
+/* ── Index circle chips ──────────────────────────────────────────────────── */
+.osa-idx-chip {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--slds-g-color-neutral-base-100); /* white text on chip  */
+  flex-shrink: 0;
+}
+
+.osa-idx-blank {
+  background: var(--osa-neutral);
+}
+.osa-idx-1 {
+  background: var(--osa-y1);
+}
+.osa-idx-2 {
+  background: var(--osa-y2);
+}
+.osa-idx-3 {
+  background: var(--osa-y3);
+}
+.osa-idx-4 {
+  background: var(--osa-y4);
+}
+.osa-idx-5 {
+  background: var(--osa-y5);
+}
+.osa-idx-6 {
+  background: var(--osa-y6);
+}
+
+/* ── Year label / amount (right side of header) ──────────────────────────── */
+.osa-year-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  color: var(--osa-neutral);
+}
+
+.osa-year-amount {
+  font-size: 18px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--osa-neutral);
+}
+
+/* ── Per-year coloured overrides ─────────────────────────────────────────── */
+.osa-y1 {
+  color: var(--osa-y1) !important;
+}
+.osa-y2 {
+  color: var(--osa-y2) !important;
+}
+.osa-y3 {
+  color: var(--osa-y3) !important;
+}
+.osa-y4 {
+  color: var(--osa-y4) !important;
+}
+.osa-y5 {
+  color: var(--osa-y5) !important;
+}
+.osa-y6 {
+  color: var(--osa-y6) !important;
+}
+
+/* ── Expanded detail panel ───────────────────────────────────────────────── */
+.osa-segment-detail {
+  background: var(--slds-g-color-surface-1); /* white canvas */
+  border-top: 1px solid var(--osa-border);
+}
+
+/* ── Product code ────────────────────────────────────────────────────────── */
+.osa-prod-code {
+  color: var(--slds-g-color-brand-base-50); /* brand blue */
+  font-weight: 600;
+  font-size: 12px;
+}
+
+/* ── Subtotal footer row ─────────────────────────────────────────────────── */
+.osa-subtotal-row td {
+  background: var(--slds-g-color-surface-2); /* light neutral */
+  border-top: 1px solid var(--osa-border);
+  font-size: 12px;
+}
+
+/* ── Support level badges (SLDS2 component styling hooks) ────────────────── */
+.osa-badge-premium {
+  --sds-c-badge-color-background: var(--slds-g-color-brand-base-95);
+  --sds-c-badge-text-color: var(--slds-g-color-brand-base-10);
+}
+
+.osa-badge-standard {
+  --sds-c-badge-color-background: var(--slds-g-color-surface-2);
+  --sds-c-badge-text-color: var(--slds-g-color-on-surface-1);
+}
+
+/* ── One Time Credit row ─────────────────────────────────────────────────── */
+.osa-otc-row {
+  border-top: 1px dashed var(--osa-border);
+  background: var(--slds-g-color-surface-2);
+}
+
+.osa-otc-amount {
+  color: var(--slds-g-color-error-base-50); /* red — credit reduces the total */
+}
+
+/* ── Grand total bar ─────────────────────────────────────────────────────── */
+.osa-grand-total {
+  background: var(--slds-g-color-brand-base-50); /* brand blue */
+  color: var(--slds-g-color-neutral-base-100); /* white */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.osa-grand-sub {
+  opacity: 0.8;
+  color: var(--slds-g-color-neutral-base-100); /* white */
+}

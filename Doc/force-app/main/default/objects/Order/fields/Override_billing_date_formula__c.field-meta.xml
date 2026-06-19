@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Override_billing_date_formula__c</fullName>
+    <description>Returns Overrde next billing date for this order</description>
+    <formula>IF(ISBLANK(SBQQ__Quote__r.Override_Next_Billing_date__c),  DATEVALUE(ActivatedDate) , SBQQ__Quote__r.Override_Next_Billing_date__c )</formula>
+    <label>Override billing date formula</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Date</type>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NetSuite_Internal_ID__c</fullName>
+    <description>NetSuite Internal ID from Item Master Product Object.</description>
+    <externalId>false</externalId>
+    <formula>Item_Master_Product__r.NetSuite_Internal_Id__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>NetSuite Internal ID</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

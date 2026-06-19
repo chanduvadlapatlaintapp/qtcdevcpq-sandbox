@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_Flow_Products__c</fullName>
+    <label>New Flow Products</label>
+    <summaryFilterItems>
+        <field>SBQQ__QuoteLine__c.Product_Code_Text__c</field>
+        <operation>equals</operation>
+        <value>FL-01072, FL-01071</value>
+    </summaryFilterItems>
+    <summaryForeignKey>SBQQ__QuoteLine__c.SBQQ__Quote__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status_Validation_NonAdminUser</fullName>
+    <active>true</active>
+    <description>Only Users that are Contract Ops (Contracts / CRM Ops)  and Users with Admin Override permission can edit Status field in Account.</description>
+    <errorConditionFormula>AND(
+ NOT($Permission.Admin_Override),
+ $Profile.Name &lt;&gt; &quot;Contracts / CRM Ops&quot;,
+ ISCHANGED(Status__c)
+)</errorConditionFormula>
+    <errorMessage>You do not have permission to update Account Status. Please request Contract Ops to update Account Status by creating a Task.</errorMessage>
+</ValidationRule>

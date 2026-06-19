@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Quote Editor — Core (Save Gating)</label>
+    <protected>false</protected>
+    <values>
+        <field>Allow_Multiple_Account__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Default_Accounts__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Description__c</field>
+        <value xsi:type="xsd:string">Verifies editor load (account/quote header links, 4 metric tiles, editable lines), Save dirty-state gating (disabled on open, enabled after a qty edit, re-disabled after save), and Back button navigation to the active contracts list.</value>
+    </values>
+    <values>
+        <field>Is_Active__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Module__c</field>
+        <value xsi:type="xsd:string">Simplified AgenticQTC</value>
+    </values>
+    <values>
+        <field>Sort_Order__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Suite_Value__c</field>
+        <value xsi:type="xsd:string">agenticQtcQuoteEditorCore</value>
+    </values>
+</CustomMetadata>

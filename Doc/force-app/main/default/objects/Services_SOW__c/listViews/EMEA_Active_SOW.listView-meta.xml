@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EMEA_Active_SOW</fullName>
+    <columns>Status__c</columns>
+    <columns>Requesting_Employee__c</columns>
+    <columns>Technical_Scoping_Assigned_To__c</columns>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Start_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Geography__c</field>
+        <operation>equals</operation>
+        <value>EMEA</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Submitted,In Process,Returned to Requesting Employee for Edits,On Hold</value>
+    </filters>
+    <label>EMEA Active SOW</label>
+    <language>en_US</language>
+</ListView>

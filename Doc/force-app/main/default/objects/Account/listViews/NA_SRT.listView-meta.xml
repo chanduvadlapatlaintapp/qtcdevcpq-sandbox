@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NA_SRT</fullName>
+    <booleanFilter>1 AND 2 AND (3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9)</booleanFilter>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>IntApp_Account_Number__c</columns>
+    <columns>ACCOUNT.ADDRESS1_STATE</columns>
+    <columns>TE_Version_Text__c</columns>
+    <columns>TB_Version__c</columns>
+    <columns>SRT_Time_Entry_Installed__c</columns>
+    <columns>SRT_Time_Capture_Installed__c</columns>
+    <columns>SRT_Time_Entry_SRT_Version__c</columns>
+    <columns>SRT_Time_Capture_SRT_Version__c</columns>
+    <columns>SRT_Time_Capture_Last_Check_In__c</columns>
+    <columns>SRT_Time_Capture_Status__c</columns>
+    <columns>SRT_Time_Entry_Last_Check_In__c</columns>
+    <columns>SRT_Time_Entry_Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Simple_Territory__c</field>
+        <operation>equals</operation>
+        <value>north America</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.TYPE</field>
+        <operation>equals</operation>
+        <value>Customer</value>
+    </filters>
+    <filters>
+        <field>Intapp_Time__c</field>
+        <operation>equals</operation>
+        <value>Own it</value>
+    </filters>
+    <filters>
+        <field>Intapp_Time_Capture__c</field>
+        <operation>equals</operation>
+        <value>Own it</value>
+    </filters>
+    <filters>
+        <field>Intapp_Time_Core_Management__c</field>
+        <operation>equals</operation>
+        <value>Own it</value>
+    </filters>
+    <filters>
+        <field>Intapp_Time_Total_Management__c</field>
+        <operation>equals</operation>
+        <value>Own it</value>
+    </filters>
+    <filters>
+        <field>Intapp_Time_Mobile__c</field>
+        <operation>equals</operation>
+        <value>Own it</value>
+    </filters>
+    <filters>
+        <field>Intapp_Time_Core__c</field>
+        <operation>equals</operation>
+        <value>Own it</value>
+    </filters>
+    <filters>
+        <field>Intapp_Time_Compliance_Module__c</field>
+        <operation>equals</operation>
+        <value>Own it</value>
+    </filters>
+    <label>NA SRT</label>
+    <language>en_US</language>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

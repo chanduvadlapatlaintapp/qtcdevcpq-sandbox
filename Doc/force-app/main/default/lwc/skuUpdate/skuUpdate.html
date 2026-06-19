@@ -1,0 +1,708 @@
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+    </template>
+
+    <div class="slds-p-around_medium">
+        <!-- Page Header -->
+        <div class="page-header slds-m-bottom_medium">
+            <div class="header-icon">
+                <lightning-icon icon-name="utility:edit" size="x-small"></lightning-icon>
+            </div>
+            <div>
+                <h2 class="header-title">SKU Management</h2>
+                <p class="header-subtitle">Click any cell to edit inline</p>
+            </div>
+            <div class="header-actions">
+                <template if:true={hasRecords}>
+                    <span class="record-count">{recordCountLabel}</span>
+                </template>
+                <lightning-button label="Export to Excel" icon-name="utility:download"
+                    variant="neutral" onclick={handleExport} disabled={isExportDisabled}></lightning-button>
+            </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-card slds-m-bottom_medium">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-5">
+                    <lightning-input label="Product Name" value={filterName}
+                        onchange={handleFilterNameChange} onkeyup={handleFilterKeyUp}
+                        placeholder="Min 2 chars..."></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-5">
+                    <lightning-input label="Product Code" value={filterCode}
+                        onchange={handleFilterCodeChange} onkeyup={handleFilterKeyUp}
+                        placeholder="Min 2 chars..."></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-5">
+                    <lightning-combobox label="Product Type" value={filterType}
+                        options={productTypeFilterOptions}
+                        onchange={handleFilterTypeChange}></lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_1-of-5">
+                    <lightning-combobox label="Active" value={filterActive}
+                        options={activeFilterOptions}
+                        onchange={handleFilterActiveChange}></lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_1-of-5 slds-grid slds-grid_vertical-align-end">
+                    <lightning-button label="Search" variant="brand" onclick={handleSearch}
+                        disabled={isSearchDisabled}
+                        class="slds-m-bottom_xx-small"></lightning-button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Save Bar -->
+        <template if:true={hasChanges}>
+            <div class="save-bar">
+                <lightning-button label="Save All Changes" variant="brand" icon-name="utility:save"
+                    onclick={handleSave} class="slds-m-right_small"></lightning-button>
+                <span class="slds-m-right_small save-bar-text">{totalChangesLabel}</span>
+                <lightning-button label="Discard Changes" variant="neutral"
+                    onclick={handleDiscardChanges}></lightning-button>
+            </div>
+        </template>
+
+        <!-- Single Wide Table with All Fields -->
+        <template if:true={hasRecords}>
+            <div class="table-container">
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped slds-table_fixed-layout branded-table">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <!-- ===== Product2 Core Fields ===== -->
+                            <th scope="col" class="slds-cell-wrap col-checkbox">Active</th>
+                            <th scope="col" class="slds-cell-wrap col-name">Product Name</th>
+                            <th scope="col" class="slds-cell-wrap col-code">Product Code</th>
+                            <th scope="col" class="slds-cell-wrap col-desc">Description</th>
+                            <th scope="col" class="slds-cell-wrap col-lookup">Product Line</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist">Product Group</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist">Product Type</th>
+                            <th scope="col" class="slds-cell-wrap col-readonly">Revenue Type</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist">Product Rollup</th>
+                            <!-- ===== Product2 Config Fields ===== -->
+                            <th scope="col" class="slds-cell-wrap col-picklist">License Type</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist">Pricing Basis</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist">Services Type</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist">Guided Selling</th>
+                            <th scope="col" class="slds-cell-wrap col-checkbox-wide">Cloud Addendum Req</th>
+                            <th scope="col" class="slds-cell-wrap col-checkbox-wide">Eligible Premium</th>
+                            <th scope="col" class="slds-cell-wrap col-checkbox-wide">Includes Assist</th>
+                            <th scope="col" class="slds-cell-wrap col-checkbox-wide">Parent Of Bundle</th>
+                            <th scope="col" class="slds-cell-wrap col-checkbox">Prime</th>
+                            <th scope="col" class="slds-cell-wrap col-number">% of ACV</th>
+                            <!-- ===== Product2 CPQ Fields ===== -->
+                            <th scope="col" class="slds-cell-wrap col-picklist">Billing Type</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist">Charge Type</th>
+                            <th scope="col" class="slds-cell-wrap col-checkbox">Component</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist">Config Event</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist">Config Type</th>
+                            <th scope="col" class="slds-cell-wrap col-text">Default Pricing Tbl</th>
+                            <th scope="col" class="slds-cell-wrap col-checkbox">Optional</th>
+                            <th scope="col" class="slds-cell-wrap col-checkbox">Price Editable</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist">Sub Pricing</th>
+                            <th scope="col" class="slds-cell-wrap col-number">Sub Term</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist">Sub Type</th>
+                            <!-- ===== Product2 Vertical Flags ===== -->
+                            <th scope="col" class="slds-cell-wrap col-picklist">Legal</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist">Accounting</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist">Consulting</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist">IBA</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist">PCM</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist">Real Assets</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist">Corporate</th>
+                            <th scope="col" class="slds-cell-wrap col-text">Avalara Tax Code</th>
+                            <!-- ===== Separator ===== -->
+                            <th scope="col" class="col-separator"></th>
+                            <!-- ===== Item Master Core Fields ===== -->
+                            <th scope="col" class="slds-cell-wrap col-name im-header">IM: Product Item Name</th>
+                            <th scope="col" class="slds-cell-wrap col-text im-header">IM: Item Name</th>
+                            <th scope="col" class="slds-cell-wrap col-checkbox im-header">IM: Active</th>
+                            <th scope="col" class="slds-cell-wrap col-desc im-header">IM: Description</th>
+                            <th scope="col" class="slds-cell-wrap col-text im-header">IM: IMP Number</th>
+                            <!-- ===== Item Master Revenue Fields ===== -->
+                            <th scope="col" class="slds-cell-wrap col-picklist im-header">IM: Revenue Type</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist im-header">IM: Item Rev Category</th>
+                            <th scope="col" class="slds-cell-wrap col-lookup im-header">IM: Product Line</th>
+                            <!-- ===== Item Master NetSuite Fields ===== -->
+                            <th scope="col" class="slds-cell-wrap col-picklist im-header">IM: NS Type</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist im-header">IM: NS SubType</th>
+                            <th scope="col" class="slds-cell-wrap col-text im-header">IM: NS Internal Id</th>
+                            <th scope="col" class="slds-cell-wrap col-text im-header">IM: NS Product Line</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist im-header">IM: Create Rev Plans On</th>
+                            <th scope="col" class="slds-cell-wrap col-text im-header">IM: Deferred Rev Acct</th>
+                            <th scope="col" class="slds-cell-wrap col-text im-header">IM: Income Account</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist im-header">IM: NS Allocation Type</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist im-header">IM: NS Billing Sched</th>
+                            <th scope="col" class="slds-cell-wrap col-checkbox im-header">IM: NS Can Fulfill</th>
+                            <th scope="col" class="slds-cell-wrap col-checkbox im-header">IM: NS Direct Rev Post</th>
+                            <th scope="col" class="slds-cell-wrap col-checkbox im-header">IM: NS Export OpenAir</th>
+                            <th scope="col" class="slds-cell-wrap col-checkbox im-header">IM: NS Incl Children</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist im-header">IM: NS Item Type Inv</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist im-header">IM: NS Rev Rec Tmpl</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist im-header">IM: NS Tax Schedule</th>
+                            <th scope="col" class="slds-cell-wrap col-text im-header">IM: NS Error</th>
+                            <!-- ===== Item Master Other Fields ===== -->
+                            <th scope="col" class="slds-cell-wrap col-picklist im-header">IM: OA Billing Rule</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist im-header">IM: Rev Rec Forecast</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist im-header">IM: Rev Alloc Group</th>
+                            <th scope="col" class="slds-cell-wrap col-picklist im-header">IM: Rev Rec Rule</th>
+                            <th scope="col" class="slds-cell-wrap col-checkbox im-header">IM: Sync NetSuite</th>
+                            <th scope="col" class="slds-cell-wrap col-text im-header">IM: Tax Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={records} for:item="rec">
+                            <tr key={rec.rowIndex}>
+                                <!-- ===== Product2 Core Fields ===== -->
+                                <td class={rec.activeClass}>
+                                    <lightning-input type="checkbox" checked={rec.product.IsActive}
+                                        data-index={rec.rowIndex} data-field="IsActive"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Active"></lightning-input>
+                                </td>
+                                <td class={rec.nameClass}>
+                                    <lightning-input value={rec.product.Name}
+                                        data-index={rec.rowIndex} data-field="Name"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Name"></lightning-input>
+                                </td>
+                                <td class={rec.codeClass}>
+                                    <lightning-input value={rec.product.ProductCode}
+                                        data-index={rec.rowIndex} data-field="ProductCode"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Code"></lightning-input>
+                                </td>
+                                <td class={rec.descClass}>
+                                    <lightning-input value={rec.product.Description}
+                                        data-index={rec.rowIndex} data-field="Description"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Description"></lightning-input>
+                                </td>
+                                <td class={rec.productLineClass}>
+                                    <lightning-combobox value={rec.product.Product_LineNew__c}
+                                        options={productLineOptions}
+                                        data-index={rec.rowIndex} data-field="Product_LineNew__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Product Line"></lightning-combobox>
+                                </td>
+                                <td class={rec.groupClass}>
+                                    <lightning-combobox value={rec.product.Product_Group__c}
+                                        options={productGroupOptions}
+                                        data-index={rec.rowIndex} data-field="Product_Group__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Product Group"></lightning-combobox>
+                                </td>
+                                <td class={rec.ptypeClass}>
+                                    <lightning-combobox value={rec.product.Product_Type__c}
+                                        options={productTypeOptions}
+                                        data-index={rec.rowIndex} data-field="Product_Type__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Product Type"></lightning-combobox>
+                                </td>
+                                <td class={rec.revenueTypeClass}>
+                                    <lightning-combobox value={rec.product.Revenue_Type__c}
+                                        options={revenueTypeOptions}
+                                        data-index={rec.rowIndex} data-field="Revenue_Type__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Revenue Type"></lightning-combobox>
+                                </td>
+                                <td class={rec.rollupClass}>
+                                    <lightning-combobox value={rec.product.ProductRollup__c}
+                                        options={productRollupOptions}
+                                        data-index={rec.rowIndex} data-field="ProductRollup__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Product Rollup"></lightning-combobox>
+                                </td>
+                                <!-- ===== Product2 Config Fields ===== -->
+                                <td class={rec.licenseClass}>
+                                    <lightning-combobox value={rec.product.Product_License_Type__c}
+                                        options={productLicenseTypeOptions}
+                                        data-index={rec.rowIndex} data-field="Product_License_Type__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="License Type"></lightning-combobox>
+                                </td>
+                                <td class={rec.pricingClass}>
+                                    <lightning-combobox value={rec.product.Pricing_Basis__c}
+                                        options={pricingBasisOptions}
+                                        data-index={rec.rowIndex} data-field="Pricing_Basis__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Pricing Basis"></lightning-combobox>
+                                </td>
+                                <td class={rec.servicesClass}>
+                                    <lightning-combobox value={rec.product.Services_Product_Type__c}
+                                        options={servicesProductTypeOptions}
+                                        data-index={rec.rowIndex} data-field="Services_Product_Type__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Services Type"></lightning-combobox>
+                                </td>
+                                <td class={rec.guidedClass}>
+                                    <lightning-combobox value={rec.product.Guided_Selling_Type__c}
+                                        options={guidedSellingTypeOptions}
+                                        data-index={rec.rowIndex} data-field="Guided_Selling_Type__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Guided Selling"></lightning-combobox>
+                                </td>
+                                <td class={rec.cloudAddendumClass}>
+                                    <lightning-input type="checkbox" checked={rec.product.Cloud_Addendum_Required__c}
+                                        data-index={rec.rowIndex} data-field="Cloud_Addendum_Required__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Cloud Addendum"></lightning-input>
+                                </td>
+                                <td class={rec.eligiblePremiumClass}>
+                                    <lightning-input type="checkbox" checked={rec.product.Eligible_For_Premium__c}
+                                        data-index={rec.rowIndex} data-field="Eligible_For_Premium__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Eligible Premium"></lightning-input>
+                                </td>
+                                <td class={rec.includesAssistClass}>
+                                    <lightning-input type="checkbox" checked={rec.product.Includes_Assist__c}
+                                        data-index={rec.rowIndex} data-field="Includes_Assist__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Includes Assist"></lightning-input>
+                                </td>
+                                <td class={rec.parentBundleClass}>
+                                    <lightning-input type="checkbox" checked={rec.product.Parent_Of_Bundle__c}
+                                        data-index={rec.rowIndex} data-field="Parent_Of_Bundle__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Parent Of Bundle"></lightning-input>
+                                </td>
+                                <td class={rec.primeClass}>
+                                    <lightning-input type="checkbox" checked={rec.product.Is_Prime__c}
+                                        data-index={rec.rowIndex} data-field="Is_Prime__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Prime"></lightning-input>
+                                </td>
+                                <td class={rec.pctAcvClass}>
+                                    <lightning-input type="number" value={rec.product.Percentage_of_ACV__c}
+                                        data-index={rec.rowIndex} data-field="Percentage_of_ACV__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="% of ACV" step="0.01"></lightning-input>
+                                </td>
+                                <!-- ===== Product2 CPQ Fields ===== -->
+                                <td class={rec.billingTypeClass}>
+                                    <lightning-combobox value={rec.product.SBQQ__BillingType__c}
+                                        options={billingTypeOptions}
+                                        data-index={rec.rowIndex} data-field="SBQQ__BillingType__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Billing Type"></lightning-combobox>
+                                </td>
+                                <td class={rec.chargeTypeClass}>
+                                    <lightning-combobox value={rec.product.SBQQ__ChargeType__c}
+                                        options={chargeTypeOptions}
+                                        data-index={rec.rowIndex} data-field="SBQQ__ChargeType__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Charge Type"></lightning-combobox>
+                                </td>
+                                <td class={rec.componentClass}>
+                                    <lightning-input type="checkbox" checked={rec.product.SBQQ__Component__c}
+                                        data-index={rec.rowIndex} data-field="SBQQ__Component__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Component"></lightning-input>
+                                </td>
+                                <td class={rec.configEventClass}>
+                                    <lightning-combobox value={rec.product.SBQQ__ConfigurationEvent__c}
+                                        options={configEventOptions}
+                                        data-index={rec.rowIndex} data-field="SBQQ__ConfigurationEvent__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Config Event"></lightning-combobox>
+                                </td>
+                                <td class={rec.configTypeClass}>
+                                    <lightning-combobox value={rec.product.SBQQ__ConfigurationType__c}
+                                        options={configTypeOptions}
+                                        data-index={rec.rowIndex} data-field="SBQQ__ConfigurationType__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Config Type"></lightning-combobox>
+                                </td>
+                                <td class={rec.defaultPricingTableClass}>
+                                    <lightning-input value={rec.product.SBQQ__DefaultPricingTable__c}
+                                        data-index={rec.rowIndex} data-field="SBQQ__DefaultPricingTable__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Default Pricing Table"></lightning-input>
+                                </td>
+                                <td class={rec.optionalClass}>
+                                    <lightning-input type="checkbox" checked={rec.product.SBQQ__Optional__c}
+                                        data-index={rec.rowIndex} data-field="SBQQ__Optional__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Optional"></lightning-input>
+                                </td>
+                                <td class={rec.priceEditableClass}>
+                                    <lightning-input type="checkbox" checked={rec.product.SBQQ__PriceEditable__c}
+                                        data-index={rec.rowIndex} data-field="SBQQ__PriceEditable__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Price Editable"></lightning-input>
+                                </td>
+                                <td class={rec.subPricingClass}>
+                                    <lightning-combobox value={rec.product.SBQQ__SubscriptionPricing__c}
+                                        options={subPricingOptions}
+                                        data-index={rec.rowIndex} data-field="SBQQ__SubscriptionPricing__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Sub Pricing"></lightning-combobox>
+                                </td>
+                                <td class={rec.subTermClass}>
+                                    <lightning-input type="number" value={rec.product.SBQQ__SubscriptionTerm__c}
+                                        data-index={rec.rowIndex} data-field="SBQQ__SubscriptionTerm__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Sub Term"></lightning-input>
+                                </td>
+                                <td class={rec.subTypeClass}>
+                                    <lightning-combobox value={rec.product.SBQQ__SubscriptionType__c}
+                                        options={subTypeOptions}
+                                        data-index={rec.rowIndex} data-field="SBQQ__SubscriptionType__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Sub Type"></lightning-combobox>
+                                </td>
+                                <!-- ===== Product2 Vertical Flags ===== -->
+                                <td class={rec.legalClass}>
+                                    <lightning-combobox value={rec.product.Is_Legal__c}
+                                        options={legalOptions}
+                                        data-index={rec.rowIndex} data-field="Is_Legal__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Legal"></lightning-combobox>
+                                </td>
+                                <td class={rec.accountingClass}>
+                                    <lightning-combobox value={rec.product.Is_Accounting__c}
+                                        options={accountingOptions}
+                                        data-index={rec.rowIndex} data-field="Is_Accounting__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Accounting"></lightning-combobox>
+                                </td>
+                                <td class={rec.consultingClass}>
+                                    <lightning-combobox value={rec.product.Is_Consulting__c}
+                                        options={consultingOptions}
+                                        data-index={rec.rowIndex} data-field="Is_Consulting__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Consulting"></lightning-combobox>
+                                </td>
+                                <td class={rec.ibaClass}>
+                                    <lightning-combobox value={rec.product.Is_IBA__c}
+                                        options={ibaOptions}
+                                        data-index={rec.rowIndex} data-field="Is_IBA__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="IBA"></lightning-combobox>
+                                </td>
+                                <td class={rec.pcmClass}>
+                                    <lightning-combobox value={rec.product.Is_PCM__c}
+                                        options={pcmOptions}
+                                        data-index={rec.rowIndex} data-field="Is_PCM__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="PCM"></lightning-combobox>
+                                </td>
+                                <td class={rec.realAssetsClass}>
+                                    <lightning-combobox value={rec.product.Is_Real_Assets__c}
+                                        options={realAssetsOptions}
+                                        data-index={rec.rowIndex} data-field="Is_Real_Assets__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Real Assets"></lightning-combobox>
+                                </td>
+                                <td class={rec.corporateClass}>
+                                    <lightning-combobox value={rec.product.Iss_Corporate__c}
+                                        options={corporateOptions}
+                                        data-index={rec.rowIndex} data-field="Iss_Corporate__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Corporate"></lightning-combobox>
+                                </td>
+                                <td class={rec.avaTaxCodeClass}>
+                                    <lightning-input value={rec.product.AVA_SFCPQ__TaxCode__c}
+                                        data-index={rec.rowIndex} data-field="AVA_SFCPQ__TaxCode__c"
+                                        data-object="product" onchange={handleFieldChange}
+                                        variant="label-hidden" label="Avalara Tax Code"></lightning-input>
+                                </td>
+                                <!-- ===== Separator ===== -->
+                                <td class="col-separator"></td>
+                                <!-- ===== Item Master Core Fields ===== -->
+                                <td>
+                                    <template if:true={rec.itemMaster}>
+                                        <span class="slds-truncate">{rec.itemMaster.Name}</span>
+                                    </template>
+                                </td>
+                                <td class={rec.imItemNameClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-input value={rec.imItemName}
+                                            data-index={rec.rowIndex} data-field="Item_Name__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Item Name"></lightning-input>
+                                    </template>
+                                </td>
+                                <td class={rec.imActiveClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-input type="checkbox" checked={rec.itemMaster.Active__c}
+                                            data-index={rec.rowIndex} data-field="Active__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="IM Active"></lightning-input>
+                                    </template>
+                                </td>
+                                <td class={rec.imDescClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-input value={rec.imDesc}
+                                            data-index={rec.rowIndex} data-field="Description__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="IM Description"></lightning-input>
+                                    </template>
+                                </td>
+                                <td class={rec.imImpNumberClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-input value={rec.itemMaster.Intapp_Item_Master_Number_Text__c}
+                                            data-index={rec.rowIndex} data-field="Intapp_Item_Master_Number_Text__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="IMP Number"></lightning-input>
+                                    </template>
+                                </td>
+                                <!-- ===== Item Master Revenue Fields ===== -->
+                                <td class={rec.imRevenueTypeClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-combobox value={rec.itemMaster.Revenue_Type__c}
+                                            options={imRevenueTypeOptions}
+                                            data-index={rec.rowIndex} data-field="Revenue_Type__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="IM Revenue Type"></lightning-combobox>
+                                    </template>
+                                </td>
+                                <td class={rec.imItemRevCategoryClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-combobox value={rec.itemMaster.Item_Revenue_Category__c}
+                                            options={imItemRevCategoryOptions}
+                                            data-index={rec.rowIndex} data-field="Item_Revenue_Category__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Item Rev Category"></lightning-combobox>
+                                    </template>
+                                </td>
+                                <td class={rec.imProductLineClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-combobox value={rec.itemMaster.Product_LineNew__c}
+                                            options={productLineOptions}
+                                            data-index={rec.rowIndex} data-field="Product_LineNew__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="IM Product Line"></lightning-combobox>
+                                    </template>
+                                </td>
+                                <!-- ===== Item Master NetSuite Fields ===== -->
+                                <td class={rec.imNsTypeClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-combobox value={rec.itemMaster.NetSuite_Type__c}
+                                            options={imNsTypeOptions}
+                                            data-index={rec.rowIndex} data-field="NetSuite_Type__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="NS Type"></lightning-combobox>
+                                    </template>
+                                </td>
+                                <td class={rec.imNsSubTypeClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-combobox value={rec.itemMaster.NetSuite_SubType__c}
+                                            options={imNsSubTypeOptions}
+                                            data-index={rec.rowIndex} data-field="NetSuite_SubType__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="NS SubType"></lightning-combobox>
+                                    </template>
+                                </td>
+                                <td class={rec.imNsInternalIdClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-input value={rec.itemMaster.NetSuite_Internal_Id__c}
+                                            data-index={rec.rowIndex} data-field="NetSuite_Internal_Id__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="NS Internal Id"></lightning-input>
+                                    </template>
+                                </td>
+                                <td class={rec.imNsProductLineClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-input value={rec.itemMaster.NetSuite_Product_Line_no_hierarchy__c}
+                                            data-index={rec.rowIndex} data-field="NetSuite_Product_Line_no_hierarchy__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="NS Product Line"></lightning-input>
+                                    </template>
+                                </td>
+                                <td class={rec.imCreateRevPlansClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-combobox value={rec.itemMaster.Create_Revenue_Plans_On__c}
+                                            options={imCreateRevPlansOptions}
+                                            data-index={rec.rowIndex} data-field="Create_Revenue_Plans_On__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Create Rev Plans On"></lightning-combobox>
+                                    </template>
+                                </td>
+                                <td class={rec.imDeferredRevAcctClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-combobox value={rec.itemMaster.Deferred_Revenue_Account__c}
+                                            options={imDeferredRevAccountOptions}
+                                            data-index={rec.rowIndex} data-field="Deferred_Revenue_Account__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Deferred Rev Account"></lightning-combobox>
+                                    </template>
+                                </td>
+                                <td class={rec.imIncomeAcctClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-combobox value={rec.itemMaster.Income_Account__c}
+                                            options={imIncomeAccountOptions}
+                                            data-index={rec.rowIndex} data-field="Income_Account__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Income Account"></lightning-combobox>
+                                    </template>
+                                </td>
+                                <td class={rec.imNsAllocTypeClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-combobox value={rec.itemMaster.NetSuite_Allocation_Type__c}
+                                            options={imNsAllocTypeOptions}
+                                            data-index={rec.rowIndex} data-field="NetSuite_Allocation_Type__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="NS Allocation Type"></lightning-combobox>
+                                    </template>
+                                </td>
+                                <td class={rec.imNsBillingSchedClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-combobox value={rec.itemMaster.NetSuite_Billing_Schedule__c}
+                                            options={imNsBillingSchedOptions}
+                                            data-index={rec.rowIndex} data-field="NetSuite_Billing_Schedule__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="NS Billing Schedule"></lightning-combobox>
+                                    </template>
+                                </td>
+                                <td class={rec.imNsCanFulfillClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-input type="checkbox" checked={rec.itemMaster.NetSuite_Can_be_fulfilled__c}
+                                            data-index={rec.rowIndex} data-field="NetSuite_Can_be_fulfilled__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="NS Can Fulfill"></lightning-input>
+                                    </template>
+                                </td>
+                                <td class={rec.imNsDirectRevPostClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-input type="checkbox" checked={rec.itemMaster.NetSuite_Direct_Revenue_Posting__c}
+                                            data-index={rec.rowIndex} data-field="NetSuite_Direct_Revenue_Posting__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="NS Direct Rev Posting"></lightning-input>
+                                    </template>
+                                </td>
+                                <td class={rec.imNsExportOaClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-input type="checkbox" checked={rec.itemMaster.NetSuite_Export_to_OpenAir__c}
+                                            data-index={rec.rowIndex} data-field="NetSuite_Export_to_OpenAir__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="NS Export OpenAir"></lightning-input>
+                                    </template>
+                                </td>
+                                <td class={rec.imNsInclChildrenClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-input type="checkbox" checked={rec.itemMaster.NetSuite_Include_Children__c}
+                                            data-index={rec.rowIndex} data-field="NetSuite_Include_Children__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="NS Include Children"></lightning-input>
+                                    </template>
+                                </td>
+                                <td class={rec.imNsItemTypeInvClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-combobox value={rec.itemMaster.NetSuite_Item_Type_For_Invoicing__c}
+                                            options={imNsItemTypeInvOptions}
+                                            data-index={rec.rowIndex} data-field="NetSuite_Item_Type_For_Invoicing__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="NS Item Type Invoicing"></lightning-combobox>
+                                    </template>
+                                </td>
+                                <td class={rec.imNsRevRecTmplClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-combobox value={rec.itemMaster.NetSuite_Revenue_Recognition_Template__c}
+                                            options={imNsRevRecTmplOptions}
+                                            data-index={rec.rowIndex} data-field="NetSuite_Revenue_Recognition_Template__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="NS Rev Rec Template"></lightning-combobox>
+                                    </template>
+                                </td>
+                                <td class={rec.imNsTaxSchedClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-combobox value={rec.itemMaster.NetSuite_Tax_Schedule__c}
+                                            options={imNsTaxSchedOptions}
+                                            data-index={rec.rowIndex} data-field="NetSuite_Tax_Schedule__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="NS Tax Schedule"></lightning-combobox>
+                                    </template>
+                                </td>
+                                <td class={rec.imNsErrorClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-input value={rec.itemMaster.NS_Error__c}
+                                            data-index={rec.rowIndex} data-field="NS_Error__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="NS Error"></lightning-input>
+                                    </template>
+                                </td>
+                                <!-- ===== Item Master Other Fields ===== -->
+                                <td class={rec.imOaBillingRuleClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-combobox value={rec.itemMaster.OpenAir_Billing_Rule__c}
+                                            options={imOaBillingRuleOptions}
+                                            data-index={rec.rowIndex} data-field="OpenAir_Billing_Rule__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="OA Billing Rule"></lightning-combobox>
+                                    </template>
+                                </td>
+                                <td class={rec.imRevRecForecastClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-combobox value={rec.itemMaster.Rev_Rec_Forecast_Rule__c}
+                                            options={imRevRecForecastOptions}
+                                            data-index={rec.rowIndex} data-field="Rev_Rec_Forecast_Rule__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Rev Rec Forecast"></lightning-combobox>
+                                    </template>
+                                </td>
+                                <td class={rec.imRevAllocGroupClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-combobox value={rec.itemMaster.Revenue_Allocation_Group__c}
+                                            options={imRevAllocGroupOptions}
+                                            data-index={rec.rowIndex} data-field="Revenue_Allocation_Group__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Rev Alloc Group"></lightning-combobox>
+                                    </template>
+                                </td>
+                                <td class={rec.imRevRecRuleClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-combobox value={rec.itemMaster.Revenue_Recognition_Rule__c}
+                                            options={imRevRecRuleOptions}
+                                            data-index={rec.rowIndex} data-field="Revenue_Recognition_Rule__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Rev Rec Rule"></lightning-combobox>
+                                    </template>
+                                </td>
+                                <td class={rec.imSyncNsClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-input type="checkbox" checked={rec.itemMaster.Sync_NetSuite__c}
+                                            data-index={rec.rowIndex} data-field="Sync_NetSuite__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Sync NetSuite"></lightning-input>
+                                    </template>
+                                </td>
+                                <td class={rec.imTaxCodeClass}>
+                                    <template if:true={rec.itemMaster}>
+                                        <lightning-input value={rec.itemMaster.TaxCode__c}
+                                            data-index={rec.rowIndex} data-field="TaxCode__c"
+                                            data-object="itemMaster" onchange={handleFieldChange}
+                                            variant="label-hidden" label="Tax Code"></lightning-input>
+                                    </template>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </template>
+
+        <!-- No Results -->
+        <template if:true={noResultsFound}>
+            <div class="empty-state">
+                <div class="empty-state-icon">
+                    <lightning-icon icon-name="utility:search" size="small"></lightning-icon>
+                </div>
+                <h3 class="empty-state-heading">No products found</h3>
+                <p class="empty-state-text">No products match your current filters. Try adjusting your search criteria.</p>
+            </div>
+        </template>
+
+        <!-- Initial State -->
+        <template if:true={showInitialMessage}>
+            <div class="empty-state">
+                <div class="empty-state-icon">
+                    <lightning-icon icon-name="utility:filterList" size="small"></lightning-icon>
+                </div>
+                <h3 class="empty-state-heading">Search for SKU records</h3>
+                <p class="empty-state-text">Use the filters above to find and edit product configurations.</p>
+            </div>
+        </template>
+    </div>
+</template>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Early_Launch_Target_Size__c</fullName>
+    <description>What size range does this firm fall into?</description>
+    <externalId>false</externalId>
+    <formula>IF (Account.Lawyers__c &gt; 249, &quot;Too Big (&gt;250)&quot;,
+  IF (Account.Lawyers__c &gt; 114, &quot;Yes&quot;,
+    IF (Account.Lawyers__c &lt; 115, &quot;Too Small (&lt;115)&quot;,
+      &quot;ERROR&quot;)))</formula>
+    <inlineHelpText>What size range does this firm fall into?</inlineHelpText>
+    <label>Target Firm Size?</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

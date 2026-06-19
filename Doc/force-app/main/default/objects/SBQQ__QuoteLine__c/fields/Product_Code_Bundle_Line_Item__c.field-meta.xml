@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Code_Bundle_Line_Item__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(SBQQ__RequiredBy__c != NULL, SBQQ__RequiredBy__r.SBQQ__ProductCode__c, SBQQ__ProductCode__c)</formula>
+    <label>Product Code (Bundle Line Item)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

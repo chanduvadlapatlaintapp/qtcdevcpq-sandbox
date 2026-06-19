@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Pick_Recurring_for_Some_Products</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+  NOT($Profile.Id=&quot;00e30000000bvR3&quot;),
+  OR(
+    ISPICKVAL(Recurring_Involved__c,&quot;Yes&quot;),
+    ISPICKVAL(Recurring_Involved__c,&quot;Not Sure&quot;)
+  ),
+  OR(
+    ISPICKVAL(Product__c,&quot;CG Analyze&quot;),
+    ISPICKVAL(Product__c,&quot;CG Flow&quot;),
+    ISPICKVAL(Product__c,&quot;CG Protect&quot;),
+    ISPICKVAL(Product__c,&quot;LegalKEY&quot;),
+    ISPICKVAL(Product__c,&quot;RollCall&quot;)
+  )
+)</errorConditionFormula>
+    <errorDisplayField>Recurring_Involved__c</errorDisplayField>
+    <errorMessage>This product cannot involve recurring. Please pick &quot;No&quot;.</errorMessage>
+</ValidationRule>

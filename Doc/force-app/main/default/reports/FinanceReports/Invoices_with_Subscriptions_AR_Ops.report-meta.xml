@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Invoice__c$Name</field>
+    </columns>
+    <columns>
+        <field>Invoice__c$OSA_Number__c</field>
+    </columns>
+    <columns>
+        <field>Invoice__c$Account_Name__c</field>
+    </columns>
+    <columns>
+        <field>Invoice__c.Invoice_Subscription_Links__r$Subscription__c</field>
+    </columns>
+    <columns>
+        <field>Invoice__c.Invoice_Subscription_Links__r$Subscription__c.Account_Owner__c</field>
+    </columns>
+    <columns>
+        <field>Invoice__c.Invoice_Subscription_Links__r$Subscription__c.CRD__c</field>
+    </columns>
+    <columns>
+        <field>Invoice__c.Invoice_Subscription_Links__r$Subscription__c.Product_Line__c</field>
+    </columns>
+    <columns>
+        <field>Invoice__c.Invoice_Subscription_Links__r$Subscription__c.CSM_Health_Rating__c</field>
+    </columns>
+    <columns>
+        <field>Invoice__c.Invoice_Subscription_Links__r$Subscription__c.CSM_Health_Rating_Last_Modified__c</field>
+    </columns>
+    <columns>
+        <field>Invoice__c.Invoice_Subscription_Links__r$Subscription__c.Primary_Subscription__c</field>
+    </columns>
+    <columns>
+        <field>Invoice__c.Invoice_Subscription_Links__r$Subscription__c.TFG_Subscription__c</field>
+    </columns>
+    <columns>
+        <field>Invoice__c.Invoice_Subscription_Links__r$Subscription__c.Status__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>#AR Ops</description>
+    <format>Tabular</format>
+    <name>Invoices with Subscriptions</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Invoices_with_Subscriptions__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Invoice__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

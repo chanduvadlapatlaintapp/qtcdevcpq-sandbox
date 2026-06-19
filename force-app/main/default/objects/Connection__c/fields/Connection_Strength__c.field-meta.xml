@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Connection_Strength__c</fullName>
+    <description>How strong is the relationship with this contact?
+3 means &quot;We&apos;ve worked together forever and are best friends.&quot;
+2 means &quot;We&apos;ve worked together.&quot;
+1 means &quot;We&apos;ve met. That&apos;s about it.&quot;
+0 means &quot;We&apos;ve never met.&quot;
+-1 means &quot;We&apos;re both very nice, but it might be a good idea to find someone else to talk to this person.&quot;</description>
+    <inlineHelpText>How strong is the relationship?
+3: Worked together forever. Good friends.
+2: They would call me back.
+1: We&apos;ve met once.
+0: We&apos;ve never met.
+-1: Maybe you could find another way in?</inlineHelpText>
+    <label>Connection Strength</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>3: We&apos;re on great terms.</fullName>
+                <default>false</default>
+                <label>3: We&apos;re on great terms.</label>
+            </value>
+            <value>
+                <fullName>2: He or she would call me back.</fullName>
+                <default>false</default>
+                <label>2: He or she would call me back.</label>
+            </value>
+            <value>
+                <fullName>1: We&apos;ve talked or met. That&apos;s about it.</fullName>
+                <default>false</default>
+                <label>1: We&apos;ve talked or met. That&apos;s about it.</label>
+            </value>
+            <value>
+                <fullName>0: We&apos;ve never met.</fullName>
+                <default>false</default>
+                <label>0: We&apos;ve never met.</label>
+            </value>
+            <value>
+                <fullName>-1: Maybe you could find another way in?</fullName>
+                <default>false</default>
+                <label>-1: Maybe you could find another way in?</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

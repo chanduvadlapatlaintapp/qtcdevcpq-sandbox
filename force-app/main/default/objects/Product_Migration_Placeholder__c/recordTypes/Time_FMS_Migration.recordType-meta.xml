@@ -1,0 +1,1028 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_FMS_Migration</fullName>
+    <active>true</active>
+    <label>Time / FMS Migration</label>
+    <picklistValues>
+        <picklist>Account_Plan_Target__c</picklist>
+        <values>
+            <fullName>FY17 H2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FY18 H1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FY18 H2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FY19 H1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HY19 H2</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Adoption_Status__c</picklist>
+        <values>
+            <fullName>Effective Adoption</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>High Adoption</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low Adoption</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not in use</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unknown</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Awareness_of_RAPTOR__c</picklist>
+        <values>
+            <fullName>Currently using</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Evaluated%2Fevaluating</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Heard of%2C not using%2Fevaluating</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Never heard of</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>CSAT_wEmail_Document_and_Compliance__c</picklist>
+        <values>
+            <fullName>1 - Not satisfied at all</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3 - Neutral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5 - Very Satisfied</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>CSAT_w_Client_collaboration__c</picklist>
+        <values>
+            <fullName>1 %E2%80%93 Not satisfied at all</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3 %E2%80%93 Neutral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5 %E2%80%93 Very satisfied</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>CSAT_w_KM_and_Retention__c</picklist>
+        <values>
+            <fullName>1 - Not satisfied at all</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3 - Neutral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5 - Very Satisfied</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Case_origin__c</picklist>
+        <values>
+            <fullName>Customer Escalation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Escalation from C-Team Member</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Internal Escalation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Support Escalation</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Category_of_Issue__c</picklist>
+        <values>
+            <fullName>Account Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commercial</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Implementation Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partner Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Self-inflicted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Support Issue</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Competing_Against__c</picklist>
+        <values>
+            <fullName>Intapp</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp %2F W Venture</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp%2C K2%2C Elegrity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>K2%2C Metastorm</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>None</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Confidence_in_Conversion__c</picklist>
+        <values>
+            <fullName>Expect to Lose</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Expect to Win%2FSave</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Uncertain</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Consulting_Approach__c</picklist>
+        <values>
+            <fullName>1%2E Basic Technology Swap %26 Scoping</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%2E Conversion Strategy Review</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%2E Business Process Conversion with Strategy Review</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%2E Intake and Conflicts Process Conversion</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Contact_Priority__c</picklist>
+        <values>
+            <fullName>0-Critical</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1-High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2-Medium</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3-Low</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Contact_s_role_in_decision_making__c</picklist>
+        <values>
+            <fullName>Buyer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Influencer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>User</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Current_License_Basis__c</picklist>
+        <values>
+            <fullName>Maintenance %26 Support</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Subscription</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Current_MSFT_365_adoption__c</picklist>
+        <values>
+            <fullName>Sharepoint as DMS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sharepoint for anything else</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Teams</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Current_competitive_products_owned__c</picklist>
+        <values>
+            <fullName>Aderant Drive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NetDocs</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other adjacent competitor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TR HighQ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>iManage</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Customer_Status__c</picklist>
+        <values>
+            <fullName>Compliant Time customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TTM Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Time Capture or Time Core customer</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Disposition_RAG_Status__c</picklist>
+        <values>
+            <fullName>Amber</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Green</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Red</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Disposition_to_Project__c</picklist>
+        <values>
+            <fullName>Negative</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Positive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Undecided</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unknown</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Driver_for_Migration__c</picklist>
+        <values>
+            <fullName>Feature Enhancements</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mobility</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Performance Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Windows 10</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Engagement_Style__c</picklist>
+        <values>
+            <fullName>Personalized Outreach</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product Email%2FCSM Follow-Up</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Implementation_Status__c</picklist>
+        <values>
+            <fullName>In development %2F testing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In production</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Started</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>On Hold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pilot</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Initial_Reaction__c</picklist>
+        <values>
+            <fullName>Mixed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Negative</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Positive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Uncertain</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Intapp_Product_Equivalent__c</picklist>
+        <values>
+            <fullName>Conflicts</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Conflicts and Intake</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Conflicts and Intake and WB %28DMS%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Conflicts and WB %28DMS Pkg%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Conflicts and WF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intake</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WB %28DMS%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WF</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Issue_Category__c</picklist>
+        <values>
+            <fullName>Ensure high adoption</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ensure renewal status</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Improve subscription health rating</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nurture into a reference</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Migration_Rating__c</picklist>
+        <values>
+            <fullName>Easy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hard</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Medium</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Note_Categories__c</picklist>
+        <values>
+            <fullName>Adoption issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Need more time in-use</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not getting the value %2F ROI unclear</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Project issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Waiting management Approval</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>PMP_Stage__c</picklist>
+        <values>
+            <fullName>Customer cancelling Intapp product%28s%29%2E  PMP closed%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer declined participation in program%2E PMP closed%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer inclined to move forward with FMS time recording%2E PMP closed%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Initial communication to customer sent</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Time review meeting completed%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Time review meeting scheduled%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not yet started</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Objective successful%2E PMP closed%2E</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Potential_Risks__c</picklist>
+        <values>
+            <fullName>Financial Concession from Intapp to Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Financial impact on customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>General commercial issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Relationship damage with Intapp</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Subscription cancellation</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Product_Status__c</picklist>
+        <values>
+            <fullName>Contracted for Intapp Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Migrated and Live on Intapp Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Migrated to a Non-Intapp Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Undecided</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unknown</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Product__c</picklist>
+        <values>
+            <fullName>Analyze</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DTE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Enterprise</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Flow</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Flow Express</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lateral Hire</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LegalKEY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NBI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Open Text</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Protect</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rekoop</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TimeBuilder</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Utility</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Products_on_Hot_List__c</picklist>
+        <values>
+            <fullName>CRM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Conflicts</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dun %26 Bradstreet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Experience</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Flow</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intake</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Integrate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OnePlace for Finance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OnePlace for IT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OnePlace for Leaders and Partners</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OnePlace for Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OnePlace for Risk</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pricing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Relationships</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terms</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Time</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Walls</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Program__c</picklist>
+        <values>
+            <fullName>Compliguard EOL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DTE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LegalKEY Migration</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rekoop</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rekoop to Time Cloud Migration</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TFG Acquisition Migration</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Time Builder to TTM Migration</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TimeBuilder</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Windows 10 %2F DTE TTM Migration</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Project_Billing_Type__c</picklist>
+        <values>
+            <fullName>Blended</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fixed Price</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>T%26M</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Project_Disposition__c</picklist>
+        <values>
+            <fullName>Negative</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Neutral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Positive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Undecided</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unknown</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Project_Type__c</picklist>
+        <values>
+            <fullName>Implementation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Upgrade%2FAdd-on</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Reason_for_staying_on_TFG_Products__c</picklist>
+        <values>
+            <fullName>Actively evaluating options</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cost reduction not large enough</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Flexibility in product selection</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Reference_Status__c</picklist>
+        <values>
+            <fullName>Jury is still out</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reference now</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Turned against Intapp in marketplace</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>We don%27t know the reference status</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Will be reference once live</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Sales_Approach__c</picklist>
+        <values>
+            <fullName>PGL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SDR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Rep</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Services_Provider__c</picklist>
+        <values>
+            <fullName>Intapp</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp NPI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partner - Intapp paper</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partner - Intapp paper %28blended%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partner - Partner paper</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Self-Installing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>To be determined</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TFG_Product__c</picklist>
+        <values>
+            <fullName>Action</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Analyze</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Analyze%2C Lateral Hire</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Analyze%2FFlow</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Analyze%2FFlow2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Analyze%2FProtect</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Flow</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Flow Express</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Flow%2FAnalyze</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Flow%2FAnalyze%2FProtect</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lateral Hire</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Protect</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Protect%2FAnalyze</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Suite</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>TFG_Sales_Stage__c</picklist>
+        <values>
+            <fullName>10%25 - Create</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>100%25 - Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>25%25 - Qualify</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>50%25 - Develop</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>75%25 - Prove</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>90%25 - Negotiate</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

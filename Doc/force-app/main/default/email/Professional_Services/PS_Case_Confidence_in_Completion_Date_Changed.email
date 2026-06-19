@@ -1,0 +1,19 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[The Confidence in Completion Date has changed for the following case:
+<br>
+<br><font style="font-weight: bold; text-decoration: underline;" size="4">{!Case.Subject} ({!Case.CaseNumber})</font><br><span style="font-weight: bold;">Account:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {!Case.Account}
+<br><span style="font-weight: bold;">Project Manager: </span>{!Case.OwnerFullName}
+<br><span style="font-weight: bold;">Status:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>{!Case.Status}
+<br>
+<br><span style="font-weight: bold;">     Contract Impl. Hours:  </span>{!Case.Contract_Implementation_Hours_Total__c}
+<br>     <span style="font-weight: bold;">Services Revenue:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {!Case.Services_Revenue_Total__c}
+<br>
+<br><span style="font-weight: bold;">     Prior Confidence in Completion Date:</span> {! NULLVALUE(Case.Confidence_in_Completion_Date_Prior__c, "(BLANK)")}
+<br><span style="font-weight: bold;">     New Confidence in Completion Date:</span>&nbsp; <span style="color: rgb(0, 153, 0); font-weight: bold;">{! NULLVALUE(Case.PSCase_Confidence_in_Completion__c, "(BLANK)")}</span>
+<br><span style="font-weight: bold;">     Estimated Completion Date:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {! BLANKVALUE(TEXT(Case.PSCase_Project_Exp_Compl_Date__c), "(BLANK)")}
+<br>
+<br><span style="font-weight: bold;">For more information, please click here:</span><br>{!Case.Link}]]></td>
+</tr>
+</table>

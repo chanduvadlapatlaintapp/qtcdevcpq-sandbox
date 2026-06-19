@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Decision_makers_involved__c</fullName>
+    <label>Decision makers involved</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CIO</fullName>
+                <default>false</default>
+                <label>CIO</label>
+            </value>
+            <value>
+                <fullName>Lawyers</fullName>
+                <default>false</default>
+                <label>Lawyers</label>
+            </value>
+            <value>
+                <fullName>Secretaries</fullName>
+                <default>false</default>
+                <label>Secretaries</label>
+            </value>
+            <value>
+                <fullName>CFO</fullName>
+                <default>false</default>
+                <label>CFO</label>
+            </value>
+            <value>
+                <fullName>GC/Risk Partner</fullName>
+                <default>false</default>
+                <label>GC/Risk Partner</label>
+            </value>
+            <value>
+                <fullName>Risk Department</fullName>
+                <default>false</default>
+                <label>Risk Department</label>
+            </value>
+            <value>
+                <fullName>Conflicts/Intake Department</fullName>
+                <default>false</default>
+                <label>Conflicts/Intake Department</label>
+            </value>
+            <value>
+                <fullName>COO/Managing Partner</fullName>
+                <default>false</default>
+                <label>COO/Managing Partner</label>
+            </value>
+            <value>
+                <fullName>Director of Apps</fullName>
+                <default>false</default>
+                <label>Director of Apps</label>
+            </value>
+            <value>
+                <fullName>Enterprise Architect</fullName>
+                <default>false</default>
+                <label>Enterprise Architect</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

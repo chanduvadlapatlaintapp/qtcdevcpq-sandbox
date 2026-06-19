@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Standard_Approvals__c</fullName>
+    <description>Created for BIZ-47133
+To display Non Standard approval reason in LWC</description>
+    <formula>IF((NOT(ISPICKVAL(ROR__c,&apos;&apos;))||Development_Obligation__c = true||Platform_Conversion__c = true||Non_Standard_Packaging_Structure__c = true||(NOT(ISPICKVAL(Cancellation_fee__c,&apos;Standard - all fees due&apos;)))&amp;&amp;(NOT(ISPICKVAL(Cancellation_fee__c,&apos;&apos;)))),true,false)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Non Standard Approvals</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

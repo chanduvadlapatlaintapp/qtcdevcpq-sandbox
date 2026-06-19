@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reason_for_Billing_Pause__c</fullName>
+    <inlineHelpText>What is the reason the customer was granted a billing pause?</inlineHelpText>
+    <label>Reason for Billing Pause</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Cancellation Save</fullName>
+                <default>false</default>
+                <label>Cancellation Save</label>
+            </value>
+            <value>
+                <fullName>CSAT Negotiation</fullName>
+                <default>false</default>
+                <label>CSAT Negotiation</label>
+            </value>
+            <value>
+                <fullName>Customer Issue</fullName>
+                <default>false</default>
+                <label>Customer Issue</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Partner Issue</fullName>
+                <default>false</default>
+                <label>Partner Issue</label>
+            </value>
+            <value>
+                <fullName>Product Delay</fullName>
+                <default>false</default>
+                <label>Product Delay</label>
+            </value>
+            <value>
+                <fullName>Project Delay</fullName>
+                <default>false</default>
+                <label>Project Delay</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

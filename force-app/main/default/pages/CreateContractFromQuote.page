@@ -1,0 +1,33 @@
+<apex:page extensions="CreateContractFromQuoteController" standardController="SBQQ__Quote__c"  sidebar="false">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        
+        $(document).ready(function () {
+            createContractOnQuote();
+        });     
+    </script>
+
+    <style>
+        .loadingimg
+        {
+            margin-top: 10%;
+            margin-left: 45%;
+        }
+    </style>
+
+    <apex:form >
+
+        <apex:actionFunction action="{!createContractOnQuote}" name="createContractOnQuote" reRender="loadingpanel" />
+
+        <apex:outputPanel id="loadingpanel">
+
+            <apex:pageMessages rendered="{!isError}"/>
+            <apex:commandButton action="{!goBack}" value="Back to Quote" rendered="{!isError}"/>
+
+            <div id="loadingDiv" class="loadingimg" style="display: {!IF(isError, 'none', 'block')}">
+               {!msgToDisplay} Please wait....
+            </div>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

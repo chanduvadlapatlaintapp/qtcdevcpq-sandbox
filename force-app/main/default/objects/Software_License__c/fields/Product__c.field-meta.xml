@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product__c</fullName>
+    <label>Product</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>DTE Legacy</fullName>
+                <default>false</default>
+                <label>DTE Legacy</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>DTE Legacy Mobile</fullName>
+                <default>false</default>
+                <label>DTE Legacy Mobile</label>
+            </value>
+            <value>
+                <fullName>RollCall</fullName>
+                <default>false</default>
+                <label>RollCall</label>
+            </value>
+            <value>
+                <fullName>DTE Axiom Mobile</fullName>
+                <default>false</default>
+                <label>DTE Axiom Mobile</label>
+            </value>
+            <value>
+                <fullName>DTE Axiom</fullName>
+                <default>false</default>
+                <label>DTE Axiom</label>
+            </value>
+            <value>
+                <fullName>Time Builder</fullName>
+                <default>false</default>
+                <label>Time Builder</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

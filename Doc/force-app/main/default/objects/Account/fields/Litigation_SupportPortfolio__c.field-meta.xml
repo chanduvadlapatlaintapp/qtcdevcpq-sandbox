@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Litigation_SupportPortfolio__c</fullName>
+    <inlineHelpText>What litigation support software does this account use?</inlineHelpText>
+    <label>Litigation Support</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Case Wrap</fullName>
+                <default>false</default>
+                <label>Case Wrap</label>
+            </value>
+            <value>
+                <fullName>Custom</fullName>
+                <default>false</default>
+                <label>Custom</label>
+            </value>
+            <value>
+                <fullName>LexisNexis Concordance</fullName>
+                <default>false</default>
+                <label>LexisNexis Concordance</label>
+            </value>
+            <value>
+                <fullName>Live Note</fullName>
+                <default>false</default>
+                <label>Live Note</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Summation</fullName>
+                <default>false</default>
+                <label>Summation</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

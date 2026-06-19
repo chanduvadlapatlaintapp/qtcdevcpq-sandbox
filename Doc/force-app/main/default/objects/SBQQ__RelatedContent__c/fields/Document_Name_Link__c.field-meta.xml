@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Document_Name_Link__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  OR(
+    LEFT(SBQQ__ExternalId__c, 3) = &quot;015&quot;,
+    LEFT(SBQQ__ExternalId__c, 3) = &quot;00P&quot;
+  ),
+  HYPERLINK(
+    &quot;/servlet/servlet.FileDownload?file=&quot; &amp; SBQQ__ExternalId__c,
+    &quot;View Document&quot;
+  ),
+  IF(
+    LEFT(SBQQ__ExternalId__c, 3) = &quot;069&quot;,
+    HYPERLINK(
+      &quot;/lightning/r/ContentDocument/&quot; &amp; SBQQ__ExternalId__c &amp; &quot;/view&quot;,
+      &quot;View Document&quot;
+    ),
+    &quot;Invalid Document ID&quot;
+  )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Document Name Link</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

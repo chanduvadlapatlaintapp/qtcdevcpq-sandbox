@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deal__c</fullName>
+    <description>BIZ-50209</description>
+    <label>Deal</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Address</fullName>
+                <default>false</default>
+                <label>Address</label>
+            </value>
+            <value>
+                <fullName>Agreement</fullName>
+                <default>false</default>
+                <label>Agreement</label>
+            </value>
+            <value>
+                <fullName>Bill To</fullName>
+                <default>false</default>
+                <label>Bill To</label>
+            </value>
+            <value>
+                <fullName>Calculations</fullName>
+                <default>false</default>
+                <label>Calculations</label>
+            </value>
+            <value>
+                <fullName>Customer Name</fullName>
+                <default>false</default>
+                <label>Customer Name</label>
+            </value>
+            <value>
+                <fullName>Dates (Effective, Expiry, End)</fullName>
+                <default>false</default>
+                <label>Dates (Effective, Expiry, End)</label>
+            </value>
+            <value>
+                <fullName>Deal Type</fullName>
+                <default>false</default>
+                <label>Deal Type</label>
+            </value>
+            <value>
+                <fullName>Meter Type</fullName>
+                <default>false</default>
+                <label>Meter Type</label>
+            </value>
+            <value>
+                <fullName>Missing MSSA</fullName>
+                <default>false</default>
+                <label>Missing MSSA</label>
+            </value>
+            <value>
+                <fullName>Missing SOW</fullName>
+                <default>false</default>
+                <label>Missing SOW</label>
+            </value>
+            <value>
+                <fullName>Other Attachments</fullName>
+                <default>false</default>
+                <label>Other Attachments</label>
+            </value>
+            <value>
+                <fullName>Currency</fullName>
+                <default>false</default>
+                <label>Currency</label>
+            </value>
+            <value>
+                <fullName>Services Payment Terms</fullName>
+                <default>false</default>
+                <label>Services Payment Terms</label>
+            </value>
+            <value>
+                <fullName>SKU Error</fullName>
+                <default>false</default>
+                <label>SKU Error</label>
+            </value>
+            <value>
+                <fullName>Subscription Payment Terms</fullName>
+                <default>false</default>
+                <label>Subscription Payment Terms</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

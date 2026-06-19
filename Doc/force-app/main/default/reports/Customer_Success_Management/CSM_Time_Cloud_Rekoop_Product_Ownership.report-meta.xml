@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>Account.Legal_Tier_Split__c</field>
+    </columns>
+    <columns>
+        <field>Account.Simple_Territory__c</field>
+    </columns>
+    <columns>
+        <field>USERS.NAME</field>
+    </columns>
+    <columns>
+        <field>Account.Products_Owned_count__c</field>
+    </columns>
+    <columns>
+        <field>Product_Ownership_Detail__c.Product_line_link__c</field>
+    </columns>
+    <columns>
+        <field>Product_Ownership_Detail__c.License_basis_link__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Product_Ownership_Detail__c.Product_line_link__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Time - Cloud</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Product_Ownership_Detail__c.Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Own it,Own it - Limited License,Own it - Trial,Entitled</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Product_Ownership_Detail__c.License_basis_link__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Time 8 Cloud</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.CRD__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>CSM: Time Cloud+Rekoop Product Ownership</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountCustomEntity$Product_Ownership_Detail__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>DUE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

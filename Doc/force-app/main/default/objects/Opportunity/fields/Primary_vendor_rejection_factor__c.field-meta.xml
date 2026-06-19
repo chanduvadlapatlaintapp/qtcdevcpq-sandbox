@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Primary_vendor_rejection_factor__c</fullName>
+    <description>What was the primary reason the firm rejected the winning product and vendor</description>
+    <label>Primary vendor rejection factor</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Price</fullName>
+                <default>false</default>
+                <label>Price</label>
+            </value>
+            <value>
+                <fullName>Product features</fullName>
+                <default>false</default>
+                <label>Product features</label>
+            </value>
+            <value>
+                <fullName>Ease of use / user experience</fullName>
+                <default>false</default>
+                <label>Ease of use / user experience</label>
+            </value>
+            <value>
+                <fullName>Product architecture (scalability, performance, DR)</fullName>
+                <default>false</default>
+                <label>Product architecture (scalability, performance, DR)</label>
+            </value>
+            <value>
+                <fullName>Partnerships or integration with existing firm applications</fullName>
+                <default>false</default>
+                <label>Partnerships or integration with existing firm applications</label>
+            </value>
+            <value>
+                <fullName>Corporate / product vision</fullName>
+                <default>false</default>
+                <label>Corporate / product vision</label>
+            </value>
+            <value>
+                <fullName>Vendor reputation / peer references</fullName>
+                <default>false</default>
+                <label>Vendor reputation / peer references</label>
+            </value>
+            <value>
+                <fullName>Subject matter expertise</fullName>
+                <default>false</default>
+                <label>Subject matter expertise</label>
+            </value>
+            <value>
+                <fullName>Personal relationship</fullName>
+                <default>false</default>
+                <label>Personal relationship</label>
+            </value>
+            <value>
+                <fullName>other</fullName>
+                <default>false</default>
+                <label>other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

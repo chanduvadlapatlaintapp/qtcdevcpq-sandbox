@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OSA_Gross_Price__c</fullName>
+    <description>Field to hold value of OSA list price from related quote line</description>
+    <formula>SBQQ__QuoteLine__r.Total_OSA_List_Price__c</formula>
+    <label>OSA Gross Price</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <type>Currency</type>
+</CustomField>

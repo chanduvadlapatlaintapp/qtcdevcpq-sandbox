@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stage_Duration_Avg_Comparison__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(StageName,
+  &quot;Target Account&quot;,(IF(Stage_Duration__c&lt;81,NULL,Stage_Duration__c-80)),
+  &quot;Expression of Interest&quot;,(IF(Stage_Duration__c&lt;96,NULL,Stage_Duration__c-90)),
+  &quot;Investigation&quot;,(IF(Stage_Duration__c&lt;75,NULL,Stage_Duration__c-74)),
+  &quot;Business Case Development&quot;,(IF(Stage_Duration__c&lt;105,NULL,Stage_Duration__c-104)),
+  &quot;Evaluation of Options&quot;,(IF(Stage_Duration__c&lt;81,NULL,Stage_Duration__c-80)),
+  &quot;Resolution of Concerns&quot;,(IF(Stage_Duration__c&lt;71,NULL,Stage_Duration__c-70)),
+  &quot;Get Management Approval&quot;,(IF(Stage_Duration__c&lt;45,NULL,Stage_Duration__c-44)),
+  &quot;Obtain Contract&quot;,(IF(Stage_Duration__c&lt;10,NULL,Stage_Duration__c-9)),
+  NULL
+)</formula>
+    <label>Stage Duration: Days Exceeding Average</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Connection_Type__c</fullName>
+    <label>Connection Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Web Service</fullName>
+                <default>false</default>
+                <label>Web Service</label>
+            </value>
+            <value>
+                <fullName>Data Layer</fullName>
+                <default>false</default>
+                <label>Data Layer</label>
+            </value>
+            <value>
+                <fullName>API</fullName>
+                <default>false</default>
+                <label>API</label>
+            </value>
+            <value>
+                <fullName>WebDAV</fullName>
+                <default>false</default>
+                <label>WebDAV</label>
+            </value>
+            <value>
+                <fullName>LDAP</fullName>
+                <default>false</default>
+                <label>LDAP</label>
+            </value>
+            <value>
+                <fullName>FTP</fullName>
+                <default>false</default>
+                <label>FTP</label>
+            </value>
+            <value>
+                <fullName>Database</fullName>
+                <default>false</default>
+                <label>Database</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

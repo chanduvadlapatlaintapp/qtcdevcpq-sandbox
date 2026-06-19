@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Health_Rating__c</fullName>
+    <description>This field is used for reporting purposes for the board only. It is used to consolidate the CSM Health rating field into more manageable categories.</description>
+    <label>Health Rating</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>A - Good</fullName>
+                <color>#009900</color>
+                <default>false</default>
+                <label>A - Good</label>
+            </value>
+            <value>
+                <fullName>B - Minor Concerns / C - Needs Attention</fullName>
+                <color>#78C953</color>
+                <default>false</default>
+                <label>B - Minor Concerns / C - Needs Attention</label>
+            </value>
+            <value>
+                <fullName>D - At Risk</fullName>
+                <color>#FF0000</color>
+                <default>false</default>
+                <label>D - At Risk</label>
+            </value>
+            <value>
+                <fullName>E - No Knowledge</fullName>
+                <color>#999999</color>
+                <default>false</default>
+                <label>E - No Knowledge</label>
+            </value>
+            <value>
+                <fullName>F - Lapsed</fullName>
+                <color>#990000</color>
+                <default>false</default>
+                <label>F - Lapsed</label>
+            </value>
+            <value>
+                <fullName>New Subscription</fullName>
+                <color>#0B24BE</color>
+                <default>false</default>
+                <label>New Subscription</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

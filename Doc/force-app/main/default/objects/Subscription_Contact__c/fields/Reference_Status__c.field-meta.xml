@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reference_Status__c</fullName>
+    <label>Reference Status</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Active Reference</fullName>
+                <default>false</default>
+                <label>Active Reference</label>
+            </value>
+            <value>
+                <fullName>Candidate for Reference</fullName>
+                <default>false</default>
+                <label>Candidate for Reference</label>
+            </value>
+            <value>
+                <fullName>Previous Reference</fullName>
+                <default>false</default>
+                <label>Previous Reference</label>
+            </value>
+            <value>
+                <fullName>Not a Reference</fullName>
+                <default>false</default>
+                <label>Not a Reference</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

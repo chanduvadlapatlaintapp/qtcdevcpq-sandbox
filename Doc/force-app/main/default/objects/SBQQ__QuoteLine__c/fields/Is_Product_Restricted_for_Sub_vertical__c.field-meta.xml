@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Product_Restricted_for_Sub_vertical__c</fullName>
+    <description>BIZ-67290</description>
+    <externalId>false</externalId>
+    <formula>IF(
+    CASE(
+        SBQQ__Quote__r.Sub_Vertical__c,
+        &quot;Legal&quot;, TEXT(SBQQ__Product__r.Is_Legal__c),
+        &quot;Accounting&quot;, TEXT(SBQQ__Product__r.Is_Accounting__c),
+        &quot;Consulting&quot;, TEXT(SBQQ__Product__r.Is_Consulting__c),
+        &quot;IB&amp;A&quot;, TEXT(SBQQ__Product__r.Is_IBA__c),
+        &quot;PCM&quot;, TEXT(SBQQ__Product__r.Is_PCM__c),
+        &quot;Corporate&quot;, TEXT(SBQQ__Product__r.Iss_Corporate__c),
+        &quot;Real Assets&quot;, TEXT(SBQQ__Product__r.Is_Real_Assets__c),
+        &quot;Other&quot;, TEXT(SBQQ__Product__r.Other__c),
+        &quot;&quot;
+    ) = &quot;Restricted&quot;,
+    IMAGE(&quot;/img/msg_icons/warning24.png&quot;, &quot;Restricted Product&quot;, 16, 16) &amp; &quot; Restricted&quot;,
+    IMAGE(&quot;/img/msg_icons/confirm24.png&quot;, &quot;Not Restricted&quot;, 16, 16) &amp; &quot; Active&quot;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

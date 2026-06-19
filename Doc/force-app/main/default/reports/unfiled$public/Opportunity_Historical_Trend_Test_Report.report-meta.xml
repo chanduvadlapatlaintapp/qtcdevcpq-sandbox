@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Opportunity$Owner</field>
+    </columns>
+    <columns>
+        <field>Opportunity$Name</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Opportunity.Opportunity__hd$Maintenance_Amount__c_hst</field>
+        <isExtendedColumn>false</isExtendedColumn>
+        <reverseColors>false</reverseColors>
+        <showChanges>true</showChanges>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Opportunity.Opportunity__hd$In_Manager_Forecast_Number__c_hst</field>
+        <isExtendedColumn>false</isExtendedColumn>
+        <reverseColors>false</reverseColors>
+        <showChanges>true</showChanges>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Opportunity$Owner</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Daragh McLaughlin,Kerry Stivaletti,Aimee Spirlin,John Callahan,Marin Sardelic,John Sharkey,Jake Laliberte,Adam Friedman,Rod Fleck,Pam Snyder,Chloe Doyle,Drew O&apos;Neill,Kelvyn Stirk,Norm Mullock,Mark Bilson,Kaye Sycamore,Samia Rauf,Brooke Barber,Stuart Douglass,Tim Prinsen</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Opportunity$Type</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Legal - Renewal,Legal - Acquired Add-on Module,Legal - Acquired New Customer,Legal - Acquired New Product,Acquired New Product</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Opportunity$StageName</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Target Account</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Opportunity$Maintenance_Amount__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>greaterThan</operator>
+            <value>USD 0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Opportunity$IsClosed</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <historicalSelector>
+        <snapshot>2015-12-08</snapshot>
+        <snapshot>2015-12-01</snapshot>
+    </historicalSelector>
+    <name>Opportunity Historical Trend Test Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Opportunities_with_Historical_Trending__c</reportType>
+    <roleHierarchyFilter>CEO</roleHierarchyFilter>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Opportunity$CloseDate</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>

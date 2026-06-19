@@ -1,0 +1,221 @@
+/**
+ * Salesforce auth helper for Playwright.
+ * Uses the access token from SF CLI to inject a session cookie,
+ * bypassing the Salesforce login page entirely.
+ *
+ * Portable: auto-discovers the `sf` CLI via PATH / common install locations.
+ * No hardcoded user-specific paths — works on any developer machine.
+ */
+const { execSync } = require('child_process');
+const fs   = require('fs');
+const path = require('path');
+
+// ── Resolve the `sf` CLI binary ──────────────────────────────────────────────
+// Walk PATH manually (cross-platform; no shelling out to `which`/`where`),
+// then fall back to common install prefixes per OS.
+function findSfCli() {
+  const isWin = process.platform === 'win32';
+  // On Windows, only the cmd-executable variants count — the bare `sf` (no extension)
+  // is a /bin/sh script that cmd.exe cannot execute.
+  const exts  = isWin ? ['.cmd', '.exe', '.bat'] : [''];
+
+  const fileForDir = (dir) => {
+    for (const ext of exts) {
+      const p = path.join(dir, `sf${ext}`);
+      try { if (fs.statSync(p).isFile()) return p; } catch {}
+    }
+    return null;
+  };
+
+  // 1. Walk PATH
+  const pathVar = process.env.PATH || process.env.Path || '';
+  for (const dir of pathVar.split(path.delimiter)) {
+    if (!dir) continue;
+    const hit = fileForDir(dir.replace(/^"|"$/g, ''));
+    if (hit) return hit;
+  }
+
+  // 2. Common fixed install locations per OS
+  const home = process.env.HOME || process.env.USERPROFILE || '';
+  const candidateDirs = isWin ? [
+    path.join(process.env.APPDATA || '', 'npm'),                  // npm global on Windows
+    path.join(process.env.ProgramFiles || 'C:\\Program Files', 'sf', 'bin'),
+    path.join(process.env.ProgramFiles || 'C:\\Program Files', 'Salesforce CLI', 'bin'),
+    path.join(home, 'AppData', 'Roaming', 'npm'),
+  ] : [
+    '/opt/homebrew/bin',
+    '/usr/local/bin',
+    '/usr/bin',
+    path.join(home, '.local/bin'),
+    path.join(home, '.npm-global/bin'),
+    path.join(home, '.volta/bin'),
+  ];
+  for (const dir of candidateDirs) {
+    const hit = fileForDir(dir);
+    if (hit) return hit;
+  }
+
+  throw new Error(
+    '`sf` CLI not found on PATH or in common install locations.\n' +
+    'Install it with: npm install --global @salesforce/cli\n' +
+    'Then run: sf org login web --alias qtcmock'
+  );
+}
+
+const SF = findSfCli();
+
+// Target org alias. Defaults to qtcmock; override with QTC_SF_ORG so the agent
+// and the Playwright specs it spawns all target the same org (e.g. uat-agenticqtc).
+const SF_ORG = process.env.QTC_SF_ORG || 'qtcmock';
+
+function getSfCredentials() {
+  // Don't redirect stderr in the command string — `2>/dev/null` is Unix-only and
+  // breaks on cmd.exe. Use stdio:'pipe' so stderr is captured (and silent) instead.
+  const raw = execSync(
+    `"${SF}" org display --target-org ${SF_ORG} --json`,
+    {
+      env: { ...process.env, NO_COLOR: '1', FORCE_COLOR: '0' },
+      stdio: ['ignore', 'pipe', 'pipe'],
+    }
+  ).toString().replace(/\x1B\[[0-9;]*m/g, '');
+  const result = JSON.parse(raw).result;
+
+  const instanceUrl = result.instanceUrl;
+
+  // The access token must NOT come from `org display --json`: modern Salesforce
+  // CLI redacts it to the literal placeholder "[REDACTED] Use 'sf org auth
+  // show-access-token' to view". Used as a frontdoor `sid`, that placeholder
+  // produces an invalid session and dumps the test on the SF login page. Fetch
+  // the real token from the dedicated, unredacted command instead.
+  const tokRaw = execSync(
+    `"${SF}" org auth show-access-token --target-org ${SF_ORG} --json`,
+    {
+      env: { ...process.env, NO_COLOR: '1', FORCE_COLOR: '0' },
+      stdio: ['ignore', 'pipe', 'pipe'],
+    }
+  ).toString().replace(/\x1B\[[0-9;]*m/g, '');
+  const accessToken = JSON.parse(tokRaw).result.accessToken;
+
+  if (!accessToken || /REDACTED/.test(accessToken)) {
+    throw new Error(
+      `No usable access token for org "${SF_ORG}". Run: sf org login web --alias ${SF_ORG}`
+    );
+  }
+
+  // SF CLI returns the REST API URL (*.my.salesforce.com).
+  // The Lightning UI lives on a different hostname (*.lightning.force.com).
+  // Convert:  intapp--qtcmock.sandbox.my.salesforce.com
+  //       →   intapp--qtcmock.sandbox.lightning.force.com
+  const lightningUrl = instanceUrl.replace(/\.my\.salesforce\.com$/, '.lightning.force.com');
+
+  return {
+    instanceUrl,    // used for REST API calls  (my.salesforce.com)
+    lightningUrl,   // used for browser nav     (lightning.force.com)
+    accessToken,    // real token from `org auth show-access-token` (unredacted)
+  };
+}
+
+/**
+ * Surface the browser window. When Playwright is launched from a background
+ * process (e.g. the dashboard's spawned npx playwright), Windows' foreground-
+ * focus lock keeps the new Chrome window minimized in the taskbar even though
+ * --start-maximized was on the command line.
+ *
+ * page.bringToFront() alone only switches *tabs* within Chrome — it does NOT
+ * restore a minimized OS window. To force the window manager to restore +
+ * maximize, we drive CDP's Browser.setWindowBounds directly: it sets
+ * windowState at the OS level and overrides the focus-lock.
+ */
+async function surfaceWindow(page) {
+  await page.bringToFront().catch(() => {});
+  try {
+    const session = await page.context().newCDPSession(page);
+    const { windowId } = await session.send('Browser.getWindowForTarget');
+    // Two-step: 'normal' first to un-minimize, then 'maximized'. A direct
+    // 'minimized' → 'maximized' transition is a no-op on some Chromium builds,
+    // but 'minimized' → 'normal' → 'maximized' is reliable.
+    await session.send('Browser.setWindowBounds', { windowId, bounds: { windowState: 'normal'    } }).catch(() => {});
+    await session.send('Browser.setWindowBounds', { windowId, bounds: { windowState: 'maximized' } }).catch(() => {});
+    await session.detach().catch(() => {});
+  } catch { /* CDP unavailable (non-chromium) — best-effort only */ }
+}
+
+/**
+ * Real interactive (username/password) login against the org's My Domain login
+ * form. Required for Conga Composer: it is a Canvas app served from a separate
+ * Visualforce domain (*.vf.force.com) and rejects the frontdoor OAuth-token
+ * session with "Your browsing session has ended or is invalid". A genuine UI
+ * login produces a session the Canvas app accepts.
+ *
+ * A "Verify your identity" / MFA challenge would stall here — the runner user
+ * must be on a trusted IP (or have its login IP ranges relaxed) so the login
+ * completes without an interactive challenge.
+ *
+ * @param {import('@playwright/test').Page} page
+ * @param {string} instanceUrl   my.salesforce.com or lightning.force.com URL
+ * @param {string} username
+ * @param {string} password
+ */
+async function loginViaUserPassword(page, instanceUrl, username, password) {
+  const myDomainBase = instanceUrl
+    .replace(/\.lightning\.force\.com$/, '.my.salesforce.com')
+    .replace(/\/+$/, '');
+
+  await page.goto(`${myDomainBase}/`, { waitUntil: 'domcontentloaded' }).catch(() => {});
+
+  const userField = page.locator('#username');
+  if (await userField.isVisible({ timeout: 15_000 }).catch(() => false)) {
+    await userField.fill(username);
+    await page.locator('#password').fill(password);
+    await page.locator('#Login').click();
+  }
+  // Land on Lightning before returning so the caller's next navigation doesn't
+  // race an in-flight redirect.
+  await page.waitForURL(/\.lightning\.force\.com\//, { timeout: 60_000 }).catch(() => {});
+  await page.waitForLoadState('domcontentloaded').catch(() => {});
+  await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
+  await surfaceWindow(page);
+}
+
+/**
+ * Establishes the browser session for tests.
+ *
+ * Default: frontdoor.jsp — exchanges the SF CLI OAuth token for a `sid` cookie,
+ * fast and credential-free. Good enough for Lightning navigation.
+ *
+ * Opt-in: when QTC_SF_USERNAME + QTC_SF_PASSWORD are set, performs a real UI
+ * login instead — necessary for specs that drive Conga Composer (Canvas app),
+ * which rejects the frontdoor token session.
+ */
+async function loginViaCookie(page, instanceUrl, accessToken) {
+  const username = process.env.QTC_SF_USERNAME;
+  const password = process.env.QTC_SF_PASSWORD;
+  if (username && password) {
+    console.log(`[sfAuth] Using REAL user login (${username}) — required for Conga Canvas`);
+    return loginViaUserPassword(page, instanceUrl, username, password);
+  }
+  console.log('[sfAuth] Using frontdoor token session (set QTC_SF_USERNAME/QTC_SF_PASSWORD for real login — Conga Canvas needs it)');
+
+  // Always derive the Lightning UI URL (handles both my.salesforce.com and lightning.force.com inputs)
+  const lightningBase = instanceUrl
+    .replace(/\.my\.salesforce\.com$/, '.lightning.force.com')
+    .replace(/\/+$/, '');
+
+  // Use frontdoor.jsp — the official SF mechanism to exchange an OAuth Bearer token
+  // for a browser session cookie. This avoids manual cookie injection which can fail
+  // when Salesforce changes their cookie/domain requirements.
+  // After hitting this URL, Salesforce sets the real `sid` session cookie and redirects.
+  const frontdoorUrl = `${lightningBase}/secur/frontdoor.jsp?sid=${encodeURIComponent(accessToken)}&retURL=%2F`;
+
+  await page.goto(frontdoorUrl, { waitUntil: 'domcontentloaded' });
+  // Salesforce can chain frontdoor → contentDoor (file.force.com) → lightning.force.com.
+  // Wait for the URL to actually land on the Lightning host before returning, so the
+  // caller's next page.goto() doesn't race an in-flight redirect.
+  await page.waitForURL(/\.lightning\.force\.com\//, { timeout: 60_000 });
+  await page.waitForLoadState('domcontentloaded').catch(() => {});
+  await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
+
+  await surfaceWindow(page);
+}
+
+module.exports = { getSfCredentials, loginViaCookie, loginViaUserPassword };

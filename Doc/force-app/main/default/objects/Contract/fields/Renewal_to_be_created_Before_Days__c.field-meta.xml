@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_to_be_created_Before_Days__c</fullName>
+    <description>created to calculate when renewal quote will be created - BIZ-46128</description>
+    <externalId>false</externalId>
+    <formula>IF( Text(Subsidiary__c) = &quot;18:DealCloud, Inc.&quot;  &amp;&amp;  Text(Contract_Master_Terms__c) = &quot;Legacy DealCloud Agreement&quot; , 30,
+IF( Text(Subsidiary__c) = &quot;18:DealCloud, Inc.&quot;  &amp;&amp;  Text(Contract_Master_Terms__c)  &lt;&gt;  &quot;Legacy DealCloud Agreement&quot;,60,
+90))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Renewal to be created Before (Days)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

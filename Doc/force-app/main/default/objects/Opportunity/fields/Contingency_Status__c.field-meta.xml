@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contingency_Status__c</fullName>
+    <label>Contingency Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Closed Won</fullName>
+                <color>#78C953</color>
+                <default>false</default>
+                <label>Closed Won</label>
+            </value>
+            <value>
+                <fullName>Closed Lost</fullName>
+                <color>#A53711</color>
+                <default>false</default>
+                <label>Closed Lost</label>
+            </value>
+            <value>
+                <fullName>Closed Superseded</fullName>
+                <color>#BBBBBB</color>
+                <default>false</default>
+                <label>Closed Superseded</label>
+            </value>
+            <value>
+                <fullName>In Process</fullName>
+                <color>#641CCF</color>
+                <default>false</default>
+                <label>In Process</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

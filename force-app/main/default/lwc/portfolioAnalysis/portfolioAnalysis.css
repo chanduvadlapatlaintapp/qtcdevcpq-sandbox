@@ -1,0 +1,434 @@
+/* ==============================
+   Portfolio Analysis — Main Shell
+   Intapp Design Language
+   ============================== */
+
+:host {
+    display: block;
+}
+
+.pa-root {
+    min-height: 100vh;
+    background: #F4F7FA;
+    font-family: 'Manrope', Arial, sans-serif;
+}
+
+/* Header */
+.pa-header {
+    background: linear-gradient(180deg, #ffffff 0%, #FAFAF9 100%);
+    border-bottom: 1px solid #E6E6E6;
+    padding: 0 28px;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.pa-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1440px;
+    margin: 0 auto;
+    height: 60px;
+}
+
+.pa-header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+}
+
+.pa-header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    margin-left: 16px;
+}
+
+/* Brand */
+.pa-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.pa-brand-name {
+    font-weight: 800;
+    font-size: 16px;
+    color: #003C80;
+    letter-spacing: -0.3px;
+}
+
+.pa-brand-divider {
+    width: 1px;
+    height: 24px;
+    background: #E6E6E6;
+}
+
+.pa-brand-subtitle {
+    font-weight: 600;
+    font-size: 13px;
+    color: #536E8D;
+    letter-spacing: -0.01em;
+}
+
+/* Toggle Button */
+.toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: #FAFAF9;
+    border: 1px solid #E6E6E6;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #536E8D;
+    transition: all 0.2s;
+    font-family: 'Manrope', Arial, sans-serif;
+}
+
+.toggle-btn:hover {
+    background: #F4F7FA;
+}
+
+.toggle-active {
+    background: #EBF4FE;
+    border-color: #207CEC;
+    color: #003C80;
+}
+
+.toggle-active:hover {
+    background: #D5E6FB;
+}
+
+/* Search */
+.pa-search-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+}
+
+.pa-search-container {
+    position: relative;
+}
+
+.pa-search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.pa-search-input {
+    width: 100%;
+    padding: 10px 40px 10px 42px;
+    font-size: 14px;
+    font-family: 'Manrope', Arial, sans-serif;
+    border: 1px solid #E6E6E6;
+    border-radius: 8px;
+    background: #fff;
+    color: #073C7D;
+    transition: all 0.2s;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.pa-search-input:focus {
+    border-color: #207CEC;
+    box-shadow: 0 0 0 3px rgba(32,124,236,0.1);
+}
+
+.pa-search-spinner {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: spin 1s linear infinite;
+}
+
+.pa-search-clear {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #A4B9D7;
+    font-size: 18px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    line-height: 1;
+}
+
+.pa-search-clear:hover {
+    color: #536E8D;
+    background: #F4F7FA;
+}
+
+.pa-search-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 4px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #E6E6E6;
+    box-shadow: 0 4px 20px rgba(7,60,125,0.16);
+    z-index: 50;
+    max-height: 320px;
+    overflow-y: auto;
+}
+
+.pa-search-result {
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    text-align: left;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Manrope', Arial, sans-serif;
+    color: #073C7D;
+    border-bottom: 1px solid #F4F7FA;
+    font-weight: 500;
+}
+
+.pa-search-result:hover {
+    background: #F4F7FA;
+}
+
+.pa-search-empty {
+    padding: 16px 20px;
+    color: #A4B9D7;
+    font-size: 13px;
+}
+
+/* Tab Bar */
+.pa-tab-bar {
+    background: #fff;
+    border-bottom: 1px solid #E6E6E6;
+    padding: 0 28px;
+}
+
+.pa-tab-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0;
+    align-items: center;
+}
+
+.tab-btn {
+    padding: 12px 22px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: #536E8D;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Manrope', Arial, sans-serif;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.tab-btn:hover {
+    color: #073C7D;
+}
+
+.tab-active {
+    border-bottom-color: #207CEC;
+    color: #003C80;
+    font-weight: 600;
+}
+
+.tab-icon {
+    font-size: 14px;
+}
+
+.pa-tab-meta {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #F4F7FA;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #536E8D;
+}
+
+.badge-blue {
+    background: #EBF4FE;
+    color: #003C80;
+}
+
+/* Content Area */
+.pa-content {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 20px 28px 48px;
+}
+
+/* Empty State */
+.pa-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 450px;
+    color: #A4B9D7;
+}
+
+.pa-empty-icon {
+    width: 88px;
+    height: 88px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #EBF4FE, #D5E6FB);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 16px rgba(32,124,236,0.08);
+}
+
+.pa-empty-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #073C7D;
+    margin-bottom: 6px;
+}
+
+.pa-empty-subtitle {
+    font-size: 13px;
+    color: #A4B9D7;
+}
+
+/* Loading State */
+.pa-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 450px;
+}
+
+.pa-spinner {
+    animation: spin 1s linear infinite;
+}
+
+.pa-loading-text {
+    margin-top: 18px;
+    color: #207CEC;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.pa-loading-sub {
+    margin-top: 4px;
+    color: #A4B9D7;
+    font-size: 12px;
+}
+
+/* Error State */
+.pa-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 450px;
+}
+
+.pa-error-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    background: #fef2f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin-bottom: 16px;
+}
+
+.pa-error-title {
+    color: #E5225E;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.pa-error-message {
+    color: #536E8D;
+    font-size: 13px;
+    max-width: 480px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* Export Button */
+.export-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: 'Manrope', Arial, sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.export-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.export-btn-excel {
+    background: #003C80;
+    color: #fff;
+    box-shadow: 0 1px 3px rgba(0,60,128,0.2);
+}
+
+.export-btn-excel:hover:not(:disabled) {
+    background: #0E54A9;
+    box-shadow: 0 2px 8px rgba(0,60,128,0.3);
+}
+
+.export-btn-excel svg {
+    flex-shrink: 0;
+}
+
+/* Animation */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}

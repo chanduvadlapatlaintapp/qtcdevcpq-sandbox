@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Order_Amount__c</fullName>
+    <description>BIZ-54446: calculating total line item amount.</description>
+    <label>Order Amount</label>
+    <summarizedField>OrderItem.Total_Price__c</summarizedField>
+    <summaryFilterItems>
+        <field>OrderItem.Parent_of_Bundle__c</field>
+        <operation>equals</operation>
+        <value>False</value>
+    </summaryFilterItems>
+    <summaryForeignKey>OrderItem.OrderId</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

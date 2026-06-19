@@ -1,0 +1,14 @@
+<apex:page standardController="idea">
+<apex:form >
+<apex:pageBlock title="New Idea">
+<apex:pageBlockButtons >
+<apex:commandButton action="{!save}" value="Save"/>
+</apex:pageBlockButtons>
+<apex:pageBlockSection title="Idea Details" columns="1">
+<apex:inputField style="width:250px" value="{!idea.title}"/>
+<apex:inputField required="true" value="{!idea.CommunityId}"/>
+<apex:inputField required="true" style="width:600px" value="{!idea.body}"/>
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

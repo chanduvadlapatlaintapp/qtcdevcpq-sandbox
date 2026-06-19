@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>BIZ-46250.</description>
+    <environments>Default</environments>
+    <interviewLabel>Auto Populate Pricebook value {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Opportunity: Auto Populate Pricebook Value</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Populate_the_pricebook</name>
+        <label>Populate the pricebook</label>
+        <locationX>633</locationX>
+        <locationY>362</locationY>
+        <inputAssignments>
+            <field>Pricebook2Id</field>
+            <value>
+                <stringValue>01sD7000007la5KIAQ</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>502</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>Populate_the_pricebook</targetReference>
+        </connector>
+        <object>Opportunity</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+</Flow>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnalyticSnapshot xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>All PSA Projects. Runs daily at 1 AM(PST).</description>
+    <mappings>
+        <sourceField>ExecutionTime</sourceField>
+        <sourceType>snapshot</sourceType>
+        <targetField>Project_Snapshot__c.Snapshot_Date__c</targetField>
+    </mappings>
+    <mappings>
+        <sourceField>CUST_NAME</sourceField>
+        <sourceType>tabular</sourceType>
+        <targetField>Project_Snapshot__c.Project_Name__c</targetField>
+    </mappings>
+    <mappings>
+        <sourceField>CUST_CREATED_DATE</sourceField>
+        <sourceType>tabular</sourceType>
+        <targetField>Project_Snapshot__c.Project_Created_Date__c</targetField>
+    </mappings>
+    <name>Projects Snapshot 1</name>
+    <runningUser>orest.skoropad@intapp.com</runningUser>
+    <sourceReport>Analytic_Snapshot_Reports/Report_All_Projects_Snapshot</sourceReport>
+    <targetObject>Project_Snapshot__c</targetObject>
+</AnalyticSnapshot>

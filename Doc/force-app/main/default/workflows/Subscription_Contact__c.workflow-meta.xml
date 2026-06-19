@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Increment_Reference_Used</fullName>
+        <field>Reference_Used__c</field>
+        <formula>IF(
+  ISBLANK(Reference_Used__c),
+  1,
+  Reference_Used__c + 1
+)</formula>
+        <name>Increment # Reference Used</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Date_Active_Candidate</fullName>
+        <field>Date_Updated_to_Active_Candidate__c</field>
+        <formula>TODAY()</formula>
+        <name>Populate Date Active/Candidate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Disposition_Date_Last_Updated</fullName>
+        <field>Disposition_Last_Updated__c</field>
+        <formula>TODAY()</formula>
+        <name>Populate Disposition Date Last Updated</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Status</fullName>
+        <field>Status__c</field>
+        <formula>Status_Formula__c</formula>
+        <name>Populate Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Term_End_Date</fullName>
+        <field>Term_End_Date__c</field>
+        <formula>Term_End_Date_Formula__c</formula>
+        <name>Populate Term End Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Product_Line</fullName>
+        <field>Product_Line__c</field>
+        <formula>Product_Line_Formula__c</formula>
+        <name>Update Product Line</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Updated_Audited_Date</fullName>
+        <field>Audited_Date__c</field>
+        <formula>NOW()</formula>
+        <name>Updated_Audited_Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Rule Code%3A SC-001xFxx</fullName>
+        <actions>
+            <name>Updated_Audited_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SC-001xFxx
+Update_Audited_Date
+Updates Audited Date field when Auditor field is changed</description>
+        <formula>OR(
+  ISCHANGED(Auditor__c),
+  AND(
+    ISNEW(),
+    NOT(ISBLANK(Auditor__c))
+  )
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SC-002xFxx</fullName>
+        <actions>
+            <name>Update_Product_Line</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SC-002xFxx
+Populate_Product_Line
+Populates the Product Line field when Product_Line_Formula__c is changed</description>
+        <formula>OR(
+  ISCHANGED(Product_Line_Formula__c),
+  ISNEW()
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SC-003xFxx</fullName>
+        <actions>
+            <name>Populate_Term_End_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SC-003xFxx
+Populate_Term_End_Date
+Populates the Term End Date field when Term_End_Date_Formula__c is changed</description>
+        <formula>OR(
+  ISCHANGED(Term_End_Date_Formula__c),
+  ISNEW()
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SC-004xFxx</fullName>
+        <actions>
+            <name>Populate_Status</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SC-004xFxx
+Populate_Status
+Populates the Status field when Status_Formula__c is changed</description>
+        <formula>OR(
+  ISCHANGED(Status_Formula__c),
+  ISNEW()
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SC-005xFxx</fullName>
+        <actions>
+            <name>Increment_Reference_Used</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SC-005xFxx
+Increment # Reference Used
+Updates the Subscription Contact: # Reference Used field whenever the Reference Last Used field is changed or a new record is created and the Reference Last Used field is not blank.</description>
+        <formula>OR(
+  ISCHANGED(Reference_Last_Used__c),
+  AND(
+    ISNEW(),
+    NOT(ISBLANK(Reference_Last_Used__c))
+  )
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SC-006xFxx</fullName>
+        <actions>
+            <name>Populate_Disposition_Date_Last_Updated</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SC-006xFxx
+Populate Disposition Date Last Updated
+Populate Disposition Date Last Updated When Disposition__c is changed</description>
+        <formula>ISCHANGED(Disposition__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SC-008xFxx</fullName>
+        <actions>
+            <name>Populate_Date_Active_Candidate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SC-008xFxx
+Populate Date Updated to Active/Candidate
+Populate Date Updated to Active/Candidate when Reference Status is set to either &quot;Active Reference&quot; or &quot;Candidate for Reference&quot;</description>
+        <formula>AND(
+  OR(
+    ISCHANGED(Reference_Status__c),
+    ISNEW()
+  ),
+  OR(
+    ISPICKVAL(Reference_Status__c, &quot;Active Reference&quot;),
+    ISPICKVAL(Reference_Status__c, &quot;Candidate for Reference&quot;)
+  )
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

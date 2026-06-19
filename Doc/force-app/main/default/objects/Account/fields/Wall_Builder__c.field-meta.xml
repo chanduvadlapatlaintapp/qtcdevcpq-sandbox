@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Wall_Builder__c</fullName>
+    <description>This is used to track customers who have Wall Builder products, and any opportunites associated with them.</description>
+    <inlineHelpText>Does this customer own Intapp Walls?</inlineHelpText>
+    <label>Intapp Walls</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Suspect</fullName>
+                <color>#0B6FCE</color>
+                <default>false</default>
+                <label>Suspect</label>
+            </value>
+            <value>
+                <fullName>Prospect</fullName>
+                <color>#E27001</color>
+                <default>false</default>
+                <label>Prospect</label>
+            </value>
+            <value>
+                <fullName>Own it</fullName>
+                <color>#78C953</color>
+                <default>false</default>
+                <label>Own it</label>
+            </value>
+            <value>
+                <fullName>Compliguard Protect</fullName>
+                <color>#A53711</color>
+                <default>false</default>
+                <label>Compliguard Protect</label>
+            </value>
+            <value>
+                <fullName>Billing Paused</fullName>
+                <color>#FF6666</color>
+                <default>false</default>
+                <label>Billing Paused</label>
+            </value>
+            <value>
+                <fullName>Lapsed</fullName>
+                <color>#A845DC</color>
+                <default>false</default>
+                <label>Lapsed</label>
+            </value>
+            <value>
+                <fullName>Lapsed - Replaced by Compliguard Protect</fullName>
+                <color>#F96FB7</color>
+                <default>false</default>
+                <label>Lapsed - Replaced by Compliguard Protect</label>
+            </value>
+            <value>
+                <fullName>Prosperoware</fullName>
+                <default>false</default>
+                <label>Prosperoware</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

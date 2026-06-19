@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Warranty__c</fullName>
+    <label>Warranty</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>120 Days</fullName>
+                <default>false</default>
+                <label>120 Days</label>
+            </value>
+            <value>
+                <fullName>180 Days</fullName>
+                <default>false</default>
+                <label>180 Days</label>
+            </value>
+            <value>
+                <fullName>360 Days</fullName>
+                <default>false</default>
+                <label>360 Days</label>
+            </value>
+            <value>
+                <fullName>364 Days</fullName>
+                <default>false</default>
+                <label>364 Days</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>N/A (Master Terms Apply)</fullName>
+                <default>false</default>
+                <label>N/A (Master Terms Apply)</label>
+            </value>
+            <value>
+                <fullName>Trial</fullName>
+                <default>false</default>
+                <label>Trial</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

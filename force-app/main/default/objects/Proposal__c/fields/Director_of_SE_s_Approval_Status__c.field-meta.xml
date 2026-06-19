@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Director_of_SE_s_Approval_Status__c</fullName>
+    <label>Director of SE&apos;s Approval Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Status__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Pending</fullName>
+                <default>true</default>
+                <label>Pending</label>
+            </value>
+            <value>
+                <fullName>Approved</fullName>
+                <default>false</default>
+                <label>Approved</label>
+            </value>
+            <value>
+                <fullName>Not Approved</fullName>
+                <default>false</default>
+                <label>Not Approved</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Sent to Customer</controllingFieldValue>
+            <controllingFieldValue>In Review</controllingFieldValue>
+            <valueName>Approved</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>In Review</controllingFieldValue>
+            <controllingFieldValue>Creating Initial Draft</controllingFieldValue>
+            <valueName>Pending</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>In Review</controllingFieldValue>
+            <valueName>Not Approved</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,90 @@
+<apex:page showHeader="false" sidebar="false" title="My Quotes" standardStylesheets="false" applyBodyTag="false" docType="html-5.0">
+    <apex:includeLightning />
+    <html>
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <style>
+                body {
+                    margin: 0;
+                    padding: 0;
+                    font-family: 'Salesforce Sans', Arial, sans-serif;
+                }
+                /* Hide Salesforce header */
+                #oneHeader,
+                .slds-global-header_container,
+                .branding-header {
+                    display: none !important;
+                }
+                #quoteListViewContainer {
+                    width: 100%;
+                    min-height: 100vh;
+                    padding: 20px;
+                }
+                .loading-container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    color: #706e6b;
+                }
+                .loading-spinner {
+                    border: 4px solid #f3f3f3;
+                    border-top: 4px solid #0176d3;
+                    border-radius: 50%;
+                    width: 40px;
+                    height: 40px;
+                    animation: spin 1s linear infinite;
+                }
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+            </style>
+        </head>
+        <body>
+            <div id="loadingIndicator" class="loading-container">
+                <div>
+                    <div class="loading-spinner"></div>
+                    <p style="margin-top: 20px;">Loading quotes...</p>
+                </div>
+            </div>
+            <div id="quoteListViewContainer" style="display: none;"></div>
+            
+            <script>
+                function hideLoading() {
+                    var loadingIndicator = document.getElementById('loadingIndicator');
+                    if (loadingIndicator) {
+                        loadingIndicator.style.display = 'none';
+                    }
+                    var container = document.getElementById('quoteListViewContainer');
+                    if (container) {
+                        container.style.display = 'block';
+                    }
+                }
+                
+                function createLightningComponent() {
+                    $Lightning.use("c:NextGenCPQApp", function() {
+                        $Lightning.createComponent(
+                            "c:quoteListView",
+                            {},
+                            "quoteListViewContainer",
+                            function(component) {
+                                hideLoading();
+                                console.log("Quote List View component created successfully");
+                            }
+                        );
+                    });
+                }
+                
+                // Initialize component when page loads
+                if (window.addEventListener) {
+                    window.addEventListener('load', createLightningComponent);
+                } else if (window.attachEvent) {
+                    window.attachEvent('onload', createLightningComponent);
+                } else {
+                    createLightningComponent();
+                }
+            </script>
+        </body>
+    </html>
+</apex:page>

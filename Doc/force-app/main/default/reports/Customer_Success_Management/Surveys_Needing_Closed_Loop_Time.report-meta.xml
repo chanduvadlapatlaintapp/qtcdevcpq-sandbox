@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>SFDC_Survey__c$CreatedDate</field>
+    </columns>
+    <columns>
+        <field>SFDC_Survey__c$Name</field>
+    </columns>
+    <columns>
+        <field>SFDC_Survey__c$Account__c</field>
+    </columns>
+    <columns>
+        <field>SFDC_Survey__c$Account__c.CRD__c</field>
+    </columns>
+    <columns>
+        <field>SFDC_Survey__c$Department_Flags__c</field>
+    </columns>
+    <columns>
+        <field>SFDC_Survey__c$Intapp_Closed_Loop_Status__c</field>
+    </columns>
+    <columns>
+        <field>SFDC_Survey__c$Closed_Loop_Response_from_Intapp__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>SFDC_Survey__c$Department_Flags__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>,Support,Professional Services,Partner</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>SFDC_Survey__c$Intapp_Closed_Loop_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Completed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>SFDC_Survey__c$CreatedDate</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>greaterOrEqual</operator>
+            <value>7/1/2016 12:00 AM</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <name>Surveys Needing Closed Loop - Time</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Surveys__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>SFDC_Survey__c$CreatedDate</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>SFDC_Survey__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

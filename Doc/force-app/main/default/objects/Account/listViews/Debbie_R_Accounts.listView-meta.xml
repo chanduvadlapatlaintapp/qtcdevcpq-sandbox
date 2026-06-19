@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Debbie_R_Accounts</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ACCOUNT.ADDRESS1_STATE</columns>
+    <columns>DMSPortfolio__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>equals</operation>
+        <value>chasea</value>
+    </filters>
+    <label>Chase Adam accounts</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>NA_Large_Law_Sales_Reps</role>
+    </sharedTo>
+</ListView>

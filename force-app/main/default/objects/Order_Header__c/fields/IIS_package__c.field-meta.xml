@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IIS_package__c</fullName>
+    <label>Boomi tier</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Integrate Customer - Tier A</fullName>
+                <default>false</default>
+                <label>Integrate Customer - Tier A</label>
+            </value>
+            <value>
+                <fullName>Integrate Customer - Tier B</fullName>
+                <default>false</default>
+                <label>Integrate Customer - Tier B</label>
+            </value>
+            <value>
+                <fullName>Integrate Customer - Tier C</fullName>
+                <default>false</default>
+                <label>Integrate Customer - Tier C</label>
+            </value>
+            <value>
+                <fullName>Non-Integrate Customer - Tier A</fullName>
+                <default>false</default>
+                <label>Non-Integrate Customer - Tier A</label>
+            </value>
+            <value>
+                <fullName>Non-Integrate Customer - Tier B</fullName>
+                <default>false</default>
+                <label>Non-Integrate Customer - Tier B</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Logo_s_Highest_Account_GTM_Tier__c</fullName>
+    <description>BIZ-68618: Stores the picklist value of Logo’s Highest Account GTM Tier from Account</description>
+    <externalId>false</externalId>
+    <formula>TEXT( SBQQ__Account__r.Logo_s_Highest_Account_GTM_Tier__c )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Logo’s Highest Account GTM Tier</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

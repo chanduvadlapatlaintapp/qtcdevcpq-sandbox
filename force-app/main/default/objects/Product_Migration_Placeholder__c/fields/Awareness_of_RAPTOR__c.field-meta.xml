@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Awareness_of_RAPTOR__c</fullName>
+    <label>Awareness of RAPTOR</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Currently using</fullName>
+                <default>false</default>
+                <label>Currently using</label>
+            </value>
+            <value>
+                <fullName>Evaluated/evaluating</fullName>
+                <default>false</default>
+                <label>Evaluated/evaluating</label>
+            </value>
+            <value>
+                <fullName>Heard of, not using/evaluating</fullName>
+                <default>false</default>
+                <label>Heard of, not using/evaluating</label>
+            </value>
+            <value>
+                <fullName>Never heard of</fullName>
+                <default>false</default>
+                <label>Never heard of</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

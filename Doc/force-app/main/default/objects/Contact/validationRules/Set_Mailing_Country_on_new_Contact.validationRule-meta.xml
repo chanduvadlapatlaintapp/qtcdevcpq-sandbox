@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Set_Mailing_Country_on_new_Contact</fullName>
+    <active>false</active>
+    <description>If the Mailing Country is blank on contact creation, insist that Mailing Country field is filled</description>
+    <errorConditionFormula>AND(
+ISNEW(),
+ISBLANK(MailingCountry),
+NOT(CONTAINS($Profile.Name, &apos;System Administrator&apos;)),
+NOT(Apex_Context__c)
+)</errorConditionFormula>
+    <errorDisplayField>MailingCountry</errorDisplayField>
+    <errorMessage>Mailing Country must be filled.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CDA_Owner__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+OR(
+CONTAINS(TEXT(Account.Industry), &apos;Accounting&apos;),
+CONTAINS(TEXT(Account.Industry), &apos;Consulting&apos;)
+),
+&apos;Natashia Gavarrete&apos;,
+
+IF(
+AND(
+ISPICKVAL(Account.Industry ,&apos;Legal&apos;),
+OR(
+Account.Owner.UserRoleId=&quot;00E50000000sQmp&quot;, /*EMEA Sales*/
+Account.Owner.UserRoleId=&quot;00E500000010Q8v&quot; /*EMEA Sales Reps*/
+)
+),
+&apos;Paul Talaga&apos;,
+
+IF(
+AND(
+ISPICKVAL(Account.Industry ,&apos;Legal&apos;),
+OR(
+Account.Owner.UserRoleId=&quot;00E500000011cAL&quot;, /*NA Large Law / APAC Sales*/
+Account.Owner.UserRoleId=&quot;00E500000011cAQ&quot; /*NA Large Law / APAC Sales Reps*/
+),
+CONTAINS(Department, &apos;Marketing&apos;)
+),
+&apos;Paul Talaga&apos;,
+
+IF(
+AND(
+ISPICKVAL(Account.Industry ,&apos;Legal&apos;),
+OR(
+Account.Owner.UserRoleId=&quot;00E500000011cAL&quot;, /*NA Large Law / APAC Sales*/
+Account.Owner.UserRoleId=&quot;00E500000011cAQ&quot; /*NA Large Law / APAC Sales Reps*/
+),
+CONTAINS(Department, &apos;Risk&apos;)
+),
+&apos;Holly Stirk&apos;,
+
+IF(
+AND(
+ISPICKVAL(Account.Industry ,&apos;Legal&apos;),
+OR(
+Account.Owner.UserRoleId=&quot;00E500000011cAL&quot;, /*NA Large Law / APAC Sales*/
+Account.Owner.UserRoleId=&quot;00E500000011cAQ&quot;, /*NA Large Law / APAC Sales Reps*/
+Account.Owner.UserRoleId=&quot;00E500000011cAV&quot;, /*NA Mid-size Law Sales*/
+Account.Owner.UserRoleId=&quot;00E500000011cAa&quot; /*NA Mid-size Law Sales Reps*/
+),
+CONTAINS(Department, &apos;Operations&apos;)
+),
+&apos;Rebecca Frazier&apos;,
+IF(
+AND(
+ISPICKVAL(Account.Industry ,&apos;Legal&apos;),
+OR(
+Account.Owner.UserRoleId=&quot;00E500000011cAL&quot;, /*NA Large Law / APAC Sales*/
+Account.Owner.UserRoleId=&quot;00E500000011cAQ&quot;, /*NA Large Law / APAC Sales Reps*/
+Account.Owner.UserRoleId=&quot;00E500000011cAV&quot;, /*NA Mid-size Law Sales*/
+Account.Owner.UserRoleId=&quot;00E500000011cAa&quot; /*NA Mid-size Law Sales Reps*/
+),
+CONTAINS(Department, &apos;IT&apos;)
+),
+&apos;Rebecca Frazier&apos;,
+IF(
+AND(
+ISPICKVAL(Account.Industry ,&apos;Legal&apos;),
+OR(
+Account.Owner.UserRoleId=&quot;00E500000011cAL&quot;, /*NA Large Law / APAC Sales*/
+Account.Owner.UserRoleId=&quot;00E500000011cAQ&quot; /*NA Large Law / APAC Sales Reps*/
+),
+OR(
+CONTAINS(Department, &apos;Content&apos;),
+CONTAINS(Department, &apos;IT&apos;),
+CONTAINS(Department, &apos;Leaders&apos;)
+)
+),
+&apos;Paul Talaga&apos;,
+IF(
+AND(
+ISPICKVAL(Account.Industry ,&apos;Legal&apos;),
+OR(
+Account.Owner.UserRoleId=&quot;00E500000011cAV&quot;, /*NA Mid-size Law Sales*/
+Account.Owner.UserRoleId=&quot;00E500000011cAa&quot; /*NA Mid-size Law Sales Reps*/
+),
+OR(
+CONTAINS(Department, &apos;Risk&apos;),
+CONTAINS(Department, &apos;Marketing&apos;)
+)
+),
+&apos;Hunter Tate&apos;,
+&apos;Jeff Macomber&apos;
+))))))))</formula>
+    <label>CDA Owner</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

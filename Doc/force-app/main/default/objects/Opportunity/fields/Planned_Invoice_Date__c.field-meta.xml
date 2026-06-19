@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Planned_Invoice_Date__c</fullName>
+    <description>The invoice is planned to go out 90 days before the license period starts, net 60.</description>
+    <formula>License_Period_Start_Date__c - 90</formula>
+    <inlineHelpText>The invoice is planned to go out 90 days before the license period starts, net 60.</inlineHelpText>
+    <label>Planned Invoice Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Date</type>
+</CustomField>

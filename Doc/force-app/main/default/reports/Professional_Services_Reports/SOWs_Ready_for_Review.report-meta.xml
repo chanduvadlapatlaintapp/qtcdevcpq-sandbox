@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Services_SOW__c$Account__c</field>
+    </columns>
+    <columns>
+        <field>Services_SOW__c$Name</field>
+    </columns>
+    <columns>
+        <field>Services_SOW__c$Status__c</field>
+    </columns>
+    <columns>
+        <field>Services_SOW__c$Request_Type__c</field>
+    </columns>
+    <columns>
+        <field>Services_SOW__c$Urgency_Level__c</field>
+    </columns>
+    <columns>
+        <field>Services_SOW__c$Services_Amount_Total__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Services_SOW__c$Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Ready for Review</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>SOWs Ready for Review</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Services_SOW__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Services_SOW__c$Completion_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

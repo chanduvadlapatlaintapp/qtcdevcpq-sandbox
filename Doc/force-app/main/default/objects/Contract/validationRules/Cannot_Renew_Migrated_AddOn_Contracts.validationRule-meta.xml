@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Renew_Migrated_AddOn_Contracts</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(OR(ISPICKVAL(Deal_Type__c, &apos;AddOn&apos;),ISPICKVAL(Deal_Type__c, &apos;Add-On&apos;)) , 
+Is_Migrated_Contract__c, 
+OR(AND(ISCHANGED(SBQQ__RenewalForecast__c) , SBQQ__RenewalForecast__c ) ,  AND(ISCHANGED(SBQQ__RenewalQuoted__c) , SBQQ__RenewalQuoted__c)))</errorConditionFormula>
+    <errorMessage>Migrated Add-on Contracts cannot be renewed</errorMessage>
+</ValidationRule>

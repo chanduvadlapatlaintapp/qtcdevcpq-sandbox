@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TB_Contracts_Pending</fullName>
+    <columns>CONTRACT.CONTRACT_NUMBER</columns>
+    <columns>SALES.ACCOUNT.NAME</columns>
+    <columns>CONTRACT.START_DATE</columns>
+    <columns>CONTRACT.END_DATE</columns>
+    <columns>CONTRACT.STATUS</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>CONTRACT.NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CONTRACT.NAME</field>
+        <operation>contains</operation>
+        <value>TB</value>
+    </filters>
+    <filters>
+        <field>CONTRACT.END_DATE</field>
+        <operation>lessThan</operation>
+        <value>1/31/2012</value>
+    </filters>
+    <filters>
+        <field>CONTRACT.STATUS</field>
+        <operation>notEqual</operation>
+        <value>&quot;Contract Executed, Waiting for Payment&quot;,Activated,Void</value>
+    </filters>
+    <label>TB Contracts Pending</label>
+</ListView>

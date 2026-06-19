@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Recurring_Per_Lawyer__c</fullName>
+    <description>Account Recurring Amount / Lawyers</description>
+    <formula>Account_Recurring_Amount__c  /  Lawyers__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Annual recurring amount per lawyer/professional</inlineHelpText>
+    <label>Recurring Per Lawyer / Professional</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - Feb15 Mobile Strategy</name>
+    <style>none</style>
+    <subject>Intapp Webinar Confirmation</subject>
+    <textOnly>{!Contact.FirstName} {!Contact.LastName}: Thank you for registering for the &quot;Developing a Mobile Strategy&quot; webinar. It will take place on February 12 at 9am Pacific / 12pm Eastern / 5pm GMT. Please use the link below to add the event to your calendar, which contains the WebEx information to access the webinar.
+
+
+Add to Calendar: http://intapp.com/images/webinars/calendar-events/Law_Firm_Trends-Developing_a_Mobile_Strategy.ics
+
+http://www.intapp.com
+
+All information Copyright 2015 Intapp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

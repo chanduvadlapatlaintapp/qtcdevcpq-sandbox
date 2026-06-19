@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Status__c</fullName>
+    <label>Customer Status</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Intapp &amp; TFG Customer</fullName>
+                <default>false</default>
+                <label>Intapp &amp; TFG Customer</label>
+            </value>
+            <value>
+                <fullName>Intapp &amp; Botany Customer</fullName>
+                <default>false</default>
+                <label>Intapp &amp; Botany Customer</label>
+            </value>
+            <value>
+                <fullName>TFG Only Customer</fullName>
+                <default>false</default>
+                <label>TFG Only Customer</label>
+            </value>
+            <value>
+                <fullName>Botany Only Customer</fullName>
+                <default>false</default>
+                <label>Botany Only Customer</label>
+            </value>
+            <value>
+                <fullName>Not a Customer</fullName>
+                <default>false</default>
+                <label>Not a Customer</label>
+            </value>
+            <value>
+                <fullName>Intapp Only</fullName>
+                <default>false</default>
+                <label>Intapp Only</label>
+            </value>
+            <value>
+                <fullName>On-premise customer only</fullName>
+                <default>false</default>
+                <label>On-premise customer only</label>
+            </value>
+            <value>
+                <fullName>Already a cloud customer</fullName>
+                <default>false</default>
+                <label>Already a cloud customer</label>
+            </value>
+            <value>
+                <fullName>Gratis License Customer</fullName>
+                <default>false</default>
+                <label>Gratis License Customer</label>
+            </value>
+            <value>
+                <fullName>Bundle License Customer</fullName>
+                <default>false</default>
+                <label>Bundle License Customer</label>
+            </value>
+            <value>
+                <fullName>Flow License Customer</fullName>
+                <default>false</default>
+                <label>Flow License Customer</label>
+            </value>
+            <value>
+                <fullName>Compliant Time customer</fullName>
+                <default>false</default>
+                <label>Compliant Time customer</label>
+            </value>
+            <value>
+                <fullName>Risk + Compliant Time customer</fullName>
+                <default>false</default>
+                <label>Risk + Compliant Time customer</label>
+            </value>
+            <value>
+                <fullName>Risk customer</fullName>
+                <default>false</default>
+                <label>Risk customer</label>
+            </value>
+            <value>
+                <fullName>OnePlace for Marketing for customer</fullName>
+                <default>false</default>
+                <label>OnePlace for Marketing for customer</label>
+            </value>
+            <value>
+                <fullName>Experience only customer</fullName>
+                <default>false</default>
+                <label>Experience only customer</label>
+            </value>
+            <value>
+                <fullName>Experience + Relationship customer</fullName>
+                <default>false</default>
+                <label>Experience + Relationship customer</label>
+            </value>
+            <value>
+                <fullName>iManage on-prem</fullName>
+                <default>false</default>
+                <label>iManage on-prem</label>
+            </value>
+            <value>
+                <fullName>iManage cloud</fullName>
+                <default>false</default>
+                <label>iManage cloud</label>
+            </value>
+            <value>
+                <fullName>Time Cloud customer</fullName>
+                <default>false</default>
+                <label>Time Cloud customer</label>
+            </value>
+            <value>
+                <fullName>Rekoop customer</fullName>
+                <default>false</default>
+                <label>Rekoop customer</label>
+            </value>
+            <value>
+                <fullName>TTM Customer</fullName>
+                <default>false</default>
+                <label>TTM Customer</label>
+            </value>
+            <value>
+                <fullName>Time Capture or Time Core customer</fullName>
+                <default>false</default>
+                <label>Time Capture or Time Core customer</label>
+            </value>
+            <value>
+                <fullName>Relationships only customer</fullName>
+                <default>false</default>
+                <label>Relationships only customer</label>
+            </value>
+            <value>
+                <fullName>Walls Defense customer (signed)</fullName>
+                <default>false</default>
+                <label>Walls Defense customer (signed)</label>
+            </value>
+            <value>
+                <fullName>Walls Defense customer (unsigned)</fullName>
+                <default>false</default>
+                <label>Walls Defense customer (unsigned)</label>
+            </value>
+            <value>
+                <fullName>Walls customer</fullName>
+                <default>false</default>
+                <label>Walls customer</label>
+            </value>
+            <value>
+                <fullName>Affected Customer</fullName>
+                <default>false</default>
+                <label>Affected Customer</label>
+            </value>
+            <value>
+                <fullName>Potentially Affected Customer</fullName>
+                <default>false</default>
+                <label>Potentially Affected Customer</label>
+            </value>
+            <value>
+                <fullName>OnePlace for Marketing customer</fullName>
+                <default>false</default>
+                <label>OnePlace for Marketing customer</label>
+            </value>
+            <value>
+                <fullName>Experience + Relationships customer</fullName>
+                <default>false</default>
+                <label>Experience + Relationships customer</label>
+            </value>
+            <value>
+                <fullName>Account at Risk</fullName>
+                <default>false</default>
+                <label>Account at Risk</label>
+            </value>
+            <value>
+                <fullName>Product(s) at Risk</fullName>
+                <default>false</default>
+                <label>Product(s) at Risk</label>
+            </value>
+            <value>
+                <fullName>Requires Approval</fullName>
+                <default>false</default>
+                <label>Requires Approval</label>
+            </value>
+            <value>
+                <fullName>Does Not Require Approval</fullName>
+                <default>false</default>
+                <label>Does Not Require Approval</label>
+            </value>
+            <value>
+                <fullName>Phase 1</fullName>
+                <default>false</default>
+                <label>Phase 1</label>
+            </value>
+            <value>
+                <fullName>Phase 2</fullName>
+                <default>false</default>
+                <label>Phase 2</label>
+            </value>
+            <value>
+                <fullName>Phase 3</fullName>
+                <default>false</default>
+                <label>Phase 3</label>
+            </value>
+            <value>
+                <fullName>Legacy Intapp Time Customer</fullName>
+                <default>false</default>
+                <label>Legacy Intapp Time Customer</label>
+            </value>
+            <value>
+                <fullName>Legacy Rekoop Customer</fullName>
+                <default>false</default>
+                <label>Legacy Rekoop Customer</label>
+            </value>
+            <value>
+                <fullName>New Time Customer</fullName>
+                <default>false</default>
+                <label>New Time Customer</label>
+            </value>
+            <value>
+                <fullName>Marketing customer</fullName>
+                <default>false</default>
+                <label>Marketing customer</label>
+            </value>
+            <value>
+                <fullName>Impacted by defect</fullName>
+                <default>false</default>
+                <label>Impacted by defect</label>
+            </value>
+            <value>
+                <fullName>Not impacted by defect</fullName>
+                <default>false</default>
+                <label>Not impacted by defect</label>
+            </value>
+            <value>
+                <fullName>Customer Not Affected</fullName>
+                <default>false</default>
+                <label>Customer Not Affected</label>
+            </value>
+            <value>
+                <fullName>Intapp Client</fullName>
+                <default>false</default>
+                <label>Intapp Client</label>
+            </value>
+            <value>
+                <fullName>Intapp &amp; Raptor Client</fullName>
+                <default>false</default>
+                <label>Intapp &amp; Raptor Client</label>
+            </value>
+            <value>
+                <fullName>Partner</fullName>
+                <default>false</default>
+                <label>Partner</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

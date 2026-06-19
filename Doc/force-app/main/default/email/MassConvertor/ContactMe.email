@@ -1,0 +1,129 @@
+<html>
+<!--
+*********************************************************
+* please remember to update the "oid" hidden field to be your campaign ID
+* When creating new fields, ensure the names are the same as those generated in the web-to-lead form.  (ie. This is a glorified web-2-lead).
+* The "value" fields are the merge details as from a normal HTML template
+* Make sure you also check/update the campaign status.
+*
+* Don't forget to create a web-to-lead form for the Text email version of this.
+*********************************************************                                  
+-->  
+<table width="60%" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#FFFFFF">
+  <tr> 
+    <td colspan="2"><img src="/servlet/servlet.ImageServer?oid=00D3000000007yR&id=0155000000085Vr" alt="Banking Logo" width="225" height="60"></td>
+  </tr>
+  <tr> 
+    <td colspan="2"><p><font size="2" face="Arial, Helvetica, sans-serif"><br>
+        </font></p>
+      <p><font size="2" face="Arial, Helvetica, sans-serif">Hi {!Contact.FirstName} </font></p>
+      <p><font size="2" face="Arial, Helvetica, sans-serif">We are making it easier 
+        than ever for you to access the full benefits of the Banking Online Enterprise 
+        Server solution with the release of Banking Online Enterprise Server Express™ 
+        (BOES Express) and new license pricing. </font></p>
+      <p><font size="2" face="Arial, Helvetica, sans-serif">BOES Express includes 
+        a FREE Banking Online Enterprise Server and a FREE 1 user license, which greatly 
+        reduces the entry cost of Banking Online Enterprise Server solution. </font></p>
+      <p><font size="2" face="Arial, Helvetica, sans-serif">BOES Express uses the 
+        new version 12.4 software, which supports instant messaging and synchronsing to your personal finance package. </font></p>
+      <p><font size="2" face="Arial, Helvetica, sans-serif">The cost for additional 
+        user licences has also been significantly reduced, which means it is a 
+        lot more affordable for your team to enjoy the benefits of BlackBerry. 
+        </font></p>
+      <p><font size="2" face="Arial, Helvetica, sans-serif">The savings are substantial: 
+        For example,</font></p>
+      <ul>
+        <li><font size="2" face="Arial, Helvetica, sans-serif">The RRP of the 
+          Banking Online Enterprise Server (Self-Install) and Client Access Licences 
+          to set up the first five users was $2,750 excl. GST - it is now $474. 
+          </font></li>
+        <li><font size="2" face="Arial, Helvetica, sans-serif">The RRP to set 
+          up the full BOES for the first 20 users was $18,250 excl. GST - it is 
+          now just $9,800 (including the managed installation service).</font></li>
+        <li><font size="2" face="Arial, Helvetica, sans-serif">For smaller numbers 
+          of Banking Online users (up to approximately 10) you don't even need to 
+          purchase separate server hardware - just install the BOES onto your Microsoft 
+          Exchange or Small Business Server.</font></li>
+      </ul>
+      <table width="87%" border="0" cellspacing="3" cellpadding="2" align="center">
+        <tr> 
+          <td width="43%"><font size="2" face="Arial, Helvetica, sans-serif"><b>Pricing 
+            (excl GST) </b></font></td>
+          <td width="57%">&nbsp;</td>
+        </tr>
+        <tr bgcolor="#CCCCCC"> 
+          <td width="43%"><font size="2" face="Arial, Helvetica, sans-serif">BOES 
+            v12.4 software</font></td>
+          <td width="57%"><font size="2" face="Arial, Helvetica, sans-serif">Free 
+            (downloadable from www.bankingonline.com)</font></td>
+        </tr>
+        <tr> 
+          <td width="43%"><font size="2" face="Arial, Helvetica, sans-serif">First 
+            Client Access Licence</font></td>
+          <td width="57%"><font size="2" face="Arial, Helvetica, sans-serif">Free 
+            (included with the BOES software)</font></td>
+        </tr>
+        <tr bgcolor="#CCCCCC"> 
+          <td width="43%"><font size="2" face="Arial, Helvetica, sans-serif">1 
+            additional licence </font></td>
+          <td width="57%"><font size="2" face="Arial, Helvetica, sans-serif">$200</font></td>
+        </tr>
+        <tr> 
+          <td width="43%"><font size="2" face="Arial, Helvetica, sans-serif">5 
+            additional licences </font></td>
+          <td width="57%"><font size="2" face="Arial, Helvetica, sans-serif">$474</font></td>
+        </tr>
+        <tr bgcolor="#CCCCCC"> 
+          <td width="43%"><font size="2" face="Arial, Helvetica, sans-serif">Unlock 
+            key from 15 to 20 licences</font></td>
+          <td width="57%"><font size="2" face="Arial, Helvetica, sans-serif">$6,999 
+            (includes 5 licences)</font></td>
+        </tr>
+        <tr> 
+          <td width="43%"><font size="2" face="Arial, Helvetica, sans-serif">10 
+            additional licences</font></td>
+          <td width="57%"><font size="2" face="Arial, Helvetica, sans-serif">$1,200</font></td>
+        </tr>
+        <tr bgcolor="#CCCCCC"> 
+          <td width="43%"><font size="2" face="Arial, Helvetica, sans-serif">50 
+            additional licences</font></td>
+          <td width="57%"><font size="2" face="Arial, Helvetica, sans-serif">$4,000</font></td>
+        </tr>
+      </table>
+      <p><font size="2" face="Arial, Helvetica, sans-serif">If you are interested 
+        in hearing more about this offer from me directly, please click on the 
+        button below and I will get in contact with you straight away. </font></p>
+      <p> 
+      <form action="http://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST">
+        <input type=hidden name="oid" value="00D3000000007yR">
+        <!--Your Instance of Salesforce.com --> 
+        <input name="first_name" id="first_name" type="hidden" value="{!Contact.FirstName}" size=20 maxlength=40>
+        <input name="last_name" id="last_name" type="hidden" value="{!Contact.LastName}" size=20 maxlength=40>
+        <input name="company" id="company" type="hidden" value="{!Account.Name}">
+        <input name="OwnerId" id="OwnerId" type="hidden" value="{!Contact.OwnerId}">
+        <input name="email" id="email" type="hidden" value="{!Contact.Email}">
+        <input name="phone" id="phone" type="hidden" value="{!Contact.Phone}">
+        <input name="mobile" id="mobile" type="hidden" value="{!Contact.MobilePhone}">
+        <input name="Campaign_ID" id="Campaign_ID" type="hidden" value="701200000000tfm">
+        <input name="description" id="description" type="hidden" value="Customer would like to be contacted regarding BOES Express. Once qualified, please update the status of the lead. Any leads with the status 'In Progress- Qualified' will trigger a workflow alert to Sales Operations to convert the lead into an opportunity on your behalf. If there is no opportunity, please change the status of the lead to 'Closed'">
+        <input type="HIDDEN" name="member_status" id="member_status" value="Responded">
+<input type=hidden name="retURL" value="http://www.salesforce.com/">
+<input type="submit" name="Submit" value="Please contact me"></>   
+      </form>
+      <p><font size="2" face="Arial, Helvetica, sans-serif">Kind regards<br>
+        </font><font size="2" face="Arial, Helvetica, sans-serif">{!Contact.OwnerFirstName}<br>
+        </font><font size="2" face="Arial, Helvetica, sans-serif">{!Contact.OwnerPhone}</font></p>
+      <p><font size="2" face="Arial, Helvetica, sans-serif"><br>
+        </font></p>
+    </td>
+  </tr>
+  <tr> 
+    <td><img src="/servlet/servlet.ImageServer?oid=00D3000000007yR&id=0155000000085W2" alt="Kyeboard and Mouse" width="178" height="249"></td>
+    <td align="right"><img src="/servlet/servlet.ImageServer?oid=00D3000000007yR&id=0155000000085W3" alt="Using a Notebook Computer Remotely" width="368" height="245"></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</html>

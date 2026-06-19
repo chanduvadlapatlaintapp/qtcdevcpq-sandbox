@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TB_Implementation_Status__c</fullName>
+    <label>TB Implementation Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Not Yet Started</fullName>
+                <color>#FF9900</color>
+                <default>false</default>
+                <label>Not Yet Started</label>
+            </value>
+            <value>
+                <fullName>Stalled</fullName>
+                <color>#FF0000</color>
+                <default>false</default>
+                <label>Stalled</label>
+            </value>
+            <value>
+                <fullName>Implementing</fullName>
+                <color>#F3D904</color>
+                <default>false</default>
+                <label>Implementing</label>
+            </value>
+            <value>
+                <fullName>Testing: IT</fullName>
+                <color>#33CCFF</color>
+                <default>false</default>
+                <label>Testing: IT</label>
+            </value>
+            <value>
+                <fullName>Testing: User</fullName>
+                <color>#000099</color>
+                <default>false</default>
+                <label>Testing: User</label>
+            </value>
+            <value>
+                <fullName>Production: Partial</fullName>
+                <color>#33FF33</color>
+                <default>false</default>
+                <label>Production: Partial</label>
+            </value>
+            <value>
+                <fullName>Production: Full</fullName>
+                <color>#006600</color>
+                <default>false</default>
+                <label>Production: Full</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

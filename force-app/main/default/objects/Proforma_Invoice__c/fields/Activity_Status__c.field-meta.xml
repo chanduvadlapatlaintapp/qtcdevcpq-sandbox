@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Activity_Status__c</fullName>
+    <label>Activity Status</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Payment Created</fullName>
+                <default>false</default>
+                <label>Payment Created</label>
+            </value>
+            <value>
+                <fullName>Order Created</fullName>
+                <default>false</default>
+                <label>Order Created</label>
+            </value>
+            <value>
+                <fullName>Order Activated</fullName>
+                <default>false</default>
+                <label>Order Activated</label>
+            </value>
+            <value>
+                <fullName>Invoice Created</fullName>
+                <default>false</default>
+                <label>Invoice Created</label>
+            </value>
+            <value>
+                <fullName>Invoice Posted</fullName>
+                <default>false</default>
+                <label>Invoice Posted</label>
+            </value>
+            <value>
+                <fullName>Payment Posted</fullName>
+                <default>false</default>
+                <label>Payment Posted</label>
+            </value>
+            <value>
+                <fullName>Sent Document to Contact</fullName>
+                <default>false</default>
+                <label>Sent Document to Contact</label>
+            </value>
+            <value>
+                <fullName>No Payment created</fullName>
+                <default>false</default>
+                <label>No Payment created</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

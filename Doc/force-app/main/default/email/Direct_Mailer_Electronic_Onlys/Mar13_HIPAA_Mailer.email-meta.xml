@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Mar13 HIPAA Mailer</name>
+    <style>none</style>
+    <subject>Addressing HIPAA Compliance Challenges</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+I&apos;ve attached the latest update from our risk practice. At your request, we&apos;ve updated our process to send you these mailers electronically. (If you&apos;d prefer not to receive future updates from our risk practice, just let me know.)
+
+A letter from our risk practice [http://j.mp/HIPAAletter]
+
+With the 2013 HIPAA Omnibus Rule coming into effect this month, many law firms are faced with the challenge of maintaining compliance with the new regulations. This bulletin [http://j.mp/HIPAASheet] describes those challenges in detail and shows how IntApp can help firms in addressing those challenges.
+
+Regards,
+
+Jason Yu
+IntApp, Inc.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

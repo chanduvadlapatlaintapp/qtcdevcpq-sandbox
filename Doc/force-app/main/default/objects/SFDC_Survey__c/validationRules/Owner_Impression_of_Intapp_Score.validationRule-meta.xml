@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Owner_Impression_of_Intapp_Score</fullName>
+    <active>true</active>
+    <description>Score must be a whole number from 0-10</description>
+    <errorConditionFormula>AND(
+  NOT($Profile.Id=&quot;00e30000000bvR3&quot;),
+  Owner_Impression_of_Intapp_Score__c!=0,
+  Owner_Impression_of_Intapp_Score__c!=1,
+  Owner_Impression_of_Intapp_Score__c!=2,
+  Owner_Impression_of_Intapp_Score__c!=3,
+  Owner_Impression_of_Intapp_Score__c!=4,
+  Owner_Impression_of_Intapp_Score__c!=5,
+  Owner_Impression_of_Intapp_Score__c!=6,
+  Owner_Impression_of_Intapp_Score__c!=7,
+  Owner_Impression_of_Intapp_Score__c!=8,
+  Owner_Impression_of_Intapp_Score__c!=9,
+  Owner_Impression_of_Intapp_Score__c!=10
+)</errorConditionFormula>
+    <errorDisplayField>Owner_Impression_of_Intapp_Score__c</errorDisplayField>
+    <errorMessage>Scores must be a whole number between 0 and 10.</errorMessage>
+</ValidationRule>

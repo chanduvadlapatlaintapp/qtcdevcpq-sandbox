@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Restrict_Deal_Owner_Update_Renewal_NYMY</fullName>
+    <active>false</active>
+    <description>BIZ-79793: Prevents manual updates to OP4I Deal Owner on Renewal and NYMY opportunities. Only OP4I integration (Source_System__c = OP4I) and System Administrators can update this field.</description>
+    <errorConditionFormula>AND(
+    NOT(ISNEW()),
+    ISCHANGED(OP4I_Deal_Owner_Id__c),
+    OR(
+        Deal_Type__c = &quot;Renewal&quot;,
+        Deal_Type__c = &quot;NextYear_MultiYear&quot;
+    ),
+    NOT(ISPICKVAL(Source_System__c, &quot;OP4I&quot;)),
+    $Profile.Name &lt;&gt; &quot;System Administrator&quot;
+)</errorConditionFormula>
+    <errorDisplayField>OP4I_Deal_Owner_Id__c</errorDisplayField>
+    <errorMessage>Deal Owner on Renewal and NYMY opportunities can only be updated from OP4I. Please update the Deal Owner in OP4I and it will sync to Salesforce.</errorMessage>
+</ValidationRule>

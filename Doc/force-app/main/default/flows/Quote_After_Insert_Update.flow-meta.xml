@@ -1,0 +1,4092 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Approval_OSA_email</name>
+        <label>Approval OSA email</label>
+        <locationX>534</locationX>
+        <locationY>6408</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>RecordContrLookupIsNotNull</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddressesArray</name>
+            <value>
+                <elementReference>receipientEmailAdressList</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>sfdc_donotreply@intapp.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>approvalEmailTemplateSubject</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>ApproveTemplateOSA</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientId</name>
+            <value>
+                <elementReference>$Record.SubmittedUser__r.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>relatedRecordId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>SBQQ_Quote_c_notify_requester_that_quote_needs_review</name>
+        <label>SBQQ__Quote__c.notify_requester_that_quote_needs_review</label>
+        <locationX>622</locationX>
+        <locationY>8016</locationY>
+        <actionName>SBQQ__Quote__c.notify_requester_that_quote_needs_review</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>ContractIdNotNull</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>SBQQ__Quote__c.notify_requester_that_quote_needs_review</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>SendEmailtoContractOps</name>
+        <label>SendEmailtoContractOps</label>
+        <locationX>622</locationX>
+        <locationY>7608</locationY>
+        <actionName>SBQQ__Quote__c.Send_email_to_Contracts_Operations_and_LegalOps_ONLY_Rita_Rodriguez_Vera_Friss_L</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>UpdateQuoteBoolean</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>SBQQ__Quote__c.Send_email_to_Contracts_Operations_and_LegalOps_ONLY_Rita_Rodriguez_Vera_Friss_L</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Address_Details</name>
+        <label>Assign Address Details</label>
+        <locationX>303</locationX>
+        <locationY>11124</locationY>
+        <assignmentItems>
+            <assignToReference>UpdQuote</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.Subsidiary_Address__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Payment_Details.Address_subsidiary__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Quote_Type</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Approval_Status_on_Quote_Document</name>
+        <label>Assign Approval Status on Quote Document</label>
+        <locationX>468</locationX>
+        <locationY>1308</locationY>
+        <assignmentItems>
+            <assignToReference>fetch_Quote_Documents_associated_with_the_Quote.Quote_ApprovalStatus__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.ApprovalStatus__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Quote_Document</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_approver_records_to_quote</name>
+        <label>Assign approver records to quote</label>
+        <locationX>622</locationX>
+        <locationY>8916</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.Segment_Lead__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Approver_Matrix.Sales_Segment_Lead_Approver__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.Services_Segment_Lead__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Approver_Matrix.Services_Segment_Lead_Approver__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.Industry_Sales_Lead__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Approver_Matrix.Industry_Sales_Lead_Approver__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.SVP_Finance__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Approver_Matrix.SVP_Finance__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.COO__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Approver_Matrix.COO_Approver__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.CRO__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Approver_Matrix.CRO_Approver__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.Industry_President__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Approver_Matrix.Industry_President_Approver__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.SVP_Services__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Approver_Matrix.SVP_Services_Approver__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.Services_Segment_Lead__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Approver_Matrix.Services_Segment_Lead_Approver__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdQuote</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.CPO__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Approver_Matrix.CPO_Approver__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Approval_field_changes_to_update_approval_level</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_default_receipentemailaddress</name>
+        <label>Assign default receipentemailaddress</label>
+        <locationX>534</locationX>
+        <locationY>6300</locationY>
+        <assignmentItems>
+            <assignToReference>receipientEmailAdressList</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Opportunity2__r.Owner.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Approval_OSA_email</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_FS_Deal_Desk</name>
+        <label>Assign FS_Deal_Desk</label>
+        <locationX>534</locationX>
+        <locationY>6108</locationY>
+        <assignmentItems>
+            <assignToReference>receipientEmailAdressList</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>receipentemailaddress</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>receipientEmailAdressList</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Label.FS_Deal_Desk</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_default_receipentemailaddress</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Assign Opportunity Line of Business from Quote and set update flag</description>
+        <name>Assign_Opportunity_LOB_and_Flag</name>
+        <label>Assign Opportunity LOB and Flag</label>
+        <locationX>468</locationX>
+        <locationY>600</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateOpportunity.Line_of_Business__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Line_of_Business__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateOpportunity.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Opportunity2__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdOpp</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Set_Opportunity_Id</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Original_Quote</name>
+        <label>Assign Original Quote</label>
+        <locationX>50</locationX>
+        <locationY>11700</locationY>
+        <assignmentItems>
+            <assignToReference>OriginalQuote</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Original_Quote_For_Amendment</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Check_Approval_Threshold</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Payment_Details1</name>
+        <label>Assign Payment Details</label>
+        <locationX>303</locationX>
+        <locationY>10824</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.Subsidiary_Payment_Details__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Payment_Details.Subsidiary_Payment_info__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdQuote</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Address_checks</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_PS_Deal_Desk</name>
+        <label>Assign PS_Deal_Desk</label>
+        <locationX>270</locationX>
+        <locationY>6108</locationY>
+        <assignmentItems>
+            <assignToReference>receipientEmailAdressList</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>receipentemailaddress</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>receipientEmailAdressList</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Label.PS_Deal_Desk</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_default_receipentemailaddress</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>BIZ-65558</description>
+        <name>Assign_Renewal_Quote_Type</name>
+        <label>Assign Renewal Quote Type</label>
+        <locationX>1194</locationX>
+        <locationY>11592</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateOpportunity.Renewal_Quote_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Renewal_Quote_Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdOpp</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Quote_Deal_Is_Renewal</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Replace_Existing_Agreement</name>
+        <label>Assign Replace Existing Agreement</label>
+        <locationX>622</locationX>
+        <locationY>13200</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.Replace_Existing_Agreement__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdQuote</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Quote_Rec_Is_Not_Null</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Special_AccountAddress_Details</name>
+        <label>Assign Special AccountAddress Details</label>
+        <locationX>545</locationX>
+        <locationY>10056</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.Subsidiary_Payment_Details__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Through_Special_Accounts.Subsidiary_Payment_info__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdQuote</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>isSpecialAccount</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Through_Special_Accounts</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>AssignAccountRecIDs</name>
+        <label>AssignAccountRecIDs</label>
+        <locationX>622</locationX>
+        <locationY>7008</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateBillingAccount.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Opportunity2__r.AccountId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>LOB_Master_Contract_Updated</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>AssignContrRecIDs</name>
+        <label>AssignContrRecIDs</label>
+        <locationX>622</locationX>
+        <locationY>6708</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateAssociatedContr.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.SBQQ__MasterContract__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>RecordAccLookupIsNotNull_0_0</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>AssignOppRecIDs_0</name>
+        <label>AssignOppRecIDs</label>
+        <locationX>1788</locationX>
+        <locationY>384</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateOpporunityAsyncPath.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Opportunity2__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Quote_Primary_Check</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>AssignQuoteID</name>
+        <label>AssignQuoteID</label>
+        <locationX>754</locationX>
+        <locationY>276</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Opportunity_Is_Not_Blank_On_Quote</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>AssignRenewalQuoteType</name>
+        <label>AssignRenewalQuoteType</label>
+        <locationX>512</locationX>
+        <locationY>11700</locationY>
+        <assignmentItems>
+            <assignToReference>FetchQuoteRenewalQuoteType</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Renewal_Quote_Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateOpportunity.Renewal_Quote_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Renewal_Quote_Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdOpp</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Copy_1_of_Get_Original_Quote_For_Amendment</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Copy_1_of_Assign_Original_Quote</name>
+        <label>Assign Original Quote</label>
+        <locationX>644</locationX>
+        <locationY>12000</locationY>
+        <assignmentItems>
+            <assignToReference>OriginalQuote</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Copy_1_of_Get_Original_Quote_For_Amendment</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Approval_Threshold</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Copy_1_of_Update_Quote</name>
+        <label>Update Quote</label>
+        <locationX>754</locationX>
+        <locationY>12324</locationY>
+        <assignmentItems>
+            <assignToReference>UpdQuote</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.Amend_Appl_Level__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.ApprovalStatus__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Not Required</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Quote_Deal_Is_Renewal</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Net_Amount_on_Opp</name>
+        <label>Net Amount on Opp</label>
+        <locationX>1788</locationX>
+        <locationY>1584</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateOpporunityAsyncPath.Net_Amount__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.SBQQ__NetAmount__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdOpp</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>myRule_72</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Opportunity_Deal_Type_To_Renewal</name>
+        <label>Set Opportunity Deal Type To Renewal</label>
+        <locationX>622</locationX>
+        <locationY>2400</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateOpportunity.Deal_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Renewal</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdOpp</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Verify_Quote_Type</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Opportunity_Id</name>
+        <label>Set Opportunity Id</label>
+        <locationX>600</locationX>
+        <locationY>792</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateOpportunity.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Opportunity2__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_Approval_Status_Changed_To_Approved</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>setup_Additional_Contact_as_Billing</name>
+        <label>setup Additional Contact as Billing</label>
+        <locationX>457</locationX>
+        <locationY>4524</locationY>
+        <assignmentItems>
+            <assignToReference>oAdditionalContact.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Additional_Contact__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>oAdditionalContact.Billing_Contact__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_List_of_Contacts_3</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>setup_Invoicing_Contact_as_Billing</name>
+        <label>setup Invoicing Contact as Billing</label>
+        <locationX>457</locationX>
+        <locationY>3708</locationY>
+        <assignmentItems>
+            <assignToReference>oInvoicingContact.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Invoicing_Contact__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>oInvoicingContact.Billing_Contact__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_List_of_Contacts</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>setup_Service_Invoicing_Contact_as_Billing</name>
+        <label>setup Service Invoicing Contact as Billing</label>
+        <locationX>457</locationX>
+        <locationY>4116</locationY>
+        <assignmentItems>
+            <assignToReference>oServiceInvoicingContact.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Service_Invoicing_Contact__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>oServiceInvoicingContact.Billing_Contact__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_List_of_Contacts_2</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Software_Delivery_Contact</name>
+        <label>Software Delivery Contact</label>
+        <locationX>1788</locationX>
+        <locationY>1884</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateOpporunityAsyncPath.Client_Contact__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Software_Delivery_Contact__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdOpp</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>OppNotNull</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_approver_name_and_Level</name>
+        <label>Update approver name and Level</label>
+        <locationX>622</locationX>
+        <locationY>9216</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.Approval_Level_Name__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Highestapproverfieldname</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.Approval_Level__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Approval_check_approval_level__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.Implementationdiscountlevel__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Service_ImplementationDiscountLevel</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdQuote</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.Service_Only_level_no__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>serviceonlyformulalevel</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.Hierarchy_level__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Highest_Approver_level__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Subsidiary_address</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Contract_Master_Terms_and_Sales_Segment</name>
+        <label>Update Contract Master Terms and Sales Segment</label>
+        <locationX>622</locationX>
+        <locationY>3300</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.OP4I_Sales_Segment__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Account__r.Owner.OP4I_Sales_Segment__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdQuote</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_Billing_Contact_Specified</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Final_List_Of_Contacts</name>
+        <label>Update Final List Of Contacts</label>
+        <locationX>699</locationX>
+        <locationY>5148</locationY>
+        <assignmentItems>
+            <assignToReference>finalListOfContactsToUpdate</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_Through_Contact_Collection</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Through_Contact_Collection</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_List_of_Contacts</name>
+        <label>Update List of Contacts</label>
+        <locationX>457</locationX>
+        <locationY>3816</locationY>
+        <assignmentItems>
+            <assignToReference>lstContactsToUpdate</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>oInvoicingContact</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Service_Invoicing_Contact_Specified</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_List_of_Contacts_2</name>
+        <label>Update List of Contacts 2</label>
+        <locationX>457</locationX>
+        <locationY>4224</locationY>
+        <assignmentItems>
+            <assignToReference>lstContactsToUpdate</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>oServiceInvoicingContact</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Additional_Contact_Specified</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_List_of_Contacts_3</name>
+        <label>Update List of Contacts 3</label>
+        <locationX>457</locationX>
+        <locationY>4632</locationY>
+        <assignmentItems>
+            <assignToReference>lstContactsToUpdate</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>oAdditionalContact</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Contacts</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Master_Contract_LOB_and</name>
+        <label>Update Master Contract LOB and Owner</label>
+        <locationX>622</locationX>
+        <locationY>7308</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateAssociatedContr.Applicable_Subsidiary__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Line_of_Business__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateAssociatedContr.OP4I_Deal_Owner_Id__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Opportunity2__r.OwnerId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdContract</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>X090_Condtn</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Opportunity_Record</name>
+        <label>Update Opportunity Record</label>
+        <locationX>1788</locationX>
+        <locationY>684</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateOpporunityAsyncPath.Currency__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.CurrencyIsoCode</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateOpporunityAsyncPath.Deal_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Deal_Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateOpporunityAsyncPath.First_Segment_Months__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.First_Segment_Months__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateOpporunityAsyncPath.Free_Months__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Free_Months__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateOpporunityAsyncPath.Id__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateOpporunityAsyncPath.Payment_Terms__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.SBQQ__PaymentTerms__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateOpporunityAsyncPath.Quote_Start_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.SBQQ__StartDate__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateOpporunityAsyncPath.Software_Billing_Frequency__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.SBQQ__BillingFrequency__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateOpporunityAsyncPath.Total_Contract_Months__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.SBQQ__SubscriptionTerm__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdOpp</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateOpporunityAsyncPath.Services_Payment_Terms__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Services_Terms__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateOpporunityAsyncPath.OP4I_Sales_Segment__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.OP4I_Sales_Segment__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateOpporunityAsyncPath.Quote_Sales_Segment__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.OP4I_Sales_Segment__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Quote_Is_Auto_Renewal</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Opportunity_To_Closed_Won</name>
+        <label>Update Opportunity To Closed Won</label>
+        <locationX>1766</locationX>
+        <locationY>984</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateOpporunityAsyncPath.StageName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Closed Won</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdOpp</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Approval_Status_If_Not_Approved</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Quote</name>
+        <label>Update Quote</label>
+        <locationX>490</locationX>
+        <locationY>12324</locationY>
+        <assignmentItems>
+            <assignToReference>UpdQuote</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.Amend_Appl_Level__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.ApprovalStatus__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Pending Submission</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Quote_Deal_Is_Renewal</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Quote_To_Ordered</name>
+        <label>Update Quote To Ordered</label>
+        <locationX>622</locationX>
+        <locationY>12792</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.SBQQ__Ordered__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdQuote</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Consolidated_Quote_s_Contract</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Subsidiary</name>
+        <label>Update Subsidiary</label>
+        <locationX>622</locationX>
+        <locationY>2700</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.Subsidiary__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Opportunity2__r.SBQQ__RenewedContract__r.Subsidiary__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdQuote</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdateOpportunity.Subsidiary__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Opportunity2__r.SBQQ__RenewedContract__r.Subsidiary__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdOpp</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Subsidiary_Is_Updated</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Subsidiary_On_Opportunity</name>
+        <label>Update Subsidiary On Opportunity</label>
+        <locationX>622</locationX>
+        <locationY>3000</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateOpportunity.Subsidiary__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Subsidiary__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>UpdOpp</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Verify_Renewal_Quote_Type</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>UpdateQuoteBoolean</name>
+        <label>UpdateQuoteBoolean</label>
+        <locationX>622</locationX>
+        <locationY>7716</locationY>
+        <assignmentItems>
+            <assignToReference>UpdateQuoteRecord.Annex_email_sent__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>StatusIsChanged</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>AccountNotNull</name>
+        <label>AccountNotNull</label>
+        <locationX>754</locationX>
+        <locationY>8508</locationY>
+        <defaultConnector>
+            <targetReference>Sales_Segment_Update</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>AccNotNull</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>UpdAccount</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Sales_Segment_Update</targetReference>
+            </connector>
+            <label>AccNotNull</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Additional_Contact_Specified</name>
+        <label>Additional Contact Specified</label>
+        <locationX>589</locationX>
+        <locationY>4416</locationY>
+        <defaultConnector>
+            <targetReference>Update_Contacts</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Additional_Contact_Present</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Additional_Contact__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>setup_Additional_Contact_as_Billing</targetReference>
+            </connector>
+            <label>Additional Contact Present</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Address_checks</name>
+        <label>Address checks</label>
+        <locationX>435</locationX>
+        <locationY>11016</locationY>
+        <defaultConnector>
+            <targetReference>Check_Quote_Type</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Address_null</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Subsidiary_Address__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Subsidiary__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Address_Details</targetReference>
+            </connector>
+            <label>Is Address null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Approval_field_changes_to_update_approval_level</name>
+        <label>Approval field changes to update approval level</label>
+        <locationX>754</locationX>
+        <locationY>9108</locationY>
+        <defaultConnector>
+            <targetReference>Check_Subsidiary_address</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Approval_fields_are_changed</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Initial_Term_Discount__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__BillingFrequency__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Additional_Free_months_at_no_cost__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Software_Payment_Terms__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Min_year_on_year_committed_spend__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Services_Discount_Percentage__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>UpdQuote</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SFA_Level__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Product_level__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Non_standard_Level__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Prime_discount_level__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Fr_maximum_service_Level__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Highest_Approver_level__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Approval_check_approval_level__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_approver_name_and_Level</targetReference>
+            </connector>
+            <label>Approval fields are changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Assign_Email_Address_as_per_Subsidiary</name>
+        <label>Assign Email Address as per Subsidiary</label>
+        <locationX>534</locationX>
+        <locationY>6000</locationY>
+        <defaultConnector>
+            <targetReference>Assign_default_receipentemailaddress</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Subsidiary_01_to_10</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>SubsidiaryNumber</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
+                <rightValue>
+                    <numberValue>1.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SubsidiaryNumber</leftValueReference>
+                <operator>LessThanOrEqualTo</operator>
+                <rightValue>
+                    <numberValue>10.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_PS_Deal_Desk</targetReference>
+            </connector>
+            <label>Subsidiary = 01 to 10</label>
+        </rules>
+        <rules>
+            <name>Subsidiary_10</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>SubsidiaryNumber</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>10.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_FS_Deal_Desk</targetReference>
+            </connector>
+            <label>Subsidiary &gt; 10</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Appl_Level</name>
+        <label>Check Appl Level</label>
+        <locationX>402</locationX>
+        <locationY>12216</locationY>
+        <defaultConnector>
+            <targetReference>Update_Quote</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Level_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Amend_Appl_Level__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>1.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_Quote_Deal_Is_Renewal</targetReference>
+            </connector>
+            <label>Level 1</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Approval_Status_If_Not_Approved</name>
+        <label>Check Approval Status If Not Approved</label>
+        <locationX>1766</locationX>
+        <locationY>1092</locationY>
+        <defaultConnector>
+            <targetReference>myRule_43</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Approval_Status_Is_Not_Approved</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.ApprovalStatus__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Approved</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Quote_Approval_Status</targetReference>
+            </connector>
+            <label>Approval Status Is Not Approved</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Approval_Threshold</name>
+        <label>Check Approval Threshold</label>
+        <locationX>644</locationX>
+        <locationY>12108</locationY>
+        <defaultConnector>
+            <targetReference>For_new_quotes</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Approval_Threshold_Exceeded</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Initial_Term_Discount__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>OriginalQuote.Initial_Term_Discount__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Free_Months__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>OriginalQuote.Free_Months__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__BillingFrequency__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>OriginalQuote.SBQQ__BillingFrequency__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Software_Payment_Terms__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>OriginalQuote.Software_Payment_Terms__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Min_year_on_year_committed_spend__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>OriginalQuote.Min_year_on_year_committed_spend__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Services_Discount_Percentage__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>OriginalQuote.Services_Discount_Percentage__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SFA_Cap__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>OriginalQuote.SFA_Cap__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ROR__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>OriginalQuote.ROR__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Development_Obligation__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>OriginalQuote.Development_Obligation__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.On_Prem_New_product__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>OriginalQuote.On_Prem_New_product__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Non_Standard_Packaging_Structure__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>OriginalQuote.Non_Standard_Packaging_Structure__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Isnew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_Appl_Level</targetReference>
+            </connector>
+            <label>Approval Threshold Exceeded</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check if Opportunity Line of Business needs to be updated from Quote</description>
+        <name>Check_Opportunity_LOB_Update_Needed</name>
+        <label>Check Opportunity LOB Update Needed</label>
+        <locationX>600</locationX>
+        <locationY>492</locationY>
+        <defaultConnector>
+            <targetReference>Set_Opportunity_Id</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Update Needed</defaultConnectorLabel>
+        <rules>
+            <name>Update_Opportunity_LOB</name>
+            <conditionLogic>(1 AND 2 AND 3 AND 4) OR (1 AND 2 AND 3 AND 5)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Primary__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Line_of_Business__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Opportunity2__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Opportunity2__r.Line_of_Business__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Opportunity2__r.Line_of_Business__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.Line_of_Business__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Opportunity_LOB_and_Flag</targetReference>
+            </connector>
+            <label>Update Opportunity LOB</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Quote_Deal_Is_Renewal</name>
+        <label>Check Quote Deal Is Renewal</label>
+        <locationX>754</locationX>
+        <locationY>12684</locationY>
+        <defaultConnector>
+            <targetReference>Consolidated_Quote_s_Contract</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Quote_Deal_Type_Is_Renewal</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Deal_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Renewal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Quote_Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Contract Executed</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Renewal_Letter__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Renewal_Letter__r.NS_Payment_Number__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Renewal_Letter__r.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Payment received</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Opportunity2__r.Renewals_Pause__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Quote_To_Ordered</targetReference>
+            </connector>
+            <label>Quote Deal Type Is Renewal</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_quote_if_quote_is_Auto_renewal</name>
+        <label>Check quote if quote is Auto renewal</label>
+        <locationX>754</locationX>
+        <locationY>1692</locationY>
+        <defaultConnector>
+            <targetReference>Is_Renewal_Primary_Quote</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Outcome_1_of_Check_quote_if_quote_is_Auto_renewal</name>
+            <conditionLogic>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND (7 OR 8)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Renewal_Quote_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Auto-Renewal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Renewal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>TodayPlus90</leftValueReference>
+                <operator>LessThanOrEqualTo</operator>
+                <rightValue>
+                    <numberValue>90.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.AVA_SFCPQ__AvaTaxMessage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Tax Amount Is Up To Date</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Opportunity2__r.Renewals_Pause__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Opportunity2__r.IsClosed</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Opportunity2__r.SBQQ__RenewedContract__r.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>In Force</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Opportunity2__r.SBQQ__RenewedContract__r.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Partially Cancelled or superseded</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Renewal_letter</targetReference>
+            </connector>
+            <label>Outcome 1 of Check quote if quote is Auto renewal</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Quote_Type</name>
+        <label>Check Quote Type</label>
+        <locationX>754</locationX>
+        <locationY>11484</locationY>
+        <defaultConnector>
+            <targetReference>Check_Quote_Deal_Is_Renewal</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Amendment</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Amendment</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Original_Quote_For_Amendment</targetReference>
+            </connector>
+            <label>Amendment</label>
+        </rules>
+        <rules>
+            <name>Renewal</name>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Renewal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Renewal_Quote_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>$Label.Renewal_Changes</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Renewal_Quote_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>$Label.Consolidated_Quote</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Renewal_Quote_type_is_Renewal_Changes</targetReference>
+            </connector>
+            <label>Renewal</label>
+        </rules>
+        <rules>
+            <name>Auto_Renewal</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Renewal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Renewal_Quote_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Auto-Renewal</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Renewal_Quote_Type</targetReference>
+            </connector>
+            <label>Auto Renewal</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Subsidiary_address</name>
+        <label>Check Subsidiary address</label>
+        <locationX>754</locationX>
+        <locationY>9408</locationY>
+        <defaultConnector>
+            <targetReference>Check_Quote_Type</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Update_Payment_Details</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Subsidiary_Payment_Details__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Subsidiary_Address__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Subsidiary__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Payment_Details</targetReference>
+            </connector>
+            <label>Update Payment Details</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Consolidated_Contract_Check</name>
+        <label>Consolidated Contract Check</label>
+        <locationX>754</locationX>
+        <locationY>13092</locationY>
+        <defaultConnector>
+            <targetReference>Quote_Rec_Is_Not_Null</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Exists</name>
+            <conditionLogic>(1 OR 2 OR 3) AND 4</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Quote_Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Contract Executed</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Quote_Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Finalize OSA</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Quote_Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Pending Closure</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Consolidated_Quote_s_Contract</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Replace_Existing_Agreement</targetReference>
+            </connector>
+            <label>Exists</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>ContractIdNotNull</name>
+        <label>ContractIdNotNull</label>
+        <locationX>754</locationX>
+        <locationY>8208</locationY>
+        <defaultConnector>
+            <targetReference>AccountNotNull</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>ContractNotNull</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>UpdContract</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Amendment</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Contracts</targetReference>
+            </connector>
+            <label>ContractNotNull</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Current_Contact_Loop_Contains_Duplicate_Contact</name>
+        <label>Current Contact Loop Contains Duplicate Contact</label>
+        <locationX>611</locationX>
+        <locationY>5040</locationY>
+        <defaultConnector>
+            <targetReference>Update_Final_List_Of_Contacts</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not a Duplicate</defaultConnectorLabel>
+        <rules>
+            <name>Contains_Duplicate_Contact</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>finalListOfContactsToUpdate</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>Loop_Through_Contact_Collection</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_Through_Contact_Collection</targetReference>
+            </connector>
+            <label>Contains Duplicate Contact</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Final_List_Contact_Update</name>
+        <label>Final List Contact Update</label>
+        <locationX>435</locationX>
+        <locationY>5424</locationY>
+        <defaultConnector>
+            <targetReference>Quotes_status_is_Approved</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Has_Final_List</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>finalListOfContactsToUpdate</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Billing_Contacts</targetReference>
+            </connector>
+            <label>Has Final List</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>For_new_quotes</name>
+        <label>For new quotes</label>
+        <locationX>886</locationX>
+        <locationY>12216</locationY>
+        <defaultConnector>
+            <targetReference>Check_Quote_Deal_Is_Renewal</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>check_the_condition_for_new_quotes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Isnew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_1_of_Update_Quote</targetReference>
+            </connector>
+            <label>check the condition for new quotes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Has_Related_Quote_Documents</name>
+        <label>Has Related Quote Documents</label>
+        <locationX>600</locationX>
+        <locationY>1200</locationY>
+        <defaultConnector>
+            <targetReference>Check_quote_if_quote_is_Auto_renewal</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>fetch_Quote_Documents_associated_with_the_Quote</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Approval_Status_on_Quote_Document</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>If_Renewal_letter_is_not_present</name>
+        <label>If Renewal letter is not present</label>
+        <locationX>600</locationX>
+        <locationY>1908</locationY>
+        <defaultConnector>
+            <targetReference>Is_Renewal_Primary_Quote</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Create_renewal_letter</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Renewal_letter.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Proforma_Invoice_record</targetReference>
+            </connector>
+            <label>Create renewal letter</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Invoicing_Contact_Specified</name>
+        <label>Invoicing Contact Specified</label>
+        <locationX>589</locationX>
+        <locationY>3600</locationY>
+        <defaultConnector>
+            <targetReference>Service_Invoicing_Contact_Specified</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Invoicing_Contact_Present</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Invoicing_Contact__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>setup_Invoicing_Contact_as_Billing</targetReference>
+            </connector>
+            <label>Invoicing Contact Present</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Approval_Status_Changed_To_Approved</name>
+        <label>Is Approval Status Changed To Approved</label>
+        <locationX>754</locationX>
+        <locationY>984</locationY>
+        <defaultConnector>
+            <targetReference>Check_quote_if_quote_is_Auto_renewal</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Changed_To_Approved</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.ApprovalStatus__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ApprovalStatus__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Approved</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>fetch_Quote_Documents_associated_with_the_Quote</targetReference>
+            </connector>
+            <label>Yes Changed To Approved</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Billing_Contact_Specified</name>
+        <label>Is Billing Contact Specified</label>
+        <locationX>754</locationX>
+        <locationY>3492</locationY>
+        <defaultConnector>
+            <targetReference>Quotes_status_is_Approved</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Billing_contact_Specified</name>
+            <conditionLogic>(1 AND 2) OR (3 AND 4) OR (5 AND 6)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Invoicing_Contact__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Invoicing_Contact__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Service_Invoicing_Contact__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Service_Invoicing_Contact__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Additional_Contact__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Additional_Contact__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Invoicing_Contact_Specified</targetReference>
+            </connector>
+            <label>Billing contact Specified</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Renewal_Primary_Quote</name>
+        <label>Is Renewal Primary Quote?</label>
+        <locationX>754</locationX>
+        <locationY>2292</locationY>
+        <defaultConnector>
+            <targetReference>Verify_Quote_Type</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Renewal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Opportunity2__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Primary__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Opportunity2__r.Deal_Type__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Opportunity_Deal_Type_To_Renewal</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>LOB_Master_Contract_Updated</name>
+        <label>LOB Master Contract Updated?</label>
+        <locationX>754</locationX>
+        <locationY>7200</locationY>
+        <defaultConnector>
+            <targetReference>X090_Condtn</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>True</name>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__MasterContract__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Line_of_Business__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__MasterContract__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Master_Contract_LOB_and</targetReference>
+            </connector>
+            <label>True</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_43</name>
+        <label>Populate total contract amount to Opportunity</label>
+        <locationX>1920</locationX>
+        <locationY>1476</locationY>
+        <defaultConnector>
+            <targetReference>myRule_72</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_Populate total contract amount to Opportunity</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_myRule_43</name>
+            <conditionLogic>((2 AND 1 AND 4) OR (3 AND 1 AND 4)) AND 5</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Primary__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__NetAmount__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Primary__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Status__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Opportunity2__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Net_Amount_on_Opp</targetReference>
+            </connector>
+            <label>TRUE_Populate total contract amount to Opportunity</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_72</name>
+        <label>Populate software delivery</label>
+        <locationX>1920</locationX>
+        <locationY>1776</locationY>
+        <defaultConnector>
+            <targetReference>OppNotNull</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_Populate software delivery</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_myRule_72</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_72</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Opportunity2__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Software_Delivery_Contact</targetReference>
+            </connector>
+            <label>TRUE_Populate software delivery</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Opp_Rec_Is_Not_Null</name>
+        <label>Opp Rec Is Not Null</label>
+        <locationX>754</locationX>
+        <locationY>13692</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>OppRecNotNull</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>UpdOpp</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>UpdateOpp</targetReference>
+            </connector>
+            <label>OppRecNotNull</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>OppNotNull</name>
+        <label>OppNotNull</label>
+        <locationX>1920</locationX>
+        <locationY>2076</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>OpporNOtNull</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>UpdOpp</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Opportunity</targetReference>
+            </connector>
+            <label>OpporNOtNull</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Opportunity_Is_Not_Blank_On_Quote</name>
+        <label>Opportunity Is Not Blank On Quote</label>
+        <locationX>754</locationX>
+        <locationY>384</locationY>
+        <defaultConnector>
+            <targetReference>Is_Approval_Status_Changed_To_Approved</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Opportunity_Not_Null_On_Quote</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Opportunity2__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_Opportunity_LOB_Update_Needed</targetReference>
+            </connector>
+            <label>Opportunity Not Null On Quote</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Payment_checks</name>
+        <label>Payment checks</label>
+        <locationX>435</locationX>
+        <locationY>10716</locationY>
+        <defaultConnector>
+            <targetReference>Address_checks</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Payment_detail_null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Subsidiary_Payment_Details__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>isSpecialAccount</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Payment_Details1</targetReference>
+            </connector>
+            <label>Is Payment detail null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Payment_Records_Is_Not_Null</name>
+        <label>Payment Records Is Not Null</label>
+        <locationX>589</locationX>
+        <locationY>10608</locationY>
+        <defaultConnector>
+            <targetReference>Check_Quote_Type</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Payment_Records_Not_Blank_0_0</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Payment_Details</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Payment_checks</targetReference>
+            </connector>
+            <label>Payment Records Not Blank</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Updated as part of BIZ-77484</description>
+        <name>Quote_Is_Auto_Renewal</name>
+        <label>Quote Is Auto Renewal</label>
+        <locationX>1920</locationX>
+        <locationY>876</locationY>
+        <defaultConnector>
+            <targetReference>myRule_43</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Auto_Renewal_Quote</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Renewal_Quote_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Auto-Renewal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Quote_Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Contract Executed</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Opportunity2__r.IsClosed</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Opportunity_To_Closed_Won</targetReference>
+            </connector>
+            <label>Is Auto Renewal Quote</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Quote_Primary_Check</name>
+        <label>Quote Primary Check</label>
+        <locationX>1920</locationX>
+        <locationY>576</locationY>
+        <defaultConnector>
+            <targetReference>Quote_Is_Auto_Renewal</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Primary_Check</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Primary__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Opportunity_Record</targetReference>
+            </connector>
+            <label>Primary Check</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Quote_Rec_Is_Not_Null</name>
+        <label>Quote Rec Is Not Null</label>
+        <locationX>754</locationX>
+        <locationY>13392</locationY>
+        <defaultConnector>
+            <targetReference>Opp_Rec_Is_Not_Null</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>QuoteRecNotNull</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>UpdQuote</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>UpdateQuote</targetReference>
+            </connector>
+            <label>QuoteRecNotNull</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Quotes_status_is_Approved</name>
+        <label>Quotes status is Approved</label>
+        <locationX>754</locationX>
+        <locationY>5892</locationY>
+        <defaultConnector>
+            <targetReference>RecordContrLookupIsNotNull</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>when_status_of_quote_is_Approved</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.ApprovalStatus__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Approved</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ApprovalStatus__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Quote_Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Finalize OSA</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SubmittedUser__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Email_Address_as_per_Subsidiary</targetReference>
+            </connector>
+            <label>when status of quote is Approved(Finalise OSA)</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>RecordAccLookupIsNotNull_0_0</name>
+        <label>RecordAccLookupIsNotNull</label>
+        <locationX>754</locationX>
+        <locationY>6900</locationY>
+        <defaultConnector>
+            <targetReference>LOB_Master_Contract_Updated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>QuoteAccNotNull_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Opportunity2__r.AccountId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>AssignAccountRecIDs</targetReference>
+            </connector>
+            <label>QuoteAccNotNull_1</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>RecordContrLookupIsNotNull</name>
+        <label>RecordContrLookupIsNotNull</label>
+        <locationX>754</locationX>
+        <locationY>6600</locationY>
+        <defaultConnector>
+            <targetReference>RecordAccLookupIsNotNull_0_0</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>QuoteContrNotNull</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__MasterContract__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>AssignContrRecIDs</targetReference>
+            </connector>
+            <label>QuoteContrNotNull</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>RecordOppLookupIsNotNull_0_0</name>
+        <label>RecordOppLookupIsNotNull</label>
+        <locationX>1920</locationX>
+        <locationY>276</locationY>
+        <defaultConnector>
+            <targetReference>Quote_Primary_Check</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>QuoteOppNotNull_1_0</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Opportunity2__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>AssignOppRecIDs_0</targetReference>
+            </connector>
+            <label>QuoteOppNotNull_1</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Renewal_Quote_type_is_Renewal_Changes</name>
+        <label>Renewal Quote type is Renewal Changes</label>
+        <locationX>644</locationX>
+        <locationY>11592</locationY>
+        <defaultConnector>
+            <targetReference>Copy_1_of_Get_Original_Quote_For_Amendment</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Renewal_Changes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Renewal_Quote_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Renewal-Changes</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>AssignRenewalQuoteType</targetReference>
+            </connector>
+            <label>Renewal Changes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Update the sales segment on quote and related Lead fields on quote</description>
+        <name>Sales_Segment_Update</name>
+        <label>Sales Segment Update</label>
+        <locationX>754</locationX>
+        <locationY>8700</locationY>
+        <defaultConnector>
+            <targetReference>Approval_field_changes_to_update_approval_level</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Sales_Segment_Update_name</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.OP4I_Sales_Segment__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Isnew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Approver_Matrix</targetReference>
+            </connector>
+            <label>Sales Segment Update name</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Service_Invoicing_Contact_Specified</name>
+        <label>Service Invoicing Contact Specified</label>
+        <locationX>589</locationX>
+        <locationY>4008</locationY>
+        <defaultConnector>
+            <targetReference>Additional_Contact_Specified</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Service_Invoicing_Contact_Present</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Service_Invoicing_Contact__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>setup_Service_Invoicing_Contact_as_Billing</targetReference>
+            </connector>
+            <label>Service Invoicing Contact Present</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Special_Payment_Records_Is_Not_Null</name>
+        <label>Special Payment Records Is Not Null</label>
+        <locationX>589</locationX>
+        <locationY>9732</locationY>
+        <defaultConnector>
+            <targetReference>Payment_Records_Is_Not_Null</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Special_Payment_Records_Not_Blank</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Special_Payment_Details</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_Through_Special_Accounts</targetReference>
+            </connector>
+            <label>Special Payment Records Not Blank</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>StatusIsChanged</name>
+        <label>StatusIsChanged</label>
+        <locationX>754</locationX>
+        <locationY>7908</locationY>
+        <defaultConnector>
+            <targetReference>ContractIdNotNull</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>isStatusChanged</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Quote needs Review</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>SBQQ_Quote_c_notify_requester_that_quote_needs_review</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>isStatusChanged</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Subsidiary_Is_Updated</name>
+        <label>Subsidiary Is Updated</label>
+        <locationX>754</locationX>
+        <locationY>2892</locationY>
+        <defaultConnector>
+            <targetReference>Verify_Renewal_Quote_Type</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Subsidiary_Updated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Subsidiary__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Subsidiary__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.SBQQ__Opportunity2__r.Subsidiary__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Subsidiary_On_Opportunity</targetReference>
+            </connector>
+            <label>Is Subsidiary Updated</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Update_Contacts</name>
+        <label>Update Contacts?</label>
+        <locationX>589</locationX>
+        <locationY>4824</locationY>
+        <defaultConnector>
+            <targetReference>Quotes_status_is_Approved</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Has_Contacts_in_List</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>lstContactsToUpdate</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_Through_Contact_Collection</targetReference>
+            </connector>
+            <label>Has Contacts in List</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Verify_If_Deloitte_Account</name>
+        <label>Verify If Deloitte Account</label>
+        <locationX>677</locationX>
+        <locationY>9948</locationY>
+        <defaultConnector>
+            <targetReference>Loop_Through_Special_Accounts</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Verify_Deloitte_Account</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Through_Special_Accounts.Special_Accounts__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>AccountIdQuote</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Special_AccountAddress_Details</targetReference>
+            </connector>
+            <label>Verify Deloitte Account</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Verify_If_Not_Special_Account</name>
+        <label>Verify If Not Special Account</label>
+        <locationX>457</locationX>
+        <locationY>10332</locationY>
+        <defaultConnector>
+            <targetReference>Payment_Records_Is_Not_Null</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Not_Special_Account</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>isSpecialAccount</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Payment_Records_Is_Not_Null</targetReference>
+            </connector>
+            <label>Is Not Special Account</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Verify_Quote_Type</name>
+        <label>Verify Quote Type</label>
+        <locationX>754</locationX>
+        <locationY>2592</locationY>
+        <defaultConnector>
+            <targetReference>Subsidiary_Is_Updated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Check_Quote_Type_If_Renewal_Or_Consolidated</name>
+            <conditionLogic>1 AND (2 OR 3 OR 4)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Renewal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Renewal_Quote_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Auto-Renewal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Renewal_Quote_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Renewal-Changes</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Renewal_Quote_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Consolidated-Quote</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Subsidiary</targetReference>
+            </connector>
+            <label>Check Quote Type If Renewal Or Consolidated</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Verify if Renewal Quote Type is Renewal Changes or Auto-Renewal. Also checks Account is not null to prevent NPE.</description>
+        <name>Verify_Renewal_Quote_Type</name>
+        <label>Verify Renewal Quote Type</label>
+        <locationX>754</locationX>
+        <locationY>3192</locationY>
+        <defaultConnector>
+            <targetReference>Is_Billing_Contact_Specified</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Check_Renewal_Quote</name>
+            <conditionLogic>1 AND (2 OR 3) AND 4</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Renewal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Renewal_Quote_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Renewal-Changes</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Renewal_Quote_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Auto-Renewal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Account__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Contract_Master_Terms_and_Sales_Segment</targetReference>
+            </connector>
+            <label>Check Renewal Quote</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>X090_Condtn</name>
+        <label>090_Condtn</label>
+        <locationX>754</locationX>
+        <locationY>7500</locationY>
+        <defaultConnector>
+            <targetReference>StatusIsChanged</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>X090_con</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Criteria_Rule_090Exxx</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>SendEmailtoContractOps</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>090_con</label>
+        </rules>
+    </decisions>
+    <description>BIZ-72861 - Auto-update Opportunity Line of Business from Primary Quote
+BIZ-67601 - Populate Subsidiary Address
+BIZ-65528 - Reverse back wrongly removed changes
+BIZ-65528 Remove unconnected nodes.
+BIZ-63629 Remove Quote line loop changes replaced with price rules
+BIZ-64548 Updated currency ISO code in renewal letter
+Modified as part of BIZ-46894.Updated the flow with the modified version
+Updated: RR/17/11: Updated Pricing and proposal status decisions and formula
+Updated RR:11/21: Updated formula field for approval check
+Updated RR: update Not required only when new quote is created. Updating the description
+Updated RR:  Trigger email alert
+BIZ-52845: AB : Added Async path
+BIZ-48336: AB: Added Sales Segment fields to payload.
+BIZ-52845: AB : Removed async path cause of too many Queueable jobs error.
+BIZ-53673: Removed and moved update pricing and proposal status to Before update along with a new condition
+BIZ-61359 Removed Pricing Proposal references
+BIZ-61795 Renewal Deal not created for 1 year Contract when Renewal Opp created
+BIZ-61797 Tax calculating properly but not included in Renewal Letter document
+BIZ-64321 Cancellation Quotes (Deal Type = Other) for Contract Consolidation Should Not Require OSA or Approvals
+BIZ-65065 Auto-populate fields on auto-renewal Salesforce Quotes - Contract Master Terms, OP4I Sales Segment
+BIZ-65558 - Set Opportunity - Renewal Quote Type field to Primary Quote&apos;s Renewal Quote Type value
+BIZ-66291 - Revenue Forecast Fields
+BIZ-66415 - Added the Bypass Logic 
+BIZ-67601 - Assignment Checks
+BIZ-68938 - Adjusting Renewal Payments Letter for Deloitte
+BIZ-68938 - Special Account Subsidiary Assignment
+BIZ-71806 - Only sync approved OSA bundles to OP4i
+BIZ-74249 - Update Opp Subsidiary to match Quote Subsidiary value.
+BIZ-73705 - Added checks to restrict RL creation for contract filters
+BIZ-73018 - Updated recepient Email address For Approved email
+BIZ-80912 - Removed OP4i Deal Owner references with OwnerId</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>AccountIdQuote</name>
+        <dataType>String</dataType>
+        <expression>IF({!$Record.SBQQ__Account__c} != null, {!$Record.SBQQ__Account__r.IntApp_Account_Number__c}, &apos;&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>approvalEmailTemplateSubject</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK({!$Record.SBQQ__Opportunity2__c}), &quot;Your Quote has been Approved&quot;, &quot;Your Quote has been Approved -&quot; + {!$Record.SBQQ__Opportunity2__r.Name})</expression>
+    </formulas>
+    <formulas>
+        <description>To populated the value of billing frequency when Billing frequency approval level is highest</description>
+        <name>Approverbillingfrequency</name>
+        <dataType>String</dataType>
+        <expression>IF(({!$Record.Highest_Approver_level__c} = {!$Record.Billing_Frequency_approval_level__c}),&quot;Software Billing frequency (1st year)&quot;,&quot;&quot;)</expression>
+    </formulas>
+    <formulas>
+        <description>To populated the value of Additional free month when Additional free month approval level is highest</description>
+        <name>Approverfreemonth</name>
+        <dataType>String</dataType>
+        <expression>IF(({!$Record.Highest_Approver_level__c} = {!$Record.Free_month_approver_Level__c}),&quot;Additional Free months at no cost , &quot;,&quot;&quot;)</expression>
+    </formulas>
+    <formulas>
+        <description>when minimum year is max level</description>
+        <name>Approverminimumyear</name>
+        <dataType>String</dataType>
+        <expression>IF(({!$Record.Highest_Approver_level__c} = {!$Record.Minimum_year_approver_level__c}),&quot;Min year on year committed spend , &quot;,&quot;&quot;)</expression>
+    </formulas>
+    <formulas>
+        <description>when payments term value has highest approver</description>
+        <name>ApproverPaymentterm</name>
+        <dataType>String</dataType>
+        <expression>IF(({!$Record.Highest_Approver_level__c} = {!$Record.Payment_Term_Approver_Level__c}),&quot;Payment Terms , &quot;,&quot;&quot;)</expression>
+    </formulas>
+    <formulas>
+        <description>Calculate highest service approval level</description>
+        <name>Calculatehighestservicelevel</name>
+        <dataType>Number</dataType>
+        <expression>MAX({!Service_ImplementationDiscountLevel},{!serviceonlyformulalevel})</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>Criteria_Rule_090Exxx</name>
+        <dataType>Boolean</dataType>
+        <expression>AND( NOT(ISBLANK({!$Record.SBQQ__Account__c})), {!$Record.SBQQ__Account__r.Pre_9_4_1_Liability_Annex_Executed__c}=False, {!$Record.Annex_email_sent__c} = FALSE, ISBLANK({!$Record.SBQQ__Account__r.Liability_Annex_Contract_Number__c}), NOT( OR( ISPICKVAL({!$Record.SBQQ__Account__r.Liability_Annex_Status__c},&quot;Received&quot;), ISPICKVAL({!$Record.SBQQ__Account__r.Liability_Annex_Status__c},&quot;Drafted&quot;),  ISPICKVAL({!$Record.SBQQ__Account__r.Liability_Annex_Status__c},&quot;N/A&quot;), ISPICKVAL({!$Record.SBQQ__Account__r.Liability_Annex_Status__c},&quot;Requested&quot;) )), {!$Record.Request_OSA__c}=True,  OR( ISPICKVAL({!$Record.SBQQ__Account__r.Contract_Term_Version__c},&quot;8.5&quot;),  ISPICKVAL({!$Record.SBQQ__Account__r.Contract_Term_Version__c},&quot;8.8&quot;),  ISPICKVAL({!$Record.SBQQ__Account__r.Contract_Term_Version__c},&quot;8.9&quot;),  ISPICKVAL({!$Record.SBQQ__Account__r.Contract_Term_Version__c},&quot;9.0&quot;), ISPICKVAL({!$Record.SBQQ__Account__r.Contract_Term_Version__c},&quot;9.1&quot;), ISPICKVAL({!$Record.SBQQ__Account__r.Contract_Term_Version__c},&quot;9.2&quot;), ISPICKVAL({!$Record.SBQQ__Account__r.Contract_Term_Version__c},&quot;9.3&quot;), ISPICKVAL({!$Record.SBQQ__Account__r.Contract_Term_Version__c},&quot;9.4&quot;)  ) )</expression>
+    </formulas>
+    <formulas>
+        <name>formula_10_myRule_65_A3_8755989835</name>
+        <dataType>String</dataType>
+        <expression>{!$User.Id}</expression>
+    </formulas>
+    <formulas>
+        <name>formula_1_myRule_25_A1_8144032200</name>
+        <dataType>Date</dataType>
+        <expression>ADDMONTHS({!$Record.SBQQ__StartDate__c},{!$Record.SBQQ__SubscriptionTerm__c}) -1</expression>
+    </formulas>
+    <formulas>
+        <name>formula_2_myRule_28_A1_5917703120</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK({!$Record.SBQQ__PriceBook__c}), &quot;&quot;, {!$Record.SBQQ__PriceBook__r.Name })</expression>
+    </formulas>
+    <formulas>
+        <name>formula_3_myRule_50_A4_0835692455</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <name>formula_4_myRule_50_A3_9583828099</name>
+        <dataType>String</dataType>
+        <expression>{!$User.Id}</expression>
+    </formulas>
+    <formulas>
+        <name>formula_5_myRule_55_A4_7587183781</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <name>formula_6_myRule_55_A3_3120327323</name>
+        <dataType>String</dataType>
+        <expression>{!$User.Id}</expression>
+    </formulas>
+    <formulas>
+        <name>formula_7_myRule_60_A4_9395249152</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <name>formula_8_myRule_60_A3_4908378614</name>
+        <dataType>String</dataType>
+        <expression>{!$User.Id}</expression>
+    </formulas>
+    <formulas>
+        <name>formula_9_myRule_65_A4_6194193996</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_1</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT(ISBLANK({!$Record.SBQQ__MasterContract__r.Contract__c })),
+{!$Record.SBQQ__Primary__c=true},
+
+
+OR ( ISNEW(),
+ISCHANGED ({!$Record.Retainer_percentage_editable__c }) )
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_11</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+{!$Record.SBQQ__Primary__c =True},
+
+NOT(ISBLANK({!$Record.SBQQ__MasterContract__r.Contract__c })),
+
+OR ( ISNEW(),
+ISCHANGED ({!$Record.Non_Standard_Cloud_Location_this_deal__c }) )
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_13</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+{!$Record.SBQQ__Primary__c =True},
+NOT(ISBLANK({!$Record.SBQQ__MasterContract__r.Contract__c })),
+
+OR ( ISNEW(),
+ISCHANGED ({!$Record.ROR_Expiration_Date__c }) )
+
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_15</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+{!$Record.SBQQ__Primary__c =True},
+NOT(ISBLANK({!$Record.SBQQ__MasterContract__r.Contract__c })),
+
+OR ( ISNEW(),
+ISCHANGED ({!$Record.ROR__c }) )
+
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_17</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(ISNEW(),
+{!$Record.SBQQ__Opportunity2__r.Bill_to_Account__r.Name =&apos;ROOX&apos;})</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_25</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+{!$Record.SBQQ__Primary__c = TRUE},
+NOT(ISBLANK({!$Record.SBQQ__MasterContract__c})),
+OR(
+AND(
+NOT(ISBLANK({!$Record.SBQQ__MasterContract__c})),
+ISCHANGED({!$Record.SBQQ__SubscriptionTerm__c })
+),
+ISCHANGED({!$Record.SBQQ__MasterContract__c}),
+ISCHANGED({!$Record.SBQQ__StartDate__c })
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_28</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+ISNEW(),
+ISCHANGED({!$Record.SBQQ__PricebookId__c })
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_3</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT(ISBLANK({!$Record.SBQQ__MasterContract__r.Contract__c })),
+{!$Record.SBQQ__Primary__c=true},
+
+OR ( ISNEW(),
+ISCHANGED ({!$Record.Services_Terms__c }) )
+
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_31</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ NOT(ISBLANK({!$Record.SBQQ__MasterContract__c })),
+({!$Record.SBQQ__SubscriptionTerm__c} - {!$Record.First_Segment_Months__c }) &gt;=1,
+({!$Record.SBQQ__SubscriptionTerm__c} - {!$Record.First_Segment_Months__c })&lt;=12,
+{!$Record.Primary_Quote__c = 1},
+ISBLANK({!$Record.ROR_Expiration_Date__c })
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_33</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+({!$Record.SBQQ__SubscriptionTerm__c} -{!$Record.First_Segment_Months__c }) &gt;=13,
+({!$Record.SBQQ__SubscriptionTerm__c} -{!$Record.First_Segment_Months__c })&lt;=24,
+NOT(ISBLANK({!$Record.SBQQ__MasterContract__c})),
+
+{!$Record.Primary_Quote__c = 1},
+
+ISBLANK({!$Record.ROR_Expiration_Date__c })
+
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_35</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+({!$Record.SBQQ__SubscriptionTerm__c} -{!$Record.First_Segment_Months__c }) &gt;=25,
+({!$Record.SBQQ__SubscriptionTerm__c} -{!$Record.First_Segment_Months__c })&lt;=36,
+NOT(ISBLANK({!$Record.SBQQ__MasterContract__c })),
+
+{!$Record.Primary_Quote__c = 1},
+
+ISBLANK({!$Record.ROR_Expiration_Date__c })
+
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_37</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+({!$Record.SBQQ__SubscriptionTerm__c} -{!$Record.First_Segment_Months__c }) &gt;=37,
+({!$Record.SBQQ__SubscriptionTerm__c} -{!$Record.First_Segment_Months__c })&lt;=48,
+NOT(ISBLANK({!$Record.SBQQ__MasterContract__c })),
+
+{!$Record.Primary_Quote__c = 1},
+
+ISBLANK({!$Record.ROR_Expiration_Date__c })
+
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_39</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+({!$Record.SBQQ__SubscriptionTerm__c} -{!$Record.First_Segment_Months__c }) &gt;=49,
+
+NOT(ISBLANK({!$Record.SBQQ__MasterContract__c })),
+
+{!$Record.Primary_Quote__c = 1},
+
+ISBLANK({!$Record.ROR_Expiration_Date__c })
+
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_41</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(ISCHANGED({!$Record.SBQQ__Opportunity2__c }),
+NOT(ISNEW()),
+NOT( ISBLANK({!$Record.SBQQ__Opportunity2__c.Associated_Contract_OSA__c}))
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_5</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT(ISBLANK({!$Record.SBQQ__MasterContract__r.Contract__c })),
+{!$Record.SBQQ__Primary__c=true},
+
+OR ( ISNEW(),
+ISCHANGED ({!$Record.Software_Payment_Terms__c }) )
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_7</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT(ISBLANK({!$Record.SBQQ__MasterContract__r.Contract__c })),
+
+{!$Record.SBQQ__Primary__c=true},
+OR ( ISNEW(),
+ISCHANGED ({!$Record.SFA_Cap_after_Initial_Term__c }) )
+
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_70</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+AND(
+ISNEW(),
+NOT(ISBLANK({!$Record.SBQQ__PrimaryContact__c }))
+),
+AND(
+NOT(ISBLANK({!$Record.SBQQ__PrimaryContact__c  })),
+ISCHANGED({!$Record.SBQQ__PrimaryContact__c })
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_72</name>
+        <dataType>Boolean</dataType>
+        <expression>OR (
+AND(
+NOT(ISBLANK({!$Record.Software_Delivery_Contact__c}) ),
+ISNEW())
+
+,
+
+AND(
+NOT(ISBLANK({!$Record.Software_Delivery_Contact__c}) ),
+ISCHANGED({!$Record.Software_Delivery_Contact__c})))</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_74</name>
+        <dataType>Boolean</dataType>
+        <expression>AND (
+ISCHANGED({!$Record.SBQQ__MasterContract__c}),
+NOT(ISNEW()),
+NOT(ISBLANK({!$Record.SBQQ__MasterContract__r.Contract__c })
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_9</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT(ISBLANK({!$Record.SBQQ__MasterContract__r.Contract__c })),
+{!$Record.SBQQ__Primary__c=true},
+
+OR ( ISNEW(),
+ISCHANGED ({!$Record.SBQQ__BillingFrequency__c }) )
+
+)</expression>
+    </formulas>
+    <formulas>
+        <name>Highestapprovallevel</name>
+        <dataType>Number</dataType>
+        <expression>MAX({!$Record.InitialTermapproverLevel__c},{!$Record.Free_month_approver_Level__c},{!$Record.Payment_Term_Approver_Level__c},{!$Record.Billing_Frequency_approval_level__c},{!$Record.Minimum_year_approver_level__c},{!$Record.SFA_Level__c},{!$Record.Minimum_year_approver_level__c},{!$Record.Implementationdiscountlevel__c})</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <description>when initial term discount value has highest approval level</description>
+        <name>HighestapprovernameInitialtermdiscount</name>
+        <dataType>String</dataType>
+        <expression>IF(({!$Record.Highest_Approver_level__c} = {!$Record.InitialTermapproverLevel__c}), &quot;Initial Term Discount ,&quot;,&quot;&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>Implementationapprovername</name>
+        <dataType>String</dataType>
+        <expression>IF(({!$Record.Highest_Approver_level__c} = {!$Record.Implementationdiscountlevel__c}),&quot;Implementation Services Discount, &quot;,&quot;&quot;)</expression>
+    </formulas>
+    <formulas>
+        <description>To check is the quote new.</description>
+        <name>Isnew</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
+    </formulas>
+    <formulas>
+        <name>IsOppUpdated</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(ISCHANGED({!$Record.SBQQ__Opportunity2__r.Net_Amount__c}) ,
+ISCHANGED({!$Record.SBQQ__Opportunity2__r.Client_Contact__c}))</expression>
+    </formulas>
+    <formulas>
+        <name>PaymentLabel</name>
+        <dataType>String</dataType>
+        <expression>TEXT({!$Record.Subsidiary__c}) &amp; &quot; &quot; &amp; TEXT({!$Record.CurrencyIsoCode})</expression>
+    </formulas>
+    <formulas>
+        <description>Formula field to update the status value</description>
+        <name>Pricingproposalfieldupdateformula</name>
+        <dataType>String</dataType>
+        <expression>IF(ISPICKVAL({!$Record.ApprovalStatus__c},&quot;Pending&quot;),&quot;In Progress&quot; ,IF(ISPICKVAL({!$Record.ApprovalStatus__c},&quot;Approved&quot;),&quot;Approved&quot;,
+IF(ISPICKVAL({!$Record.ApprovalStatus__c},&quot;Rejected&quot;),&quot;Rejected&quot;,
+IF(ISPICKVAL({!$Record.ApprovalStatus__c},&quot;Recalled&quot;),&quot;Recalled&quot;,
+IF(ISPICKVAL({!$Record.ApprovalStatus__c},&quot;Pending Submission&quot;),&quot;Pending Submission&quot;,&quot;Pending Submission&quot;)))))</expression>
+    </formulas>
+    <formulas>
+        <name>QuoteeId</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!$Record.Id}, 15)</expression>
+    </formulas>
+    <formulas>
+        <name>Quoteurl</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!$Api.Enterprise_Server_URL_510}, FIND( &apos;/services&apos;, {!$Api.Enterprise_Server_URL_510})) &amp; {!$Record.Id}</expression>
+    </formulas>
+    <formulas>
+        <name>receipentemailaddress</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK({!$Record.SubmittedUser__c}), &quot;&quot;, {!$Record.SubmittedUser__r.Email})</expression>
+    </formulas>
+    <formulas>
+        <description>Formula field to calculate the highest level of approver based on the value of Implementation Discount field value
+0 - No Approver
+1 - Sales Segment
+2. - Industry sales Lead
+3 - CRO
+5 -  SVP, Services</description>
+        <name>Service_ImplementationDiscountLevel</name>
+        <dataType>Number</dataType>
+        <expression>IF((({!$Record.Services_Discount_Percentage__c}) = 0) , 0, 
+IF((({!$Record.Services_Discount_Percentage__c}) &lt;10) , 1,IF((({!$Record.Services_Discount_Percentage__c}) &gt;=10) &amp;&amp; (({!$Record.Services_Discount_Percentage__c})&lt;20) , 3,IF((({!$Record.Services_Discount_Percentage__c}) &gt;=20),7,0))))</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <description>formula to calculate service only level on the basis of Discount percentage value</description>
+        <name>serviceonlyformulalevel</name>
+        <dataType>Number</dataType>
+        <expression>IF((({!$Record.Services_Discount_Percentage__c}) = 0) , 0, 
+IF(({!$Record.Services_Discount_Percentage__c}) &lt; 20, 6,IF((({!$Record.Services_Discount_Percentage__c}) &gt;=20) ,7,0)))</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>SubsidiaryNumber</name>
+        <dataType>Number</dataType>
+        <expression>VALUE(LEFT(TEXT({!$Record.Subsidiary__c}), FIND(&quot;:&quot;, TEXT({!$Record.Subsidiary__c})) - 1))</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>TodayPlus90</name>
+        <dataType>Number</dataType>
+        <expression>{!$Record.SBQQ__StartDate__c} - TODAY()</expression>
+        <scale>2</scale>
+    </formulas>
+    <interviewLabel>Quote After Insert-Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Quote After Insert-Update</label>
+    <loops>
+        <name>Loop_Through_Contact_Collection</name>
+        <label>Loop Through Contact Collection</label>
+        <locationX>435</locationX>
+        <locationY>4932</locationY>
+        <collectionReference>lstContactsToUpdate</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Current_Contact_Loop_Contains_Duplicate_Contact</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Final_List_Contact_Update</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Loop_Through_Special_Accounts</name>
+        <label>Loop Through Special Accounts</label>
+        <locationX>457</locationX>
+        <locationY>9840</locationY>
+        <collectionReference>Get_Special_Payment_Details</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Verify_If_Deloitte_Account</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Verify_If_Not_Special_Account</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Proforma_Invoice_record</name>
+        <label>Create Proforma Invoice record</label>
+        <locationX>468</locationX>
+        <locationY>2016</locationY>
+        <connector>
+            <targetReference>Is_Renewal_Primary_Quote</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>CurrencyIsoCode</field>
+            <value>
+                <elementReference>$Record.CurrencyIsoCode</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Renewal_Quote__c</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Renewal_Start_Date__c</field>
+            <value>
+                <elementReference>$Record.SBQQ__StartDate__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Initiated</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Proforma_Invoice__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordLookups>
+        <name>Consolidated_Quote_s_Contract</name>
+        <label>Consolidated Quote&apos;s Contract</label>
+        <locationX>754</locationX>
+        <locationY>12984</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Consolidated_Contract_Check</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Consolidated_Quote__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Contract</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Copy_1_of_Get_Original_Quote_For_Amendment</name>
+        <label>Get Original Quote For Renewal</label>
+        <locationX>644</locationX>
+        <locationY>11892</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Copy_1_of_Assign_Original_Quote</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Opportunity2__r.SBQQ__RenewedContract__r.SBQQ__Quote__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SBQQ__Quote__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>fetch_Quote_Documents_associated_with_the_Quote</name>
+        <label>fetch Quote Documents associated with the Quote</label>
+        <locationX>600</locationX>
+        <locationY>1092</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Has_Related_Quote_Documents</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>SBQQ__Quote__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SBQQ__QuoteDocument__c</object>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>To get the approver matrix record on the basis of sales segment field on quote</description>
+        <name>Get_Approver_Matrix</name>
+        <label>Get Approver  Matrix</label>
+        <locationX>622</locationX>
+        <locationY>8808</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_approver_records_to_quote</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Sales_Segment__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.OP4I_Sales_Segment__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Quote</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Approvers_Matrix__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Original_Quote_For_Amendment</name>
+        <label>Get Original Quote For Amendment</label>
+        <locationX>50</locationX>
+        <locationY>11592</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Original_Quote</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Opportunity2__r.SBQQ__AmendedContract__r.SBQQ__Quote__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SBQQ__Quote__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Payment_Details</name>
+        <label>Get Payment Details</label>
+        <locationX>589</locationX>
+        <locationY>9516</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Special_Payment_Details</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Label</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>PaymentLabel</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Invoice_Template__mdt</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Renewal_letter</name>
+        <label>Get Renewal letter</label>
+        <locationX>600</locationX>
+        <locationY>1800</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>If_Renewal_letter_is_not_present</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Renewal_Quote__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Proforma_Invoice__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Special_Payment_Details</name>
+        <label>Get Special Payment Details</label>
+        <locationX>589</locationX>
+        <locationY>9624</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Special_Payment_Records_Is_Not_Null</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Special_Accounts__c</field>
+            <operator>NotEqualTo</operator>
+        </filters>
+        <filters>
+            <field>Currency__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.CurrencyIsoCode</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Invoice_Template__mdt</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Billing_Contacts</name>
+        <label>Update Billing Contacts</label>
+        <locationX>303</locationX>
+        <locationY>5532</locationY>
+        <connector>
+            <targetReference>Quotes_status_is_Approved</targetReference>
+        </connector>
+        <inputReference>finalListOfContactsToUpdate</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Contracts</name>
+        <label>Update Contracts</label>
+        <locationX>622</locationX>
+        <locationY>8316</locationY>
+        <connector>
+            <targetReference>AccountNotNull</targetReference>
+        </connector>
+        <inputReference>UpdateAssociatedContr</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Opportunity</name>
+        <label>Update Opportunity</label>
+        <locationX>1788</locationX>
+        <locationY>2184</locationY>
+        <inputReference>UpdateOpporunityAsyncPath</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Quote_Approval_Status</name>
+        <label>Update Quote Approval Status</label>
+        <locationX>1634</locationX>
+        <locationY>1200</locationY>
+        <connector>
+            <targetReference>myRule_43</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>ApprovalStatus__c</field>
+            <value>
+                <stringValue>Approved</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Quote_Document</name>
+        <label>Update Quote Document</label>
+        <locationX>468</locationX>
+        <locationY>1416</locationY>
+        <connector>
+            <targetReference>Check_quote_if_quote_is_Auto_renewal</targetReference>
+        </connector>
+        <inputReference>fetch_Quote_Documents_associated_with_the_Quote</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>UpdateOpp</name>
+        <label>UpdateOpp</label>
+        <locationX>622</locationX>
+        <locationY>13800</locationY>
+        <inputReference>UpdateOpportunity</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>UpdateQuote</name>
+        <label>UpdateQuote</label>
+        <locationX>622</locationX>
+        <locationY>13500</locationY>
+        <connector>
+            <targetReference>Opp_Rec_Is_Not_Null</targetReference>
+        </connector>
+        <inputReference>UpdateQuoteRecord</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>1211</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>AssignQuoteID</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Version__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>AVA_SFCPQ__AvaTaxMessage__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Automated Tax Calculation Triggered, Please Refresh Your Browser</stringValue>
+            </value>
+        </filters>
+        <object>SBQQ__Quote__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <scheduledPaths>
+            <name>Update_Related_Opportunity</name>
+            <connector>
+                <targetReference>RecordOppLookupIsNotNull_0_0</targetReference>
+            </connector>
+            <label>Update Related Opportunity</label>
+            <offsetNumber>2</offsetNumber>
+            <offsetUnit>Minutes</offsetUnit>
+            <recordField>LastModifiedDate</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>Approvaltemplatepricing</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Hello {!$Record.SubmittedUser__r.FirstName},
+Pricing Proposal for OSA {!$Record.OSA_Number__c} has been Approved.
+Please access the record to view the details.
+Note: Please do not reply to this email as it is not monitored, and your message will not be received.</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ApproveTemplateOSA</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Hello {!$Record.SubmittedUser__r.FirstName},
+The OSA for {!$Record.SBQQ__Opportunity2__r.Name} has been Approved.
+Please access {!$Label.recordurl}/lightning/r/SBQQ__Quote__c/{!$Record.Id}/view to view the details.
+
+Note: Please do not reply to this email as it is not monitored, and your message will not be received.</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Highestapproverfieldname</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>{!HighestapprovernameInitialtermdiscount}  
+{!Approverfreemonth}  
+{!ApproverPaymentterm} 
+{!Approverbillingfrequency} 
+{!Approverminimumyear}
+{!Implementationapprovername}</text>
+    </textTemplates>
+    <triggerOrder>50</triggerOrder>
+    <variables>
+        <name>AssignTriggeringRecordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>FetchQuoteRenewalQuoteType</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>finalListOfContactsToUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <name>isSpecialAccount</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>lastItem</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <name>lstContactsToUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <description>This collection stores list of opportunities to be updated.</description>
+        <name>lstUpdateOpportunity</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <name>oAdditionalContact</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <name>oInvoicingContact</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <name>OriginalQuote</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>SBQQ__Quote__c</objectType>
+    </variables>
+    <variables>
+        <name>oServiceInvoicingContact</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <name>QuoteLineList</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>SBQQ__QuoteLine__c</objectType>
+    </variables>
+    <variables>
+        <name>QuoteLineUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>SBQQ__QuoteLine__c</objectType>
+    </variables>
+    <variables>
+        <name>QuoteLineUpdateList</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>SBQQ__QuoteLine__c</objectType>
+    </variables>
+    <variables>
+        <name>QuoteLineUpdateRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>SBQQ__QuoteLine__c</objectType>
+    </variables>
+    <variables>
+        <description>List of recepients</description>
+        <name>receipientEmailAdressList</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>UpdAccount</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>UpdateAssociatedContr</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Contract</objectType>
+    </variables>
+    <variables>
+        <name>UpdateBillingAccount</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Account</objectType>
+    </variables>
+    <variables>
+        <name>UpdateOpportunity</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <description>This variable stores the Opportunity to be updated outside the quote update context.</description>
+        <name>updateOpportunityAsync</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <name>UpdateOpporunityAsyncPath</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <name>UpdateQuoteRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>SBQQ__Quote__c</objectType>
+    </variables>
+    <variables>
+        <name>UpdContract</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>UpdOpp</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>UpdQuote</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

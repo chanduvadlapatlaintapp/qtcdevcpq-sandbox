@@ -1,0 +1,1070 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Detached_Contact</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <ccEmails>csmops@intapp.com</ccEmails>
+        <description>Detached Contact with PCC</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <field>CSM_Account_Manager_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <recipient>alex.larralde@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>InternalNotification/Detached_Contact_with_PCC_new</template>
+    </alerts>
+    <alerts>
+        <fullName>Detached_Contact_have_open_oppty</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Detached Contact have Open Opportunity</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Owner_of_Open_opp_ty__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <recipient>jose.fernandez@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>InternalNotification/Detached_Contact_has_open_oppty</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_when_Reference_Tracking_Status_Active</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Email when Reference Tracking Status = &apos;Active&apos;</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <field>CSM_Account_Manager_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <recipient>alex.larralde@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Customer_Care/Reference_Program_Active_Contact</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_when_Reference_Tracking_Status_Removed</fullName>
+        <ccEmails>csmops@intapp.com</ccEmails>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Email when Reference Tracking Status = &apos;Removed&apos;</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Customer_Care/Reference_Program_Removed</template>
+    </alerts>
+    <alerts>
+        <fullName>PSA_Resource_Created</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>PSA Resource Created</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>bret.mcmillan@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>kim.bespaly@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Finance/PSA_Resource_Created</template>
+    </alerts>
+    <alerts>
+        <fullName>Request_Contact_Deactivation_c</fullName>
+        <ccEmails>contact_updates@intapp.com</ccEmails>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Request Contact Deactivation</description>
+        <protected>false</protected>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>All/Contact_Deactivation_Required</template>
+    </alerts>
+    <alerts>
+        <fullName>SALESFORCESendanIntroMarketingPacket</fullName>
+        <ccEmails>danb@intapp.com, vera@intapp.com</ccEmails>
+        <description>SALESFORCE: Send an Intro Marketing Packet</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>InternalNotification/SendIntroPacket</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>CASL_compliance</fullName>
+        <field>CASL_compliance__c</field>
+        <literalValue>1</literalValue>
+        <name>CASL compliance</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCPA_Compliance</fullName>
+        <field>CCPA_compliance__c</field>
+        <literalValue>1</literalValue>
+        <name>CCPA Compliance</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Deprovision_portal_account</fullName>
+        <field>PortalAccount__c</field>
+        <literalValue>DeprovisioningAccount</literalValue>
+        <name>Deprovision portal account</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>FL</fullName>
+        <field>Email</field>
+        <formula>LEFT(FirstName, 1)&amp;LEFT(LastName, 1)&amp;Account.Generic_Email_Ending__c</formula>
+        <name>FL</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>F_Last</fullName>
+        <field>Email</field>
+        <formula>LEFT(FirstName, 1)&amp;&quot;.&quot;&amp;SUBSTITUTE(LastName, &quot; &quot;, &quot;&quot;)&amp;Account.Generic_Email_Ending__c</formula>
+        <name>F..Last</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>F_Last2</fullName>
+        <field>Email</field>
+        <formula>LEFT(FirstName, 1)&amp;SUBSTITUTE(LastName, &quot; &quot;, &quot;&quot;)&amp;Account.Generic_Email_Ending__c</formula>
+        <name>F.Last</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>First</fullName>
+        <field>Email</field>
+        <formula>FirstName&amp;Account.Generic_Email_Ending__c</formula>
+        <name>First</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>FirstL</fullName>
+        <field>Email</field>
+        <formula>FirstName&amp;LEFT(LastName, 1)&amp;Account.Generic_Email_Ending__c</formula>
+        <name>FirstL</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>FirstLast</fullName>
+        <field>Email</field>
+        <formula>FirstName&amp;SUBSTITUTE(LastName, &quot; &quot;, &quot;&quot;)&amp;Account.Generic_Email_Ending__c</formula>
+        <name>FirstLast</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>First_Last</fullName>
+        <field>Email</field>
+        <formula>FirstName&amp;&quot;.&quot;&amp;SUBSTITUTE(LastName, &quot; &quot;, &quot;&quot;)&amp;Account.Generic_Email_Ending__c</formula>
+        <name>First.Last</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>First_Last2</fullName>
+        <field>Email</field>
+        <formula>FirstName&amp;&quot;_&quot;&amp;SUBSTITUTE(LastName, &quot; &quot;, &quot;&quot;)&amp;Account.Generic_Email_Ending__c</formula>
+        <name>First_Last</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>First_Last3</fullName>
+        <field>Email</field>
+        <formula>FirstName&amp;&quot;-&quot;&amp;SUBSTITUTE(LastName, &quot; &quot;, &quot;&quot;)&amp;Account.Generic_Email_Ending__c</formula>
+        <name>First-Last</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>GDPR_Compliance</fullName>
+        <field>GDPR_Compliance__c</field>
+        <literalValue>1</literalValue>
+        <name>GDPR Compliance</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Last</fullName>
+        <field>Email</field>
+        <formula>SUBSTITUTE(LastName, &quot; &quot;, &quot;&quot;)&amp;Account.Generic_Email_Ending__c</formula>
+        <name>Last</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>LastF</fullName>
+        <field>Email</field>
+        <formula>SUBSTITUTE(LastName, &quot; &quot;, &quot;&quot;)&amp;LEFT(FirstName, 1)&amp;Account.Generic_Email_Ending__c</formula>
+        <name>LastF</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Last_First</fullName>
+        <field>Email</field>
+        <formula>SUBSTITUTE(LastName, &quot; &quot;, &quot;&quot;)&amp;&quot;.&quot;&amp;FirstName&amp;Account.Generic_Email_Ending__c</formula>
+        <name>Last.First</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Make_Consistent_Mailing_Country_AUS</fullName>
+        <description>Rule to auto-correct any variations of AUS, AU to &quot;Australia&quot;</description>
+        <field>MailingCountry</field>
+        <formula>&quot;Australia&quot;</formula>
+        <name>Make Consistent Mailing Country AUS</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Make_Consistent_Mailing_Country_NZ</fullName>
+        <description>Rule to auto-correct &quot;NZ&quot; to &quot;New Zealand&quot; in Mailing Country field</description>
+        <field>MailingCountry</field>
+        <formula>&quot;New Zealand&quot;</formula>
+        <name>Make Consistent Mailing Country NZ</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Make_Consistent_Mailing_Country_UK</fullName>
+        <description>Rule to auto-correct any variations of UK, or Scotland/England to &quot;UK&quot;</description>
+        <field>MailingCountry</field>
+        <formula>&quot;UK&quot;</formula>
+        <name>Make Consistent Mailing Country UK</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Make_Consistent_Mailing_Country_USA</fullName>
+        <description>Rule to auto-correct any variations of USA, United States, US, etc to &quot;USA&quot;</description>
+        <field>MailingCountry</field>
+        <formula>&quot;USA&quot;</formula>
+        <name>Make Consistent Mailing Country USA</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Contact_Last_Confirmed_Opt_Out</fullName>
+        <field>Last_Confirmed_Opt_Out__c</field>
+        <formula>Today()</formula>
+        <name>Populate Contact Last Confirmed Opt Out</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Contact_Original_Opt_Out_Date</fullName>
+        <field>Original_Opt_Out__c</field>
+        <formula>Today()</formula>
+        <name>Populate Contact Original Opt Out Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Uncheck_Information_validated</fullName>
+        <field>Information_validated__c</field>
+        <literalValue>0</literalValue>
+        <name>Uncheck &apos;Information validated&apos;</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Unset_Apex_Context</fullName>
+        <field>Apex_Context__c</field>
+        <literalValue>0</literalValue>
+        <name>Unset Apex Context</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Community_Action</fullName>
+        <description>Update the Community Action field in the Contact to &quot;PleaseCreate&quot; when an account contact role like &quot;%CC&quot; is created</description>
+        <field>Community_Action__c</field>
+        <literalValue>PleaseCreate</literalValue>
+        <name>Update Community Action</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Contact_info_last_updated_by</fullName>
+        <field>Contact_info_last_updated_by__c</field>
+        <formula>$User.FirstName + &apos; &apos;+ $User.LastName</formula>
+        <name>Update &apos;Contact info last updated by&apos;</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Date_Time_contact_info_verified</fullName>
+        <field>Date_Time_contact_info_was_verified__c</field>
+        <formula>NOW()</formula>
+        <name>Update Date &amp; Time contact info verified</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Experience_Cert_Expiration</fullName>
+        <field>Experience_Certification_Expiration__c</field>
+        <formula>TODAY()+365</formula>
+        <name>Update Experience Cert Expiration</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Integrate_Cert_Expiration</fullName>
+        <field>Integrate_Certification_Expiration__c</field>
+        <formula>TODAY()+365</formula>
+        <name>Update Integrate Cert Expiration</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Open_Cert_Expiration</fullName>
+        <field>Open_Certification_Expiration__c</field>
+        <formula>TODAY()+365</formula>
+        <name>Update Open Cert Expiration</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Open_Cloud_Cert_Expiration</fullName>
+        <field>Open_Cloud_Certification_Expiration__c</field>
+        <formula>TODAY()+365</formula>
+        <name>Update Open Cloud Cert Expiration</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Time_Cert_Expiration</fullName>
+        <field>Time_Certification_Expiration__c</field>
+        <formula>TODAY()+365</formula>
+        <name>Update Time Cert Expiration</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Time_Cloud_Cert_Expiration</fullName>
+        <field>Time_Cloud_Certification_Expiration__c</field>
+        <formula>TODAY()+365</formula>
+        <name>Update Time Cloud Cert Expiration</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Walls_Cert_Expiration</fullName>
+        <field>Walls_Certification_Expiration__c</field>
+        <formula>TODAY()+365</formula>
+        <name>Update Walls Cert Expiration</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <outboundMessages>
+        <fullName>SendContactToDTE</fullName>
+        <apiVersion>34.0</apiVersion>
+        <endpointUrl>https://www.intapp.com/SalesForceSync/DTE/Contact/ContactNotificationService.asmx</endpointUrl>
+        <fields>AccountId</fields>
+        <fields>Full_Name__c</fields>
+        <fields>Id</fields>
+        <fields>IntApp_Contact_Number__c</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>alan.westley@intapp.com</integrationUser>
+        <name>SendContactToDTE</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <rules>
+        <fullName>Rule Code%3A CTA-001xFxx</fullName>
+        <actions>
+            <name>Make_Consistent_Mailing_Country_USA</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Contact.MailingCountry</field>
+            <operation>equals</operation>
+            <value>US,United States,U.S.A.,U.S.</value>
+        </criteriaItems>
+        <description>Rule Code: CTA-001xFxx
+Auto-correct Mailing Country USA
+Auto-corrects Mailing Country for consistency for country code USA</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-002xFxx</fullName>
+        <actions>
+            <name>Make_Consistent_Mailing_Country_UK</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Contact.MailingCountry</field>
+            <operation>equals</operation>
+            <value>United Kingdom,U.K.,England,Scotland</value>
+        </criteriaItems>
+        <description>Rule Code: CTA-002xFxx
+Auto-correct Mailing Country UK
+Auto-corrects Mailing Country for consistency for country code UK</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-003xFxx</fullName>
+        <actions>
+            <name>Make_Consistent_Mailing_Country_AUS</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Contact.MailingCountry</field>
+            <operation>equals</operation>
+            <value>AUS,AU</value>
+        </criteriaItems>
+        <description>Rule Code: CTA-003xFxx
+Auto-correct Mailing Country Australia
+Auto-corrects Mailing Country for consistency for country code Australia</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-004xFxx</fullName>
+        <actions>
+            <name>Make_Consistent_Mailing_Country_NZ</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Contact.MailingCountry</field>
+            <operation>equals</operation>
+            <value>NZ</value>
+        </criteriaItems>
+        <description>Rule Code: CTA-004xFxx
+Auto-correct Mailing Country New Zealand
+Auto-corrects Mailing Country for consistency for country code New Zealand</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-006xFxx</fullName>
+        <actions>
+            <name>Unset_Apex_Context</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Contact.Apex_Context__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <description>Rule Code: CTA-006xFxx
+Unset Apex Context (Contact)
+Uncheck the Apex Context checkbox when Apex Context is set to true</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-007Exxx</fullName>
+        <actions>
+            <name>PSA_Resource_Created</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Contact.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>PSA Resource</value>
+        </criteriaItems>
+        <description>Rule Code: CTA-007Exxx
+PSA Resource Created
+Sends an email notification whenever a new PSA Resource is created.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-009xxOx</fullName>
+        <actions>
+            <name>SendContactToDTE</name>
+            <type>OutboundMessage</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-009xxOx
+UpdateContactInDTE
+Sends an outbound message in DTE that updates the Contact</description>
+        <formula>ISNEW() || ISCHANGED(Full_Name__c) || ISCHANGED(AccountId) || ISCHANGED(IntApp_Contact_Number__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-010xFxx</fullName>
+        <actions>
+            <name>F_Last</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-010xFxx
+Populate Contact Email Address - F..Last
+Populates a contact&apos;s email address on certain conditions</description>
+        <formula>AND(    ISBLANK(Email),    ISPICKVAL(Account.Email_Format__c, &quot;F.Last&quot;),    NOT(ISBLANK(Account.Generic_Email_Ending__c)),    ISNEW()  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-011xFxx</fullName>
+        <actions>
+            <name>F_Last2</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-011xFxx
+Populate Contact Email Address - F.Last
+Populates a contact&apos;s email address on certain conditions</description>
+        <formula>AND(    ISBLANK(Email),    ISPICKVAL(Account.Email_Format__c, &quot;FLast&quot;),    NOT(ISBLANK(Account.Generic_Email_Ending__c)),    ISNEW()  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-012xFxx</fullName>
+        <actions>
+            <name>First</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-012xFxx
+Populate Contact Email Address - First
+Populates a contact&apos;s email address when it is blank from it&apos;s respective account</description>
+        <formula>AND(    ISBLANK(Email),    ISPICKVAL(Account.Email_Format__c, &quot;First&quot;),    NOT(ISBLANK(Account.Generic_Email_Ending__c)),    ISNEW()  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-013xFxx</fullName>
+        <actions>
+            <name>First_Last</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-013xFxx
+Populate Contact Email Address - First.Last
+Populates a contact&apos;s email address when it is blank from it&apos;s respective account.</description>
+        <formula>AND(    ISBLANK(Email),    ISPICKVAL(Account.Email_Format__c, &quot;First.Last&quot;),    NOT(ISBLANK(Account.Generic_Email_Ending__c)),    ISNEW()  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-014xFxx</fullName>
+        <actions>
+            <name>First_Last2</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-014xFxx
+Populate Contact Email Address - First_Last
+Populates a contact&apos;s email address when it is blank from it&apos;s respective account.</description>
+        <formula>AND(    ISBLANK(Email),    ISPICKVAL(Account.Email_Format__c, &quot;First_Last&quot;),    NOT(ISBLANK(Account.Generic_Email_Ending__c)),    ISNEW()  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-015xFxx</fullName>
+        <actions>
+            <name>Last</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-015xFxx
+Populate Contact Email Address - Last
+Populates a contact&apos;s email address when it is blank from it&apos;s respective account.</description>
+        <formula>AND(    ISBLANK(Email),    ISPICKVAL(Account.Email_Format__c, &quot;Last&quot;),    NOT(ISBLANK(Account.Generic_Email_Ending__c)),    ISNEW()  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-016xFxx</fullName>
+        <actions>
+            <name>Last_First</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-016xFxx
+Populate Contact Email Address - Last.First
+Populates a contact&apos;s email address when it is blank from it&apos;s respective account.</description>
+        <formula>AND(    ISBLANK(Email),    ISPICKVAL(Account.Email_Format__c, &quot;Last.First&quot;),    NOT(ISBLANK(Account.Generic_Email_Ending__c)),    ISNEW()  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-017EFxx</fullName>
+        <actions>
+            <name>Request_Contact_Deactivation_c</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Deprovision_portal_account</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-017EFxx
+Request Contact Deactivation Notification
+Sends an email notification to the relevant audience so that they can deactivate contacts, when Request Contact Deactivation is checked</description>
+        <formula>AND(   ISCHANGED(Request_Contact_Deactivation__c),   Request_Contact_Deactivation__c=TRUE )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-019Exxx</fullName>
+        <actions>
+            <name>Email_when_Reference_Tracking_Status_Active</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Contact.Reference_Tracking_Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Contact.AccountName</field>
+            <operation>notEqual</operation>
+            <value>Detached Contacts</value>
+        </criteriaItems>
+        <description>Rule Code: CTA-019Exxx
+Reference Tracking Status = Active
+Email CS Team using CRD Group or CSMops@Intapp.com when Reference Tracking Status = &apos;Active&apos;</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-020Exxx</fullName>
+        <actions>
+            <name>Email_when_Reference_Tracking_Status_Removed</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Contact.Reference_Tracking_Status__c</field>
+            <operation>equals</operation>
+            <value>Removed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Contact.AccountName</field>
+            <operation>notEqual</operation>
+            <value>Detached Contacts</value>
+        </criteriaItems>
+        <description>Rule Code: CTA-020Exxx
+Reference Tracking Status = Removed
+Email CS Team using CRD Group or CSMOps@Intapp.com when Reference Tracking Status = &apos;Removed&apos;</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-021xFxx</fullName>
+        <actions>
+            <name>Uncheck_Information_validated</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Contact_info_last_updated_by</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Date_Time_contact_info_verified</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Contact.Information_validated__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <description>Rule Code: CTA-021xFxx
+Update Date and who verified contact info
+Updates &apos;Date &amp; Time contact info was verified&apos; and &apos;Contact info last updated by&apos; when &apos;Information validated&apos; is checked</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-022xFxx</fullName>
+        <actions>
+            <name>Update_Experience_Cert_Expiration</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-022xFxx
+Experience Certification Expiration Date
+Populates a contact&apos;s Experience Certification Expiration Date when Experience Expertise is set to &quot;Certified&quot;</description>
+        <formula>AND(   ISCHANGED(Experience_Expertise__c),    ISPICKVAL(Experience_Expertise__c, &quot;Certified&quot;)  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-023xFxx</fullName>
+        <actions>
+            <name>Update_Integrate_Cert_Expiration</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-023xFxx
+Integrate Certification Expiration Date
+Populates a contact&apos;s Integrate Certification Expiration Date when Integrate Expertise is set to &apos;&apos;Certified&apos;&apos;</description>
+        <formula>AND(   ISCHANGED(Integrate_Expertise__c),    ISPICKVAL(Integrate_Expertise__c, &quot;Certified&quot;)  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-024xFxx</fullName>
+        <actions>
+            <name>Update_Open_Cert_Expiration</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-024xFxx
+Open Certification Expiration Date
+Populates a contact&apos;s Open Certification Expiration Date when Open Expertise is set to &quot;Certified&quot;</description>
+        <formula>AND(   ISCHANGED(Open_Expertise__c),    ISPICKVAL(Open_Expertise__c, &quot;Certified&quot;)  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-025xFxx</fullName>
+        <actions>
+            <name>Update_Open_Cloud_Cert_Expiration</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-025xFxx
+Open Cloud Certification Expiration Date
+Populates a contact&apos;s Open Cloud Certification Expiration Date when Open Cloud Expertise is set to &quot;Certified&quot;</description>
+        <formula>AND(   ISCHANGED(Open_Cloud_Expertise__c),    ISPICKVAL(Open_Cloud_Expertise__c, &quot;Certified&quot;)  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-026xFxx</fullName>
+        <actions>
+            <name>First_Last3</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-026xFxx
+Populate Contact Email Address - First-Last
+Populates a contact&apos;s email address when Email field is blank</description>
+        <formula>AND(       ISBLANK(Email),       ISPICKVAL(Account.Email_Format__c, &quot;First-Last&quot;),       NOT(ISBLANK(Account.Generic_Email_Ending__c)),       ISNEW()  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-027xFxx</fullName>
+        <actions>
+            <name>FirstL</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-027xFxx
+Populate Contact Email Address - FirstL
+Populates a contact&apos;s email address when it is blank.</description>
+        <formula>AND(       ISBLANK(Email),       ISPICKVAL(Account.Email_Format__c, &quot;FirstL&quot;),       NOT(ISBLANK(Account.Generic_Email_Ending__c)),       ISNEW()  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-028xFxx</fullName>
+        <actions>
+            <name>FirstLast</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-028xFxx
+Populate Contact Email Address - FirstLast
+Populates a contact&apos;s email address when it is blank</description>
+        <formula>AND(       ISBLANK(Email),       ISPICKVAL(Account.Email_Format__c, &quot;FirstLast&quot;),       NOT(ISBLANK(Account.Generic_Email_Ending__c)),       ISNEW()  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-029xFxx</fullName>
+        <actions>
+            <name>FL</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-029xFxx
+Populate Contact Email Address - FL
+Populates a contact&apos;s email address when it is blank</description>
+        <formula>AND(       ISBLANK(Email),       ISPICKVAL(Account.Email_Format__c, &quot;FL&quot;),       NOT(ISBLANK(Account.Generic_Email_Ending__c)),       ISNEW()  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-030xFxx</fullName>
+        <actions>
+            <name>LastF</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-030xFxx
+Populate Contact Email Address - LastF
+Populates a contact&apos;s email address when it is blank</description>
+        <formula>AND(       ISBLANK(Email),       ISPICKVAL(Account.Email_Format__c, &quot;LastF&quot;),       NOT(ISBLANK(Account.Generic_Email_Ending__c)),       ISNEW()  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-031xFxx</fullName>
+        <actions>
+            <name>Update_Time_Cert_Expiration</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-031xFxx
+Time Certification Expiration Date
+Populates a contact&apos;s Time Certification Expiration Date when Time Expertise is set to &quot;Certified&quot;</description>
+        <formula>AND(   ISCHANGED(Time_Expertise__c),    ISPICKVAL(Time_Expertise__c, &quot;Certified&quot;)  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-032xFxx</fullName>
+        <actions>
+            <name>Update_Time_Cloud_Cert_Expiration</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-032xFxx
+Time Cloud Certification Expiration Date
+Populates a contact&apos;s Time Cloud Certification Expiration Date when Time Cloud Expertise is set to &apos;&apos;Certified&apos;&apos;</description>
+        <formula>AND(   ISCHANGED(Time_Cloud_Expertise__c),    ISPICKVAL(Time_Cloud_Expertise__c, &quot;Certified&quot;)  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-033xFxx</fullName>
+        <actions>
+            <name>Update_Walls_Cert_Expiration</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-033xFxx
+Walls Certification Expiration Date
+Populates a contact&apos;s Walls Certification Expiration Date when Walls Expertise is set to &quot;&quot;Certified&quot;</description>
+        <formula>AND(   ISCHANGED(Walls_Expertise__c),    ISPICKVAL(Walls_Expertise__c, &quot;Certified&quot;)  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-034xFxx</fullName>
+        <actions>
+            <name>Populate_Contact_Last_Confirmed_Opt_Out</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-034xFxx
+Populate Contact Last Confirmed Opt Out when Confirmed Opt Out is checked.</description>
+        <formula>OR( ISCHANGED(Opt_Out__c), (Confirmed_Opt_Out__c) = true, (HasOptedOutOfEmail) = true )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-037xFxx</fullName>
+        <actions>
+            <name>Populate_Contact_Original_Opt_Out_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-037xFxx
+Populate Contact Original Opt Out Date when Opt Out field is changed and prior value was blank</description>
+        <formula>AND(  ISCHANGED(Opt_Out__c),  PRIORVALUE( Opt_Out__c ) = NULL  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-038Exxx</fullName>
+        <actions>
+            <name>Detached_Contact</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Contact.Detach_Contact_with_PCC_notification__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Contact.PCC_information_area__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Rule Code: CTA-038Exxx
+Detach Contact Notification
+Sends an email notification, when Detached Contact had related PCC</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-038xFxx</fullName>
+        <actions>
+            <name>CCPA_Compliance</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 OR 2 OR 3</booleanFilter>
+        <criteriaItems>
+            <field>Contact.MailingState</field>
+            <operation>contains</operation>
+            <value>CA,California</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Contact.Phone</field>
+            <operation>startsWith</operation>
+            <value>,209,(209),213,(213),279,(279),310,(310),323,(323),341,(341),408,(408),424,(424),442,(442),510,(510),530,(530),559,(559),562,(562),619 (619),626,(626),628,(628),650,(650),657,(657),661,(661),669,(669),707,(707),714,(714),747,(747),760</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Contact.Phone</field>
+            <operation>startsWith</operation>
+            <value>(760),805,(805),818,(818),820,(820),831,(831),858,(858),909,(909),916,(916),925,(925),949,(949),951,(951)</value>
+        </criteriaItems>
+        <description>updates CCPA Compliance</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-039Exxx</fullName>
+        <actions>
+            <name>Detached_Contact_have_open_oppty</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CTA-039Exxx
+Detach Contact Notification
+Sends an email notification to Jose Fernandes, when Detached Contact was Champion or Economic buyer on Open Opportunities</description>
+        <formula>AND( ISCHANGED(Owner_of_Open_opp_ty__c), NOT(ISBLANK(Owner_of_Open_opp_ty__c)) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-039xFxx</fullName>
+        <actions>
+            <name>CASL_compliance</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
+        <criteriaItems>
+            <field>Contact.MailingCountry</field>
+            <operation>contains</operation>
+            <value>CAN,CA,Canada</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Contact.MailingState</field>
+            <operation>contains</operation>
+            <value>BC,British Columbia,New Brunswick,NB,Nova Scotia,NS,Ontario,ON,Quebec,QC,Manitoba,MB,Prince Edward Island,PE,Saskatchewan,SK,Alberta,AB,Newfoundland and Labrador,NL,Newfoundland</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Contact.Phone</field>
+            <operation>startsWith</operation>
+            <value>204,226,236,249,250,289,343,365,367,403,416,418,431,437,438,450,506,514,519,548,579,581,587,604,613,639,647,705,709,778,780,782,807,819,825,867,873,902,905,(204),(226),(236),(249),(250),(289),(306),(343),(365),(367),(403),(416),(418),(431),(437),(438)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Contact.Phone</field>
+            <operation>startsWith</operation>
+            <value>(450),(506),(514),(519),(548),(579),(581),(587),(604),(613),(639),(647),(705),(709),(778),(780),(782),(807),(819),(825),(867),(873),(902),(905)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Contact.MailingState</field>
+            <operation>contains</operation>
+            <value>Newfoundland and Labrador,NL,Newfoundland</value>
+        </criteriaItems>
+        <description>updates CASL compliance</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A CTA-040xFxx</fullName>
+        <actions>
+            <name>GDPR_Compliance</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+        <criteriaItems>
+            <field>Contact.MailingCountry</field>
+            <operation>contains</operation>
+            <value>Austria,Belgium,Bulgaria,Croatia,Cyprus,Czech Republic,Denmark,Estonia,Finland,France,Germany,Greece,Hungary,Iceland,Ireland,Italy,Latvia,Liechtenstein,Lithuania,Luxembourg,Malta,Netherlands,Norway,Poland,Portugal,Romania</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Contact.Phone</field>
+            <operation>startsWith</operation>
+            <value>+43,+32,+359,+385,+357,+420,+45,+372,+358,+33,+350,+49,+30,+36,+354,+353,+39,+371,+423,+370,+352,+356,+31+,47,+48,+351,+40,+421,+386,+34,+46,+44,+355,+376,+374,+994,+375,+387,+298,+995,+983,+389,+373,+377,+382</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Contact.Phone</field>
+            <operation>startsWith</operation>
+            <value>+7,+378,+381,+41,+90,+380</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Contact.MailingCountry</field>
+            <operation>contains</operation>
+            <value>Slovakia,Slovenia,Spain,Sweden,Switzerland,United Kingdom,Cy,cz,dk,fe,gr,de,hu,IE,IM,IT,LT,nl,ng,no,pl,ru,za,es,se,il,CH,ae,GB,UK ·</value>
+        </criteriaItems>
+        <description>updates GDPR Compliance</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

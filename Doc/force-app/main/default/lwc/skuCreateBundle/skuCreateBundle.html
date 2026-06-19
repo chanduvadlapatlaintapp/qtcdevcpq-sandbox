@@ -1,0 +1,261 @@
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+    </template>
+
+    <!-- Success State -->
+    <template if:true={showSuccessState}>
+        <div class="slds-p-around_medium">
+            <div class="success-card">
+                <span class="success-icon">
+                    <lightning-icon icon-name="action:approval" size="large"></lightning-icon>
+                </span>
+                <h2 class="slds-text-heading_medium slds-m-top_small slds-m-bottom_xx-small">Bundle SKU Created Successfully!</h2>
+                <p class="slds-text-body_regular slds-m-bottom_medium success-subtitle">Your bundle SKU is ready. What would you like to do next?</p>
+                <div class="slds-grid slds-grid_align-center slds-wrap">
+                    <lightning-button label="Set Up Meter Types" variant="brand"
+                        icon-name="utility:metrics"
+                        onclick={handleNavigateToMeterTypes}
+                        class="slds-m-right_small slds-m-bottom_small"></lightning-button>
+                    <lightning-button label="Set Up Pricing" variant="brand"
+                        icon-name="utility:moneybag"
+                        onclick={handleNavigateToPricing}
+                        class="slds-m-right_small slds-m-bottom_small"></lightning-button>
+                    <lightning-button label="Create Another Bundle" variant="neutral"
+                        icon-name="utility:add"
+                        onclick={handleReset}
+                        class="slds-m-bottom_small"></lightning-button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Create Form -->
+    <template if:false={showSuccessState}>
+        <div class="slds-p-around_medium">
+            <div class="page-header">
+                <div class="header-icon">
+                    <lightning-icon icon-name="utility:package" size="x-small"></lightning-icon>
+                </div>
+                <div>
+                    <h2 class="header-title">Create Bundle SKU</h2>
+                    <p class="header-subtitle">Configure bundle products and components</p>
+                </div>
+            </div>
+
+            <lightning-accordion allow-multiple-sections-open active-section-name={activeSections}>
+
+                <!-- Product Identity -->
+                <lightning-accordion-section name="productIdentity" label="Product Identity">
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                            <lightning-input label="Product Name" value={product.Name} required
+                                data-field="Name" onchange={handleProductFieldChange}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                            <lightning-input label="Product Code" value={product.ProductCode} required
+                                data-field="ProductCode" onchange={handleProductFieldChange}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-p-bottom_small">
+                            <lightning-textarea label="Description" value={product.Description}
+                                data-field="Description" onchange={handleProductFieldChange}></lightning-textarea>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                            <lightning-input type="checkbox" label="Active" checked={product.IsActive}
+                                data-field="IsActive" onchange={handleProductCheckboxChange}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                            <c-lookup data-id="bundleProductLine" label="Product Line"
+                                placeholder="Search product lines..."
+                                is-multi-entry={isNotMultiEntry}
+                                onsearch={handleProductLineSearch}
+                                onselectionchange={handleProductLineSelected}>
+                            </c-lookup>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                            <lightning-combobox label="Product Group" value={product.Product_Group__c}
+                                options={productGroupOptions} data-field="Product_Group__c"
+                                onchange={handleProductFieldChange}></lightning-combobox>
+                        </div>
+                    </div>
+                </lightning-accordion-section>
+
+                <!-- Product Classification -->
+                <lightning-accordion-section name="productClassification" label="Product Classification">
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                            <lightning-combobox label="Product Type" value={product.Product_Type__c}
+                                options={productTypeOptions} data-field="Product_Type__c"
+                                onchange={handleProductFieldChange}></lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                            <lightning-combobox label="Software License Term" value={product.Product_License_Type__c}
+                                options={productLicenseTypeOptions} data-field="Product_License_Type__c"
+                                onchange={handleProductFieldChange}></lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                            <lightning-combobox label="Pricing Basis" value={product.Pricing_Basis__c}
+                                options={pricingBasisOptions} data-field="Pricing_Basis__c"
+                                onchange={handleProductFieldChange}></lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                            <lightning-combobox label="Services Product Type" value={product.Services_Product_Type__c}
+                                options={servicesProductTypeOptions} data-field="Services_Product_Type__c"
+                                onchange={handleProductFieldChange}></lightning-combobox>
+                        </div>
+                    </div>
+                </lightning-accordion-section>
+
+                <!-- Bundle Components -->
+                <lightning-accordion-section name="bundleComponents" label="Bundle Components">
+                    <div class="slds-m-bottom_small">
+                        <c-lookup data-id="componentSearch" label="Add Component Product"
+                            placeholder="Search for component products..."
+                            is-multi-entry={isNotMultiEntry}
+                            onsearch={handleComponentSearch}
+                            onselectionchange={handleComponentSelected}>
+                        </c-lookup>
+                    </div>
+
+                    <template if:true={hasComponents}>
+                        <div class="slds-scrollable_x">
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped branded-table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Component Product</th>
+                                        <th>Type</th>
+                                        <th>Quantity</th>
+                                        <th>Required</th>
+                                        <th>Selected</th>
+                                        <th>Bundled</th>
+                                        <th>Qty Editable</th>
+                                        <th>Min Qty</th>
+                                        <th>Max Qty</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={componentRows} for:item="row">
+                                        <tr key={row.rowIndex}>
+                                            <td>
+                                                <lightning-input type="number" value={row.SBQQ__Number__c}
+                                                    data-index={row.rowIndex} data-field="SBQQ__Number__c"
+                                                    onchange={handleComponentFieldChange} variant="label-hidden"
+                                                    label="#" step="1"></lightning-input>
+                                            </td>
+                                            <td>{row.SBQQ__OptionalSKU__c}</td>
+                                            <td>
+                                                <lightning-input value={row.SBQQ__Type__c}
+                                                    data-index={row.rowIndex} data-field="SBQQ__Type__c"
+                                                    onchange={handleComponentFieldChange} variant="label-hidden"
+                                                    label="Type"></lightning-input>
+                                            </td>
+                                            <td>
+                                                <lightning-input type="number" value={row.SBQQ__Quantity__c}
+                                                    data-index={row.rowIndex} data-field="SBQQ__Quantity__c"
+                                                    onchange={handleComponentFieldChange} variant="label-hidden"
+                                                    label="Qty" step="1"></lightning-input>
+                                            </td>
+                                            <td>
+                                                <lightning-input type="checkbox" checked={row.SBQQ__Required__c}
+                                                    data-index={row.rowIndex} data-field="SBQQ__Required__c"
+                                                    onchange={handleComponentFieldChange} variant="label-hidden"
+                                                    label="Required"></lightning-input>
+                                            </td>
+                                            <td>
+                                                <lightning-input type="checkbox" checked={row.SBQQ__Selected__c}
+                                                    data-index={row.rowIndex} data-field="SBQQ__Selected__c"
+                                                    onchange={handleComponentFieldChange} variant="label-hidden"
+                                                    label="Selected"></lightning-input>
+                                            </td>
+                                            <td>
+                                                <lightning-input type="checkbox" checked={row.SBQQ__Bundled__c}
+                                                    data-index={row.rowIndex} data-field="SBQQ__Bundled__c"
+                                                    onchange={handleComponentFieldChange} variant="label-hidden"
+                                                    label="Bundled"></lightning-input>
+                                            </td>
+                                            <td>
+                                                <lightning-input type="checkbox" checked={row.SBQQ__QuantityEditable__c}
+                                                    data-index={row.rowIndex} data-field="SBQQ__QuantityEditable__c"
+                                                    onchange={handleComponentFieldChange} variant="label-hidden"
+                                                    label="Qty Editable"></lightning-input>
+                                            </td>
+                                            <td>
+                                                <lightning-input type="number" value={row.SBQQ__MinQuantity__c}
+                                                    data-index={row.rowIndex} data-field="SBQQ__MinQuantity__c"
+                                                    onchange={handleComponentFieldChange} variant="label-hidden"
+                                                    label="Min" step="1"></lightning-input>
+                                            </td>
+                                            <td>
+                                                <lightning-input type="number" value={row.SBQQ__MaxQuantity__c}
+                                                    data-index={row.rowIndex} data-field="SBQQ__MaxQuantity__c"
+                                                    onchange={handleComponentFieldChange} variant="label-hidden"
+                                                    label="Max" step="1"></lightning-input>
+                                            </td>
+                                            <td>
+                                                <lightning-button-icon icon-name="utility:delete"
+                                                    alternative-text="Remove" variant="bare" data-index={row.rowIndex}
+                                                    onclick={handleRemoveComponent}></lightning-button-icon>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </template>
+                    <template if:false={hasComponents}>
+                        <div class="empty-state">
+                            <div class="empty-state-icon">
+                                <lightning-icon icon-name="utility:search" size="small"></lightning-icon>
+                            </div>
+                            <h3 class="empty-state-heading">No components added</h3>
+                            <p class="empty-state-text">Use the search above to add component products to this bundle.</p>
+                        </div>
+                    </template>
+                </lightning-accordion-section>
+
+                <!-- Item Master Product -->
+                <lightning-accordion-section name="itemMasterProduct" label="Item Master Product">
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                            <lightning-input label="Item Master Name" value={itemMaster.Name} required
+                                data-field="Name" onchange={handleItemMasterFieldChange}
+                                onblur={handleItemMasterNameBlur}
+                                message-when-value-missing="Item Master Name is required."></lightning-input>
+                            <template if:true={itemMasterNameError}>
+                                <div class="slds-text-color_error slds-text-body_small">{itemMasterNameError}</div>
+                            </template>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                            <lightning-input label="Item Name" value={itemMaster.Item_Name__c}
+                                data-field="Item_Name__c" onchange={handleItemMasterFieldChange}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                            <lightning-input type="checkbox" label="Active" checked={itemMaster.Active__c}
+                                data-field="Active__c" onchange={handleItemMasterFieldChange}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-p-bottom_small">
+                            <lightning-textarea label="Description" value={itemMaster.Description__c}
+                                data-field="Description__c" onchange={handleItemMasterFieldChange}></lightning-textarea>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                            <lightning-combobox label="Revenue Type" value={itemMaster.Revenue_Type__c}
+                                options={revenueTypeOptions} data-field="Revenue_Type__c"
+                                onchange={handleItemMasterFieldChange}></lightning-combobox>
+                        </div>
+                    </div>
+                </lightning-accordion-section>
+
+            </lightning-accordion>
+
+            <!-- Action Buttons -->
+            <div class="toolbar slds-m-top_medium">
+                <lightning-button label="Reset" variant="neutral" onclick={handleReset}
+                    class="slds-m-right_small"></lightning-button>
+                <lightning-button label="Create Bundle SKU" variant="brand" onclick={handleSave}
+                    disabled={isLoading}></lightning-button>
+            </div>
+        </div>
+    </template>
+</template>

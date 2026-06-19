@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Create_Revenue_Plans_On__c</fullName>
+    <description>Custom Field as per BIZ-51029
+Updated field label as part of BIZ-60799</description>
+    <label>NetSuite Create Revenue Plans On</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Billing</fullName>
+                <default>false</default>
+                <label>Billing</label>
+            </value>
+            <value>
+                <fullName>Revenue Arrangement Creation</fullName>
+                <default>false</default>
+                <label>Revenue Arrangement Creation</label>
+            </value>
+            <value>
+                <fullName>Project Progress</fullName>
+                <default>false</default>
+                <label>Project Progress</label>
+            </value>
+            <value>
+                <fullName>Fulfillment</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Fulfillment</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

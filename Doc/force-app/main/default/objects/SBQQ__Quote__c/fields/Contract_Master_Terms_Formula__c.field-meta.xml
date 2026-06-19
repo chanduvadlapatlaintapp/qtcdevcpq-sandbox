@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contract_Master_Terms_Formula__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( ISPICKVAL( Contract_Master_Terms__c , &apos;URL Terms&apos;) , &apos;URL Terms&apos;, 
+IF( ISPICKVAL( Contract_Master_Terms__c , &apos;Existing Terms Cloud&apos;) , &apos;Existing Intapp MSSA Plus Cloud&apos;, 
+IF( ISPICKVAL( Contract_Master_Terms__c , &apos;Existing Terms&apos;) , &apos;Existing Intapp MSSA Terms&apos;, 
+IF( ISPICKVAL( Contract_Master_Terms__c , &apos;Existing Terms with Annex&apos;) , &apos;Existing Intapp MSSA plus Annex&apos;, 
+IF( ISPICKVAL( Contract_Master_Terms__c , &apos;MSSA Attached&apos;) , &apos;New Intapp MSSA Attached&apos;, 
+IF( ISPICKVAL( Contract_Master_Terms__c , &apos;Training&apos;) , &apos;Intapp Partner and Training&apos;, 
+IF( ISPICKVAL( Contract_Master_Terms__c , &apos;OnePlace Legacy&apos;) , &apos;OnePlace Legacy&apos;, 
+IF( ISPICKVAL( Contract_Master_Terms__c , &apos;Trial&apos;) , &apos;Trial&apos;, 
+IF( ISPICKVAL( Contract_Master_Terms__c , &apos;Custom Master Term from Account&apos;) , &apos;Custom Master Term from Account&apos;, 
+IF( ISPICKVAL( Contract_Master_Terms__c , &apos;Repstor Legacy&apos;) , &apos;Repstor Legacy&apos;, 
+IF( ISPICKVAL( Contract_Master_Terms__c , &apos;Reseller&apos;) , &apos;Intapp Reseller&apos;, 
+IF( ISPICKVAL( Contract_Master_Terms__c , &apos;Repstor G-Cloud&apos;) , &apos;Repstor G-Cloud&apos;, 
+IF( ISPICKVAL( Contract_Master_Terms__c , &apos;Repstor Legacy Agreement Attached&apos;) , &apos;Repstor Legacy Agreement Attached&apos;,
+IF( ISPICKVAL( Contract_Master_Terms__c , &apos;Repstor Legacy Term&apos;) , &apos;Repstor Legacy Term&apos;,
+IF( ISPICKVAL( Contract_Master_Terms__c , &apos;Repstor Retro-Booking&apos;) , &apos;Repstor Retro-Booking&apos;, 
+IF( ISPICKVAL( Contract_Master_Terms__c , &apos;Existing Intapp MSSA signed by Customer Affiliate&apos;) , &apos;Existing Intapp MSSA signed by Customer Affiliate&apos;, 
+IF( ISPICKVAL( Contract_Master_Terms__c , &apos;Legacy DealCloud Agreement&apos;) , &apos;Legacy DealCloud Agreement&apos;, 
+IF( ISPICKVAL( Contract_Master_Terms__c , &apos;Existing Intapp MSSA plus Cloud and Annex&apos;) , &apos;Existing Intapp MSSA plus Cloud and Annex&apos;,
+IF( ISPICKVAL( Contract_Master_Terms__c , &apos;New MSSA Signed Separate&apos;) , &apos;New MSSA Signed Separate&apos;, &apos;&apos;)))))))))))))))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Contract Master Terms Formula</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

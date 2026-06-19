@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Populate_tier_on_account_record</name>
+        <label>Populate tier on account record</label>
+        <locationX>264</locationX>
+        <locationY>611</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Legal_Tier_Split__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Populate_Tier_on_Account.Account_Tier__c</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Validate_Criteria_for_Tier</name>
+        <label>Validate Criteria for Tier</label>
+        <locationX>396</locationX>
+        <locationY>503</locationY>
+        <defaultConnector>
+            <targetReference>Populate_Tier_on_Account</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Account_within_range</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>ValuetoValidate</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
+                <rightValue>
+                    <elementReference>Populate_Tier_on_Account.Lower_Bound__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>ValuetoValidate</leftValueReference>
+                <operator>LessThanOrEqualTo</operator>
+                <rightValue>
+                    <elementReference>Populate_Tier_on_Account.Upper_Bound__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Populate_tier_on_account_record</targetReference>
+            </connector>
+            <label>Is Account within range</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>ValuetoValidate</name>
+        <dataType>Number</dataType>
+        <expression>IF(TEXT({!$Record.Vertical__c})=&apos;Legal&apos;, {!$Record.Lawyers__c}, 
+IF((TEXT({!$Record.Vertical__c})=&apos;Accounting&apos;) || (TEXT({!$Record.Vertical__c})=&apos;Consulting&apos;), {!$Record.AnnualRevenue}, 
+IF((TEXT({!$Record.Vertical__c})=&apos;IB&amp;A&apos;) || (TEXT({!$Record.Vertical__c})=&apos;PCM&apos;), {!$Record.NumberOfEmployees}, -1)
+)
+)</expression>
+        <scale>0</scale>
+    </formulas>
+    <interviewLabel>Flow On Account Before Insert Or Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Flow On Account Before Insert Or Update</label>
+    <loops>
+        <name>Populate_Tier_on_Account</name>
+        <label>Populate Tier on Account</label>
+        <locationX>176</locationX>
+        <locationY>395</locationY>
+        <collectionReference>Get_Account_Tier_Configuration</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Validate_Criteria_for_Tier</targetReference>
+        </nextValueConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Account_Tier_Configuration</name>
+        <label>Get Account Tier Configuration</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Populate_Tier_on_Account</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Sub_Vertical__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Vertical__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Account_Tier_Configuration__mdt</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Account_Tier_Configuration</targetReference>
+        </connector>
+        <filterFormula>NOT({!$Setup.Automation_Controls__c.Active__c} &amp;&amp; {!$Setup.Automation_Controls__c.Bypass_Flows__c} &amp;&amp; {!$Setup.Automation_Controls__c.Account_Bypass__c} &amp;&amp; (ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c}) || (NOT(ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c})) &amp;&amp; CONTAINS({!$Setup.Automation_Controls__c.Data_Id__c}, {!$Record.Id}))))</filterFormula>
+        <object>Account</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conflicts_Software_Previous__c</fullName>
+    <description>Previous Conflicts software prior to selecting Intapp Open: Conflicts</description>
+    <inlineHelpText>What conflicts platform did the customer use prior to purchasing Conflicts?</inlineHelpText>
+    <label>Conflicts Software - Previous</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Accutrac</fullName>
+                <default>false</default>
+                <label>Accutrac</label>
+            </value>
+            <value>
+                <fullName>ADERANT</fullName>
+                <default>false</default>
+                <label>ADERANT</label>
+            </value>
+            <value>
+                <fullName>Autonomy Conflicts Manager / iManage</fullName>
+                <default>false</default>
+                <label>Autonomy Conflicts Manager / iManage</label>
+            </value>
+            <value>
+                <fullName>Client Profiles</fullName>
+                <default>false</default>
+                <label>Client Profiles</label>
+            </value>
+            <value>
+                <fullName>CMS Conflicts</fullName>
+                <default>false</default>
+                <label>CMS Conflicts</label>
+            </value>
+            <value>
+                <fullName>Compliguard Conflicts</fullName>
+                <default>false</default>
+                <label>Compliguard Conflicts</label>
+            </value>
+            <value>
+                <fullName>Custom</fullName>
+                <default>false</default>
+                <label>Custom</label>
+            </value>
+            <value>
+                <fullName>Elite 3E Conflicts</fullName>
+                <default>false</default>
+                <label>Elite 3E Conflicts</label>
+            </value>
+            <value>
+                <fullName>Elite Conflicts</fullName>
+                <default>false</default>
+                <label>Elite Conflicts</label>
+            </value>
+            <value>
+                <fullName>Fasttrack</fullName>
+                <default>false</default>
+                <label>Fasttrack</label>
+            </value>
+            <value>
+                <fullName>Inmagic</fullName>
+                <default>false</default>
+                <label>Inmagic</label>
+            </value>
+            <value>
+                <fullName>Intapp Conflicts</fullName>
+                <default>false</default>
+                <label>Intapp Conflicts</label>
+            </value>
+            <value>
+                <fullName>IPManager</fullName>
+                <default>false</default>
+                <label>IPManager</label>
+            </value>
+            <value>
+                <fullName>LegalKEY Conflicts</fullName>
+                <default>false</default>
+                <label>LegalKEY Conflicts</label>
+            </value>
+            <value>
+                <fullName>LMS / Rippe Kingston</fullName>
+                <default>false</default>
+                <label>LMS / Rippe Kingston</label>
+            </value>
+            <value>
+                <fullName>MDY Conflicts</fullName>
+                <default>false</default>
+                <label>MDY Conflicts</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Sharepoint</fullName>
+                <default>false</default>
+                <label>Sharepoint</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

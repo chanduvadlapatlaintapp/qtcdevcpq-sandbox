@@ -1,0 +1,136 @@
+.flex-container {
+  display: flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  font-family: "Source Sans Pro",sans-serif;
+}
+
+.flex-container > div {
+  width: 33.33%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  /*margin: 10px;*/
+}
+
+.card-section {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: center; 
+    padding: 1rem;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+h5 {
+  text-transform: capitalize;
+  margin-top: 1rem;
+  margin-bottom: .5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.card {
+    height: 250px; /* Make 450px with image and button */
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    border-radius: 0;
+    background: #fff;
+    box-shadow: none;
+    overflow: hidden;
+    color: #ffff;
+    box-shadow: none;
+    transition: box-shadow .30s ease;
+    background: #000000;
+}
+
+p {
+  font-size: 16px;
+  line-height:22px;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.cta1 {
+    background: url('assets/cta1.jpg');
+    height: 250px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.cta2 {
+    background: url('assets/cta2.jpg');
+    height: 250px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.cta3 {
+    background: url('assets/cta3.jpg');
+    height: 250px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.cta4 {
+    background: url('assets/cta4.jpg');
+    height: 250px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.button {
+    -webkit-align-self: baseline;
+    -ms-flex-item-align: baseline;
+    align-self: baseline;
+    padding: .5rem 2.5rem;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -.03rem;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 1rem 0 1rem 0;
+    /*-webkit-appearance: none;*/
+    border: 1px solid transparent;
+    border-radius: 0;
+    transition: background-color .25s ease-out, color .25s ease-out;
+    text-align: center;
+    cursor: pointer;
+    background-color: #3040e8;
+    color: #fff;
+}
+
+.button:hover {
+    background-color: #2030d7;
+    color: #ddd;
+}
+
+.card:hover {
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(143,143,143,0.88);
+  -moz-box-shadow: 0px 0px 20px 0px rgba(143,143,143,0.88);
+  box-shadow: 0px 0px 20px 0px rgba(143,143,143,0.88);
+}

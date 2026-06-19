@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Request_Type__c</fullName>
+    <label>Request Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Quote only</fullName>
+                <default>false</default>
+                <label>Quote only</label>
+            </value>
+            <value>
+                <fullName>SOW document required</fullName>
+                <default>false</default>
+                <label>SOW document required</label>
+            </value>
+            <value>
+                <fullName>Change Request</fullName>
+                <default>false</default>
+                <label>Change Request</label>
+            </value>
+            <value>
+                <fullName>SOW Amendment</fullName>
+                <default>false</default>
+                <label>SOW Amendment</label>
+            </value>
+            <value>
+                <fullName>Intapp Prime</fullName>
+                <default>false</default>
+                <label>Intapp Prime</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Services_Revenue_Total__c</fullName>
+    <description>This is a roll-up of all PS Line Items related to this case. This may not be the total amount collected in the end, but is the amount we are planning to realize upon project completion.</description>
+    <inlineHelpText>This is a sum of all the related PS Line Items attached to this case. This may not be the total amount collected in the end, but is the amount we are planning to realize upon project completion.</inlineHelpText>
+    <label>Services Revenue</label>
+    <summarizedField>PS_Line_Item__c.PSLineItem_Services_Revenue__c</summarizedField>
+    <summaryForeignKey>PS_Line_Item__c.Case__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

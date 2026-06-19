@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notify sales ops a new acct has been created</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Sales Ops - New Acct Created</name>
+    <style>none</style>
+    <subject>New Acct Created: {!Account.Name}</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

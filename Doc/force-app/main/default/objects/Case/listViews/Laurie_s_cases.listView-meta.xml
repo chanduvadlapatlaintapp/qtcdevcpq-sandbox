@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Laurie_s_cases</fullName>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CASES.LAST_UPDATE</columns>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>NAME</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>JIRA_Issue__c</columns>
+    <columns>JIRA_Status__c</columns>
+    <columns>Escalated_to_CAT__c</columns>
+    <columns>OWNER_NAME</columns>
+    <columns>Product__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OWNER_NAME</field>
+        <operation>contains</operation>
+        <value>laurie,raquel,corey,sid,kim</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Closed - Resolved,Closed - Abandoned</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Closed - Duplicate,Closed - Unresolved</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Closed - Defect Filed</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>notContain</operation>
+        <value>closed</value>
+    </filters>
+    <label>__Relationships cases (Team View)</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Support</group>
+    </sharedTo>
+</ListView>

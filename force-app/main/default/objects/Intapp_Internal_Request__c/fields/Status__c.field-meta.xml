@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <description>Status of resolution</description>
+    <label>Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Not Started</fullName>
+                <default>false</default>
+                <label>Not Started</label>
+            </value>
+            <value>
+                <fullName>Gathering Requirements</fullName>
+                <default>false</default>
+                <label>Gathering Requirements</label>
+            </value>
+            <value>
+                <fullName>In Process</fullName>
+                <default>false</default>
+                <label>In Process</label>
+            </value>
+            <value>
+                <fullName>Roadblock</fullName>
+                <default>false</default>
+                <label>Roadblock</label>
+            </value>
+            <value>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+                <label>On Hold</label>
+            </value>
+            <value>
+                <fullName>Closed - Completed</fullName>
+                <default>false</default>
+                <label>Closed - Completed</label>
+            </value>
+            <value>
+                <fullName>Closed - No Longer Needed</fullName>
+                <default>false</default>
+                <label>Closed - No Longer Needed</label>
+            </value>
+            <value>
+                <fullName>Closed - Merged</fullName>
+                <default>false</default>
+                <label>Closed - Merged</label>
+            </value>
+            <value>
+                <fullName>Closed - No Resolution</fullName>
+                <default>false</default>
+                <label>Closed - No Resolution</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_Target_Status__c</fullName>
+    <description>SC-000034</description>
+    <label>Time Target Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>No communication yet</fullName>
+                <default>false</default>
+                <label>No communication yet</label>
+            </value>
+            <value>
+                <fullName>Communication, no response</fullName>
+                <default>false</default>
+                <label>Communication, no response</label>
+            </value>
+            <value>
+                <fullName>Communication, response and stalled</fullName>
+                <default>false</default>
+                <label>Communication, response and stalled</label>
+            </value>
+            <value>
+                <fullName>Communication, moving to engagement</fullName>
+                <default>false</default>
+                <label>Communication, moving to engagement</label>
+            </value>
+            <value>
+                <fullName>Already engaged, see opp record</fullName>
+                <default>false</default>
+                <label>Already engaged, see opp record</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

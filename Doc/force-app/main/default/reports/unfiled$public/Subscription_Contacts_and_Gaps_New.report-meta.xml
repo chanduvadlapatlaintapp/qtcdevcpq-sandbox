@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r.Subscription_Contact__r$Contact__c</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r.Subscription_Contact__r$Role__c</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r$Product_Line__c</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r.Subscription_Contact__r$Contact_Email__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>(1 OR 2 OR 3) AND 4 AND 5 AND 6 AND 7</booleanFilter>
+        <criteriaItems>
+            <column>Account$DTE_Legacy_Mobile__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Own it</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$DTE_Axiom_Mobile__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Own it</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$Intapp_Time_Mobile__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Own it</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Subscriptions__r$Primary_Subscription__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Subscriptions__r$Product_Line__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Intapp Time,Time Builder,DTE Axiom</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Subscriptions__r.Subscription_Contact__r$Role__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>IT Administrator,IT Owner</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Subscriptions__r$Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Active</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Subscription Contacts and Gaps - New</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_w_Subscriptions_Subscription_Contacts__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Account$Name</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Account$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

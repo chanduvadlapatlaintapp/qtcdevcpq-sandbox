@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Subscriptions__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Subscriptions</label>
+    <referenceTo>SBQQ__Subscription__c</referenceTo>
+    <relationshipLabel>Opportunity Product</relationshipLabel>
+    <relationshipName>Opportunity_Product_Sub</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

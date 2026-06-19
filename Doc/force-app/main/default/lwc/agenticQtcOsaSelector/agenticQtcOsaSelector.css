@@ -1,0 +1,517 @@
+.osa-container {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* ── Account Pill ── */
+.account-pill {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    background: var(--color-surface-alt, #0e1929);
+    border: 2px solid var(--color-pill-border, #2b7fff);
+    border-radius: 10px;
+    max-width: 960px;
+    margin: 0 auto;
+    width: 100%;
+    transition: border-col  or 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.account-pill:hover {
+    background: var(--color-surface-hover, #122038);
+    border-color: var(--color-pill-border, #5ab4f5);
+    box-shadow: 0 0 0 3px rgba(91, 180, 245, 0.15);
+}
+
+.account-pill-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.pill-check-icon {
+    --lwc-colorTextIconDefault: var(--color-primary, #0176d3);
+    flex-shrink: 0;
+}
+
+.account-pill-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-text, #ececf1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+}
+
+.account-pill-clear {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-secondary, #acacbe);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    transition: color 0.15s ease, background 0.15s ease;
+}
+
+.account-pill-clear:hover {
+    color: var(--color-text, #ececf1);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* ── Contracts Section ── */
+.contracts-section {
+    background: var(--color-surface, #131b2d);
+    border: 1px solid var(--color-border, #1e2d45);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 26px 18px;
+    background: transparent;
+    border-bottom: 1px solid var(--color-border, #4a4b5a);
+}
+
+.section-header-text h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--color-text, #ececf1);
+    margin: 0 0 4px 0;
+    letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+    font-size: 12px;
+    color: var(--color-text-secondary, #acacbe);
+    margin: 0;
+}
+
+.contract-count-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 14px;
+    background: rgba(43, 163, 255, 0.14);
+    color: #5ab4f5;
+    border: 1.5px solid rgba(43, 163, 255, 0.45);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+    letter-spacing: 0.03em;
+}
+
+/* ── Table Scroll Container (max 5 rows) ── */
+.contracts-table-scroll {
+    max-height: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.contracts-table-scroll::-webkit-scrollbar {
+    width: 5px;
+}
+
+.contracts-table-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.contracts-table-scroll::-webkit-scrollbar-thumb {
+    background: rgba(74, 75, 90, 0.7);
+    border-radius: 4px;
+}
+
+.contracts-table-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(91, 180, 245, 0.7);
+}
+
+/* ── Table ── */
+.contracts-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.contracts-table thead tr {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.contracts-table th {
+    padding: 12px 18px;
+    text-align: left;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--color-text-secondary, #acacbe);
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+    border: 1px solid var(--color-border, rgba(74, 75, 90, 0.5));
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--color-surface-active, #162035);
+}
+
+.contracts-table th:nth-child(1) { width: 8%; white-space: nowrap; }   /* OSA Number — narrower */
+.contracts-table th:nth-child(2) { width: 22%; }                       /* Contract Name */
+.contracts-table th:nth-child(3) { width: 11%; }                      /* Contract Number — tightened to give ACV more room */
+.contracts-table th:nth-child(4) { width: 9%; white-space: nowrap; }   /* Start Date — narrower */
+.contracts-table th:nth-child(5) { width: 9%; white-space: nowrap; }   /* End Date — matches Start Date */
+.contracts-table th:nth-child(6) { width: 14%; white-space: nowrap; }  /* ACV — widened so the currency code + amount fits without wrapping */
+.contracts-table th:nth-child(7) { width: auto; }                      /* Products — fills remaining width */
+
+.contracts-table td {
+    padding: 17px 18px;
+    font-size: 13px;
+    color: var(--color-text, #ececf1);
+    vertical-align: middle;
+    border: 1px solid var(--color-border, rgba(74, 75, 90, 0.5));
+}
+
+.contract-row {
+    cursor: pointer;
+    transition: background 0.12s ease;
+}
+
+.contract-row:hover {
+    background: rgba(1, 118, 211, 0.09);
+}
+
+.contract-row:hover td {
+    border-color: rgba(1, 118, 211, 0.28);
+}
+
+.contract-row:hover .contract-number-text {
+    color: #5ab4f5;
+}
+
+.contract-row:hover .contract-name-cell {
+    color: var(--color-text, #ececf1);
+}
+
+.contract-number-text {
+    font-weight: 700;
+    color: var(--color-text, #ececf1);
+    font-size: 13px;
+    transition: color 0.12s ease;
+}
+
+.contract-name-cell {
+    color: var(--color-text-secondary, #c8c9d4);
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 0;
+    transition: color 0.12s ease;
+}
+
+.date-cell {
+    color: var(--color-text-secondary, #acacbe);
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.acv-cell {
+    color: var(--color-text, #ececf1);
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.number-cell {
+    color: var(--color-text, #ececf1);
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+}
+
+.products-cell {
+    color: var(--color-text-secondary, #acacbe);
+    font-size: 13px;
+    user-select: none;
+    cursor: default;
+    vertical-align: top;
+}
+
+.contract-row:hover .products-cell {
+    cursor: default;
+}
+
+.product-names-text {
+    display: block;
+    word-break: break-word;
+    line-height: 1.5;
+}
+
+.product-toggle-btn {
+    display: inline-block;
+    margin-top: 5px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #5ab4f5;
+    text-decoration: none;
+    transition: color 0.12s ease;
+}
+
+.product-toggle-btn:hover {
+    color: #2b7fff;
+    text-decoration: underline;
+}
+
+.product-more-btn {
+    opacity: 0.85;
+}
+
+/* Strip outer-edge double borders — container border handles those */
+.contracts-table th:first-child,
+.contracts-table td:first-child {
+    border-left: none;
+}
+
+.contracts-table th:last-child,
+.contracts-table td:last-child {
+    border-right: none;
+}
+
+.contracts-table thead th {
+    border-top: none;
+}
+
+.contracts-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ── Empty State ── */
+.no-results {
+    padding: 48px;
+    text-align: center;
+    color: var(--color-text-secondary, #acacbe);
+}
+
+/* ── Existing Draft Quotes modal ───────────────────────────────────────
+   Horizontal-leaning layout: wide, capped at 3 rows of table height, with
+   internal scroll for any additional drafts. Colors come from theme CSS vars
+   so the modal looks correct in both dark and light mode. */
+
+.quotes-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 14, 26, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 24px;
+    animation: quotesModalFade 0.15s ease;
+}
+
+.quotes-modal {
+    width: min(860px, calc(100vw - 48px));
+    max-width: 100%;
+    background: var(--color-surface, #131b2d);
+    border: 1px solid var(--color-border, #2d3e54);
+    border-radius: 14px;
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.quotes-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 22px 14px;
+    border-bottom: 1px solid var(--color-border, #2d3e54);
+}
+
+.quotes-modal-title-block {
+    min-width: 0;
+}
+
+.quotes-modal-title {
+    margin: 0 0 4px 0;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--color-text, #ececf1);
+    letter-spacing: -0.01em;
+}
+
+.quotes-modal-subtitle {
+    margin: 0;
+    font-size: 12px;
+    color: var(--color-text-secondary, #acacbe);
+}
+
+.quotes-modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.quotes-modal-create-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: var(--color-primary, #0176d3);
+    color: #ffffff;
+    border: 1px solid var(--color-primary, #0176d3);
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease;
+}
+
+.quotes-modal-create-btn:hover {
+    background: #0a5fb0;
+    box-shadow: 0 0 0 3px rgba(43, 127, 255, 0.18);
+}
+
+.quotes-modal-create-btn:active {
+    transform: translateY(1px);
+}
+
+.quotes-modal-create-icon {
+    --slds-c-icon-color-foreground: #ffffff;
+}
+
+.quotes-modal-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: 1px solid var(--color-border, #2d3e54);
+    border-radius: 50%;
+    color: var(--color-text-secondary, #acacbe);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.quotes-modal-close:hover,
+.quotes-modal-close:focus-visible {
+    background: var(--color-surface-hover, rgba(126, 184, 240, 0.12));
+    color: var(--color-text, #ececf1);
+    outline: none;
+}
+
+/* Cap visible rows at 3 and scroll the rest. Row height + thead height keep
+   the cap in sync with the table cell padding above. */
+.quotes-modal-table-scroll {
+    max-height: 196px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.quotes-modal-table-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.quotes-modal-table-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.quotes-modal-table-scroll::-webkit-scrollbar-thumb {
+    background: rgba(120, 130, 150, 0.45);
+    border-radius: 4px;
+}
+
+.quotes-modal-table-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(91, 180, 245, 0.7);
+}
+
+.quotes-modal-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.quotes-modal-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    padding: 12px 18px;
+    text-align: left;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--color-text-secondary, #acacbe);
+    background: var(--color-surface-active, #162035);
+    border-bottom: 1px solid var(--color-border, rgba(74, 75, 90, 0.5));
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.quotes-modal-table th:nth-child(1) { width: 48%; }
+.quotes-modal-table th:nth-child(2) { width: 26%; }
+.quotes-modal-table th:nth-child(3) { width: 26%; }
+
+.quotes-modal-table td {
+    padding: 14px 18px;
+    font-size: 13px;
+    color: var(--color-text, #ececf1);
+    border-bottom: 1px solid var(--color-border, rgba(74, 75, 90, 0.35));
+    vertical-align: middle;
+}
+
+.quotes-modal-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.quote-row {
+    cursor: pointer;
+    transition: background 0.12s ease;
+}
+
+.quote-row:hover {
+    background: rgba(1, 118, 211, 0.10);
+}
+
+.quote-row:hover .quote-name-cell {
+    color: var(--color-text, #ececf1);
+}
+
+.quote-name-cell {
+    font-weight: 700;
+    color: var(--color-text, #ececf1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.quote-date-cell {
+    color: var(--color-text-secondary, #acacbe);
+    white-space: nowrap;
+}
+
+@keyframes quotesModalFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

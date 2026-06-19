@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>segment_List_Unit_price__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(AND(OR(ISPICKVAL(Product_Type__c, &apos;Software&apos;),ISPICKVAL(Product_Type__c, &apos;Software Discount&apos;),ISPICKVAL(Product_Type__c, &apos;Software Discount (One-Time)&apos;)), NOT(CONTAINS(SBQQ__Product__r.Name, &apos;Payment Adjustment&apos;))), Total_Price_Book_Amount__c , 0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>segment List Unit price</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Development_Rep__c</fullName>
+    <description>Who is the Sales Development Rep for this Account? Formula field that looks at Account Owner.</description>
+    <externalId>false</externalId>
+    <formula>IF(
+  OR(
+    Account_Owner_Name__c=&quot;Chris Kessler&quot;,
+    Account_Owner_Name__c=&quot;Peter Shaw&quot;,
+    Account_Owner_Name__c=&quot;Greg Giblin&quot;),
+    &quot;Adam Nelson&quot;,
+    
+IF(
+  OR(
+    Account_Owner_Name__c=&quot;Rod Fleck&quot;,
+    Account_Owner_Name__c=&quot;John Sharkey&quot;,
+    Account_Owner_Name__c=&quot;Chase Adams&quot;),
+    &quot;Lori Hamel&quot;,
+
+IF(
+  OR(
+    Account_Owner_Name__c=&quot;Adam Friedman&quot;,
+    Account_Owner_Name__c=&quot;Marin Sardelic&quot;,
+    Account_Owner_Name__c=&quot;Pam Snyder&quot;),
+    &quot;Holly Stirk&quot;,
+
+IF(
+  OR(
+    Account_Owner_Name__c=&quot;Aimee Spirlin&quot;,
+    Account_Owner_Name__c=&quot;Michael Johnston&quot;),
+    &quot;Paul Talaga&quot;,
+    
+IF(
+    Simple_Territory__c = &quot;EMEA&quot;,
+    &quot;Sadou Diallo&quot;,
+    
+IF(
+  OR(
+    Account_Owner_Name__c=&quot;Bill Pintsak&quot;,
+    Account_Owner_Name__c=&quot;Bryan Roberts&quot;,
+    Account_Owner_Name__c=&quot;Emma Sarson&quot;,
+    Account_Owner_Name__c=&quot;Michelle Inferri-Tauss&quot;,
+    Account_Owner_Name__c=&quot;Steve Davis&quot;),
+    &quot;Dan Hermann&quot;,
+
+&quot;Jeff Macomber&quot;))))))</formula>
+    <inlineHelpText>Who is the Sales Development Rep for this Account?</inlineHelpText>
+    <label>Sales Development Rep TO BE DEPRECATED</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

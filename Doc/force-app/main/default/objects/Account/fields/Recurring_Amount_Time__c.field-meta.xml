@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recurring_Amount_Time__c</fullName>
+    <description>What is the total recurring amount from Revenue Practice deals for this Account?</description>
+    <inlineHelpText>Recurring amount from the Revenue Practice</inlineHelpText>
+    <label>Recurring Amount - Time EXPRNG 10/16</label>
+    <summarizedField>Opportunity.Maintenance_Amount__c</summarizedField>
+    <summaryFilterItems>
+        <field>Opportunity.IsWon</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Opportunity.Practice_Group__c</field>
+        <operation>equals</operation>
+        <value>Time</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Opportunity.AccountId</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Year_1_Sub_Fees_With_Adj_flag__c</fullName>
+    <description>BIZ-60995</description>
+    <formula>IF(AND(SegmentIndex_Year__c = 1,OR(ISBLANK(SBQQ__RequiredBy__c),ISNULL(SBQQ__RequiredBy__c), ISPICKVAL( CPQ_Option_Type__c, &apos;Static Bundle&apos;)), 
+OR(
+	ISPICKVAL(Product_Type__c, &apos;Software&apos;),
+	ISPICKVAL(Product_Type__c, &apos;Software Discount (One-Time)&apos;),
+	ISPICKVAL(Product_Type__c, &apos;Software Discount&apos;)
+)),TRUE,FALSE)</formula>
+    <label>Year 1 Sub Fees With Adj flag</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Product2$Name</field>
+    </columns>
+    <columns>
+        <field>Product2$ProductCode</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Product2.Block_Pricings__r$Lower_Bound__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Product2.Block_Pricings__r$Upper_Bound__c</field>
+    </columns>
+    <columns>
+        <field>Product2.Block_Pricings__r$Block_Pricing_Meter_Type__c</field>
+    </columns>
+    <columns>
+        <field>Product2.Block_Pricings__r$CurrencyIsoCode</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Product2.Block_Pricings__r$Price__c</field>
+    </columns>
+    <columns>
+        <field>Product2.Block_Pricings__r$Name</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Product2.Block_Pricings__r$Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Employee Compliance</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Products with Block Pricing Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Products_with_Block_Pricing__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Product2$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

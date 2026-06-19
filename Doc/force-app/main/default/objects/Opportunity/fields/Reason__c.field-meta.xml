@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reason__c</fullName>
+    <label>Reason for Closing</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>StageName</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Unwilling to upgrade</fullName>
+                <default>false</default>
+                <label>Unwilling to upgrade</label>
+            </value>
+            <value>
+                <fullName>Lost to Competitor</fullName>
+                <default>false</default>
+                <label>Lost to Competitor</label>
+            </value>
+            <value>
+                <fullName>Firm was merged</fullName>
+                <default>false</default>
+                <label>Firm was merged</label>
+            </value>
+            <value>
+                <fullName>Project officially cancelled</fullName>
+                <default>false</default>
+                <label>Project officially cancelled</label>
+            </value>
+            <value>
+                <fullName>Active blocker</fullName>
+                <default>false</default>
+                <label>Active blocker</label>
+            </value>
+            <value>
+                <fullName>Weak advocate</fullName>
+                <default>false</default>
+                <label>Failed to Get to Power</label>
+            </value>
+            <value>
+                <fullName>No business reason to buy</fullName>
+                <default>false</default>
+                <label>No business reason to buy</label>
+            </value>
+            <value>
+                <fullName>I chose to stop pursuing.</fullName>
+                <default>false</default>
+                <label>I chose to stop pursuing.</label>
+            </value>
+            <value>
+                <fullName>Couldn&apos;t justify price of product</fullName>
+                <default>false</default>
+                <label>Couldn&apos;t justify price of product</label>
+            </value>
+            <value>
+                <fullName>Preferred, but we wouldn&apos;t match competitor&apos;s price</fullName>
+                <default>false</default>
+                <label>Preferred, but we wouldn&apos;t match competitor&apos;s price</label>
+            </value>
+            <value>
+                <fullName>Competing Vendor Selected - Too late to the deal</fullName>
+                <default>false</default>
+                <label>Too late to the deal</label>
+            </value>
+            <value>
+                <fullName>Product not ready for Customer need</fullName>
+                <default>false</default>
+                <label>Product not ready for Customer need</label>
+            </value>
+            <value>
+                <fullName>Unaware/Unengaged</fullName>
+                <default>false</default>
+                <label>Unaware/Unengaged</label>
+            </value>
+            <value>
+                <fullName>Project deprioritized</fullName>
+                <default>false</default>
+                <label>Project deprioritized</label>
+            </value>
+            <value>
+                <fullName>Duplicate Opportunity</fullName>
+                <default>false</default>
+                <label>Duplicate Opportunity</label>
+            </value>
+            <value>
+                <fullName>Covered and Delivered through Support Agreement</fullName>
+                <default>false</default>
+                <label>Covered and Delivered through Support Agreement</label>
+            </value>
+            <value>
+                <fullName>Failed Trial</fullName>
+                <default>false</default>
+                <label>Failed Trial</label>
+            </value>
+            <value>
+                <fullName>Didn’t meet requirements</fullName>
+                <default>false</default>
+                <label>Didn’t meet requirements</label>
+            </value>
+            <value>
+                <fullName>Prior bad experience with Intapp</fullName>
+                <default>false</default>
+                <label>Prior bad experience with Intapp</label>
+            </value>
+            <value>
+                <fullName>To be determined</fullName>
+                <default>false</default>
+                <label>To be determined</label>
+            </value>
+            <value>
+                <fullName>Price of implementation</fullName>
+                <default>false</default>
+                <label>Price of implementation</label>
+            </value>
+            <value>
+                <fullName>Speed of implementation</fullName>
+                <default>false</default>
+                <label>Speed of implementation</label>
+            </value>
+            <value>
+                <fullName>Pre-existing relationship</fullName>
+                <default>false</default>
+                <label>Pre-existing relationship</label>
+            </value>
+            <value>
+                <fullName>Price of solution</fullName>
+                <default>false</default>
+                <label>Price of solution</label>
+            </value>
+            <value>
+                <fullName>Features/Functions</fullName>
+                <default>false</default>
+                <label>Features/Functions</label>
+            </value>
+            <value>
+                <fullName>Previous use of competitor</fullName>
+                <default>false</default>
+                <label>Previous use of competitor</label>
+            </value>
+            <value>
+                <fullName>Contract termination</fullName>
+                <default>false</default>
+                <label>Contract termination</label>
+            </value>
+            <value>
+                <fullName>Missed budget cycle</fullName>
+                <default>false</default>
+                <label>Missed budget cycle</label>
+            </value>
+            <value>
+                <fullName>Opened by mistake</fullName>
+                <default>false</default>
+                <label>Opened by mistake</label>
+            </value>
+            <value>
+                <fullName>Cancelled initiative</fullName>
+                <default>false</default>
+                <label>Cancelled initiative</label>
+            </value>
+            <value>
+                <fullName>Client non-response</fullName>
+                <default>false</default>
+                <label>Client non-response</label>
+            </value>
+            <value>
+                <fullName>Lack of budget</fullName>
+                <default>false</default>
+                <label>Lack of budget</label>
+            </value>
+            <value>
+                <fullName>Lack of required features</fullName>
+                <default>false</default>
+                <label>Lack of required features</label>
+            </value>
+            <value>
+                <fullName>Lack of stakeholder support</fullName>
+                <default>false</default>
+                <label>Lack of stakeholder support</label>
+            </value>
+            <value>
+                <fullName>Poor timing / on-hold</fullName>
+                <default>false</default>
+                <label>Poor timing / on-hold</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Closed - Should Never have been opened</controllingFieldValue>
+            <valueName>Unaware/Unengaged</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - Should Never have been opened</controllingFieldValue>
+            <valueName>Duplicate Opportunity</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - Should Never have been opened</controllingFieldValue>
+            <valueName>Covered and Delivered through Support Agreement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - Should Never have been opened</controllingFieldValue>
+            <valueName>Opened by mistake</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Unwilling to upgrade</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Project officially cancelled</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Active blocker</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Couldn&apos;t justify price of product</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Competing Vendor Selected - Too late to the deal</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Product not ready for Customer need</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Failed Trial</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Price of implementation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Speed of implementation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Pre-existing relationship</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Price of solution</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Features/Functions</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Previous use of competitor</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Contract termination</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - No Decision</controllingFieldValue>
+            <valueName>Cancelled initiative</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - No Decision</controllingFieldValue>
+            <valueName>Client non-response</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - No Decision</controllingFieldValue>
+            <valueName>Lack of budget</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - No Decision</controllingFieldValue>
+            <valueName>Lack of required features</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - No Decision</controllingFieldValue>
+            <valueName>Lack of stakeholder support</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - No Decision</controllingFieldValue>
+            <valueName>Poor timing / on-hold</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - No Decision</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

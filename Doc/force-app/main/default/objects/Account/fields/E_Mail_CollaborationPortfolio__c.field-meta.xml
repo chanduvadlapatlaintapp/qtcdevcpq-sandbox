@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>E_Mail_CollaborationPortfolio__c</fullName>
+    <description>This is to designate the E-Mail/Collaboration application in use at the account. This replaced the old checkbox system.</description>
+    <inlineHelpText>What email collaboration software does this account use?</inlineHelpText>
+    <label>E-Mail/Collaboration</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>BES</fullName>
+                <default>false</default>
+                <label>BES</label>
+            </value>
+            <value>
+                <fullName>Custom</fullName>
+                <default>false</default>
+                <label>Custom</label>
+            </value>
+            <value>
+                <fullName>Exchange</fullName>
+                <default>false</default>
+                <label>Exchange</label>
+            </value>
+            <value>
+                <fullName>Groupwise</fullName>
+                <default>false</default>
+                <label>Groupwise</label>
+            </value>
+            <value>
+                <fullName>GroupWise 6.x</fullName>
+                <default>false</default>
+                <label>GroupWise 6.x</label>
+            </value>
+            <value>
+                <fullName>GroupWise 7.x</fullName>
+                <default>false</default>
+                <label>GroupWise 7.x</label>
+            </value>
+            <value>
+                <fullName>Lotus Notes</fullName>
+                <default>false</default>
+                <label>Lotus Notes</label>
+            </value>
+            <value>
+                <fullName>Lotus Notes R5</fullName>
+                <default>false</default>
+                <label>Lotus Notes R5</label>
+            </value>
+            <value>
+                <fullName>Lotus Notes R6</fullName>
+                <default>false</default>
+                <label>Lotus Notes R6</label>
+            </value>
+            <value>
+                <fullName>Lotus Notes R7</fullName>
+                <default>false</default>
+                <label>Lotus Notes R7</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Outlook</fullName>
+                <default>false</default>
+                <label>Outlook</label>
+            </value>
+            <value>
+                <fullName>Peppermint Technology</fullName>
+                <default>false</default>
+                <label>Peppermint Technology</label>
+            </value>
+            <value>
+                <fullName>Right Fax</fullName>
+                <default>false</default>
+                <label>Right Fax</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

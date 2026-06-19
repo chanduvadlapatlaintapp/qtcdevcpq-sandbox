@@ -1,0 +1,5 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="helpText" type="string" access="global" />
+        <!--<lightning:textarea value="{!v.helpText}" placeholder="Help Text" readonly="true" /> -->
+    	<ui:outputText value="{!v.helpText}"/>
+</aura:component>

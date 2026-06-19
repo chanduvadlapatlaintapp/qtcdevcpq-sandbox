@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Right_of_Return_Opt_Out</fullName>
+    <columns>NAME</columns>
+    <columns>Term_Category__c</columns>
+    <columns>Description__c</columns>
+    <columns>SBQQ__Body__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>SBQQ__Active__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Term_Category__c</field>
+        <operation>equals</operation>
+        <value>ROR</value>
+    </filters>
+    <label>Right of Return_Opt Out</label>
+    <language>en_US</language>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

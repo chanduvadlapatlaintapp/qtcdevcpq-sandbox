@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account.Product_Ownership_Details__r$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Product_Ownership_Details__r$Product_line_link__c</field>
+    </columns>
+    <columns>
+        <field>Account.Product_Ownership_Details__r$License_basis_link__c</field>
+    </columns>
+    <currency>GBP</currency>
+    <filter>
+        <booleanFilter>((1 OR 2) AND 3)</booleanFilter>
+        <criteriaItems>
+            <column>Account.Product_Ownership_Details__r$Product_line_link__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>Intake,Walls,Conflicts</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Product_Ownership_Details__r$Product_line_link__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Terms - On Prem,Terms - Cloud</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$Type</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Customer</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Clients who do not own Terms</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_and_Product_Ownership_Details__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Account.Product_Ownership_Details__r$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

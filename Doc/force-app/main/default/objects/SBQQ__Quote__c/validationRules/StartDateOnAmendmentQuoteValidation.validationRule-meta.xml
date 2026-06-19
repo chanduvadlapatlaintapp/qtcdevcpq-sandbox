@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>StartDateOnAmendmentQuoteValidation</fullName>
+    <active>true</active>
+    <description>Start Date on Amendment Quote should not greater than End Date of Original Contract-BIZ-46104</description>
+    <errorConditionFormula>AND (   ISPICKVAL(SBQQ__Type__c, &apos;Amendment&apos;),
+ ISCHANGED(SBQQ__StartDate__c ), 
+ NOT( ISNULL( SBQQ__StartDate__c ) ),
+    (SBQQ__StartDate__c &gt; SBQQ__MasterContract__r.SBQQ__ExpirationDate__c )
+)</errorConditionFormula>
+    <errorMessage>Please enter Start Date less than the Subscription End Date</errorMessage>
+</ValidationRule>

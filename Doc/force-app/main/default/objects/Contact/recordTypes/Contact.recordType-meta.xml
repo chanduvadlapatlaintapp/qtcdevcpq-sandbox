@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact</fullName>
+    <active>true</active>
+    <description>This is the main record type that should be used for all external contacts, and for internal contacts that do not act as resources in Financial Force. When in doubt - pick this record type.</description>
+    <label>Contact</label>
+    <picklistValues>
+        <picklist>LeadSource</picklist>
+        <values>
+            <fullName>Customer Success</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Event %2F Tradeshow</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Handraiser</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Online Advertising</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paid Search</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referral %E2%80%93 Acquisition</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referral %E2%80%93 Client</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referral %E2%80%93 Partner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SDR Prospecting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Prospecting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Social</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Name</picklist>
+        <values>
+            <fullName>Dr%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mr%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mrs%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ms%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prof%2E</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

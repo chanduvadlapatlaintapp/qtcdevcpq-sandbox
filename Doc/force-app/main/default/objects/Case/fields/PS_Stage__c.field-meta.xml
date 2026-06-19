@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PS_Stage__c</fullName>
+    <description>Derives the Professional Services Methodology Stage for Implementation Cases.</description>
+    <externalId>false</externalId>
+    <formula>IF (IsClosed = True,&quot;Closed&quot;,
+     IF (NOT(ISBLANK(PSCase_Deployment_Compl_Date__c)),&quot;5-Closing&quot;,
+          IF (NOT(ISBLANK(PSCase_Testing_Completion_Date__c)),&quot;4-Deployment&quot;,
+               IF (NOT(ISBLANK(PSCase_Implementation_Completion_Date__c)),&quot;3-Testing&quot;,
+                    IF (NOT(ISBLANK(PSCase_Planning_Completion_Date__c)),&quot;2-Implementation&quot;,
+                         IF (NOT(ISBLANK(PSCase_Kickoff_Meeting_Date__c)),&quot;1-Planning&quot;,
+                              IF (ISBLANK(PSCase_Kickoff_Meeting_Date__c),&quot;0-Handover&quot;,&quot;UNKNOWN&quot;)))))))</formula>
+    <label>Stage</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

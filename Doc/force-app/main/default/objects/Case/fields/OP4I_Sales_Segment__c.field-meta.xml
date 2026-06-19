@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OP4I_Sales_Segment__c</fullName>
+    <description>Custom Formula Field Built according to BIZ-47763,BIZ-50210</description>
+    <externalId>false</externalId>
+    <formula>IF( ISBLANK(Quote__r.OP4I_Sales_Segment__c) ,  TEXT(Case_Partner__r.OP4I_Sales_Segment__c) , Quote__r.OP4I_Sales_Segment__c)</formula>
+    <label>OP4I Sales Segment</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

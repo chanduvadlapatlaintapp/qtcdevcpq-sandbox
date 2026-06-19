@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>PS_Letterhead</letterhead>
+    <name>Engagement Manager Assigned</name>
+    <style>freeForm</style>
+    <subject>Assigned: {!Project__c.Engagement_Manager__c} - {!Project__c.Name}</subject>
+    <textOnly>{!Project__c.Engagement_Manager__c} has been assigned as the Engagement Manager for the following Project:
+
+Project Name: {!Project__c.Name}
+Account: {!Project__c.Account__c}
+Opportunity: {!Project__c.Opportunity__c}
+Region: {!Project__c.Region__c}
+Product Line: {!Project__c.Product_LineNew__c}
+Start Date: {!Project__c.Start_date__c}
+End Date: {!Project__c.End_date__c}
+
+Click the following link for additional details: {!Project__c.Link}
+
+Please set up an internal handover call with the Engagement Manager, Regional Head, and SE Manager as soon as possible.
+
+Have a great day!
+
+
+Rule Code: OAP-001Exxx</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

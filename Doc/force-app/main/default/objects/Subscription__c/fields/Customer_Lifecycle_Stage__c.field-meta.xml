@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Lifecycle_Stage__c</fullName>
+    <label>Product Implementation Phase</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Project not started yet</fullName>
+                <default>false</default>
+                <label>Project not started yet</label>
+            </value>
+            <value>
+                <fullName>Implementation</fullName>
+                <default>false</default>
+                <label>Implementation</label>
+            </value>
+            <value>
+                <fullName>Lapsed</fullName>
+                <default>false</default>
+                <label>Lapsed</label>
+            </value>
+            <value>
+                <fullName>Within 90 days of Production</fullName>
+                <default>false</default>
+                <label>Within 90 days of Production</label>
+            </value>
+            <value>
+                <fullName>In Production</fullName>
+                <default>false</default>
+                <label>In Production</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

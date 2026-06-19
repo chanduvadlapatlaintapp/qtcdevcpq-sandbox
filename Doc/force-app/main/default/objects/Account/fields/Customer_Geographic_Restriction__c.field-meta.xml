@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Geographic_Restriction__c</fullName>
+    <label>Customer Geographic Restriction</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>NONE</fullName>
+                <default>false</default>
+                <label>NONE</label>
+            </value>
+            <value>
+                <fullName>UK ONLY</fullName>
+                <default>false</default>
+                <label>UK ONLY</label>
+            </value>
+            <value>
+                <fullName>UK USA ONLY</fullName>
+                <default>false</default>
+                <label>UK USA ONLY</label>
+            </value>
+            <value>
+                <fullName>UK USA UKRAINE ONLY</fullName>
+                <default>false</default>
+                <label>UK USA UKRAINE ONLY</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

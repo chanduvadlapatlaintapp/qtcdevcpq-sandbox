@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>T_IsUpdated__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Partially Paid updating fields: blng__BilledAmountwithouttax__c , blng__PendingBillings__c 
+Fully Paid updating field: blng__PendingBillings__c  
+This flag is true if the above fields are updated from Data Migration.</description>
+    <inlineHelpText>Updated from Data Migration</inlineHelpText>
+    <label>Is Updated from Data Migration</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

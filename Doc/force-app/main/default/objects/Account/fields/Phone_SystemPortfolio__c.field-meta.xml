@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Phone_SystemPortfolio__c</fullName>
+    <description>This is to designate the Litigation Support application in use at the account. This replaced the old checkbox system.</description>
+    <inlineHelpText>What phone system does this account use?</inlineHelpText>
+    <label>Phone System</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Avaya (PBX)</fullName>
+                <default>false</default>
+                <label>Avaya (PBX)</label>
+            </value>
+            <value>
+                <fullName>Avaya (Unknown)</fullName>
+                <default>false</default>
+                <label>Avaya (Unknown)</label>
+            </value>
+            <value>
+                <fullName>Avaya (VoIP)</fullName>
+                <default>false</default>
+                <label>Avaya (VoIP)</label>
+            </value>
+            <value>
+                <fullName>Cisco</fullName>
+                <default>false</default>
+                <label>Cisco</label>
+            </value>
+            <value>
+                <fullName>Microsoft Lync</fullName>
+                <default>false</default>
+                <label>Microsoft Lync</label>
+            </value>
+            <value>
+                <fullName>Nortel (PBX)</fullName>
+                <default>false</default>
+                <label>Nortel (PBX)</label>
+            </value>
+            <value>
+                <fullName>Nortel (Unknown)</fullName>
+                <default>false</default>
+                <label>Nortel (Unknown)</label>
+            </value>
+            <value>
+                <fullName>Nortel (VoIP)</fullName>
+                <default>false</default>
+                <label>Nortel (VoIP)</label>
+            </value>
+            <value>
+                <fullName>Other (PBX)</fullName>
+                <default>false</default>
+                <label>Other (PBX)</label>
+            </value>
+            <value>
+                <fullName>Other (Unknown)</fullName>
+                <default>false</default>
+                <label>Other (Unknown)</label>
+            </value>
+            <value>
+                <fullName>Other (VoIP)</fullName>
+                <default>false</default>
+                <label>Other (VoIP)</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>ShoreTel</fullName>
+                <default>false</default>
+                <label>ShoreTel</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

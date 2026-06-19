@@ -1,0 +1,16 @@
+<aura:component implements="force:hasRecordId,force:lightningQuickActionWithoutHeader,flexipage:availableForAllPageTypes" access="global">
+	<aura:attribute name="recordId" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:attribute name="fields" type="String[]" default="['Pricing_Proposal_Approval__c', 'Quote_Stage__c', 'Account_Name__c', 'Name']" />
+    <aura:attribute name="Quote" type="Object" /> 
+    <aura:attribute name="record" type="Object" />
+    <aura:handler name="render" value="{!this}" action="{!c.init}"/>
+    
+    <force:recordData aura:id="recordLoader"
+       recordId="{!v.recordId}"
+       fields="{!v.fields}"
+       targetFields="{!v.Quote}"
+       targetRecord="{!v.record}"
+       recordUpdated="{!c.recordUpdate}" 
+       />
+</aura:component>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Completeness_Score_Expression__c</fullName>
+    <formula>(IF(
+  ISBLANK(TEXT(Primary_Business_Problem__c)),
+  0,
+  2
+)+
+IF(
+  ISBLANK(TEXT(Incumbent_Solution__c)),
+  0,
+  1
+))/3</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Completeness Score: Expression</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Percent</type>
+</CustomField>

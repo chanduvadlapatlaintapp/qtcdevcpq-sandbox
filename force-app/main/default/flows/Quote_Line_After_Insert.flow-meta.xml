@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Notification_To_Quote_Owner</name>
+        <label>Send Notification To Quote Owner</label>
+        <locationX>50</locationX>
+        <locationY>647</locationY>
+        <actionName>customNotificationAction</actionName>
+        <actionType>customNotificationAction</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>customNotifTypeId</name>
+            <value>
+                <elementReference>Get_Custom_Notification_Type.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientIds</name>
+            <value>
+                <elementReference>RecipientIDs</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <stringValue>Service Product is present</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <elementReference>customNotificationBody</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetId</name>
+            <value>
+                <elementReference>$Record.SBQQ__Quote__r.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>customNotificationAction</nameSegment>
+    </actionCalls>
+    <apiVersion>57.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>BIZ-45129</description>
+        <name>Assign_Recipient_Id</name>
+        <label>Assign Recipient Id</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <assignmentItems>
+            <assignToReference>RecipientIDs</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Quote__r.CreatedById</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Custom_Notification_Type</targetReference>
+        </connector>
+    </assignments>
+    <constants>
+        <name>UpdateBoomiTRUE</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>True</stringValue>
+        </value>
+    </constants>
+    <decisions>
+        <description>BIZ-47914 Bug</description>
+        <name>Check_for_Notificaiton</name>
+        <label>Check for Notificaiton</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Notification_Condition_Check</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Guided_Selling_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Services</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Quote__r.CreatedBy.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Sales Rep</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Recipient_Id</targetReference>
+            </connector>
+            <label>Notification Condition Check</label>
+        </rules>
+    </decisions>
+    <description>BIZ-46107,BIZ-45129 appended
+Static Bundle changes appended BIZ-47580
+BIZ-54094: Remove the path where Boomi__c field is updating on the Quote
+BIZ-55230: Quote Line after insert Flow to be optimized.
+BIZ-66416 - Added the Bypass Logic
+BIZ-68145 - removed scheduled path.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>BIZ-45129</description>
+        <name>customNotificationBody</name>
+        <dataType>String</dataType>
+        <expression>&apos;Please note that on Quote&apos; +&apos;  (&apos;+{!$Record.SBQQ__Quote__r.Name}+&apos;) &apos;+&apos; Service Product &apos;+&apos; (&apos;+ {!$Record.SBQQ__ProductName__c} +&apos;) &apos;+&apos; is added&apos;</expression>
+    </formulas>
+    <interviewLabel>Quote Line After Insert {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Quote Line After Insert</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>BIZ-45129</description>
+        <name>Get_Custom_Notification_Type</name>
+        <label>Get Custom Notification Type</label>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Send_Notification_To_Quote_Owner</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Notification_for_service_products</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CustomNotificationType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_for_Notificaiton</targetReference>
+        </connector>
+        <filterFormula>NOT({!$Setup.Automation_Controls__c.Active__c} 
+    &amp;&amp; {!$Setup.Automation_Controls__c.Bypass_Flows__c} 
+    &amp;&amp; {!$Setup.Automation_Controls__c.Quoteline_Bypass__c} 
+    &amp;&amp; (
+        ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c}) 
+        || (
+            NOT(ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c})) 
+            &amp;&amp; CONTAINS({!$Setup.Automation_Controls__c.Data_Id__c}, {!$Record.Id})
+        )
+))</filterFormula>
+        <object>SBQQ__QuoteLine__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>countOfLookUpRecord</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <name>newQuoteLineList</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>SBQQ__QuoteLine__c</objectType>
+    </variables>
+    <variables>
+        <name>Quantity</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <description>BIZ-45129</description>
+        <name>RecipientIDs</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>SelectBundleQuoteLine</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>SBQQ__QuoteLine__c</objectType>
+    </variables>
+    <variables>
+        <name>TestBoomiTrue</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue>True</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>trueBOOMI</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue>True</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>UpdateBoomi</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue>True</stringValue>
+        </value>
+    </variables>
+</Flow>

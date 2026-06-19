@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Services_Fees_Discount_Level__c</fullName>
+    <description>The services fees realized, net of any discount, compare to our price book how?</description>
+    <inlineHelpText>The services fees realized, net of any discount, compare to our price book how?</inlineHelpText>
+    <label>Services Fees Discount Level</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Premium Rate</fullName>
+                <default>false</default>
+                <label>Premium Rate</label>
+            </value>
+            <value>
+                <fullName>Standard</fullName>
+                <default>false</default>
+                <label>Standard</label>
+            </value>
+            <value>
+                <fullName>Exceeds MD</fullName>
+                <default>false</default>
+                <label>Exceeds MD</label>
+            </value>
+            <value>
+                <fullName>Exceeds PGL</fullName>
+                <default>false</default>
+                <label>Exceeds PGL</label>
+            </value>
+            <value>
+                <fullName>Exceeds President</fullName>
+                <default>false</default>
+                <label>Exceeds President</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

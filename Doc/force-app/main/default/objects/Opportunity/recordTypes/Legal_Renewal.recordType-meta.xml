@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Legal_Renewal</fullName>
+    <active>true</active>
+    <businessProcess>Account Management %2F Renewal</businessProcess>
+    <compactLayoutAssignment>Opportunity_Compact_Layout</compactLayoutAssignment>
+    <description>Use this Record Type for CPI Opportunities to Law Firms</description>
+    <label>Legal - Renewal / CPI</label>
+    <picklistValues>
+        <picklist>ForecastCategoryName</picklist>
+        <values>
+            <fullName>Best Case</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Omitted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pipeline</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>LeadSource</picklist>
+        <values>
+            <fullName>Customer Success</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Event %2F Tradeshow</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Handraiser</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Online Advertising</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paid Search</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referral %E2%80%93 Acquisition</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referral %E2%80%93 Client</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referral %E2%80%93 Partner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SDR Prospecting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Prospecting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Social</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Cancellation - Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancellation - Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - CPI %2F Recurring Increase</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - License Band Uplift</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platform Conversion - Decrease</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platform Conversion - Internal Decrease</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewal</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

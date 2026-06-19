@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_Exp_Rev_Rec_Date__c</fullName>
+    <defaultValue>DATE(2099,9,9)</defaultValue>
+    <description>If date is in the past - this is the date revenue was recognized.
+If date is in the future - this is when we are projecting revenue to be recognized.</description>
+    <inlineHelpText>If date is in the past - this is the date revenue was recognized.
+If date is in the future - this is when we are projecting revenue to be recognized.</inlineHelpText>
+    <label>Revenue Recognition Date</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

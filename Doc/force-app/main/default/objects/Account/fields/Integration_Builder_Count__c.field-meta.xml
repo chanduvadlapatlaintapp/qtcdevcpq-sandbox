@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Integration_Builder_Count__c</fullName>
+    <description>Counts 1 if account owns Integration Builder</description>
+    <externalId>false</externalId>
+    <formula>IF(
+  OR(ispickval(IntegrationBuilder__c , &quot;Own It&quot;),ispickval(IntegrationBuilder__c,&quot;Own Partial&quot;),ispickval(IntegrationBuilder__c,&quot;SmartLink&quot;)),
+  1,
+  0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Counts 1 if account owns Integration Builder</inlineHelpText>
+    <label>Intapp Integrate Count</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

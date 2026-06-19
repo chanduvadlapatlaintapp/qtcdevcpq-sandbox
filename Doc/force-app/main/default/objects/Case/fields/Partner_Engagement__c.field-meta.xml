@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Partner_Engagement__c</fullName>
+    <label>Partner Engagement</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Not identified</fullName>
+                <default>false</default>
+                <label>Not identified</label>
+            </value>
+            <value>
+                <fullName>Identified</fullName>
+                <default>false</default>
+                <label>Identified</label>
+            </value>
+            <value>
+                <fullName>Subcontracted</fullName>
+                <default>false</default>
+                <label>Subcontracted</label>
+            </value>
+            <value>
+                <fullName>Prime (led)</fullName>
+                <default>false</default>
+                <label>Prime (led)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

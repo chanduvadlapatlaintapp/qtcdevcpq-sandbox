@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>To check whether to Update the record or not.</description>
+        <name>Conditions_for_Update</name>
+        <label>Conditions for Update</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Update_Tax_Code</name>
+            <conditionLogic>(1 AND 2) OR 3 OR 4</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.AVA_SFCPQ__TaxCode__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.TaxCode__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.TaxCode__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Item_Master_Product__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Avalara_Tax_Code</targetReference>
+            </connector>
+            <label>Update Tax Code</label>
+        </rules>
+    </decisions>
+    <description>Uncheck the active checkbox on product record as well as corresponding pricebook entries records once the product has been marked as retired.
+Built according to user story BIZ - 45081.
+BIZ-64281
+BIZ-79705: Added condition 4 (Item_Master_Product__c IsChanged) to update tax codes when Item Master lookup changes on Product. Added SBQQ__TaxCode__c to update step.</description>
+    <environments>Default</environments>
+    <interviewLabel>Product : After Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Product : After Insert and Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Populate AVA_SFCPQ__TaxCode__c and SBQQ__TaxCode__c fields with TaxCode__c (formula from Item Master) field value. BIZ-79705: Added SBQQ__TaxCode__c.</description>
+        <name>Update_Avalara_Tax_Code</name>
+        <label>Update Avalara Tax Code</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <inputAssignments>
+            <field>AVA_SFCPQ__TaxCode__c</field>
+            <value>
+                <elementReference>$Record.TaxCode__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>SBQQ__TaxCode__c</field>
+            <value>
+                <elementReference>$Record.TaxCode__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Conditions_for_Update</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>IsActive</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Product2</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

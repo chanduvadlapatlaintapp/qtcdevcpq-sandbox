@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>SBQQ__Quote__c$SBQQ__Account__c</field>
+    </columns>
+    <columns>
+        <field>SBQQ__Quote__c$Intapp_Opportunity_Number__c</field>
+    </columns>
+    <columns>
+        <field>SBQQ__Quote__c$SBQQ__Opportunity2__c</field>
+    </columns>
+    <columns>
+        <field>SBQQ__Quote__c.SBQQ__LineItems__r$Name</field>
+    </columns>
+    <columns>
+        <field>SBQQ__Quote__c.SBQQ__LineItems__r$LastModifiedDate</field>
+    </columns>
+    <columns>
+        <field>SBQQ__Quote__c$CreatedBy</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <criteriaItems>
+            <column>SBQQ__Quote__c$SBQQ__Primary__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>SBQQ__Quote__c$CreatedDate</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>greaterThan</operator>
+            <value>7/13/2021 12:00 AM</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>SBQQ__Quote__c$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>New quotes created by biz aps</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Quote_with_Quote_lines__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>SBQQ__Quote__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

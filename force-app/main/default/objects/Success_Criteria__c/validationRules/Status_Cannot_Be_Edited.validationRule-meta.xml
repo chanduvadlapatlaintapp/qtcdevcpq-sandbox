@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status_Cannot_Be_Edited</fullName>
+    <active>true</active>
+    <description>SC-000049</description>
+    <errorConditionFormula>AND( 
+ISCHANGED(Status__c), 
+AND( 
+ISBLANK(Product_Customer__c) 
+) 
+)</errorConditionFormula>
+    <errorMessage>Please link the success criteria to a related Project or Product Customer before updating the Status.</errorMessage>
+</ValidationRule>

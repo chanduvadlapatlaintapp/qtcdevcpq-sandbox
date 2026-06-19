@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Q4_2006_Points__c</fullName>
+    <description>Returns the sum of the points I&apos;ve associated with picklist choices in two fields: Rank_of_Best_Advocate__c and Urgency_Driver_for_Q4_2006__c. This is used to try to estimate close likelihood.</description>
+    <externalId>false</externalId>
+    <formula>CASE( Rank_of_Best_Advocate__c, 
+&quot;3) GC, Tech Partner, Other Partner&quot;, 3, 
+&quot;2) ED, COO or CFO&quot;, 2, 
+&quot;1) CIO, Records, Others reporting to ED&quot;, 1, 
+&quot;0) Below that&quot;, 0, 
+-900)  
++ 
+CASE( Urgency_Driver_for_Q4_2006__c, 
+&quot;3) Partners&apos; deadline - Merger by Jan 1, or similar&quot;, 3, 
+&quot;2) Administrator&apos;s deadline - IT project by Jan 1, or similar&quot;, 2, 
+&quot;1) IntApp&apos;s deadline - Dec 15 promotion, POC, etc&quot;, 1, 
+&quot;0) No agreed deadline yet - Trying to find one&quot;, 0, 
+-90000)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Q4 2006 Points</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

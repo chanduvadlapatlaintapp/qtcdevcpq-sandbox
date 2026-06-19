@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_Migration_Disposition_Bucket__c</fullName>
+    <label>Time Migration Disposition Bucket</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Happy</fullName>
+                <default>false</default>
+                <label>Happy</label>
+            </value>
+            <value>
+                <fullName>Passive</fullName>
+                <default>false</default>
+                <label>Passive</label>
+            </value>
+            <value>
+                <fullName>Frustrated</fullName>
+                <default>false</default>
+                <label>Frustrated</label>
+            </value>
+            <value>
+                <fullName>Big Problem</fullName>
+                <default>false</default>
+                <label>Big Problem</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

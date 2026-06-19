@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_OLI_details_to_OP4I</name>
+        <label>Send OLI details to OP4I</label>
+        <locationX>242</locationX>
+        <locationY>384</locationY>
+        <actionName>OpportunityProductFlowClass</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>$Record.Id__c</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>OpportunityProductFlowClass</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>59.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Check_OLI_Quantity</name>
+        <label>Check OLI Quantity</label>
+        <locationX>374</locationX>
+        <locationY>276</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Quantity_not_equal_to_0</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Quantity</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_OLI_details_to_OP4I</targetReference>
+            </connector>
+            <label>Quantity not equal to 0</label>
+        </rules>
+    </decisions>
+    <description>changed payload sync from 1 to 3 minutes
+BIZ-66418 Added Bypass check
+BIZ-76622 Added a quantity check before integration to ensure that products with 0 quantity are not send.</description>
+    <environments>Default</environments>
+    <interviewLabel>OpportunityLineItemAfterIns {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Opportunity Line Item After Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <filterFormula>AND(
+  NOT(
+    {!$Setup.Automation_Controls__c.Active__c} &amp;&amp;
+    {!$Setup.Automation_Controls__c.Bypass_Flows__c} &amp;&amp;
+    {!$Setup.Automation_Controls__c.OpportunityLine_Bypass__c} &amp;&amp;
+    (
+      ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c}) ||
+      (
+        NOT(ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c})) &amp;&amp;
+        CONTAINS({!$Setup.Automation_Controls__c.Data_Id__c}, {!$Record.Id})
+      )
+    )
+  ),
+  {!$Record.Opportunity_Prod_Updated__c} = true
+)</filterFormula>
+        <object>OpportunityLineItem</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <scheduledPaths>
+            <name>Send_Payload_to_OP4I</name>
+            <connector>
+                <targetReference>Check_OLI_Quantity</targetReference>
+            </connector>
+            <label>Send Payload to OP4I</label>
+            <offsetNumber>1</offsetNumber>
+            <offsetUnit>Minutes</offsetUnit>
+            <recordField>LastModifiedDate</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

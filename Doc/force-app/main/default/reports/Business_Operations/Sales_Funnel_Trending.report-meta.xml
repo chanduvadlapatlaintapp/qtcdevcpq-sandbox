@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_22881718</developerName>
+        <masterLabel>Buying Phase</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>Pipeline_Snapshot__c.Stage__c</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Target Account</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Waiting for Kickoff</sourceValue>
+            </sourceValues>
+            <value>Not Interested Yet</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Expression of Interest</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>First Meeting Completed</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Discussing Asssessment Program</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Engaged in Assessment</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Considering Assessment Results</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Business Case Validation</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Getting Budget Approval</sourceValue>
+            </sourceValues>
+            <value>Pre-Shopping</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Recognition of Needs</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Evaluation of Options</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Resolution of Concerns</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Negotiating with Budget Owner</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Management Approval</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>In Contract</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Developing Final Proposal</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Negotiating License Terms</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Negotiating Pilot Terms</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>In Evaluation Program</sourceValue>
+            </sourceValues>
+            <value>Shopping</value>
+        </values>
+    </buckets>
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <axisBinding>y</axisBinding>
+            <column>RowCount</column>
+        </chartSummaries>
+        <chartType>VerticalColumnStacked</chartType>
+        <enableHoverLabels>false</enableHoverLabels>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>CUST_CREATED_DATE</groupingColumn>
+        <legendPosition>Right</legendPosition>
+        <location>CHART_TOP</location>
+        <secondaryGroupingColumn>BucketField_22881718</secondaryGroupingColumn>
+        <showAxisLabels>true</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>false</showValues>
+        <size>Huge</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>12</textSize>
+        <titleColor>#000000</titleColor>
+        <titleSize>18</titleSize>
+    </chart>
+    <columns>
+        <field>Pipeline_Snapshot__c.Opportunity_Type__c</field>
+    </columns>
+    <columns>
+        <field>Pipeline_Snapshot__c.Stage__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Pipeline_Snapshot__c.Recurring_Amount_Change__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Pipeline_Snapshot__c.Amount__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Pipeline_Snapshot__c.Opportunity_Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Legal - New Customer,Legal - New Product,Legal - Recovered Customer,Legal - Recovered Product,Legal - Add-on module</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Pipeline_Snapshot__c.Closed__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>CUST_CREATED_DATE</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_22881718</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Sales Funnel Trending</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Pipeline_Snapshot__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Pipeline_Snapshot__c.Stage__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Pipeline_Snapshot__c.Snapshot_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2010-10-01</startDate>
+    </timeFrameFilter>
+</Report>

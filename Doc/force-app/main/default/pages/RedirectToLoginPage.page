@@ -1,0 +1,14 @@
+<apex:page standardStyleSheets="false" cache="false" sidebar="false" showHeader="false">
+<script>
+    //If current user is a guest user then only redirect to login else do nothing
+    var currentUser = '{!$User.LastName}';
+        
+    if(currentUser == 'Site Guest User') {
+      window.location.href = '{!LEFT($CurrentPage.URL,FIND('/',$CurrentPage.URL,9))}' + 'portal?refURL=' + window.location.href;
+    } else {
+        window.location.href = '{!LEFT($CurrentPage.URL,FIND('/',$CurrentPage.URL,9))}' + 'FileNotFound';
+    }
+</script>
+
+
+</apex:page>

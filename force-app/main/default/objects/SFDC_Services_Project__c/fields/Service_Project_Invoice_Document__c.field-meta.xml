@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Service_Project_Invoice_Document__c</fullName>
+    <externalId>false</externalId>
+    <formula>&quot;&amp;solmgr=1&quot; + 
+&quot;&amp;username=&quot; + $User.Username +
+&quot;&amp;id=&quot; + Id +
+&quot;&amp;queryid= [ServiceInvoiceLines]aHkD70000004DuTKAU,[ResourceSummary]aHkD70000004DudKAE, [ProjectDetail]aHkD70000004DuYKAU&quot; + 
+&quot;&amp;templateid=aHsD70000008PtvKAE&quot; + 
+&quot;&amp;fp0=1&quot; + 
+&quot;&amp;ac1=Service Invoice Generated&quot; + 
+&quot;&amp;sc0=1&quot; + 
+&quot;&amp;sc1=SalesforceFile&quot; + 
+&quot;&amp;ofn= Service Invoice for&quot; + Name + &quot; - &quot; + TEXT(TODAY()) +
+&quot;&amp;ac0=1&quot; + 
+&quot;&amp;templategroup=ServiceInvoice&quot; + 
+&quot;&amp;xdo=CIA&quot; + 
+&quot;&amp;xdo2=GenerateInvoice&quot; + 
+&quot;&amp;congaemailtemplateid=aHjVa0000000085KAA&quot; +
+&quot;&amp;emailtoid=&quot; +  Bill_to_Contact__c  +
+&quot;&amp;geo=&quot; + $User.Country +
+&quot;&amp;qmode=SendEmail&quot;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Service Project Invoice Document</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

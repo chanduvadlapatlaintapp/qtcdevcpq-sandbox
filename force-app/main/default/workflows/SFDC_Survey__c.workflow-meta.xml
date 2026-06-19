@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Closing_Survey_Complete_Notification</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <description>Closing Survey Complete Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <field>CSM_Account_Owner_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Geo_Lead_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Region_Owner_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Resource_Manager_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>T_CSM_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <recipient>Accounting_Consulting_Sales</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>Accounting_Consulting_Sales_Reps</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>COO</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>EMEA_Region</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>EMEA_Sales_Reps</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>Financial_Services_Sales</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>Financial_Services_Sales_Reps</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>Global_Law</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>Global_Law_Sales_Reps</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>NA_Large_Law</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>NA_Large_Law_Sales_Reps</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>NA_Mid_size_Law</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>NA_Mid_size_Law_Sales_Reps</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>VP_Customer_Relationship_Management</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>VP_Customer_Success</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>claire.darling@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jason.wood@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jose.lazares@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>kshama.swamy@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>susan.shevelenko@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>tanya.tomkiewicz@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>tim.nolan@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Customer_Care/Closing_Survey_Completed_II</template>
+    </alerts>
+    <alerts>
+        <fullName>Consulting_Survey_Complete</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <description>Consulting Survey Complete</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>claire.darling@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>meg.block@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>tanya.tomkiewicz@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Customer_Care/Consulting_Survey_Completed</template>
+    </alerts>
+    <alerts>
+        <fullName>NPS_Survey_Notification</fullName>
+        <ccEmails>justin.mitchell@intapp.com.invalid</ccEmails>
+        <description>NPS Survey Notification</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Customer_Care/NPS_Survey</template>
+    </alerts>
+    <alerts>
+        <fullName>Partner_Closing_Survey_Completed</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <description>Partner Closing Survey Completed</description>
+        <protected>false</protected>
+        <recipients>
+            <field>CSM_Account_Owner_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>T_CSM_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <recipient>Accounting_Consulting_Sales</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>Accounting_Consulting_Sales_Reps</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>EMEA_Region</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>EMEA_Sales_Reps</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>Financial_Services_Sales</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>Financial_Services_Sales_Reps</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>Global_Law</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>Global_Law_Sales_Reps</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>NA_Large_Law</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>NA_Large_Law_Sales_Reps</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>NA_Mid_size_Law</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>NA_Mid_size_Law_Sales_Reps</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>VP_Customer_Relationship_Management</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>don.coleman@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jason.wood@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jennifer.richard@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jill.nelson@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>john.vonhof@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>kshama.swamy@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>maiya.hilliard@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>paul.pastura@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>tim.nolan@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Customer_Care/Partner_Closing_Survey_Completed_II</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_NPS_Survey_Notification</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <description>Send NPS Survey Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>VP_Customer_Relationship_Management</recipient>
+            <type>roleSubordinatesInternal</type>
+        </recipients>
+        <recipients>
+            <recipient>paul.pastura@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>support@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Customer_Care/NPS_Survey</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>CSM_Account_Owner_Field_Update</fullName>
+        <field>CSM_Account_Owner_Email__c</field>
+        <formula>Account__r.CRD__r.Email</formula>
+        <name>CSM Account Owner Field Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Intapp_AC_Email</fullName>
+        <field>Intapp_AC_Email__c</field>
+        <formula>Intapp_AC__r.Email</formula>
+        <name>Populate Intapp AC Email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Intapp_PC_Email</fullName>
+        <field>Intapp_PC_Email__c</field>
+        <formula>Intapp_PC__r.Email</formula>
+        <name>Populate Intapp PC Email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Intapp_PjM_Email</fullName>
+        <field>Intapp_PjM_Email__c</field>
+        <formula>Intapp_PjM__r.Email</formula>
+        <name>Populate Intapp PjM Email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Intapp_SE_Email</fullName>
+        <field>Intapp_SE_Email__c</field>
+        <formula>Intapp_SE__r.Email</formula>
+        <name>Populate Intapp SE Email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Resource_Manager_Email_UK</fullName>
+        <field>Resource_Manager_Email__c</field>
+        <formula>&quot;alejandro.arteaga@intapp.com&quot;</formula>
+        <name>Populate Resource Manager Email UK</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Resource_Manager_Email_US_Risk</fullName>
+        <field>Resource_Manager_Email__c</field>
+        <formula>&quot;jonathan.smith@intapp.com&quot;</formula>
+        <name>Populate Resource Manager Email US/Risk</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Resource_Manager_Email_US_Time</fullName>
+        <field>Resource_Manager_Email__c</field>
+        <formula>&quot;david.skweres@intapp.com&quot;</formula>
+        <name>Populate Resource Manager Email US/Time</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Client_PjM_Surveyed_Field</fullName>
+        <field>Date_Survey_Completed__c</field>
+        <formula>TODAY()</formula>
+        <name>Update Client PjM Surveyed Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Subscription_Contact_Role_Snapsho</fullName>
+        <field>Subscription_Contact_Role_Snapshot__c</field>
+        <formula>TEXT(Subscription_Contact__r.Role__c)</formula>
+        <name>Update Subscription Contact Role Snapsho</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Subscription_Contact_Title_Snapsh</fullName>
+        <field>Subscription_Contact_Title_Snapshot__c</field>
+        <formula>Subscription_Contact__r.Contact__r.Title</formula>
+        <name>Update Subscription Contact Title Snapsh</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Rule Code%3A SUR-001xFxx</fullName>
+        <actions>
+            <name>Update_Subscription_Contact_Role_Snapsho</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Subscription_Contact_Title_Snapsh</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SUR-001xFxx
+Take Subscription Contact Role &amp; Title Snapshot
+Updates the Subscription Contact Role Snapshot and Subscription Contact Title Snapshot fields whenever a Survey record is created</description>
+        <formula>TRUE</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SUR-002Exxx</fullName>
+        <actions>
+            <name>Send_NPS_Survey_Notification</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>SFDC_Survey__c.Type__c</field>
+            <operation>equals</operation>
+            <value>CRM</value>
+        </criteriaItems>
+        <description>Rule Code: SUR-002Exxx
+Send Survey Notification to CRM Team
+Sends an email alert whenever there is a CRM survey.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SUR-004xFxx</fullName>
+        <actions>
+            <name>CSM_Account_Owner_Field_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SUR-004xFxx
+Populate CSM Account Owner
+Populates the CSM Account Owner Email field</description>
+        <formula>TRUE</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SUR-005Exxx</fullName>
+        <actions>
+            <name>Closing_Survey_Complete_Notification</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SUR-005Exxx
+Closing Survey Completed
+Sends an email notification whenever a closing survey is completed.</description>
+        <formula>AND(   OR(     ISCHANGED(Client_PjM_Survey_Complete__c),     ISCHANGED(Client_Business_IT_Owner_Survey_Complete__c)    ),    OR(      Client_PjM_Survey_Complete__c=TRUE,      Client_Business_IT_Owner_Survey_Complete__c=TRUE    ),    OR(Contains(  OA_Project__r.Implementation_Partner__c , &quot;Intapp&quot;) , ISBLANK(OA_Project__r.Implementation_Partner__c  )) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SUR-006xFxx</fullName>
+        <actions>
+            <name>Populate_Intapp_AC_Email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Populate_Intapp_PC_Email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Populate_Intapp_PjM_Email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Populate_Intapp_SE_Email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SUR-006xFxx
+Populate Team Email Addresses
+Populates the Intapp AC, PjM, PC, and SE on the survey object on change of various Intapp fields</description>
+        <formula>OR(   ISNEW(),   OR(     ISCHANGED(Intapp_AC__c),     ISCHANGED(Intapp_PC__c),     ISCHANGED(Intapp_PjM__c),     ISCHANGED(Intapp_SE__c)     ) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SUR-008xFxx</fullName>
+        <actions>
+            <name>Populate_Resource_Manager_Email_UK</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SUR-008xFxx
+Populate Resource Manager Email UK
+Populates Resource Manager in the UK when Account&apos;s Simple Territory is &quot;EMEA&quot;</description>
+        <formula>Account__r.Simple_Territory__c=&quot;EMEA&quot;</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SUR-009xFxx</fullName>
+        <actions>
+            <name>Populate_Resource_Manager_Email_US_Risk</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SUR-009xFxx
+Populate Resource Manager Email US/Risk
+Populates Resource Manager in the US for Risk(Walls &amp; Open)</description>
+        <formula>AND(   OR(     Account__r.Simple_Territory__c=&quot;NA Large Law&quot;,     Account__r.Simple_Territory__c=&quot;NA Mid-size Law&quot;   ),   OR(     CONTAINS(TEXT(Product_Line__c), &quot;Open&quot;),     CONTAINS(TEXT(Product_Line__c), &quot;Wall&quot;) ))</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SUR-010xFxx</fullName>
+        <actions>
+            <name>Populate_Resource_Manager_Email_US_Time</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SUR-010xFxx
+Populate Resource Manager Email US/Time
+Populates Resource Manager in the US for Time</description>
+        <formula>AND(   OR(     Account__r.Simple_Territory__c=&quot;NA Large Law&quot;,     Account__r.Simple_Territory__c=&quot;NA Mid-size Law&quot;   ),   OR(     CONTAINS(TEXT(Product_Line__c), &quot;Time&quot;),     CONTAINS(TEXT(Product_Line__c), &quot;DTE&quot;),     CONTAINS(TEXT(Product_Line__c), &quot;RollCall&quot;) ))</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SUR-011Exxx</fullName>
+        <actions>
+            <name>Partner_Closing_Survey_Completed</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SUR-011Exxx
+Partner Closing Survey Completed
+Sends an email notification when a partner closing survey has been completed.</description>
+        <formula>AND(    OR(      ISCHANGED(Client_PjM_Survey_Complete__c),      ISCHANGED(Client_Business_IT_Owner_Survey_Complete__c)    ),    OR(      Client_PjM_Survey_Complete__c=TRUE,      Client_Business_IT_Owner_Survey_Complete__c=TRUE    ),    OA_Project__r.Billing_Type__c =&quot;No Billing&quot;,   OA_Project__r.Project_Type__c =&quot;Partner&quot;  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SUR-013Exxx</fullName>
+        <actions>
+            <name>Consulting_Survey_Complete</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SUR-013Exxx
+Consulting Survey Completed Notification
+Sends an email notification whenever there is a consulting survey that has been completed.</description>
+        <formula>AND(   ISPICKVAL(Type__c, &quot;Consulting&quot;),   ISCHANGED(Client_Business_IT_Owner_Survey_Complete__c),   Client_Business_IT_Owner_Survey_Complete__c=TRUE )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

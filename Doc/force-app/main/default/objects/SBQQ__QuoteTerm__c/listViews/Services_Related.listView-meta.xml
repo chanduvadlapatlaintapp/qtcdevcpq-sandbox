@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Services_Related</fullName>
+    <columns>NAME</columns>
+    <columns>SBQQ__Type__c</columns>
+    <columns>Term_Category__c</columns>
+    <columns>Description__c</columns>
+    <columns>SBQQ__Body__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Term_Category__c</field>
+        <operation>equals</operation>
+        <value>After Hours Support,Prime T&amp;C Attachment Term,Services Term FF,SOW</value>
+    </filters>
+    <label>Services Related_aside from PT or MSSA</label>
+    <language>en_US</language>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

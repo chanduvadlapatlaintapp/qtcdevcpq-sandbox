@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Churn_Class__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+	   AND(
+	       Maintenance_Amount__c&gt;0,
+		   ISPICKVAL(Type,&quot;ACV Recovery/Partial ACV Reinstatement&quot;)
+	   ),
+	&quot;Recovery&quot;,
+
+IF( ISBLANK(Maintenance_Amount__c), &quot;&quot;,
+
+    IF(
+      AND(
+        OR(
+               Maintenance_Amount__c = 0,
+               Maintenance_Amount__c&lt;0
+          ),
+	OR(
+		ISPICKVAL(Type,&quot;Cancellation - Customer&quot;),
+		ISPICKVAL(Type,&quot;Cancellation - Module&quot;),
+		ISPICKVAL(Type,&quot;Cancellation - Product&quot;),
+		ISPICKVAL(Type,&quot;Cancellation - Recurring Adjustment&quot;), 
+                ISPICKVAL(Type,&quot;ACV Downgrade/Partial ACV Cancellation&quot;) 
+	  )
+         ),
+	        &quot;Cancellation&quot;,
+    IF(
+       AND(
+           OR(
+               Maintenance_Amount__c = 0,
+               Maintenance_Amount__c&lt;0
+             ),
+	   OR(
+		ISPICKVAL(Type,&quot;Downgrade - CPI&quot;),
+		ISPICKVAL(Type,&quot;Downgrade - Product&quot;),
+		ISPICKVAL(Type,&quot;Legal - Version License&quot;),
+		ISPICKVAL(Type,&quot;Legal - User Count Decrease&quot;),
+		ISPICKVAL(Type,&quot;License Conversion - Recurring Decrease&quot;)
+	      )
+           ),
+		&quot;Downgrade&quot;,
+    IF(
+        AND(
+            OR(
+               Maintenance_Amount__c = 0,
+               Maintenance_Amount__c&lt;0
+             ),
+	    OR(
+		ISPICKVAL(Type,&quot;Unsuccessful Sales Conversion - Customer&quot;),
+		ISPICKVAL(Type,&quot;Unsuccessful Sales Conversion - Module&quot;),
+		ISPICKVAL(Type,&quot;Unsuccessful Sales Conversion - Product&quot;),
+		ISPICKVAL(Type,&quot;Unsuccessful Trial - Product Downgrade&quot;)
+	      )
+            ),
+		&quot;Unsuccessful Trial&quot;,
+		&quot;Unknown&quot;
+	)
+     )
+   )
+  )  
+)</formula>
+    <label>Churn Class</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

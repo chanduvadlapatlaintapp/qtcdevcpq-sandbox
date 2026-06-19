@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notification to Project Managers on active Projects when Opportunity is cancelled (sent via Opportunities trigger)</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>SO_Letterhead</letterhead>
+    <name>Opportunity Cancellation - Notify Project Managers</name>
+    <style>freeForm</style>
+    <subject>Opportunity Cancelled for {!Opportunity.Account}</subject>
+    <textOnly>An Opportunity was cancelled for an account where you have an active Project:
+
+Account: {!Opportunity.Account}
+Opportunity: {!Opportunity.Name}
+
+Please check and verify the health of your project.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

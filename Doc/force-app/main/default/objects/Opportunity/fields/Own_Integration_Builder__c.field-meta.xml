@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Own_Integration_Builder__c</fullName>
+    <formula>IF(
+  OR(
+    ISPICKVAL(Account.IntegrationBuilder__c,&quot;Own it&quot;),
+    ISPICKVAL(Account.IntegrationBuilder__c,&quot;Own Partial&quot;)
+  ),
+  TRUE,
+  FALSE
+)</formula>
+    <label>Own Intapp Integrate?</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

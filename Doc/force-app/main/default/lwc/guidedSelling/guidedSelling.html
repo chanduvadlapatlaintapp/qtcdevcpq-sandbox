@@ -1,0 +1,606 @@
+<template>
+    <div class={containerClass}>
+        <!-- Progress Bar with Navigation (hidden when showCartOnly is true) -->
+        <template if:false={showCartOnly}>
+            <div class="progress-nav-container">
+            <!-- Back Button -->
+            <lightning-button
+                label="Back"
+                onclick={handleBack}
+                variant="neutral"
+                class="nav-back-btn"
+                disabled={isProductsStep}>
+            </lightning-button>
+
+            <!-- Progress Steps -->
+            <div class="progress-bar-container">
+                <div class={productsStepClass}>
+                    <div class="progress-step-indicator">
+                        <template if:true={isProductsCompleted}>
+                            <lightning-icon icon-name="utility:check" size="x-small" class="step-check-icon"></lightning-icon>
+                        </template>
+                        <template if:false={isProductsCompleted}>
+                            <span class="step-number">1</span>
+                        </template>
+                    </div>
+                    <span class="progress-step-label">1 Products</span>
+                </div>
+                <div class="progress-bar-line"></div>
+                <div class={rampStepClass}>
+                    <div class="progress-step-indicator">
+                        <template if:true={isRampCompleted}>
+                            <lightning-icon icon-name="utility:check" size="x-small" class="step-check-icon"></lightning-icon>
+                        </template>
+                        <template if:false={isRampCompleted}>
+                            <span class="step-number">2</span>
+                        </template>
+                    </div>
+                    <span class="progress-step-label">2 Ramp</span>
+                </div>
+                <div class="progress-bar-line"></div>
+                <div class={cartStepClass}>
+                    <div class="progress-step-indicator">
+                        <template if:true={isCartCompleted}>
+                            <lightning-icon icon-name="utility:check" size="x-small" class="step-check-icon"></lightning-icon>
+                        </template>
+                        <template if:false={isCartCompleted}>
+                            <span class="step-number">3</span>
+                        </template>
+                    </div>
+                    <span class="progress-step-label">3 Cart</span>
+                </div>
+                <div class="progress-bar-line"></div>
+                <div class={osaStepClass}>
+                    <div class="progress-step-indicator">
+                        <span class="step-number">4</span>
+                    </div>
+                    <span class="progress-step-label">4 OSA</span>
+                </div>
+            </div>
+
+            <!-- Right Buttons -->
+            <div class="nav-right-buttons">
+                <!-- Cart Total and Deal Quality Score (shown on cart and OSA steps) -->
+                <template if:true={showCartTotalAndScore}>
+                    <div class="cart-total-container">
+                        <div class="cart-total-label">Cart Total:</div>
+                        <div class="cart-total-value">{formattedCartTotal}</div>
+                    </div>
+                    <div class="deal-quality-score-container">
+                        <div class="deal-quality-score-label">Deal Quality Score:</div>
+                        <template if:true={isCalculatingScore}>
+                            <div class="deal-quality-score-value score-loading">
+                                <lightning-spinner alternative-text="Calculating" size="small"></lightning-spinner>
+                            </div>
+                        </template>
+                        <template if:false={isCalculatingScore}>
+                            <div class="deal-quality-score-wrapper">
+                                <div class={dealQualityScoreClass} title={dealQualityScoreBreakdown}>
+                                    <template if:true={dealQualityScore}>
+                                        {dealQualityScore}
+                                    </template>
+                                    <template if:false={dealQualityScore}>
+                                        --
+                                    </template>
+                                </div>
+                                <template if:true={dealQualityScoreBreakdown}>
+                                    <div class="deal-quality-score-tooltip" role="tooltip">
+                                        <div class="tooltip-content">
+                                            <pre class="tooltip-text">{dealQualityScoreBreakdown}</pre>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+                <lightning-button
+                    label={nextButtonLabel}
+                    onclick={handleNext}
+                    variant="Success"
+                    class="nav-next-btn"
+                    disabled={isNextDisabled}>
+                </lightning-button>
+                <lightning-button-icon
+                    icon-name="utility:close"
+                    alternative-text="Close"
+                    onclick={handleClose}
+                    variant="border-filled"
+                    class="nav-close-btn"
+                    title="Close">
+                </lightning-button-icon>
+            </div>
+        </div>
+        </template>
+
+        <!-- Products Step -->
+        <template if:true={isProductsStep}>
+            <div class="products-container">
+            <!-- Main Content Area -->
+            <div class="guided-selling-content">
+            <!-- Left Side: Categories -->
+            <div class="categories-panel">
+            <h3 class="panel-title">Categories</h3>
+            <div class="categories-list">
+                <template for:each={categories} for:item="category">
+                    <div 
+                        key={category.id}
+                        class={category.className}
+                        data-category-id={category.id}
+                        onclick={handleCategoryClick}>
+                        <span class="category-name">{category.name}</span>
+                        <span class="category-count">({category.count})</span>
+                    </div>
+                </template>
+            </div>
+        </div>
+
+        <!-- Middle: Products -->
+        <div class="products-panel">
+            <div class="products-panel-header">
+                <h3 class="panel-title">
+                    <template if:true={selectedCategory}>
+                        <template if:true={isAllProductsCategory}>
+                            All Products
+                        </template>
+                        <template if:false={isAllProductsCategory}>
+                            {selectedCategory.name} Products
+                        </template>
+                    </template>
+                    <template if:false={selectedCategory}>
+                        Select a Category
+                    </template>
+                </h3>
+                <!-- Search Bar -->
+                <div class="search-bar-container">
+                    <lightning-input 
+                        type="search"
+                        placeholder="Search products by name, code, or description..."
+                        value={searchTerm}
+                        onchange={handleSearchChange}
+                        class="search-input">
+                    </lightning-input>
+                </div>
+            </div>
+            <div class="products-list">
+                <template if:true={selectedCategory}>
+                    <template for:each={filteredProducts} for:item="product">
+                        <div key={product.Id} class="product-card">
+                            <div class="product-header">
+                                <h4 class="product-name">{product.Name}</h4>
+                                <template if:true={product.inCart}>
+                                    <lightning-button-icon 
+                                        icon-name="utility:close"
+                                        alternative-text="Remove from cart"
+                                        onclick={handleRemoveFromProductList}
+                                        data-product-id={product.Id}
+                                        variant="border-filled"
+                                        class="remove-btn">
+                                    </lightning-button-icon>
+                                </template>
+                            </div>
+                            <div class="product-code">Code: {product.ProductCode}</div>
+                            <div class="product-description">{product.Description}</div>
+                            
+                            <template if:true={showAddToCartMessage}>
+                                <template if:true={product.isAdded}>
+                                    <div class="success-message">Product added to cart!</div>
+                                </template>
+                            </template>
+
+                            <div class="product-actions">
+                                <div class="quantity-selector">
+                                    <label class="quantity-label">QTY:</label>
+                                    <div class="quantity-controls">
+                                        <lightning-button-icon 
+                                            icon-name="utility:dash"
+                                            alternative-text="Decrease quantity"
+                                            onclick={handleDecreaseQuantity}
+                                            data-product-id={product.Id}
+                                            variant="border-filled"
+                                            class="quantity-btn quantity-minus"
+                                            data-quantity={product.quantity}>
+                                        </lightning-button-icon>
+                                        <span class="quantity-value">{product.quantity}</span>
+                                        <lightning-button-icon 
+                                            icon-name="utility:add"
+                                            alternative-text="Increase quantity"
+                                            onclick={handleIncreaseQuantity}
+                                            data-product-id={product.Id}
+                                            variant="border-filled"
+                                            class="quantity-btn quantity-plus">
+                                        </lightning-button-icon>
+                                    </div>
+                                </div>
+                                <lightning-button 
+                                    label="Add to Cart"
+                                    onclick={handleAddToCart}
+                                    data-product-id={product.Id}
+                                    variant="brand"
+                                    class="add-to-cart-btn"
+                                    disabled={product.inCart}>
+                                </lightning-button>
+                            </div>
+                        </div>
+                    </template>
+                    <template if:false={filteredProducts.length}>
+                        <div class="no-products">
+                            <template if:true={searchTerm}>
+                                No products found matching your search.
+                            </template>
+                            <template if:false={searchTerm}>
+                                No products found in this category.
+                            </template>
+                        </div>
+                    </template>
+                </template>
+                <template if:false={selectedCategory}>
+                    <div class="select-category-message">Please select a category to view products.</div>
+                </template>
+            </div>
+        </div>
+
+        <!-- Right Side: Cart -->
+        <div class="cart-panel">
+            <h3 class="panel-title">Cart ({cartTotal})</h3>
+            <div class="cart-items">
+                <template if:true={cart.length}>
+                    <template for:each={cart} for:item="cartItem">
+                        <div key={cartItem.Id} class="cart-item">
+                            <div class="cart-item-header">
+                                <h4 class="cart-item-name">{cartItem.Name}</h4>
+                                <lightning-button-icon 
+                                    icon-name="utility:close"
+                                    alternative-text="Remove from cart"
+                                    onclick={handleRemoveFromCart}
+                                    data-product-id={cartItem.Id}
+                                    variant="border-filled"
+                                    class="remove-btn">
+                                </lightning-button-icon>
+                            </div>
+                            <div class="cart-item-code">Code: {cartItem.ProductCode}</div>
+                            <div class="cart-item-quantity">Quantity: {cartItem.quantity}</div>
+                        </div>
+                    </template>
+                </template>
+                <template if:false={cart.length}>
+                    <div class="empty-cart">Your cart is empty</div>
+                </template>
+            </div>
+        </div>
+        </div>
+            </div>
+        </template>
+
+        <!-- Ramp Step -->
+        <template if:true={isRampStep}>
+            <div class="ramp-container">
+
+                <div class="ramp-items-list">
+                    <template for:each={rampItems} for:item="item">
+                        <div key={item.Id} class="ramp-product-section">
+                            <div class="ramp-product-header">
+                                <div class="ramp-product-info">
+                                    <h3 class="ramp-item-name">{item.Name}</h3>
+                                    <div class="ramp-item-code">Code: {item.ProductCode}</div>
+                                </div>
+                                <div class="ramp-product-actions">
+                                    <lightning-button 
+                                        label="Add Year"
+                                        icon-name="utility:add"
+                                        onclick={handleAddYear}
+                                        data-product-id={item.Id}
+                                        variant="brand"
+                                        class="add-year-btn">
+                                    </lightning-button>
+                                </div>
+                            </div>
+
+                            <!-- Years Table -->
+                            <div class="years-table-container">
+                                <table class="years-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="ramp-col">Year</th>
+                                            <th class="period-col">Period (Months)</th>
+                                            <th class="timeline-col">
+                                                <div class="timeline-header">
+                                                    <template for:each={monthLabels} for:item="monthLabel">
+                                                        <div key={monthLabel.index} class="timeline-month-header">
+                                                            <div class="month-label">{monthLabel.label}</div>
+                                                            <div class="month-date">{monthLabel.dateLabel}</div>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template if:true={item.years}>
+                                            <template for:each={item.years} for:item="year">
+                                                <tr key={year.yearNumber} class="ramp-row">
+                                                    <td class="ramp-col">
+                                                        <div class="ramp-name-cell">
+                                                            <template if:false={year.isYear1}>
+                                                                <lightning-button-icon 
+                                                                    icon-name="utility:delete"
+                                                                    alternative-text="Delete year"
+                                                                    variant="border-filled"
+                                                                    class="delete-ramp-btn"
+                                                                    data-product-id={item.Id}
+                                                                    data-year-number={year.yearNumber}
+                                                                    onclick={handleDeleteYear}
+                                                                    title="Delete">
+                                                                </lightning-button-icon>
+                                                            </template>
+                                                            <span class="ramp-label">Year {year.yearNumber}</span>
+                                                        </div>
+                                                    </td>
+                                                    <td class="period-col">
+                                                        <div class="period-value">{year.months}</div>
+                                                    </td>
+                                                    <td class="timeline-col">
+                                                        <div class="timeline-row">
+                                                            <!-- Background month grid - dynamic based on totalContractMonths -->
+                                                            <div class="timeline-grid">
+                                                                <template for:each={monthLabels} for:item="month">
+                                                                    <div key={month.index} class="timeline-month-cell"></div>
+                                                                </template>
+                                                            </div>
+                                                            <!-- Draggable duration bar (only Year 1 is draggable) -->
+                                                            <div class="duration-bar-container"
+                                                                 data-product-id={item.Id}
+                                                                 data-year-number={year.yearNumber}
+                                                                 data-start-month={year.startMonth}
+                                                                 data-months={year.months}>
+                                                                <div class={year.durationBarClass} 
+                                                                     style={year.barStyle}
+                                                                     data-product-id={item.Id}
+                                                                     data-year-number={year.yearNumber}>
+                                                                    <template if:true={year.isYear1}>
+                                                                        <div class="bar-handle bar-handle-left"
+                                                                             data-product-id={item.Id}
+                                                                             data-year-number={year.yearNumber}
+                                                                             data-handle="left"
+                                                                             onmousedown={handleBarDragStart}></div>
+                                                                    </template>
+                                                                    <span class="duration-bar-label">{year.months} MO</span>
+                                                                    <template if:true={year.isYear1}>
+                                                                        <div class="bar-handle bar-handle-right"
+                                                                             data-product-id={item.Id}
+                                                                             data-year-number={year.yearNumber}
+                                                                             data-handle="right"
+                                                                             onmousedown={handleBarDragStart}></div>
+                                                                    </template>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </template>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </template>
+
+        <!-- Cart Step -->
+        <template if:true={isCartStep}>
+            <div class="cart-step-container">
+                <!-- Cart Items List -->
+                <div class="cart-items-list">
+                    <template for:each={cartItems} for:item="product">
+                        <div key={product.Id} class="cart-product-section" >
+                            <!-- Product Header -->
+                            <div class="cart-product-header">
+                                <div class="cart-product-icon">
+                                    <lightning-icon icon-name="utility:settings" size="small"></lightning-icon>
+                                </div>
+                                <div class="cart-product-info">
+                                    <h3 class="cart-product-name">{product.Name}</h3>
+                                </div>
+                                <div class="cart-product-actions">
+                                    <lightning-button-icon 
+                                        icon-name="utility:delete"
+                                        alternative-text="Delete product"
+                                        variant="border-filled"
+                                        class="cart-delete-btn"
+                                        data-product-id={product.Id}
+                                        onclick={handleRemoveCartProduct}
+                                        title="Delete">
+                                    </lightning-button-icon>
+                                    <lightning-button 
+                                        label="Configure Year"
+                                        variant="neutral"
+                                        class="cart-config-btn"
+                                        data-product-id={product.Id}
+                                        onclick={handleConfigureYear}>
+                                    </lightning-button>
+                                    <lightning-button 
+                                        label="Remove Year"
+                                        variant="neutral"
+                                        class="cart-remove-year-btn"
+                                        data-product-id={product.Id}
+                                        onclick={handleRemoveYear}>
+                                    </lightning-button>
+                                </div>
+                            </div>
+
+                            <!-- Product Expand/Collapse -->
+                            <div class="cart-product-toggle" data-product-id={product.Id} onclick={handleToggleProductExpand}>
+                                <lightning-icon 
+                                    icon-name={product.expandIcon}
+                                    size="x-small"
+                                    class="toggle-icon">
+                                </lightning-icon>
+                            </div>
+
+                            <!-- Years Table -->
+                            <template if:true={product.isExpanded}>
+                                <div class="cart-years-container">
+                                    <table class="cart-years-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="cart-year-col">Year</th>
+                                                <th class="cart-qty-col">QTY</th>
+                                                <th class="cart-price-col">List Price/Mo</th>
+                                                <th class="cart-discount-col">Override Sale Price/Mo</th>
+                                                <th class="cart-credit-col">One Time Credit</th>
+                                                <th class="cart-approval-col">Approval</th>
+                                                <th class="cart-net-col">Net Price</th>
+                                                <th class="cart-total-col">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <template for:each={product.years} for:item="year">
+                                                <tr key={year.yearNumber} class="cart-year-row">
+                                                    <td class="cart-year-col">
+                                                        <div class="cart-year-info">
+                                                            <span class="cart-year-name">Year {year.yearNumber}</span>
+                                                            <span class="cart-year-period">{year.periodLabel}</span>
+                                                        </div>
+                                                    </td>
+                                                    <td class="cart-qty-col">
+                                                        <lightning-input 
+                                                            type="number"
+                                                            value={product.quantity}
+                                                            min="1"
+                                                            data-product-id={product.Id}
+                                                            data-year-number={year.yearNumber}
+                                                            onchange={handleCartQuantityChange}
+                                                            class="cart-qty-input">
+                                                        </lightning-input>
+                                                    </td>
+                                                    <td class="cart-price-col">
+                                                        <div class="cart-price-display">
+                                                            <span class="currency-symbol">$</span>
+                                                            <span class="price-value">{year.unitPrice}</span>
+                                                        </div>
+                                                    </td>
+                                                    <td class="cart-discount-col">
+                                                        <div class="cart-discount-input-wrapper">
+                                                            <lightning-input 
+                                                                type="number"
+                                                                value={year.overrideSalePricePerMonth}
+                                                                min="0"
+                                                                step="0.01"
+                                                                data-product-id={product.Id}
+                                                                data-year-number={year.yearNumber}
+                                                                onchange={handleCartOverrideSalePriceChange}
+                                                                class="cart-discount-input"
+                                                                formatter="currency">
+                                                            </lightning-input>
+                                                        </div>
+                                                    </td>
+                                                    <td class="cart-credit-col">
+                                                        <div class="cart-credit-input-wrapper">
+                                                            <lightning-input 
+                                                                type="number"
+                                                                value={year.oneTimeCredit}
+                                                                min="0"
+                                                                step="0.01"
+                                                                data-product-id={product.Id}
+                                                                data-year-number={year.yearNumber}
+                                                                onchange={handleCartOneTimeCreditChange}
+                                                                class="cart-credit-input"
+                                                                formatter="currency">
+                                                            </lightning-input>
+                                                        </div>
+                                                    </td>
+                                                    <td class="cart-approval-col">
+                                                        <template if:true={year.hasGvpRate}>
+                                                            <div class="cart-gvp-rate-badge">
+                                                                <span class="gvp-rate-text">Cloud Migration - Services Leader Approval</span>
+                                                            </div>
+                                                        </template>
+                                                        <template if:true={year.hasManagerRate}>
+                                                            <div class="cart-manager-rate-badge">
+                                                                <span class="manager-rate-text">YoY Uplift - COO Approval</span>
+                                                            </div>
+                                                        </template>
+                                                    </td>
+                                                    <td class="cart-net-col">
+                                                        <span class="cart-net-price">${year.netPrice}</span>
+                                                    </td>
+                                                    <td class="cart-total-col">
+                                                        <span class="cart-total-price">${year.totalPrice}</span>
+                                                    </td>
+                                                </tr>
+                                            </template>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+
+                    <!-- Empty Cart Message -->
+                    <template if:false={cartItems.length}>
+                        <div class="cart-empty-message">
+                            <lightning-icon icon-name="utility:cart" size="large"></lightning-icon>
+                            <p>Your cart is empty. Add products to continue.</p>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </template>
+
+        <!-- OSA Step -->
+        <template if:true={isOsaStep}>
+            <div class="osa-step-container">
+                <div class="osa-header">
+                    <h2 class="osa-title">Order Summary Agreement (OSA)</h2>
+                    <p class="osa-description">Generate and review your order summary agreement document.</p>
+                </div>
+                <div class="osa-content">
+                    <template if:true={isLoadingOsa}>
+                        <div class="osa-loading">
+                            <lightning-spinner alternative-text="Loading OSA..." size="large"></lightning-spinner>
+                            <p class="osa-loading-text">Preparing OSA document...</p>
+                        </div>
+                    </template>
+                    <template if:false={isLoadingOsa}>
+                        <template if:true={osaUrl}>
+                            <div class="osa-action-container">
+                                <div class="osa-icon-wrapper">
+                                    <lightning-icon icon-name="doctype:pdf" size="large"></lightning-icon>
+                                </div>
+                                <h3 class="osa-action-title">Order Summary Agreement Document</h3>
+                                <p class="osa-action-description">Click the button below to open and generate your OSA document in Conga Composer.</p>
+                                <lightning-button 
+                                    label="Open OSA Document" 
+                                    variant="brand" 
+                                    onclick={handleOpenOsa}
+                                    icon-name="utility:new_window"
+                                    class="osa-open-btn">
+                                </lightning-button>
+                                <template if:true={osaOpened}>
+                                    <div class="osa-opened-message">
+                                        <lightning-icon icon-name="utility:check" size="small" variant="success"></lightning-icon>
+                                        <span>Document opened in new window. Complete the document generation and return here to finish.</span>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                        <template if:false={osaUrl}>
+                            <div class="osa-error">
+                                <lightning-icon icon-name="utility:warning" size="large"></lightning-icon>
+                                <p>Unable to generate OSA document URL. Please try again.</p>
+                                <lightning-button 
+                                    label="Retry" 
+                                    variant="neutral" 
+                                    onclick={handleRetryOsa}
+                                    icon-name="utility:refresh">
+                                </lightning-button>
+                            </div>
+                        </template>
+                    </template>
+                </div>
+            </div>
+        </template>
+    </div>
+</template>

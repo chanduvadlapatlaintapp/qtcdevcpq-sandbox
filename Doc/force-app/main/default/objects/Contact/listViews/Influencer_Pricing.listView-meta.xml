@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Influencer_Pricing</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CONTACT.TITLE</columns>
+    <columns>CONTACT.PHONE1</columns>
+    <columns>CONTACT.EMAIL</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Advocate_Stage__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>Influencer_Program__c</field>
+        <operation>equals</operation>
+        <value>Pricing</value>
+    </filters>
+    <label>Influencer Pricing</label>
+    <language>en_US</language>
+</ListView>

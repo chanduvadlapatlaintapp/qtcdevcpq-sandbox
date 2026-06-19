@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Services_Product_Type__c</fullName>
+    <description>Created for story BIZ-49687,BIZ-51230
+To check quote is associated with Services product.</description>
+    <label>Services Product Type</label>
+    <summaryFilterItems>
+        <field>OrderItem.Services_Product_Type__c</field>
+        <operation>equals</operation>
+        <value>Fixed Fee, T&amp;M</value>
+    </summaryFilterItems>
+    <summaryForeignKey>OrderItem.OrderId</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

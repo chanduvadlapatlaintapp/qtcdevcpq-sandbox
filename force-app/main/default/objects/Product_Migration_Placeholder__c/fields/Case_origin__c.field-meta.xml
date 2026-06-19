@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Case_origin__c</fullName>
+    <label>Case origin</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Customer Escalation</fullName>
+                <default>false</default>
+                <label>Customer Escalation</label>
+            </value>
+            <value>
+                <fullName>Escalation from C-Team Member</fullName>
+                <default>false</default>
+                <label>Escalation from C-Team Member</label>
+            </value>
+            <value>
+                <fullName>Intapp Internal Escalation</fullName>
+                <default>false</default>
+                <label>Intapp Internal Escalation</label>
+            </value>
+            <value>
+                <fullName>Support Escalation</fullName>
+                <default>false</default>
+                <label>Support Escalation</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

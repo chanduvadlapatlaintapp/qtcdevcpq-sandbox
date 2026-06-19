@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>PS_Survey_Letterhead</letterhead>
+    <name>Future Cancellation</name>
+    <style>freeForm</style>
+    <subject>Future {!Opportunity.Churn_Class__c} for {!Opportunity.Account}</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

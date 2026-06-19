@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Terms_a_and_d__c</fullName>
+    <label>Terms (a) and (d)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>URL Terms</fullName>
+                <default>false</default>
+                <label>URL Terms</label>
+            </value>
+            <value>
+                <fullName>Existing Terms</fullName>
+                <default>true</default>
+                <label>Existing Terms</label>
+            </value>
+            <value>
+                <fullName>Cloud Terms</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Cloud Terms</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

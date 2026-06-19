@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Partner_Stage__c</fullName>
+    <label>Solution Partner Stage</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Type</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>In Recruitment</fullName>
+                <default>false</default>
+                <label>In Recruitment</label>
+            </value>
+            <value>
+                <fullName>Training/Tech. Evaluation</fullName>
+                <default>false</default>
+                <label>Training/Tech. Evaluation</label>
+            </value>
+            <value>
+                <fullName>Provisionally Certified</fullName>
+                <default>false</default>
+                <label>Provisionally Certified</label>
+            </value>
+            <value>
+                <fullName>Certified Partner</fullName>
+                <default>false</default>
+                <label>Certified Partner</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

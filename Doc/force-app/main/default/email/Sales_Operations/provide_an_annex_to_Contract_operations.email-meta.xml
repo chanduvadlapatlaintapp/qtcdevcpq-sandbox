@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>SO_Letterhead</letterhead>
+    <name>Please provide an annex to Contracts Operations</name>
+    <style>freeForm</style>
+    <subject>Liability Annex is required for {!Account.Name}</subject>
+    <textOnly>Please provide an annex to Contracts Operations. MSSA URL is below.
+
+Account:{!Account.Name} 
+Master Terms: Contract Number: {!Account.Master_Terms_Contract_Number__c}
+Master Terms: Contract Number URL  {!Account.Master_Terms_Contract_Number_URL__c}
+
+Rule Code: OPP-090Exxx</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

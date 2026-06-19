@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Confidence_in_Conversion__c</fullName>
+    <label>Forecasted Outcome</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Expect to Win/Save</fullName>
+                <default>false</default>
+                <label>Expect to Win/Save</label>
+            </value>
+            <value>
+                <fullName>Expect to Lose</fullName>
+                <default>false</default>
+                <label>Expect to Lose</label>
+            </value>
+            <value>
+                <fullName>Uncertain</fullName>
+                <default>false</default>
+                <label>Uncertain</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

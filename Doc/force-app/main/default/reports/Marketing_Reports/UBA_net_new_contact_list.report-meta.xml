@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>FIRST_NAME</field>
+    </columns>
+    <columns>
+        <field>LAST_NAME</field>
+    </columns>
+    <columns>
+        <field>TITLE</field>
+    </columns>
+    <columns>
+        <field>ADDRESS2_STREET</field>
+    </columns>
+    <columns>
+        <field>ADDRESS2_CITY</field>
+    </columns>
+    <columns>
+        <field>ADDRESS2_STATE</field>
+    </columns>
+    <columns>
+        <field>ADDRESS2_COUNTRY</field>
+    </columns>
+    <columns>
+        <field>PHONE1</field>
+    </columns>
+    <columns>
+        <field>EMAIL</field>
+    </columns>
+    <columns>
+        <field>OWNER_FULL_NAME</field>
+    </columns>
+    <columns>
+        <field>Account.New_Intake_Opportunities__c</field>
+    </columns>
+    <columns>
+        <field>Contact.Active_Campaign_Count__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.Account_Count__c</field>
+    </columns>
+    <currency>GBP</currency>
+    <description>A list built from account list and mandatory requirements provided by Claire Darling</description>
+    <filter>
+        <booleanFilter>(1 AND (2 OR 3) AND 4 AND 5)</booleanFilter>
+        <criteriaItems>
+            <column>Account.IntApp_Account_Number__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>A204188,A411006,A203108,A204378,A200346,A201866,A201854,A201864,A200503,A200965,A202935,A201868,A201730,A202316,A202567,A201807,A204361,A204357,A200514,A200696,A202971,A202828,A202931,A202983,A201863,A200278,A200358,A200204,A201820,A202934,A201871,A201873,A204234,A202932,A200714,A201826,A320489,A201853,A202972,A200545,A203105,A202936,A202984,A203106,A201840,A202945,A201785,A204238</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contact.Standard_Title__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>6. COO / Executive Director / EVP,7. CFO / Finance Director / SVP,8. GC / Risk Partner / CCO / CRO</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contact.Role_old__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Firm Management,Risk Leader,Finance Management</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contact.Opt_Out__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>excludes</operator>
+            <value>All Marketing</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>ACCOUNT.NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>UBA net new contact list</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>ContactList</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Group__c</fullName>
+    <description>Picklist to classify products into product groups for product selection screen.</description>
+    <inlineHelpText>Picklist to classify products into product groups for product selection screen.</inlineHelpText>
+    <label>Product Group</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Solutions &amp; Bundles</fullName>
+                <default>false</default>
+                <label>Solutions &amp; Bundles</label>
+            </value>
+            <value>
+                <fullName>License Subscription</fullName>
+                <default>false</default>
+                <label>License Subscriptions</label>
+            </value>
+            <value>
+                <fullName>Content Subscriptions</fullName>
+                <default>false</default>
+                <label>Content Subscriptions</label>
+            </value>
+            <value>
+                <fullName>OnePlace Solutions</fullName>
+                <default>false</default>
+                <label>OnePlace Solutions</label>
+            </value>
+            <value>
+                <fullName>Intapp Platform</fullName>
+                <default>false</default>
+                <label>Intapp Platform</label>
+            </value>
+            <value>
+                <fullName>Intapp Products</fullName>
+                <default>false</default>
+                <label>Intapp Products</label>
+            </value>
+            <value>
+                <fullName>DealCloud</fullName>
+                <default>false</default>
+                <label>DealCloud</label>
+            </value>
+            <value>
+                <fullName>Third Party Data</fullName>
+                <default>false</default>
+                <label>Third Party Data</label>
+            </value>
+            <value>
+                <fullName>Extra sandboxes</fullName>
+                <default>false</default>
+                <label>Extra sandboxes</label>
+            </value>
+            <value>
+                <fullName>External Collaboration for Risk</fullName>
+                <default>false</default>
+                <label>External Collaboration for Risk</label>
+            </value>
+            <value>
+                <fullName>Premium Support SKUs</fullName>
+                <default>false</default>
+                <label>Premium Support SKUs</label>
+            </value>
+            <value>
+                <fullName>Legacy OnePlace licenses</fullName>
+                <default>false</default>
+                <label>Legacy OnePlace licenses</label>
+            </value>
+            <value>
+                <fullName>Ops Only - Do Not Use</fullName>
+                <default>false</default>
+                <label>Ops Only - Do Not Use</label>
+            </value>
+            <value>
+                <fullName>Services</fullName>
+                <default>false</default>
+                <label>Services</label>
+            </value>
+            <value>
+                <fullName>Consulting</fullName>
+                <default>false</default>
+                <label>Consulting</label>
+            </value>
+            <value>
+                <fullName>Subscription Credit</fullName>
+                <default>false</default>
+                <label>Subscription Credit</label>
+            </value>
+            <value>
+                <fullName>Training</fullName>
+                <default>false</default>
+                <label>Training</label>
+            </value>
+            <value>
+                <fullName>Partner Practicums</fullName>
+                <default>false</default>
+                <label>Partner Practicums</label>
+            </value>
+            <value>
+                <fullName>Connect Tickets</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Connect Tickets</label>
+            </value>
+            <value>
+                <fullName>Credits</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>One Time Credits</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

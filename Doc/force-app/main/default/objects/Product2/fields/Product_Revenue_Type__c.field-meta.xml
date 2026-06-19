@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Revenue_Type__c</fullName>
+    <description>Do sales of this product contribute to Recurring or One-time revenue?</description>
+    <externalId>false</externalId>
+    <formula>CASE( Product_Type__c , 
+&quot;Services&quot;, &quot;One-time&quot;,
+&quot;Services (Recurring)&quot;, &quot;Recurring&quot;,
+&quot;Services Discount&quot;, &quot;One-time&quot;,
+&quot;Software Discount (Recurring)&quot;,&quot;Recurring&quot;,
+&quot;Software Discount (One-Time)&quot;,&quot;One-time&quot;,
+&quot;Maintenance&quot;, &quot;Recurring&quot;,
+&quot;Support&quot;, &quot;Recurring&quot;,
+&quot;Software&quot;, 
+   CASE( Product_License_Type__c,
+   &quot;Annual&quot;, &quot;Recurring&quot;,
+   &quot;Monthly&quot;, &quot;Recurring&quot;,
+   &quot;Perpetual&quot;, &quot;One-time&quot;,
+   &quot;Early Adopter&quot;,&quot;One-time&quot;,
+   NULL),
+&quot;Discount&quot;,
+   CASE(  Discount_Type__c ,
+   &quot;Recurring&quot;, &quot;Recurring&quot;,
+   &quot;One-time&quot;, &quot;One-time&quot;,
+   NULL),
+NULL)</formula>
+    <inlineHelpText>Do sales of this product contribute to Recurring or One-time revenue?</inlineHelpText>
+    <label>Product Revenue Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

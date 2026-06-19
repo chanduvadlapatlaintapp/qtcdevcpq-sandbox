@@ -1,0 +1,80 @@
+<template>
+    <div class="slds-page-header slds-m-bottom_small">
+        <div class="slds-page-header__row">
+            <div class="slds-page-header__col-title">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <lightning-icon icon-name="standard:note" size="medium"></lightning-icon>
+                    </div>
+                    <div class="slds-media__body">
+                        <div class="slds-page-header__name">
+                            <div class="slds-page-header__name-title">
+                                <span class="slds-page-header__title slds-truncate" title={pageTitle}>
+                                    {pageTitle}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-page-header__col-actions">
+                <div class="slds-page-header__controls">
+                    <lightning-button
+                        label="Back to Quote"
+                        icon-name="utility:back"
+                        onclick={handleBack}
+                        class="slds-m-right_x-small"
+                    ></lightning-button>
+                    <lightning-button
+                        label="Upload"
+                        icon-name="utility:upload"
+                        variant="brand"
+                        onclick={handleUploadClick}
+                    ></lightning-button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <article class="slds-card">
+        <div class="slds-card__body">
+            <!-- Loading Spinner -->
+            <template if:true={isLoading}>
+                <div class="slds-is-relative slds-p-around_large">
+                    <lightning-spinner alternative-text="Loading files..." size="small"></lightning-spinner>
+                </div>
+            </template>
+
+            <!-- File Table -->
+            <template if:false={isLoading}>
+                <template if:true={hasFiles}>
+                    <lightning-datatable
+                        key-field="Id"
+                        data={fileData}
+                        columns={columns}
+                        hide-checkbox-column
+                        onrowaction={handleRowAction}
+                        sorted-by={sortedBy}
+                        sorted-direction={sortDirection}
+                        onsort={handleSort}
+                    ></lightning-datatable>
+                </template>
+
+                <template if:false={hasFiles}>
+                    <div class="slds-p-around_medium slds-text-align_center slds-text-color_weak">
+                        No files found. Click <strong>Upload</strong> to add files.
+                    </div>
+                </template>
+            </template>
+        </div>
+    </article>
+
+    <!-- Error Display -->
+    <template if:true={errorMessage}>
+        <div class="slds-notify slds-notify_toast slds-theme_error slds-m-top_small" role="status">
+            <div class="slds-notify__content">
+                <h2 class="slds-text-heading_small">{errorMessage}</h2>
+            </div>
+        </div>
+    </template>
+</template>

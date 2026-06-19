@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lost_to__c</fullName>
+    <description>For Closed Won deals, who was the primary competitor that we beat? For Closed-Lost deals, which competitor did we lose to?</description>
+    <inlineHelpText>For Closed Won deals, who was the primary competitor that we beat? For Closed-Lost deals, which competitor did we lose to?</inlineHelpText>
+    <label>Won against / Lost to</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>StageName</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Frayman Group</fullName>
+                <default>false</default>
+                <label>Frayman Group</label>
+            </value>
+            <value>
+                <fullName>Prosperoware</fullName>
+                <default>false</default>
+                <label>Prosperoware</label>
+            </value>
+            <value>
+                <fullName>Metastorm</fullName>
+                <default>false</default>
+                <label>Metastorm</label>
+            </value>
+            <value>
+                <fullName>DocAuto</fullName>
+                <default>false</default>
+                <label>DocAuto</label>
+            </value>
+            <value>
+                <fullName>RBRO</fullName>
+                <default>false</default>
+                <label>RBRO</label>
+            </value>
+            <value>
+                <fullName>Wertheim / Winc Tools</fullName>
+                <default>false</default>
+                <label>Wertheim / Winc Tools</label>
+            </value>
+            <value>
+                <fullName>HP Autonomy</fullName>
+                <default>false</default>
+                <label>HP Autonomy</label>
+            </value>
+            <value>
+                <fullName>Zapproved Legal Hold Pro</fullName>
+                <default>false</default>
+                <label>Zapproved Legal Hold Pro</label>
+            </value>
+            <value>
+                <fullName>Aderant</fullName>
+                <default>false</default>
+                <label>Aderant</label>
+            </value>
+            <value>
+                <fullName>APS (DTE)</fullName>
+                <default>false</default>
+                <label>APS (DTE)</label>
+            </value>
+            <value>
+                <fullName>Bellefield iTimeKeep</fullName>
+                <default>false</default>
+                <label>Bellefield iTimeKeep</label>
+            </value>
+            <value>
+                <fullName>Elite</fullName>
+                <default>false</default>
+                <label>Elite</label>
+            </value>
+            <value>
+                <fullName>Legal55</fullName>
+                <default>false</default>
+                <label>Legal55</label>
+            </value>
+            <value>
+                <fullName>Rekoop</fullName>
+                <default>false</default>
+                <label>Rekoop</label>
+            </value>
+            <value>
+                <fullName>SmartTime</fullName>
+                <default>false</default>
+                <label>SmartTime</label>
+            </value>
+            <value>
+                <fullName>TimeKM</fullName>
+                <default>false</default>
+                <label>TimeKM</label>
+            </value>
+            <value>
+                <fullName>Tikit</fullName>
+                <default>false</default>
+                <label>Tikit</label>
+            </value>
+            <value>
+                <fullName>BizTalk</fullName>
+                <default>false</default>
+                <label>BizTalk</label>
+            </value>
+            <value>
+                <fullName>SSIS</fullName>
+                <default>false</default>
+                <label>SSIS</label>
+            </value>
+            <value>
+                <fullName>Whitehill</fullName>
+                <default>false</default>
+                <label>Whitehill</label>
+            </value>
+            <value>
+                <fullName>SAP NetWeaver PI</fullName>
+                <default>false</default>
+                <label>SAP NetWeaver PI</label>
+            </value>
+            <value>
+                <fullName>Younts</fullName>
+                <default>false</default>
+                <label>Younts</label>
+            </value>
+            <value>
+                <fullName>K2</fullName>
+                <default>false</default>
+                <label>K2</label>
+            </value>
+            <value>
+                <fullName>Elegrity</fullName>
+                <default>false</default>
+                <label>Elegrity</label>
+            </value>
+            <value>
+                <fullName>Paayatech</fullName>
+                <default>false</default>
+                <label>Paayatech</label>
+            </value>
+            <value>
+                <fullName>In-house development</fullName>
+                <default>false</default>
+                <label>In-house development</label>
+            </value>
+            <value>
+                <fullName>Project Deferred Indeterminably</fullName>
+                <default>false</default>
+                <label>Project Deferred Indeterminably</label>
+            </value>
+            <value>
+                <fullName>Pricing Considerations</fullName>
+                <default>false</default>
+                <label>Pricing Considerations</label>
+            </value>
+            <value>
+                <fullName>Loss of Internal Interest</fullName>
+                <default>false</default>
+                <label>Loss of Internal Interest</label>
+            </value>
+            <value>
+                <fullName>Loss of Internal Champion</fullName>
+                <default>false</default>
+                <label>Loss of Internal Champion</label>
+            </value>
+            <value>
+                <fullName>Doing nothing</fullName>
+                <default>false</default>
+                <label>Doing nothing</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>No confirmed competitor</fullName>
+                <default>false</default>
+                <label>No confirmed competitor</label>
+            </value>
+            <value>
+                <fullName>Elite WebView</fullName>
+                <default>false</default>
+                <label>Elite WebView</label>
+            </value>
+            <value>
+                <fullName>Carpe Diem Enterprise</fullName>
+                <default>false</default>
+                <label>Carpe Diem Enterprise</label>
+            </value>
+            <value>
+                <fullName>Elite 3E</fullName>
+                <default>false</default>
+                <label>Elite 3E</label>
+            </value>
+            <value>
+                <fullName>Rippe &amp; Kingston</fullName>
+                <default>false</default>
+                <label>Rippe &amp; Kingston</label>
+            </value>
+            <value>
+                <fullName>Upsell existing customer</fullName>
+                <default>false</default>
+                <label>Upsell existing customer</label>
+            </value>
+            <value>
+                <fullName>FloSuite</fullName>
+                <default>false</default>
+                <label>FloSuite</label>
+            </value>
+            <value>
+                <fullName>TFG Conversion</fullName>
+                <default>false</default>
+                <label>TFG Conversion</label>
+            </value>
+            <value>
+                <fullName>W Ventures</fullName>
+                <default>false</default>
+                <label>W Ventures</label>
+            </value>
+            <value>
+                <fullName>Billing Conversion</fullName>
+                <default>false</default>
+                <label>Billing Conversion</label>
+            </value>
+            <value>
+                <fullName>Services Only</fullName>
+                <default>false</default>
+                <label>Services Only</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Frayman Group</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Prosperoware</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Metastorm</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>DocAuto</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>RBRO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Wertheim / Winc Tools</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>HP Autonomy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Zapproved Legal Hold Pro</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Aderant</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>APS (DTE)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Bellefield iTimeKeep</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Elite</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Legal55</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Rekoop</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>SmartTime</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Tikit</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>BizTalk</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>SSIS</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Whitehill</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>SAP NetWeaver PI</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Younts</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>K2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Elegrity</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Paayatech</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>In-house development</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Project Deferred Indeterminably</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Pricing Considerations</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Loss of Internal Interest</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Loss of Internal Champion</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <valueName>Doing nothing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>No confirmed competitor</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Elite WebView</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Carpe Diem Enterprise</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Elite 3E</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Rippe &amp; Kingston</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>FloSuite</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>TFG Conversion</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>W Ventures</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Billing Conversion</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Services Only</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>TimeKM</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Upsell existing customer</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

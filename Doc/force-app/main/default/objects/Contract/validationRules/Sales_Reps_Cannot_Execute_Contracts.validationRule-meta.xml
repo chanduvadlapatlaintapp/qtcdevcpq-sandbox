@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Reps_Cannot_Execute_Contracts</fullName>
+    <active>true</active>
+    <description>Prevents sales reps from changing a contract status to &quot;Contract Executed&quot;</description>
+    <errorConditionFormula>AND(NOT(CONTAINS($Label.Profile_Contract_SalesRepsCantExecuteContracts,$Profile.Name)),
+ISCHANGED(Status),
+ISPICKVAL(Status, &quot;Contract Executed&quot;)
+)</errorConditionFormula>
+    <errorMessage>Contracts may only be set to executed by Sales Ops.</errorMessage>
+</ValidationRule>

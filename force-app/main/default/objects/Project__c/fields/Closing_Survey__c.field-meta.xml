@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Closing_Survey__c</fullName>
+    <description>This field is used to determine whether or not CSM wants to run a project closing survey on this project.</description>
+    <label>Closing Survey</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Completed</fullName>
+                <default>false</default>
+                <label>Completed</label>
+            </value>
+            <value>
+                <fullName>Declined</fullName>
+                <default>false</default>
+                <label>Declined</label>
+            </value>
+            <value>
+                <fullName>Don&apos;t Survey - Office Hours/After Hours</fullName>
+                <default>false</default>
+                <label>Don&apos;t Survey - Office Hours/After Hours</label>
+            </value>
+            <value>
+                <fullName>Don’t Survey - Cancelled/Abandoned Project</fullName>
+                <default>false</default>
+                <label>Don’t Survey - Cancelled/Abandoned Project</label>
+            </value>
+            <value>
+                <fullName>Don’t Survey - CID/CWD/CIWD</fullName>
+                <default>false</default>
+                <label>Don’t Survey - CID/CWD/CIWD</label>
+            </value>
+            <value>
+                <fullName>Don’t Survey - Client Declined</fullName>
+                <default>false</default>
+                <label>Don’t Survey - Client Declined</label>
+            </value>
+            <value>
+                <fullName>Don’t Survey - Low Hours</fullName>
+                <default>false</default>
+                <label>Don’t Survey - Low Hours</label>
+            </value>
+            <value>
+                <fullName>Don’t Survey - Other</fullName>
+                <default>false</default>
+                <label>Don’t Survey - Other</label>
+            </value>
+            <value>
+                <fullName>Partner Project - Survey Pending</fullName>
+                <default>false</default>
+                <label>Partner Project - Survey Pending</label>
+            </value>
+            <value>
+                <fullName>Pending: Survey interview scheduled</fullName>
+                <default>false</default>
+                <label>Pending: Survey interview scheduled</label>
+            </value>
+            <value>
+                <fullName>Pending: Survey requests sent</fullName>
+                <default>false</default>
+                <label>Pending: Survey requests sent</label>
+            </value>
+            <value>
+                <fullName>Target</fullName>
+                <default>false</default>
+                <label>Target</label>
+            </value>
+            <value>
+                <fullName>Unresponsive</fullName>
+                <default>false</default>
+                <label>Unresponsive</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

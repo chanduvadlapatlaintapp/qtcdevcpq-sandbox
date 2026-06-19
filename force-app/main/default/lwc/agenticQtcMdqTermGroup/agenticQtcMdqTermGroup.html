@@ -1,0 +1,117 @@
+<template>
+    <div class={cardClass}>
+        <div class="mdq-grid-wrapper">
+            <table class={tableClass}>
+                <thead>
+                    <tr class="header-banner">
+                        <th class="col-product" rowspan="3">
+                            <span class="col-product-title">Product</span>
+                            <span class="col-product-meter-sublabel">Meter Type</span>
+                        </th>
+                        <th class="col-term-banner" colspan={totalYearCols}>{termLabel}</th>
+                    </tr>
+                    <tr class="header-years">
+                        <template for:each={yearHeaders} for:item="yh">
+                            <th key={yh.key} class="col-year-header" colspan="4">
+                                <span class="year-date">{yh.dateRange}</span>
+                                <span class="year-name">{yh.label}</span>
+                            </th>
+                        </template>
+                    </tr>
+                    <tr class="header-fields">
+                        <template for:each={fieldHeaders} for:item="fh">
+                            <th key={fh.key} class={fh.cls}>{fh.label}</th>
+                        </template>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={productRows} for:item="prod">
+                        <tr key={prod.key} class={prod.rowClass}>
+                            <td class="col-product-name product-toggle"
+                                data-product-key={prod.key}
+                                onclick={handleToggleProduct}>
+                                <div class="product-toggle-inner">
+                                    <lightning-icon icon-name={prod.chevronIcon} size="xx-small" class="chevron-icon"></lightning-icon>
+                                    <div class="product-text">
+                                        <span class="product-label">{prod.productName}</span>
+                                        <span class="product-code">{prod.productCode}</span>
+                                    </div>
+                                    <template if:true={prod.hasMeterType}>
+                                        <div class="meter-type-display" onclick={stopPropagation}>
+                                            <span class="meter-type-value">{prod.meterType}</span>
+                                            <lightning-icon icon-name="utility:down" size="xx-small" class="meter-type-chevron"></lightning-icon>
+                                        </div>
+                                    </template>
+                                </div>
+                            </td>
+                            <template for:each={prod.yearCells} for:item="yc">
+                                <td key={yc.keyQty} class="col-cell col-editable col-year-start">
+                                    <template if:true={yc.isEditable}>
+                                        <div class="qty-stepper">
+                                            <input type="number"
+                                                class="qty-input"
+                                                value={yc.quantity}
+                                                data-line-id={yc.lineId}
+                                                onchange={handleQuantityChange}
+                                                min={yc.minQuantity}
+                                                step="1" />
+                                            <div class="qty-stepper-buttons">
+                                                <button type="button" class="qty-stepper-btn qty-stepper-up"
+                                                    data-line-id={yc.lineId}
+                                                    data-segment-key={prod.segmentKey}
+                                                    data-direction="up"
+                                                    onclick={handleStepQuantity}
+                                                    aria-label="Increase quantity">
+                                                    <svg viewBox="0 0 8 5" aria-hidden="true"><path d="M0 5 L4 0 L8 5 Z" fill="currentColor"/></svg>
+                                                </button>
+                                                <button type="button" class="qty-stepper-btn qty-stepper-down"
+                                                    data-line-id={yc.lineId}
+                                                    data-segment-key={prod.segmentKey}
+                                                    data-direction="down"
+                                                    onclick={handleStepQuantity}
+                                                    disabled={yc.decrementDisabled}
+                                                    aria-label="Decrease quantity">
+                                                    <svg viewBox="0 0 8 5" aria-hidden="true"><path d="M0 0 L4 5 L8 0 Z" fill="currentColor"/></svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <template if:false={yc.isEditable}>
+                                        <span class="cell-value">{yc.displayQuantity}</span>
+                                    </template>
+                                </td>
+                                <td key={yc.keyEff} class="col-cell col-eff-qty">
+                                    <span class={yc.effQtyClass}>{yc.displayEffQty}</span>
+                                </td>
+                                <td key={yc.keyPrice} class="col-cell">
+                                    <span class="cell-value">{yc.displayMonthlySalePrice}</span>
+                                </td>
+                                <td key={yc.keyAcv} class="col-cell">
+                                    <span class="cell-value">{yc.displayCost}</span>
+                                </td>
+                            </template>
+                        </tr>
+                        <template for:each={prod.detailRows} for:item="row">
+                            <tr key={row.key} class="detail-row">
+                                <td class="col-product-name detail-label">{row.label}</td>
+                                <template for:each={row.values} for:item="val">
+                                    <td key={val.key} class="col-detail-value" colspan="4">{val.display}</td>
+                                </template>
+                            </tr>
+                        </template>
+                    </template>
+                    <tr class="total-cost-row">
+                        <td class="col-product-name total-cost-label">Total Cost</td>
+                        <template for:each={totalCostCells} for:item="tc">
+                            <td key={tc.key} class="total-cost-cell" colspan="4">
+                                <span class="total-cost-chip">{tc.display}</span>
+                            </td>
+                        </template>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-toolbar"></div>
+    </div>
+</template>

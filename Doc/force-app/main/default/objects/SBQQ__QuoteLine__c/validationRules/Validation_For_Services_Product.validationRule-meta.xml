@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validation_For_Services_Product</fullName>
+    <active>false</active>
+    <description>Validation for services products.
+Built according to US# 46314
+Deployed again for bug 47136</description>
+    <errorConditionFormula>OR(
+		AND(
+			ISPICKVAL(Product_Type__c, &apos;Services&apos;),
+			OR(
+				ISCHANGED(Meter_Type__c),
+				ISCHANGED(Support_Level__c),
+				ISCHANGED(SBQQ__DistributorDiscount__c)
+				)
+			),
+		AND(
+			ISNEW(),
+			ISPICKVAL(Product_Type__c, &apos;Services&apos;),
+			OR(
+				NOT(ISBLANK (TEXT(Support_Level__c))),
+				NOT (ISBLANK(TEXT(Meter_Type__c))),
+				SBQQ__DistributorDiscount__c&gt;0
+				)
+			)
+		)</errorConditionFormula>
+    <errorMessage>The following fields should not be populated for Services Products :
+Meter Type , Support Level , One Time Discount.</errorMessage>
+</ValidationRule>

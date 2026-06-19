@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>number</bucketType>
+        <developerName>BucketField_55276354</developerName>
+        <masterLabel>Past Due State</masterLabel>
+        <nullTreatment>z</nullTreatment>
+        <sourceColumnName>FK_$Invoice__c.Days_Past_Due_New__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <to>112</to>
+            </sourceValues>
+            <value>90 - 113 Days Overdue</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>112</from>
+            </sourceValues>
+            <value>113+ Days Overdue</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>ACCOUNT_NAME</field>
+    </columns>
+    <columns>
+        <field>OPPORTUNITY_NAME</field>
+    </columns>
+    <columns>
+        <field>Opportunity.Renewal_Notes__c</field>
+    </columns>
+    <columns>
+        <field>Opportunity.Associated_Contract_OSA__c</field>
+    </columns>
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>FK_$Invoice__c.Invoice_Status__c</field>
+    </columns>
+    <columns>
+        <field>Opportunity.Net_Renewal_Amount__c</field>
+    </columns>
+    <columns>
+        <field>Opportunity.Invoice_Total__c</field>
+    </columns>
+    <columns>
+        <field>Opportunity.Maintenance_Amount__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>FK_$Invoice__c.Sales_Order_Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>New license sale</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Opportunity.Maintenance_Amount__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>USD 0</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>FiscalQuarter</dateGranularity>
+        <field>Opportunity.RnwlOpp_Invoice_Date__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>AM: Renewal opps fror NLS</name>
+    <params>
+        <name>open</name>
+        <value>open</value>
+    </params>
+    <params>
+        <name>probability</name>
+        <value>&gt;0</value>
+    </params>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Opportunity@Opportunity.Invoice__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CLOSE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

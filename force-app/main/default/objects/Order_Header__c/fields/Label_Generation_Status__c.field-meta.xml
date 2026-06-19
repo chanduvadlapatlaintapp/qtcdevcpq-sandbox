@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Label_Generation_Status__c</fullName>
+    <label>Label Generation Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Not Started</fullName>
+                <default>true</default>
+                <label>Not Started</label>
+            </value>
+            <value>
+                <fullName>In Process</fullName>
+                <default>false</default>
+                <label>In Process</label>
+            </value>
+            <value>
+                <fullName>Complete</fullName>
+                <default>false</default>
+                <label>Complete</label>
+            </value>
+            <value>
+                <fullName>Needs Manual Generation</fullName>
+                <default>false</default>
+                <label>Needs Manual Generation</label>
+            </value>
+            <value>
+                <fullName>Void Requested</fullName>
+                <default>false</default>
+                <label>Void Requested</label>
+            </value>
+            <value>
+                <fullName>Void In Process</fullName>
+                <default>false</default>
+                <label>Void In Process</label>
+            </value>
+            <value>
+                <fullName>Void Successful</fullName>
+                <default>false</default>
+                <label>Void Successful</label>
+            </value>
+            <value>
+                <fullName>Void Failed</fullName>
+                <default>false</default>
+                <label>Void Failed</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

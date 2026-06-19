@@ -1,0 +1,5 @@
+<messaging:emailTemplate subject="{!recipient.Name}'s outstanding approval requests run at {!now()}" recipientType="User" >
+<messaging:htmlEmailBody >
+<c:PendingApprovals UserID="{!recipient.Id}"></c:PendingApprovals>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

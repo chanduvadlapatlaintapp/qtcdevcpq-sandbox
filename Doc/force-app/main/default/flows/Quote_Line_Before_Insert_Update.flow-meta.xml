@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Product_Type_Change</name>
+        <label>Product Type Change</label>
+        <locationX>580</locationX>
+        <locationY>319</locationY>
+        <defaultConnector>
+            <targetReference>ProductTypeServices</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Product_Type</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>ProductTypeFormula</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>mainUpdate</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>Product Type</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>ProductTypeServices</name>
+        <label>ProductTypeServices</label>
+        <locationX>580</locationX>
+        <locationY>508</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>ProdTypeServices</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>ProductTypeChangeFormula2</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>mainUpdate1</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>ProdTypeServices</label>
+        </rules>
+    </decisions>
+    <description>Added entry criteria to bypass this flow for Static Bundle</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>Populate_Description_FFFormula</name>
+        <dataType>String</dataType>
+        <expression>IF( $Record.SBQQ__ProductCode__c = &apos;GE-00990&apos;,
+&quot;Intapp Services Hour Block&quot;,
+IF(
+ISPICKVAL($Record.SBQQ__Product__r.Product_Type__c,&quot;Services&quot;),
+&quot;Fixed Fee Services&quot;,
+
+
+IF($Record.Product_Name_Display__c=&quot;Payment Adjustment for Intapp Professional Services&quot;,&quot;Payment Adjustment&quot;,
+
+&quot;One Time Services Credit&quot;)
+))</expression>
+    </formulas>
+    <formulas>
+        <name>Populate_DescriptionFormula</name>
+        <dataType>String</dataType>
+        <expression>IF(
+ISPICKVAL($Record.SBQQ__Product__r.Product_Type__c,&quot;Services&quot;),
+&quot;Quoted on a Time &amp; Materials basis&quot;&amp;
+&apos;&lt;br/&gt;&apos;&amp;
+&quot;The above estimate is neither a cap nor “not to exceed” price quote.&quot;
+,
+&quot;One Time Services Credit&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>ProductTypeChangeFormula2</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(   ISPICKVAL({!$Record.SBQQ__Product__r.Services_Product_Type__c},&quot;Fixed Fee&quot;),   OR(     ISPICKVAL({!$Record.SBQQ__Product__r.Product_Type__c},&quot;Services&quot;),     ISPICKVAL({!$Record.SBQQ__Product__r.Product_Type__c},&quot;Services Discount&quot;)   ) )</expression>
+    </formulas>
+    <formulas>
+        <name>ProductTypeFormula</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+  ISPICKVAL({!$Record.SBQQ__Product__r.Services_Product_Type__c},&quot;T&amp;M&quot;),
+  OR(
+    ISPICKVAL({!$Record.SBQQ__Product__r.Product_Type__c},&quot;Services&quot;),
+    ISPICKVAL({!$Record.SBQQ__Product__r.Product_Type__c},&quot;Services Discount&quot;)
+  )
+)</expression>
+    </formulas>
+    <interviewLabel>Quote Line Before Insert Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Quote Line Before Insert Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>mainUpdate</name>
+        <label>mainUpdate</label>
+        <locationX>456</locationX>
+        <locationY>413</locationY>
+        <connector>
+            <targetReference>ProductTypeServices</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>SBQQ__Description__c</field>
+            <value>
+                <elementReference>Populate_DescriptionFormula</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>mainUpdate1</name>
+        <label>mainUpdate1</label>
+        <locationX>460</locationX>
+        <locationY>625</locationY>
+        <inputAssignments>
+            <field>SBQQ__Description__c</field>
+            <value>
+                <elementReference>Populate_Description_FFFormula</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>456</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>Product_Type_Change</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Skip_OP4I_Sync__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>SBQQ__QuoteLine__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+</Flow>

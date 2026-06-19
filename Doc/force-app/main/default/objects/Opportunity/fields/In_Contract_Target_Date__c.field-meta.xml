@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>In_Contract_Target_Date__c</fullName>
+    <description>This field tells you the date that we would like to see the deal in contract, based on the process described in the Contract/Addendum field.</description>
+    <formula>IF(ISPICKVAL(Contract_Addendum__c, &quot;Order only - no terms changes (for customers)&quot;),
+   CloseDate - 5,
+   IF(ISPICKVAL(Contract_Addendum__c, &quot;Amendment - no lawyer involved (for customers)&quot;),
+     CloseDate - 7,
+     IF(ISPICKVAL(Contract_Addendum__c, &quot;Amendment - lawyer involved (for customers)&quot;),
+       CloseDate - 14,
+       IF(ISPICKVAL(Contract_Addendum__c, &quot;Contract - without procurement (for prospects)&quot;),
+         CloseDate - 14,
+         IF(ISPICKVAL(Contract_Addendum__c, &quot;Contract - with procurement (for prospects)&quot;),
+           CloseDate - 30,
+           NULL)))))</formula>
+    <inlineHelpText>This field tells you the date that we would like to see the deal in contract, based on the process described in the Contract/Addendum field.</inlineHelpText>
+    <label>In Contract Target Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Date</type>
+</CustomField>

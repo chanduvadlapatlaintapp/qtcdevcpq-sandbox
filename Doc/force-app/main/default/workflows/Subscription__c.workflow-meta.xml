@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Add_Product_Customer_Name</fullName>
+        <field>Product_Customer_Name_Reference__c</field>
+        <formula>Account__r.Name &amp; &quot; - &quot; &amp; TEXT(Product_Line__c)</formula>
+        <name>Add Product Customer Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSM_Health_Rating</fullName>
+        <field>CSM_Health_Rating__c</field>
+        <literalValue>Green</literalValue>
+        <name>CSM Health Rating</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSM_Health_Rating_Last_Modified_Update</fullName>
+        <description>Updates the CSM Health Rating - Last Modified field to the current date</description>
+        <field>CSM_Health_Rating_Last_Modified__c</field>
+        <formula>NOW()</formula>
+        <name>CSM Health Rating - Last Modified Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Customer_Lifecycle_Stage</fullName>
+        <field>Customer_Lifecycle_Stage_I__c</field>
+        <literalValue>New Customer</literalValue>
+        <name>Customer Lifecycle Stage</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Health_Still_Accurate_Update</fullName>
+        <field>Health_Still_Accurate__c</field>
+        <literalValue>0</literalValue>
+        <name>Health Still Accurate Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Lapse_Product_Customer</fullName>
+        <field>CSM_Health_Rating__c</field>
+        <literalValue>Black</literalValue>
+        <name>Lapse Product Customer</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Lapse_Product_Customer_Lifecycle</fullName>
+        <field>Customer_Lifecycle_Stage_I__c</field>
+        <literalValue>Lapsed</literalValue>
+        <name>Lapse Product Customer - Lifecycle</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Lapse_Product_Customer_Project</fullName>
+        <field>Customer_Lifecycle_Stage__c</field>
+        <literalValue>Lapsed</literalValue>
+        <name>Lapse Product Customer - Project</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Lapse_Product_Customer_Status</fullName>
+        <field>Status__c</field>
+        <literalValue>Inactive</literalValue>
+        <name>Lapse Product Customer Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Customer_Lifecycle_Stage</fullName>
+        <description>Updates the customer lifecycle stage whenever Product Customers are recovered from a lapsed stage.</description>
+        <field>Customer_Lifecycle_Stage_I__c</field>
+        <literalValue>Onboarding</literalValue>
+        <name>Populate Customer Lifecycle Stage</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Product_Implementation_Phase</fullName>
+        <field>Customer_Lifecycle_Stage__c</field>
+        <literalValue>Project not started yet</literalValue>
+        <name>Product Implementation Phase</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Status</fullName>
+        <field>Status__c</field>
+        <literalValue>Active</literalValue>
+        <name>Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Uncheck_health_Still_accurate</fullName>
+        <field>Health_Still_Accurate__c</field>
+        <literalValue>0</literalValue>
+        <name>Uncheck health Still accurate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_CSM_Health_Rating_Last_Modified</fullName>
+        <field>CSM_Health_Rating_Last_Modified__c</field>
+        <formula>NOW()</formula>
+        <name>Update CSM Health Rating Last Modified</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Customer_Lifecycle_Stage</fullName>
+        <field>Customer_Lifecycle_Stage_I__c</field>
+        <literalValue>Lapsed</literalValue>
+        <name>Update Customer Lifecycle Stage</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Customer_Lifecycle_Stage_Previo</fullName>
+        <field>Customer_Lifecycle_Stage_Previous__c</field>
+        <formula>TEXT(Customer_Lifecycle_Stage__c)</formula>
+        <name>UpdateProduct Implementation Phase</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Previous_CSM_Health_Rating</fullName>
+        <field>CSM_Health_Rating_Previous__c</field>
+        <formula>TEXT(PRIORVALUE(CSM_Health_Rating__c))</formula>
+        <name>Update Previous CSM Health Rating</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_SRT_Status_Field</fullName>
+        <field>SRT_Status__c</field>
+        <literalValue>Installed - Not checking in yet</literalValue>
+        <name>Update SRT Status Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>update_FMS_Discussion_Completed_Date</fullName>
+        <field>FMS_Discussion_Completed_Date__c</field>
+        <formula>NOW()</formula>
+        <name>update FMS Discussion Completed Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <outboundMessages>
+        <fullName>SendSubscriptionToDTE</fullName>
+        <apiVersion>34.0</apiVersion>
+        <endpointUrl>https://www.intapp.com/SalesForceSync/DTE/Subscription/SubscriptionNotificationService.asmx</endpointUrl>
+        <fields>Account__c</fields>
+        <fields>Id</fields>
+        <fields>Name</fields>
+        <fields>Primary_Subscription__c</fields>
+        <fields>Product_Line__c</fields>
+        <fields>Status__c</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>alan.westley@intapp.com</integrationUser>
+        <name>SendSubscriptionToDTE</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <rules>
+        <fullName>Lapsed Product Customer</fullName>
+        <actions>
+            <name>Lapse_Product_Customer</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Lapse_Product_Customer_Lifecycle</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Lapse_Product_Customer_Project</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Lapse_Product_Customer_Status</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(   ISCHANGED(Amount__c),   Amount__c = 0 )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A PC-001xFxx</fullName>
+        <actions>
+            <name>Add_Product_Customer_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: PC-001xFxx
+Populate Product Customer Name Reference
+Populates Product Customer Name Reference to be used in search function on a lookup field.</description>
+        <formula>ISBLANK( Product_Customer_Name_Reference__c )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A PC-002xFxx</fullName>
+        <actions>
+            <name>Update_Customer_Lifecycle_Stage_Previo</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: PC-002xFxx
+Store Prior Product Implementation Phase
+Updates the Product Implementation Stage - Previous Field when Customer Lifecycle Stage field is changed</description>
+        <formula>ISCHANGED(Customer_Lifecycle_Stage__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A PC-003xxOx</fullName>
+        <actions>
+            <name>SendSubscriptionToDTE</name>
+            <type>OutboundMessage</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: PC-003xxOx
+UpdateSubscriptionInDTE
+Sends an outbound message in DTE to update Subscription</description>
+        <formula>ISNEW() ||
+ISCHANGED(Account__c) ||
+ISCHANGED(Name) || 
+ISCHANGED(Primary_Subscription__c) ||
+ISCHANGED(Product_Line__c)||
+ISCHANGED(Status__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A PC-004xFxx</fullName>
+        <actions>
+            <name>Update_SRT_Status_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: PC-004xFxx
+Subscription - Change SRT status on SRT Installed change
+Updates SRT Status field when SRT Installed is changed and SRT Status is &quot;Not Installed&quot;</description>
+        <formula>ISCHANGED(SRT_Installed__c) &amp;&amp; ISPICKVAL(SRT_Status__c, &apos;Not Installed&apos;)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A PC-005xFxx</fullName>
+        <actions>
+            <name>Populate_Customer_Lifecycle_Stage</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: PC-005xFxx
+Customer Lifecycle Stage Green
+Updates the customer lifecycle stage to  when they come back from a Lapsed state.</description>
+        <formula>AND(
+  ISCHANGED(Status__c),
+  PRIORVALUE(Status__c)=&quot;Inactive&quot;,
+  ISPICKVAL(Status__c,&quot;Active&quot;)
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A PC-016xFxx</fullName>
+        <actions>
+            <name>Update_Customer_Lifecycle_Stage</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: PC-016xFxx
+Customer Lifecycle Stage Lapsed
+Updates the customer lifecycle stage to Lapsed</description>
+        <formula>AND(
+  ISCHANGED(CSM_Health_Rating__c),
+  ISPICKVAL(CSM_Health_Rating__c,&quot;Black&quot;),
+  ISCHANGED(Status__c),
+  ISPICKVAL(Status__c,&quot;Inactive&quot;)
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A PC-017xFxx</fullName>
+        <actions>
+            <name>update_FMS_Discussion_Completed_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Subscription__c.FMS_Discussion_Completed__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Subscription__c.FMS_Discussion_Completed_Date__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A PC-018xFxx</fullName>
+        <actions>
+            <name>CSM_Health_Rating_Last_Modified_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Uncheck_health_Still_accurate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: PC-018xFxx
+
+Updates the &quot;CSM Health Rating – Last Modified&quot; when &quot;CSM Health Rating&quot; being updated.</description>
+        <formula>OR(   ISCHANGED(CSM_Health_Rating__c),   ISCHANGED(Health_Still_Accurate__c)  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Un-Lapsed Product Customer</fullName>
+        <actions>
+            <name>CSM_Health_Rating</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Customer_Lifecycle_Stage</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Product_Implementation_Phase</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Status</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(   ISCHANGED(Amount__c),   PRIORVALUE(Amount__c)=0,   Amount__c &gt; 0 )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Initial_Response_Time_Field_Update_Email</fullName>
+        <field>Case_Initial_Response_Time__c</field>
+        <formula>( NOW()  -  Parent.CreatedDate ) * 24</formula>
+        <name>Initial Response Time Field Update Email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>ParentId</targetObject>
+    </fieldUpdates>
+    <rules>
+        <fullName>Rule Code%3A EM-001xFxx</fullName>
+        <actions>
+            <name>Initial_Response_Time_Field_Update_Email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: EM-001xFxx
+Case Initial Response Time Update By Email
+Updates the &quot;Case Initial Response Time&quot; field whenever there is an email sent by certain user profiles.</description>
+        <formula>( $User.ProfileId = &apos;00e30000000bvR3&apos; || $User.ProfileId = &apos;00e50000000hvYj&apos; || $User.ProfileId = &apos;00e50000001BfGZ&apos; ) &amp;&amp; ( $User.Id &lt;&gt; &apos;00530000000f63s&apos; ) &amp;&amp; ( ISBLANK( Parent.Case_Initial_Response_Time__c ) )</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

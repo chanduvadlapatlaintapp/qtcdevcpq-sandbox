@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Contacts$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Contacts.Opportunities__r$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Contacts$Email</field>
+    </columns>
+    <columns>
+        <field>Account.Contacts$Title</field>
+    </columns>
+    <columns>
+        <field>Account.Contacts$Standard_Title__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Account.Contacts.Opportunities__r$StageName</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Qualify,Verify,Position,Propose,Selected</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Contacts$Title</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>CFO,Finance Director,CIO,CTO,IT Director,Pricing</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Contacts$Standard_Title__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>7. CFO / Finance Director / SVP,9. CIO / CTO / IT Director,11. Pricing Leader</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$Geography__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>North America,EMEA</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$Name</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>,K&amp;L Gates LLP,Clifford Chance UK LLP,DLA Piper Denmark,Hogan Lovells US LLP,Hogan Lovells International LLP,Barnes &amp; Thornburg,Webber Wentzel,Perkins Coie LLP,McCarter &amp; English LLP,Vorys,Sater,Seymour and Pease LLP,Troutman Pepper Hamilton Sanders LLP,CMS Francis Lefebvre Avocats,CMS Hasche Sigle,Jenner &amp; Block LLP,Jackson Lewis P.C.,Boels Zanders,Monard Law,Rutgers School of Law,GreenwaldDoherty LLP,Robert M. Currey &amp; Associates</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account$Geography__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>OPOF_CFO_CIO_With Opportunity</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_with_Opportunities_and_Contacts__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Account$Name</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Account$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

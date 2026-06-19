@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>Active__c</columns>
+    <columns>NAME</columns>
+    <columns>Intapp_Item_Master_Number__c</columns>
+    <columns>Item_Name__c</columns>
+    <columns>NetSuite_Internal_Id__c</columns>
+    <columns>Product_LineNew__c</columns>
+    <columns>Description__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>TaxCode__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Active__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>All</label>
+</ListView>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Survey_AssociatedCase_Temp__c</fullName>
+    <description>DO NOT DELETE;  This field is the temporary holding location where WebtoCase stored the caseID.  A trigger then takes the value from this field and updates the Survey Case field.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Associated CaseID used to join different Case Record Types.</inlineHelpText>
+    <label>Survey_AssociatedCase Temp</label>
+    <length>50</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

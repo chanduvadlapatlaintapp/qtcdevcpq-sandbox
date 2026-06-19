@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sort_Quote_Lines</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Sort Quote Lines</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!requireScript(&quot;/soap/ajax/20.0/connection.js&quot;)} 
+{!requireScript(&quot;/soap/ajax/20.0/apex.js&quot;)} 
+
+var result; 
+result = sforce.apex.execute(&quot;QuoteLinesSorting&quot;, &quot;sortQuoteLines&quot;, {quoteId:&apos;{!SBQQ__Quote__c.Id}&apos;}); 
+
+if( result != null) 
+{
+ alert(&apos;Quote Lines were sorted successfully&apos;);
+}
+else
+{
+alert(&apos;Error Occured&apos; +result);
+}</url>
+</WebLink>

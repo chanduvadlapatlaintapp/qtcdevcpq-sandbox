@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Supersession_Terms</fullName>
+    <columns>NAME</columns>
+    <columns>SBQQ__PrintOrder__c</columns>
+    <columns>SBQQ__Type__c</columns>
+    <columns>Term_Category__c</columns>
+    <columns>Description__c</columns>
+    <columns>SBQQ__Body__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>LAST_ACTIVITY</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>SBQQ__Active__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Term_Category__c</field>
+        <operation>equals</operation>
+        <value>Supersession</value>
+    </filters>
+    <filters>
+        <field>SBQQ__Type__c</field>
+        <operation>equals</operation>
+        <value>Standard</value>
+    </filters>
+    <label>Supersession Terms</label>
+    <language>en_US</language>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

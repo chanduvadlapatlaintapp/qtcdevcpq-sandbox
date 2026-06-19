@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quality_Issues_Level_2__c</fullName>
+    <description>Granular  Issues found by Contract Ops when reviewing Contract Requests, mark all that apply.</description>
+    <label>Quality Issues Level 2</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <controllingField>Quality_Issues_Level_1__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Address Fields (Deal)</fullName>
+                <default>false</default>
+                <label>Address Fields (Deal)</label>
+            </value>
+            <value>
+                <fullName>Agreement (Repstor) (Deal)</fullName>
+                <default>false</default>
+                <label>Agreement (Repstor) (Deal)</label>
+            </value>
+            <value>
+                <fullName>Bill To (Deal)</fullName>
+                <default>false</default>
+                <label>Bill To (Deal)</label>
+            </value>
+            <value>
+                <fullName>Calculations (Deal)</fullName>
+                <default>false</default>
+                <label>Calculations (Deal)</label>
+            </value>
+            <value>
+                <fullName>Customer Name (Deal)</fullName>
+                <default>false</default>
+                <label>Customer Name (Deal)</label>
+            </value>
+            <value>
+                <fullName>Dates (Effective, Expiry, End) (Deal)</fullName>
+                <default>false</default>
+                <label>Dates (Effective, Expiry, End) (Deal)</label>
+            </value>
+            <value>
+                <fullName>Deal Status (Deal)</fullName>
+                <default>false</default>
+                <label>Deal Status (Deal)</label>
+            </value>
+            <value>
+                <fullName>Deal Type (Deal)</fullName>
+                <default>false</default>
+                <label>Deal Type (Deal)</label>
+            </value>
+            <value>
+                <fullName>Meter Type (Deal)</fullName>
+                <default>false</default>
+                <label>Meter Type (Deal)</label>
+            </value>
+            <value>
+                <fullName>Missing MSSA (Deal)</fullName>
+                <default>false</default>
+                <label>Missing MSSA (Deal)</label>
+            </value>
+            <value>
+                <fullName>Missing SOW  (Deal)</fullName>
+                <default>false</default>
+                <label>Missing SOW  (Deal)</label>
+            </value>
+            <value>
+                <fullName>Other Attachments (Deal)</fullName>
+                <default>false</default>
+                <label>Other Attachments (Deal)</label>
+            </value>
+            <value>
+                <fullName>Payment/Currency (Deal)</fullName>
+                <default>false</default>
+                <label>Payment/Currency (Deal)</label>
+            </value>
+            <value>
+                <fullName>Price Book (Deal)</fullName>
+                <default>false</default>
+                <label>Price Book (Deal)</label>
+            </value>
+            <value>
+                <fullName>Proof of Receipt (Deal)</fullName>
+                <default>false</default>
+                <label>Proof of Receipt (Deal)</label>
+            </value>
+            <value>
+                <fullName>Services Payment Terms (Deal)</fullName>
+                <default>false</default>
+                <label>Services Payment Terms (Deal)</label>
+            </value>
+            <value>
+                <fullName>Service Type (Deal)</fullName>
+                <default>false</default>
+                <label>Service Type (Deal)</label>
+            </value>
+            <value>
+                <fullName>Signature Block (Deal)</fullName>
+                <default>false</default>
+                <label>Signature Block (Deal)</label>
+            </value>
+            <value>
+                <fullName>SKU Error (Deal)</fullName>
+                <default>false</default>
+                <label>SKU Error (Deal)</label>
+            </value>
+            <value>
+                <fullName>Subscription Payment Terms (Deal)</fullName>
+                <default>false</default>
+                <label>Subscription Payment Terms (Deal)</label>
+            </value>
+            <value>
+                <fullName>Other (Deal)</fullName>
+                <default>false</default>
+                <label>Other (Deal)</label>
+            </value>
+            <value>
+                <fullName>Dates (Incorrect SOW)</fullName>
+                <default>false</default>
+                <label>Dates (Incorrect SOW)</label>
+            </value>
+            <value>
+                <fullName>Entity/Legal Name (Incorrect SOW)</fullName>
+                <default>false</default>
+                <label>Entity/Legal Name (Incorrect SOW)</label>
+            </value>
+            <value>
+                <fullName>Master Terms Reference (Incorrect SOW)</fullName>
+                <default>false</default>
+                <label>Master Terms Reference (Incorrect SOW)</label>
+            </value>
+            <value>
+                <fullName>Need Updated Version (Incorrect SOW)</fullName>
+                <default>false</default>
+                <label>Need Updated Version (Incorrect SOW)</label>
+            </value>
+            <value>
+                <fullName>Scoping Detail (Incorrect SOW)</fullName>
+                <default>false</default>
+                <label>Scoping Detail (Incorrect SOW)</label>
+            </value>
+            <value>
+                <fullName>Status (Incorrect SOW)</fullName>
+                <default>false</default>
+                <label>Status (Incorrect SOW)</label>
+            </value>
+            <value>
+                <fullName>Unable to Open Attachment (Incorrect SOW)</fullName>
+                <default>false</default>
+                <label>Unable to Open Attachment (Incorrect SOW)</label>
+            </value>
+            <value>
+                <fullName>Watermark (Incorrect SOW)</fullName>
+                <default>false</default>
+                <label>Watermark (Incorrect SOW)</label>
+            </value>
+            <value>
+                <fullName>Other (Incorrect SOW)</fullName>
+                <default>false</default>
+                <label>Other (Incorrect SOW)</label>
+            </value>
+            <value>
+                <fullName>Annex (Incorrect MSSA)</fullName>
+                <default>false</default>
+                <label>Annex (Incorrect MSSA)</label>
+            </value>
+            <value>
+                <fullName>DPA  (Incorrect MSSA)</fullName>
+                <default>false</default>
+                <label>DPA  (Incorrect MSSA)</label>
+            </value>
+            <value>
+                <fullName>Liability Payment Terms (Incorrect MSSA)</fullName>
+                <default>false</default>
+                <label>Liability Payment Terms (Incorrect MSSA)</label>
+            </value>
+            <value>
+                <fullName>Master Terms Version (Incorrect MSSA)</fullName>
+                <default>false</default>
+                <label>Master Terms Version (Incorrect MSSA)</label>
+            </value>
+            <value>
+                <fullName>Support SLA (Incorrect MSSA)</fullName>
+                <default>false</default>
+                <label>Support SLA (Incorrect MSSA)</label>
+            </value>
+            <value>
+                <fullName>Unable to Open Attachment (Incorrect MSSA)</fullName>
+                <default>false</default>
+                <label>Unable to Open Attachment (Incorrect MSSA)</label>
+            </value>
+            <value>
+                <fullName>Watermark (Incorrect MSSA)</fullName>
+                <default>false</default>
+                <label>Watermark (Incorrect MSSA)</label>
+            </value>
+            <value>
+                <fullName>Other (Incorrect MSSA)</fullName>
+                <default>false</default>
+                <label>Other (Incorrect MSSA)</label>
+            </value>
+            <value>
+                <fullName>API (System Error)</fullName>
+                <default>false</default>
+                <label>API (System Error)</label>
+            </value>
+            <value>
+                <fullName>Calculation (System Error)</fullName>
+                <default>false</default>
+                <label>Calculation (System Error)</label>
+            </value>
+            <value>
+                <fullName>Other (System Error)</fullName>
+                <default>false</default>
+                <label>Other (System Error)</label>
+            </value>
+            <value>
+                <fullName>Instruction/Notes (Other-Contract/ CRM)</fullName>
+                <default>false</default>
+                <label>Instruction/Notes (Other-Contract/ CRM)</label>
+            </value>
+            <value>
+                <fullName>Other (Other-Contract/CRM)</fullName>
+                <default>false</default>
+                <label>Other (Other-Contract/CRM)</label>
+            </value>
+            <value>
+                <fullName>Monthly Net Unit Price re-calculation in CPQ (CPQ Integration Issue)</fullName>
+                <default>false</default>
+                <label>Monthly Net Unit Price re-calculation in CPQ (CPQ Integration Issue)</label>
+            </value>
+            <value>
+                <fullName>DLI Updates Didn’t Integrate (CPQ Integration Issue)</fullName>
+                <default>false</default>
+                <label>DLI Updates Didn’t Integrate (CPQ Integration Issue)</label>
+            </value>
+            <value>
+                <fullName>DLI segmenting issue (CPQ Integration Issue)</fullName>
+                <default>false</default>
+                <label>DLI segmenting issue (CPQ Integration Issue)</label>
+            </value>
+            <value>
+                <fullName>Deal header updates didn’t integrate (CPQ Integration Issue)</fullName>
+                <default>false</default>
+                <label>Deal header updates didn’t integrate (CPQ Integration Issue)</label>
+            </value>
+            <value>
+                <fullName>Deleted line items were not removed from CPQ (CPQ Integration Issue)</fullName>
+                <default>false</default>
+                <label>Deleted line items were not removed from CPQ (CPQ Integration Issue)</label>
+            </value>
+            <value>
+                <fullName>Documents didn’t integrate (CPQ Integration Issue)</fullName>
+                <default>false</default>
+                <label>Documents didn’t integrate (CPQ Integration Issue)</label>
+            </value>
+            <value>
+                <fullName>Comments didn’t integrate (CPQ Integration Issue)</fullName>
+                <default>false</default>
+                <label>Comments didn’t integrate (CPQ Integration Issue)</label>
+            </value>
+            <value>
+                <fullName>Opportunity/quote were not created (CPQ Integration Issue)</fullName>
+                <default>false</default>
+                <label>Opportunity/quote were not created (CPQ Integration Issue)</label>
+            </value>
+            <value>
+                <fullName>Misalignment of software terms between OP4i &amp; CPQ (CPQ Integration Issue)</fullName>
+                <default>false</default>
+                <label>Misalignment of software terms between OP4i &amp; CPQ (CPQ Integration Issue)</label>
+            </value>
+            <value>
+                <fullName>Issue with address fields (CPQ Integration Issue)</fullName>
+                <default>false</default>
+                <label>Issue with address fields (CPQ Integration Issue)</label>
+            </value>
+            <value>
+                <fullName>Line item did not integrate (CPQ Integration Issue)</fullName>
+                <default>false</default>
+                <label>Line item did not integrate (CPQ Integration Issue)</label>
+            </value>
+            <value>
+                <fullName>Delay in integration (CPQ Integration Issue)</fullName>
+                <default>false</default>
+                <label>Delay in integration (CPQ Integration Issue)</label>
+            </value>
+            <value>
+                <fullName>Contacts Didn&apos;t Integrate (CPQ Integration Issue)</fullName>
+                <default>false</default>
+                <label>Contacts Didn&apos;t Integrate (CPQ Integration Issue)</label>
+            </value>
+            <value>
+                <fullName>Quote Line Creation Incomplete (CPQ Integration Issue)</fullName>
+                <default>false</default>
+                <label>Quote Line Creation Incomplete (CPQ Integration Issue)</label>
+            </value>
+            <value>
+                <fullName>User Error (CPQ Integration Issue)</fullName>
+                <default>false</default>
+                <label>User Error (CPQ Integration Issue)</label>
+            </value>
+            <value>
+                <fullName>Other (CPQ Integration Issue)</fullName>
+                <default>false</default>
+                <label>Other (CPQ Integration Issue)</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Address Fields (Deal)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Agreement (Repstor) (Deal)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Bill To (Deal)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Calculations (Deal)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Customer Name (Deal)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Dates (Effective, Expiry, End) (Deal)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Deal Status (Deal)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Deal Type (Deal)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Meter Type (Deal)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Missing MSSA (Deal)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Missing SOW  (Deal)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Other Attachments (Deal)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Payment/Currency (Deal)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Price Book (Deal)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Proof of Receipt (Deal)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Services Payment Terms (Deal)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Service Type (Deal)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Signature Block (Deal)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>SKU Error (Deal)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Subscription Payment Terms (Deal)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Other (Deal)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect SOW</controllingFieldValue>
+            <valueName>Dates (Incorrect SOW)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect SOW</controllingFieldValue>
+            <valueName>Entity/Legal Name (Incorrect SOW)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect SOW</controllingFieldValue>
+            <valueName>Master Terms Reference (Incorrect SOW)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect SOW</controllingFieldValue>
+            <valueName>Need Updated Version (Incorrect SOW)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect SOW</controllingFieldValue>
+            <valueName>Scoping Detail (Incorrect SOW)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect SOW</controllingFieldValue>
+            <valueName>Status (Incorrect SOW)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect SOW</controllingFieldValue>
+            <valueName>Unable to Open Attachment (Incorrect SOW)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect SOW</controllingFieldValue>
+            <valueName>Watermark (Incorrect SOW)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect SOW</controllingFieldValue>
+            <valueName>Other (Incorrect SOW)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect MSSA</controllingFieldValue>
+            <valueName>Annex (Incorrect MSSA)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect MSSA</controllingFieldValue>
+            <valueName>DPA  (Incorrect MSSA)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect MSSA</controllingFieldValue>
+            <valueName>Liability Payment Terms (Incorrect MSSA)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect MSSA</controllingFieldValue>
+            <valueName>Master Terms Version (Incorrect MSSA)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect MSSA</controllingFieldValue>
+            <valueName>Support SLA (Incorrect MSSA)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect MSSA</controllingFieldValue>
+            <valueName>Unable to Open Attachment (Incorrect MSSA)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect MSSA</controllingFieldValue>
+            <valueName>Watermark (Incorrect MSSA)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect MSSA</controllingFieldValue>
+            <valueName>Other (Incorrect MSSA)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>System Error</controllingFieldValue>
+            <valueName>API (System Error)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>System Error</controllingFieldValue>
+            <valueName>Calculation (System Error)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>System Error</controllingFieldValue>
+            <valueName>Other (System Error)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other-Contract/ CRM</controllingFieldValue>
+            <valueName>Instruction/Notes (Other-Contract/ CRM)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other-Contract/ CRM</controllingFieldValue>
+            <valueName>Other (Other-Contract/CRM)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CPQ Integration Issue</controllingFieldValue>
+            <valueName>Monthly Net Unit Price re-calculation in CPQ (CPQ Integration Issue)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CPQ Integration Issue</controllingFieldValue>
+            <valueName>DLI Updates Didn’t Integrate (CPQ Integration Issue)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CPQ Integration Issue</controllingFieldValue>
+            <valueName>DLI segmenting issue (CPQ Integration Issue)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CPQ Integration Issue</controllingFieldValue>
+            <valueName>Deal header updates didn’t integrate (CPQ Integration Issue)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CPQ Integration Issue</controllingFieldValue>
+            <valueName>Deleted line items were not removed from CPQ (CPQ Integration Issue)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CPQ Integration Issue</controllingFieldValue>
+            <valueName>Documents didn’t integrate (CPQ Integration Issue)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CPQ Integration Issue</controllingFieldValue>
+            <valueName>Comments didn’t integrate (CPQ Integration Issue)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CPQ Integration Issue</controllingFieldValue>
+            <valueName>Opportunity/quote were not created (CPQ Integration Issue)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CPQ Integration Issue</controllingFieldValue>
+            <valueName>Misalignment of software terms between OP4i &amp; CPQ (CPQ Integration Issue)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CPQ Integration Issue</controllingFieldValue>
+            <valueName>Issue with address fields (CPQ Integration Issue)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CPQ Integration Issue</controllingFieldValue>
+            <valueName>Line item did not integrate (CPQ Integration Issue)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CPQ Integration Issue</controllingFieldValue>
+            <valueName>Delay in integration (CPQ Integration Issue)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CPQ Integration Issue</controllingFieldValue>
+            <valueName>Contacts Didn&apos;t Integrate (CPQ Integration Issue)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CPQ Integration Issue</controllingFieldValue>
+            <valueName>Quote Line Creation Incomplete (CPQ Integration Issue)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CPQ Integration Issue</controllingFieldValue>
+            <valueName>User Error (CPQ Integration Issue)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CPQ Integration Issue</controllingFieldValue>
+            <valueName>Other (CPQ Integration Issue)</valueName>
+        </valueSettings>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

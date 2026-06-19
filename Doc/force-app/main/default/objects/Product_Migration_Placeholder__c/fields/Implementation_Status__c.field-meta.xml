@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Implementation_Status__c</fullName>
+    <label>Implementation Status</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Not Started</fullName>
+                <default>false</default>
+                <label>Not Started</label>
+            </value>
+            <value>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+                <label>On Hold</label>
+            </value>
+            <value>
+                <fullName>Implemented</fullName>
+                <default>false</default>
+                <label>Implemented</label>
+            </value>
+            <value>
+                <fullName>Pilot</fullName>
+                <default>false</default>
+                <label>Pilot</label>
+            </value>
+            <value>
+                <fullName>Started</fullName>
+                <default>false</default>
+                <label>Started</label>
+            </value>
+            <value>
+                <fullName>Testing</fullName>
+                <default>false</default>
+                <label>Testing</label>
+            </value>
+            <value>
+                <fullName>Business Process Assessment</fullName>
+                <default>false</default>
+                <label>Business Process Assessment</label>
+            </value>
+            <value>
+                <fullName>Data Mapping Scheduled</fullName>
+                <default>false</default>
+                <label>Data Mapping Scheduled</label>
+            </value>
+            <value>
+                <fullName>Data Mapping Performed</fullName>
+                <default>false</default>
+                <label>Data Mapping Performed</label>
+            </value>
+            <value>
+                <fullName>Design</fullName>
+                <default>false</default>
+                <label>Design</label>
+            </value>
+            <value>
+                <fullName>Design &amp; Development</fullName>
+                <default>false</default>
+                <label>Design &amp; Development</label>
+            </value>
+            <value>
+                <fullName>Development Planning</fullName>
+                <default>false</default>
+                <label>Development Planning</label>
+            </value>
+            <value>
+                <fullName>Development</fullName>
+                <default>false</default>
+                <label>Development</label>
+            </value>
+            <value>
+                <fullName>Upgrading</fullName>
+                <default>false</default>
+                <label>Upgrading</label>
+            </value>
+            <value>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+                <label>Unknown</label>
+            </value>
+            <value>
+                <fullName>In development / testing</fullName>
+                <default>false</default>
+                <label>In development / testing</label>
+            </value>
+            <value>
+                <fullName>HF not yet applied</fullName>
+                <default>false</default>
+                <label>HF not yet applied</label>
+            </value>
+            <value>
+                <fullName>HF applied in Test</fullName>
+                <default>false</default>
+                <label>HF applied in Test</label>
+            </value>
+            <value>
+                <fullName>HF applied in PROD</fullName>
+                <default>false</default>
+                <label>HF applied in PROD</label>
+            </value>
+            <value>
+                <fullName>In production</fullName>
+                <default>false</default>
+                <label>In production</label>
+            </value>
+            <value>
+                <fullName>Rule(s) updated in DEV</fullName>
+                <default>false</default>
+                <label>Rule(s) updated in DEV</label>
+            </value>
+            <value>
+                <fullName>Rule(s) updates in PROD</fullName>
+                <default>false</default>
+                <label>Rule(s) updates in PROD</label>
+            </value>
+            <value>
+                <fullName>Applied in UAT</fullName>
+                <default>false</default>
+                <label>Applied in UAT</label>
+            </value>
+            <value>
+                <fullName>Applied in PROD</fullName>
+                <default>false</default>
+                <label>Applied in PROD</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

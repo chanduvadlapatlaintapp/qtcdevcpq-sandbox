@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PS_Pending_Closure_Software_WIP</fullName>
+    <columns>OP4I_Sales_Segment__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>NAME</columns>
+    <columns>SBQQ__MasterContract__c</columns>
+    <columns>SBQQ__Opportunity2__c</columns>
+    <columns>SBQQ__Account__c</columns>
+    <columns>SBQQ__StartDate__c</columns>
+    <columns>SBQQ__SalesRep__c</columns>
+    <columns>SBQQ__Primary__c</columns>
+    <columns>ROR_Expiration_Date_formatted__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Opportunity_Stage__c</field>
+        <operation>equals</operation>
+        <value>Pending Closure,06. Pending Closure</value>
+    </filters>
+    <filters>
+        <field>Software_Products__c</field>
+        <operation>greaterThan</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>SBQQ__Primary__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>OP4I_Sales_Segment__c</field>
+        <operation>notContain</operation>
+        <value>9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24</value>
+    </filters>
+    <label>PS_Pending Closure_Software</label>
+    <language>en_US</language>
+</ListView>

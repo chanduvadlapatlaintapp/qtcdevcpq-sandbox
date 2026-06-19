@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Virtual_Edition_Media</fullName>
+    <active>true</active>
+    <description>This record type represents media delivered on DVD by download</description>
+    <label>Virtual Edition - Media</label>
+    <picklistValues>
+        <picklist>Cloud_Location__c</picklist>
+        <values>
+            <fullName>APAC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EU</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>US</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Delivery_Type__c</picklist>
+        <values>
+            <fullName>Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>On Premise</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>IIS_package__c</picklist>
+        <values>
+            <fullName>Integrate Customer - Tier A</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Integrate Customer - Tier B</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Integrate Customer - Tier C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non-Integrate Customer - Tier A</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non-Integrate Customer - Tier B</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Instance_Type__c</picklist>
+        <values>
+            <fullName>Other</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>TB License</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WB License</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Label_Generation_Status__c</picklist>
+        <values>
+            <fullName>Complete</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Process</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Needs Manual Generation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Started</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Void Failed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Void In Process</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Void Requested</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Void Successful</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Order_System_Status__c</picklist>
+        <values>
+            <fullName>Finished</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Order_Type__c</picklist>
+        <values>
+            <fullName>Partner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Purchase</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Shipper__c</picklist>
+        <values>
+            <fullName>DHL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Download</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>FEDEX</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Royal Mail</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>UPS</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fully Shipped</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Generate Shipping Label</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+</RecordType>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SamlSsoConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <identityLocation>SubjectNameId</identityLocation>
+    <identityMapping>FederationId</identityMapping>
+    <issuer>https://www.intapp.com:8443/connect/</issuer>
+    <loginUrl>https://www.intapp.com:8443/connect/index.html#login/00DWA000005pTQ5</loginUrl>
+    <logoutUrl>https://www.intapp.com:8443/connect/index.html#logout/</logoutUrl>
+    <name>Identity Connect</name>
+    <oauthTokenEndpoint>https://intapp--qtcmock.sandbox.my.salesforce.com/services/oauth2/token?so=00DWA000005pTQ5</oauthTokenEndpoint>
+    <redirectBinding>true</redirectBinding>
+    <requestSignatureMethod>1</requestSignatureMethod>
+    <requestSigningCertId>0P1Vm00000005ED</requestSigningCertId>
+    <salesforceLoginUrl>https://intapp--qtcmock.sandbox.my.salesforce.com?so=00DWA000005pTQ5</salesforceLoginUrl>
+    <samlEntityId>https://saml.salesforce.com</samlEntityId>
+    <samlVersion>SAML2_0</samlVersion>
+    <useConfigRequestMethod>true</useConfigRequestMethod>
+    <useSameDigestAlgoForSigning>false</useSameDigestAlgoForSigning>
+    <userProvisioning>false</userProvisioning>
+    <validationCert>MIIDWjCCAkKgAwIBAgIIEEgOSPCsOnIwDQYJKoZIhvcNAQENBQAwbTE3MDUGA1UE
+AwwuaHR0cHM6Ly93d3cuaW50YXBwLmNvbTo4NDQzL2Nvbm5lY3QvaW5kZXguaHRt
+bDENMAsGA1UECwwETm9uZTEUMBIGA1UECgwLTm9uZSBMPU5vbmUxDTALBgNVBAYT
+BE5vbmUwHhcNMTQwMzI2MjIwMjM5WhcNMjQwNDIyMjIwMjM5WjBtMTcwNQYDVQQD
+DC5odHRwczovL3d3dy5pbnRhcHAuY29tOjg0NDMvY29ubmVjdC9pbmRleC5odG1s
+MQ0wCwYDVQQLDAROb25lMRQwEgYDVQQKDAtOb25lIEw9Tm9uZTENMAsGA1UEBhME
+Tm9uZTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKqSd0O3ZO6VtgD1
+x9FwE4Ljo+sOvUBCTeI2P6JCtw32M1XG6pstf2EDl5Sa8cR5wiSSYrhQBMaCMXUL
+4Y+rguPxIhiJfuSg1ErqF3mIHqDHmQ/Fu1jCo+GxU6tXmvlVfq7OFMjcpefGSZYJ
+0Pk2p/7QTY03cMLdlM9ULc8futvMPq0giGVQ1WR2dR+gneY2Qi6qGmVXBXgSOAzK
+afytvvW2qukNgED+dXHxdRUWXKsERFTTly8FjEKryzagDqcIeXV7z++SNklNbKSq
+RNf1Wnz9CRLq5R3TAiVYHweUDG5MG4AN5aThmfTdJKBXmItWVrXTVe3CNn6ULOF3
+KbSUbRUCAwEAATANBgkqhkiG9w0BAQ0FAAOCAQEAa+6SbB3A7Ucfx+xqs7UBPMvA
+ZJJgSqh7ylgoimPfUPvL2zMmJfJf2RUmItp+Vx/kB0eg9bAGLFn/IhPUXIS3HB8E
+nw3vfgkNhjdzeBAlaV9/u8A4y+3sVCr/bfLDIW7Yp7n3Y+t1GjQmhBYLXrE/sZSR
+JCbC4lqN20FNqVVE0Ww1opyO+1HHx27OXOlXelc6EvdEZBGgt9sRRDzM99rgeJte
+In45Oih/AzDeEwmqJCmsbEiicJ8QTuNwuFIVno2LofeFZYdcI0Pb82DQPXU1uv2M
+1bVFW60egTMTTNRiHn1lT5cT7nKdYyMgJyVC/e0qjk5xLbVlT2Glim80O6XrnA==</validationCert>
+</SamlSsoConfig>

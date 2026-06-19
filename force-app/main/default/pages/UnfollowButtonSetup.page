@@ -1,0 +1,40 @@
+<apex:page >
+  <apex:sectionHeader title="Unfollow Button Guide"/>
+  <apex:pageBlock title="How it Works">
+     <apex:pageBlockSection title="Unfollow Button on List Views">
+       <apex:image url="{!URLFOR($Resource.UnfollowButton, 'UnfollowButton/howitworks.png')}" />
+     </apex:pageBlockSection>
+  </apex:pageBlock> 
+  <apex:pageBlock title="Setup Instructions">
+     <apex:outputText >Follow these 2 steps for Accounts, Contacts, Cases, and Opportunities </apex:outputText>
+     <apex:pageBlockSection title="Step 1">
+         <apex:pageBlockSectionItem labelTitle="Step 1">
+            <apex:image url="{!URLFOR($Resource.UnfollowButton, 'UnfollowButton/step1.png')}" />
+        </apex:pageBlockSectionItem>
+     </apex:pageBlockSection>
+     <apex:pageBlockSection title="Step 2">
+        <apex:image url="{!URLFOR($Resource.UnfollowButton, 'UnfollowButton/step2.png')}" />
+     </apex:pageBlockSection>
+    </apex:pageBlock> 
+     
+   <apex:pageBlock title="Customization Instructions">
+     Follow these steps to add an Unfollow Button to other object's list views
+     <apex:pageBlockSection title="Step 1">
+        <apex:image url="{!URLFOR($Resource.UnfollowButton, 'UnfollowButton/step3.png')}" />
+     </apex:pageBlockSection>
+     <apex:pageBlockSection title="Step 2">
+        <apex:image url="{!URLFOR($Resource.UnfollowButton, 'UnfollowButton/step4.png')}" />
+     </apex:pageBlockSection>
+     <apex:pageBlockSection title="Step 3">
+        <apex:image url="{!URLFOR($Resource.UnfollowButton, 'UnfollowButton/step5.png')}" />
+     </apex:pageBlockSection>
+     <apex:pageBlockSection title="Step 4">
+        <apex:image url="{!URLFOR($Resource.UnfollowButton, 'UnfollowButton/step6.png')}" />
+     </apex:pageBlockSection>
+     <apex:pageBlockSection title="Step 5">
+        <apex:image url="{!URLFOR($Resource.UnfollowButton, 'UnfollowButton/step7.png')}" />
+     </apex:pageBlockSection>
+
+  
+  </apex:pageBlock>
+</apex:page>

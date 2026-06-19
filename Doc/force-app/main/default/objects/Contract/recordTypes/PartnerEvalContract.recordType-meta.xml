@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PartnerEvalContract</fullName>
+    <active>false</active>
+    <description>Contract information for appliances associated with partnerships or evals</description>
+    <label>Partner/Eval Contract</label>
+    <picklistValues>
+        <picklist>Status</picklist>
+        <values>
+            <fullName>Cancelled %2F Lapsed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Expired Draft %28Never Sent to Customer%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Expired Draft %28Never Signed%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Force</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Specialist Approval Needed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Superseded by Newer Contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Waiting for Specialist approval to send</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

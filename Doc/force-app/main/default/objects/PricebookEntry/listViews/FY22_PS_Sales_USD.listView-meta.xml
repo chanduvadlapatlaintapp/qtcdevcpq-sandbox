@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FY22_PS_Sales_USD</fullName>
+    <columns>PRICEBOOK.NAME</columns>
+    <columns>PRICEBOOK.ACTIVE</columns>
+    <columns>PRICEBOOK.CURRENCY_ISO_CODE</columns>
+    <columns>PRODUCT.NAME</columns>
+    <columns>PRODUCT.CUSTOMER_PRODUCT_ID</columns>
+    <columns>PRODUCT.ACTIVE</columns>
+    <columns>PB_ENTRY.CREATED_DATE</columns>
+    <columns>PRODUCT2.ACTIVE</columns>
+    <columns>Product2.Item_Master_Product__c</columns>
+    <columns>Product2.Product_LineNew__c</columns>
+    <columns>Product2.Item_Master_Name__c</columns>
+    <columns>PRODUCT2.DESCRIPTION</columns>
+    <columns>Product2.Product_Type__c</columns>
+    <columns>Product2.Product_License_Type__c</columns>
+    <filterScope>Queue</filterScope>
+    <filters>
+        <field>PRICEBOOK.CURRENCY_ISO_CODE</field>
+        <operation>equals</operation>
+        <value>USD</value>
+    </filters>
+    <filters>
+        <field>PB_ENTRY.CREATED_DATE</field>
+        <operation>greaterOrEqual</operation>
+        <value>7/1/2021 12:00 AM</value>
+    </filters>
+    <filters>
+        <field>PB_ENTRY.CREATED_DATE</field>
+        <operation>lessOrEqual</operation>
+        <value>1/31/2022 12:00 AM</value>
+    </filters>
+    <label>FY22 PS Sales USD</label>
+    <language>en_US</language>
+    <queue>FY22_Intapp_PS_sales</queue>
+</ListView>

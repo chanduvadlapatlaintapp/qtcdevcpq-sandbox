@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Products_and_Subverticals</fullName>
+    <columns>PRODUCT2.NAME</columns>
+    <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+    <columns>Item_Master_Product__c</columns>
+    <columns>Status__c</columns>
+    <columns>PRODUCT2.DESCRIPTION</columns>
+    <columns>PRODUCT2.FAMILY</columns>
+    <columns>Is_Accounting__c</columns>
+    <columns>Is_Consulting__c</columns>
+    <columns>Iss_Corporate__c</columns>
+    <columns>Is_IBA__c</columns>
+    <columns>Is_Legal__c</columns>
+    <columns>Is_PCM__c</columns>
+    <columns>Is_Real_Assets__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>PRODUCT2.ACTIVE</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Products and Subverticals</label>
+</ListView>

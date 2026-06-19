@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Early_Launch_Short_Term_Fit__c</fullName>
+    <description>For IntApp Open early launch deals, this shows a simple assessment of whether the deal fits our Target Firm Size (115-250 lawyers) and Geography (North America).</description>
+    <formula>IF(CONTAINS(&quot;North America&quot;, Account.Geography__c), 
+  IF(CONTAINS(&quot;Yes&quot;, Early_Launch_Target_Size__c), 0.9, 0.5),
+    IF(CONTAINS(&quot;Yes&quot;, Early_Launch_Target_Size__c), 0.5, 0.1))</formula>
+    <inlineHelpText>For IntApp Open early launch deals, this shows a simple assessment of whether the deal fits our Target Firm Size (115-250 lawyers) and Geography (North America).</inlineHelpText>
+    <label>Early Launch Short Term Fit?</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Percent</type>
+</CustomField>

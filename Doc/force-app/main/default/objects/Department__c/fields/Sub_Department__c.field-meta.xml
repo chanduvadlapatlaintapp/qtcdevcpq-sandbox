@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sub_Department__c</fullName>
+    <externalId>false</externalId>
+    <formula>if ( CONTAINS( Name, &quot;COGS : Operations and Shipping&quot;), &quot;Operations and Shipping&quot;, if( CONTAINS( Name, &quot;COGS : Professional Services &amp; Support&quot;), &quot;Professional Services &amp; Support&quot;, if( CONTAINS(Name, &quot;Sales &amp; Marketing : Sales&quot;), &quot;Sales&quot;, if( CONTAINS(Name, &quot;Sales &amp; Marketing : Business Development&quot;), &quot;Business Development&quot;, if (CONTAINS(Name, &quot;Sales &amp; Marketing : Marketing&quot;), &quot;Marketing&quot;, if (CONTAINS(Name, &quot;Sales &amp; Marketing : Product Marketing&quot;), &quot;Product Marketing&quot;, if( CONTAINS(Name, &quot;Research &amp; Development : Product Management&quot;), &quot;Product Management&quot;, if (CONTAINS(Name, &quot;Research &amp; Development : Engineering&quot;), &quot;Engineering&quot;, if ( CONTAINS( Name, &quot;Research &amp; Development : Engineering : Appliance Engineering&quot;), &quot;Appliance Engineering&quot;, if (CONTAINS(Name, &quot;Research &amp; Development : Engineering : Legal Engineering&quot;), &quot;Legal Engineering&quot;, if(CONTAINS(Name, &quot;Research &amp; Development : Engineering : Quality Assurance&quot;), &quot;Quality Assurance&quot;, if(CONTAINS(Name, &quot;General &amp; administrative : CEO&quot;), &quot;CEO&quot;, if(CONTAINS(Name, &quot;General &amp; administrative : Finance &amp; Admin&quot;), &quot;Finance &amp; Admin&quot;, null)))))))))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Sub Department</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

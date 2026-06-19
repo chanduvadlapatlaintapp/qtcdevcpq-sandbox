@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSCaseTB_Select_desktop_wp_software__c</fullName>
+    <inlineHelpText>Select the desktop word processing software used in your organization from the drop-down list.</inlineHelpText>
+    <label>Select desktop word processing software</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Word 2010</fullName>
+                <default>false</default>
+                <label>Word 2010</label>
+            </value>
+            <value>
+                <fullName>Word 2007</fullName>
+                <default>false</default>
+                <label>Word 2007</label>
+            </value>
+            <value>
+                <fullName>Word 2003</fullName>
+                <default>false</default>
+                <label>Word 2003</label>
+            </value>
+            <value>
+                <fullName>Other desktop word processing software</fullName>
+                <default>false</default>
+                <label>Other desktop word processing software</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

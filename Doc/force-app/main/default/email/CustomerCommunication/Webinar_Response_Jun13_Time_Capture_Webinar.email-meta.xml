@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - Jun13 Time Capture Webinar</name>
+    <style>none</style>
+    <subject>IntApp Webinar Confirmation</subject>
+    <textOnly>Webinar Invite -- Suspect
+
+
+{!Contact.FirstName} {!Contact.LastName}: Thank you for registering for the webinar. Please see below for login details.
+
+Title: Using Time Capture to Improve Utilisation and Lawyer Satisfaction
+Date: Friday, 14th June
+Time: 12pm AEST / 11:30am ACST / 10am AWST
+
+URL: https://intapp.webex.com/intapp/onstage/g.php?t=a&amp;d=803895966
+
+AU toll-free: 1 800 005 989
+NZ toll-free: 0 800 445 971
+US toll-free: (855) 871-2363
+
+http://www.intapp.com
+
+All information Copyright 2012 IntApp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

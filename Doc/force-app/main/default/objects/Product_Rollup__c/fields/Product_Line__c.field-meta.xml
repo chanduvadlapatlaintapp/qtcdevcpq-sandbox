@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Line__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Look up to Product Line Object - Product Line Name field</description>
+    <label>Product Line</label>
+    <referenceTo>Product_Line__c</referenceTo>
+    <relationshipLabel>Product Rollups</relationshipLabel>
+    <relationshipName>Product_Rollups</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

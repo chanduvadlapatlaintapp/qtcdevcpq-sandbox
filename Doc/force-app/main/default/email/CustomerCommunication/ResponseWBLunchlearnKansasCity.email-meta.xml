@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Confirmation email for registrants - Debbie&apos;s Lunch &amp; Learn Wall Builder event in Kansas City</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Response - WB Lunch &amp; learn - Kansas City</name>
+    <style>none</style>
+    <subject>Confirmation: Wall Builder Lunch &amp; Learn</subject>
+    <textOnly>Hi {!Lead.FirstName},
+
+Thank you for registering for theLunch &amp; Learn on October 28. The event will begin at Husch Blackwell Sanders at 11:30am.
+
+Regards,
+
+-Debbie Hineman
+
+IntApp Lunch-and-Learn – Wall Builder
+
+
+Date: Tuesday, October 28
+
+Time: 11:30am – 1:00pm with lunch included
+
+Location:
+Husch Blackwell Sanders
+4801 Main Street
+10th Floor/Sanders (VC 24-80)
+Kansas City, MO 33607</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

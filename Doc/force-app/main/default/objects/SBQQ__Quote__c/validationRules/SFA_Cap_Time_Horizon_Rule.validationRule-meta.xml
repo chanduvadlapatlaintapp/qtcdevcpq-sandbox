@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SFA_Cap_Time_Horizon_Rule</fullName>
+    <active>false</active>
+    <description>created as part of BIZ-45114.
+When user selects a value in ‘SFA Cap Time Horizon’, user should be required to enter a value in either ‘SFA Prefix’ or ‘SFA Suffix’.</description>
+    <errorConditionFormula>AND(
+NOT(ISBLANK(TEXT( SFA_Cap_Time_Horizon__c ))),
+AND(
+ISBLANK(TEXT( SFA_Prefix__c )),
+ISBLANK(TEXT( SFA_Suffix__c ))
+))</errorConditionFormula>
+    <errorMessage>Please pick SFA Cap Prefix and/or Suffix values.</errorMessage>
+</ValidationRule>

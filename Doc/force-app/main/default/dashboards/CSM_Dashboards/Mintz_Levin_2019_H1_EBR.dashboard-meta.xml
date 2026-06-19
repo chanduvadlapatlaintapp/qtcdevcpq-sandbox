@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dashboard xmlns="http://soap.sforce.com/2006/04/metadata">
+    <backgroundEndColor>#FFFFFF</backgroundEndColor>
+    <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
+    <backgroundStartColor>#FFFFFF</backgroundStartColor>
+    <dashboardType>SpecifiedUser</dashboardType>
+    <isGridLayout>false</isGridLayout>
+    <leftSection>
+        <columnSize>Wide</columnSize>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <componentType>Bar</componentType>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>false</enableHover>
+            <expandOthers>false</expandOthers>
+            <footer>Opened Cases in the last 90 days</footer>
+            <groupingSortProperties/>
+            <header>Mintz Levin - Support Cases</header>
+            <legendPosition>Bottom</legendPosition>
+            <report>Customer_Success_Management/Mintz_Levin_Cases_by_Status</report>
+            <showPercentage>false</showPercentage>
+            <showPicturesOnCharts>false</showPicturesOnCharts>
+            <showValues>true</showValues>
+            <sortBy>RowLabelDescending</sortBy>
+            <sortLegendValues>false</sortLegendValues>
+            <title>Cases by Status</title>
+            <useReportChart>true</useReportChart>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <componentType>Bar</componentType>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>true</drillToDetailEnabled>
+            <enableHover>false</enableHover>
+            <expandOthers>false</expandOthers>
+            <footer>Opened Cases in the last 90 days</footer>
+            <groupingSortProperties/>
+            <header>Mintz Levin - Support Cases</header>
+            <legendPosition>Bottom</legendPosition>
+            <report>Customer_Success_Management/Mintz_Levin_Cases_by_Product</report>
+            <showPercentage>false</showPercentage>
+            <showPicturesOnCharts>false</showPicturesOnCharts>
+            <showValues>false</showValues>
+            <sortBy>RowLabelDescending</sortBy>
+            <sortLegendValues>false</sortLegendValues>
+            <title>Cases by Product</title>
+            <useReportChart>true</useReportChart>
+        </components>
+    </leftSection>
+    <middleSection>
+        <columnSize>Medium</columnSize>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <componentType>ColumnGrouped</componentType>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>false</enableHover>
+            <expandOthers>false</expandOthers>
+            <footer>Opened Cases in the last 90 days</footer>
+            <groupingSortProperties/>
+            <header>Mintz Levin - Support Cases</header>
+            <legendPosition>Bottom</legendPosition>
+            <report>Customer_Success_Management/Mintz_Levin_Cases_by_Severity</report>
+            <showPercentage>false</showPercentage>
+            <showValues>true</showValues>
+            <sortBy>RowLabelAscending</sortBy>
+            <sortLegendValues>false</sortLegendValues>
+            <title>Cases by Severity</title>
+            <useReportChart>false</useReportChart>
+        </components>
+    </middleSection>
+    <owner>maya.peterson@intapp.com</owner>
+    <rightSection>
+        <columnSize>Medium</columnSize>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <componentType>Funnel</componentType>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>true</drillToDetailEnabled>
+            <enableHover>false</enableHover>
+            <expandOthers>true</expandOthers>
+            <groupingSortProperties/>
+            <header>Mintz Levin</header>
+            <legendPosition>Bottom</legendPosition>
+            <report>Customer_Success_Management/Mintz_Levin_Active_Opps</report>
+            <showPercentage>false</showPercentage>
+            <showValues>true</showValues>
+            <sortBy>RowValueDescending</sortBy>
+            <sortLegendValues>false</sortLegendValues>
+            <title>Active Opportunities</title>
+            <useReportChart>false</useReportChart>
+        </components>
+    </rightSection>
+    <runningUser>maya.peterson@intapp.com</runningUser>
+    <textColor>#000000</textColor>
+    <title>Mintz Levin - 2019 H1 EBR</title>
+    <titleColor>#000000</titleColor>
+    <titleSize>12</titleSize>
+</Dashboard>

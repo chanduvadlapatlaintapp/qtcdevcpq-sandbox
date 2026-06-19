@@ -1,0 +1,16 @@
+<apex:page standardController="Account"
+           sidebar="false"
+           showHeader="false"
+           showChat="false">
+<style>
+.messageText{
+    font-size: large;
+    color: red;
+}
+</style>
+<apex:pageMessage summary="This Account has an active NPI project. Prior to engaging in any account outreach, please contact npi@intapp.com for a current status of NPI activities." 
+                  severity="warning" 
+                  strength="3"
+                  rendered="{!Account.Active_NPI_Project__c = TRUE}" />
+               
+</apex:page>

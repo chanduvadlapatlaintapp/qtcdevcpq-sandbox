@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>MDQ Segmentation Notification</name>
+    <style>none</style>
+    <subject>Alert - Quote {!Quote.Name} Created with Additional Segment - Line of Business: {!SBQQ__Quote__c.Line_of_Business__c}</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

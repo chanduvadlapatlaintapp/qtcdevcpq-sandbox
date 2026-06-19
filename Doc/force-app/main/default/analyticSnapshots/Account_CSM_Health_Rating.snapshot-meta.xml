@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnalyticSnapshot xmlns="http://soap.sforce.com/2006/04/metadata">
+    <mappings>
+        <sourceField>JobName</sourceField>
+        <sourceType>snapshot</sourceType>
+        <targetField>Account_CSM_Health_Rate_Snapshot__c.Name</targetField>
+    </mappings>
+    <mappings>
+        <sourceField>Account.Account_CSM_Health_Change__c</sourceField>
+        <sourceType>tabular</sourceType>
+        <targetField>Account_CSM_Health_Rate_Snapshot__c.Account_CSM_Health_Change__c</targetField>
+    </mappings>
+    <mappings>
+        <sourceField>Account.CSM_Health_Rating__c</sourceField>
+        <sourceType>tabular</sourceType>
+        <targetField>Account_CSM_Health_Rate_Snapshot__c.Account_CSM_Health_Rating__c</targetField>
+    </mappings>
+    <mappings>
+        <sourceField>Account.Account_CSM_Health_Rating_Previous__c</sourceField>
+        <sourceType>tabular</sourceType>
+        <targetField>Account_CSM_Health_Rate_Snapshot__c.Account_CSM_Health_Rating_Previous__c</targetField>
+    </mappings>
+    <mappings>
+        <sourceField>ACCOUNT.NAME</sourceField>
+        <sourceType>tabular</sourceType>
+        <targetField>Account_CSM_Health_Rate_Snapshot__c.Account_Name__c</targetField>
+    </mappings>
+    <mappings>
+        <sourceField>Account.CSM_Engagement_Model__c</sourceField>
+        <sourceType>tabular</sourceType>
+        <targetField>Account_CSM_Health_Rate_Snapshot__c.CSM_Engagement_Model__c</targetField>
+    </mappings>
+    <mappings>
+        <sourceField>ExecutionTime</sourceField>
+        <sourceType>snapshot</sourceType>
+        <targetField>Account_CSM_Health_Rate_Snapshot__c.Snapshot_Date__c</targetField>
+    </mappings>
+    <name>Account CSM Health Rating</name>
+    <runningUser>orest.skoropad@intapp.com</runningUser>
+    <sourceReport>Analytic_Snapshot_Reports/Account_CSM_Health_Rate_Report</sourceReport>
+    <targetObject>Account_CSM_Health_Rate_Snapshot__c</targetObject>
+</AnalyticSnapshot>

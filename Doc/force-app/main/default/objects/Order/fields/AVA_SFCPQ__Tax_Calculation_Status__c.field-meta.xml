@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AVA_SFCPQ__Tax_Calculation_Status__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Displays the status of the tax.</description>
+    <externalId>false</externalId>
+    <formula>IMAGE( 
+
+CASE(      AVA_SFCPQ__AvaTaxMessage__c      , 
+
+&quot;Tax Amount Is Up To Date&quot;, &quot;/img/msg_icons/confirm24.png&quot;, 
+
+&quot;Automated Tax Calculation Triggered, Please Refresh Your Browser&quot;, &quot;/img/loading24.gif&quot;, 
+
+&quot;Tax Amount is Outdated&quot;, &quot;/img/msg_icons/warning24.png&quot;, 
+&quot;&quot;,&quot;&quot;,
+
+&quot;/img/msg_icons/error24.png&quot;), 
+
+&quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Displays the status of the tax.</inlineHelpText>
+    <label>Tax Calculation Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

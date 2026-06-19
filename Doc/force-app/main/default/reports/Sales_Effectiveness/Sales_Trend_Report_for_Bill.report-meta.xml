@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Quarterly_Opportunity_Trends_Snapshot__c.Snapshot_Date__c</field>
+    </columns>
+    <columns>
+        <field>Quarterly_Opportunity_Trends_Snapshot__c.Opportunity_Name__c</field>
+    </columns>
+    <columns>
+        <field>Quarterly_Opportunity_Trends_Snapshot__c.Stage__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Quarterly_Opportunity_Trends_Snapshot__c.Snapshot_Date__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>LAST_QUARTER,THIS_QUARTER</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Quarterly_Opportunity_Trends_Snapshot__c.Sale_Category__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>New Software Product,Add-on Software,License Count Uplift</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>CUST_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Sales Trend Report for Bill</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Quarterly_Opportunity_Trends_Snapshot__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Quarterly_Opportunity_Trends_Snapshot__c.Snapshot_Date__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Quarterly_Opportunity_Trends_Snapshot__c.Close_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

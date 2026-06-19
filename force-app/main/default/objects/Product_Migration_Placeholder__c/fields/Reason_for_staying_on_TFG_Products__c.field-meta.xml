@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reason_for_staying_on_TFG_Products__c</fullName>
+    <label>Reason for staying on Legacy Products</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>PMP_Stage__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Almost live with TFG product</fullName>
+                <default>false</default>
+                <label>Almost live with TFG product</label>
+            </value>
+            <value>
+                <fullName>Deal economics</fullName>
+                <default>false</default>
+                <label>Deal economics</label>
+            </value>
+            <value>
+                <fullName>In Production</fullName>
+                <default>false</default>
+                <label>In Production</label>
+            </value>
+            <value>
+                <fullName>Need reassurance about Product Roadmaps</fullName>
+                <default>false</default>
+                <label>Need reassurance about Product Roadmaps</label>
+            </value>
+            <value>
+                <fullName>Product Development Needed</fullName>
+                <default>false</default>
+                <label>Product Development Needed</label>
+            </value>
+            <value>
+                <fullName>Stalled / Doing Nothing</fullName>
+                <default>false</default>
+                <label>Stalled / Doing Nothing</label>
+            </value>
+            <value>
+                <fullName>Upgrading within TFG Product Line</fullName>
+                <default>false</default>
+                <label>Upgrading within TFG Product Line</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Services costs</fullName>
+                <default>false</default>
+                <label>Services costs</label>
+            </value>
+            <value>
+                <fullName>Security concerns</fullName>
+                <default>false</default>
+                <label>Security concerns</label>
+            </value>
+            <value>
+                <fullName>Customer resource issues</fullName>
+                <default>false</default>
+                <label>Customer resource issues</label>
+            </value>
+            <value>
+                <fullName>No compelling event</fullName>
+                <default>false</default>
+                <label>No compelling event</label>
+            </value>
+            <value>
+                <fullName>Cost reduction not large enough</fullName>
+                <default>false</default>
+                <label>Cost reduction not large enough</label>
+            </value>
+            <value>
+                <fullName>Flexibility in product selection</fullName>
+                <default>false</default>
+                <label>Flexibility in product selection</label>
+            </value>
+            <value>
+                <fullName>Actively evaluating options</fullName>
+                <default>false</default>
+                <label>Actively evaluating options</label>
+            </value>
+            <value>
+                <fullName>Services costs too high</fullName>
+                <default>false</default>
+                <label>Services costs too high</label>
+            </value>
+            <value>
+                <fullName>Product costs too high</fullName>
+                <default>false</default>
+                <label>Product costs too high</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Customer declined Walls offer.</controllingFieldValue>
+            <valueName>Cost reduction not large enough</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer declined Walls offer.</controllingFieldValue>
+            <valueName>Flexibility in product selection</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer declined Walls offer.</controllingFieldValue>
+            <valueName>Actively evaluating options</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

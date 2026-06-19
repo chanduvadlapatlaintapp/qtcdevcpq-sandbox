@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <label>Type</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Meter Type</fullName>
+                <default>false</default>
+                <label>Meter Type</label>
+            </value>
+            <value>
+                <fullName>Employee Compliance</fullName>
+                <default>false</default>
+                <label>Employee Compliance</label>
+            </value>
+            <value>
+                <fullName>Engagement Model</fullName>
+                <default>false</default>
+                <label>Engagement Model</label>
+            </value>
+            <value>
+                <fullName>GTM Motion Tier</fullName>
+                <default>false</default>
+                <label>GTM Motion Tier</label>
+            </value>
+            <value>
+                <fullName>Account Tier</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Account Tier</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

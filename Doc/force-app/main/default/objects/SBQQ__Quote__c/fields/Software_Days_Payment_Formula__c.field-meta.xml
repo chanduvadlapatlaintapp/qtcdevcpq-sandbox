@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Software_Days_Payment_Formula__c</fullName>
+    <description>Created as part of BIZ-73719. To be used in Quote Terms</description>
+    <externalId>false</externalId>
+    <formula>IF(
+  ISPICKVAL(Software_Payment_Terms__c, &quot;Other&quot;),
+  &quot;XXXX&quot;,
+  SUBSTITUTE(TEXT(Software_Payment_Terms__c), &quot;Due&quot;, &quot;&quot;)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Software Days Payment Formula</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

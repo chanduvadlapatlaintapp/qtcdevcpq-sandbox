@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Product_Ownership_Detail__c.License_Basis__c</field>
+    </columns>
+    <columns>
+        <field>Product_Ownership_Detail__c.Status__c</field>
+    </columns>
+    <columns>
+        <field>Product_Ownership_Detail__c.Notes__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Product_Ownership_Detail__c.License_Basis__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>SmartLink,Smartlink - Limited 2R/2W to Bridgeway Legal Hold,Smartlink - Limited 2R/2W to eCounsel,Standard IB &amp; SmartLink</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Product_Ownership_Detail__c.Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Own it,Own Partial,Own it - Limited License,Entitled,Own it - Bridgeway</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Report: Smartlink Entitlements</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountCustomEntity$Product_Ownership_Detail__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>DUE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

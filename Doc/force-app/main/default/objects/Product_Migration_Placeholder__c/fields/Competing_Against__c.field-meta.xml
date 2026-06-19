@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Competing_Against__c</fullName>
+    <label>Competing Against</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Intapp</fullName>
+                <default>false</default>
+                <label>Intapp</label>
+            </value>
+            <value>
+                <fullName>Intapp / W Venture</fullName>
+                <default>false</default>
+                <label>Intapp / W Venture</label>
+            </value>
+            <value>
+                <fullName>Intapp, K2, Elegrity</fullName>
+                <default>false</default>
+                <label>Intapp, K2, Elegrity</label>
+            </value>
+            <value>
+                <fullName>K2, Metastorm</fullName>
+                <default>false</default>
+                <label>K2, Metastorm</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

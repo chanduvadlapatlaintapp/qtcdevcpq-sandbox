@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>SO_Letterhead</letterhead>
+    <name>Contract Superseded</name>
+    <style>freeForm</style>
+    <subject>Contract was set to Superseded for: {!Contract.Account} - Line of Business: {!Contract.Applicable_Subsidiary__c}</subject>
+    <textOnly>Please be informed that  # {!Contract.ContractNumber} for {!Contract.Account}. was set to Superseded
+
+Line of Business: {!Contract.Applicable_Subsidiary__c}
+
+Please close out renewal opportunities which are no longer required
+
+
+Please click on the following link for full details:
+
+{!Contract.Link}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Amend_QL_Appl_Level__c</fullName>
+    <description>This field will return 0 when quantity difference on the QLE between quote &amp; amended quote is within range (+/- 5) else return 1.</description>
+    <externalId>false</externalId>
+    <formula>IF(SBQQ__Quantity__c==0,1,IF(ISBLANK(SBQQ__UpgradedSubscription__c),1,
+IF(AND((SBQQ__UpgradedSubscription__r.SBQQ__Quantity__c -  SBQQ__Quantity__c)&lt;=5,
+		(SBQQ__UpgradedSubscription__r.SBQQ__Quantity__c -  SBQQ__Quantity__c)&gt;=-5),0,1)))</formula>
+    <label>Amend QL Appl Level</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

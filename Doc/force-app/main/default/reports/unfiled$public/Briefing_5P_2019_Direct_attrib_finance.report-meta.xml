@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>FULL_NAME</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Opportunity.Maintenance_Amount__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>FY20 Events resulting in direct finance opps.</description>
+    <filter>
+        <criteriaItems>
+            <column>Opportunity.Sale_Category__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>New Software Product,Add-on Software,User Count Uplift</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>STAGE_NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Qualification,Validation,Proposal,Selected,Closed Won,Closed Lost</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>CAMPAIGN_SOURCE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>2019-07-04_Legal_20Q1_Briefing 5P,2019-10-15_Legal_20Q2_Wilson_Allen_Knowledge_Summit,2019-10-24_Legal_20Q2_Thomson Reuters COO/CFO Forum,2020-06-10_Legal_20Q4_LMA P3 Conference,2019-08-18_Legal_20Q1_ILTACON,2020-03-10_Legal_20Q3_British Legal Tech,2019-08-07_Legal_20Q1_LMA NE Summer Soiree,2019-09-11_Legal_20Q1_LMA SW Regional Conference,2019-09-25_Legal_20Q1_LMA SE Regional Conference,2019-10-21_Legal_20Q2_LMA_Tech_West,2019-11-06_Legal_20Q2_LMA_Mid-Atlantic,2019-11-14_Legal_20Q2_LMANE_Regional_Conference,2019-11-21_Legal_20Q2_LMAEC_Regional_Conference,2020-03-25_Legal_20Q3_ LMA_Annual_Conference,2020-1-22_Legal_20Q3_Thomson_Reuters_Marketing_Partner_Forum</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Opportunity.Practice_Group__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value></value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Opportunity.Practice_Group__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>STAGE_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>CAMPAIGN_SOURCE</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>OPPORTUNITY_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>FY20 Finance events-direct-opp</name>
+    <params>
+        <name>open</name>
+        <value>all</value>
+    </params>
+    <params>
+        <name>probability</name>
+        <value>&gt;0</value>
+    </params>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>OpportunityCampaign</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CLOSE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

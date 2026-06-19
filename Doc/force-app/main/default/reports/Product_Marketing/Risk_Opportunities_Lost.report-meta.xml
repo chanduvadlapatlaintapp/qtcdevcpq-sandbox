@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account.Opportunities$Type</field>
+    </columns>
+    <columns>
+        <field>Account$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Opportunities$Name</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.Opportunities$Maintenance_Amount__c.CONVERT</field>
+    </columns>
+    <columns>
+        <field>Account.Opportunities$Primary_Competitor__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Walls/Intake/Conflicts Lost</description>
+    <filter>
+        <booleanFilter>1 AND 2 AND 3 AND (4 OR 5 OR 6)</booleanFilter>
+        <criteriaItems>
+            <column>Account.Opportunities$Type</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Legal - New Converted Customer,Legal - New Converted Product,Legal - New Customer,New Customer,Legal - New Product,New Product</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Opportunities$StageName</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Closed Lost,Closed - No Decision</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$Wall_Builder__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Own it</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$IntApp_Open_Conflicts__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Own it</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$IntApp_Open_Intake__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Own it</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <name>Risk Opportunities Lost</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_with_Opportunities__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Account.Opportunities$CloseDate</dateColumn>
+        <endDate>2016-10-18</endDate>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2015-01-01</startDate>
+    </timeFrameFilter>
+</Report>

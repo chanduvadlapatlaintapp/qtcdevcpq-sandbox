@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>expire_trial_notification</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <ccEmails>contactsops_software@intapp.com</ccEmails>
+        <description>expire trial notification</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/expire_trial_notification</template>
+    </alerts>
+</Workflow>

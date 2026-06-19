@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Experience_Management_Tool__c</fullName>
+    <inlineHelpText>What Experience Management Tool does this firm use?</inlineHelpText>
+    <label>Experience Management Tool</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Homegrown</fullName>
+                <default>false</default>
+                <label>Homegrown</label>
+            </value>
+            <value>
+                <fullName>ContentPilot</fullName>
+                <default>false</default>
+                <label>ContentPilot</label>
+            </value>
+            <value>
+                <fullName>BDP</fullName>
+                <default>false</default>
+                <label>BDP</label>
+            </value>
+            <value>
+                <fullName>Interaction</fullName>
+                <default>false</default>
+                <label>Interaction</label>
+            </value>
+            <value>
+                <fullName>OnePlace</fullName>
+                <default>false</default>
+                <label>OnePlace</label>
+            </value>
+            <value>
+                <fullName>Foundation</fullName>
+                <default>false</default>
+                <label>Foundation</label>
+            </value>
+            <value>
+                <fullName>Hubbard One</fullName>
+                <default>false</default>
+                <label>Hubbard One</label>
+            </value>
+            <value>
+                <fullName>RAVN</fullName>
+                <default>false</default>
+                <label>RAVN</label>
+            </value>
+            <value>
+                <fullName>Handshake</fullName>
+                <default>false</default>
+                <label>Handshake</label>
+            </value>
+            <value>
+                <fullName>Prosperoware</fullName>
+                <default>false</default>
+                <label>Prosperoware</label>
+            </value>
+            <value>
+                <fullName>Saturno</fullName>
+                <default>false</default>
+                <label>Saturno</label>
+            </value>
+            <value>
+                <fullName>Thomson Reuters BD Premier</fullName>
+                <default>false</default>
+                <label>Thomson Reuters BD Premier</label>
+            </value>
+            <value>
+                <fullName>Thomson Reuters Experience Manager</fullName>
+                <default>false</default>
+                <label>Thomson Reuters Experience Manager</label>
+            </value>
+            <value>
+                <fullName>The Firm Directory (Neudesic)</fullName>
+                <default>false</default>
+                <label>The Firm Directory (Neudesic)</label>
+            </value>
+            <value>
+                <fullName>Pitchly</fullName>
+                <default>false</default>
+                <label>Pitchly</label>
+            </value>
+            <value>
+                <fullName>Intapp Experience</fullName>
+                <default>false</default>
+                <label>Intapp Experience</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

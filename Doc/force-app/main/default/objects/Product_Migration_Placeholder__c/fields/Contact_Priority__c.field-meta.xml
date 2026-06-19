@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact_Priority__c</fullName>
+    <label>Contact Priority</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>0-Critical</fullName>
+                <default>false</default>
+                <label>0-Critical</label>
+            </value>
+            <value>
+                <fullName>1-High</fullName>
+                <default>false</default>
+                <label>1-High</label>
+            </value>
+            <value>
+                <fullName>2-Medium</fullName>
+                <default>false</default>
+                <label>2-Medium</label>
+            </value>
+            <value>
+                <fullName>3-Low</fullName>
+                <default>false</default>
+                <label>3-Low</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

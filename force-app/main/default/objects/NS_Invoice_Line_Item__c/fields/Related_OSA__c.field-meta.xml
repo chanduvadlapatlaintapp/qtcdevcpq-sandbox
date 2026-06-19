@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Related_OSA__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Related OSA</label>
+    <referenceTo>Contract</referenceTo>
+    <relationshipLabel>NS Invoice Line Items</relationshipLabel>
+    <relationshipName>NS_Invoice_Line_Items</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Retainer_Amount__c</fullName>
+    <description>Created for story BIZ-49977
+To calculate the prime service Hours</description>
+    <label>Prime Service Hours</label>
+    <summarizedField>SBQQ__QuoteLine__c.Services_Hours__c</summarizedField>
+    <summaryFilterItems>
+        <field>SBQQ__QuoteLine__c.Product_Type__c</field>
+        <operation>equals</operation>
+        <value>Services</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>SBQQ__QuoteLine__c.Is_Prime__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryForeignKey>SBQQ__QuoteLine__c.SBQQ__Quote__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CPI__c</fullName>
+    <description>What is the CPI provision for this agreement?</description>
+    <inlineHelpText>What is the CPI provision for this agreement?</inlineHelpText>
+    <label>CPI</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CPI plus 10%</fullName>
+                <default>false</default>
+                <label>CPI plus 10%</label>
+            </value>
+            <value>
+                <fullName>CPI plus 5% or better</fullName>
+                <default>false</default>
+                <label>CPI plus 5% or better</label>
+            </value>
+            <value>
+                <fullName>Less than CPI plus 5%</fullName>
+                <default>false</default>
+                <label>Less than CPI plus 5%</label>
+            </value>
+            <value>
+                <fullName>Not applicable (existing T&amp;Cs set)</fullName>
+                <default>false</default>
+                <label>Not applicable (existing T&amp;Cs set)</label>
+            </value>
+            <value>
+                <fullName>Silent</fullName>
+                <default>false</default>
+                <label>Silent</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

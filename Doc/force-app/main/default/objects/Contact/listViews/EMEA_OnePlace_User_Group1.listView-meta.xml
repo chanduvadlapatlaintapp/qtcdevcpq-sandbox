@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EMEA_OnePlace_User_Group1</fullName>
+    <booleanFilter>(1 OR 3) AND 2 AND 4</booleanFilter>
+    <columns>FULL_NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CONTACT.TITLE</columns>
+    <columns>CONTACT.PHONE1</columns>
+    <columns>CONTACT.EMAIL</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>CONTACT.ADDRESS2_STREET</columns>
+    <columns>CONTACT.ADDRESS2_CITY</columns>
+    <columns>CONTACT.ADDRESS2_STATE</columns>
+    <columns>CONTACT.ADDRESS2_COUNTRY</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ACCOUNT.NAME</field>
+        <operation>contains</operation>
+        <value>Reed Smith,DAC,Kemp Little,Memery Crystal,Howard,Bird,Addleshaw</value>
+    </filters>
+    <filters>
+        <field>CONTACT.TITLE</field>
+        <operation>contains</operation>
+        <value>Marketing,CRM,Client,business development</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.NAME</field>
+        <operation>contains</operation>
+        <value>Bedell,Michelmores,Potter,Winckworth,Edwin,Birketts,Ince,Derrick,Womble,Tamimi</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.NAME</field>
+        <operation>notContain</operation>
+        <value>Alston,King,Burke,Weil,Attorneys,Novogradac,Open,Anderson,Schwabe,Sherm,Vincents</value>
+    </filters>
+    <label>EMEA OnePlace User Group</label>
+    <language>en_US</language>
+</ListView>

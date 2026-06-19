@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HardwareConfiguration__c</fullName>
+    <label>Production Appliance</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>3/110</fullName>
+                <default>false</default>
+                <label>3/110</label>
+            </value>
+            <value>
+                <fullName>3/230</fullName>
+                <default>false</default>
+                <label>3/230</label>
+            </value>
+            <value>
+                <fullName>3/440</fullName>
+                <default>false</default>
+                <label>3/440</label>
+            </value>
+            <value>
+                <fullName>2 read/2 write</fullName>
+                <default>false</default>
+                <label>2 read/2 write</label>
+            </value>
+            <value>
+                <fullName>3/100 Limited</fullName>
+                <default>false</default>
+                <label>3/100 Limited</label>
+            </value>
+            <value>
+                <fullName>Ethical Walls Add-on</fullName>
+                <default>false</default>
+                <label>Ethical Walls Add-on</label>
+            </value>
+            <value>
+                <fullName>ITM Add-on</fullName>
+                <default>false</default>
+                <label>ITM Add-on</label>
+            </value>
+            <value>
+                <fullName>Unlimited Appliance</fullName>
+                <default>false</default>
+                <label>Unlimited Appliance</label>
+            </value>
+            <value>
+                <fullName>Series 4 Upgrade</fullName>
+                <default>false</default>
+                <label>Series 4 Upgrade</label>
+            </value>
+            <value>
+                <fullName>4 read/4 write</fullName>
+                <default>false</default>
+                <label>4 read/4 write</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

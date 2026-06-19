@@ -1,0 +1,16 @@
+Hello {!Contact.FirstName},
+
+We have recently been alerted that your appliance has stopped checking for patches from our update servers. Automated patch checks allow us to keep your appliance fully up to date with the latest software and system updates.
+
+Currently the appliance attempts to make a request to our update servers every hour through an HTTP call. The usual cause for an appliance not making this request is that a web proxy has blocked access to outside of the network. If this is the case we'd be happy to walk you through the process to configure the appliance for the web proxy.
+
+If you need to selectively permit outbound communications here are the addresses that the appliance will connect to:
+
+Our web server is www.intapp.com:  216.193.238.72
+Our AMS server is ams.intapp.com:  216.193.238.71  
+
+Also, packages might look as if they are coming from our firewalls:
+fw1.intapp.com:  216.193.238.70
+fw2.intapp.com:  216.193.238.74
+
+Thanks and let us know if you need any assistance.

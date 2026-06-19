@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prognosis__c</fullName>
+    <description>Prognosis of opportunity from product team</description>
+    <inlineHelpText>Prognosis of opportunity from product team</inlineHelpText>
+    <label>Prognosis</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Looks good</fullName>
+                <default>false</default>
+                <label>Looks good</label>
+            </value>
+            <value>
+                <fullName>Needs internal review</fullName>
+                <default>false</default>
+                <label>Needs internal review</label>
+            </value>
+            <value>
+                <fullName>We should delay</fullName>
+                <default>false</default>
+                <label>We should delay</label>
+            </value>
+            <value>
+                <fullName>More info required</fullName>
+                <default>false</default>
+                <label>More info required</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

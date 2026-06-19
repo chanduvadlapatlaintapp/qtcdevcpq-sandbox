@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_16852042</developerName>
+        <masterLabel>ISM Type</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>Solutions_Selling_Material__c.Type__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Lead Confirmation Email</sourceValue>
+            </sourceValues>
+            <value>1. Lead Confirmation Email</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Sponsor Confirmation Email</sourceValue>
+            </sourceValues>
+            <value>2. Sponsor Confirmation Email</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Power Sponsor Confirmation Email</sourceValue>
+            </sourceValues>
+            <value>3. Power Sponsor Confirmation Email</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Next Steps Confirmation Email</sourceValue>
+            </sourceValues>
+            <value>4. Next Steps</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Draft Evaluation Plan</sourceValue>
+            </sourceValues>
+            <value>5. Draft Evaluation Plan</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Pain Chain</sourceValue>
+            </sourceValues>
+            <value>6. Pain Chain</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Delivered Business Case / ROI</sourceValue>
+            </sourceValues>
+            <value>7. Delivered Business Case / ROI</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Final Evaluation Plan</sourceValue>
+            </sourceValues>
+            <value>8. Final Evaluation Plan</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Go/No-Go Confirmation Email</sourceValue>
+            </sourceValues>
+            <value>9. Go / No Go Email</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Proposal</sourceValue>
+            </sourceValues>
+            <value>10. Proposal</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Transition/Implementation Plan Email</sourceValue>
+            </sourceValues>
+            <value>11. Implementation Plan</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Handover Confirmation</sourceValue>
+            </sourceValues>
+            <value>12. Handover Confirmation</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>Solutions_Selling_Material__c.Type__c</field>
+    </columns>
+    <currency>GBP</currency>
+    <description>Report showing FY18 and FY19 ISM Materials and who they were created by</description>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>FiscalQuarter</dateGranularity>
+        <field>CUST_CREATED_DATE</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Solutions_Selling_Material__c.Created_By__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_16852042</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>ISM Materials &apos;created by&apos;</name>
+    <params>
+        <name>open</name>
+        <value>all</value>
+    </params>
+    <params>
+        <name>probability</name>
+        <value>&gt;0</value>
+    </params>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>OpportunityCustomEntity$Solutions_Selling_Material__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_PREVCURFY</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>How_was_the_outcome_achieved__c</fullName>
+    <label>How was the outcome achieved?</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Adoption Improved / Value Perceived</fullName>
+                <default>false</default>
+                <label>Adoption Improved / Value Perceived</label>
+            </value>
+            <value>
+                <fullName>Negotiated Billing Pause</fullName>
+                <default>false</default>
+                <label>Negotiated Billing Pause</label>
+            </value>
+            <value>
+                <fullName>Negotiated Financial Concession</fullName>
+                <default>false</default>
+                <label>Negotiated Financial Concession</label>
+            </value>
+            <value>
+                <fullName>Product Issues Resolved</fullName>
+                <default>false</default>
+                <label>Product Issues Resolved</label>
+            </value>
+            <value>
+                <fullName>Project Issues Resolved</fullName>
+                <default>false</default>
+                <label>Project Issues Resolved</label>
+            </value>
+            <value>
+                <fullName>No Intervention Required</fullName>
+                <default>true</default>
+                <label>No Intervention Required</label>
+            </value>
+            <value>
+                <fullName>Standard Renewal Play</fullName>
+                <default>false</default>
+                <label>Standard Renewal Play</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

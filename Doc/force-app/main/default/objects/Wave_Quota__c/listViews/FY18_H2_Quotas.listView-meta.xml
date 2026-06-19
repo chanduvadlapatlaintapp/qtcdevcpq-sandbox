@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FY18_H2_Quotas</fullName>
+    <columns>NAME</columns>
+    <columns>Sales_Rep__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>Quarter__c</columns>
+    <columns>FY_Year__c</columns>
+    <columns>Practice__c</columns>
+    <columns>Quota_Amount__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Quota_Amount_AUD__c</columns>
+    <columns>Quota_Amount_EUR__c</columns>
+    <columns>Quota_Amount_GBP__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>FY_Year__c</field>
+        <operation>equals</operation>
+        <value>2018</value>
+    </filters>
+    <filters>
+        <field>Quarter__c</field>
+        <operation>equals</operation>
+        <value>Q3,Q4</value>
+    </filters>
+    <label>FY18 H2 Quotas</label>
+    <language>en_US</language>
+</ListView>

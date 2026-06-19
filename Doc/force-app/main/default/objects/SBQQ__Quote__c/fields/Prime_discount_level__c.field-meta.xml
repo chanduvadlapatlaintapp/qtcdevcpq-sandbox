@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prime_discount_level__c</fullName>
+    <description>Updated for story BIZ- 49977
+to calculate the Prime service discount%</description>
+    <externalId>false</externalId>
+    <formula>IF ((Services_Discount_Percentag_Prime__c)*100 = 0 &amp;&amp; (Associated_prime_product__c = true) , 0,
+IF((((Services_Discount_Percentag_Prime__c)*100 &lt; 20 &amp;&amp; (Associated_prime_product__c = true))|| ((Services_Discount_Percentag_Prime__c)*100&gt;=20  &amp;&amp; (Associated_prime_product__c = true) &amp;&amp;( Retainer_Amount__c &lt;= 40))),6,IF(((Services_Discount_Percentag_Prime__c)*100&gt;=20  &amp;&amp; (Associated_prime_product__c = true) &amp;&amp;( Retainer_Amount__c &gt; 40)) ,7,0)))</formula>
+    <label>Prime discount level</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

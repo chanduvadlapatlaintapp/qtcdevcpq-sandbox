@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Business_Units__c</fullName>
+    <description>Created to differentiate products in product selection screen</description>
+    <label>Business Units</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>DealCloud</fullName>
+                <default>false</default>
+                <label>DealCloud</label>
+            </value>
+            <value>
+                <fullName>Risk and Compliance</fullName>
+                <default>false</default>
+                <label>Risk and Compliance</label>
+            </value>
+            <value>
+                <fullName>Operation and Finance</fullName>
+                <default>false</default>
+                <label>Operation and Finance</label>
+            </value>
+            <value>
+                <fullName>Collaboration and Content</fullName>
+                <default>false</default>
+                <label>Collaboration and Content</label>
+            </value>
+            <value>
+                <fullName>Integration Service</fullName>
+                <default>false</default>
+                <label>Integration Service</label>
+            </value>
+            <value>
+                <fullName>Third Party Offerings</fullName>
+                <default>false</default>
+                <label>Third Party Offerings</label>
+            </value>
+            <value>
+                <fullName>Legacy Starter Pack</fullName>
+                <default>false</default>
+                <label>Legacy Starter Pack</label>
+            </value>
+            <value>
+                <fullName>Multiple Products</fullName>
+                <default>false</default>
+                <label>Multiple Products</label>
+            </value>
+            <value>
+                <fullName>Operations &amp; Finance</fullName>
+                <default>false</default>
+                <label>Operations &amp; Finance</label>
+            </value>
+            <value>
+                <fullName>Risk &amp; Compliance</fullName>
+                <default>false</default>
+                <label>Risk &amp; Compliance</label>
+            </value>
+            <value>
+                <fullName>Tech</fullName>
+                <default>false</default>
+                <label>Tech</label>
+            </value>
+            <value>
+                <fullName>Services</fullName>
+                <default>false</default>
+                <label>Services</label>
+            </value>
+            <value>
+                <fullName>Training</fullName>
+                <default>false</default>
+                <label>Training</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

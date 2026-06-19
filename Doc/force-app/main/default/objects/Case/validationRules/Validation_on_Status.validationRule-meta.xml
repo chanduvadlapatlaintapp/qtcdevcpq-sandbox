@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validation_on_Status</fullName>
+    <active>true</active>
+    <description>Validation to allow only the users with Intapp CPQ Operations User Permission Set to be able to edit the status field.
+As per BIZ-47763</description>
+    <errorConditionFormula>AND(
+NOT( $Permission.Operations_User ),
+Record_Type_Name__c==&apos;OSA Support&apos;,
+ISCHANGED( Status )
+)</errorConditionFormula>
+    <errorDisplayField>Status</errorDisplayField>
+    <errorMessage>Please contact Operations team to update the status.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>License_Band_Revenue__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( 
+	 OR(
+						ISBLANK(AnnualRevenue),
+      AnnualRevenue &lt;= 50000000
+		), 
+		50, 
+  IF( 
+    AnnualRevenue &lt;= 500000000, 
+    MCEILING(AnnualRevenue/(25*1000000))*25,
+    MCEILING(AnnualRevenue/(100*1000000))*100
+  )
+)</formula>
+    <inlineHelpText>Based on the converted annual revenue, what is the license band for this account?</inlineHelpText>
+    <label>License Band (Revenue)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

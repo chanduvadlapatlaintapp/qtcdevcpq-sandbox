@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ROR_POC__c</fullName>
+    <description>Based on the Deferral, is this case related to an ROR or POC?</description>
+    <formula>IF(OR(Deferral__r.Contingent_ROR__c=TRUE,Deferral__r.Contingent_POC__c=TRUE),TRUE,FALSE)</formula>
+    <inlineHelpText>Based on the Deferral, is this case related to an ROR or POC?</inlineHelpText>
+    <label>ROR/POC</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

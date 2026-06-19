@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Terms_b_and_bI__c</fullName>
+    <label>Terms (b) and (b.I)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>T&amp;M Change Order</fullName>
+                <default>false</default>
+                <label>T&amp;M Change Order</label>
+            </value>
+            <value>
+                <fullName>T&amp;M Statement of Work</fullName>
+                <default>false</default>
+                <label>T&amp;M Statement of Work</label>
+            </value>
+            <value>
+                <fullName>FF Change Order</fullName>
+                <default>false</default>
+                <label>FF Change Order</label>
+            </value>
+            <value>
+                <fullName>FF Statement of Work</fullName>
+                <default>false</default>
+                <label>FF Statement of Work</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

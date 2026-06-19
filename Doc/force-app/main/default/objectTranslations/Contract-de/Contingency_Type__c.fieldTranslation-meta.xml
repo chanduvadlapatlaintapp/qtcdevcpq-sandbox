@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>
+        <!-- ROR - Customer must communicate negative action
+POC - Customer must communicate positive action
+Software Feature Delivery
+Services
+T&amp;C - Right to retain certain conditions
+Payment Terms - non-standard terms
+Payment Delayed - no payment received -->
+    </help>
+    <label><!-- Contingency Type --></label>
+    <name>Contingency_Type__c</name>
+    <picklistValues>
+        <masterLabel>POC</masterLabel>
+        <translation><!-- POC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Payment Delayed</masterLabel>
+        <translation><!-- Payment Delayed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Payment Terms</masterLabel>
+        <translation><!-- Payment Terms --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ROR</masterLabel>
+        <translation><!-- ROR --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Services Delivery</masterLabel>
+        <translation><!-- Services Delivery --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Software Feature Delivery</masterLabel>
+        <translation><!-- Software Feature Delivery --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Terms &amp; Conditions</masterLabel>
+        <translation><!-- Terms &amp; Conditions --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

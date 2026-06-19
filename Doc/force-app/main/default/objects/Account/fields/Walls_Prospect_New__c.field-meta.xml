@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Walls_Prospect_New__c</fullName>
+    <label>Walls Prospect New</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Customer (Walls)</fullName>
+                <default>false</default>
+                <label>Customer (Walls)</label>
+            </value>
+            <value>
+                <fullName>Customer (Walls): Engaged in Upsell</fullName>
+                <default>false</default>
+                <label>Customer (Walls): Engaged in Upsell</label>
+            </value>
+            <value>
+                <fullName>Customer (Walls): Unengaged in Upsell</fullName>
+                <default>false</default>
+                <label>Customer (Walls): Unengaged in Upsell</label>
+            </value>
+            <value>
+                <fullName>Customer (CG Protect): Engaged in Upsell</fullName>
+                <default>false</default>
+                <label>Customer (CG Protect): Engaged in Upsell</label>
+            </value>
+            <value>
+                <fullName>Customer (CG Protect): Unengaged in Upsell</fullName>
+                <default>false</default>
+                <label>Customer (CG Protect): Unengaged in Upsell</label>
+            </value>
+            <value>
+                <fullName>Engaged Customer</fullName>
+                <default>false</default>
+                <label>Engaged Customer</label>
+            </value>
+            <value>
+                <fullName>Engaged Non-Customer</fullName>
+                <default>false</default>
+                <label>Engaged Non-Customer</label>
+            </value>
+            <value>
+                <fullName>Unengaged Customer</fullName>
+                <default>false</default>
+                <label>Unengaged Customer</label>
+            </value>
+            <value>
+                <fullName>Unengaged Non-Customer</fullName>
+                <default>false</default>
+                <label>Unengaged Non-Customer</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

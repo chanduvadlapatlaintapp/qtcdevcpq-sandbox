@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account$Name</field>
+    </columns>
+    <columns>
+        <field>Account$CRD__c</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r$Product_Line__c</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r$CSM_Health_Rating__c</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r$Customer_Lifecycle_Stage__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Account$Name</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>&quot;Blake, Cassels&quot;,Borden Ladner Gervais,Cassels Brock &amp; Blackwell,Conyers Dill &amp; Pearman,Dentons Canada,Goodmans,Miller Thomson,Osler,Hoskin &amp; Harcourt,Stikeman Elliott,Torkin Manes Cohen Arbus,WeirFoulds</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account$Owner</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Toronto Exec Briefing Cust List 9/20/17</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_and_Subscription__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Account$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

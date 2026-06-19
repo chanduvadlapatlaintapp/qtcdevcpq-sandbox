@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Change_Parent_Case</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Change Parent Case</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/21.0/connection.js&quot;)}
+
+if (confirm(&quot;Are you sure you want to Move this PS Line Item?&quot;))
+{
+
+function right(str, len)
+{
+return str.substring(str.length-len, str.length)
+}
+
+var litemObj = new sforce.SObject(&quot;PS_Line_Item__c&quot;);
+litemObj.Id = &apos;{!PS_Line_Item__c.Id}&apos;;
+litemObj.Case__c = &apos;00076637&apos;;
+var result = sforce.connection.update([litemObj]);
+
+if (result[0].success==&apos;false&apos;) {
+alert(result[0].errors.message);
+} else {
+location.reload(true);
+}
+
+}
+else
+{
+alert(&quot;The PS Line Item has NOT been moved.&quot;);
+}</url>
+</WebLink>

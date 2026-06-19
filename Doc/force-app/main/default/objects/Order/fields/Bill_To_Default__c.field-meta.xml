@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bill_To_Default__c</fullName>
+    <description>Created as part of BIZ-64701</description>
+    <formula>Bill_To_Address__r.Default_Billing_Address__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Bill To Default</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

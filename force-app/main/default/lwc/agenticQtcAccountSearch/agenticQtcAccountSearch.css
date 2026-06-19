@@ -1,0 +1,161 @@
+:host {
+    display: block;
+}
+
+.search-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.search-hero {
+    text-align: center;
+    padding: 72px 40px 40px;
+}
+
+.search-hero h2 {
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--color-text, #ececf1);
+    margin-bottom: 12px;
+}
+
+.search-hero p {
+    font-size: 18px;
+    color: var(--color-text-secondary, #acacbe);
+    margin-bottom: 32px;
+}
+
+.search-wrapper {
+    position: relative;
+    max-width: 680px;
+    margin: 0 auto;
+    filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.45));
+}
+
+.search-box {
+    width: 100%;
+}
+
+.native-search-wrap {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 52px;
+    background: var(--color-search-input-bg, #969aa4);
+    border: 1px solid var(--color-border, #1e2d45);
+    border-radius: 8px;
+    padding: 0 18px;
+    gap: 12px;
+    box-sizing: border-box;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.native-search-wrap:focus-within {
+    border-color: var(--color-primary, #2b7fff);
+    box-shadow: 0 0 0 3px rgba(43, 127, 255, 0.18);
+}
+
+.search-icon-svg {
+    width: 20px;
+    height: 20px;
+    color: var(--color-text-secondary, #8fa3c0);
+    flex-shrink: 0;
+}
+
+.native-search-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: var(--color-text, #ececf1);
+    font-size: 18px;
+    font-family: 'Salesforce Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    outline: none;
+    padding: 0;
+    min-width: 0;
+}
+
+.native-search-input::placeholder {
+    color: var(--color-text-secondary, #7a7a8e);
+}
+
+
+.results-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    background: var(--color-surface, #2a2b38);
+    border: 1px solid #5a5b6e;
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    max-height: 320px;
+    overflow-y: auto;
+}
+
+.account-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-border, #4a4b5a);
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    transition: background 0.12s ease, border-left-color 0.12s ease;
+}
+
+.account-card:last-child {
+    border-bottom: none;
+    border-radius: 0 0 12px 12px;
+}
+
+.account-card:hover {
+    background: rgba(1, 118, 211, 0.08);
+    border-left-color: var(--color-primary, #0176d3);
+}
+
+.account-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.account-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-text, #ececf1);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.account-location {
+    font-size: 13px;
+    color: var(--color-text-secondary, #acacbe);
+    margin-top: 3px;
+}
+
+.account-arrow {
+    opacity: 0.35;
+    flex-shrink: 0;
+    transition: opacity 0.12s ease, transform 0.12s ease;
+}
+
+.account-card:hover .account-arrow {
+    opacity: 1;
+    transform: translateX(3px);
+}
+
+.no-results-dropdown {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 20px;
+    font-size: 14px;
+    color: var(--color-text-secondary, #acacbe);
+    background: var(--color-surface, #2a2b38);
+    border: 1px solid var(--color-border, #4a4b5a);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+}

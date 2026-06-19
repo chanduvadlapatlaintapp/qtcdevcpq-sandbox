@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stage_Sorted__c</fullName>
+    <description>IF(
+IsWon,
+&quot;01. Closed Won&quot;,
+CASE(StageName,
+&quot;Closed Won&quot;,&quot;01. Closed Won&quot;,
+&quot;Trial Period&quot;,&quot;02. Trial / EUL&quot;,
+&quot;Waiting for payment&quot;,&quot;02. Trial / EUL&quot;,
+&quot;Selected&quot;,&quot;5 – Selected&quot;,
+&quot;Propose&quot;,&quot;4 – Propose&quot;,
+&quot;Verify&quot;,&quot;2 – Verify&quot;,
+&quot;Position&quot;,&quot;3 – Position&quot;,
+&quot;Qualify&quot;,&quot;1 – Qualify&quot;,
+&quot;Pre-Funnel &quot;,&quot;10. Pre-Funnel&quot;,
+&quot;00. Other&quot;
+)
+)</description>
+    <externalId>false</externalId>
+    <formula>CASE(StageName,
+
+
+&quot;Selected&quot;,&quot;5 - Selected&quot;,
+&quot;Propose&quot;,&quot;4 - Propose&quot;,
+&quot;Verify&quot;,&quot;2 - Verify&quot;,
+&quot;Position&quot;,&quot;3 - Position&quot;,
+&quot;Qualify&quot;,&quot;1 - Qualify&quot;,
+&quot;&quot;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Stage - Sorted</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

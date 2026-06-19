@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Industry_Vertical__c</fullName>
+    <label>Industry Vertical</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>PS - Legal</fullName>
+                <default>false</default>
+                <label>PS - Legal</label>
+            </value>
+            <value>
+                <fullName>PS - Accounting</fullName>
+                <default>false</default>
+                <label>PS - Accounting</label>
+            </value>
+            <value>
+                <fullName>FS - IB</fullName>
+                <default>false</default>
+                <label>FS - IB</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>7</visibleLines>
+</CustomField>

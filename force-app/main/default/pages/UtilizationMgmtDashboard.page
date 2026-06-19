@@ -1,0 +1,26 @@
+<apex:page >
+    <span style="font-size:28px">Utilization Management Dashboard</span><br/><br/>
+  <apex:tabPanel switchType="client">
+  <apex:tab name="tab1" label="Mgmt Reporting - Resources">
+  <div style="font-family: times, Times New Roman, times-roman, georgia, serif;font-size: 24px;line-height: 40px;color: #444;">
+        Click <a href="/01Z50000000n2FT" target="_blank">here</a> to view the Dashboard in a new window (for drill-down purposes)</div>
+     <apex:iframe src="/01Z50000000n2FT?isdtp=nv" scrolling="true" height="1588px" width="100%"/></apex:tab>
+  <apex:tab name="tab2" label="Mgmt Reporting - WIP">
+  <div style="font-family: times, Times New Roman, times-roman, georgia, serif;font-size: 24px;line-height: 40px;color: #444;">
+        Click <a href="/01Z50000000n2H5" target="_blank">here</a> to view the Dashboard in a new window (for drill-down purposes)</div>
+     <apex:iframe src="/01Z50000000n2H5?isdtp=nv"  frameborder="0" scrolling="true" height="1588px" width="100%"/></apex:tab>
+  <apex:tab name="tab3" label="Mgmt Reporting - Margin">
+       <div style="font-family: times, Times New Roman, times-roman, georgia, serif;font-size: 24px;line-height: 40px;color: #444;">
+        Click <a href="/01Z50000000n2Gq" target="_blank">here</a> to view the Dashboard in a new window (for drill-down purposes)</div>
+        <apex:iframe src="/01Z50000000n2Gq?isdtp=nv"  frameborder="0" scrolling="true" height="1588px" width="100%"/></apex:tab>
+  <apex:tab name="tab4" label="Mgmt Reporting - Bookings">
+    <div style="font-family: times, Times New Roman, times-roman, georgia, serif;font-size: 24px;line-height: 40px;color: #444;">
+        Click <a href="/01Z50000000n2H0" target="_blank">here</a> to view the Dashboard in a new window (for drill-down purposes)</div>
+     <apex:iframe src="/01Z50000000n2H0?isdtp=nv"  frameborder="0" scrolling="true" height="1588px" width="100%"/></apex:tab>
+  <apex:tab name="tab5" label="PS - Current Half">
+    <div style="font-family: times, Times New Roman, times-roman, georgia, serif;font-size: 24px;line-height: 40px;color: #444;">
+        Click <a href="/01Z50000000n1Db" target="_blank">here</a> to view the Dashboard in a new window (for drill-down purposes)</div>
+     <apex:iframe src="/01Z50000000n1Db?isdtp=nv"  frameborder="0" scrolling="true" height="1588px" width="100%"/></apex:tab>                     
+  </apex:tabPanel>
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>

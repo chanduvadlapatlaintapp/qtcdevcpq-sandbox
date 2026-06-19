@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account.IntApp_Account_Number__c</field>
+    </columns>
+    <columns>
+        <field>Account.Global_Account_Group__c</field>
+    </columns>
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>Product_Ownership_Detail__c.Product_line_link__c</field>
+    </columns>
+    <columns>
+        <field>Product_Ownership_Detail__c.Status__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <column>Account.Global_Account_Group__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Dentons - Global,CMS,DLA,K&amp;L Gates,Norton Rose Fulbright,White &amp; Case,BCLP - Global,Sidley,Latham,Hogan Lovells,Ashurst,WBD,Reed Smith,Jones Day,Eversheds</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Account_Short_Name__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Freshfields,Orrick,HSF,Winston Strawn,Fish Richardson,Shearman Sterling,Paul Weiss,Foster Pepper,Pillsbury,Pinsent,APKS,Mayer Brown,Alston,WSGR</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>TOP 30 Product Ownership</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountCustomEntity$Product_Ownership_Detail__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>DUE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

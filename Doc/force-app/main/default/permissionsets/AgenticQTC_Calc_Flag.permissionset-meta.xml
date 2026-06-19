@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Grants FLS on SBQQ__Quote__c.Calc_Via_Simplified_Quoting__c so the AgenticQTC flow flag is visible to the CPQ calculator and the QCP.</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SBQQ__Quote__c.Created_by_Simplified_Quoting__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>AgenticQTC Calc Flag</label>
+</PermissionSet>

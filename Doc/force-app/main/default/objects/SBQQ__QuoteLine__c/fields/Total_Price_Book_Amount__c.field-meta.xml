@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Price_Book_Amount__c</fullName>
+    <description>Updated the formula as a part of Ticket BIZ-46974</description>
+    <formula>IF(AND(SBQQ__Renewal__c, !SBQQ__Existing__c, ISBLANK(SBQQ__PriorQuantity__c)),0,
+IF(
+Product_type_for_roll_up__c = &quot;Sandbox&quot;,
+Original_List_Unit_Price__c*SBQQ__EffectiveQuantity__c,
+
+IF(OR(ISNULL(Term__c),ISBLANK(Term__c),Term__c=0),
+Original_List_Unit_Price__c*SBQQ__EffectiveQuantity__c*SBQQ__Quote__r.SBQQ__SubscriptionTerm__c,
+Original_List_Unit_Price__c*SBQQ__EffectiveQuantity__c*Term__c)
+))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Total Price Book Amount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>Time_Builder_Timeline_Metric__c.Previous_Month__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>based on accounts pulling data - change lawyer #</description>
+    <filter>
+        <criteriaItems>
+            <column>Time_Builder_Timeline_Metric__c.Usage_Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Total Timekeeper Usage</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Time_Builder_Timeline_Metric__c.Metric__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>% of Enabled</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>FK_$Account.Lawyers__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>greaterOrEqual</operator>
+            <value>200</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>FK_$Account.Lawyers__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>lessOrEqual</operator>
+            <value>400</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>FK_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Adoption Comparison Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Time_Builder_Timeline_Metric__c@Time_Builder_Timeline_Metric__c.Account__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Time_Builder_Timeline_Metric__c.Posted_Date__c</dateColumn>
+        <interval>INTERVAL_YESTERDAY</interval>
+    </timeFrameFilter>
+</Report>

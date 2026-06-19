@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Has_Dynamic_Field__c</fullName>
+    <description>Indicates whether the parent Quote Term (Term__c) has dynamic fields. This field is automatically calculated based on the parent Quote Term&apos;s Has_Dynamic_Field__c value. BIZ-75350</description>
+    <formula>Term__r.Has_Dynamic_Field__c</formula>
+    <inlineHelpText>Automatically set to true when the parent Quote Term contains dynamic fields.</inlineHelpText>
+    <label>Has Dynamic Field</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

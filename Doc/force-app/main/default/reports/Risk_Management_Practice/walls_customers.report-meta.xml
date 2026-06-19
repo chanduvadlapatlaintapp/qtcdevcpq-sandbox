@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>Account.Intapp_Master_Ranking__c</field>
+    </columns>
+    <columns>
+        <field>Account.Lawyers__c</field>
+    </columns>
+    <columns>
+        <field>Account.Wall_Builder_for_Risk_Memo__c</field>
+    </columns>
+    <columns>
+        <field>Account.WB_Policy_Tracking__c</field>
+    </columns>
+    <columns>
+        <field>Account.Wall_Builder_for_IT__c</field>
+    </columns>
+    <columns>
+        <field>Account.WB_DM_Security__c</field>
+    </columns>
+    <columns>
+        <field>Account.Wall_Builder__c</field>
+    </columns>
+    <columns>
+        <field>Account.Insider_Lists__c</field>
+    </columns>
+    <columns>
+        <field>Account.ADAM__c</field>
+    </columns>
+    <columns>
+        <field>Account.IntegrationBuilder__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>1 or 2 or 3 or 4</booleanFilter>
+        <criteriaItems>
+            <column>Account.Wall_Builder__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Own it</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Wall_Builder_4_0__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Own It</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.WB_DM_Security__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Own It</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.WB_Policy_Tracking__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Own It</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>USERS.NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>walls customers with modules</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountList</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2001-01-01</startDate>
+    </timeFrameFilter>
+</Report>

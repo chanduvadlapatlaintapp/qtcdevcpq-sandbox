@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EMEA_contacts</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>FULL_NAME</columns>
+    <columns>CONTACT.TITLE</columns>
+    <columns>CONTACT.EMAIL</columns>
+    <columns>CONTACT.ADDRESS2_STREET</columns>
+    <columns>CONTACT.ADDRESS2_STATE</columns>
+    <columns>CONTACT.ADDRESS2_ZIP</columns>
+    <columns>CONTACT.ADDRESS2_CITY</columns>
+    <columns>CONTACT.ADDRESS2_COUNTRY</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CONTACT.ADDRESS2_COUNTRY</field>
+        <operation>contains</operation>
+        <value>uk,ireland,france,germany,sweden,netherlands,norway,italy,spain</value>
+    </filters>
+    <filters>
+        <field>CONTACT.ADDRESS2_STATE</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>EMEA contacts with state/province data</label>
+    <language>en_US</language>
+</ListView>

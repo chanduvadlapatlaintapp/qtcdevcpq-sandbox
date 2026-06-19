@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_Frequency_Y1_vs_Initial_Term__c</fullName>
+    <description>Created as part of BIZ-51602</description>
+    <externalId>false</externalId>
+    <formula>IF(OR(ISPICKVAL(SBQQ__BillingFrequency__c, &quot;Quarterly&quot;), ISPICKVAL(SBQQ__BillingFrequency__c, &quot;Semiannual&quot;)), &quot;Initial Term&quot;,
+   IF(OR(ISPICKVAL(SBQQ__BillingFrequency__c, &quot;Quarterly Y1 Only&quot;), ISPICKVAL(SBQQ__BillingFrequency__c, &quot;Semi-annual Y1 Only&quot;), ISPICKVAL(SBQQ__BillingFrequency__c, &quot;Annual&quot;)), &quot;Year 1&quot;, &quot;&quot;)
+)</formula>
+    <label>Billing Frequency Y1 vs Initial Term</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

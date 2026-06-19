@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Insurance_Provider__c</fullName>
+    <description>For Ethical Walls</description>
+    <inlineHelpText>Who is the professional liability (and/or risk) insurer for the law firm?</inlineHelpText>
+    <label>Insurance Provider</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>AIMRRG</fullName>
+                <default>false</default>
+                <label>AIMRRG</label>
+            </value>
+            <value>
+                <fullName>ALAS</fullName>
+                <default>false</default>
+                <label>ALAS</label>
+            </value>
+            <value>
+                <fullName>AON</fullName>
+                <default>false</default>
+                <label>AON</label>
+            </value>
+            <value>
+                <fullName>Chubb</fullName>
+                <default>false</default>
+                <label>Chubb</label>
+            </value>
+            <value>
+                <fullName>CLLAS</fullName>
+                <default>false</default>
+                <label>CLLAS</label>
+            </value>
+            <value>
+                <fullName>CNA</fullName>
+                <default>false</default>
+                <label>CNA</label>
+            </value>
+            <value>
+                <fullName>Lloyd&apos;s</fullName>
+                <default>false</default>
+                <label>Lloyd&apos;s</label>
+            </value>
+            <value>
+                <fullName>Marsh</fullName>
+                <default>false</default>
+                <label>Marsh</label>
+            </value>
+            <value>
+                <fullName>MPC Insurance</fullName>
+                <default>false</default>
+                <label>MPC Insurance</label>
+            </value>
+            <value>
+                <fullName>Paragon</fullName>
+                <default>false</default>
+                <label>Paragon</label>
+            </value>
+            <value>
+                <fullName>Travelers</fullName>
+                <default>false</default>
+                <label>Travelers</label>
+            </value>
+            <value>
+                <fullName>Axis</fullName>
+                <default>false</default>
+                <label>Axis</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

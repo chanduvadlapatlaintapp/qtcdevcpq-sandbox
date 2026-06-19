@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>View_Jira_Entry__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(  JIRA_Issue__c &lt;&gt; &quot;&quot;, 
+HYPERLINK(&quot;https://www.intapp.com/jira/browse/&quot;  &amp;   JIRA_Issue__c  , &quot;view&quot;),
+ &quot;&lt;none&gt;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>View Jira Entry</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SFDC_Services_Project__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Lookup field to the Services project, populated by integration - BIZ-47397</description>
+    <label>SFDC Services Project</label>
+    <referenceTo>SFDC_Services_Project__c</referenceTo>
+    <relationshipLabel>Contracts</relationshipLabel>
+    <relationshipName>Contracts</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AutoResponseRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <autoResponseRule>
+        <fullName>Email2Case Response Rule</fullName>
+        <active>true</active>
+        <ruleEntry>
+            <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7 AND 8 AND 9 AND 10 AND 11</booleanFilter>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email,Email2Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Support</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Status</field>
+                <operation>equals</operation>
+                <value>New</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>notContain</operation>
+                <value>Out of Office</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>notContain</operation>
+                <value>is out of the office</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>notContain</operation>
+                <value>is out of office</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>notContain</operation>
+                <value>automatic reply</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>notContain</operation>
+                <value>Undeliverable</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>notContain</operation>
+                <value>Absence du bureau</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>notContain</operation>
+                <value>Email Delivery Failure</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.SuppliedEmail</field>
+                <operation>notContain</operation>
+                <value>mapmobile.com</value>
+            </criteriaItems>
+            <notifyCcRecipients>false</notifyCcRecipients>
+            <replyToEmail>support@intapp.com</replyToEmail>
+            <senderEmail>do-not-reply@intapp.com</senderEmail>
+            <senderName>IntApp Technical Support</senderName>
+            <template>Customer_Support/NewSuportCaseForClient</template>
+        </ruleEntry>
+        <ruleEntry>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Implementation Expert Queue</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.OwnerId</field>
+                <operation>contains</operation>
+                <value>Implementation Expert</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Status</field>
+                <operation>equals</operation>
+                <value>New</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>notContain</operation>
+                <value>Out of Office</value>
+            </criteriaItems>
+            <notifyCcRecipients>false</notifyCcRecipients>
+            <replyToEmail>ieteam_support@intapp.com</replyToEmail>
+            <senderEmail>ieteam-communications@intapp.com</senderEmail>
+            <senderName>Implementation Expert Team</senderName>
+            <template>Customer_Support/ImplementationExpertNewCaseAutoReply</template>
+        </ruleEntry>
+        <ruleEntry>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>NPI Team Queue</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.OwnerId</field>
+                <operation>contains</operation>
+                <value>NPI Team Queue</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Status</field>
+                <operation>equals</operation>
+                <value>New</value>
+            </criteriaItems>
+            <notifyCcRecipients>false</notifyCcRecipients>
+            <replyToEmail>npi_support@intapp.com</replyToEmail>
+            <senderEmail>donotreplynpi@intapp.com</senderEmail>
+            <senderName>Do-not-reply-NPI</senderName>
+            <template>Customer_Support/NPISupportNewCaseAutoReply</template>
+        </ruleEntry>
+    </autoResponseRule>
+</AutoResponseRules>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>License_Type__c</fullName>
+    <label>License Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Subscription</fullName>
+                <default>true</default>
+                <label>Subscription</label>
+            </value>
+            <value>
+                <fullName>Perpetual</fullName>
+                <default>false</default>
+                <label>Perpetual</label>
+            </value>
+            <value>
+                <fullName>Combo</fullName>
+                <default>false</default>
+                <label>Combo</label>
+            </value>
+            <value>
+                <fullName>Usage</fullName>
+                <default>false</default>
+                <label>Usage</label>
+            </value>
+            <value>
+                <fullName>EAP</fullName>
+                <default>false</default>
+                <label>EAP</label>
+            </value>
+            <value>
+                <fullName>Trial</fullName>
+                <default>false</default>
+                <label>Trial</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

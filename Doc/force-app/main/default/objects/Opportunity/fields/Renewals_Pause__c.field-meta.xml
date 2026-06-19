@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewals_Pause__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Renewal Hold flag on the Renewal Opportunity. Source of truth for hold state. Updated as part of BIZ-82935 (was synced from Contract via BIZ-75580).</description>
+    <label>Renewal Hold</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

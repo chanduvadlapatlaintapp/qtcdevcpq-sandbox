@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CSM_Health_Change_Code__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  ISBLANK(CSM_Health_Rating_Previous__c),
+  &quot;Blank&quot;,
+  IF(
+    CSM_Health_Rating_Previous__c=&quot;New Subscription&quot;,
+    &quot;New&quot;,
+    LEFT(CSM_Health_Rating_Previous__c,1)
+  )
+)
+&amp;&quot; to &quot;&amp;
+IF(
+  ISBLANK(CSM_Health_Rating__c),
+  &quot;Blank&quot;,
+  IF(
+    CSM_Health_Rating__c=&quot;New Subscription&quot;,
+    &quot;New&quot;,
+    LEFT(CSM_Health_Rating__c,1)
+  )
+)</formula>
+    <label>CSM Health Change Code</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OA_Projects_Closed_Last_Half</fullName>
+    <columns>Project_Number__c</columns>
+    <columns>Account__c</columns>
+    <columns>Product_LineNew__c</columns>
+    <columns>NAME</columns>
+    <columns>Project_State__c</columns>
+    <columns>Project_Phase__c</columns>
+    <columns>Go_live_date__c</columns>
+    <columns>End_date__c</columns>
+    <columns>Active__c</columns>
+    <columns>Billing_Type__c</columns>
+    <columns>Budget_Amount__c</columns>
+    <columns>Budget_Hours__c</columns>
+    <columns>Customer_RAG_Status__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>Region__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>End_date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>1/1/2019</value>
+    </filters>
+    <filters>
+        <field>End_date__c</field>
+        <operation>lessOrEqual</operation>
+        <value>6/30/2019</value>
+    </filters>
+    <label>OA Projects Closed Last Half</label>
+    <language>en_US</language>
+</ListView>

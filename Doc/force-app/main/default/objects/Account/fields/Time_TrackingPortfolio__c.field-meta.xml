@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_TrackingPortfolio__c</fullName>
+    <description>This is to designate what time tracking application is in use at the account. This replaced the old checkbox system.</description>
+    <label>Time Tracking</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CMS (Time Tracking)</fullName>
+                <default>false</default>
+                <label>CMS (Time Tracking)</label>
+            </value>
+            <value>
+                <fullName>Carpe Diem</fullName>
+                <default>false</default>
+                <label>Carpe Diem</label>
+            </value>
+            <value>
+                <fullName>Custom</fullName>
+                <default>false</default>
+                <label>Custom</label>
+            </value>
+            <value>
+                <fullName>DTE</fullName>
+                <default>false</default>
+                <label>DTE</label>
+            </value>
+            <value>
+                <fullName>DTE (Everywhere)</fullName>
+                <default>false</default>
+                <label>DTE (Everywhere)</label>
+            </value>
+            <value>
+                <fullName>Elite WebView</fullName>
+                <default>false</default>
+                <label>Elite WebView</label>
+            </value>
+            <value>
+                <fullName>TimeKM</fullName>
+                <default>false</default>
+                <label>TimeKM</label>
+            </value>
+            <value>
+                <fullName>TimeTrax</fullName>
+                <default>false</default>
+                <label>TimeTrax</label>
+            </value>
+            <value>
+                <fullName>Time Builder</fullName>
+                <default>false</default>
+                <label>Time Builder</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Juris Time Entry</fullName>
+                <default>false</default>
+                <label>Juris Time Entry</label>
+            </value>
+            <value>
+                <fullName>DTE Axiom</fullName>
+                <default>false</default>
+                <label>DTE Axiom</label>
+            </value>
+            <value>
+                <fullName>Rekoop</fullName>
+                <default>false</default>
+                <label>Rekoop</label>
+            </value>
+            <value>
+                <fullName>Mobile Tracking</fullName>
+                <default>false</default>
+                <label>Mobile Tracking</label>
+            </value>
+            <value>
+                <fullName>Pilgrim Lawsoft Time Recording</fullName>
+                <default>false</default>
+                <label>Pilgrim Lawsoft Time Recording</label>
+            </value>
+            <value>
+                <fullName>Rippe &amp; Kingston</fullName>
+                <default>false</default>
+                <label>Rippe &amp; Kingston</label>
+            </value>
+            <value>
+                <fullName>Elite 3E</fullName>
+                <default>false</default>
+                <label>Elite 3E</label>
+            </value>
+            <value>
+                <fullName>Aderant Expert 7</fullName>
+                <default>false</default>
+                <label>Aderant Expert 7</label>
+            </value>
+            <value>
+                <fullName>Aderant Expert 8</fullName>
+                <default>false</default>
+                <label>Aderant Expert 8</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Secondary_Services_Provider__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Secondary Services Provider</label>
+    <lookupFilter>
+        <active>false</active>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <filterItems>
+            <field>Account.Parent.Type</field>
+            <operation>equals</operation>
+            <value>Implementation Partner, Implementation Partner - Potential, Consulting/Market Development partner, Potential Consulting/Market Development partner, Integration/Technology partner, Potential Integration/Technology partner, Alliance Partner, Potential Allia</value>
+        </filterItems>
+        <filterItems>
+            <field>Account.Id</field>
+            <operation>equals</operation>
+            <value>0015000000cFGEd</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Accounts (Secondary Services Provider)</relationshipLabel>
+    <relationshipName>Accounts2</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

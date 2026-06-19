@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AVA_SFCPQ__Validate_AvaTax_Exemption_Customer_ID</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(LEN(AVA_SFCPQ__AvaTax_Exemption_Customer_ID__c) &gt; 0,
+OR(LEN(AVA_SFCPQ__AvaTax_Exemption_Customer_ID__c) != 18,CASESAFEID(Id) != AVA_SFCPQ__AvaTax_Exemption_Customer_ID__c),FALSE)</errorConditionFormula>
+    <errorDisplayField>AVA_SFCPQ__AvaTax_Exemption_Customer_ID__c</errorDisplayField>
+    <errorMessage>Please do not edit this field value</errorMessage>
+</ValidationRule>

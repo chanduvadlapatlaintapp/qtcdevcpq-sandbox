@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_22690949</developerName>
+        <masterLabel>Product Line (Grouped)</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>SFDC_Survey__c$Product_Line__c</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Time</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Time - Cloud</sourceValue>
+            </sourceValues>
+            <value>Time</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Walls</sourceValue>
+            </sourceValues>
+            <value>Walls</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Conflicts</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Conflicts - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Intake</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Intake - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Terms of Business</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Terms of Business - Cloud</sourceValue>
+            </sourceValues>
+            <value>Intake/Conflicts/Terms</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Integration</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Integration - Cloud</sourceValue>
+            </sourceValues>
+            <value>Flow/Integrate</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>LegalKey</sourceValue>
+            </sourceValues>
+            <value>Legacy TFG</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>SFDC_Survey__c$CreatedDate</field>
+    </columns>
+    <columns>
+        <field>SFDC_Survey__c$Name</field>
+    </columns>
+    <columns>
+        <field>SFDC_Survey__c$Account__c</field>
+    </columns>
+    <columns>
+        <field>SFDC_Survey__c$Subscription__c.CSM__c</field>
+    </columns>
+    <columns>
+        <field>SFDC_Survey__c$Account__c.CRD__c</field>
+    </columns>
+    <columns>
+        <field>SFDC_Survey__c$Department_Flags__c</field>
+    </columns>
+    <columns>
+        <field>SFDC_Survey__c$Intapp_Closed_Loop_Status__c</field>
+    </columns>
+    <columns>
+        <field>SFDC_Survey__c$Closed_Loop_Response_from_Intapp__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>SFDC_Survey__c$Department_Flags__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>,Support,Professional Services,Partner</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>SFDC_Survey__c$Intapp_Closed_Loop_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Completed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>SFDC_Survey__c$CreatedDate</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>greaterOrEqual</operator>
+            <value>7/1/2016 12:00 AM</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_22690949</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Surveys Needing Feedback Loop - All</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Surveys__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>SFDC_Survey__c$CreatedDate</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>SFDC_Survey__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

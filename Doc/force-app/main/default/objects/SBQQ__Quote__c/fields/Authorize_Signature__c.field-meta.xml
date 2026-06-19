@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Authorize_Signature__c</fullName>
+    <description>BIZ-43794</description>
+    <formula>IF(
+(Shipping_State_Province__c = TRUE) &amp;&amp; (Product_Line_Deployment_Count__c&gt; 0) &amp;&amp;(Include_Counter_Signature__c = False), TRUE, FALSE)</formula>
+    <label>Authorize Signature</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Yearly_Uplift__c</fullName>
+    <externalId>false</externalId>
+    <formula>if(Second_Year_Software_Total__c!=0, &apos;2nd Year Uplift = &apos;+TEXT(Round((Second_Year_Software_Total__c-   First_Year_Software_Total__c )/First_Year_Software_Total__c*100,2))+&apos;%&apos;, &apos;&apos;) &amp; 
+if(Third_Year_Software_Total__c!=0,&apos;3rd Year Uplift = &apos;+TEXT(ROUND((Third_Year_Software_Total__c -   Second_Year_Software_Total__c )/Second_Year_Software_Total__c*100,2))+&apos;%&apos;, &apos;&apos; )  &amp;   
+if(Fourth_Year_Software_Total__c!=0,&apos;4th Year Uplift = &apos;+TEXT(ROUND(( Fourth_Year_Software_Total__c  -   Third_Year_Software_Total__c )/Third_Year_Software_Total__c*100,2))+&apos;%&apos;, &apos;&apos; ) &amp;  
+if(Fifth_Year_Software_Total__c!=0,&apos;5th Year Uplift = &apos;+TEXT(ROUND((  Fifth_Year_Software_Total__c   -   Fourth_Year_Software_Total__c )/Fourth_Year_Software_Total__c*100,2))+&apos;%&apos;, &apos;&apos; )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Yearly Software Uplift %</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

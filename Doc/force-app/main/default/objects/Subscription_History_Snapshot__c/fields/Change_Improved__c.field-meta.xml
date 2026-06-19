@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Change_Improved__c</fullName>
+    <formula>OR(
+  CSM_Health_Change_Code__c=&quot;B to A&quot;,
+  CSM_Health_Change_Code__c=&quot;C to A&quot;,
+  CSM_Health_Change_Code__c=&quot;C to B&quot;,
+  CSM_Health_Change_Code__c=&quot;D to A&quot;,
+  CSM_Health_Change_Code__c=&quot;D to B&quot;,
+  CSM_Health_Change_Code__c=&quot;D to C&quot;,
+  CSM_Health_Change_Code__c=&quot;F to A&quot;,
+  CSM_Health_Change_Code__c=&quot;F to B&quot;,
+  CSM_Health_Change_Code__c=&quot;F to C&quot;,
+  CSM_Health_Change_Code__c=&quot;F to D&quot;
+)</formula>
+    <label>Change Improved?</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

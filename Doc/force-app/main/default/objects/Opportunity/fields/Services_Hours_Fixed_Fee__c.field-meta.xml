@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Services_Hours_Fixed_Fee__c</fullName>
+    <label>Services Hours Fixed Fee</label>
+    <summarizedField>OpportunityLineItem.Services_Hours__c</summarizedField>
+    <summaryFilterItems>
+        <field>OpportunityLineItem.Services_Product_Type__c</field>
+        <operation>equals</operation>
+        <value>Fixed Fee</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>OpportunityLineItem.Services_Product__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

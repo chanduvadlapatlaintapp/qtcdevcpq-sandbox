@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product__c</fullName>
+    <inlineHelpText>Leaders/Partners: Conflicts, CRM, Experience,Pricing, Relationships, Time 
+Marketing/BD: CRM, Relationships, Experience
+Risk/Compliance: Conflicts, Intake, Terms, Walls 
+Practice/Finance: ricing, Terms, Time
+CIO/ IT: Flow, Integrate</inlineHelpText>
+    <label>Product Focus</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Conflicts</fullName>
+                <default>false</default>
+                <label>Conflicts</label>
+            </value>
+            <value>
+                <fullName>CRM</fullName>
+                <default>false</default>
+                <label>CRM</label>
+            </value>
+            <value>
+                <fullName>D&amp;B</fullName>
+                <default>false</default>
+                <label>D&amp;B</label>
+            </value>
+            <value>
+                <fullName>Experience</fullName>
+                <default>false</default>
+                <label>Experience</label>
+            </value>
+            <value>
+                <fullName>Flow</fullName>
+                <default>false</default>
+                <label>Flow</label>
+            </value>
+            <value>
+                <fullName>Intake</fullName>
+                <default>false</default>
+                <label>Intake</label>
+            </value>
+            <value>
+                <fullName>Integrate</fullName>
+                <default>false</default>
+                <label>Integrate</label>
+            </value>
+            <value>
+                <fullName>DealCloud</fullName>
+                <default>false</default>
+                <label>L&amp;P</label>
+            </value>
+            <value>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+                <label>Pricing</label>
+            </value>
+            <value>
+                <fullName>Relationships</fullName>
+                <default>false</default>
+                <label>Relationships</label>
+            </value>
+            <value>
+                <fullName>Terms</fullName>
+                <default>false</default>
+                <label>Terms</label>
+            </value>
+            <value>
+                <fullName>Time</fullName>
+                <default>false</default>
+                <label>Time</label>
+            </value>
+            <value>
+                <fullName>Walls</fullName>
+                <default>false</default>
+                <label>Walls</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

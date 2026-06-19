@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OP4I_Auto_Number_Deal_ID_is_blank</fullName>
+    <active>true</active>
+    <description>BIZ-62744 - If OP4I_Auto_Number_Deal_ID__c  is blank dont allow for the ordered checkbox to be checked</description>
+    <errorConditionFormula>AND(ISBLANK(OP4I_Auto_Number_Deal_ID__c), SBQQ__Ordered__c)</errorConditionFormula>
+    <errorMessage>Please try again after a few minutes. Allow for the opportunity to be synced to OP4I.</errorMessage>
+</ValidationRule>

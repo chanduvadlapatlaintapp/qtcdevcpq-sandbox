@@ -1,0 +1,66 @@
+<template>
+    <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <lightning-icon icon-name="standard:record" size="small"></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <span class="slds-card__header-link slds-truncate">
+                            <span>Field History</span>
+                            <span class="slds-text-title slds-m-left_xx-small">({countDisplay})</span>
+                        </span>
+                    </h2>
+                </div>
+                <div class="slds-no-flex">
+                    <lightning-button-icon
+                        icon-name="utility:refresh"
+                        alternative-text="Refresh"
+                        title="Refresh"
+                        onclick={handleRefresh}
+                        variant="bare"
+                        size="medium"
+                        class="slds-m-left_xx-small">
+                    </lightning-button-icon>
+                </div>
+            </header>
+        </div>
+
+        <div class="slds-card__body">
+            <template if:true={isLoading}>
+                <div class="slds-p-around_medium">
+                    <lightning-spinner alternative-text="Loading field history" size="small"></lightning-spinner>
+                </div>
+            </template>
+
+            <template if:true={error}>
+                <div class="slds-text-color_error slds-p-around_medium">
+                    Error loading field history: {error.body.message}
+                </div>
+            </template>
+
+            <template if:false={isLoading}>
+                <template if:true={hasRecords}>
+                    <lightning-datatable
+                        key-field="Id"
+                        data={fieldHistoryRecords}
+                        columns={columns}
+                        hide-checkbox-column
+                        show-row-number-column
+                        default-sort-direction="desc"
+                        sorted-by="Change_Date__c"
+                        sorted-direction="desc"
+                        onsort={handleSort}>
+                    </lightning-datatable>
+                </template>
+
+                <template if:false={hasRecords}>
+                    <div class="slds-p-around_medium slds-text-align_center">
+                        <p class="slds-text-color_weak">No field history records found.</p>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </article>
+</template>

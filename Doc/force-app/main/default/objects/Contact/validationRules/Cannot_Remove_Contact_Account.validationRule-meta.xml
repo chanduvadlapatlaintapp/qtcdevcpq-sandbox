@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Remove_Contact_Account</fullName>
+    <active>false</active>
+    <description>Users may not change the contact account once it has been associated. Please inform &apos;Contact Updates&apos; email alias &lt;contact_updates@intapp.com&gt; if you think this contact should be updated with the correct information.</description>
+    <errorConditionFormula>AND(
+  NOT(
+    OR(
+      $Profile.Id=&quot;00e30000000bvR3&quot;, /*System Administrator*/
+      $Profile.Id=&quot;00e50000001BeHW&quot;, /* Standard User - Marketing */
+      $Profile.Id=&quot;00e30000000ekDR&quot;, /* Standard User - Sales */
+
+      /*$User.Id=&quot;00550000005XsLJ&quot;,  Petra Haltmayer */
+      /*$User.Id=&quot;00550000005KOKp&quot;,  Katie Chiverton */
+      $User.Id=&quot;0052J000008Hucq&quot;, /* Alicia Butler */
+      $User.Id=&quot;0052J000008HrZZ&quot;, /* Sarah Hickey*/
+      $User.Id=&quot;005500000074yWI&quot; /* Ruth Oyeyiola */
+    )
+   ),
+   NOT(ISNEW()),
+   ISCHANGED(AccountId),
+   NOT(AccountId=&quot;0013000000B52v1&quot;),
+   NOT(PRIORVALUE(AccountId)=&quot;0013000000B52v1&quot;), 
+   NOT(PRIORVALUE(AccountId)=NULL)
+)</errorConditionFormula>
+    <errorDisplayField>AccountId</errorDisplayField>
+    <errorMessage>You may not change a contact&apos;s account once it has been associated. Please inform &apos;Contact Updates&apos; email alias &lt;contact_updates@intapp.com&gt; if you think this contact should be updated with the correct information.</errorMessage>
+</ValidationRule>

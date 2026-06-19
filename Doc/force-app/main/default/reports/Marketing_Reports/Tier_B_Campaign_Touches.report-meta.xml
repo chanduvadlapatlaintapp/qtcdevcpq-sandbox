@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_2468986</developerName>
+        <masterLabel>Intapp Segment</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>ACCOUNT_INDUSTRY</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Legal</sourceValue>
+            </sourceValues>
+            <value>Legal Segment</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>PS - Accounting</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>PS - Accounting - Big 4</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>PS - Accounting - Global Network</sourceValue>
+            </sourceValues>
+            <value>Accounting Segment</value>
+        </values>
+    </buckets>
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_38508501</developerName>
+        <masterLabel>Persona</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>Contact.Standard_Title__c</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>2. CEO / MP / President</sourceValue>
+            </sourceValues>
+            <value>CEO/MP</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>6. COO / Executive Director / EVP</sourceValue>
+            </sourceValues>
+            <value>COO</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>7. CFO / Finance Director / SVP</sourceValue>
+            </sourceValues>
+            <value>CFO</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>8. GC / Risk Partner / CCO / CRO</sourceValue>
+            </sourceValues>
+            <value>GC/CRO</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>9. CIO / CTO / IT Director</sourceValue>
+            </sourceValues>
+            <value>CIO</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>10. CMO / Marketing Leader / Business Development Leader</sourceValue>
+            </sourceValues>
+            <value>CMO</value>
+        </values>
+    </buckets>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.Account_Count__c</field>
+    </columns>
+    <columns>
+        <field>CAMPAIGN_NAME</field>
+    </columns>
+    <columns>
+        <field>Account.Global_Account_Group__c</field>
+    </columns>
+    <columns>
+        <field>FIRST_NAME</field>
+    </columns>
+    <columns>
+        <field>LAST_NAME</field>
+    </columns>
+    <columns>
+        <field>Account.Legal_Tier_Split__c</field>
+    </columns>
+    <columns>
+        <field>ACCOUNT_INDUSTRY</field>
+    </columns>
+    <columns>
+        <field>START_DATE</field>
+    </columns>
+    <columns>
+        <field>END_DATE</field>
+    </columns>
+    <columns>
+        <field>Contact.Full_Name__c</field>
+    </columns>
+    <columns>
+        <field>Contact.Standard_Title__c</field>
+    </columns>
+    <columns>
+        <field>CAMPAIGN_STATUS</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Contact.Contact_Count__c</field>
+    </columns>
+    <columns>
+        <field>MEMBER_CREATED_DATE</field>
+    </columns>
+    <currency>GBP</currency>
+    <filter>
+        <booleanFilter>((1 OR 2) AND 3 AND 4 AND 5 AND (6 AND 7))</booleanFilter>
+        <criteriaItems>
+            <column>Campaign.Intapp_Campaign_Number__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Campaign-001948,Campaign-001947,Campaign-001951,Campaign-001950,Campaign-001677,Campaign-001763,Campaign-001681,Campaign-001678,Campaign-001679,Campaign-001680,Campaign-001764,Campaign-001952,Campaign-001883,Campaign-001885,Campaign-001949,Campaign-001953,Campaign-001882</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>CAMPAIGN_ID</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>70150000001XzeR,70150000001XzeW,70150000001Y3OE,70150000001Y3O9,70150000001Xvjc,70150000001XvjX,70150000000fFra,70150000001Y3WU,70150000001XvHi,70150000001Y3WP,70150000001Xzeb,70150000000f5gh</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>CAMPAIGN_STATUS</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Aborted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Legal_Tier_Split__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Tier B</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>CAMPAIGN_TYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Inbound,Partners,Referral Program</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>MEMBER_CREATED_DATE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>greaterOrEqual</operator>
+            <value>7/1/2018 12:00 AM</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>MEMBER_CREATED_DATE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>lessOrEqual</operator>
+            <value>12/31/2018 12:00 AM</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_38508501</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_2468986</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>ACCOUNT.NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Tier B Campaign Touches</name>
+    <params>
+        <name>scopeid</name>
+        <value></value>
+    </params>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>CampaignContact</reportType>
+    <scope>orgAll</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+</Report>

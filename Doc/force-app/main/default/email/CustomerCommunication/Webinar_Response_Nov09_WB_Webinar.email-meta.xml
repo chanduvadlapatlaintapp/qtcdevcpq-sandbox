@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Response for WB 4.0 Webinar</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - Nov09 WB Webinar</name>
+    <style>none</style>
+    <subject>IntApp Wall Builder 4.0 Webinar</subject>
+    <textOnly>{!Lead.FirstName} {!Lead.LastName}: 
+
+Thank you for registering for the IntApp Wall Builder 4.0 Webinar. The login details are below.
+
+Date: Thursday, November 5
+Time: 9 am Pacific / 12 pm Eastern (5 pm GMT)
+
+Video:
+
+Conference URL: https://www.livemeeting.com/cc/vcc/join?id=w6039243&amp;role=attend&amp;pw=A603924 
+Meeting ID: w6039243
+Entry Code: A603924 
+
+Audio:
+
+Conference Audio Dial In:
+US/Canada: 888-516-2435
+UK: 0-808-101-1147
+Passcode: 6039243
+
+
+http://www.intapp.com
+All information Copyright 2009 IntApp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

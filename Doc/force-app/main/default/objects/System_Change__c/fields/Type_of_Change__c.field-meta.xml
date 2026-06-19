@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type_of_Change__c</fullName>
+    <inlineHelpText>Please select all that apply.</inlineHelpText>
+    <label>Type of Change</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Apex</fullName>
+                <default>false</default>
+                <label>Apex</label>
+            </value>
+            <value>
+                <fullName>Application Install</fullName>
+                <default>false</default>
+                <label>Application Install</label>
+            </value>
+            <value>
+                <fullName>Approval Process</fullName>
+                <default>false</default>
+                <label>Approval Process</label>
+            </value>
+            <value>
+                <fullName>Data Load</fullName>
+                <default>false</default>
+                <label>Data Load</label>
+            </value>
+            <value>
+                <fullName>Field/Creation Change</fullName>
+                <default>false</default>
+                <label>Field/Creation Change</label>
+            </value>
+            <value>
+                <fullName>Flow/Process</fullName>
+                <default>false</default>
+                <label>Flow/Process</label>
+            </value>
+            <value>
+                <fullName>Workflow Rule</fullName>
+                <default>false</default>
+                <label>Workflow Rule</label>
+            </value>
+            <value>
+                <fullName>List View</fullName>
+                <default>false</default>
+                <label>List View</label>
+            </value>
+            <value>
+                <fullName>Page Layout</fullName>
+                <default>false</default>
+                <label>Page Layout</label>
+            </value>
+            <value>
+                <fullName>Object Creation</fullName>
+                <default>false</default>
+                <label>Object Creation</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Validation Rule</fullName>
+                <default>false</default>
+                <label>Validation Rule</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

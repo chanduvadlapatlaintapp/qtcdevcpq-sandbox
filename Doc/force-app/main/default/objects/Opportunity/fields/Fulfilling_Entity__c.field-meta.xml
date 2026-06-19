@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fulfilling_Entity__c</fullName>
+    <description>Who is responsible for delivering services to the customer</description>
+    <inlineHelpText>Who is responsible for delivering services to the customer? If a partner, is the services contract on Intapp paper or the partner&apos;s paper?</inlineHelpText>
+    <label>Fulfilling Entity</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>true</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Intapp</fullName>
+                <default>false</default>
+                <label>Intapp</label>
+            </value>
+            <value>
+                <fullName>Partner - Intapp paper</fullName>
+                <default>false</default>
+                <label>Partner - Intapp paper</label>
+            </value>
+            <value>
+                <fullName>Partner - Partner paper</fullName>
+                <default>true</default>
+                <label>Partner - Partner paper</label>
+            </value>
+            <value>
+                <fullName>Partner - Intapp paper (blended)</fullName>
+                <default>false</default>
+                <label>Partner - Intapp paper (blended)</label>
+            </value>
+            <value>
+                <fullName>Self-Installing</fullName>
+                <default>false</default>
+                <label>Self-Installing</label>
+            </value>
+            <value>
+                <fullName>To be determined</fullName>
+                <default>false</default>
+                <label>To be determined</label>
+            </value>
+            <value>
+                <fullName>Intapp NPI</fullName>
+                <default>false</default>
+                <label>Intapp NPI</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

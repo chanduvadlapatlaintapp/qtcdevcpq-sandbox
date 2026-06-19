@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tiered_Pricing_USD_Revenue_Meter_type</fullName>
+    <columns>NAME</columns>
+    <columns>Product_Code_Formula__c</columns>
+    <columns>Product__c</columns>
+    <columns>Block_Pricing_Meter_Type__c</columns>
+    <columns>Tier_Name__c</columns>
+    <columns>CURRENCY_ISO_CODE</columns>
+    <columns>Price__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Type__c</field>
+        <operation>equals</operation>
+        <value>GTM Motion Tier</value>
+    </filters>
+    <filters>
+        <field>Block_Pricing_Meter_Type__c</field>
+        <operation>equals</operation>
+        <value>Revenue</value>
+    </filters>
+    <filters>
+        <field>CURRENCY_ISO_CODE</field>
+        <operation>equals</operation>
+        <value>USD</value>
+    </filters>
+    <label>Tiered Pricing USD Revenue Meter type</label>
+</ListView>

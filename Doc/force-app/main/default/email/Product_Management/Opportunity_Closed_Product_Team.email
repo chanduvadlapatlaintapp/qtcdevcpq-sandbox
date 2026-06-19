@@ -1,0 +1,14 @@
+The opportunity {!Opportunity.Name} has changed to {!Opportunity.StageName} 
+
+Account: {!Opportunity.Account} 
+Owner: {!Opportunity.OwnerFullName} 
+Total Amount: {!Opportunity.Amount} 
+
+Recurring: {!Opportunity.Maintenance_Amount__c} 
+Recurring/Lawyer: {!Opportunity.Recurring_per_Lawyer__c} 
+
+Won against / Lost to: {!Opportunity.Lost_to__c} 
+Reason for Closing:  {!Opportunity.Reason__c}
+
+For more information, please click here: 
+{!Opportunity.Link}

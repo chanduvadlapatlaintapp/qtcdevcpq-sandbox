@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_40369088</developerName>
+        <masterLabel>Product Family</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>Case.Product__c</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Intapp Time</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>DTE</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>DTE Axiom</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>DTE Axiom Mobile</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>TB Attorney Rollout</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Time Builder</sourceValue>
+            </sourceValues>
+            <value>Revenue</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Activity Tracker</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Conflicts</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Intake</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Wall Builder</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Intapp Flow</sourceValue>
+            </sourceValues>
+            <value>Risk</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>CompliGuard Flow</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>CompliGuard Protect</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>CompliGuard Analyze</sourceValue>
+            </sourceValues>
+            <value>CG Products</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>LegalKey</sourceValue>
+            </sourceValues>
+            <value>LegalKey</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>RollCall</sourceValue>
+            </sourceValues>
+            <value>Rollcall</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Integration Builder</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Integration Builder/Training</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Integration Builder VM</sourceValue>
+            </sourceValues>
+            <value>IB</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>OWNER</field>
+    </columns>
+    <columns>
+        <field>CASE_NUMBER</field>
+    </columns>
+    <columns>
+        <field>CREATED_DATE</field>
+    </columns>
+    <columns>
+        <field>OPEN</field>
+    </columns>
+    <columns>
+        <field>CLOSED</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>RECORDTYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Case.Support</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>SUBJECT</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notContain</operator>
+            <value>Undeliverable,Absence du bureau,Email Delivery Failure</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_40369088</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Support_Cases by Product Family</name>
+    <params>
+        <name>units</name>
+        <value>h</value>
+    </params>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CaseList</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>ACCOUNT.NAME</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATEONLY</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

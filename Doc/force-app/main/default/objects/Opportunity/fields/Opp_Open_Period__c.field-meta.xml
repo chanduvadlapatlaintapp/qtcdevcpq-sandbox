@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opp_Open_Period__c</fullName>
+    <description>In which of our fiscal quarters was the opportunity opened?  Helps produce disposition analysis.</description>
+    <externalId>false</externalId>
+    <formula>CASE(MONTH(DATEVALUE(CreatedDate)),
+1,TEXT(YEAR(DATEVALUE(CreatedDate))) &amp; &quot; - &quot;&amp;&quot;Q3&quot;,
+2,TEXT(YEAR(DATEVALUE(CreatedDate))) &amp; &quot; - &quot;&amp;&quot;Q3&quot;,
+3,TEXT(YEAR(DATEVALUE(CreatedDate))) &amp; &quot; - &quot;&amp;&quot;Q3&quot;,
+4,TEXT(YEAR(DATEVALUE(CreatedDate))) &amp; &quot; - &quot;&amp;&quot;Q4&quot;,
+5,TEXT(YEAR(DATEVALUE(CreatedDate))) &amp; &quot; - &quot;&amp;&quot;Q4&quot;,
+6,TEXT(YEAR(DATEVALUE(CreatedDate))) &amp; &quot; - &quot;&amp;&quot;Q4&quot;,
+7,TEXT(YEAR(DATEVALUE(CreatedDate))+1) &amp; &quot; - &quot;&amp;&quot;Q1&quot;,
+8,TEXT(YEAR(DATEVALUE(CreatedDate))+1) &amp; &quot; - &quot;&amp;&quot;Q1&quot;,
+9,TEXT(YEAR(DATEVALUE(CreatedDate))+1) &amp; &quot; - &quot;&amp;&quot;Q1&quot;,
+10,TEXT(YEAR(DATEVALUE(CreatedDate))+1) &amp; &quot; - &quot;&amp;&quot;Q2&quot;,
+11,TEXT(YEAR(DATEVALUE(CreatedDate))+1) &amp; &quot; - &quot;&amp;&quot;Q2&quot;,
+12,TEXT(YEAR(DATEVALUE(CreatedDate))+1) &amp; &quot; - &quot;&amp;&quot;Q2&quot;,
+&quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>In which of our fiscal quarters was the opportunity opened?  Helps produce disposition analysis.</inlineHelpText>
+    <label>Opp Open Period</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

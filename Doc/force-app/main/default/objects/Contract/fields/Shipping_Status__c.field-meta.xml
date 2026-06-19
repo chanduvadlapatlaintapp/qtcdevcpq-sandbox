@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Shipping_Status__c</fullName>
+    <label>Shipping Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Shipping Data Entered</fullName>
+                <default>false</default>
+                <label>Shipping Data Entered</label>
+            </value>
+            <value>
+                <fullName>Fulfilled</fullName>
+                <default>false</default>
+                <label>Fulfilled</label>
+            </value>
+            <value>
+                <fullName>Virtual Appliance</fullName>
+                <default>false</default>
+                <label>Virtual Appliance</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Line_Simple__c</fullName>
+    <description>This field reports all products and modules as Business Acceptance, Confidentiality, Integration, LegalKey, or Time</description>
+    <externalId>false</externalId>
+    <formula>CASE(Product_Line__c,
+  &quot;DTE Axiom&quot;,&quot;Time&quot;,
+  &quot;Conflicts - On Prem&quot;,&quot;Business Acceptance&quot;,
+  &quot;Intake - On Prem&quot;,&quot;Business Acceptance&quot;,
+  &quot;Intapp Open - Lateral Hire&quot;,&quot;Business Acceptance&quot;,
+  &quot;Time - On Prem&quot;,&quot;Time&quot;,
+  &quot;Intapp Time&quot;,&quot;Time&quot;,
+  &quot;Integrate - On Prem&quot;,&quot;Integration&quot;,
+  &quot;Integration Builder&quot;,&quot;Integration&quot;,
+  &quot;Records Management&quot;,&quot;LegalKey&quot;,
+  &quot;TFG - Legacy&quot;,&quot;LegalKey&quot;,
+  &quot;Time Builder&quot;,&quot;Time&quot;,
+  &quot;Wall Builder&quot;,&quot;Confidentiality&quot;,
+  &quot;Walls - On Prem&quot;,&quot;Confidentiality&quot;,
+  &quot;Flow &amp; Intake Bundle&quot;,&quot;Flow &amp; Intake Bundle&quot;,
+  &quot;Intapp Open - Terms of Business&quot;,&quot;Business Acceptance&quot;,
+  &quot;Time - Cloud&quot;,&quot;Time&quot;,
+  &quot;Intapp Time - Cloud&quot;,&quot;Time&quot;,
+  &quot;Terms - Cloud&quot;,&quot;Business Acceptance&quot;,
+  &quot;Terms - On Prem&quot;,&quot;Business Acceptance&quot;,
+  &quot;Intake - Cloud&quot;,&quot;Business Acceptance&quot;,
+  &quot;Intapp Open - Intake - Cloud&quot;,&quot;Business Acceptance&quot;,
+  &quot;Conflicts - Cloud&quot;,&quot;Business Acceptance&quot;,
+  &quot;LegalKey - Legacy&quot;,&quot;LegalKey&quot;,
+  &quot;Experience - On Prem&quot;,&quot;Experience&quot;,
+  &quot;Experience - Cloud&quot;,&quot;Experience&quot;,
+  &quot;Integrate - Cloud&quot;,&quot;Integration&quot;,
+  &quot;Multiple Products - On Prem&quot;,&quot;Multiple Products&quot;,
+  &quot;Pricing - On Prem&quot;,&quot;Pricing&quot;,
+  &quot;Pricing - Cloud&quot;, &quot;Pricing&quot;,
+  &quot;Intapp Open - Sandbox&quot;,&quot;Intapp Open - Sandbox&quot;,
+  &quot;Third Party Product - D&amp;B&quot;,&quot;Third Party Product&quot;,
+  &quot;Third Party Product - Experience&quot;,&quot;Third Party Product&quot;,
+  &quot;Intapp Open - Workflow&quot;,&quot;Business Acceptance&quot;,
+  &quot;Open&quot;,&quot;Business Acceptance&quot;,
+  &quot;Conflicts&quot;,&quot;Business Acceptance&quot;,
+  &quot;Intake&quot;,&quot;Business Acceptance&quot;,
+  &quot;Relationships - Cloud&quot;,&quot;Relationships&quot;,
+  &quot;Relationships - On Prem&quot;,&quot;Relationships&quot;,
+  &quot;Time Entry&quot;,&quot;Time&quot;,
+  &quot;CRM - Cloud&quot;,&quot;CRM&quot;,
+  &quot;Intapp Open&quot;,&quot;Business Acceptance&quot;,
+  &quot;Intapp Time Cloud&quot;,&quot;Time&quot;,
+  &quot;Unknown&quot;
+)</formula>
+    <inlineHelpText>This field reports all products and modules as Business Acceptance, Confidentiality, Integration, LegalKey, or Time</inlineHelpText>
+    <label>Product Line - Simple</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

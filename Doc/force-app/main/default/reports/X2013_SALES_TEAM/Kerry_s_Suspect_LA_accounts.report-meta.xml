@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>USERS.NAME</field>
+    </columns>
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>ADDRESS1_CITY</field>
+    </columns>
+    <columns>
+        <field>TYPE</field>
+    </columns>
+    <columns>
+        <field>SALES</field>
+    </columns>
+    <columns>
+        <field>Account.Lawyers__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>LA accounts, don&apos;t own WB</description>
+    <filter>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7</booleanFilter>
+        <criteriaItems>
+            <column>INDUSTRY</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Legal</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Lawyers__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>greaterThan</operator>
+            <value>100</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Legal_Entity_Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Role Play,Corporate,Government,Judicial</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>TYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Suspect,Prospect,Customer,Customer - Lapsed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>ADDRESS1_STATE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>WA,CA,OR,NM,AZ,MT,CO</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>ADDRESS1_CITY</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Los Angeles</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Wall_Builder__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Own it</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>ADDRESS1_STATE</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Kerry&apos;s Suspect LA accounts</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountList</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2001-11-05</startDate>
+    </timeFrameFilter>
+</Report>

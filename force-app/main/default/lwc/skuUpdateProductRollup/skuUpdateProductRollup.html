@@ -1,0 +1,163 @@
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+    </template>
+
+    <div class="slds-p-around_medium">
+        <!-- Page Header -->
+        <div class="page-header slds-m-bottom_medium">
+            <div class="header-icon">
+                <lightning-icon icon-name="utility:hierarchy" size="x-small"></lightning-icon>
+            </div>
+            <div>
+                <h2 class="header-title">Update Product Rollup</h2>
+                <p class="header-subtitle">Search for a product rollup to view and update its details</p>
+            </div>
+        </div>
+
+        <!-- Product Rollup Lookup -->
+        <div class="filter-card slds-m-bottom_medium">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-2">
+                    <c-lookup
+                        data-id="productRollupLookup"
+                        label="Select Product Rollup"
+                        placeholder="Search by name..."
+                        is-multi-entry={isNotMultiEntry}
+                        onsearch={handleSearch}
+                        onselectionchange={handleSelected}>
+                    </c-lookup>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <template if:false={isRecordSelected}>
+            <div class="empty-state">
+                <div class="empty-state-icon">
+                    <lightning-icon icon-name="utility:hierarchy" size="medium"></lightning-icon>
+                </div>
+                <p class="empty-state-heading">No product rollup selected</p>
+                <p class="empty-state-text">Search for a product rollup above to view and update its details</p>
+            </div>
+        </template>
+
+        <!-- Record Selected State -->
+        <template if:true={isRecordSelected}>
+            <!-- Banner -->
+            <div class="product-banner slds-m-bottom_medium">
+                <lightning-icon icon-name="standard:product_item" size="small" class="slds-m-right_small"></lightning-icon>
+                <span class="product-banner__name">{record.Name}</span>
+                <template if:true={productLineName}>
+                    <span class="product-banner__line">{productLineName}</span>
+                </template>
+            </div>
+
+            <!-- Save Bar -->
+            <template if:true={hasChanges}>
+                <div class="save-bar slds-m-bottom_medium">
+                    <lightning-button label="Save Changes" variant="brand"
+                        icon-name="utility:save" onclick={handleSave}
+                        class="slds-m-right_small"></lightning-button>
+                    <span class="save-bar-text">You have unsaved changes</span>
+                    <lightning-button label="Discard" variant="neutral"
+                        onclick={handleDiscard} class="slds-m-left_small"></lightning-button>
+                </div>
+            </template>
+
+            <!-- Accordion Sections -->
+            <lightning-accordion allow-multiple-sections-open active-section-name={activeSections}>
+
+                <!-- Section 1: Basic Details -->
+                <lightning-accordion-section name="basicDetails" label="Basic Details">
+                    <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_small">
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input variant="label-inline" label="Name"
+                                value={record.Name}
+                                data-field="Name"
+                                onchange={handleFieldChange}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input variant="label-inline" label="Intapp ID"
+                                value={record.Intapp_ID__c}
+                                data-field="Intapp_ID__c"
+                                onchange={handleFieldChange}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input variant="label-inline" label="Description"
+                                value={record.Description__c}
+                                data-field="Description__c"
+                                onchange={handleFieldChange}></lightning-input>
+                        </div>
+                    </div>
+                </lightning-accordion-section>
+
+                <!-- Section 2: Classification -->
+                <lightning-accordion-section name="classification" label="Classification">
+                    <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_small">
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-combobox variant="label-inline" label="Product Line"
+                                value={record.Product_Line__c}
+                                options={productLineOptions}
+                                data-field="Product_Line__c"
+                                onchange={handleFieldChange}></lightning-combobox>
+                        </div>
+                    </div>
+                </lightning-accordion-section>
+
+                <!-- Section 3: Settings -->
+                <lightning-accordion-section name="settings" label="Settings">
+                    <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_small">
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input type="checkbox" variant="label-inline" label="Don't Show on Projects"
+                                checked={record.Don_t_Show_on_Projects__c}
+                                data-field="Don_t_Show_on_Projects__c"
+                                onchange={handleFieldChange}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input type="checkbox" variant="label-inline" label="Highest Package"
+                                checked={record.Highest_Package__c}
+                                data-field="Highest_Package__c"
+                                onchange={handleFieldChange}></lightning-input>
+                        </div>
+                    </div>
+                </lightning-accordion-section>
+
+                <!-- Section 4: Integration -->
+                <lightning-accordion-section name="integration" label="Integration">
+                    <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_small">
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input type="number" variant="label-inline" label="OA Task ID"
+                                value={record.OA_Task_ID__c}
+                                data-field="OA_Task_ID__c"
+                                onchange={handleFieldChange}></lightning-input>
+                        </div>
+                    </div>
+                </lightning-accordion-section>
+
+                <!-- Section 5: Audit Info -->
+                <lightning-accordion-section name="auditInfo" label="Audit Info">
+                    <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_small">
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input variant="label-inline" label="Created By"
+                                value={createdByName} read-only></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input variant="label-inline" label="Created Date"
+                                value={createdDate} read-only></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input variant="label-inline" label="Last Modified By"
+                                value={lastModifiedByName} read-only></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3 slds-p-bottom_small">
+                            <lightning-input variant="label-inline" label="Last Modified Date"
+                                value={lastModifiedDate} read-only></lightning-input>
+                        </div>
+                    </div>
+                </lightning-accordion-section>
+
+            </lightning-accordion>
+        </template>
+    </div>
+</template>

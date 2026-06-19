@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SOW_Status__c</fullName>
+    <description>The current status of a services Statement of Work (SOW)</description>
+    <inlineHelpText>The current status of a services Statement of Work (SOW)</inlineHelpText>
+    <label>SOW Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Not needed</fullName>
+                <default>false</default>
+                <label>Not needed</label>
+            </value>
+            <value>
+                <fullName>Not drafted, but needed</fullName>
+                <default>false</default>
+                <label>Not drafted, but needed</label>
+            </value>
+            <value>
+                <fullName>Solution Consulting drafting</fullName>
+                <default>false</default>
+                <label>Solution Consulting drafting</label>
+            </value>
+            <value>
+                <fullName>Presented to Customer for review</fullName>
+                <default>false</default>
+                <label>Presented to Customer for review</label>
+            </value>
+            <value>
+                <fullName>Signed off and complete</fullName>
+                <default>false</default>
+                <label>Signed off and complete</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

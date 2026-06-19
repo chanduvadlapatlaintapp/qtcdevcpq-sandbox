@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Segment_with_Product_Type__c</fullName>
+    <externalId>false</externalId>
+    <formula>if(AND( OR(ISPICKVAL(Product_Type__c, &apos;Software&apos;),ISPICKVAL(Product_Type__c, &apos;Software Discount&apos;),ISPICKVAL(Product_Type__c, &apos;Software Discount (One-Time)&apos;)), NOT(CONTAINS(SBQQ__Product__r.Name, &apos;Payment Adjustment&apos;)),  SBQQ__SegmentIndex__c =1),1,
+if(AND( OR(ISPICKVAL(Product_Type__c, &apos;Software&apos;),ISPICKVAL(Product_Type__c, &apos;Software Discount&apos;),ISPICKVAL(Product_Type__c, &apos;Software Discount (One-Time)&apos;)), NOT(CONTAINS(SBQQ__Product__r.Name, &apos;Payment Adjustment&apos;)),  SBQQ__SegmentIndex__c =2),2,
+if(AND( OR(ISPICKVAL(Product_Type__c, &apos;Software&apos;),ISPICKVAL(Product_Type__c, &apos;Software Discount&apos;),ISPICKVAL(Product_Type__c, &apos;Software Discount (One-Time)&apos;)), NOT(CONTAINS(SBQQ__Product__r.Name, &apos;Payment Adjustment&apos;)),  SBQQ__SegmentIndex__c =3),3,
+if(AND( OR(ISPICKVAL(Product_Type__c, &apos;Software&apos;),ISPICKVAL(Product_Type__c, &apos;Software Discount&apos;),ISPICKVAL(Product_Type__c, &apos;Software Discount (One-Time)&apos;)), NOT(CONTAINS(SBQQ__Product__r.Name, &apos;Payment Adjustment&apos;)),  SBQQ__SegmentIndex__c =4),4,
+if(AND( OR(ISPICKVAL(Product_Type__c, &apos;Software&apos;),ISPICKVAL(Product_Type__c, &apos;Software Discount&apos;),ISPICKVAL(Product_Type__c, &apos;Software Discount (One-Time)&apos;)), NOT(CONTAINS(SBQQ__Product__r.Name, &apos;Payment Adjustment&apos;)),  SBQQ__SegmentIndex__c =5),5,
+if(AND( OR(ISPICKVAL(Product_Type__c, &apos;Software&apos;),ISPICKVAL(Product_Type__c, &apos;Software Discount&apos;),ISPICKVAL(Product_Type__c, &apos;Software Discount (One-Time)&apos;)), NOT(CONTAINS(SBQQ__Product__r.Name, &apos;Payment Adjustment&apos;)),  SBQQ__SegmentIndex__c =6),6,
+0))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Segment with Product Type Software</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

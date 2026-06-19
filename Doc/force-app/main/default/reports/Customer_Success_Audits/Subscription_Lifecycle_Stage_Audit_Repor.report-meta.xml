@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Subscription__c$Name</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Customer_Lifecycle_Stage__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$CSM_Health_Rating__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Subscription__c$Customer_Lifecycle_Stage__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notContain</operator>
+            <value>Project not started yet,Implementation,In Production - Not Deployed to End Users,In Production - Deployed to some End Users,In Production - Deployed to End Users Firm Wide,Lapsed,Within 90 days of Production,In Production</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Subscription Lifecycle Stage Audit Repor</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Subscriptions_with_Subscription_Contacts__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Subscription__c$Customer_Lifecycle_Stage__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Subscription__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2015-12-07</startDate>
+    </timeFrameFilter>
+</Report>

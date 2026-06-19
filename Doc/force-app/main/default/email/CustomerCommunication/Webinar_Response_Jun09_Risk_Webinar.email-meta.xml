@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Response for June09 Risk Webinar</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - Jun09 Risk Webinar</name>
+    <style>none</style>
+    <subject>IntApp Risk Roundtable Webinar</subject>
+    <textOnly>{!Lead.FirstName} {!Lead.LastName}:
+
+Thank you for registering for the Risk Roundtable Webinar.
+
+Date: Thursday, June 18
+Time: 1 pm Pacific / 4 pm Eastern
+
+
+Video:
+
+Conference URL: https://www.livemeeting.com/cc/vcc/join?id=w8029408&amp;role=attend&amp;pw=A802940 
+Conference/Meeting Number: w8029408
+Conference/Meeting Passcode: A802940
+
+
+Audio:
+
+Conference Audio Dial In: 
+US/Canada: 888-359-3610
+UK: 0-800-404-7656
+Passcode: 8029408
+
+
+
+Please log in and dial the conference audio line 5-10 minutes prior to the start time.
+
+
+
+http://www.intapp.com
+All information Copyright 2009 IntApp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

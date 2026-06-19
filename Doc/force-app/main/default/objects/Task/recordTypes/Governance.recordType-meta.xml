@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Governance</fullName>
+    <active>true</active>
+    <description>Record type for Governance tasks. BIZ-45067</description>
+    <label>Governance</label>
+    <picklistValues>
+        <picklist>Priority</picklist>
+        <values>
+            <fullName>High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Normal</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status</picklist>
+        <values>
+            <fullName>Call Scheduled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Deferred</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Discontinued</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Started</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Notes to be entered</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>On Hold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Waiting on Client</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Working</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Subject</picklist>
+        <values>
+            <fullName>Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fax</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Meeting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quote via email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quote via fax</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quote via phone</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Scheduled Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Send Letter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unscheduled Call</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>ABR Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Agreed Step</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Business Consulting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Company News</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Config%2FDev%2FIntegration</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Critical Case Review</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DTE Android</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DTE Axiom Time Builder Integration</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DTE BlackBerry</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DTE Install General</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DTE Mobility</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DTE Sync Rules</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DTE iPhone%2FiPad</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Demo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Deployment Support</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Documentation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Engage with business unit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Engage with client</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Engage with community</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Engage with product team</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Escalation Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Executive Briefing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inbound Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Internal Check-In</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Internal Discussion</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Internal Operations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Issue Resolution%2FRework</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Live Webinar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Meaningful Conversation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Meeting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Client Intro</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>News %26 Press</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Open Forms</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Open Install General</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Open Integrations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Open Notifications</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Open Workflows</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Opportunity Review</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other - Client Work</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Out of Office</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Outbound Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Planning%2FDesign</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product Campaign</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Project Escalation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Project Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Proposal from TE Under Review</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Release Communication</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SC - Contract Support</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SC - Demonstration Prep</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SC - Discovery</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SC - Event Support</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SC - Meeting Follow-Up</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SC - Meeting Prep</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SC - Non-SC Support</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SC - On-site Demonstration</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SC - Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SC - RFP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SC - SalesExec Questions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SC - Webex Demonstration</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Support Case Escalation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Support Escalation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Support Success Check-In</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Survey</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Survey Follow-Up</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>System Support</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TB Blackberry</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TB Exchange</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TB Install General</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TB Mobility</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TB Phones</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TB Submission</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TB Sync Rules</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Technical Consulting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Testing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Training</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Travel</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>University Video</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Update</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WB AT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WB Install General</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WB MTM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WB Security</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WB Sync Rules</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WB Wall Import</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

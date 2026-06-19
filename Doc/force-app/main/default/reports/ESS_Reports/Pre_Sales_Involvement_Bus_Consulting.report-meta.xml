@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>text</bucketType>
+        <developerName>BucketField_8874317</developerName>
+        <masterLabel>Status</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>Services_SOW__c.Opportunity_Stage__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Closed Won</sourceValue>
+            </sourceValues>
+            <value>Won</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Closed Lost</sourceValue>
+            </sourceValues>
+            <value>Lost</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Business Case Development</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Evaluation of Options</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Expression of Interest</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Get Management Approval</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Investigation</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Obtain Contract</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Resolution of Concerns</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Target Account</sourceValue>
+            </sourceValues>
+            <value>In Progress</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Closed - Merged</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Closed - No Decision</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Closed - Should Never have been opened</sourceValue>
+            </sourceValues>
+            <value>Closed</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>Services_SOW__c.Opportunity__c</field>
+    </columns>
+    <columns>
+        <field>Services_SOW__c.Product__c</field>
+    </columns>
+    <columns>
+        <field>Services_SOW__c.Date_Services_Required__c</field>
+    </columns>
+    <columns>
+        <field>Services_SOW__c.Assigned_Resource__c</field>
+    </columns>
+    <columns>
+        <field>Services_SOW__c.Opportunity_Stage_at_Request__c</field>
+    </columns>
+    <columns>
+        <field>Services_SOW__c.Opportunity_Stage__c</field>
+    </columns>
+    <columns>
+        <field>USERS.NAME</field>
+    </columns>
+    <columns>
+        <field>DUE_DATE</field>
+    </columns>
+    <columns>
+        <field>Services_SOW__c.Sales_Territory__c</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Services_SOW__c.SOW_Name__c</field>
+    </columns>
+    <columns>
+        <field>CUST_CREATED_DATE</field>
+    </columns>
+    <columns>
+        <field>CUST_ID</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>CUST_RECORDTYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Services_SOW__c.Early_Resource_Tracking</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Services_SOW__c.Type_of_Support_Required__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Business Consulting</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_8874317</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Pre-Sales - Involvement - Bus Consulting</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountCustomEntity$Services_SOW__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>ACCOUNT.NAME</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>DUE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

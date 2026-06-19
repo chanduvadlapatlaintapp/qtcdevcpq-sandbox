@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Address</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Address</value>
+    </caseValues>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Address is required. Please populate the address fields. --></errorMessage>
+        <name>Address_cannot_be_blank</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please create a new address with Default Billing / Shipping Address checked before updating the Status to Inactive. --></errorMessage>
+        <name>RestrictInactiveStatusForDefaultAddress</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- For updating the record, please create a Task for Contract Ops by clicking &apos;Update Address&apos; button --></errorMessage>
+        <name>Restrict_Address_Update_Once_Verified</name>
+    </validationRules>
+</CustomObjectTranslation>

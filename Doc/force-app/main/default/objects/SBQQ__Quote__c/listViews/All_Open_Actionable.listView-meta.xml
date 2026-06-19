@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Open_Actionable</fullName>
+    <booleanFilter>(1 AND 2 AND 5 AND 6 AND 7) OR (4 AND 6 AND 7) AND (3)</booleanFilter>
+    <columns>Line_of_Business__c</columns>
+    <columns>SBQQ__Account__c</columns>
+    <columns>Account_Name__c</columns>
+    <columns>NAME</columns>
+    <columns>SBQQ__Status__c</columns>
+    <columns>Opportunity_Stage__c</columns>
+    <columns>SBQQ__Opportunity2__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>UPDATEDBY_USER.ALIAS</columns>
+    <columns>OP4I_Deal_Owner__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>SBQQ__Status__c</field>
+        <operation>notEqual</operation>
+        <value>Draft,Processed,Quote needs Review,AM Ops Engaged</value>
+    </filters>
+    <filters>
+        <field>SBQQ__Status__c</field>
+        <operation>notEqual</operation>
+        <value>Submitted,Presented,Approved,Approval Rejected,Approval Recalled</value>
+    </filters>
+    <filters>
+        <field>SBQQ__ExpirationDate__c</field>
+        <operation>greaterThan</operation>
+        <value>5/29/2020</value>
+    </filters>
+    <filters>
+        <field>Opportunity_Stage__c</field>
+        <operation>equals</operation>
+        <value>Pending Closure,06. Pending Closure</value>
+    </filters>
+    <filters>
+        <field>OSA_Requested_Date__c</field>
+        <operation>greaterThan</operation>
+        <value>5/29/2020</value>
+    </filters>
+    <filters>
+        <field>SBQQ__Primary__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>SBQQ__Status__c</field>
+        <operation>notEqual</operation>
+        <value>AM Ops Engaged</value>
+    </filters>
+    <label>Total Queue_Actionable</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>ContractsOps</group>
+        <role>Business_Operations</role>
+    </sharedTo>
+</ListView>

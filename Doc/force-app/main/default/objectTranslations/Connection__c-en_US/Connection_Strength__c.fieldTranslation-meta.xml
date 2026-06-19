@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>
+        <!-- How strong is the relationship?
+3: Worked together forever. Good friends.
+2: They would call me back.
+1: We&apos;ve met once.
+0: We&apos;ve never met.
+-1: Maybe you could find another way in? -->
+    </help>
+    <label><!-- Connection Strength --></label>
+    <name>Connection_Strength__c</name>
+    <picklistValues>
+        <masterLabel>-1: Maybe you could find another way in?</masterLabel>
+        <translation><!-- -1: Maybe you could find another way in? --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>0: We&apos;ve never met.</masterLabel>
+        <translation><!-- 0: We&apos;ve never met. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1: We&apos;ve talked or met. That&apos;s about it.</masterLabel>
+        <translation><!-- 1: We&apos;ve talked or met. That&apos;s about it. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2: He or she would call me back.</masterLabel>
+        <translation><!-- 2: He or she would call me back. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3: We&apos;re on great terms.</masterLabel>
+        <translation><!-- 3: We&apos;re on great terms. --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

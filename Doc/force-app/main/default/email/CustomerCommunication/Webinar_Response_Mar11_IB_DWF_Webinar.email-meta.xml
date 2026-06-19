@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Response for March 2011 IB DWF Webinar</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - Mar11 IB DWF Webinar</name>
+    <style>none</style>
+    <subject>IntApp Webinar Confirmation</subject>
+    <textOnly>{!Lead.FirstName} {!Lead.LastName}: 
+
+Thank you for registering for the IntApp Integration Builder Webinar. The login details are below.
+
+Date: Thursday, March 24
+Time: 3 pm GMT
+
+Video:
+
+Conference URL: https://www.livemeeting.com/cc/vcc/join?id=w6318197&amp;role=attend&amp;pw=A631819
+
+Meeting ID: w6318197
+Entry Code: A631819
+
+Audio:
+
+Conference Audio Dial In: 0 800 404 7656 
+Passcode: 6318197
+
+
+http://www.intapp.com
+All information Copyright 2011 IntApp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Legal_TFG_Services</fullName>
+    <active>true</active>
+    <businessProcess>July 2014 Active Sales Process</businessProcess>
+    <compactLayoutAssignment>Opportunity_Compact_Layout</compactLayoutAssignment>
+    <description>This record type is only meant for processing legacy TFG Services. Do not use this for new sales.</description>
+    <label>Legal - TFG Services</label>
+    <picklistValues>
+        <picklist>ForecastCategoryName</picklist>
+        <values>
+            <fullName>Best Case</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Omitted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pipeline</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>LeadSource</picklist>
+        <values>
+            <fullName>Customer Success</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Event %2F Tradeshow</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Handraiser</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Online Advertising</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paid Search</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referral %E2%80%93 Acquisition</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referral %E2%80%93 Client</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referral %E2%80%93 Partner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SDR Prospecting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Prospecting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Social</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Legal - Additional Services</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Legal - Services Change Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platform Conversion - Decrease</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platform Conversion - Internal Decrease</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

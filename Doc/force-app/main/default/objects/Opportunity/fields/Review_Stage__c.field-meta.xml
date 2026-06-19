@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Review_Stage__c</fullName>
+    <description>This field is used to determine how far along the review stage is for this opportunity. Typically, the proposed stage change will be discussed with a rep first, then reviewed by the appropriate Sales President.</description>
+    <label>Review Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Discussion with Seller</fullName>
+                <default>false</default>
+                <label>Discussion with Seller</label>
+            </value>
+            <value>
+                <fullName>Pending Review</fullName>
+                <default>false</default>
+                <label>Pending Review</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

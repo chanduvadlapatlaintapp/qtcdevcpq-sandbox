@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>NewAcctCreated</fullName>
+        <description>New Acct Created</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>ameya.thatte@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>maiya.hilliard@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>InternalNotification/SalesOpsNewAcctCreated</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>CSM_Health_Rating_Last_Modified_Update</fullName>
+        <field>CSM_Health_Rating_Last_Modified__c</field>
+        <formula>NOW()</formula>
+        <name>CSM Health Rating - Last Modified Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Open_Version_Modified_By_On</fullName>
+        <field>Open_Version_Modified_By_On__c</field>
+        <formula>
+            $User.FirstName&amp;&quot; &quot;&amp;$User.LastName&amp;&quot; &quot;&amp;
+            TEXT(MONTH(TODAY()))&amp;&quot;/&quot;&amp;TEXT(DAY(TODAY()))&amp;&quot;/&quot;&amp;TEXT(YEAR(TODAY()))</formula>
+        <name>Populate Open Version Modified By/On</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_TB_Version_Modified_By_On</fullName>
+        <field>TB_Version_Modified_By_On__c</field>
+        <formula>
+            $User.FirstName&amp;&quot; &quot;&amp;$User.LastName&amp;&quot; &quot;&amp;
+            TEXT(MONTH(TODAY()))&amp;&quot;/&quot;&amp;TEXT(DAY(TODAY()))&amp;&quot;/&quot;&amp;TEXT(YEAR(TODAY()))</formula>
+        <name>Populate TB Version Modified By/On</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_WB_Version_Modified_By_On</fullName>
+        <field>WB_Version_Modified_By_On__c</field>
+        <formula>
+            $User.FirstName&amp;&quot; &quot;&amp;$User.LastName&amp;&quot; &quot;&amp;
+            TEXT(MONTH(TODAY()))&amp;&quot;/&quot;&amp;TEXT(DAY(TODAY()))&amp;&quot;/&quot;&amp;TEXT(YEAR(TODAY()))</formula>
+        <name>Populate WB Version Modified By/On</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Intapp_Time_to_Own_it</fullName>
+        <field>Intapp_Time__c</field>
+        <literalValue>Own it</literalValue>
+        <name>Set Intapp Time to Own it</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Uncheck_health_Still_accurate</fullName>
+        <field>Health_Still_Accurate__c</field>
+        <literalValue>0</literalValue>
+        <name>Uncheck health Still accurate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Account_Type_to_Prospect</fullName>
+        <description>SC-000045</description>
+        <field>Type</field>
+        <literalValue>Prospect</literalValue>
+        <name>Update Account Type to Prospect</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Account_Type_to_Suspect</fullName>
+        <description>SC-000045</description>
+        <field>Type</field>
+        <literalValue>Suspect</literalValue>
+        <name>Update Account Type to Suspect</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Criteria_Based_Access</fullName>
+        <field>Criteria_Based_Access__c</field>
+        <literalValue>Entitled</literalValue>
+        <name>Update Criteria Based Access</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Date_Account_Name_Changed</fullName>
+        <field>Date_Account_Name_Changed__c</field>
+        <formula>TODAY()</formula>
+        <name>Update Date Account Name Changed</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Intapp_Time_to_Own_it_Cloud</fullName>
+        <field>Intapp_Time__c</field>
+        <literalValue>Own it - Cloud</literalValue>
+        <name>Update Intapp Time to Own it - Cloud</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Self_Maintaining_PMS</fullName>
+        <field>Self_Maintaining_via_PMS__c</field>
+        <literalValue>Own it</literalValue>
+        <name>Update Self-Maintaining (PMS)</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Self_Maintaning_PMS</fullName>
+        <field>Self_Maintaining_via_PMS__c</field>
+        <literalValue>Lapsed</literalValue>
+        <name>Update Self Maintaning PMS</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Time_Builder_Own_it</fullName>
+        <field>Time_Builder__c</field>
+        <literalValue>Own it</literalValue>
+        <name>Update Time Builder Own it</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Wall_Builder_Lapsed</fullName>
+        <field>Wall_Builder__c</field>
+        <literalValue>Lapsed</literalValue>
+        <name>Update Wall Builder Lapsed</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Wall_Builder_Own_It</fullName>
+        <field>Wall_Builder__c</field>
+        <literalValue>Own it</literalValue>
+        <name>Update Wall Builder Own It</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Wall_Builder_for_IT_Own_it</fullName>
+        <field>Wall_Builder_for_IT__c</field>
+        <literalValue>Own it</literalValue>
+        <name>Update Wall Builder for IT Own it</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Wall_Builder_for_Risk_IT_Own_it</fullName>
+        <field>Wall_Builder_for_Risk_IT__c</field>
+        <literalValue>Own it</literalValue>
+        <name>Update Wall Builder for Risk/IT Own it</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Wall_Builder_for_Risk_Lapsed</fullName>
+        <field>Wall_Builder_for_Risk_Memo__c</field>
+        <literalValue>Lapsed</literalValue>
+        <name>Update Wall Builder for Risk Lapsed</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Wall_Builder_for_Risk_Own_it</fullName>
+        <field>Wall_Builder_for_Risk_Memo__c</field>
+        <literalValue>Own it</literalValue>
+        <name>Update Wall Builder for Risk Own it</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Wall_Builder_for_IT_Lapsed</fullName>
+        <field>Wall_Builder_for_IT__c</field>
+        <literalValue>Lapsed</literalValue>
+        <name>Wall Builder for IT Lapsed</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Wall_Builder_for_Risk_IT_Lapsed</fullName>
+        <field>Wall_Builder_for_Risk_IT__c</field>
+        <literalValue>Lapsed</literalValue>
+        <name>Wall Builder for Risk/IT Lapsed</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <outboundMessages>
+        <fullName>SendAccountToDTE</fullName>
+        <apiVersion>33.0</apiVersion>
+        <endpointUrl>https://www.intapp.com/SalesForceSync/DTE/Account/AccountNotificationService.asmx</endpointUrl>
+        <fields>Id</fields>
+        <fields>IntApp_Account_Number__c</fields>
+        <fields>Name</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>support.automation@intapp.com</integrationUser>
+        <name>SendAccountToDTE</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <rules>
+        <fullName>Rule Code%3A ACT-021xFxx</fullName>
+        <actions>
+            <name>Populate_Open_Version_Modified_By_On</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Rule Code: ACT-021xFxx
+            Populate Open Version Modified By/On
+            Populate Open Version Modified By/On when Open Version is changed</description>
+        <formula>ISCHANGED(Open_Version__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A ACT-023xFxx</fullName>
+        <actions>
+            <name>Populate_WB_Version_Modified_By_On</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Rule Code: ACT-023xFxx
+            Populate WB Version Modified By/On</description>
+        <formula>ISCHANGED(WB_Product_Release__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A ACT-025xFxx</fullName>
+        <actions>
+            <name>Update_Date_Account_Name_Changed</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Rule Code: ACT-025xFxx
+            Update Date Account Name Changed
+            Updates the Date Account Name Changed whenever the Account Name is changed.</description>
+        <formula>ISCHANGED(Name)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A ACT-041xFxx</fullName>
+        <actions>
+            <name>Update_Time_Builder_Own_it</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Account.Intapp_Time_Total_Management__c</field>
+            <operation>equals</operation>
+            <value>Own it</value>
+        </criteriaItems>
+        <description>Rule Code: ACT-041xFxx
+            Intapp Time: Total Management own it updates</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A ACT-042xFxx</fullName>
+        <actions>
+            <name>Update_Time_Builder_Own_it</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Account.Intapp_Time_Capture__c</field>
+            <operation>equals</operation>
+            <value>Own it</value>
+        </criteriaItems>
+        <description>Rule Code: ACT-042xFxx
+            Intapp Time: Capture Own it updates</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A ACT-043xFxx</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Account.Intapp_Time_Core_Management__c</field>
+            <operation>equals</operation>
+            <value>Own it</value>
+        </criteriaItems>
+        <description>Rule Code: ACT-043xFxx
+            Intapp Time Core Management Own It updates</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A ACT-044xFxx</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Account.Intapp_Time_Mobile__c</field>
+            <operation>equals</operation>
+            <value>Own it</value>
+        </criteriaItems>
+        <description>Rule Code: ACT-044xFxx
+            Intapp Time Mobile Own It updates</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A ACT-045xFxx</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Account.Intapp_Time_Compliance_Module__c</field>
+            <operation>equals</operation>
+            <value>Own it</value>
+        </criteriaItems>
+        <description>Rule Code: ACT-045xFxx
+            Intapp Time Compliance Own it updates</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A ACT-046xFxx</fullName>
+        <active>false</active>
+        <description>Rule Code: ACT-046xFxx
+            Populate Converted Revenue</description>
+        <formula>ISCHANGED(AnnualRevenue)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A ACT-056xFxx</fullName>
+        <actions>
+            <name>CSM_Health_Rating_Last_Modified_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Uncheck_health_Still_accurate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Populates CSM Health Rating - Last Modified Update</description>
+        <formula>OR( ISCHANGED(CSM_Health_Rating__c), ISCHANGED(Health_Still_Accurate__c) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

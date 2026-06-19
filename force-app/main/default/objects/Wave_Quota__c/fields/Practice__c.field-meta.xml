@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Practice__c</fullName>
+    <label>Practice</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Client Development</fullName>
+                <default>true</default>
+                <label>Client Development</label>
+            </value>
+            <value>
+                <fullName>Integration Practice</fullName>
+                <default>false</default>
+                <label>Integration Practice</label>
+            </value>
+            <value>
+                <fullName>Revenue Practice</fullName>
+                <default>false</default>
+                <label>Revenue Practice</label>
+            </value>
+            <value>
+                <fullName>Risk Practice</fullName>
+                <default>false</default>
+                <label>Risk Practice</label>
+            </value>
+            <value>
+                <fullName>Multiple Products</fullName>
+                <default>false</default>
+                <label>Multiple Products</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

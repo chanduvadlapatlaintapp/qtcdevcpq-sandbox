@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Package_2__c</fullName>
+    <label>Package 2</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Integration &amp; Wall Builder</fullName>
+                <default>false</default>
+                <label>Integration &amp; Wall Builder</label>
+            </value>
+            <value>
+                <fullName>Integration Builder</fullName>
+                <default>false</default>
+                <label>Integration Builder</label>
+            </value>
+            <value>
+                <fullName>Wall Builder</fullName>
+                <default>false</default>
+                <label>Wall Builder</label>
+            </value>
+            <value>
+                <fullName>Time Builder</fullName>
+                <default>false</default>
+                <label>Time Builder</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

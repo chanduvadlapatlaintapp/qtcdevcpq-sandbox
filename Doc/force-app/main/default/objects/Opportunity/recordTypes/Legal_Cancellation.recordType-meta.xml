@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Legal_Cancellation</fullName>
+    <active>true</active>
+    <businessProcess>Cancellations</businessProcess>
+    <compactLayoutAssignment>Opportunity_Compact_Layout</compactLayoutAssignment>
+    <description>Use this for cancellations and any negative recurring adjustments</description>
+    <label>Legal - Cancellation / Recurring Downgrade</label>
+    <picklistValues>
+        <picklist>ForecastCategoryName</picklist>
+        <values>
+            <fullName>Best Case</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Omitted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pipeline</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>LeadSource</picklist>
+        <values>
+            <fullName>Customer Success</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Event %2F Tradeshow</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Handraiser</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Online Advertising</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paid Search</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referral %E2%80%93 Acquisition</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referral %E2%80%93 Client</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referral %E2%80%93 Partner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SDR Prospecting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Prospecting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Social</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>ACV Downgrade%2FPartial ACV Cancellation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ACV Recovery%2FPartial ACV Reinstatement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancellation - Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancellation - Module</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancellation - Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancellation - Recurring Adjustment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Downgrade - Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - User Count Decrease</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platform Conversion - Decrease</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platform Conversion - Internal Decrease</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

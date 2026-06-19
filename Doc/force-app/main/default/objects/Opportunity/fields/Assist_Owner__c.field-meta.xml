@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Assist_Owner__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>For opportunities that qualify under the official Assist program, select the team member that provided the Assist that set up the First Meeting for the Managing Director.</description>
+    <inlineHelpText>For opportunities that qualify under the official Assist program, select the INTAPP team member that provided the Assist that set up the First Meeting for the Managing Director.</inlineHelpText>
+    <label>Assist Owner</label>
+    <lookupFilter>
+        <active>false</active>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
+        <errorMessage>Managing Directors, PGLs and Product Marketing currently qualify for  official Assists outside their territory or practice. Talk to Dan if you are not listed here, but can help.</errorMessage>
+        <filterItems>
+            <field>User.Manager.Alias</field>
+            <operation>equals</operation>
+            <value>dtaco</value>
+        </filterItems>
+        <filterItems>
+            <field>User.Alias</field>
+            <operation>equals</operation>
+            <value>ppast</value>
+        </filterItems>
+        <filterItems>
+            <field>User.Alias</field>
+            <operation>equals</operation>
+            <value>bbarb</value>
+        </filterItems>
+        <filterItems>
+            <field>User.Alias</field>
+            <operation>equals</operation>
+            <value>rhill</value>
+        </filterItems>
+        <filterItems>
+            <field>User.Alias</field>
+            <operation>equals</operation>
+            <value>kkibb</value>
+        </filterItems>
+        <infoMessage>Managing Directors, PGLs and Product Marketing currently qualify for  official Assists outside their territory or practice. Talk to Dan if you are not listed here, but can help.</infoMessage>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Opportunities</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

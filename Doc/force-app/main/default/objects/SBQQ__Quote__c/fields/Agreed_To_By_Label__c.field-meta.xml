@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Agreed_To_By_Label__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  OR(
+    Text(Contract_Master_Terms__c) = &quot;Reseller&quot;,
+    CONTAINS(OP4I_Sales_Segment__c, &quot;Partner Reseller Channel&quot;)
+  ),
+  Bill_To_Account_Name__c,
+  Ship_To_Account__r.Name
+)</formula>
+    <label>Agreed To By Label</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

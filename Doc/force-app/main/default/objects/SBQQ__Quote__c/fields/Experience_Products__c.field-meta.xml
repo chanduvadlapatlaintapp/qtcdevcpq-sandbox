@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Experience_Products__c</fullName>
+    <label>Experience Products</label>
+    <summaryFilterItems>
+        <field>SBQQ__QuoteLine__c.Item_Master_Product_Number__c</field>
+        <operation>equals</operation>
+        <value>PIN-00830,PIN-00971,PIN-01017</value>
+    </summaryFilterItems>
+    <summaryForeignKey>SBQQ__QuoteLine__c.SBQQ__Quote__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

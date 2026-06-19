@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Primary_Quote_for_Pricing_Proposal_Stage</fullName>
+    <active>false</active>
+    <description>For moving to Quote Stage Pricing Proposal, Quote should be Primary Quote. Created as per BIZ-47445</description>
+    <errorConditionFormula>AND(
+ NOT(SBQQ__Primary__c), 
+ ISPICKVAL(Quote_Stage__c, &quot;Pricing Proposal&quot;)
+)</errorConditionFormula>
+    <errorMessage>Only Primary Quotes can move to Pricing Proposal Stage.</errorMessage>
+</ValidationRule>

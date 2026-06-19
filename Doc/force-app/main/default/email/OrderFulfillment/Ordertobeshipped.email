@@ -1,0 +1,17 @@
+The following order has been marked ready for shipment:
+
+Type of Order: {!Order_Header__c.RecordType}
+Account: {!Order_Header__c.Account__c}
+Contact: {!Order_Header__c.Tech_Contact__c}
+Description: {!Order_Header__c.Description__c}
+Desired Ship Date: {!Order_Header__c.Requested_Ship_Date__c}
+Desired Delivery Date: {!Order_Header__c.Requested_Delivery_Date__c}
+Shipping Notes: {!Order_Header__c.Shipping_Notes__c}
+
+
+Entered by: {!Order_Header__c.CreatedBy}
+
+{!Order_Header__c.Link}
+
+
+Rule Code: OH-001Exxx

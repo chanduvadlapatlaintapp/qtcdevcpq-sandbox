@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <label>Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Need to Contact Applicant</fullName>
+                <default>true</default>
+                <label>Need to Contact Applicant</label>
+            </value>
+            <value>
+                <fullName>Applicant Contacted</fullName>
+                <default>false</default>
+                <label>Applicant Contacted</label>
+            </value>
+            <value>
+                <fullName>Interview Scheduled</fullName>
+                <default>false</default>
+                <label>Interview Scheduled</label>
+            </value>
+            <value>
+                <fullName>Extended Verbal Offer</fullName>
+                <default>false</default>
+                <label>Extended Verbal Offer</label>
+            </value>
+            <value>
+                <fullName>Extended Offer Letter</fullName>
+                <default>false</default>
+                <label>Extended Offer Letter</label>
+            </value>
+            <value>
+                <fullName>Offer Accepted</fullName>
+                <default>false</default>
+                <label>Offer Accepted</label>
+            </value>
+            <value>
+                <fullName>Candidate Hired!</fullName>
+                <default>false</default>
+                <label>Candidate Hired!</label>
+            </value>
+            <value>
+                <fullName>X - Not the Best Fit</fullName>
+                <default>false</default>
+                <label>X - Not the Best Fit</label>
+            </value>
+            <value>
+                <fullName>X - Offer Declined</fullName>
+                <default>false</default>
+                <label>X - Offer Declined</label>
+            </value>
+            <value>
+                <fullName>X - Candidate not interested</fullName>
+                <default>false</default>
+                <label>X - Candidate not interested</label>
+            </value>
+            <value>
+                <fullName>X - No Longer Pursuing</fullName>
+                <default>false</default>
+                <label>X - No Longer Pursuing</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

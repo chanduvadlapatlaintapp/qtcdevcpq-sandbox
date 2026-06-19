@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>SC-000006
+This field gives users access to the quota credit field on the opportunity.</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.Quota_Credit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Opportunity - Quota Credit field</label>
+</PermissionSet>

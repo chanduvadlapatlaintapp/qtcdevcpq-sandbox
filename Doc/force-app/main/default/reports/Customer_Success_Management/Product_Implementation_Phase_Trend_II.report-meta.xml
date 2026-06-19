@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>text</bucketType>
+        <developerName>BucketField_91225876</developerName>
+        <masterLabel>Product Implementation Phase</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>Subscription_Snapshot__c.Customer_Lifecycle_Stage__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>In Production</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>In Production - Deployed to End Users Firm Wide</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>In Production - Deployed to some End Users</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>In Production - Not Deployed to End Users</sourceValue>
+            </sourceValues>
+            <value>In Production</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Implementation</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Implementation - Standard</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Implementation - T&amp;M/Custom</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Price Commitment</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Upgrade</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Within 90 days of Production</sourceValue>
+            </sourceValues>
+            <value>Implementation</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Project not started yet</sourceValue>
+            </sourceValues>
+            <value>Not Started</value>
+        </values>
+    </buckets>
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <axisBinding>y</axisBinding>
+            <column>RowCount</column>
+        </chartSummaries>
+        <chartType>LineCumulativeGrouped</chartType>
+        <enableHoverLabels>false</enableHoverLabels>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>CUST_CREATED_DATE</groupingColumn>
+        <legendPosition>Right</legendPosition>
+        <location>CHART_TOP</location>
+        <secondaryGroupingColumn>BucketField_91225876</secondaryGroupingColumn>
+        <showAxisLabels>true</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>false</showValues>
+        <size>Medium</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>12</textSize>
+        <titleColor>#000000</titleColor>
+        <titleSize>18</titleSize>
+    </chart>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>BucketField_91225876</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Lapsed</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>CUST_CREATED_DATE</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_91225876</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Product Implementation Phase Trend II</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Subscription_Snapshot__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

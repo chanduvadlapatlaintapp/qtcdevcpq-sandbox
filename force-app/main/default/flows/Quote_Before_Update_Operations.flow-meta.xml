@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Check_Approval_Status</name>
+        <label>Check Approval Status</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Approved</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.ApprovalStatus__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ApprovalStatus__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Approved</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Approved_Quote_record_type</targetReference>
+            </connector>
+            <label>Is Approved</label>
+        </rules>
+    </decisions>
+    <description>BIZ-66415 - Added the Bypass Logic</description>
+    <environments>Default</environments>
+    <interviewLabel>Quote Before Update Operations {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Quote Before Update Operations</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Approved_Quote_record_type</name>
+        <label>Get Approved Quote record type</label>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_Quote_Record_Type</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Approved_Quote</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RecordType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Quote_Record_Type</name>
+        <label>Update Quote Record Type</label>
+        <locationX>50</locationX>
+        <locationY>503</locationY>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <elementReference>Get_Approved_Quote_record_type.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_Approval_Status</targetReference>
+        </connector>
+        <filterFormula>AND(
+    NOT(
+        {!$Setup.Automation_Controls__c.Active__c} &amp;&amp;
+        {!$Setup.Automation_Controls__c.Bypass_Flows__c} &amp;&amp;
+        {!$Setup.Automation_Controls__c.Quote_Bypass__c} &amp;&amp;
+        (
+            ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c}) || 
+            (
+                NOT(ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c})) &amp;&amp;
+                CONTAINS({!$Setup.Automation_Controls__c.Data_Id__c}, {!$Record.Id})
+            )
+        )
+    ),
+    ISCHANGED({!$Record.ApprovalStatus__c}),
+    ISPICKVAL({!$Record.ApprovalStatus__c}, &quot;Approved&quot;)
+)</filterFormula>
+        <object>SBQQ__Quote__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

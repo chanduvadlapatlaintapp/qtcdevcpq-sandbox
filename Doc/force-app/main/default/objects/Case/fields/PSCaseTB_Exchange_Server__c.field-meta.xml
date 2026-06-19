@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSCaseTB_Exchange_Server__c</fullName>
+    <inlineHelpText>Select the Exchange Server version used in your organization from the drop-down list.</inlineHelpText>
+    <label>Exchange Server</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Exchange Server 2010/2007</fullName>
+                <default>false</default>
+                <label>Exchange Server 2010/2007</label>
+            </value>
+            <value>
+                <fullName>Exchange Server  2003</fullName>
+                <default>false</default>
+                <label>Exchange Server  2003</label>
+            </value>
+            <value>
+                <fullName>Exchange Integration Not Required</fullName>
+                <default>true</default>
+                <label>Exchange Integration Not Required</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

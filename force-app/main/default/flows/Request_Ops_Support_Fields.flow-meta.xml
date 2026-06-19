@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>BIZ-49137 Fields required for Request Ops Support , edited as per BIZ-50639 ; to remove reference of SOW Document Attatched.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>BillingRestriction</name>
+        <dataType>Boolean</dataType>
+        <expression>NOT(ISBLANK({!Get_Require_Ops_Fields.Billing_Restriction__c}))</expression>
+    </formulas>
+    <formulas>
+        <name>Contract_Master_Terms</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+   ISPICKVAL({!Get_Require_Ops_Fields.Contract_Master_Terms__c}, &apos;New Intapp MSSA Attached&apos;),
+   ISPICKVAL({!Get_Require_Ops_Fields.Contract_Master_Terms__c}, &apos;Existing Intapp MSSA Plus Cloud&apos;),
+   ISPICKVAL({!Get_Require_Ops_Fields.Contract_Master_Terms__c}, &apos;Existing Intapp MSSA plus Annex&apos;),
+   ISPICKVAL({!Get_Require_Ops_Fields.Contract_Master_Terms__c}, &apos;Repstor Legacy&apos;),
+   ISPICKVAL({!Get_Require_Ops_Fields.Contract_Master_Terms__c}, &apos;OnePlace Legacy&apos;),
+   ISPICKVAL({!Get_Require_Ops_Fields.Contract_Master_Terms__c}, &apos;Existing Intapp MSSA signed by Customer Affiliate&apos;),
+   ISPICKVAL({!Get_Require_Ops_Fields.Contract_Master_Terms__c}, &apos;Trial&apos;),
+   ISPICKVAL({!Get_Require_Ops_Fields.Contract_Master_Terms__c}, &apos;New MSSA Signed Separate&apos;)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>ContractTerms_CloudAddendum</name>
+        <dataType>Boolean</dataType>
+        <expression>   AND(
+       OR(
+           ISPICKVAL({!Get_Require_Ops_Fields.SBQQ__Account__r.Contract_Term_Version__c}, &apos;10.6 excluding Cloud Terms&apos;),
+           ISPICKVAL({!Get_Require_Ops_Fields.SBQQ__Account__r.Contract_Term_Version__c}, &apos;10.7 excluding Cloud Terms&apos;),
+           ISPICKVAL({!Get_Require_Ops_Fields.SBQQ__Account__r.Contract_Term_Version__c}, &apos;10.8 Excluding Cloud Terms&apos;),
+           ISPICKVAL({!Get_Require_Ops_Fields.SBQQ__Account__r.Contract_Term_Version__c}, &apos;10.9 Excluding Cloud Terms&apos;),
+           ISPICKVAL({!Get_Require_Ops_Fields.SBQQ__Account__r.Contract_Term_Version__c}, &apos;11 Excluding Cloud Terms&apos;)
+       ),
+       ISBLANK({!Get_Require_Ops_Fields.SBQQ__Account__r.Cloud_Addendum__c})
+   )</expression>
+    </formulas>
+    <formulas>
+        <name>ContractTermsVersion_Values</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+ISPICKVAL({!Get_Require_Ops_Fields.SBQQ__Account__r.Contract_Term_Version__c}, &apos;10.1.1&apos;),
+ISPICKVAL({!Get_Require_Ops_Fields.SBQQ__Account__r.Contract_Term_Version__c}, &apos;10.2&apos;),
+ISPICKVAL({!Get_Require_Ops_Fields.SBQQ__Account__r.Contract_Term_Version__c}, &apos;10.2.1&apos;),
+ISPICKVAL({!Get_Require_Ops_Fields.SBQQ__Account__r.Contract_Term_Version__c}, &apos;10.2.2&apos;),
+ISPICKVAL({!Get_Require_Ops_Fields.SBQQ__Account__r.Contract_Term_Version__c}, &apos;8.5&apos;),
+ISPICKVAL({!Get_Require_Ops_Fields.SBQQ__Account__r.Contract_Term_Version__c}, &apos;8.8&apos;),
+ISPICKVAL({!Get_Require_Ops_Fields.SBQQ__Account__r.Contract_Term_Version__c}, &apos;8.9&apos;),
+ISPICKVAL({!Get_Require_Ops_Fields.SBQQ__Account__r.Contract_Term_Version__c}, &apos;9.0&apos;),
+ISPICKVAL({!Get_Require_Ops_Fields.SBQQ__Account__r.Contract_Term_Version__c}, &apos;9.1&apos;),
+ISPICKVAL({!Get_Require_Ops_Fields.SBQQ__Account__r.Contract_Term_Version__c}, &apos;9.2&apos;),
+ISPICKVAL({!Get_Require_Ops_Fields.SBQQ__Account__r.Contract_Term_Version__c}, &apos;9.3&apos;),
+ISPICKVAL({!Get_Require_Ops_Fields.SBQQ__Account__r.Contract_Term_Version__c}, &apos;9.4&apos;),
+ISPICKVAL({!Get_Require_Ops_Fields.SBQQ__Account__r.Contract_Term_Version__c}, &apos;9.4v3&apos;)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>DealCloud_ContractTerms</name>
+        <dataType>Boolean</dataType>
+        <expression> AND(
+       ISPICKVAL({!Get_Require_Ops_Fields.SBQQ__Account__r.Contract_Term_Version__c}, &apos;Legacy DealCloud MSA&apos;),
+       {!Get_Require_Ops_Fields.SBQQ__NetAmount__c} - {!Get_Require_Ops_Fields.DealCloud_Total_Year1__c}  &gt;= 0,
+       {!Get_Require_Ops_Fields.SBQQ__NetAmount__c} - {!Get_Require_Ops_Fields.DealCloud_Total_Year1__c}  &lt;&gt; {!Get_Require_Ops_Fields.Services_Net_Total__c}
+   )</expression>
+    </formulas>
+    <formulas>
+        <name>ShippingRestriction</name>
+        <dataType>Boolean</dataType>
+        <expression>NOT(ISBLANK({!Get_Require_Ops_Fields.Shipping_Restriction__c}))</expression>
+    </formulas>
+    <interviewLabel>Request Ops Support Fields {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Request Ops Support Fields</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>Get_Require_Ops_Fields</name>
+        <label>Get Require Ops Fields</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Ops_Support_Fields</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SBQQ__Quote__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <screens>
+        <name>Ops_Support_Fields</name>
+        <label>Ops Support Fields</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>false</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Fields</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;Software Payment Terms: {!Get_Require_Ops_Fields.Software_Payment_Terms__c}&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Require_Ops_Fields.Software_Payment_Terms__c</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue>Other</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Software_Billing_Frequency</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;Software Billing Frequency: {!Get_Require_Ops_Fields.SBQQ__BillingFrequency__c}&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>or</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Require_Ops_Fields.SBQQ__BillingFrequency__c</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue>Invoice Plan</stringValue>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>Get_Require_Ops_Fields.SBQQ__BillingFrequency__c</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue>XXXXX</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>MSSA_Attached</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;MSSA Documents Attached: {!Get_Require_Ops_Fields.MSSA_Document_Attached__c}&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Require_Ops_Fields.MSSA_Document_Attached__c</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Cloud_Addendum_Attached</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;Cloud Addendum Documents Attached: {!Get_Require_Ops_Fields.Cloud_Addendum_Document_Attached__c}&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Require_Ops_Fields.Cloud_Addendum_Document_Attached__c</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Liability_Annex_Attached</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;Liability Annex Documents Attached: {!Get_Require_Ops_Fields.Liability_Annex_Document_Attached__c}&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Require_Ops_Fields.Liability_Annex_Document_Attached__c</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Account_Contract_Terms</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;Account -&amp;gt; Master Terms: Term Version: {!Get_Require_Ops_Fields.SBQQ__Account__r.Contract_Term_Version__c}&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>ContractTermsVersion_Values</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Pre941Liability</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;Account -&amp;gt; Pre 9.4.1 Liability Annex Executed: {!Get_Require_Ops_Fields.SBQQ__Account__r.Pre_9_4_1_Liability_Annex_Executed__c}&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Require_Ops_Fields.SBQQ__Account__r.Pre_9_4_1_Liability_Annex_Executed__c</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Account_Contract_Terms_CloudAddendum</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Account -&amp;gt; Master Terms: Term Version: {!Get_Require_Ops_Fields.SBQQ__Account__r.Contract_Term_Version__c}&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Account -&amp;gt; Cloud Addendum [Missing]&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>ContractTerms_CloudAddendum</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>ContractMasterTerms</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;Contract Master Terms: {!Get_Require_Ops_Fields.Contract_Master_Terms__c}&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Contract_Master_Terms</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Account_Status</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;Sold-to-Account Status: {!Get_Require_Ops_Fields.SBQQ__Account__r.Status__c}&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Require_Ops_Fields.SBQQ__Account__r.Status__c</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <stringValue>Verification Approved</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>ShipTo_Account</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;Ship-to-Account Status: {!Get_Require_Ops_Fields.Ship_To_Account__r.Status__c}&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Require_Ops_Fields.Ship_To_Account__r.Status__c</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <stringValue>Verification Approved</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>ShipTo_Address</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;Ship-to-Address Status: {!Get_Require_Ops_Fields.Ship_To_Address__r.Status__c}&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Require_Ops_Fields.Ship_To_Address__r.Status__c</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <stringValue>Verification Approved</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>BillTo_Account</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;Bill-to-Account Status: {!Get_Require_Ops_Fields.Bill_To_Account__r.Status__c}&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Require_Ops_Fields.Bill_To_Account__r.Status__c</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <stringValue>Verification Approved</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>BillTo_Address</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;Bill-to-Address Status: {!Get_Require_Ops_Fields.Bill_To_Address__r.Status__c}&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Require_Ops_Fields.Bill_To_Address__r.Status__c</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <stringValue>Verification Approved</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>ContractTermVersion_DealCloud</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;Account -&amp;gt; Master Terms: Term Version: {!Get_Require_Ops_Fields.SBQQ__Account__r.Contract_Term_Version__c}&lt;/li&gt;&lt;li&gt;This quote includes products outside of Dealcloud product family&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>DealCloud_ContractTerms</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Custom_ContractMasterTerms</name>
+            <fieldText>&lt;ul&gt;&lt;li&gt;Contract Master Terms: {!Get_Require_Ops_Fields.Contract_Master_Terms__c}&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Require_Ops_Fields.Contract_Master_Terms__c</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue>Custom Master Term from Account</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Require_Ops_Fields</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

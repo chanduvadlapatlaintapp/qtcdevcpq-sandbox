@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Used in Closed Won Consulting Opportunity</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>SO_Letterhead</letterhead>
+    <name>Consulting Opportunity Closed Won</name>
+    <style>formalLetter</style>
+    <subject>Consulting Opportunity Closed / Won for {!Opportunity.Account}</subject>
+    <textOnly>A consulting opportunity for {!Opportunity.Account} has been closed-won and all documents have been received:
+{!Opportunity.Name}
+
+Stage: {!Opportunity.StageName}
+
+Account:  {!Opportunity.Account}
+Account Type: {!Account.Type}
+Owner: {!Opportunity.OwnerFullName}
+Total Amount: {!Opportunity.Amount}
+
+Recurring: {!Opportunity.Maintenance_Amount__c}
+Recurring/Lawyer:  {!Opportunity.Recurring_per_Lawyer__c}
+
+Product Line: {!Opportunity.Product_Line__c}
+Package:  {!Opportunity.Package__c}
+
+Type:  {!Opportunity.Type}
+Simple Type:  {!Opportunity.Simple_Type__c}
+Primary Competitor: {!Opportunity.Primary_Competitor__c}
+
+*Please note that competitive information is only required for &quot;New Sale&quot; Opportunities
+
+Primary Campaign Source: {!Opportunity.Campaign}
+
+OSA Number: {!Opportunity.Associated_Contract_OSA__c}
+For more information, please click here:
+{!Opportunity.Link}
+
+
+
+
+
+
+
+Process Builder: OPP-001Exxx Node: Consulting Opportunity Closed Won</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account$Type</field>
+    </columns>
+    <columns>
+        <field>Account$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Opportunities.SBQQ__Quotes2__r$SBQQ__MasterContract__c.OSA_Type__c</field>
+    </columns>
+    <columns>
+        <field>Account.Opportunities$Associated_Contract_OSA__c</field>
+    </columns>
+    <columns>
+        <field>Account.Opportunities$Type</field>
+    </columns>
+    <columns>
+        <field>Account$Liability_Annex_Contract_Number__c</field>
+    </columns>
+    <columns>
+        <field>Account$Contract_Term_Version__c</field>
+    </columns>
+    <columns>
+        <field>Account$Cloud_Addendum__c</field>
+    </columns>
+    <columns>
+        <field>Account.Opportunities.SBQQ__Quotes2__r$SBQQ__MasterContract__c.Status</field>
+    </columns>
+    <currency>USD</currency>
+    <description>•	Quote
+o	Line of business (this is different that the LOB on the account)
+o	Owner
+•	Account
+o	Type
+o	Notes
+o	Master Terms: Contract Number
+o	Master Terms: Contract Number URL
+o	Master Terms: Negotiation Status
+•	Opportunity
+o	Status</description>
+    <filter>
+        <criteriaItems>
+            <column>Account.Opportunities.SBQQ__Quotes2__r$SBQQ__MasterContract__c.Status</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>In Force</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Opportunities.SBQQ__Quotes2__r$SBQQ__MasterContract__c.Applicable_Subsidiary__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Opportunities.SBQQ__Quotes2__r$Master_Contract_Number__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <field>Account.Opportunities$CloseDate</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Audit: Draft Closed Won_MasterTermVblank</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_with_Opportunity_Quote_Contract__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Account.Opportunities$CloseDate</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NetSuite_Tax_Schedule__c</fullName>
+    <description>Created as a part of BIZ-60799</description>
+    <label>NetSuite Tax Schedule</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Non-taxable</fullName>
+                <default>false</default>
+                <label>Non-taxable</label>
+            </value>
+            <value>
+                <fullName>Taxable</fullName>
+                <default>true</default>
+                <label>Taxable</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

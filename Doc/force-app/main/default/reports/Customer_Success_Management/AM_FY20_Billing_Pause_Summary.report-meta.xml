@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_70201958</developerName>
+        <masterLabel>Billing Pause Status</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>STAGE_NAME</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Closed Won</sourceValue>
+            </sourceValues>
+            <value>Closed / Signed</value>
+        </values>
+        <values>
+            <value>Out for Signature</value>
+        </values>
+    </buckets>
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_82702306</developerName>
+        <masterLabel>Simple Product Line</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>Opportunity.Product_Line__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Conflicts - On Prem</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Conflicts - Cloud</sourceValue>
+            </sourceValues>
+            <value>Conflicts</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Intake - On Prem</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Intake - Cloud</sourceValue>
+            </sourceValues>
+            <value>Intake</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Terms - On Prem</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Terms - Cloud</sourceValue>
+            </sourceValues>
+            <value>Terms</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Experience - On Prem</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Experience - Cloud</sourceValue>
+            </sourceValues>
+            <value>Experience</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Integrate - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Flow - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Flow - On Prem</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Integrate - On Prem</sourceValue>
+            </sourceValues>
+            <value>Integrate</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Walls - On Prem</sourceValue>
+            </sourceValues>
+            <value>Walls</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Time - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Time - On Prem</sourceValue>
+            </sourceValues>
+            <value>Time</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>CRM - Cloud</sourceValue>
+            </sourceValues>
+            <value>CRM</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Relationships - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Relationships - On Prem</sourceValue>
+            </sourceValues>
+            <value>Relationships</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Pricing - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Pricing - On Prem</sourceValue>
+            </sourceValues>
+            <value>Pricing</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Records Management</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>TFG - Legacy</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>LegalKey - Legacy</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Multiple Products - On Prem</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Multiple Products - Cloud</sourceValue>
+            </sourceValues>
+            <value>Legacy</value>
+        </values>
+        <values>
+            <value>Third Party</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>L&amp;P - Cloud</sourceValue>
+            </sourceValues>
+            <value>L&amp;P</value>
+        </values>
+    </buckets>
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <aggregate>Sum</aggregate>
+            <axisBinding>y</axisBinding>
+            <column>Opportunity.Total_Cash_Forgone__c.CONVERT</column>
+        </chartSummaries>
+        <chartType>VerticalColumnStacked</chartType>
+        <enableHoverLabels>true</enableHoverLabels>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>CLOSE_DATE2</groupingColumn>
+        <legendPosition>Bottom</legendPosition>
+        <location>CHART_TOP</location>
+        <secondaryGroupingColumn>Opportunity.Product_Line__c</secondaryGroupingColumn>
+        <showAxisLabels>true</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>false</showValues>
+        <size>Large</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>12</textSize>
+        <titleColor>#000000</titleColor>
+        <titleSize>18</titleSize>
+    </chart>
+    <columns>
+        <field>OPPORTUNITY_NAME</field>
+    </columns>
+    <columns>
+        <field>FULL_NAME</field>
+    </columns>
+    <columns>
+        <field>TYPE</field>
+    </columns>
+    <columns>
+        <field>Opportunity.Reason_for_Billing_Pause__c</field>
+    </columns>
+    <columns>
+        <field>Opportunity.Opportunity_Comments__c</field>
+    </columns>
+    <columns>
+        <field>STAGE_NAME</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Opportunity.Total_Cash_Forgone__c.CONVERT</field>
+    </columns>
+    <columns>
+        <field>CREATED_DATE</field>
+    </columns>
+    <columns>
+        <field>CLOSE_DATE</field>
+    </columns>
+    <columns>
+        <field>Opportunity.Start_Date__c</field>
+    </columns>
+    <columns>
+        <field>Opportunity.End_Date__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>RECORDTYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Opportunity.Legal_Billing_Pause_Restart</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_82702306</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Opportunity.Product_Line__c</field>
+        <sortOrder>Desc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>FiscalQuarter</dateGranularity>
+        <field>CLOSE_DATE2</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>AM: FY20 Billing Pause Summary</name>
+    <params>
+        <name>open</name>
+        <value>closedwon</value>
+    </params>
+    <params>
+        <name>probability</name>
+        <value>&gt;0</value>
+    </params>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Opportunity</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Opportunity.Total_Cash_Forgone__c.CONVERT</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>CLOSE_DATE</dateColumn>
+        <interval>INTERVAL_PREVFY</interval>
+    </timeFrameFilter>
+</Report>

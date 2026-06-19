@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Discount_Type__c</fullName>
+    <description>Is this discount applied in the first year of the contract, or every year?</description>
+    <inlineHelpText>Is this discount applied in the first year of the contract, or every year?</inlineHelpText>
+    <label>Discount Term</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Product_Type__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>One-time</fullName>
+                <default>false</default>
+                <label>One-time</label>
+            </value>
+            <value>
+                <fullName>Recurring</fullName>
+                <default>false</default>
+                <label>Recurring</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Discount</controllingFieldValue>
+            <valueName>One-time</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Discount</controllingFieldValue>
+            <valueName>Recurring</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

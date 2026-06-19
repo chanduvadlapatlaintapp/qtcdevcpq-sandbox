@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Daylight Savings Time Patch Information</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Daylight Patch Email</name>
+    <style>none</style>
+    <subject>Daylight Savings Time Patch for IntApp Released!</subject>
+    <textOnly>Daylight Savings Time in 
+2007                                                             
+
+ 
+Introduction
+ 
+In 2005 the United States Congress passed the Energy Policy Act, which changes the start and end dates of daylight saving time (DST). This law goes into effect in 2007. As a result, DST will start three weeks earlier (2:00 A.M. on the second Sunday in March) and will end one week later (2:00 A.M. on the first Sunday in November) from 2007 onwards.  IntApp is committed to working with customers to ease 
+the transition for organizations affected by the new time 
+standard.
+ 
+ 
+Update Actions 
+ 
+IntApp has released an update for the change in daylight 
+savings time. An appliance must be able to access the internet and be configured to check in to IntApp’s servers in order to receive updates. Once the update is received by an appliance, users will need to install it from Relationship Builder in the same manner as previous patches. The update should be installed before Sunday March 11, 2007 in order to properly account for the change in time. The daylight savings update is distributed as a patch which can be installed separately from other patches thus allowing users to stay on their current version of Relationship Builder. After the update has been applied the appliance 
+will adjust its system time in accordance with the new daylight savings time standards. 
+
+Special Considerations
+ 
+Mexico and certain parts of the 
+US (Arizona, Hawaii, Puerto 
+Rico, the U.S. Virgin Islands, and American Samoa) will not be following the new DST 2007 rules. In addition, some other countries are still evaluating whether they will adopt the new time standard. Companies or organizations with operations, customers, or vendors in these geographic areas will need to further evaluate the effects of the new time standard on their systems.
+ 
+Further Information:
+ 
+[1] Microsoft Announcement about DST:  http://www.microsoft.com/windows/timezone/dst2007.mspx
+ 
+[2] Sun Announcement about DST:  http://java.sun.com/developer/technicalArticles/Intl/USDST/index.html</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

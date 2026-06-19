@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Intapp_Master_Ranking_Status__c</fullName>
+    <description>Is this Account ranked in the IntApp Legal 680 or the Intapp Accounting 150? If so, the status is &quot;In Target Market.&quot; If not, the status  is &quot;Outside Target Market.&quot;</description>
+    <externalId>false</externalId>
+    <formula>IF( 
+AND( 
+OR( 
+Intapp_Master_Ranking__c &gt;0, 
+Intapp_Accounting_150__c &gt;0, 
+Intapp_Investment_Banking_200__c&gt;0, 
+Intapp_Hedge_Funds_200__c&gt;0, 
+Intapp_Litigation_Consulting_36__c&gt;0 
+), 
+OR 
+( NOT(ISPICKVAL(Type, &apos;Dissolved&apos;)), 
+NOT(ISPICKVAL(Type, &apos;Dissolved - Prospect&apos;)), 
+NOT(ISPICKVAL(Type, &apos;Dissolved - Suspect&apos;)) 
+) 
+), 
+&quot;In Target Market&quot;, 
+&quot;Outside Target Market&quot;)</formula>
+    <inlineHelpText>Are we actively targeting this firm for sales?</inlineHelpText>
+    <label>Intapp Market Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

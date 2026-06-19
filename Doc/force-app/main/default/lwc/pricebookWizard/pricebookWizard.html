@@ -1,0 +1,524 @@
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+    </template>
+
+    <div class="slds-p-around_medium">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="header-icon">
+                <lightning-icon icon-name="utility:knowledge_base" size="x-small"></lightning-icon>
+            </div>
+            <div>
+                <h2 class="header-title">Pricebook Launch Wizard</h2>
+                <p class="header-subtitle">Launch new pricebooks or create pricing records for existing pricebooks</p>
+            </div>
+        </div>
+
+        <!-- Progress Indicator -->
+        <div class="slds-m-bottom_medium">
+            <lightning-progress-indicator current-step={currentStep} type="path" variant="base">
+                <template for:each={steps} for:item="step">
+                    <lightning-progress-step key={step.value} label={step.label}
+                        value={step.value}></lightning-progress-step>
+                </template>
+            </lightning-progress-indicator>
+        </div>
+
+        <!-- ======================= PHASE 1: Pricebook Selection ======================= -->
+        <template if:true={isStep1}>
+            <div class="mode-card">
+                <lightning-radio-group name="pricebookChoice" label="Choose an option"
+                    value={pricebookChoice} options={pricebookChoiceOptions}
+                    onchange={handleChoiceChange} type="button">
+                </lightning-radio-group>
+                <lightning-button label={nextButtonLabel} variant="brand"
+                    icon-name="utility:forward" icon-position="right"
+                    onclick={handleNext} disabled={isNextDisabled}
+                    class="mode-card-action"></lightning-button>
+            </div>
+
+            <!-- Existing Pricebook Selection -->
+            <template if:true={isExistingChoice}>
+                <template if:true={hasPricebooks}>
+                    <div style="max-height:450px; overflow-y:auto;">
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped slds-table_fixed-layout branded-table">
+                            <thead>
+                                <tr>
+                                    <th style="width:50px;"></th>
+                                    <th>Pricebook Name</th>
+                                    <th style="width:120px;">Entries</th>
+                                    <th style="width:80px;">Active</th>
+                                    <th style="width:110px;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={pricebookRows} for:item="pb">
+                                    <tr key={pb.id} class={pb.rowClass}
+                                        data-id={pb.id} onclick={handlePricebookSelect}>
+                                        <td>
+                                            <lightning-input type="radio" name="pbSelect"
+                                                checked={pb.isSelected}
+                                                variant="label-hidden" label="Select">
+                                            </lightning-input>
+                                        </td>
+                                        <td><span class="slds-truncate">{pb.name}</span></td>
+                                        <td>{pb.entryCount}</td>
+                                        <td>
+                                            <lightning-icon if:true={pb.isActive}
+                                                icon-name="utility:check" size="x-small"
+                                                alternative-text="Active">
+                                            </lightning-icon>
+                                        </td>
+                                        <td>
+                                            <lightning-button label="Deactivate" variant="destructive-text"
+                                                data-id={pb.id} onclick={handleDeactivatePricebook}
+                                                class="slds-text-body_small">
+                                            </lightning-button>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </template>
+                <template if:false={hasPricebooks}>
+                    <div class="empty-state">
+                        <p class="empty-state-text">No active pricebooks found.</p>
+                    </div>
+                </template>
+            </template>
+
+            <!-- New Pricebook Name -->
+            <template if:true={isNewChoice}>
+                <div class="filter-card">
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-input label="New Pricebook Name" value={newPricebookName}
+                                onchange={handleNewNameChange} placeholder="e.g. FY27_All_Products"
+                                required></lightning-input>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </template>
+
+        <!-- ======================= PHASE 2: One-Time Setup ======================= -->
+        <template if:true={isStep2}>
+            <div class="setup-card">
+                <div class="setup-card-header">
+                    <lightning-icon icon-name="utility:setup" size="x-small"
+                        class="slds-m-right_small"></lightning-icon>
+                    <span>Pricebook One-Time Setup</span>
+                </div>
+                <div class="setup-card-body">
+                    <p class="slds-m-bottom_small">Creating PricebookEntry and Price Dimension records for all active products across 4 currencies (USD, GBP, EUR, AUD).</p>
+
+                    <!-- Status -->
+                    <div class="status-badge-container slds-m-bottom_medium">
+                        <span class={setupBadgeClass}>{setupStatus}</span>
+                        <span class="slds-m-left_small setup-message">{setupMessage}</span>
+                    </div>
+
+                    <!-- Progress animation -->
+                    <template if:true={isSetupRunning}>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill progress-bar-animated"></div>
+                        </div>
+                        <p class="slds-text-body_small slds-text-color_weak slds-m-top_x-small">
+                            This may take a few minutes for large product catalogs...
+                        </p>
+                    </template>
+
+                    <template if:true={isSetupComplete}>
+                        <div class="success-banner">
+                            <lightning-icon icon-name="utility:success" size="x-small"
+                                variant="success" class="slds-m-right_small"></lightning-icon>
+                            Setup complete! Proceeding to Excel upload...
+                        </div>
+                    </template>
+
+                    <template if:true={isSetupFailed}>
+                        <div class="error-banner">
+                            <lightning-icon icon-name="utility:error" size="x-small"
+                                variant="error" class="slds-m-right_small"></lightning-icon>
+                            {setupMessage}
+                        </div>
+                        <div class="slds-m-top_medium slds-text-align_center">
+                            <lightning-button label="Skip to Upload" variant="neutral"
+                                onclick={handleSkipSetup}></lightning-button>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </template>
+
+        <!-- ======================= PHASE 3: Excel Upload ======================= -->
+        <template if:true={isStep3}>
+            <!-- Upload Type Toggle -->
+            <div class="slds-m-bottom_medium">
+                <lightning-radio-group
+                    name="uploadType"
+                    label="Upload Type"
+                    options={uploadTypeOptions}
+                    value={uploadType}
+                    onchange={handleUploadTypeChange}
+                    type="button">
+                </lightning-radio-group>
+            </div>
+
+            <div class="filter-card">
+                <h3 class="section-heading slds-m-bottom_small">Upload Pricing Excel</h3>
+                <p class="slds-text-body_small slds-text-color_weak slds-m-bottom_medium">
+                    {phase3Description}
+                </p>
+
+                <template if:false={hasExcelFile}>
+                    <div class="upload-zone">
+                        <lightning-input type="file" label="" accept=".xlsx,.xls"
+                            onchange={handleExcelUpload}></lightning-input>
+                    </div>
+                </template>
+
+                <template if:true={hasExcelFile}>
+                    <div class="file-info">
+                        <lightning-icon icon-name="doctype:excel" size="small"
+                            class="slds-m-right_small"></lightning-icon>
+                        <span class="file-name">{excelFileName}</span>
+                        <lightning-button-icon icon-name="utility:close" variant="bare"
+                            alternative-text="Remove file" onclick={handleClearExcelFile}
+                            class="slds-m-left_small"></lightning-button-icon>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Excel Validation Results -->
+            <template if:true={hasExcelValidation}>
+                <!-- Row + price entry count -->
+                <div class="validation-summary">
+                    <span class="validation-count">
+                        {activeValidationResult.rowCount} product rows &bull; {activeValidationResult.priceEntryCount} price entries
+                    </span>
+                </div>
+
+                <!-- Errors -->
+                <template if:true={hasExcelValidationErrors}>
+                    <div class="error-list">
+                        <strong>Validation Errors:</strong>
+                        <ul class="slds-list_dotted slds-m-top_xx-small">
+                            <template for:each={excelValidationErrors} for:item="err">
+                                <li key={err.key}>{err.message}</li>
+                            </template>
+                        </ul>
+                    </div>
+                </template>
+
+                <!-- Warnings -->
+                <template if:true={hasExcelValidationWarnings}>
+                    <div class="warning-list">
+                        <strong>Warnings:</strong>
+                        <ul class="slds-list_dotted slds-m-top_xx-small">
+                            <template for:each={excelValidationWarnings} for:item="warn">
+                                <li key={warn.key}>{warn.message}</li>
+                            </template>
+                        </ul>
+                    </div>
+                </template>
+
+                <!-- Excel Preview Table -->
+                <template if:true={hasExcelPreviewRows}>
+                    <h3 class="section-heading slds-m-top_medium slds-m-bottom_small">Preview (first 10 rows)</h3>
+                    <div class="slds-scrollable_x">
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped branded-table">
+                            <thead>
+                                <tr>
+                                    <th>Product Code</th>
+                                    <th>SFDC ID</th>
+                                    <th>{previewCol4Label}</th>
+                                    <th>Meter Type</th>
+                                    <th style="width:100px;">Price Cells</th>
+                                    <th style="width:120px;">{previewCol6Label}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={excelPreviewRows} for:item="row">
+                                    <tr key={row.key}>
+                                        <td>{row.productCode}</td>
+                                        <td><span class="slds-truncate" style="max-width:180px;">{row.productId}</span></td>
+                                        <td>{row.salesChannel}</td>
+                                        <td>{row.meterType}</td>
+                                        <td>{row.priceCount}</td>
+                                        <td>{row.samplePrice}</td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </template>
+            </template>
+
+            <!-- Process Button -->
+            <template if:true={isExcelValidationPassed}>
+                <div class="toolbar slds-m-top_medium">
+                    <lightning-button label="Process Upload" variant="brand"
+                        icon-name="utility:upload" onclick={handleExcelProcess}
+                        disabled={isExcelProcessDisabled}></lightning-button>
+                </div>
+            </template>
+        </template>
+
+        <!-- ======================= PHASE 4: Processing Results ======================= -->
+        <template if:true={isStep4}>
+            <template if:true={hasProcessingResult}>
+                <!-- Intapp Pricing Results (Tier uploads only) -->
+                <template if:true={isTierUpload}>
+                    <div class="result-card">
+                        <div class="result-card-header">Intapp Pricing Results</div>
+                        <div class="result-card-body">
+                            <div class="slds-grid slds-gutters slds-m-bottom_small">
+                                <div class="slds-col result-stat stat-total">
+                                    <div class="result-stat-value">{intappResult.totalCount}</div>
+                                    <div class="result-stat-label">Total</div>
+                                </div>
+                                <div class="slds-col result-stat stat-success">
+                                    <div class="result-stat-value">{intappResult.successCount}</div>
+                                    <div class="result-stat-label">Succeeded</div>
+                                </div>
+                                <div class="slds-col result-stat stat-error">
+                                    <div class="result-stat-value">{intappResult.errorCount}</div>
+                                    <div class="result-stat-label">Failed</div>
+                                </div>
+                            </div>
+                            <template if:true={hasIntappErrors}>
+                                <div class="error-list">
+                                    <strong>Errors:</strong>
+                                    <ul class="slds-list_dotted slds-m-top_xx-small">
+                                        <template for:each={intappErrors} for:item="err">
+                                            <li key={err.key}>{err.message}</li>
+                                        </template>
+                                    </ul>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Block Pricing Results -->
+                <div class="result-card">
+                    <template if:true={isQuantityUpload}>
+                        <div class="result-card-header">Block Pricing Results (Employee Compliance)</div>
+                    </template>
+                    <template if:true={isTierUpload}>
+                        <div class="result-card-header">Block Pricing Results</div>
+                    </template>
+                    <div class="result-card-body">
+                        <div class="slds-grid slds-gutters slds-m-bottom_small">
+                            <div class="slds-col result-stat stat-total">
+                                <div class="result-stat-value">{blockResult.totalCount}</div>
+                                <div class="result-stat-label">Total</div>
+                            </div>
+                            <div class="slds-col result-stat stat-success">
+                                <div class="result-stat-value">{blockResult.successCount}</div>
+                                <div class="result-stat-label">Succeeded</div>
+                            </div>
+                            <div class="slds-col result-stat stat-error">
+                                <div class="result-stat-value">{blockResult.errorCount}</div>
+                                <div class="result-stat-label">Failed</div>
+                            </div>
+                            <div class="slds-col result-stat stat-skipped">
+                                <div class="result-stat-value">{blockSkippedCount}</div>
+                                <div class="result-stat-label">Skipped</div>
+                            </div>
+                        </div>
+                        <template if:true={hasBlockErrors}>
+                            <div class="error-list">
+                                <strong>Errors:</strong>
+                                <ul class="slds-list_dotted slds-m-top_xx-small">
+                                    <template for:each={blockErrors} for:item="err">
+                                        <li key={err.key}>{err.message}</li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </template>
+                        <template if:true={blockSkippedCount}>
+                            <div class="info-banner slds-m-top_small">
+                                <lightning-icon icon-name="utility:info" size="x-small"
+                                    class="slds-m-right_small"></lightning-icon>
+                                <template if:true={isQuantityUpload}>
+                                    {blockSkippedCount} rows skipped (product Pricing Basis is not Quantity based)
+                                </template>
+                                <template if:true={isTierUpload}>
+                                    {blockSkippedCount} rows skipped (product Pricing Basis is not Tier Based)
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Start Over + View Results -->
+                <div class="toolbar">
+                    <lightning-button label="Start Over" variant="neutral"
+                        icon-name="utility:refresh" onclick={handleStartOver}></lightning-button>
+                    <lightning-button label="View Results" variant="brand"
+                        icon-name="utility:preview" icon-position="right"
+                        onclick={handleViewResults}
+                        class="slds-m-left_small"></lightning-button>
+                </div>
+            </template>
+
+            <template if:false={hasProcessingResult}>
+                <template if:true={isLoading}>
+                    <div class="setup-card">
+                        <div class="setup-card-body slds-text-align_center">
+                            <p class="slds-m-bottom_small">Processing pricing data...</p>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-fill progress-bar-animated"></div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </template>
+        </template>
+
+        <!-- ======================= PHASE 5: View Results ======================= -->
+        <template if:true={isStep5}>
+            <!-- Loading spinner -->
+            <template if:true={isLoading}>
+                <div class="setup-card">
+                    <div class="setup-card-body slds-text-align_center">
+                        <p class="slds-m-bottom_small">Loading uploaded pricing data...</p>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill progress-bar-animated"></div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Error -->
+            <template if:true={resultViewError}>
+                <div class="error-banner">
+                    <lightning-icon icon-name="utility:error" size="x-small"
+                        variant="error" class="slds-m-right_small"></lightning-icon>
+                    {resultViewError}
+                </div>
+            </template>
+
+            <!-- View Results Data -->
+            <template if:true={hasResultViewData}>
+                <!-- Row count summary -->
+                <div class="validation-summary slds-m-bottom_small">
+                    <span>{resultViewTotalRows} pricing rows uploaded</span>
+                </div>
+
+                <!-- ===== TIER TABLE ===== -->
+                <template if:true={isTierUpload}>
+                    <div class="result-card">
+                        <div class="result-card-header">Uploaded Tier Pricing</div>
+                        <div class="view-results-table-wrapper">
+                            <table class="view-results-table">
+                                <thead>
+                                    <!-- Row 1: Fixed columns + Currency group headers -->
+                                    <tr>
+                                        <th rowspan="2" class="th-sticky th-sticky--first">Product Code</th>
+                                        <th rowspan="2" class="th-sticky th-sticky--second">Product Name</th>
+                                        <th rowspan="2">Product Line</th>
+                                        <th rowspan="2">Product Type</th>
+                                        <th rowspan="2">Pricing Basis</th>
+                                        <th rowspan="2">Meter Type</th>
+                                        <th colspan="6" class="currency-hdr currency-hdr--usd">USD</th>
+                                        <th colspan="6" class="currency-hdr currency-hdr--gbp">GBP</th>
+                                        <th colspan="6" class="currency-hdr currency-hdr--eur">EUR</th>
+                                        <th colspan="6" class="currency-hdr currency-hdr--aud">AUD</th>
+                                    </tr>
+                                    <!-- Row 2: Tier headers (24 total) -->
+                                    <tr>
+                                        <template for:each={tierHeaders} for:item="th">
+                                            <th key={th.key} class="tier-hdr">{th.label}</th>
+                                        </template>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={resultViewTierRows} for:item="row">
+                                        <tr key={row.rowKey} class={row.rowClass}>
+                                            <td class="td-sticky td-sticky--first product-code">
+                                                <template if:true={row.isNew}>
+                                                    <span class="new-badge">NEW</span>
+                                                </template>
+                                                {row.productCode}
+                                            </td>
+                                            <td class="td-sticky td-sticky--second product-name">{row.productName}</td>
+                                            <td>{row.productLine}</td>
+                                            <td>{row.productType}</td>
+                                            <td>{row.pricingBasis}</td>
+                                            <td>{row.meterType}</td>
+                                            <template for:each={row.formattedPrices} for:item="cell">
+                                                <td key={cell.key} class={cell.cellClass}>{cell.formatted}</td>
+                                            </template>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- ===== QUANTITY TABLE ===== -->
+                <template if:true={isQuantityUpload}>
+                    <div class="result-card">
+                        <div class="result-card-header">Uploaded Quantity Pricing (Employee Compliance)</div>
+                        <div class="view-results-table-wrapper">
+                            <table class="view-results-table">
+                                <thead>
+                                    <tr>
+                                        <th>Product Code</th>
+                                        <th>Product Name</th>
+                                        <th>Meter Type</th>
+                                        <th>Band</th>
+                                        <th class="currency-hdr currency-hdr--usd">USD</th>
+                                        <th class="currency-hdr currency-hdr--gbp">GBP</th>
+                                        <th class="currency-hdr currency-hdr--eur">EUR</th>
+                                        <th class="currency-hdr currency-hdr--aud">AUD</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={resultViewQuantityRows} for:item="row">
+                                        <tr key={row.rowKey} class={row.rowClass}>
+                                            <td class="product-code">
+                                                <template if:true={row.isNew}>
+                                                    <span class="new-badge">NEW</span>
+                                                </template>
+                                                {row.productCode}
+                                            </td>
+                                            <td class="product-name">{row.productName}</td>
+                                            <td>{row.meterType}</td>
+                                            <td>{row.band}</td>
+                                            <td class={row.usdCellClass}>{row.formattedUsd}</td>
+                                            <td class={row.gbpCellClass}>{row.formattedGbp}</td>
+                                            <td class={row.eurCellClass}>{row.formattedEur}</td>
+                                            <td class={row.audCellClass}>{row.formattedAud}</td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Start Over button -->
+                <div class="toolbar slds-m-top_medium">
+                    <lightning-button label="Start Over" variant="neutral"
+                        icon-name="utility:refresh" onclick={handleStartOver}></lightning-button>
+                </div>
+            </template>
+        </template>
+
+        <!-- ======================= Navigation Footer ======================= -->
+        <template if:true={showBackButton}>
+            <div class="nav-footer slds-m-top_medium">
+                <lightning-button label="Back" variant="neutral"
+                    icon-name="utility:back" onclick={handleBack}></lightning-button>
+            </div>
+        </template>
+
+    </div>
+</template>

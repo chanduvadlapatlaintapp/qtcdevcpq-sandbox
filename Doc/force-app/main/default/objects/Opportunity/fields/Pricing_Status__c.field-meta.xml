@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pricing_Status__c</fullName>
+    <description>How far have we progressed on the Pricing negotiation?</description>
+    <inlineHelpText>How far have we progressed on the Pricing negotiation?</inlineHelpText>
+    <label>Pricing Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+                <label>Unknown</label>
+            </value>
+            <value>
+                <fullName>Not yet presented</fullName>
+                <default>false</default>
+                <label>Not yet presented</label>
+            </value>
+            <value>
+                <fullName>Budget ranges delivered</fullName>
+                <default>false</default>
+                <label>Budget ranges delivered</label>
+            </value>
+            <value>
+                <fullName>Formal pricing delivered</fullName>
+                <default>false</default>
+                <label>Formal pricing delivered</label>
+            </value>
+            <value>
+                <fullName>Negotiating with budget owner</fullName>
+                <default>false</default>
+                <label>Negotiating with budget owner</label>
+            </value>
+            <value>
+                <fullName>Negotiating with procurement</fullName>
+                <default>false</default>
+                <label>Negotiating with procurement</label>
+            </value>
+            <value>
+                <fullName>Agreement reached</fullName>
+                <default>false</default>
+                <label>Agreement reached</label>
+            </value>
+            <value>
+                <fullName>Not needed</fullName>
+                <default>false</default>
+                <label>Not needed</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

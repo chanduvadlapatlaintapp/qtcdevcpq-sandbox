@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_NYMY__c</fullName>
+    <description>BIZ-54019: NYMY or Renewal Opportunity</description>
+    <formula>OR(CONTAINS( Name , &apos;Renewal&apos;),CONTAINS( Name , &apos;NYMY&apos;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Renewal/NYMY</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

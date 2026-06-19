@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This permission set is created to bring quip installed package visual force pages to the account tab in the account management section</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Quip Visual Force Page - Account Management</label>
+    <license>Salesforce</license>
+    <pageAccesses>
+        <apexPage>Quip__OpenReportInQuip</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Quip__PackageSetup</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Quip__Quip_Comp_Accounts</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Quip__Quip_Comp_Campaigns</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Quip__Quip_Comp_Cases</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Quip__Quip_Comp_Contacts</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Quip__Quip_Comp_Contracts</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Quip__Quip_Comp_Leads</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Quip__Quip_Comp_Opportunities</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Quip__Quip_Comp_Solutions</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+</PermissionSet>

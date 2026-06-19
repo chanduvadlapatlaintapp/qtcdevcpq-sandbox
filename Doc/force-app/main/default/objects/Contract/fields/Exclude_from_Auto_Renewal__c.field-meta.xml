@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Exclude_from_Auto_Renewal__c</fullName>
+    <description>Flag to indicate the contract should auto-renew or not. Created w.r.t BIZ-72045</description>
+    <formula>If(SBQQ__Quote__r.Exclude_from_Auto_Renewal__c,true,Exclude_from_Auto_Renewal_Override__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Select this if the contract should not auto-renew. The flag flows from Quote to Contract and disables auto-renewal.</inlineHelpText>
+    <label>Exclude from Auto-Renewal?</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

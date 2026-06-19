@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Service</fullName>
+    <active>true</active>
+    <description>The record type to be used for services such as implementations.</description>
+    <label>Service</label>
+    <picklistValues>
+        <picklist>Family</picklist>
+        <values>
+            <fullName>Content</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Leaders %26 Partners</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Marketing %26 BD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Practice %26 Finance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Risk and Compliance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

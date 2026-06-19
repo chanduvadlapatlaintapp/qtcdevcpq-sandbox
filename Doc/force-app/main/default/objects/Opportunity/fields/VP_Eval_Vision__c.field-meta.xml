@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VP_Eval_Vision__c</fullName>
+    <description>Vision: prospect&apos;s view of capabilities needed to solve a problem</description>
+    <inlineHelpText>Vision: prospect&apos;s view of capabilities needed to solve a problem</inlineHelpText>
+    <label>VP Eval: Vision</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>00 - No vision established</fullName>
+                <default>false</default>
+                <label>00 - No vision established</label>
+            </value>
+            <value>
+                <fullName>01 - Customer vision developed internally</fullName>
+                <default>false</default>
+                <label>01 - Customer vision developed internally</label>
+            </value>
+            <value>
+                <fullName>02 - Customer vision developed by competition</fullName>
+                <default>false</default>
+                <label>02 - Customer vision developed by competition</label>
+            </value>
+            <value>
+                <fullName>03 - Vision for potential Sponsor created in product terms</fullName>
+                <default>false</default>
+                <label>03 - Vision for potential Sponsor created in product terms</label>
+            </value>
+            <value>
+                <fullName>04 - Differentiated vision for potential Sponsor created in capability terms</fullName>
+                <default>false</default>
+                <label>04 - Differentiated vision for potential Sponsor created in capability terms</label>
+            </value>
+            <value>
+                <fullName>05 - Differentiated vision documented to potential Sponsor</fullName>
+                <default>false</default>
+                <label>05 - Differentiated vision documented to potential Sponsor</label>
+            </value>
+            <value>
+                <fullName>06 - Documented vision agreed upon by Sponsor (Sponsor Email Required)</fullName>
+                <default>false</default>
+                <label>06 - Documented vision agreed upon by Sponsor (Sponsor Email Required)</label>
+            </value>
+            <value>
+                <fullName>07 - Vision for potential Power Sponsor created in product terms</fullName>
+                <default>false</default>
+                <label>07 - Vision for potential Power Sponsor created in product terms</label>
+            </value>
+            <value>
+                <fullName>08 - Differentiated vision for potential Power created in capability terms</fullName>
+                <default>false</default>
+                <label>08 - Differentiated vision for potential Power created in capability terms</label>
+            </value>
+            <value>
+                <fullName>09 - Differentiated vision documented to potential Power Sponsor</fullName>
+                <default>false</default>
+                <label>09 - Differentiated vision documented to potential Power Sponsor</label>
+            </value>
+            <value>
+                <fullName>10 - Documented vision agreed upon by Power Sponsor (Power Sponsor Email Required)</fullName>
+                <default>false</default>
+                <label>10 - Documented vision agreed upon by Power Sponsor (Power Sponsor Email Required)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

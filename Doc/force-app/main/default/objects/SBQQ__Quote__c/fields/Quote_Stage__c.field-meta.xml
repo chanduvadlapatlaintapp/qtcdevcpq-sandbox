@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quote_Stage__c</fullName>
+    <description>Sales user should be able to move a Quote to the Pricing Proposal stage when ready to create a Pricing Proposal Document, built as per BIZ-45102
+Updated for story BIZ-49730..</description>
+    <label>Quote Stage</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Configure Products</fullName>
+                <default>true</default>
+                <label>Configure Products</label>
+            </value>
+            <value>
+                <fullName>Pricing Proposal</fullName>
+                <default>false</default>
+                <label>Pricing Proposal</label>
+            </value>
+            <value>
+                <fullName>Finalize OSA</fullName>
+                <default>false</default>
+                <label>Finalize OSA</label>
+            </value>
+            <value>
+                <fullName>Pending Closure</fullName>
+                <default>false</default>
+                <label>Pending Closure</label>
+            </value>
+            <value>
+                <fullName>Contract Executed</fullName>
+                <default>false</default>
+                <label>Contract Executed</label>
+            </value>
+            <value>
+                <fullName>Closed-Lost</fullName>
+                <default>false</default>
+                <label>Closed-Lost</label>
+            </value>
+            <value>
+                <fullName>Draft</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Draft</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

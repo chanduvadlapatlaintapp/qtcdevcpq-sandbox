@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quality_Issue_Level_2__c</fullName>
+    <description>Custom Field Built according to BIZ-47763</description>
+    <label>Quality Issue Level 2</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Quality_Issue_Level_1__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Address</fullName>
+                <default>false</default>
+                <label>Address</label>
+            </value>
+            <value>
+                <fullName>Agreement</fullName>
+                <default>false</default>
+                <label>Agreement</label>
+            </value>
+            <value>
+                <fullName>Bill To</fullName>
+                <default>false</default>
+                <label>Bill To</label>
+            </value>
+            <value>
+                <fullName>Calculations</fullName>
+                <default>false</default>
+                <label>Calculations</label>
+            </value>
+            <value>
+                <fullName>Customer Name</fullName>
+                <default>false</default>
+                <label>Customer Name</label>
+            </value>
+            <value>
+                <fullName>Dates (Effective, Expiry, End)</fullName>
+                <default>false</default>
+                <label>Dates (Effective, Expiry, End)</label>
+            </value>
+            <value>
+                <fullName>Deal Type</fullName>
+                <default>false</default>
+                <label>Deal Type</label>
+            </value>
+            <value>
+                <fullName>Meter Type</fullName>
+                <default>false</default>
+                <label>Meter Type</label>
+            </value>
+            <value>
+                <fullName>Missing MSSA</fullName>
+                <default>false</default>
+                <label>Missing MSSA</label>
+            </value>
+            <value>
+                <fullName>Missing SOW</fullName>
+                <default>false</default>
+                <label>Missing SOW</label>
+            </value>
+            <value>
+                <fullName>Other Attachments</fullName>
+                <default>false</default>
+                <label>Other Attachments</label>
+            </value>
+            <value>
+                <fullName>Currency</fullName>
+                <default>false</default>
+                <label>Currency</label>
+            </value>
+            <value>
+                <fullName>Services Payments Terms</fullName>
+                <default>false</default>
+                <label>Services Payments Terms</label>
+            </value>
+            <value>
+                <fullName>SKU Error</fullName>
+                <default>false</default>
+                <label>SKU Error</label>
+            </value>
+            <value>
+                <fullName>Subscription Payment Terms</fullName>
+                <default>false</default>
+                <label>Subscription Payment Terms</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Dates</fullName>
+                <default>false</default>
+                <label>Dates</label>
+            </value>
+            <value>
+                <fullName>Entity/Legal Name</fullName>
+                <default>false</default>
+                <label>Entity/Legal Name</label>
+            </value>
+            <value>
+                <fullName>Master Terms Reference</fullName>
+                <default>false</default>
+                <label>Master Terms Reference</label>
+            </value>
+            <value>
+                <fullName>Need Updated Version</fullName>
+                <default>false</default>
+                <label>Need Updated Version</label>
+            </value>
+            <value>
+                <fullName>Scoping Detail</fullName>
+                <default>false</default>
+                <label>Scoping Detail</label>
+            </value>
+            <value>
+                <fullName>Status</fullName>
+                <default>false</default>
+                <label>Status</label>
+            </value>
+            <value>
+                <fullName>Unable to Open Attachment</fullName>
+                <default>false</default>
+                <label>Unable to Open Attachment</label>
+            </value>
+            <value>
+                <fullName>Watermark</fullName>
+                <default>false</default>
+                <label>Watermark</label>
+            </value>
+            <value>
+                <fullName>Annex</fullName>
+                <default>false</default>
+                <label>Annex</label>
+            </value>
+            <value>
+                <fullName>DPA</fullName>
+                <default>false</default>
+                <label>DPA</label>
+            </value>
+            <value>
+                <fullName>Liability Payment terms</fullName>
+                <default>false</default>
+                <label>Liability Payment terms</label>
+            </value>
+            <value>
+                <fullName>Master Terms Version</fullName>
+                <default>false</default>
+                <label>Master Terms Version</label>
+            </value>
+            <value>
+                <fullName>Support SLA</fullName>
+                <default>false</default>
+                <label>Support SLA</label>
+            </value>
+            <value>
+                <fullName>System Error</fullName>
+                <default>false</default>
+                <label>System Error</label>
+            </value>
+            <value>
+                <fullName>Instruction Notes</fullName>
+                <default>false</default>
+                <label>Instruction Notes</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Address</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Agreement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Bill To</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Calculations</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Customer Name</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Dates (Effective, Expiry, End)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Deal Type</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Meter Type</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Missing MSSA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Missing SOW</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Other Attachments</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Currency</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Services Payments Terms</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>SKU Error</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <valueName>Subscription Payment Terms</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Deal</controllingFieldValue>
+            <controllingFieldValue>Incorrect SOW</controllingFieldValue>
+            <controllingFieldValue>Incorrect MSSA</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect SOW</controllingFieldValue>
+            <valueName>Dates</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect SOW</controllingFieldValue>
+            <valueName>Entity/Legal Name</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect SOW</controllingFieldValue>
+            <valueName>Master Terms Reference</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect SOW</controllingFieldValue>
+            <valueName>Need Updated Version</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect SOW</controllingFieldValue>
+            <valueName>Scoping Detail</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect SOW</controllingFieldValue>
+            <valueName>Status</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect SOW</controllingFieldValue>
+            <valueName>Unable to Open Attachment</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect SOW</controllingFieldValue>
+            <controllingFieldValue>Incorrect MSSA</controllingFieldValue>
+            <valueName>Watermark</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect MSSA</controllingFieldValue>
+            <valueName>Annex</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect MSSA</controllingFieldValue>
+            <valueName>DPA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect MSSA</controllingFieldValue>
+            <valueName>Liability Payment terms</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect MSSA</controllingFieldValue>
+            <valueName>Master Terms Version</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incorrect MSSA</controllingFieldValue>
+            <valueName>Support SLA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>System Error</controllingFieldValue>
+            <valueName>System Error</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Instruction Notes</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

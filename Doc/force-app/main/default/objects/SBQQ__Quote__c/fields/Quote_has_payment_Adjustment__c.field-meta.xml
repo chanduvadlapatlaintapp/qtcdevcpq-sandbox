@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quote_has_payment_Adjustment__c</fullName>
+    <formula>AND(
+NOT(ISBLANK(Year_1_Subscription_Fees_With_Adjustment__c)),
+ABS(
+ROUND(Total_Subscription_Fees_Year_1__c, 2) -
+Year_1_Subscription_Fees_With_Adjustment__c
+) &gt; 0.01
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Quote has payment Adjustment</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

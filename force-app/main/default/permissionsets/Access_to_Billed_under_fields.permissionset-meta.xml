@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Access to &apos;Billed Under&apos; lookup + formula fields on Contracts object.
+Currently Jason and Jennifer would have access to this which would be extended to Contracts&apos; team (Vera and Earica)</description>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contract.Billed_Under_OSA__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contract.Billed_Under__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Access to Billed under fields</label>
+</PermissionSet>

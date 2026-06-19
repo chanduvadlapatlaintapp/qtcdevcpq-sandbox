@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Address_cannot_be_blank</fullName>
+    <active>false</active>
+    <errorConditionFormula>OR(ISBLANK(TEXT( Address__CountryCode__s )),ISBLANK( Address__Street__s ),ISBLANK( Address__City__s ), ISBLANK(TEXT( Address__StateCode__s )),ISBLANK(  Address__PostalCode__s  ))</errorConditionFormula>
+    <errorMessage>Address is required. Please populate the address fields.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Solution_Engineer__c</fullName>
+    <description>This allows the sales manager to designate what solution engineer they are working with and is used for the workflow rules to filter email to the appropriate solution engineer using outlook filters.</description>
+    <label>Solution Engineer</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Andrew Hill</fullName>
+                <default>false</default>
+                <label>Andrew Hill</label>
+            </value>
+            <value>
+                <fullName>Clarence Hu</fullName>
+                <default>false</default>
+                <label>Clarence Hu</label>
+            </value>
+            <value>
+                <fullName>Jeff Armbrecht</fullName>
+                <default>false</default>
+                <label>Jeff Armbrecht</label>
+            </value>
+            <value>
+                <fullName>Kushan Patel</fullName>
+                <default>false</default>
+                <label>Kushan Patel</label>
+            </value>
+            <value>
+                <fullName>Luna Dai</fullName>
+                <default>false</default>
+                <label>Luna Dai</label>
+            </value>
+            <value>
+                <fullName>Shalin Mantri</fullName>
+                <default>false</default>
+                <label>Shalin Mantri</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

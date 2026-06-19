@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Criteria_Based_Access__c</fullName>
+    <inlineHelpText>Does this customer own Criteria Based Access?</inlineHelpText>
+    <label>Criteria Based Access</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Suspect</fullName>
+                <default>false</default>
+                <label>Suspect</label>
+            </value>
+            <value>
+                <fullName>Prospect</fullName>
+                <default>false</default>
+                <label>Prospect</label>
+            </value>
+            <value>
+                <fullName>Own it</fullName>
+                <default>false</default>
+                <label>Own it</label>
+            </value>
+            <value>
+                <fullName>Billing Paused</fullName>
+                <default>false</default>
+                <label>Billing Paused</label>
+            </value>
+            <value>
+                <fullName>Lapsed</fullName>
+                <default>false</default>
+                <label>Lapsed</label>
+            </value>
+            <value>
+                <fullName>Entitled</fullName>
+                <default>false</default>
+                <label>Entitled</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

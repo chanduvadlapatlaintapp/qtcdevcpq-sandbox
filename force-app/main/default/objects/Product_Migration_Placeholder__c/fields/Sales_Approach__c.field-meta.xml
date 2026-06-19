@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Approach__c</fullName>
+    <description>How will we approach the sales portion of this migration?</description>
+    <label>Sales Approach</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>PGL</fullName>
+                <default>false</default>
+                <label>PGL</label>
+            </value>
+            <value>
+                <fullName>Sales Rep</fullName>
+                <default>false</default>
+                <label>Sales Rep</label>
+            </value>
+            <value>
+                <fullName>SDR</fullName>
+                <default>false</default>
+                <label>SDR</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

@@ -1,0 +1,117 @@
+<template>
+    <div class={cardClass}>
+        <div class="product-header" onclick={toggleExpand}>
+            <div class="header-left">
+                <lightning-icon icon-name={chevronIcon} size="xx-small" class="chevron-icon"></lightning-icon>
+                <span class="product-name">{productHeader}</span>
+            </div>
+            <div class="header-right">
+                <span class="deal-term">{dealTermLabel}</span>
+                <span class="total-cost">{displayTotalCost}</span>
+            </div>
+        </div>
+
+        <template if:true={isExpanded}>
+            <div class="table-wrapper">
+                <div class="table-controls">
+                    <label class="apply-all-label">
+                        <input type="checkbox" checked={applyToAll} onchange={handleApplyToAllChange} />
+                        Apply to all years
+                    </label>
+                </div>
+                <div class="table-scroll">
+                    <table class="period-table">
+                    <!-- Fixed column widths: stops col 1 from absorbing slack (gap before Verified Qty) -->
+                    <colgroup>
+                        <col class="colg-period" span="1" style="width: 11%" />
+                        <col class="colg-verified" span="1" style="width: 8%" />
+                        <col class="colg-qty" span="1" style="width: 8%" />
+                        <col class="colg-monthly" span="1" style="width: 15%" />
+                        <col class="colg-net" span="1" style="width: 14%" />
+                        <col class="colg-discount" span="1" style="width: 7%" />
+                        <col class="colg-uplift" span="1" style="width: 8%" />
+                        <col class="colg-acv" span="1" style="width: 14%" />
+                        <col class="colg-acvchg" span="1" style="width: 15%" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th class="col-product" scope="col">Period</th>
+                            <th class="col-verified" scope="col" title="SBQQ__PriorQuantity__c">Verified Qty</th>
+                            <th class="col-qty" scope="col" title="SBQQ__Quantity__c">Updated Qty</th>
+                            <th class="col-monthly-sale" scope="col" title="SBQQ__CustomerPrice__c (fallback SBQQ__ListPrice__c)">Mo. sale</th>
+                            <th class="col-net-amend" scope="col" title="SBQQ__NetPrice__c">Net Price</th>
+                            <th class="col-discount" scope="col" title="SBQQ__Discount__c">Disc %</th>
+                            <th class="col-uplift" scope="col">Uplift %</th>
+                            <th class="col-acv" scope="col" title="ACV__c">ACV</th>
+                            <th class="col-acv-change" scope="col" title="ACV_Change__c">ACV<br/>Change</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={periodRows} for:item="row">
+                            <tr key={row.key} class="period-row">
+                                <td class="col-product">
+                                    <div class="period-cell-inner">
+                                        <div class="period-label">{row.periodLabel}</div>
+                                        <div class="period-sub-label">{row.periodSubLabel}</div>
+                                    </div>
+                                </td>
+                                <td class="col-verified">
+                                    <span class="verified-qty">{row.verifiedQty}</span>
+                                </td>
+                                <td class="col-qty">
+                                    <template if:true={row.isEditable}>
+                                        <div class="input-cell">
+                                            <template if:false={row.isFirst}>
+                                                <span class={row.rampArrowClass}></span>
+                                            </template>
+                                            <input type="number"
+                                                class="editable-input"
+                                                value={row.quantity}
+                                                data-line-id={row.lineId}
+                                                onchange={handleQuantityChange} />
+                                        </div>
+                                    </template>
+                                    <template if:false={row.isEditable}>
+                                        <span>{row.displayQuantity}</span>
+                                    </template>
+                                </td>
+                                <td class="col-monthly-sale">{row.displayMonthlySalePrice}</td>
+                                <td class="col-net-amend">
+                                    <span class="net-amend-value">{row.displayAmendmentNetPrice}</span>
+                                </td>
+                                <td class="col-discount">
+                                    <template if:true={row.isEditable}>
+                                        <div class="discount-cell">
+                                            <input type="number"
+                                                class="editable-input discount-input"
+                                                value={row.displayDiscount}
+                                                data-line-id={row.lineId}
+                                                onchange={handleDiscountChange}
+                                                step="0.1"
+                                                min="0"
+                                                max="100" />
+                                            <span class="pct-sign">%</span>
+                                        </div>
+                                    </template>
+                                    <template if:false={row.isEditable}>
+                                        <span>{row.displayDiscount}%</span>
+                                    </template>
+                                </td>
+                                <td class="col-uplift">
+                                    <span class="uplift-value">{row.displayRenewalUplift}%</span>
+                                </td>
+                                <td class="col-acv">
+                                    <span class="acv-value">{row.displayAcv}</span>
+                                </td>
+                                <td class="col-acv-change">
+                                    <span class="acv-change-value">{row.displayAcvChange}</span>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+        </template>
+    </div>
+</template>

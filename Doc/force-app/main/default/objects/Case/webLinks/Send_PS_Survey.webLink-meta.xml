@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Send_PS_Survey</fullName>
+    <availability>online</availability>
+    <description>Button to send the default PS Survey email request.</description>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Send PS Survey</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>location.replace(&apos;/email/author/emailauthor.jsp?retURL=/{!Case.Id}&amp;p3_lkid={!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;template_id=00X50000001FepX&amp;p24=&apos;);</url>
+</WebLink>

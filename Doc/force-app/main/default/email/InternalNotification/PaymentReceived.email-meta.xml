@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Payment Received Notification</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Payment Received</name>
+    <style>none</style>
+    <subject>Salesforce Automation: Payment has been received on {!Contract.Name} - Line of Business: {!Contract.Applicable_Subsidiary__c}</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

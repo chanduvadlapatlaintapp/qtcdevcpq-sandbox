@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Order_Creation_Validation</fullName>
+    <active>true</active>
+    <description>BIZ-51224</description>
+    <errorConditionFormula>AND( ISCHANGED(SBQQ__Ordered__c),
+SBQQ__Ordered__c = TRUE,
+OR( NOT(ISPICKVAL(SBQQ__PrimaryQuote__r.Quote_Stage__c, &quot;Contract Executed&quot;)),
+NOT(ISPICKVAL(StageName , &quot;Closed Won&quot;)),
+SBQQ__PrimaryQuote__r.Deal_Checklist_Status__c = &quot;Not Started&quot;))</errorConditionFormula>
+    <errorMessage>Opportunity can only be ordered only on the following conditions:
+1. Opportunity Stage: Closed Won
+2. Primary Quote Stage: Contract Executed
+3. Primary Quote Deal Checklist: Completed</errorMessage>
+</ValidationRule>

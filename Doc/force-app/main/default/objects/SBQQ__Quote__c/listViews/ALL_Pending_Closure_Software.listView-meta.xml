@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ALL_Pending_Closure_Software</fullName>
+    <columns>OP4I_Sales_Segment__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>NAME</columns>
+    <columns>SBQQ__MasterContract__c</columns>
+    <columns>SBQQ__Opportunity2__c</columns>
+    <columns>SBQQ__Account__c</columns>
+    <columns>SBQQ__StartDate__c</columns>
+    <columns>SBQQ__SalesRep__c</columns>
+    <columns>SBQQ__Primary__c</columns>
+    <columns>ROR_Expiration_Date_formatted__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Renewal_Quote_Type__c</field>
+        <operation>equals</operation>
+        <value>Renewal-Changes</value>
+    </filters>
+    <label>ALL_Pending Closure_Software</label>
+</ListView>

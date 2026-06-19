@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Delegate_Approval_Dates_Required</fullName>
+    <active>false</active>
+    <description>The Delegate Approval date fields are required when a Delegate Approver has been selected.</description>
+    <errorConditionFormula>AND( 
+NOT(ISBLANK(Delegate_Approver__c)), 
+OR( 
+ISBLANK(Delegate_Approval_End__c), 
+ISBLANK(Delegate_Approval_Start__c) 
+) 
+)</errorConditionFormula>
+    <errorDisplayField>Delegate_Approver__c</errorDisplayField>
+    <errorMessage>You must fill out the Delegated Approval Start and End Date if you have a Delegated Approver specified.</errorMessage>
+</ValidationRule>

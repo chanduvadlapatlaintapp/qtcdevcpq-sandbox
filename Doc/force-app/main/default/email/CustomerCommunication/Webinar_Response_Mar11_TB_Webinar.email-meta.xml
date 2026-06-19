@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Response for March 2011 TB Product Webinar</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - Mar11 TB Webinar</name>
+    <style>none</style>
+    <subject>IntApp Webinar Confirmation</subject>
+    <textOnly>{!Lead.FirstName} {!Lead.LastName}: 
+
+Thank you for registering for the IntApp Time Builder Product Overview Webinar. The login details are below.
+
+Date: Thursday, March 17
+Time: 12 pm Pacific / 3 pm Eastern
+
+Video:
+
+Conference URL: https://www.livemeeting.com/cc/vcc/join?id=w5769288&amp;role=attend&amp;pw=A576928
+Meeting ID: w5769288
+Entry Code: A576928
+
+Audio:
+
+Conference Audio Dial In: 800-378-6604 
+Passcode: 5769288
+
+
+http://www.intapp.com
+All information Copyright 2011 IntApp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

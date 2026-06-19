@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Alliance_Memberships__c</fullName>
+    <inlineHelpText>Does this accounting firm belong to an alliance? Alliances provide co-marketing, referrals, and outsourcing activities.</inlineHelpText>
+    <label>Alliance Memberships</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Baker Tilly</fullName>
+                <default>false</default>
+                <label>Baker Tilly</label>
+            </value>
+            <value>
+                <fullName>BDO Alliance</fullName>
+                <default>false</default>
+                <label>BDO Alliance</label>
+            </value>
+            <value>
+                <fullName>DFK International</fullName>
+                <default>false</default>
+                <label>DFK International</label>
+            </value>
+            <value>
+                <fullName>Leading Edge Alliance</fullName>
+                <default>false</default>
+                <label>Leading Edge Alliance</label>
+            </value>
+            <value>
+                <fullName>McGladrey</fullName>
+                <default>false</default>
+                <label>McGladrey</label>
+            </value>
+            <value>
+                <fullName>Moore Stephens</fullName>
+                <default>false</default>
+                <label>Moore Stephens</label>
+            </value>
+            <value>
+                <fullName>MSI Global Alliance</fullName>
+                <default>false</default>
+                <label>MSI Global Alliance</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>PKF International</fullName>
+                <default>false</default>
+                <label>PKF International</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

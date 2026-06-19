@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Firm_Maturity_Status__c</fullName>
+    <inlineHelpText>Relates to where a firm sits on a range of evolution from Transaction to Centralized.   Factors include:  formality, centralization, optimization of processes, and strategic vision.</inlineHelpText>
+    <label>Firm Maturity Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Transactional</fullName>
+                <default>false</default>
+                <label>Transactional</label>
+            </value>
+            <value>
+                <fullName>Decentralized</fullName>
+                <default>false</default>
+                <label>Decentralized</label>
+            </value>
+            <value>
+                <fullName>Hybrid</fullName>
+                <default>false</default>
+                <label>Hybrid</label>
+            </value>
+            <value>
+                <fullName>Centralized</fullName>
+                <default>false</default>
+                <label>Centralized</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

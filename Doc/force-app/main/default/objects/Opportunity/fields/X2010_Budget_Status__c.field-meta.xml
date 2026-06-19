@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X2010_Budget_Status__c</fullName>
+    <description>Is this purchase in the firm&apos;s Fiscal Year 2010 budget?</description>
+    <inlineHelpText>Is this purchase in the firm&apos;s Fiscal Year 2010 budget?</inlineHelpText>
+    <label>2010 Budget Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>It was approved for the 2010 budget</fullName>
+                <default>false</default>
+                <label>It was approved for the 2010 budget</label>
+            </value>
+            <value>
+                <fullName>They are in the process of asking for 2010 budget approval</fullName>
+                <default>false</default>
+                <label>They are in the process of asking for 2010 budget approval</label>
+            </value>
+            <value>
+                <fullName>During 2009, they asked for 2010 budget numbers, but I don&apos;t know more</fullName>
+                <default>false</default>
+                <label>During 2009, they asked for 2010 budget numbers, but I don&apos;t know more</label>
+            </value>
+            <value>
+                <fullName>During 2009, they were unable to get it approved for 2010</fullName>
+                <default>false</default>
+                <label>During 2009, they were unable to get it approved for 2010</label>
+            </value>
+            <value>
+                <fullName>I don&apos;t know what the 2010 budget status is</fullName>
+                <default>false</default>
+                <label>I don&apos;t know what the 2010 budget status is</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

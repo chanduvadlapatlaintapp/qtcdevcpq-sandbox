@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>FULL_NAME</field>
+    </columns>
+    <columns>
+        <field>ACCOUNT_OWNER</field>
+    </columns>
+    <columns>
+        <field>ACCOUNT_NAME</field>
+    </columns>
+    <columns>
+        <field>OPPORTUNITY_NAME</field>
+    </columns>
+    <columns>
+        <field>STAGE_NAME</field>
+    </columns>
+    <currency>GBP</currency>
+    <description>DELETE AFTER USE AND SHARED ONCE (05-2018)</description>
+    <filter>
+        <criteriaItems>
+            <column>Opportunity.IntApp_Opportunity_Number__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>O519412,O520777,O521096,O519379,O519810,O521943,O519422,O515186,O508790,O522052,O514407,O514406,O521966,O519483,O520215,O519432,O519430,O522561,O519759,O520978,O521993,O519423,O523767,O524431,O519402,O518939,O521967,O521953,O520941,O513551,O513550,O519461,O519945,O519561,O524398,O522521,O523254,O525890,O522568,O512059,O524396,O519405,O521298,O524397,O520230,O520886,O522156,O519431,O519458,O519179,O524732,O519760,O519761,O511711,O522677,O519178,O520887,O526134,O519893,O519985,O527444,O527783,O525663,O526072,O528593,O528385,O527904,O528552,O528433</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Opps assigned to inactive user</name>
+    <params>
+        <name>open</name>
+        <value>all</value>
+    </params>
+    <params>
+        <name>probability</name>
+        <value>&gt;0</value>
+    </params>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Opportunity</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CLOSE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

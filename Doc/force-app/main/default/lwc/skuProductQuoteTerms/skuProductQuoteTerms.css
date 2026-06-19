@@ -1,0 +1,80 @@
+:host {
+    display: block;
+    font-family: 'Manrope', Arial, sans-serif;
+}
+
+/* ===== Record Count Bar ===== */
+.record-count-bar {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    margin-bottom: 0.5rem;
+}
+
+.record-count {
+    color: #536E8D;
+    font-size: 0.8125rem;
+    font-weight: 500;
+}
+
+/* ===== Branded Table ===== */
+.branded-table th {
+    background: linear-gradient(180deg, #003C80 0%, #002a5c 100%) !important;
+    color: #ffffff !important;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    padding: 0.625rem 0.75rem;
+    border-color: #002244 !important;
+}
+
+.branded-table tbody tr:hover {
+    background-color: #f0f6ff !important;
+}
+
+/* ===== Body Cell ===== */
+.body-col-cell lightning-input-rich-text {
+    display: block;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* ===== Checkbox Cell ===== */
+.cell-checkbox {
+    text-align: center;
+}
+
+.cell-checkbox lightning-input {
+    display: inline-flex;
+}
+
+/* ===== Empty State ===== */
+.empty-state {
+    text-align: center;
+    padding: 2rem 1.5rem;
+}
+
+.empty-state-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    background-color: #F4F7FA;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+}
+
+.empty-state-heading {
+    color: #073C7D;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    margin-bottom: 0.25rem;
+}
+
+.empty-state-text {
+    color: #A4B9D7;
+    font-size: 0.8125rem;
+}

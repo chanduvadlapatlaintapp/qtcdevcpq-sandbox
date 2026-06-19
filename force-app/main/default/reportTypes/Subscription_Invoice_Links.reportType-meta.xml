@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <baseObject>Invoice_Subscription_Link__c</baseObject>
+    <category>other</category>
+    <deployed>true</deployed>
+    <description>Subscription Invoice Links</description>
+    <label>Subscription Invoice Links</label>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CreatedBy</field>
+            <table>Invoice_Subscription_Link__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CreatedDate</field>
+            <table>Invoice_Subscription_Link__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CurrencyIsoCode</field>
+            <table>Invoice_Subscription_Link__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Invoice__c</field>
+            <table>Invoice_Subscription_Link__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Name</field>
+            <table>Invoice_Subscription_Link__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LastModifiedBy</field>
+            <table>Invoice_Subscription_Link__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LastModifiedDate</field>
+            <table>Invoice_Subscription_Link__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Subscription__c</field>
+            <table>Invoice_Subscription_Link__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Id</field>
+            <table>Invoice_Subscription_Link__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Invoice__c.Related_renewal_Opportunity__c</field>
+            <table>Invoice_Subscription_Link__c</table>
+        </columns>
+        <masterLabel>Subscription Invoice Links</masterLabel>
+    </sections>
+</ReportType>

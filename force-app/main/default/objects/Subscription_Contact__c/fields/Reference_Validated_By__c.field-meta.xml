@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reference_Validated_By__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Reference Validated By</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Subscription_Contact3</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

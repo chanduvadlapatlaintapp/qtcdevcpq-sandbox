@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Segment_Month_Decimal__c</fullName>
+    <description>Created as part of BIZ-50719</description>
+    <externalId>false</externalId>
+    <formula>If(AND(Type__c=&apos;Amendment&apos;,DAY(SBQQ__EffectiveStartDate__c)&lt;&gt;1),
+ROUND (((SBQQ__EffectiveEndDate__c-SBQQ__EffectiveStartDate__c)*12) / 365, 1),
+Segment_Months__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Segment Month Decimal</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>5</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

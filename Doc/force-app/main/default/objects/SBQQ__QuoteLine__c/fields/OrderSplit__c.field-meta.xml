@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OrderSplit__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISPICKVAL(Services_Product_Type__c, &apos;T&amp;M&apos;),
+    IF(OR(SBQQ__EffectiveQuantity__c &lt; 0,SBQQ__NetTotal__c &lt; 0), &apos;TNM-NEGATIVE&apos;,&apos;TNM-POSITIVE&apos;),
+    IF(OR(SBQQ__EffectiveQuantity__c &lt; 0,SBQQ__NetTotal__c &lt; 0), &apos;NONTNM-NEGATIVE&apos;,&apos;NONTNM-POSITIVE&apos;)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>OrderSplit</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

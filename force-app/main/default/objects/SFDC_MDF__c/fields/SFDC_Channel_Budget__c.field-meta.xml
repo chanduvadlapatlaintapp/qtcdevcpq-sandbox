@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SFDC_Channel_Budget__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Optionally assign the fund request to a channel budget.</description>
+    <label>Channel Budget</label>
+    <referenceTo>SFDC_Channel_Budget__c</referenceTo>
+    <relationshipLabel>Fund Requests</relationshipLabel>
+    <relationshipName>R00N50000001Q7ANEA0</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

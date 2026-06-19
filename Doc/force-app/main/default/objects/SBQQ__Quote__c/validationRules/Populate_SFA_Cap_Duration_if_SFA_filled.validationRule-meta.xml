@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Populate_SFA_Cap_Duration_if_SFA_filled</fullName>
+    <active>true</active>
+    <description>Require a value in the Quote “SFA Cap Duration” field if the Quote “SFA Cap after Initial Term” field has a value.</description>
+    <errorConditionFormula>AND(
+    NOT(ISPICKVAL(SFA_Cap_after_Initial_Term__c, &apos;N/A (Master Terms Apply)&apos;)),
+    NOT(ISBLANK(TEXT(SFA_Cap_after_Initial_Term__c))),
+    ISBLANK(TEXT(SFA_Term__c))
+)</errorConditionFormula>
+    <errorMessage>Please populate the SFA Cap Duration field. Since the SFA Cap after Initial Term field is populated on this Quote</errorMessage>
+</ValidationRule>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Notify_Customer_of_Intapp_Customer_Community_Reply</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Notify Customer of Intapp Customer Community Reply</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Record_Creator_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>support@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Customer_Support/New_Question_Replied_To_Customer</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_Support_of_Customer_Community_Question</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Notify Support of Customer Community Question</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>amar.khan@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>amit.sharma@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>aram.simonyan@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>brian.mcmorrow@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>colin.weston-small@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>eugene.braverman@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>frank.martinez@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>gary.rose@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>ibrahim.aqqad@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jeremy.thomas@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>kate.sheridan@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>kyle.thomas@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>pavel.goga@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>sergey.pazychev@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>yevhen.shupik@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>support@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Customer_Support/New_Question_Created</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_Support_of_Customer_Community_Reply</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Notify Support of Customer Community Reply</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>amar.khan@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>amit.sharma@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>aram.simonyan@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>brian.mcmorrow@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>colin.weston-small@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>dmitriy.galkovsky@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>eugene.braverman@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>frank.martinez@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>gary.rose@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>ibrahim.aqqad@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>kate.sheridan@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>kyle.thomas@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>larry.lumbreras@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>pavel.goga@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>sergey.pazychev@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>yevhen.shupik@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>support@intapp.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Customer_Support/New_Question_Replied</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Populate_Record_Creator_Email</fullName>
+        <field>Record_Creator_Email__c</field>
+        <formula>CreatedBy.Email</formula>
+        <name>Populate Record Creator Email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Rule Code%3A QSTN-001Exxx</fullName>
+        <actions>
+            <name>Notify_Customer_of_Intapp_Customer_Community_Reply</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: QSTN-001Exxx
+Notify Customer of Question Reply
+Sends an email notification to Customer when a reply to a question is received.</description>
+        <formula>LastModifiedById &lt;&gt; CreatedById</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A QSTN-002Exxx</fullName>
+        <actions>
+            <name>Notify_Support_of_Customer_Community_Question</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Question.CreatedDate</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </criteriaItems>
+        <description>Rule Code: QSTN-002Exxx
+Notify Support of Question
+Sends an email notification to Support when a question is posted.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A QSTN-003Exxx</fullName>
+        <actions>
+            <name>Notify_Support_of_Customer_Community_Reply</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: QSTN-003Exxx
+Notify Support of Question Reply
+Sends an email notification to Support when a reply to a question is received.</description>
+        <formula>LastModifiedById = CreatedById</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A QSTN-007xFxx</fullName>
+        <actions>
+            <name>Populate_Record_Creator_Email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: QSTN-007xFxx
+Populate Record Creator Email
+Populates Record Creator Email field with createdby.email</description>
+        <formula>TRUE</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

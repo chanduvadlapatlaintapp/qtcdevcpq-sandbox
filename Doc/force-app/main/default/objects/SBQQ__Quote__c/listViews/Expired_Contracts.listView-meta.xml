@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Expired_Contracts</fullName>
+    <columns>Line_of_Business__c</columns>
+    <columns>OSA_Requested_Date__c</columns>
+    <columns>SBQQ__Account__c</columns>
+    <columns>SBQQ__Status__c</columns>
+    <columns>SBQQ__Opportunity2__c</columns>
+    <columns>NAME</columns>
+    <columns>Contract_Master_Terms__c</columns>
+    <columns>Annex_email_sent__c</columns>
+    <columns>OWNER.ALIAS</columns>
+    <columns>SBQQ__MasterContract__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>LAST_UPDATE</field>
+        <operation>greaterThan</operation>
+        <value>4/9/2020 12:00 AM</value>
+    </filters>
+    <filters>
+        <field>SBQQ__ExpirationDate__c</field>
+        <operation>greaterThan</operation>
+        <value>4/1/2021</value>
+    </filters>
+    <filters>
+        <field>Annex_email_sent__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>SBQQ__Status__c</field>
+        <operation>contains</operation>
+        <value>Draft,Quote needs Review,OSA Requested,ContractsOps Processing,Pending Legal</value>
+    </filters>
+    <filters>
+        <field>OSA_Requested_Date__c</field>
+        <operation>greaterThan</operation>
+        <value>3/6/2022</value>
+    </filters>
+    <label>PS_Requires Annex</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>ContractsOps</group>
+        <role>Business_Operations</role>
+    </sharedTo>
+</ListView>

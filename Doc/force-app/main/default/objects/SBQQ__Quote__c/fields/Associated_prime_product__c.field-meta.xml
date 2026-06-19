@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Associated_prime_product__c</fullName>
+    <description>Created as a part of story BIZ-49977
+To differentiate if a quote has a prime product or not</description>
+    <formula>IF(Sixth_Year_Software_Net_Total__c&gt;0, true, false)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Associated prime product</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Services_Discount__c</fullName>
+    <description>Ticket #23440
+Formula field to calculate percentage using Sales Price for Credit line items and original service amount</description>
+    <formula>IF(
+   Services_List__c &lt;= 0, 0,
+   ABS(Services_Discount_Amount__c/Services_List__c)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Percentage calculated between Sales Price for Credit line items and original service amount</inlineHelpText>
+    <label>Client Services Discount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Percent</type>
+</CustomField>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SBQQ__Subscription_Conversion_Validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL(SBQQ__SubscriptionConversion__c, &apos;One per subscribed asset&apos;) &amp;&amp; NOT(ISPICKVAL(SBQQ__SubscriptionPricing__c, &apos;Percent Of Total&apos;))</errorConditionFormula>
+    <errorDisplayField>SBQQ__SubscriptionConversion__c</errorDisplayField>
+    <errorMessage>You can only select One per Subscribed Asset for Subscription Conversion for Percent of Total Subscriptions</errorMessage>
+</ValidationRule>

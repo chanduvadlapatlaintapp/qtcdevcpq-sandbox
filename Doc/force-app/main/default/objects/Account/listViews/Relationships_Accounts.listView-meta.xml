@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Relationships_Accounts</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ACCOUNT.LAST_ACTIVITY</columns>
+    <columns>ACCOUNT.ADDRESS1_CITY</columns>
+    <columns>ACCOUNT.ADDRESS1_STATE</columns>
+    <columns>License_Band__c</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Legal_Tier_Split__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Legal_Tier_Split__c</field>
+        <operation>equals</operation>
+        <value>STRATEGIC,Tier A,Tier B,Tier C</value>
+    </filters>
+    <filters>
+        <field>Account_Owner_Name__c</field>
+        <operation>contains</operation>
+        <value>Olssen,flanagan,ridge,Aksenchik</value>
+    </filters>
+    <filters>
+        <field>Geography__c</field>
+        <operation>contains</operation>
+        <value>North America</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.ADDRESS2_COUNTRY</field>
+        <operation>notContain</operation>
+        <value>Canada</value>
+    </filters>
+    <filters>
+        <field>Product_Ownership_Shorthand__c</field>
+        <operation>notEqual</operation>
+        <value>Relationships</value>
+    </filters>
+    <label>Relationships Accounts</label>
+    <language>en_US</language>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

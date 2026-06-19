@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Success Criteria</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Success Criteria</value>
+    </caseValues>
+    <recordTypes>
+        <description><!-- I See The Results --></description>
+        <label><!-- Business --></label>
+        <name>Business</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Finding the right balance between time, scope and budget --></description>
+        <label><!-- Delivery --></label>
+        <name>Delivery</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- I Can Feel It Working --></description>
+        <label><!-- Operational --></label>
+        <name>Operational</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Please make sure you have a Product Line and one of the major linkage objects (Opportunity, Project, Product Customer) populated. --></errorMessage>
+        <name>Opportunity_name_required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please link the success criteria to a related Project or Product Customer before updating the Status. --></errorMessage>
+        <name>Status_Cannot_Be_Edited</name>
+    </validationRules>
+</CustomObjectTranslation>

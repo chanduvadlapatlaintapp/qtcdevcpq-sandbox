@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Create_Merge_Project_in_OA__c</fullName>
+    <description>This field is used in Talend Integration of Open Air and Salesforce</description>
+    <inlineHelpText>&quot;Create a new project&quot; - Creates a new project in OA
+&quot;Merge with existing project&quot; - Merges with a project specified in the project lookup</inlineHelpText>
+    <label>Create or Merge with OA Project?</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Create a new project</fullName>
+                <default>false</default>
+                <label>Create a new project</label>
+            </value>
+            <value>
+                <fullName>Merge with existing project</fullName>
+                <default>false</default>
+                <label>Merge with existing project</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

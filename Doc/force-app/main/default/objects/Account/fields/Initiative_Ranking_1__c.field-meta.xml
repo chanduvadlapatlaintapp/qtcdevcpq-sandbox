@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Initiative_Ranking_1__c</fullName>
+    <label>Initiative Ranking 1</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Polycentric Strategy</fullName>
+                <default>false</default>
+                <label>Polycentric Strategy</label>
+            </value>
+            <value>
+                <fullName>Key Client/Sectors</fullName>
+                <default>false</default>
+                <label>Key Client/Sectors</label>
+            </value>
+            <value>
+                <fullName>Increasing Market Share</fullName>
+                <default>false</default>
+                <label>Increasing Market Share</label>
+            </value>
+            <value>
+                <fullName>Lateral Hires</fullName>
+                <default>false</default>
+                <label>Lateral Hires</label>
+            </value>
+            <value>
+                <fullName>Margin/Efficiency</fullName>
+                <default>false</default>
+                <label>Margin/Efficiency</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

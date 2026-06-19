@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Biz_Dev_Account_Owner__c</fullName>
+    <description>This designates the business development team account owner. This was created because the business development team does not have individual accounts to store this information in the native SF field.</description>
+    <label>Biz Dev Account Owner</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Bob Schick</fullName>
+                <default>false</default>
+                <label>Bob Schick</label>
+            </value>
+            <value>
+                <fullName>James Nielsen</fullName>
+                <default>false</default>
+                <label>James Nielsen</label>
+            </value>
+            <value>
+                <fullName>Scott McLin</fullName>
+                <default>false</default>
+                <label>Scott McLin</label>
+            </value>
+            <value>
+                <fullName>Oliver Wai</fullName>
+                <default>false</default>
+                <label>Oliver Wai</label>
+            </value>
+            <value>
+                <fullName>Jay Borenstein</fullName>
+                <default>false</default>
+                <label>Jay Borenstein</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

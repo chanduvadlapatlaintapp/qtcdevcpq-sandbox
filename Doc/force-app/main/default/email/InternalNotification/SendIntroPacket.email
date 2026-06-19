@@ -1,0 +1,35 @@
+{!Account.OwnerFirstName} would like an introductory marketing packet sent to:
+
+{!Contact.FirstName} {!Contact.LastName}
+{!Account.Name}
+
+Here how to do that:
+
+1. GENERATE FORM COVER LETTER
+    - You have to use IE to do this (no firefox support)
+    - Load this URL:
+      - <https://na1.salesforce.com/{!Contact.Id}> which should take you to their contact record
+    - If that link doesn't work, search for and open the record 
+    - In "Activity History" click the "Mail Merge" button
+    - Select the "Cover Letter - Marketing Packet" template and click "generate"
+
+2. CONFIRM CONTACT ADDRESS
+    - You need to double check the contact's address because the form letter is   based on the account record's address. If the contact is in a different office, you'll be sending it to the wrong place. Easiest way to check is compare area codes with the contact phone and phone number in the account record. If you're not sure, pull up the firm's web page and check against their office contact information.
+
+3. PRINT OUT MATERIALS
+    - Materials are on intranet but links should work, print:
+      - Corporate fact sheet
+<http://lizard/intranet/corporate/IntApp_Corporate_Fact_Sheet.pdf>
+      - 8 solutions WP
+<http://lizard/intranet/sales/white_papers/IntApp_8_Solutions_WP.pdf>
+      - Notable deployment WP (customer summaries)
+<http://lizard/intranet/sales/white_papers/IntApp_Legal_Customers_WP.pdf>
+      - Risk WP
+<http://lizard/intranet/sales/white_papers/IntApp_Risk_WP.pdf>
+
+4. PREP AND MAIL 
+    - If the sales manager is local, have them sign and address the envelope
+    - If the sales manager is remote, sign for them. (If your handwritting isn't plausible, draft someone else to address. See Dan B for explanation.)
+    - Mail the packet
+
+5. NOTIFY SALES MANAGER VIA EMAIL THAT PACKET WENT OUT

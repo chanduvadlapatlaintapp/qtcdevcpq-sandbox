@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Lifecycle_Stage_Changed__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  TEXT(Customer_Lifecycle_Stage__c)&lt;&gt;Customer_Lifecycle_Stage_Previous__c, 
+  &quot;Changed&quot;,
+  &quot;Same&quot;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Product Implementation Phase Changed</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

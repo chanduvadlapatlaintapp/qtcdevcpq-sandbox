@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Internal Critical Case Received</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>CS_Critical_Case_Letterhead</letterhead>
+    <name>Internal_Critical_Received</name>
+    <style>freeForm</style>
+    <subject>Internal Information Alert:  Critical Case {!Case.CaseNumber} Received from {!Case.Account}</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

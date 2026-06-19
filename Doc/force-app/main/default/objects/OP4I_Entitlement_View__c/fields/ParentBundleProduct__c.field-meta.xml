@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ParentBundleProduct__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Look up to the parent bundle product (Same if standalone, parent if bundled)</description>
+    <label>ParentBundleProduct</label>
+    <referenceTo>Product2</referenceTo>
+    <relationshipLabel>OP4I Entitlement Views (ParentBundleProduct)</relationshipLabel>
+    <relationshipName>OP4I_Entitlement_Views3</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

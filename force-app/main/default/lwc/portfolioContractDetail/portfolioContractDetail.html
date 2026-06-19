@@ -1,0 +1,87 @@
+<template>
+    <div class="pcd-root">
+        <!-- Filters -->
+        <div class="pcd-filters">
+            <select class="pcd-select" onchange={handleDeploymentFilter}>
+                <template for:each={deploymentOptions} for:item="opt">
+                    <option key={opt.value} value={opt.value}>{opt.label}</option>
+                </template>
+            </select>
+
+            <select class="pcd-select" onchange={handleSupportFilter}>
+                <template for:each={supportOptions} for:item="opt">
+                    <option key={opt.value} value={opt.value}>{opt.label}</option>
+                </template>
+            </select>
+
+            <div class="pcd-period-group">
+                <template for:each={periodOptions} for:item="opt">
+                    <button key={opt.value} class={opt.btnClass} data-period={opt.value} onclick={handlePeriodFilter}>{opt.label}</button>
+                </template>
+            </div>
+
+            <button class="pcd-expand-btn" onclick={handleToggleAll}>{expandCollapseLabel}</button>
+
+            <span class="pcd-line-count">{lineCountSummary}</span>
+
+            <template if:true={isLoadingInvoices}>
+                <span class="pcd-invoice-loading">Loading invoices...</span>
+            </template>
+        </div>
+
+        <!-- Table -->
+        <div class="pcd-table-wrap">
+            <div class="pcd-table-scroll">
+                <table class="pcd-table">
+                    <thead>
+                        <tr>
+                            <template for:each={headerColumns} for:item="col">
+                                <th key={col.key} class={col.thClass} data-col={col.key} onclick={handleSort}>
+                                    <span class="th-label">{col.label}{col.sortIndicator}</span>
+                                    <span class="th-resize" data-col={col.key} onmousedown={handleResizeStart}></span>
+                                </th>
+                            </template>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={groups} for:item="group">
+                            <!-- Group Header -->
+                            <tr key={group.osa} class="tr-group" data-osa={group.osa} onclick={handleToggleGroup}>
+                                <td colspan={colSpanFull} class="td-group">
+                                    <span class="group-expand">{group.expandIcon}</span>
+                                    <span class="group-label">OSA: {group.osa}</span>
+                                    <span class="group-count">{group.lineCountLabel}</span>
+                                    <span class="group-summary">{group.groupSummary}</span>
+                                </td>
+                            </tr>
+
+                            <!-- Group Rows -->
+                            <template if:true={group.isExpanded}>
+                                <template for:each={group.processedRows} for:item="row">
+                                    <tr key={row.id} class={row.rowClass}>
+                                        <template for:each={row.cells} for:item="cell">
+                                            <td key={cell.key} class={cell.cellClass}>
+                                                <template if:true={cell.isLink}>
+                                                    <a href={cell.linkUrl} target="_blank" rel="noopener noreferrer" class="invoice-link">{cell.value}</a>
+                                                </template>
+                                                <template if:false={cell.isLink}>
+                                                    <template if:true={cell.isStatusBadge}>
+                                                        <span class={cell.statusClass}>{cell.value}</span>
+                                                    </template>
+                                                    <template if:false={cell.isStatusBadge}>
+                                                        {cell.value}
+                                                    </template>
+                                                </template>
+                                            </td>
+                                        </template>
+                                    </tr>
+                                </template>
+                            </template>
+                        </template>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</template>

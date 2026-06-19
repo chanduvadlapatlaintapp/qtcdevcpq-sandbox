@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BusinessProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account Management %2F Renewal</fullName>
+    <description>Account Management Opportunity Stages</description>
+    <isActive>true</isActive>
+    <values>
+        <fullName>CS Review</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Closed - Deferred</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Closed - Merged</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Closed - Should Never have been opened</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Closed - Superseded New Contract</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Closed Lost</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Closed Won</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Discussing with Customer</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Engaged in Remediation</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Management Approval</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Pending Cancellation</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Pending Closure</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Pending Superseding</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Ready for Cancellation</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Waiting for Billing Pause%2FFinancial Concession Amendment</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Waiting for Finance to send bill</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Waiting for Revised Invoice</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Waiting for payment</fullName>
+        <default>false</default>
+    </values>
+</BusinessProcess>

@@ -1,0 +1,18 @@
+<aura:component controller="GroupLinkCtlr"  
+                implements="flexipage:availableForAllPageTypes,lightning:isUrlAddressable,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="TopicName" type="string" access="global" default="{!topicName}"/>
+     <aura:attribute name="TopicId" type="string" access="global" default="{!topicId}"/>
+    <aura:attribute name="grpName" type="string"/>
+    <aura:attribute name="grpId" type="string"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> 
+    <aura:attribute name="showGrp" type="Boolean" default="false"/>
+    <aura:attribute name="showError" type="Boolean" default="false"/>
+    <aura:attribute name="imgUrl" type ="string" /> 
+     
+    <aura:if isTrue="{!v.showGrp}">
+        <span class="slds-m-right_medium">  <img src="{!v.imgUrl}"/></span><a href="{!'/s/group/'+v.grpId+'/'+v.grpName}"> {!v.grpName}</a>
+	</aura:if> 
+    <aura:if isTrue="{!v.showError}">	
+        Group Not Found
+	</aura:if>
+</aura:component>

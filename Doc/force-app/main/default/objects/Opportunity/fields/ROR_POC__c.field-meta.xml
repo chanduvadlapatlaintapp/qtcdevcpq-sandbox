@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ROR_POC__c</fullName>
+    <description>Does this sale require further decisions on the customer&apos;s part?</description>
+    <inlineHelpText>Does this sale require further decisions on the customer&apos;s part?</inlineHelpText>
+    <label>ROR / POC</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Standard Sale</fullName>
+                <default>false</default>
+                <label>Standard Sale</label>
+            </value>
+            <value>
+                <fullName>ROR without Success Criteria</fullName>
+                <default>false</default>
+                <label>ROR without Success Criteria</label>
+            </value>
+            <value>
+                <fullName>ROR with Success Criteria</fullName>
+                <default>false</default>
+                <label>ROR with Success Criteria</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

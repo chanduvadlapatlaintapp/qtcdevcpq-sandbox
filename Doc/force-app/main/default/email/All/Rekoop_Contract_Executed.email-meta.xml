@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>A Legacy Rekoop Contract Has Been Signed - PLEASE INVOICE</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Rekoop Contract Executed</name>
+    <style>none</style>
+    <subject>Legacy Rekoop Contract Has Been Signed - Please Invoice, Line of Business: {!Contract.Applicable_Subsidiary__c}</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

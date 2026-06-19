@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validation_Checklist__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>To Populate the Validation Checklist on quote and check status- BIZ-45142</description>
+    <label>Deal Checklist</label>
+    <referenceTo>Validation_Checklist__c</referenceTo>
+    <relationshipLabel>Quotes</relationshipLabel>
+    <relationshipName>Quotes</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

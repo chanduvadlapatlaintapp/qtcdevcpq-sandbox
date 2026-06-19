@@ -1,0 +1,194 @@
+<script type="text/javascript">
+function getCSSRule(ruleName) {                           // Return requested style obejct
+   ruleName = ruleName.toLowerCase();
+   var retCssRule = new Array();
+   if (document.styleSheets) {                            // If browser can play with stylesheets
+      for (var i=0; i<document.styleSheets.length; i++) { // For each stylesheet
+         var styleSheet=document.styleSheets[i];          // Get the current Stylesheet
+         var ii=0;                                        // Initialize subCounter.
+         var cssRule=false;                               // Initialize cssRule. 
+         do {                                             // For each rule in stylesheet
+            if (styleSheet.cssRules) {                    // Browser uses cssRules?
+               cssRule = styleSheet.cssRules[ii];         // Yes --Mozilla Style
+            } else {                                      // Browser usses rules?
+               cssRule = styleSheet.rules[ii];            // Yes IE style. 
+            }                                             // End IE check.
+            if (cssRule)  {                               // If we found a rule...
+               if (cssRule.selectorText) {                // ... and it has a selectorText ...
+                  if (cssRule.selectorText.toLowerCase()==ruleName) {   // ... match ruleName?
+                     retCssRule.push(cssRule);                // FOUND
+                 }                                        // End found rule name
+               }                                          // End found selectorText
+            }                                             // end found cssRule
+            ii++;                                         // Increment sub-counter
+         } while (cssRule)                                // end While loop
+      }                                                   // end For loop
+   }                                                      // end styleSheet ability check
+   return retCssRule;                                     
+}                                                         // end getCSSRule 
+
+function overrideImagePaths() {
+  var pat1 = /\.force\.com$/;
+  if (pat1.test(window.location.host)) {
+    var pat2 = new RegExp('^/[^/]+');
+    var prefix = pat2.exec(window.location.pathname)[0];
+    var link = document.getElementById('headerlogout');
+    if (link) {
+      var fullprefix = "";
+      var offset = 0;
+      var pat1 = new RegExp('^http://[^/]+');
+      if (pat1.test(link.href))
+       {
+        fullprefix = pat1.exec(link.href)[0];
+        var offset = fullprefix.length;
+       }
+    }
+    var rules = getCSSRule('.tab td div, .tab .last div');
+    var i=0;
+    var rule=false;
+    do {
+       rule = rules[i];
+       if (rule) {
+          rule.style.backgroundImage = 'url("' + prefix + '/dimg/portalTabRight868686868686.gif")';
+       }
+       i++;
+    } while (rule);
+    rules = getCSSRule('.tabNavigation');
+    i=0;
+    do {
+       rule = rules[i];
+       if ((rule)&&(rule.style)&&(rule.style.backgroundImage)) {
+          rule.style.backgroundImage = 'url("' + prefix + '/dimg/portalTopBg8686864E8ABE.gif")';
+       }
+       i++;
+    } while (rule);
+  }
+}
+function addLoadEvent(func) {
+  var oldonload = window.onload;
+  if (typeof window.onload != 'function') {
+    window.onload = func;
+  } else {
+    window.onload = function() {
+      if (oldonload) {
+        oldonload();
+      }
+    func();
+    }
+  }
+}
+addLoadEvent(overrideImagePaths);
+</script>
+<style type="text/css">
+.portalheader, .portalheader a {
+    text-align: left;
+    background-color: white;
+    color: black;
+}
+.portalfooter {
+    top-margin: 10pt;
+    text-align: center;
+}
+.oRight .bPageTitle .secondaryPalette, .oRight .lbHeader, .bPageBlock .pbHeader {
+  background-color: #868686;
+}
+.sidebarBoxTitleIcon {
+  width: 0px;
+}
+.sidebarBox .filter {
+  width: 150px;
+}
+.sidebarBox {
+  padding: 0;
+  width: 198px;
+}
+.sidebarBoxTitle {
+  color: #FFFFFF;
+  background-color: #4E8ABE;
+}
+.sidebarInnerBox {
+  background-color: #FFFFFF;
+  padding: 0;
+  border-color: #4E8ABE #A0BBDC #A0BBDC;
+  border-style: solid;
+  border-width: 1px;
+  margin: 0 0 10px 10px;
+}
+td.oLeft {
+  font-family: Arial,Helvetica,sans-serif;
+  margin: 0 0 10px 10px;
+  padding: 0;
+  border-width: 0x;
+  padding-bottom: 5px;
+  color: #262626;
+  font-size: 90%;
+  overflow: hidden;
+  width: 200px;
+}
+.outerNoSidebar {
+  padding: 0 0 10px;
+}
+#ideaSubtabs ul#nav .ideasCurrentTab div a {
+  color: white;
+}
+#thePage\:mainLayout\:formIdea\:pb\:pbs table td table.multiSelectPicklistTable {
+  display: none;
+}
+label[for="thePage:mainLayout:formIdea:pb:pbs:Categories_unselected"] {
+  display: none;
+}
+label.ideaViewCategory {
+  display: none;
+}
+.voteButton a.voteDown {
+	display: none;
+}
+
+span.ideaCategorySelect {
+  display: none;
+}
+span#thePage\:mainLayout\:pbIdeaList\:bottomIdeaFeeds {
+  display: none;
+}
+a.ansCommunityLink {
+  display: none;
+}
+a#pageQuestionView\:ansLayout\:ansBreadcrumb\:answersBreadcrumb\:ansBreadcrumbCommunity {
+  display: none;
+}
+a#pageQuestionList\:ansLayout\:ansBreadcrumb\:answersBreadcrumb\:ansBreadcrumbCommunity {
+  display: none;
+}
+span.ansCategoriesLabel {
+  display: none;
+}
+html .brandPrimaryFgr {
+  color: rgb(255, 255, 255) !important;
+}
+.sidebarCell{
+  display: none;
+}
+.kb-filterBackground {
+  display: none;
+}
+.serviceCommunityZoneswitcher {
+	background: #4E8ABE !important;
+}
+.bPageTitle .metadata {
+display: none;
+}
+
+</style>
+<div class="zen">
+	<div class="zen-headerTop zen-bgdThemed brandZeronaryBgr" id="appHeaderTop">
+		<div class="zen-branding">
+			<span>
+				<img style="padding: 10px 10px 10px 10px;" src="https://c.na3.content.force.com/servlet/servlet.ImageServer?id=01550000000eGww&oid=00D3000000007yR" alt="" id="phHeaderLogoImage" onload="javascript:scaleImage(this, 55, 300);">
+			</span>
+			<span style="float: right; vertical-align: bottom"><br />
+			<br />
+			<a id="headerlogout" href="/portal/secur/logout.jsp">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+			</div>
+		</div>
+	</div>
+</div>

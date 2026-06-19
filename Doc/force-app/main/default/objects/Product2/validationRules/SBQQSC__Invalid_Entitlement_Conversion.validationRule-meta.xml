@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SBQQSC__Invalid_Entitlement_Conversion</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( ISPICKVAL(   SBQQ__AssetConversion__c   , &apos;One per Unit&apos;),ISPICKVAL(   SBQQSC__EntitlementConversion__c    , &apos;One per quote line&apos;) )</errorConditionFormula>
+    <errorDisplayField>SBQQSC__EntitlementConversion__c</errorDisplayField>
+    <errorMessage>Entitlement Conversion cannot be set to one per quote line if Asset Conversion is set to one per unit</errorMessage>
+</ValidationRule>

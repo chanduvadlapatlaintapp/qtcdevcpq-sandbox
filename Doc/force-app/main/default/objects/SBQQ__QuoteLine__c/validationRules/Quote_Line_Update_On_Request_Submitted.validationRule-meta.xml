@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quote_Line_Update_On_Request_Submitted</fullName>
+    <active>true</active>
+    <errorConditionFormula>SBQQ__Quote__r.OP4I_Status__c = &apos;Request Submitted&apos;</errorConditionFormula>
+    <errorMessage>System is processing the previous request. Please wait till the OP4I Status = Synced</errorMessage>
+</ValidationRule>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Submit_for_Approval</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Request OSA</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/39.0/connection.js&quot;)}
+
+try {
+var Quote = new sforce.SObject( &quot;SBQQ__Quote__c&quot; );
+
+var Status = &quot;{!SBQQ__Quote__c.SBQQ__Status__c}&quot;;
+
+//if(Status != &apos;Approved&apos; &amp;&amp; Status != &apos;Denied&apos;){
+     Quote.Id = &quot;{!SBQQ__Quote__c.Id}&quot;;
+     Quote.Request_OSA__c= true;
+
+     var result = sforce.connection.update( [Quote] );
+
+     if( result[0].getBoolean( &quot;success&quot; ) ) {
+        alert( &quot;OSA has been requested&quot; );
+        location.reload();
+     }
+     else {
+        alert( &quot;An error has occurred. Error: &quot; + result[0] );
+     }
+//}
+//else {
+//     alert( &quot;Cannot submit for approval when status is Approved or Denied&quot; );
+//}
+}
+catch( e ) {
+alert( &quot;An unexpected error has occurred. Error: &quot; + e.message );
+}</url>
+</WebLink>

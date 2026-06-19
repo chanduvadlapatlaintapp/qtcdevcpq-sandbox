@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pricing_compared_to_competitors__c</fullName>
+    <label>Pricing compared to competitors</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Substantially higher</fullName>
+                <default>false</default>
+                <label>Substantially higher</label>
+            </value>
+            <value>
+                <fullName>Moderately higher</fullName>
+                <default>false</default>
+                <label>Moderately higher</label>
+            </value>
+            <value>
+                <fullName>Similar</fullName>
+                <default>false</default>
+                <label>Similar</label>
+            </value>
+            <value>
+                <fullName>Moderately lower</fullName>
+                <default>false</default>
+                <label>Moderately lower</label>
+            </value>
+            <value>
+                <fullName>Substantially lower</fullName>
+                <default>false</default>
+                <label>Substantially lower</label>
+            </value>
+            <value>
+                <fullName>not relevant</fullName>
+                <default>false</default>
+                <label>not relevant</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

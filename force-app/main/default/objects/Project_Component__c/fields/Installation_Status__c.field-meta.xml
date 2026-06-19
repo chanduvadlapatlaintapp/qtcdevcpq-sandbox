@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Installation_Status__c</fullName>
+    <label>Installation Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Not Installed</fullName>
+                <default>true</default>
+                <label>Not Installed</label>
+            </value>
+            <value>
+                <fullName>Installed in Test</fullName>
+                <default>false</default>
+                <label>Installed in Test</label>
+            </value>
+            <value>
+                <fullName>Installed in Production</fullName>
+                <default>false</default>
+                <label>Installed in Production</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>BIZ-66416 - Added the Bypass Logic</description>
+    <environments>Default</environments>
+    <interviewLabel>QL To be Deleted When OP4I DLI Null and user Bizapp {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>QL To be Deleted When OP4I DLI Null and user Bizapp</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordDeletes>
+        <description>Quote lines to be deleted if OP4I DLI ID is Null and CreatedBy user Biz App User.</description>
+        <name>Quote_Line_to_be_Deleted</name>
+        <label>Quote Line to be Deleted</label>
+        <locationX>572</locationX>
+        <locationY>413</locationY>
+        <inputReference>$Record</inputReference>
+    </recordDeletes>
+    <start>
+        <locationX>449</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>Quote_Line_to_be_Deleted</targetReference>
+        </connector>
+        <filterFormula>AND(
+    NOT({!$Setup.Automation_Controls__c.Active__c} 
+    &amp;&amp; {!$Setup.Automation_Controls__c.Bypass_Flows__c} 
+    &amp;&amp; {!$Setup.Automation_Controls__c.Quoteline_Bypass__c} 
+    &amp;&amp; (
+        ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c}) 
+        || (
+            NOT(ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c})) 
+            &amp;&amp; CONTAINS({!$Setup.Automation_Controls__c.Data_Id__c}, {!$Record.Id})
+        )
+    )),
+    ISBLANK({!$Record.OP4I_Deal_Line_Id__c}),
+    {!$Record.CreatedById} = &apos;00550000007h2moAAA&apos;
+)</filterFormula>
+        <object>SBQQ__QuoteLine__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>BizAppIntegrationUser ID</description>
+        <name>BizAppIntegrationUser</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>00550000007h2moAAA</stringValue>
+        </value>
+    </variables>
+</Flow>

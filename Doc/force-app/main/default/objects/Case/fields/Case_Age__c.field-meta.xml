@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Case_Age__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  IsClosed=FALSE, 
+  TODAY()-DATEVALUE(CreatedDate),
+IF(
+  ISPICKVAL(Status, &quot;Defect Filed&quot;), 
+  Date_Defect_Filed__c - DATEVALUE(CreatedDate),  
+  DATEVALUE(ClosedDate)-DATEVALUE(CreatedDate)
+))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Case Age</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

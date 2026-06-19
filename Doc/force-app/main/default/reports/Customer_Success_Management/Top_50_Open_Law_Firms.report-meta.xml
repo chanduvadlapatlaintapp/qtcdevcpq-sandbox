@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>Account.License_Band__c</field>
+    </columns>
+    <columns>
+        <field>Account.Products_Owned__c</field>
+    </columns>
+    <columns>
+        <field>Product_Ownership_Detail__c.Product__c</field>
+    </columns>
+    <columns>
+        <field>Product_Ownership_Detail__c.License_Basis__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Intapp&apos;s top 50 Law Firms with Open - highlighting all products</description>
+    <filter>
+        <criteriaItems>
+            <column>ACCOUNT.NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>Winston &amp; Strawn,K&amp;L,&quot;Morgan, Lewis&quot;,Orrick,Hastings,Proskauer,Quinn,Wachtell,Weil,Latham &amp; Watkins,Baker McKenzie,DLA Piper,”Skadden,Arps,Slate,Meagher &amp; Flom”,Kirkland &amp; Ellis,Clifford Chance,Freshfields Bruckhaus Deringer,Dentons,Allen &amp; Overy,Linklaters,Jones Day,Sidley Austin,Morgan Lewis &amp; Bockius,Hogan Lovells,Norton Rose Fulbright,Gibson Dunn,White &amp; Case,Ropes &amp; Gray,Herbert Smith Freehills,Greenberg Traurig,Sullivan &amp; Cromwell,Simpson Thacher &amp; Bartlett,Mayer Brown,Cleary Gottlieb,Weil Gotshal &amp; Manges,WilmerHale,CMS,Reed Smith,”Paul,Weiss,Rifkind,Wharton &amp; Garrison”,Davis Polk &amp; Wardwell,K&amp;L Gates Paul Hastings,Quinn Emanuel Urquhart &amp; Sullivan,King &amp; Wood Mallesons,King &amp; Spalding,Morrison &amp; Foerster,Akin Gump Strauss Hauer &amp; Feld,Squire Patton Boggs,”Orrick,Herrington &amp; Sutcliffe”,Cooley,McDermott Will &amp; Emery,Dechert,Goodwin Procter,Shearman &amp; Sterling,Wachtell Lipton Rosen &amp; Katz,Proskauer Rose Winston &amp; Strawn,Slaughter and May,Ashurst,”Milbank,Tweed,Hadley &amp; McCloy&quot;</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Product_Ownership_Detail__c.Product__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Intapp Open - Intake,Intapp Open - Conflicts</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>TYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Customer</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Product_Ownership_Detail__c.Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Own it</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>ACCOUNT.NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>&quot;Jaffe, Raitt, Heuer &amp; Weiss&quot;,&quot;Glaser, Weil, Fink, Howard, Avchen &amp; Shapiro, LLP&quot;</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <name>Top 50 Open Law Firms</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountCustomEntity$Product_Ownership_Detail__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Account.License_Band__c</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>DUE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

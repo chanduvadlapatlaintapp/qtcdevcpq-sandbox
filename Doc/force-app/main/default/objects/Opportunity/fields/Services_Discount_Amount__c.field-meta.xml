@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Services_Discount_Amount__c</fullName>
+    <description>Ticket #23440
+Field to roll up Sales Price from Products (Opportunity Products) on to Opportunity</description>
+    <label>Client Services Discount Amount</label>
+    <summarizedField>OpportunityLineItem.UnitPrice</summarizedField>
+    <summaryFilterItems>
+        <field>OpportunityLineItem.Product_type_for_roll_up__c</field>
+        <operation>equals</operation>
+        <value>Professional, Intapp Prime</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>OpportunityLineItem.UnitPrice</field>
+        <operation>lessThan</operation>
+        <value>0</value>
+    </summaryFilterItems>
+    <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

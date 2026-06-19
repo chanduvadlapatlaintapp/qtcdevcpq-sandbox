@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Campaign_Follow_Up__c</fullName>
+    <description>Values for tracking follow up post-marketing events.</description>
+    <inlineHelpText>For tasks coming out of marketing events, track your outreach status using this field.</inlineHelpText>
+    <label>Campaign Follow Up</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Purpose__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Target</fullName>
+                <default>false</default>
+                <label>Target</label>
+            </value>
+            <value>
+                <fullName>Sent Email / Left Voicemail</fullName>
+                <default>false</default>
+                <label>Sent Email / Left Voicemail</label>
+            </value>
+            <value>
+                <fullName>Communicated With</fullName>
+                <default>false</default>
+                <label>Communicated With</label>
+            </value>
+            <value>
+                <fullName>Meeting Has Been Set</fullName>
+                <default>false</default>
+                <label>Meeting Has Been Set</label>
+            </value>
+            <value>
+                <fullName>Already Engaged</fullName>
+                <default>false</default>
+                <label>Already Engaged</label>
+            </value>
+            <value>
+                <fullName>Not Going to Follow Up</fullName>
+                <default>false</default>
+                <label>Not Going to Follow Up</label>
+            </value>
+            <value>
+                <fullName>Asked about PR</fullName>
+                <default>false</default>
+                <label>Asked about PR</label>
+            </value>
+            <value>
+                <fullName>Said No to PR</fullName>
+                <default>false</default>
+                <label>Said No to PR</label>
+            </value>
+            <value>
+                <fullName>Said Yes to PR</fullName>
+                <default>false</default>
+                <label>Said Yes to PR</label>
+            </value>
+            <value>
+                <fullName>Said Maybe / Later / Needs Draft of PR</fullName>
+                <default>false</default>
+                <label>Said Maybe / Later / Needs Draft of PR</label>
+            </value>
+            <value>
+                <fullName>Drafting PR</fullName>
+                <default>false</default>
+                <label>Drafting PR</label>
+            </value>
+            <value>
+                <fullName>Approved PR</fullName>
+                <default>false</default>
+                <label>Approved PR</label>
+            </value>
+            <value>
+                <fullName>Issued PR</fullName>
+                <default>false</default>
+                <label>Issued PR</label>
+            </value>
+            <value>
+                <fullName>Expired - No Action Needed</fullName>
+                <default>false</default>
+                <label>Expired - No Action Needed</label>
+            </value>
+            <value>
+                <fullName>Expired - Sent EM / Left VM</fullName>
+                <default>false</default>
+                <label>Expired - Sent EM / Left VM</label>
+            </value>
+            <value>
+                <fullName>Expired - Communicated With</fullName>
+                <default>false</default>
+                <label>Expired - Communicated With</label>
+            </value>
+            <value>
+                <fullName>Closed by Owner</fullName>
+                <default>false</default>
+                <label>Closed by Owner</label>
+            </value>
+            <value>
+                <fullName>No Longer with Firm</fullName>
+                <default>false</default>
+                <label>No Longer with Firm</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Account Management</controllingFieldValue>
+            <controllingFieldValue>PM - Integration Builder</controllingFieldValue>
+            <controllingFieldValue>PM - Time Builder</controllingFieldValue>
+            <controllingFieldValue>PM - Wall Builder</controllingFieldValue>
+            <controllingFieldValue>Opportunity work</controllingFieldValue>
+            <controllingFieldValue>Marketing - PR</controllingFieldValue>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <controllingFieldValue>Territory Development</controllingFieldValue>
+            <controllingFieldValue>Services</controllingFieldValue>
+            <controllingFieldValue>Support</controllingFieldValue>
+            <valueName>Target</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Account Management</controllingFieldValue>
+            <controllingFieldValue>PM - Integration Builder</controllingFieldValue>
+            <controllingFieldValue>PM - Time Builder</controllingFieldValue>
+            <controllingFieldValue>PM - Wall Builder</controllingFieldValue>
+            <controllingFieldValue>Opportunity work</controllingFieldValue>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <controllingFieldValue>Territory Development</controllingFieldValue>
+            <controllingFieldValue>Services</controllingFieldValue>
+            <controllingFieldValue>Support</controllingFieldValue>
+            <valueName>Sent Email / Left Voicemail</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Account Management</controllingFieldValue>
+            <controllingFieldValue>PM - Integration Builder</controllingFieldValue>
+            <controllingFieldValue>PM - Time Builder</controllingFieldValue>
+            <controllingFieldValue>PM - Wall Builder</controllingFieldValue>
+            <controllingFieldValue>Opportunity work</controllingFieldValue>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <controllingFieldValue>Territory Development</controllingFieldValue>
+            <controllingFieldValue>Services</controllingFieldValue>
+            <controllingFieldValue>Support</controllingFieldValue>
+            <valueName>Communicated With</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing - PR</controllingFieldValue>
+            <valueName>Asked about PR</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing - PR</controllingFieldValue>
+            <valueName>Said No to PR</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing - PR</controllingFieldValue>
+            <valueName>Said Yes to PR</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing - PR</controllingFieldValue>
+            <valueName>Said Maybe / Later / Needs Draft of PR</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing - PR</controllingFieldValue>
+            <valueName>Drafting PR</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing - PR</controllingFieldValue>
+            <valueName>Approved PR</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing - PR</controllingFieldValue>
+            <valueName>Issued PR</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing - PR</controllingFieldValue>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <valueName>Expired - No Action Needed</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <valueName>Meeting Has Been Set</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <valueName>Already Engaged</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <valueName>Expired - Sent EM / Left VM</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <valueName>Expired - Communicated With</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <valueName>Closed by Owner</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <valueName>No Longer with Firm</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

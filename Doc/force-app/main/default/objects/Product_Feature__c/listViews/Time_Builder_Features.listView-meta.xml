@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_Builder_Features</fullName>
+    <columns>NAME</columns>
+    <columns>Product_Release__c</columns>
+    <columns>Description__c</columns>
+    <columns>Stage__c</columns>
+    <columns>Feature_Owner__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Product_Line__c</field>
+        <operation>equals</operation>
+        <value>Time Builder</value>
+    </filters>
+    <label>Time Builder Features</label>
+</ListView>

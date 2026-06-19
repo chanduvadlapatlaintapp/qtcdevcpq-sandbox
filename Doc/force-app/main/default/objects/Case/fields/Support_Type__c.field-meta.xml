@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Support_Type__c</fullName>
+    <label>Support Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>3rd Party System Related</fullName>
+                <default>false</default>
+                <label>3rd Party System Related</label>
+            </value>
+            <value>
+                <fullName>Install/Upgrade</fullName>
+                <default>false</default>
+                <label>Install/Upgrade</label>
+            </value>
+            <value>
+                <fullName>CC/RC</fullName>
+                <default>false</default>
+                <label>CC/RC</label>
+            </value>
+            <value>
+                <fullName>Cloud Database/Services</fullName>
+                <default>false</default>
+                <label>Cloud Database/Services</label>
+            </value>
+            <value>
+                <fullName>Configuration Change</fullName>
+                <default>false</default>
+                <label>Configuration Change</label>
+            </value>
+            <value>
+                <fullName>Contact/Deal Manager Support</fullName>
+                <default>false</default>
+                <label>Contact/Deal Manager Support</label>
+            </value>
+            <value>
+                <fullName>Customer Data Issue</fullName>
+                <default>false</default>
+                <label>Customer Data Issue</label>
+            </value>
+            <value>
+                <fullName>Customer Lacked Training</fullName>
+                <default>false</default>
+                <label>Customer Lacked Training</label>
+            </value>
+            <value>
+                <fullName>Customer Pilot</fullName>
+                <default>false</default>
+                <label>Customer Pilot</label>
+            </value>
+            <value>
+                <fullName>Customer self-inflicted</fullName>
+                <default>false</default>
+                <label>Customer self-inflicted</label>
+            </value>
+            <value>
+                <fullName>Database Maintenance</fullName>
+                <default>false</default>
+                <label>Database Maintenance</label>
+            </value>
+            <value>
+                <fullName>Database Related</fullName>
+                <default>false</default>
+                <label>Database Related</label>
+            </value>
+            <value>
+                <fullName>Enhancement</fullName>
+                <default>false</default>
+                <label>Enhancement</label>
+            </value>
+            <value>
+                <fullName>Feature Request</fullName>
+                <default>false</default>
+                <label>Feature Request</label>
+            </value>
+            <value>
+                <fullName>General Information</fullName>
+                <default>false</default>
+                <label>General Information</label>
+            </value>
+            <value>
+                <fullName>General Question</fullName>
+                <default>false</default>
+                <label>General Question</label>
+            </value>
+            <value>
+                <fullName>Hardware Failure</fullName>
+                <default>false</default>
+                <label>Hardware Failure</label>
+            </value>
+            <value>
+                <fullName>Inadequate Intapp Documentation</fullName>
+                <default>false</default>
+                <label>Inadequate Intapp Documentation</label>
+            </value>
+            <value>
+                <fullName>Incomplete PS Implementation</fullName>
+                <default>false</default>
+                <label>Incomplete PS Implementation</label>
+            </value>
+            <value>
+                <fullName>Installation / Upgrade</fullName>
+                <default>false</default>
+                <label>Installation / Upgrade</label>
+            </value>
+            <value>
+                <fullName>Integration Issue</fullName>
+                <default>false</default>
+                <label>Integration Issue</label>
+            </value>
+            <value>
+                <fullName>IntApp Question</fullName>
+                <default>false</default>
+                <label>IntApp Question</label>
+            </value>
+            <value>
+                <fullName>Legacy Services</fullName>
+                <default>false</default>
+                <label>Legacy Services</label>
+            </value>
+            <value>
+                <fullName>License</fullName>
+                <default>false</default>
+                <label>License</label>
+            </value>
+            <value>
+                <fullName>Misc</fullName>
+                <default>false</default>
+                <label>Misc</label>
+            </value>
+            <value>
+                <fullName>Non-IntApp Support</fullName>
+                <default>false</default>
+                <label>Non-IntApp Support</label>
+            </value>
+            <value>
+                <fullName>OS/Environmental Error</fullName>
+                <default>false</default>
+                <label>OS/Environmental Error</label>
+            </value>
+            <value>
+                <fullName>Performance Issues</fullName>
+                <default>false</default>
+                <label>Performance Issues</label>
+            </value>
+            <value>
+                <fullName>Portal Administration</fullName>
+                <default>false</default>
+                <label>Portal Administration</label>
+            </value>
+            <value>
+                <fullName>Product Defect</fullName>
+                <default>false</default>
+                <label>Product Defect</label>
+            </value>
+            <value>
+                <fullName>RES-Service/Scheduled Jobs</fullName>
+                <default>false</default>
+                <label>RES-Service/Scheduled Jobs</label>
+            </value>
+            <value>
+                <fullName>Rule Modification</fullName>
+                <default>false</default>
+                <label>Rule Modification</label>
+            </value>
+            <value>
+                <fullName>Sales/Process Info</fullName>
+                <default>false</default>
+                <label>Sales/Process Info</label>
+            </value>
+            <value>
+                <fullName>Self-Install</fullName>
+                <default>false</default>
+                <label>Self-Install</label>
+            </value>
+            <value>
+                <fullName>Self-Upgrade</fullName>
+                <default>false</default>
+                <label>Self-Upgrade</label>
+            </value>
+            <value>
+                <fullName>Software Bug</fullName>
+                <default>false</default>
+                <label>Software Bug</label>
+            </value>
+            <value>
+                <fullName>Software Fulfillment</fullName>
+                <default>false</default>
+                <label>Software Fulfillment</label>
+            </value>
+            <value>
+                <fullName>System Resources/Architecture Problems</fullName>
+                <default>false</default>
+                <label>System Resources/Architecture Problems</label>
+            </value>
+            <value>
+                <fullName>Alerts Issue</fullName>
+                <default>false</default>
+                <label>Alerts Issue</label>
+            </value>
+            <value>
+                <fullName>List Manager Issue</fullName>
+                <default>false</default>
+                <label>List Manager Issue</label>
+            </value>
+            <value>
+                <fullName>Outlook Issue</fullName>
+                <default>false</default>
+                <label>Outlook Issue</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

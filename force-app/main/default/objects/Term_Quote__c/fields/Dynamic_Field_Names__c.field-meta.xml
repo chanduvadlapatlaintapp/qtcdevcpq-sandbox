@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Dynamic_Field_Names__c</fullName>
+    <description>BIZ-75350: Formula field that derives the comma-separated list of dynamic field API names from the parent SBQQ__QuoteTerm__c record. This field automatically reflects the dynamic fields referenced in the parent term body. Example: &quot;CurrencyIsoCode,MSSA_Number__c&quot;</description>
+    <externalId>false</externalId>
+    <formula>Term__r.Dynamic_Field_Names__c</formula>
+    <label>Dynamic Field Names</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

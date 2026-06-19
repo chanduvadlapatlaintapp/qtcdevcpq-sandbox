@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ERM__c</fullName>
+    <label>ERM</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Intapp Relationships</fullName>
+                <default>false</default>
+                <label>Intapp Relationships</label>
+            </value>
+            <value>
+                <fullName>IntroHive</fullName>
+                <default>false</default>
+                <label>IntroHive</label>
+            </value>
+            <value>
+                <fullName>InterAction IQ</fullName>
+                <default>false</default>
+                <label>InterAction IQ</label>
+            </value>
+            <value>
+                <fullName>ContactNet</fullName>
+                <default>false</default>
+                <label>ContactNet</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

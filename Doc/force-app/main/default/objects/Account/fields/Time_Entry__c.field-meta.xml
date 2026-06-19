@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_Entry__c</fullName>
+    <inlineHelpText>What product does this account currently use for Time Entry?</inlineHelpText>
+    <label>Time Entry</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Abacus</fullName>
+                <default>false</default>
+                <label>Abacus</label>
+            </value>
+            <value>
+                <fullName>Aderant (Unknown)</fullName>
+                <default>false</default>
+                <label>Aderant (Unknown)</label>
+            </value>
+            <value>
+                <fullName>Aderant CMS</fullName>
+                <default>false</default>
+                <label>Aderant CMS</label>
+            </value>
+            <value>
+                <fullName>Aderant Expert (Unknown)</fullName>
+                <default>false</default>
+                <label>Aderant Expert (Unknown)</label>
+            </value>
+            <value>
+                <fullName>Aderant Expert 7</fullName>
+                <default>false</default>
+                <label>Aderant Expert 7</label>
+            </value>
+            <value>
+                <fullName>Aderant Expert 8</fullName>
+                <default>false</default>
+                <label>Aderant Expert 8</label>
+            </value>
+            <value>
+                <fullName>ADP</fullName>
+                <default>false</default>
+                <label>ADP</label>
+            </value>
+            <value>
+                <fullName>Advance Systems Mitrefinch</fullName>
+                <default>false</default>
+                <label>Advance Systems Mitrefinch</label>
+            </value>
+            <value>
+                <fullName>AdvantageLaw</fullName>
+                <default>false</default>
+                <label>AdvantageLaw</label>
+            </value>
+            <value>
+                <fullName>Affinity</fullName>
+                <default>false</default>
+                <label>Affinity</label>
+            </value>
+            <value>
+                <fullName>Amicus</fullName>
+                <default>false</default>
+                <label>Amicus</label>
+            </value>
+            <value>
+                <fullName>Attendance RX</fullName>
+                <default>false</default>
+                <label>Attendance RX</label>
+            </value>
+            <value>
+                <fullName>Big Time</fullName>
+                <default>false</default>
+                <label>Big Time</label>
+            </value>
+            <value>
+                <fullName>BillQuick</fullName>
+                <default>false</default>
+                <label>BillQuick</label>
+            </value>
+            <value>
+                <fullName>Cabo</fullName>
+                <default>false</default>
+                <label>Cabo</label>
+            </value>
+            <value>
+                <fullName>CCH Axcess</fullName>
+                <default>false</default>
+                <label>CCH Axcess</label>
+            </value>
+            <value>
+                <fullName>CCH ProSystem fx</fullName>
+                <default>false</default>
+                <label>CCH ProSystem fx</label>
+            </value>
+            <value>
+                <fullName>Civica Galaxy</fullName>
+                <default>false</default>
+                <label>Civica Galaxy</label>
+            </value>
+            <value>
+                <fullName>Client Profiles</fullName>
+                <default>false</default>
+                <label>Client Profiles</label>
+            </value>
+            <value>
+                <fullName>Clio</fullName>
+                <default>false</default>
+                <label>Clio</label>
+            </value>
+            <value>
+                <fullName>Custom</fullName>
+                <default>false</default>
+                <label>Custom</label>
+            </value>
+            <value>
+                <fullName>Dexco Acumen</fullName>
+                <default>false</default>
+                <label>Dexco Acumen</label>
+            </value>
+            <value>
+                <fullName>DTE</fullName>
+                <default>false</default>
+                <label>DTE</label>
+            </value>
+            <value>
+                <fullName>DTE Axiom</fullName>
+                <default>false</default>
+                <label>DTE Axiom</label>
+            </value>
+            <value>
+                <fullName>DTE Mobile</fullName>
+                <default>false</default>
+                <label>DTE Mobile</label>
+            </value>
+            <value>
+                <fullName>eCandidus</fullName>
+                <default>false</default>
+                <label>eCandidus</label>
+            </value>
+            <value>
+                <fullName>E-Clock</fullName>
+                <default>false</default>
+                <label>E-Clock</label>
+            </value>
+            <value>
+                <fullName>Element 55/MakeTime</fullName>
+                <default>false</default>
+                <label>Element 55/MakeTime</label>
+            </value>
+            <value>
+                <fullName>Elite (Unknown)</fullName>
+                <default>false</default>
+                <label>Elite (Unknown)</label>
+            </value>
+            <value>
+                <fullName>Elite 3E</fullName>
+                <default>false</default>
+                <label>Elite 3E</label>
+            </value>
+            <value>
+                <fullName>Elite WebView 5.3+</fullName>
+                <default>false</default>
+                <label>Elite WebView 5.3+</label>
+            </value>
+            <value>
+                <fullName>Elite Webview pre-5.3</fullName>
+                <default>false</default>
+                <label>Elite Webview pre-5.3</label>
+            </value>
+            <value>
+                <fullName>E-Timesheet</fullName>
+                <default>false</default>
+                <label>E-Timesheet</label>
+            </value>
+            <value>
+                <fullName>FreshBooks</fullName>
+                <default>false</default>
+                <label>FreshBooks</label>
+            </value>
+            <value>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+                <label>Fusion</label>
+            </value>
+            <value>
+                <fullName>Handshake</fullName>
+                <default>false</default>
+                <label>Handshake</label>
+            </value>
+            <value>
+                <fullName>Home grown</fullName>
+                <default>false</default>
+                <label>Home grown</label>
+            </value>
+            <value>
+                <fullName>Intapp Time</fullName>
+                <default>false</default>
+                <label>Intapp Time</label>
+            </value>
+            <value>
+                <fullName>Intertec TimePro</fullName>
+                <default>false</default>
+                <label>Intertec TimePro</label>
+            </value>
+            <value>
+                <fullName>Isis Web Time</fullName>
+                <default>false</default>
+                <label>Isis Web Time</label>
+            </value>
+            <value>
+                <fullName>iTimeKeep</fullName>
+                <default>false</default>
+                <label>iTimeKeep</label>
+            </value>
+            <value>
+                <fullName>Javelan</fullName>
+                <default>false</default>
+                <label>Javelan</label>
+            </value>
+            <value>
+                <fullName>Journyx</fullName>
+                <default>false</default>
+                <label>Journyx</label>
+            </value>
+            <value>
+                <fullName>Juris Time Entry</fullName>
+                <default>false</default>
+                <label>Juris Time Entry</label>
+            </value>
+            <value>
+                <fullName>Keystone Time Manager</fullName>
+                <default>false</default>
+                <label>Keystone Time Manager</label>
+            </value>
+            <value>
+                <fullName>KVP</fullName>
+                <default>false</default>
+                <label>KVP</label>
+            </value>
+            <value>
+                <fullName>LawMaster</fullName>
+                <default>false</default>
+                <label>LawMaster</label>
+            </value>
+            <value>
+                <fullName>LawTime</fullName>
+                <default>false</default>
+                <label>LawTime</label>
+            </value>
+            <value>
+                <fullName>LexisNexis Time Matters</fullName>
+                <default>false</default>
+                <label>LexisNexis Time Matters</label>
+            </value>
+            <value>
+                <fullName>LSS Time Entry</fullName>
+                <default>false</default>
+                <label>LSS Time Entry</label>
+            </value>
+            <value>
+                <fullName>Manual</fullName>
+                <default>false</default>
+                <label>Manual</label>
+            </value>
+            <value>
+                <fullName>Mavinlink</fullName>
+                <default>false</default>
+                <label>Mavinlink</label>
+            </value>
+            <value>
+                <fullName>Microsoft Exchange</fullName>
+                <default>false</default>
+                <label>Microsoft Exchange</label>
+            </value>
+            <value>
+                <fullName>NetSuite</fullName>
+                <default>false</default>
+                <label>NetSuite</label>
+            </value>
+            <value>
+                <fullName>Nexonia</fullName>
+                <default>false</default>
+                <label>Nexonia</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Norwel Prescient+</fullName>
+                <default>false</default>
+                <label>Norwel Prescient+</label>
+            </value>
+            <value>
+                <fullName>Omega</fullName>
+                <default>false</default>
+                <label>Omega</label>
+            </value>
+            <value>
+                <fullName>Open Practice</fullName>
+                <default>false</default>
+                <label>Open Practice</label>
+            </value>
+            <value>
+                <fullName>Orion</fullName>
+                <default>false</default>
+                <label>Orion</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Paychex</fullName>
+                <default>false</default>
+                <label>Paychex</label>
+            </value>
+            <value>
+                <fullName>PCLaw</fullName>
+                <default>false</default>
+                <label>PCLaw</label>
+            </value>
+            <value>
+                <fullName>Peppermint Technology</fullName>
+                <default>false</default>
+                <label>Peppermint Technology</label>
+            </value>
+            <value>
+                <fullName>Perfectlaw</fullName>
+                <default>false</default>
+                <label>Perfectlaw</label>
+            </value>
+            <value>
+                <fullName>Perfect Practice</fullName>
+                <default>false</default>
+                <label>Perfect Practice</label>
+            </value>
+            <value>
+                <fullName>Pilgrim Lawsoft Time Recording</fullName>
+                <default>false</default>
+                <label>Pilgrim Lawsoft Time Recording</label>
+            </value>
+            <value>
+                <fullName>PING</fullName>
+                <default>false</default>
+                <label>PING</label>
+            </value>
+            <value>
+                <fullName>ProLaw</fullName>
+                <default>false</default>
+                <label>ProLaw</label>
+            </value>
+            <value>
+                <fullName>ProVantage</fullName>
+                <default>false</default>
+                <label>ProVantage</label>
+            </value>
+            <value>
+                <fullName>Rainmaker</fullName>
+                <default>false</default>
+                <label>Rainmaker</label>
+            </value>
+            <value>
+                <fullName>Rekoop</fullName>
+                <default>false</default>
+                <label>Rekoop</label>
+            </value>
+            <value>
+                <fullName>Replicon</fullName>
+                <default>false</default>
+                <label>Replicon</label>
+            </value>
+            <value>
+                <fullName>Rippe &amp; Kingston</fullName>
+                <default>false</default>
+                <label>Rippe &amp; Kingston</label>
+            </value>
+            <value>
+                <fullName>RollCall</fullName>
+                <default>false</default>
+                <label>RollCall</label>
+            </value>
+            <value>
+                <fullName>RTG</fullName>
+                <default>false</default>
+                <label>RTG</label>
+            </value>
+            <value>
+                <fullName>SAP</fullName>
+                <default>false</default>
+                <label>SAP</label>
+            </value>
+            <value>
+                <fullName>Sciforma</fullName>
+                <default>false</default>
+                <label>Sciforma</label>
+            </value>
+            <value>
+                <fullName>Smart Time</fullName>
+                <default>false</default>
+                <label>Smart Time</label>
+            </value>
+            <value>
+                <fullName>SOS Connect</fullName>
+                <default>false</default>
+                <label>SOS Connect</label>
+            </value>
+            <value>
+                <fullName>SpringAhead</fullName>
+                <default>false</default>
+                <label>SpringAhead</label>
+            </value>
+            <value>
+                <fullName>STP LEXolution.KMS</fullName>
+                <default>false</default>
+                <label>STP LEXolution.KMS</label>
+            </value>
+            <value>
+                <fullName>Tabs</fullName>
+                <default>false</default>
+                <label>Tabs</label>
+            </value>
+            <value>
+                <fullName>Tikit Carpe Diem 2014</fullName>
+                <default>false</default>
+                <label>Tikit Carpe Diem 2014</label>
+            </value>
+            <value>
+                <fullName>Tikit Carpe Diem Classic</fullName>
+                <default>false</default>
+                <label>Tikit Carpe Diem Classic</label>
+            </value>
+            <value>
+                <fullName>Tikit Carpe Diem Enterprise/TimeKM</fullName>
+                <default>false</default>
+                <label>Tikit Carpe Diem Enterprise/TimeKM</label>
+            </value>
+            <value>
+                <fullName>Tikit Carpe Diem NextGen</fullName>
+                <default>false</default>
+                <label>Tikit Carpe Diem NextGen</label>
+            </value>
+            <value>
+                <fullName>Time59</fullName>
+                <default>false</default>
+                <label>Time59</label>
+            </value>
+            <value>
+                <fullName>Time Builder</fullName>
+                <default>false</default>
+                <label>Time Builder</label>
+            </value>
+            <value>
+                <fullName>TimeForce</fullName>
+                <default>false</default>
+                <label>TimeForce</label>
+            </value>
+            <value>
+                <fullName>Time In A Box</fullName>
+                <default>false</default>
+                <label>Time In A Box</label>
+            </value>
+            <value>
+                <fullName>Timeslips</fullName>
+                <default>false</default>
+                <label>Timeslips</label>
+            </value>
+            <value>
+                <fullName>Upland Tenrox</fullName>
+                <default>false</default>
+                <label>Upland Tenrox</label>
+            </value>
+            <value>
+                <fullName>Videss</fullName>
+                <default>false</default>
+                <label>Videss</label>
+            </value>
+            <value>
+                <fullName>Wrike</fullName>
+                <default>false</default>
+                <label>Wrike</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>text</bucketType>
+        <developerName>BucketField_39925285</developerName>
+        <masterLabel>Department Owner</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>User$UserRole</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Accounting/Consulting Sales</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>EMEA / APAC Sales Reps</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>EMEA Sales</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Eastern Sales Reps</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Global Law Sales</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Inside Sales Representative</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>NA Large Law Sales</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>NA Large Law Sales Reps</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>NA Mid-size Law Sales</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>NA Mid-size Law Sales Reps</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Western Sales Reps</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>APAC Sales</sourceValue>
+            </sourceValues>
+            <value>Sales</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Administrative</sourceValue>
+            </sourceValues>
+            <value>Sales Ops</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>CR Team</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>VP Customer Relationship Management</sourceValue>
+            </sourceValues>
+            <value>CSM</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Operations Director APAC</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Project Manager</sourceValue>
+            </sourceValues>
+            <value>Professional Services</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>User.Opportunity$OwnerId$Name</field>
+    </columns>
+    <columns>
+        <field>User.Opportunity$OwnerId$StageName</field>
+    </columns>
+    <columns>
+        <field>User.Opportunity$OwnerId$NextStep</field>
+    </columns>
+    <columns>
+        <field>User.Opportunity$OwnerId$Type</field>
+    </columns>
+    <columns>
+        <field>User.Opportunity$OwnerId$Associated_Contract_OSA__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>User.Opportunity$OwnerId$Services_Amount_Total__c</field>
+    </columns>
+    <columns>
+        <field>User.Opportunity$OwnerId$CloseDate</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>BucketField_39925285</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>CSM</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>User.Opportunity$OwnerId$Type</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Legal - Additional Services,Additional Services,Legal - Consulting Services,Consulting Services,Intapp Prime,Upgrade</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>User.Opportunity$OwnerId$Simple_Stage__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Open</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>User.Opportunity$OwnerId$StageName</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Pre-Funnel</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>User$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>CSM: Services Opps to Close</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Users_with_Opportunities__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>User.Opportunity$OwnerId$CloseDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

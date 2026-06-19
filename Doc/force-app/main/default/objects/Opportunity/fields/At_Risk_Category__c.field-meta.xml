@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>At_Risk_Category__c</fullName>
+    <description>Select the reason(s) this renewal opportunity is being placed on the At Risk list.
+
+Part of Technical Debt Project: Week 7 fields (Expiring May 25)</description>
+    <label>At Risk Category (Exp May 25)</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <controllingField>At_Risk__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Account Management</fullName>
+                <default>false</default>
+                <label>Account Management</label>
+            </value>
+            <value>
+                <fullName>Adoption</fullName>
+                <default>false</default>
+                <label>Adoption</label>
+            </value>
+            <value>
+                <fullName>Contingency</fullName>
+                <default>false</default>
+                <label>Contingency</label>
+            </value>
+            <value>
+                <fullName>Old Version</fullName>
+                <default>false</default>
+                <label>Old Version</label>
+            </value>
+            <value>
+                <fullName>Receivables</fullName>
+                <default>false</default>
+                <label>Receivables</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>Account Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>Adoption</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>Contingency</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>Old Version</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>Receivables</valueName>
+        </valueSettings>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

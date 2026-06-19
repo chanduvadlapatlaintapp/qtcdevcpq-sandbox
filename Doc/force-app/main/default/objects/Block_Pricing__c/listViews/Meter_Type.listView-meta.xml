@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Meter_Type</fullName>
+    <columns>NAME</columns>
+    <columns>Product__c</columns>
+    <columns>Type__c</columns>
+    <columns>Product_Code__c</columns>
+    <columns>Legal_meter_type_USD_AUD__c</columns>
+    <columns>Legal__c</columns>
+    <columns>meter_type_Accounting__c</columns>
+    <columns>meter_type_Consulting__c</columns>
+    <columns>meter_type_Corporate__c</columns>
+    <columns>meter_type_IBA__c</columns>
+    <columns>meter_type_PCM__c</columns>
+    <columns>meter_type_RealAssets__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Type__c</field>
+        <operation>equals</operation>
+        <value>Meter Type</value>
+    </filters>
+    <filters>
+        <field>Product_Code__c</field>
+        <operation>equals</operation>
+        <value>DC-02080</value>
+    </filters>
+    <label>Meter Type</label>
+</ListView>

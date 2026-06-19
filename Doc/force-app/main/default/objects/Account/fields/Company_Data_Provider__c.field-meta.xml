@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Company_Data_Provider__c</fullName>
+    <inlineHelpText>What data provider does this account use?</inlineHelpText>
+    <label>Company Data Provider</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Audit Analytics</fullName>
+                <default>false</default>
+                <label>Audit Analytics</label>
+            </value>
+            <value>
+                <fullName>Bloomberg/BNA</fullName>
+                <default>false</default>
+                <label>Bloomberg/BNA</label>
+            </value>
+            <value>
+                <fullName>Bureau van Dijk - Orbis</fullName>
+                <default>false</default>
+                <label>Bureau van Dijk/Orbis</label>
+            </value>
+            <value>
+                <fullName>Compliance Science</fullName>
+                <default>false</default>
+                <label>Compliance Science</label>
+            </value>
+            <value>
+                <fullName>Crunchbase</fullName>
+                <default>false</default>
+                <label>Crunchbase</label>
+            </value>
+            <value>
+                <fullName>Dow Jones/Factiva</fullName>
+                <default>false</default>
+                <label>Dow Jones/Factiva</label>
+            </value>
+            <value>
+                <fullName>Dun &amp; Bradstreet</fullName>
+                <default>false</default>
+                <label>Dun &amp; Bradstreet/Avention/Hoovers</label>
+            </value>
+            <value>
+                <fullName>Equifax</fullName>
+                <default>false</default>
+                <label>Equifax</label>
+            </value>
+            <value>
+                <fullName>Exiger/DDIQ</fullName>
+                <default>false</default>
+                <label>Exiger/DDIQ</label>
+            </value>
+            <value>
+                <fullName>Experian</fullName>
+                <default>false</default>
+                <label>Experian</label>
+            </value>
+            <value>
+                <fullName>FactSet/Encompass</fullName>
+                <default>false</default>
+                <label>FactSet/Encompass</label>
+            </value>
+            <value>
+                <fullName>LexisNexis/Accurint/Accuity</fullName>
+                <default>false</default>
+                <label>LexisNexis/Accurint/Accuity</label>
+            </value>
+            <value>
+                <fullName>Morningstar/Pitchbook</fullName>
+                <default>false</default>
+                <label>Morningstar/Pitchbook</label>
+            </value>
+            <value>
+                <fullName>MyComplianceOffice</fullName>
+                <default>false</default>
+                <label>MyComplianceOffice</label>
+            </value>
+            <value>
+                <fullName>NICE/Actimize</fullName>
+                <default>false</default>
+                <label>NICE/Actimize</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>RDC</fullName>
+                <default>false</default>
+                <label>RDC</label>
+            </value>
+            <value>
+                <fullName>S&amp;P CapitalIQ</fullName>
+                <default>false</default>
+                <label>S&amp;P CapitalIQ</label>
+            </value>
+            <value>
+                <fullName>SchwabCT</fullName>
+                <default>false</default>
+                <label>SchwabCT</label>
+            </value>
+            <value>
+                <fullName>SmartSearchUK</fullName>
+                <default>false</default>
+                <label>SmartSearchUK</label>
+            </value>
+            <value>
+                <fullName>Thomson Reuters - World-Check</fullName>
+                <default>false</default>
+                <label>Thomson Reuters/WorldCheck</label>
+            </value>
+            <value>
+                <fullName>TransUnion/TLO</fullName>
+                <default>false</default>
+                <label>TransUnion/TLO</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

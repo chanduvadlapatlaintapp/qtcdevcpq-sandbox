@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Minimum_year_approver_level__c</fullName>
+    <description>Updated and created as part of Approval story BIZ-45146.
+Updated the formula as part of BIZ-69669 to reduce its compiled size.</description>
+    <externalId>false</externalId>
+    <formula>IF(Min_year_on_year_committed_spend__c*100&gt;10,0,
+   IF(Min_year_on_year_committed_spend__c*100&lt;10,
+      IF(SBQQ__SubscriptionTerm__c&lt;=12,0,
+         IF(First_Year_Software_Net_Total__c&gt;10000,3,1)
+      ),
+      1
+   )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Minimum year level(Exception)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

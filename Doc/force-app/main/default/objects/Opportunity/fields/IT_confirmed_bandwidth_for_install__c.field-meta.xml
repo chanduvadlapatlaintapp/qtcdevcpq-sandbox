@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IT_confirmed_bandwidth_for_install__c</fullName>
+    <description>Does the IT department at the firm have the resources needed for a successful install?
+
+Part of Technical Debt Project: Week 8 fields (Expiring June 1)</description>
+    <inlineHelpText>Does the IT department at the firm have the resources needed for a successful install?</inlineHelpText>
+    <label>IT confirmed bndwdth install (Exp June1)</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Yes</fullName>
+                <default>false</default>
+                <label>Yes</label>
+            </value>
+            <value>
+                <fullName>No</fullName>
+                <default>false</default>
+                <label>No</label>
+            </value>
+            <value>
+                <fullName>Yes, but have other major upgrades scheduled</fullName>
+                <default>false</default>
+                <label>Yes, but have other major upgrades scheduled</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

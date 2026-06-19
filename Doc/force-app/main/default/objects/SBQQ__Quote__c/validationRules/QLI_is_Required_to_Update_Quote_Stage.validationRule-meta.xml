@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>QLI_is_Required_to_Update_Quote_Stage</fullName>
+    <active>true</active>
+    <description>If the line count is not greater than 0, then throw error message. Built as per BIZ-45102</description>
+    <errorConditionFormula>AND(OR(ISBLANK(SBQQ__LineItemCount__c),SBQQ__LineItemCount__c = 0),
+ISPICKVAL(Quote_Stage__c,&apos;Finalize OSA&apos;)
+)</errorConditionFormula>
+    <errorMessage>Please add quote line before updating the Stage. If completing a renewal change, please set the stage to Configure Products before continuing.</errorMessage>
+</ValidationRule>

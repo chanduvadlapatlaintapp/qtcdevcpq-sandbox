@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Risk_Category__c</fullName>
+    <label>Risk Category</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Adoption</fullName>
+                <default>false</default>
+                <label>Adoption</label>
+            </value>
+            <value>
+                <fullName>Commercial</fullName>
+                <default>false</default>
+                <label>Commercial</label>
+            </value>
+            <value>
+                <fullName>Competition</fullName>
+                <default>false</default>
+                <label>Competition</label>
+            </value>
+            <value>
+                <fullName>Customer</fullName>
+                <default>false</default>
+                <label>Customer</label>
+            </value>
+            <value>
+                <fullName>Intapp Project Delay</fullName>
+                <default>false</default>
+                <label>Intapp Project Delay</label>
+            </value>
+            <value>
+                <fullName>Partner Issue</fullName>
+                <default>false</default>
+                <label>Partner Issue</label>
+            </value>
+            <value>
+                <fullName>Product Issue</fullName>
+                <default>false</default>
+                <label>Product Issue</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

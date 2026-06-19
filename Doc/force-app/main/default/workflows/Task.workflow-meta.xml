@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Notify_Task_Assignment</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Notify Task Assignment</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Business_Operations/New_Marketing_Task_Assigned</template>
+    </alerts>
+    <alerts>
+        <fullName>expire_trial_notification_1</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>expire trial notification</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/expire_trial_notification</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Complete_Task</fullName>
+        <description>Completes a Task via Status field</description>
+        <field>Status</field>
+        <literalValue>Completed</literalValue>
+        <name>Complete Task</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>DemoFiled</fullName>
+        <description>This update indicates that someone just completed a demo.</description>
+        <field>Type</field>
+        <literalValue>Demo</literalValue>
+        <name>Demo Filed</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Task_Update_Campaign_Follow_Up</fullName>
+        <description>Changes Campaign Follow Up to &quot;Closed by Owner&quot; upon closing of Task</description>
+        <field>Campaign_Follow_Up__c</field>
+        <literalValue>Closed by Owner</literalValue>
+        <name>Task_Update Campaign Follow Up</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Task_Update_Campaign_Follow_Up_Discont</fullName>
+        <description>Changes Campaign Follow Up to &quot;Expired - No Action Needed&quot; upon discontinuing of Task</description>
+        <field>Campaign_Follow_Up__c</field>
+        <literalValue>Expired - No Action Needed</literalValue>
+        <name>Task_Update Campaign Follow Up Discont</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Rule Code%3A TASK-001xFxx</fullName>
+        <actions>
+            <name>Task_Update_Campaign_Follow_Up</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Task.Campaign_Follow_Up__c</field>
+            <operation>equals</operation>
+            <value>Target</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Task.Status</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </criteriaItems>
+        <description>Rule Code: TASK-001xFxx
+Task Closing Cleanup
+When a Task is closed where the Campaign Follow Up is &quot;Target&quot;, change the Campaign Follow Up to &quot;Closed by Owner&quot;</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A TASK-002xFxx</fullName>
+        <actions>
+            <name>Complete_Task</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>(1 OR 2 OR 3 OR 4) AND 5</booleanFilter>
+        <criteriaItems>
+            <field>Task.Campaign_Follow_Up__c</field>
+            <operation>equals</operation>
+            <value>Closed by Owner</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Task.Campaign_Follow_Up__c</field>
+            <operation>contains</operation>
+            <value>Expired</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Task.Campaign_Follow_Up__c</field>
+            <operation>equals</operation>
+            <value>Already Engaged</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Task.Campaign_Follow_Up__c</field>
+            <operation>equals</operation>
+            <value>Meeting Has Been Set</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Task.Status</field>
+            <operation>notEqual</operation>
+            <value>Completed</value>
+        </criteriaItems>
+        <description>Rule Code: TASK-002xFxx
+Task Closing Cleanup 2
+When a Task&apos;s Campaign Follow Up is changed to &quot;Closed by Owner,&quot; the Task status will also be changed to &quot;Completed.&quot;</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A TASK-003xFxx</fullName>
+        <actions>
+            <name>Task_Update_Campaign_Follow_Up_Discont</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Task.Campaign_Follow_Up__c</field>
+            <operation>equals</operation>
+            <value>Target</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Task.Status</field>
+            <operation>equals</operation>
+            <value>Discontinued</value>
+        </criteriaItems>
+        <description>Rule Code: TASK-003xFxx
+Task Closing Cleanup 3
+When a Task is DISCONTINUED where the Campaign Follow Up is &quot;Target&quot;, change the Campaign Follow Up to &quot;Expired - No Action Needed&quot;</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A TASK-004Exxx</fullName>
+        <actions>
+            <name>Notify_Task_Assignment</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Task.Subject</field>
+            <operation>contains</operation>
+            <value>Whitepaper Kiosk,Webinar Kiosk</value>
+        </criteriaItems>
+        <description>Rule Code: TASK-004Exxx
+SC-000012
+Notify Marketing Task Generated
+Sends an email notification when a marketing task created</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

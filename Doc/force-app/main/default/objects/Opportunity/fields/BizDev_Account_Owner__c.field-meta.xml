@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BizDev_Account_Owner__c</fullName>
+    <description>To specify who the bizdev account owner is - because they dont&apos; have individual accts.</description>
+    <label>BizDev Account Owner</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Bob Schick</fullName>
+                <default>false</default>
+                <label>Bob Schick</label>
+            </value>
+            <value>
+                <fullName>James Nielsen</fullName>
+                <default>false</default>
+                <label>James Nielsen</label>
+            </value>
+            <value>
+                <fullName>Oliver Wai</fullName>
+                <default>false</default>
+                <label>Oliver Wai</label>
+            </value>
+            <value>
+                <fullName>Scott McLin</fullName>
+                <default>false</default>
+                <label>Scott McLin</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

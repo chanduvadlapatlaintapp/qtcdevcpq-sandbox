@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Potential_Risks__c</fullName>
+    <label>Potential Risks</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Financial Concession from Intapp to Customer</fullName>
+                <default>false</default>
+                <label>Financial Concession from Intapp to Customer</label>
+            </value>
+            <value>
+                <fullName>Financial impact on customer</fullName>
+                <default>false</default>
+                <label>Financial impact on customer</label>
+            </value>
+            <value>
+                <fullName>General commercial issues</fullName>
+                <default>false</default>
+                <label>General commercial issues</label>
+            </value>
+            <value>
+                <fullName>Relationship damage with Intapp</fullName>
+                <default>false</default>
+                <label>Relationship damage with Intapp</label>
+            </value>
+            <value>
+                <fullName>Subscription cancellation</fullName>
+                <default>false</default>
+                <label>Subscription cancellation</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

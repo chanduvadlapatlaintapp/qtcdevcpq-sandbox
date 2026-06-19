@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DLI_Product__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>DLI Product</label>
+    <referenceTo>Product2</referenceTo>
+    <relationshipLabel>OP4I DLIP View</relationshipLabel>
+    <relationshipName>OP4I_DLIP_View</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

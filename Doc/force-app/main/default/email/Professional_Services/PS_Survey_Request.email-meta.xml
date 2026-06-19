@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email template used when PS Sending Survey Request from Case</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PS_Letterhead</letterhead>
+    <name>PS Survey Request</name>
+    <style>formalLetter</style>
+    <subject>IntApp Professional Services Survey</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+We are always looking to strengthen the partnership we have with our customers. You have recently completed a project with our Professional Services Team and we appreciate any feedback you may have on that experience.
+
+If you have a couple of minutes to fill out the following brief survey, it will help us continue to improve our services.
+
+Click here to take the survey:
+https://www.intapp.com/services-survey?c={!Case.Id}&amp;cid={!Contact.Id}
+
+
+Thank you very much,
+
+{!Case.OwnerFullName}
+{!Case.OwnerTitle}
+IntApp,Inc.
+http://www.intapp.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

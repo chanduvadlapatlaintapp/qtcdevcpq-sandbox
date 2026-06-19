@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>it_support@intapp.com</contactEmail>
+    <label>Clarizen</label>
+    <logoUrl>https://intapp--c.na3.content.force.com/servlet/servlet.ImageServer?id=01550000001a3bI&amp;oid=00DWA000005pTQ5</logoUrl>
+    <samlConfig>
+        <acsUrl>https://app.clarizen.com/Clarizen/Pages/Integrations/SAML/SamlResponse.aspx</acsUrl>
+        <encryptionType>AES_128</encryptionType>
+        <entityUrl>Clarizen</entityUrl>
+        <issuer>https://intapp.my.salesforce.com</issuer>
+        <samlNameIdFormat>Unspecified</samlNameIdFormat>
+        <samlSigningAlgoType>SHA1</samlSigningAlgoType>
+        <samlSubjectCustomAttr>Clarizen_Username</samlSubjectCustomAttr>
+        <samlSubjectType>CustomAttribute</samlSubjectType>
+    </samlConfig>
+    <startUrl>https://app2.clarizen.com/Clarizen/Pages/Integrations/SAML/SamlRequest.aspx?EntityId=23479425</startUrl>
+</ConnectedApp>

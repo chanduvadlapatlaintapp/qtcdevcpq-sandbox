@@ -1,0 +1,42 @@
+<template>
+    <template if:true={hasRecords}>
+        <div class="slds-card slds-card_boundary ">
+            <!-- Related List Style Header -->
+            <div class="slds-page-header slds-page-header_joined slds-page-header_bleed slds-shrink-none slds-is-relative slds-p-horizontal_medium slds-p-vertical_small slds-border_bottom">
+                <div class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__figure">
+                        <span class="slds-avatar slds-avatar_small" style="background-color: #747E96">
+                            <img src={objectIcon} alt="Related Icon" />
+                        </span>
+                    </div>
+                    <div class="slds-media__body slds-align-middle">
+                        <h2 class="slds-card__header-title">
+                            <span class="slds-truncate" title={cardTitle}>{cardTitle}
+                                <template if:true={recordCount}>
+                                    <span class="slds-m-left_xx-small">({recordCount})</span>
+                                </template>
+                            </span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Table -->
+            <div class="slds-card__body slds-card__body_inner" style="margin-top: 0px;padding: 0px;">
+                <lightning-datatable
+                    key-field="Id"
+                    data={records}
+                    columns={columns}
+                    hide-checkbox-column
+                    class="slds-m-top_small"
+                ></lightning-datatable>
+            </div>
+        </div>
+    </template>
+
+    <template if:true={error}>
+        <div class="slds-text-color_error slds-m-around_medium">
+            {error}
+        </div>
+    </template>
+</template>

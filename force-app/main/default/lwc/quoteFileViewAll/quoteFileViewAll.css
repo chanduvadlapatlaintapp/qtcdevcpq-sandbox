@@ -1,0 +1,17 @@
+/* quoteFileViewAll.css - Full-page view styling */
+
+:host {
+    display: block;
+    padding: 1rem;
+}
+
+/* Remove extra padding around datatable */
+.slds-card__body lightning-datatable {
+    width: 100%;
+}
+
+/* Error banner */
+.slds-notify_toast {
+    border-radius: 0.25rem;
+    padding: 0.75rem 1rem;
+}

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Opportunity.Product_Line_Simple__c</field>
+    </columns>
+    <columns>
+        <field>Opportunity.Practice_Group__c</field>
+    </columns>
+    <columns>
+        <field>Account.Risk_Strategic_Account__c</field>
+    </columns>
+    <columns>
+        <field>Opportunity.Geography__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>((1 OR 2) AND 3) AND 4</booleanFilter>
+        <criteriaItems>
+            <column>Account.Legal_Tier_Split__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>A</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Risk_Strategic_Account__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Risk</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Product2.Business_Unit_New__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Risk &amp; Compliance</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Opportunity.Geography__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>North America,EMEA</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>ACCOUNT_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Legal Risk Customers - Tier A or Strateg</name>
+    <params>
+        <name>open</name>
+        <value>closedwon</value>
+    </params>
+    <params>
+        <name>probability</name>
+        <value>&gt;0</value>
+    </params>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>OpportunityProduct</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CLOSE_DATE</dateColumn>
+        <interval>INTERVAL_PREVCUR2FY</interval>
+    </timeFrameFilter>
+</Report>

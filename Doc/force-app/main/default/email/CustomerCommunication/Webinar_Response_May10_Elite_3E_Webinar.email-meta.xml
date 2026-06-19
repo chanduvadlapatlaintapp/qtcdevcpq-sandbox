@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Response for Elite 3E Webinar</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - May10 Elite 3E Webinar</name>
+    <style>none</style>
+    <subject>IntApp Elite 3E Webinar</subject>
+    <textOnly>{!Lead.FirstName} {!Lead.LastName}: 
+
+Thank you for registering for the IntApp Elite 3E Webinar. The login details are below.
+
+Date: Thursday, May 27
+Time: 9 am Pacific / 12 pm Eastern (4 pm GMT)
+
+Video:
+
+Conference URL: https://www.livemeeting.com/cc/vcc/join?id=w7451666&amp;role=attend&amp;pw=A745166
+Meeting ID: w7451666
+Entry Code: A745166 
+
+Audio:
+
+Conference Audio Dial In:
+US/Canada: 877-879-6203
+UK: 0-808-101-7162
+Passcode: 7451666 
+
+
+http://www.intapp.com
+All information Copyright 2009 IntApp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

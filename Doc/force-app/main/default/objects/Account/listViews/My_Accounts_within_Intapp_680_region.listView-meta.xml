@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Accounts_within_Intapp_680_region</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ACCOUNT.TYPE</columns>
+    <columns>Intapp_Master_Ranking__c</columns>
+    <columns>ACCOUNT.ADDRESS1_CITY</columns>
+    <columns>ACCOUNT.ADDRESS1_COUNTRY</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>Intapp_Master_Ranking__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>My Accounts - within Intapp 680 region</label>
+    <language>en_US</language>
+</ListView>

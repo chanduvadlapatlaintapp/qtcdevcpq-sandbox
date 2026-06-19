@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Update_Next_Step_Updated_By</fullName>
+        <field>Next_Step_Updated_By__c</field>
+        <formula>$User.FirstName &amp;&quot; &quot;&amp; $User.LastName</formula>
+        <name>Update Next Step Updated By</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Next_Step_Updated_On</fullName>
+        <field>Next_Step_Updated_On__c</field>
+        <formula>NOW()</formula>
+        <name>Update Next Step Updated On</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Rule Code%3A CRE-001xFxx</fullName>
+        <actions>
+            <name>Update_Next_Step_Updated_By</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Next_Step_Updated_On</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CRE-001xFxx
+Update next step date and person
+When the next step is updated, record the date of the update and the person who did the update.</description>
+        <formula>ISCHANGED(Next_Step__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

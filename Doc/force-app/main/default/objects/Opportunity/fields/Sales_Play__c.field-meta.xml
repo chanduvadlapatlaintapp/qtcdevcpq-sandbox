@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Play__c</fullName>
+    <description>Tracks which play is being followed for each opportunity.</description>
+    <label>Sales Play</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Client Dev</fullName>
+                <default>false</default>
+                <label>Client Dev</label>
+            </value>
+            <value>
+                <fullName>Compliant Time</fullName>
+                <default>false</default>
+                <label>Compliant Time</label>
+            </value>
+            <value>
+                <fullName>Connected Firm</fullName>
+                <default>false</default>
+                <label>Connected Firm</label>
+            </value>
+            <value>
+                <fullName>Content</fullName>
+                <default>false</default>
+                <label>Content</label>
+            </value>
+            <value>
+                <fullName>FMS Migration</fullName>
+                <default>false</default>
+                <label>FMS Migration</label>
+            </value>
+            <value>
+                <fullName>Global Independence</fullName>
+                <default>false</default>
+                <label>Global Independence</label>
+            </value>
+            <value>
+                <fullName>Local Conflicts</fullName>
+                <default>false</default>
+                <label>Local Conflicts</label>
+            </value>
+            <value>
+                <fullName>Platform</fullName>
+                <default>false</default>
+                <label>Platform</label>
+            </value>
+            <value>
+                <fullName>Tech Replacement</fullName>
+                <default>false</default>
+                <label>Tech Replacement</label>
+            </value>
+            <value>
+                <fullName>Time for Tax</fullName>
+                <default>false</default>
+                <label>Time for Tax</label>
+            </value>
+            <value>
+                <fullName>UBA</fullName>
+                <default>false</default>
+                <label>UBA</label>
+            </value>
+            <value>
+                <fullName>Uplift/Upgrade</fullName>
+                <default>false</default>
+                <label>Uplift/Upgrade</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

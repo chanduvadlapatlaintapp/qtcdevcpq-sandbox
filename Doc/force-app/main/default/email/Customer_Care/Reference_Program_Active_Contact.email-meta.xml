@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Active Email of a customer reference.</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>PS_Survey_Letterhead</letterhead>
+    <name>Reference Program: Active Contact</name>
+    <style>freeForm</style>
+    <subject>Active Reference: {!Contact.Name} at {!Account.Name}</subject>
+    <textOnly>{!Contact.Name} has been marked as an active reference for the {!Contact.Reference_Products__c} product(s). Please see the link below for further details.
+
+{!Contact.Link}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

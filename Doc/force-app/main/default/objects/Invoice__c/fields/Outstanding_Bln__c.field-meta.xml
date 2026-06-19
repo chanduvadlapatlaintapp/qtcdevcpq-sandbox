@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Outstanding_Bln__c</fullName>
+    <formula>IF(
+    Amount_Invoiced__c  -  amt_credited__c -  Amt_Paid__c &lt; 1, 
+    0,
+    Amount_Invoiced__c  -  amt_credited__c -  Amt_Paid__c
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Outstanding Balance (New)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

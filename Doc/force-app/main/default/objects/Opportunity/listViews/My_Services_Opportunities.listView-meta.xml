@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Services_Opportunities</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.AMOUNT</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.NEXT_STEP</columns>
+    <columns>Primary_Business_Problem__c</columns>
+    <columns>Incumbent_Solution__c</columns>
+    <columns>Primary_Competitor__c</columns>
+    <columns>Urgency_Driver_for_Q4_2006__c</columns>
+    <columns>Firm_Procurement_Team__c</columns>
+    <columns>Project_Budgeted__c</columns>
+    <columns>Project_Start_Date__c</columns>
+    <columns>Contract_Signer__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>OPPORTUNITY.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Opportunity.Legal_Services_Only</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>2. My Services Opportunities</label>
+</ListView>

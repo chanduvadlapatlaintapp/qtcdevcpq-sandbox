@@ -1,0 +1,1852 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <baseObject>Contract</baseObject>
+    <category>other</category>
+    <deployed>true</deployed>
+    <description>Custom Contract Report</description>
+    <label>Custom Contract Report</label>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>#PO Number</displayNameOverride>
+            <field>PO_Number__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Account Name</displayNameOverride>
+            <field>Account</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Account Phone Number</displayNameOverride>
+            <field>Account_Phone_Number__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Activated By</displayNameOverride>
+            <field>ActivatedBy</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Activated Date</displayNameOverride>
+            <field>ActivatedDate</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Active</displayNameOverride>
+            <field>Active__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Active Contract</displayNameOverride>
+            <field>SBQQ__ActiveContract__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>ACV Potential Tier</displayNameOverride>
+            <field>ACV_Potential_Tier__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Additional Requester email</displayNameOverride>
+            <field>additional_Requester_email__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Amendment &amp; Renewal Behavior</displayNameOverride>
+            <field>SBQQ__AmendmentRenewalBehavior__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Amendment Expiration</displayNameOverride>
+            <field>Amendment_Expiration__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Amendment Expiration or Today +2 weeks</displayNameOverride>
+            <field>Amendment_Expiration_or_Today_2_weeks__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Amendment Opportunity Record Type Id</displayNameOverride>
+            <field>SBQQ__AmendmentOpportunityRecordTypeId__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Amendment Opportunity Stage</displayNameOverride>
+            <field>SBQQ__AmendmentOpportunityStage__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Amendment Owner</displayNameOverride>
+            <field>SBQQ__AmendmentOwner__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Amendment Owner</displayNameOverride>
+            <field>Amendment_Owner__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Amendment Pricebook Id</displayNameOverride>
+            <field>SBQQ__AmendmentPricebookId__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Amendment Start Date</displayNameOverride>
+            <field>SBQQ__AmendmentStartDate__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Amendment Status</displayNameOverride>
+            <field>Amendment_Status__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Appliance 1 ID#:</displayNameOverride>
+            <field>Appliance_1_ID__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Appliance 2 ID#:</displayNameOverride>
+            <field>Appliance_2_ID__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Appliance Model - 2</displayNameOverride>
+            <field>Appliance_Model_2__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Appliance Model - Production</displayNameOverride>
+            <field>Appliance_Model_1__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Appliance Ship Date (App. 2 - opt.)</displayNameOverride>
+            <field>Appliance_Ship_Date_Appliance_2_opt__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Appliance Ship Date (Appliance 1)</displayNameOverride>
+            <field>Appliance_Ship_Date__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Approval counter</displayNameOverride>
+            <field>Approval_counter__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Approval Request Notes</displayNameOverride>
+            <field>Approval_Request_Notes__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Approval Status</displayNameOverride>
+            <field>Approval_Status__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Approver 1</displayNameOverride>
+            <field>Approver_1__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Approver 2</displayNameOverride>
+            <field>Approver_2__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Approver 3</displayNameOverride>
+            <field>Approver_3__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Approver 4</displayNameOverride>
+            <field>Approver_4__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Approver 5</displayNameOverride>
+            <field>Approver_5__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Approver 6</displayNameOverride>
+            <field>Approver_6__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Audited for Supersession</displayNameOverride>
+            <field>Audited_for_Supersession__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>AvaTax Message</displayNameOverride>
+            <field>AVA_SFCPQ__AvaTaxMessage__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Billed Under</displayNameOverride>
+            <field>Billed_Under__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Billed Under OSA</displayNameOverride>
+            <field>Billed_Under_OSA__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Billing Account</displayNameOverride>
+            <field>Billing_Account__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Billing Address</displayNameOverride>
+            <field>BillingAddress</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Billing City</displayNameOverride>
+            <field>BillingCity</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Billing Country</displayNameOverride>
+            <field>BillingCountry</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Billing Frequency</displayNameOverride>
+            <field>BillingFrequency__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Billing Geocode Accuracy</displayNameOverride>
+            <field>BillingGeocodeAccuracy</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Billing Latitude</displayNameOverride>
+            <field>BillingLatitude</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Billing Longitude</displayNameOverride>
+            <field>BillingLongitude</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Billing Pause Expiration</displayNameOverride>
+            <field>Billing_Pause_Expiration__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Billing Pause Owner</displayNameOverride>
+            <field>Billing_Pause_Owner__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Billing Pause Status</displayNameOverride>
+            <field>Billing_Pause_Status__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Billing State/Province</displayNameOverride>
+            <field>BillingState</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Billing Street</displayNameOverride>
+            <field>BillingStreet</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Billing Zip/Postal Code</displayNameOverride>
+            <field>BillingPostalCode</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Bill To Address</displayNameOverride>
+            <field>Bill_To_Address__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Booking Date</displayNameOverride>
+            <field>Booking_Date__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Calculate Tax</displayNameOverride>
+            <field>AVA_SFCPQ__Contract_AutomateTaxCalculation__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Client Confidentiality Agreement</displayNameOverride>
+            <field>Client_Confidentiality_Agreement2__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Client Onboarding Status</displayNameOverride>
+            <field>Client_Onboarding_Status__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Co-Marketing Agreement</displayNameOverride>
+            <field>Co_Marketing_Agreement_2__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Combine Subscription Quantities</displayNameOverride>
+            <field>SBQQ__SubscriptionQuantitiesCombined__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Company Signed By</displayNameOverride>
+            <field>CompanySigned</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Effective Date</displayNameOverride>
+            <field>CompanySignedDate</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Confidentiality Svcs Data Sheet</displayNameOverride>
+            <field>Confidentiality_Svcs_Data_Sheet__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Consolidated Quote</displayNameOverride>
+            <field>Consolidated_Quote__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contingency Deadline</displayNameOverride>
+            <field>Contingency_Deadline__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contingency Type</displayNameOverride>
+            <field>Contingency__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contingency Type</displayNameOverride>
+            <field>Contingency_Type__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contract Currency</displayNameOverride>
+            <field>CurrencyIsoCode</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contract Duration</displayNameOverride>
+            <field>Contract_Duration__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contracted Amendment Date</displayNameOverride>
+            <field>Contracted_Amendment_Date__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Booking Date</displayNameOverride>
+            <field>EndDate</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contract End Date Timezone Adjusted</displayNameOverride>
+            <field>Contract_End_Date_Timezone_Adjusted__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contract ID</displayNameOverride>
+            <field>Id</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contract Master Terms</displayNameOverride>
+            <field>Contract_Master_Terms__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contract Name</displayNameOverride>
+            <field>Name</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <displayNameOverride>Contract Number</displayNameOverride>
+            <field>ContractNumber</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contract Number</displayNameOverride>
+            <field>Contract_Number__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contract Number(Display)</displayNameOverride>
+            <field>Contract_Number_Display__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contract Owner</displayNameOverride>
+            <field>Owner</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contract Recipient</displayNameOverride>
+            <field>Contract_Recipient__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contract Start Date</displayNameOverride>
+            <field>StartDate</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contract Start Date Timezone Adjusted</displayNameOverride>
+            <field>Contract_Start_Date_Timezone_Adjusted__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contract Term (months)</displayNameOverride>
+            <field>ContractTerm</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contract Uploaded</displayNameOverride>
+            <field>Contract_Uploaded__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Created By</displayNameOverride>
+            <field>CreatedBy</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Created Date</displayNameOverride>
+            <field>CreatedDate</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Cross Border Summary Message</displayNameOverride>
+            <field>AVA_SFCPQ__Cross_Border_Summary_Message__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Current Invoice Due Date</displayNameOverride>
+            <field>Current_Invoice_Due_Date__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Customer Form Received</displayNameOverride>
+            <field>Customer_Form_Received__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Customer Signed By</displayNameOverride>
+            <field>CustomerSigned</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Customer Signed Date</displayNameOverride>
+            <field>CustomerSignedDate</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Customer Signed Title</displayNameOverride>
+            <field>CustomerSignedTitle</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Custom Software Payment Term</displayNameOverride>
+            <field>Custom_Software_Payment_Term__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Custom Terms</displayNameOverride>
+            <field>Custom_Terms__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Date Invoice Sent</displayNameOverride>
+            <field>Date_Invoice_Sent__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>DCP Contract Number</displayNameOverride>
+            <field>DCP_Contract_Number__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Deal Cloud Id</displayNameOverride>
+            <field>Deal_Cloud_Id__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Deal Type</displayNameOverride>
+            <field>Deal_Type__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Default Renewal Contact Roles</displayNameOverride>
+            <field>SBQQ__DefaultRenewalContactRoles__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Default Renewal Partners</displayNameOverride>
+            <field>SBQQ__DefaultRenewalPartners__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Deferral</displayNameOverride>
+            <field>Deferral__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Description</displayNameOverride>
+            <field>Description</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Disable Amendment Co-Term</displayNameOverride>
+            <field>SBQQ__DisableAmendmentCoTerm__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Discount Approved</displayNameOverride>
+            <field>Discount_Approved__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Discount Calculated</displayNameOverride>
+            <field>Discount_Calculated__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Discount Justified</displayNameOverride>
+            <field>Discount_Justified__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Early Payment Incentive</displayNameOverride>
+            <field>Early_Payment_Incentive__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Early Payment Notes</displayNameOverride>
+            <field>Early_Payment_Notes__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Enterprise - Development</displayNameOverride>
+            <field>Enterprise_Development__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Enterprise - Production</displayNameOverride>
+            <field>Enterprise_Production__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Entitled to Permanent License (Paid)</displayNameOverride>
+            <field>Entitled_to_Permanent_License__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Entity/Use Code</displayNameOverride>
+            <field>AVA_SFCPQ__Entity_Use_Code__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Escrow Agreement</displayNameOverride>
+            <field>Escrow_Agreement__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Escrow Commitments</displayNameOverride>
+            <field>Escrow_Commitments__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Evergreen</displayNameOverride>
+            <field>SBQQ__Evergreen__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Exception Approval</displayNameOverride>
+            <field>Exception_Approval__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Exception Approver 1</displayNameOverride>
+            <field>Exception_Approver_1__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Exception Approver 2</displayNameOverride>
+            <field>Exception_Approver_2__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Exception Approver 3</displayNameOverride>
+            <field>Exception_Approver_3__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Exception Approver 4</displayNameOverride>
+            <field>Exception_Approver_4__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Exception Approver 5</displayNameOverride>
+            <field>Exception_Approver_5__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Exception Approver 6</displayNameOverride>
+            <field>Exception_Approver_6__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Expiration Date</displayNameOverride>
+            <field>SBQQ__ExpirationDate__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>External Notification Sent</displayNameOverride>
+            <field>External_Notification_Sent__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>First Segment Months</displayNameOverride>
+            <field>First_Segment_Months__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Free Months</displayNameOverride>
+            <field>Free_Months__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Future Pricing Commitment</displayNameOverride>
+            <field>Future_Lawyer_FE_Uplift_Commitments__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>GTM Motion Tier</displayNameOverride>
+            <field>GTM_Motion_Tier__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Hide Pricing</displayNameOverride>
+            <field>Hide_Pricing__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Import Fees</displayNameOverride>
+            <field>AVA_SFCPQ__Import_Fees__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Includes modification to contract term?</displayNameOverride>
+            <field>Includes_modification_to_contract_term__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Includes multi-year term for on-perm?</displayNameOverride>
+            <field>Includes_multi_year_term_for_on_perm__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Includes platform/deployment conversion?</displayNameOverride>
+            <field>Includes_platform_deployment_conversion__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Includes Termination Clause?</displayNameOverride>
+            <field>Includes_Termination_Clause__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Inclusive Tax Amount</displayNameOverride>
+            <field>AVA_SFCPQ__Inclusive_Tax_Amount__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Initial Software Term Length (Months)</displayNameOverride>
+            <field>Initial_Software_Term_Length__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Initial Term End Date</displayNameOverride>
+            <field>Initial_Term_End_Date__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Installation &amp; Setup Project</displayNameOverride>
+            <field>Installation_Setup_Project__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Intapp 680</displayNameOverride>
+            <field>Intapp_680__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Intapp Terms</displayNameOverride>
+            <field>Tsunami_Appliance_Terms2__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Intapp Walls Terms</displayNameOverride>
+            <field>Wall_Builder_Terms__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Invoice Message</displayNameOverride>
+            <field>AVA_SFCPQ__Invoice_Message__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Invoice Type</displayNameOverride>
+            <field>Invoice_Type__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Invoicing Contact</displayNameOverride>
+            <field>Invoicing_Contact__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Is Migrated Contract</displayNameOverride>
+            <field>Is_Migrated_Contract__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Is Seller Importer Of Record</displayNameOverride>
+            <field>AVA_SFCPQ__Is_Seller_Importer_Of_Record__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Last Activity</displayNameOverride>
+            <field>LastActivityDate</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Last Approved Date</displayNameOverride>
+            <field>LastApprovedDate</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Last Modified By</displayNameOverride>
+            <field>LastModifiedBy</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Last Modified Date</displayNameOverride>
+            <field>LastModifiedDate</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Law Firm Confidentiality Mgmt Overview</displayNameOverride>
+            <field>Law_Firm_Confidentiality_Mgmt_Overview__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Legacy DCP Billing Account</displayNameOverride>
+            <field>Legacy_DCP_Billing_Account__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Legacy Quote Id</displayNameOverride>
+            <field>Legacy_Quote_Id__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Liability</displayNameOverride>
+            <field>Liability__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Liability Confidentiality Exception</displayNameOverride>
+            <field>Liability_Confidentiality_Exception__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Liability Notes</displayNameOverride>
+            <field>Liability_Notes__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Line of Business</displayNameOverride>
+            <field>Applicable_Subsidiary__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Line of Business</displayNameOverride>
+            <field>Line_of_Business__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Manual OSA Indicator</displayNameOverride>
+            <field>Manual_OSA_Indicator__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Master Contract</displayNameOverride>
+            <field>SBQQ__MasterContract__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>MDQ Renewal Behavior</displayNameOverride>
+            <field>SBQQ__MDQRenewalBehavior__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Migration Status</displayNameOverride>
+            <field>Migration_Status__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Multi-Product Deal</displayNameOverride>
+            <field>Multi_Product_Deal__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Multi-year Cancellation fee</displayNameOverride>
+            <field>Cancellation_fee__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Network Configuration Datasheet</displayNameOverride>
+            <field>Network_Configuration_Datasheet__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Non-cancelable Multiyear Agreements</displayNameOverride>
+            <field>Non_cancelable_Multiyear_Agreements__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Non-standard Cloud Data Location</displayNameOverride>
+            <field>Non_standard_Cloud_Data_Location__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Non-standard Cloud Data Location Detail</displayNameOverride>
+            <field>Non_standard_Cloud_Data_Location_Detail__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Non-Standard Cloud Location - this deal</displayNameOverride>
+            <field>Non_Standard_Cloud_Location__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Notes</displayNameOverride>
+            <field>Notes__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Number of users</displayNameOverride>
+            <field>Number_of_users__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Old Contract Reference</displayNameOverride>
+            <field>Old_Contract_Reference__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>OnePlace ID</displayNameOverride>
+            <field>OP4I_Deal_ID__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>OP4I Contract Id</displayNameOverride>
+            <field>OP4I_Contract_Id__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>OP4I Contract Number</displayNameOverride>
+            <field>OP4I_Contract_Number__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>OP4I Deal ID</displayNameOverride>
+            <field>OP4I_Auto_Number_Deal_ID__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>OP4I Deal Owner</displayNameOverride>
+            <field>OP4I_Deal_Owner__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>OP4I Deal URL</displayNameOverride>
+            <field>OP4I_Deal_URL__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>OP4I Error</displayNameOverride>
+            <field>OP4I_Error__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>OP4I Sales Segment</displayNameOverride>
+            <field>OP4I_Sales_Segment__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Opportunity</displayNameOverride>
+            <field>SBQQ__Opportunity__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Opportunity Engagement Summary</displayNameOverride>
+            <field>Opportunity_Engagement_Summary2__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Opportunity or Quote Price Book ID</displayNameOverride>
+            <field>SBQQ__OpportunityPricebookId__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Order</displayNameOverride>
+            <field>SBQQ__Order__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Order and Sale Agreement</displayNameOverride>
+            <field>Order_and_Sale_Agreement2__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Order Id</displayNameOverride>
+            <field>Order_Id__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>OSA Auto-renewal Exclusion</displayNameOverride>
+            <field>OSA_Auto_renewal_Exclusion__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>OSA Customer Name</displayNameOverride>
+            <field>OSA_Customer_Name__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>OSA Number</displayNameOverride>
+            <field>OSA_Number__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>OSA Signature Date</displayNameOverride>
+            <field>OSA_Signature_Date__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>OSA Type</displayNameOverride>
+            <field>OSA_Type__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Owner Expiration Notice</displayNameOverride>
+            <field>OwnerExpirationNotice</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Parent Services Contract</displayNameOverride>
+            <field>Contract__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Parent Terms Contract</displayNameOverride>
+            <field>Parent_Contract__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Partner Consulting Dollars</displayNameOverride>
+            <field>Consulting_Dollars_non_Tsunami__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Partner Consulting Hours</displayNameOverride>
+            <field>Partner_Consulting_Hours__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Partner Consulting Sale Agreement</displayNameOverride>
+            <field>Partner_Consulting_Sale_Agreement2__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Pause Renewal Quote</displayNameOverride>
+            <field>Pause_Renewal_Quote__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Payment Processor</displayNameOverride>
+            <field>Payment_Processor__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Payment Received</displayNameOverride>
+            <field>Payment_Received__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Payment Status</displayNameOverride>
+            <field>Payment_Status__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Payment Terms: Services</displayNameOverride>
+            <field>Payment_Terms_Services__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Payment Terms: Software</displayNameOverride>
+            <field>Payment_Terms_Software__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Payment Terms Override</displayNameOverride>
+            <field>Payment_Terms_Override__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Pending Amendment Date</displayNameOverride>
+            <field>Pending_Amendment_Date__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Preserve Bundle Structure</displayNameOverride>
+            <field>SBQQ__PreserveBundleStructureUponRenewals__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Price Book</displayNameOverride>
+            <field>Pricebook2</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Price book exception</displayNameOverride>
+            <field>Price_book_exception__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Processing Status</displayNameOverride>
+            <field>Processing_Status__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Production Data Sources</displayNameOverride>
+            <field>Additional_Data_Sources__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Proposal</displayNameOverride>
+            <field>Proposal__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Quote</displayNameOverride>
+            <field>SBQQ__Quote__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Ramping Users</displayNameOverride>
+            <field>Ramping_Users__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Recipient</displayNameOverride>
+            <field>Recipient__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Recipient&apos;s Title</displayNameOverride>
+            <field>Recipient_s_Title__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Recipient Phone</displayNameOverride>
+            <field>Recipient_Phone__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Recipient Title</displayNameOverride>
+            <field>Recipient_Title__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Recurring Adjustment Renewal</displayNameOverride>
+            <field>Recurring_Adjustment_Renewal__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Recurring Per Lawyer</displayNameOverride>
+            <field>Recurring_Per_Lawyer__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Reference Program?</displayNameOverride>
+            <field>Reference_Program__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Renewal Forecast</displayNameOverride>
+            <field>SBQQ__RenewalForecast__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Renewal Opportunity</displayNameOverride>
+            <field>SBQQ__RenewalOpportunity__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Renewal Opportunity Record Type Id</displayNameOverride>
+            <field>SBQQ__RenewalOpportunityRecordTypeId__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Renewal Opportunity Stage</displayNameOverride>
+            <field>SBQQ__RenewalOpportunityStage__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Renewal Owner</displayNameOverride>
+            <field>SBQQ__RenewalOwner__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Renewal Pricebook Id</displayNameOverride>
+            <field>SBQQ__RenewalPricebookId__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Renewal Quoted</displayNameOverride>
+            <field>SBQQ__RenewalQuoted__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Renewal Term</displayNameOverride>
+            <field>SBQQ__RenewalTerm__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Renewal to be created Before (Days)</displayNameOverride>
+            <field>Renewal_to_be_created_Before_Days__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Renewal Uplift (%)</displayNameOverride>
+            <field>SBQQ__RenewalUpliftRate__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Renewed Contract</displayNameOverride>
+            <field>Renewed_Contract__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Replace existing agreement?</displayNameOverride>
+            <field>Replace_existing_agreement__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Requester</displayNameOverride>
+            <field>Change_Requestor__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Requester 2</displayNameOverride>
+            <field>Requester_2__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Retainer %</displayNameOverride>
+            <field>Retainer_percentage__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Retainer %</displayNameOverride>
+            <field>Retainer__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Right of Return</displayNameOverride>
+            <field>Right_of_Return__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Risk Management Program</displayNameOverride>
+            <field>Risk_Management_Program__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>ROR</displayNameOverride>
+            <field>ROR__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>ROR Expiration Date</displayNameOverride>
+            <field>ROR_Expiration_Date__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Sales Tax Amount</displayNameOverride>
+            <field>AVA_SFCPQ__SalesTaxAmount__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Send External Notification</displayNameOverride>
+            <field>Send_Notification__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Services Expiration</displayNameOverride>
+            <field>Services_Expiration__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Services Expiration Amendment</displayNameOverride>
+            <field>Services_Expiration_Amendment__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Services Expiration Amendment Status</displayNameOverride>
+            <field>Services_Expiration_Amendment_Status__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Services Expiration Duration</displayNameOverride>
+            <field>Services_Expiration_Duration__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Services Payment Terms</displayNameOverride>
+            <field>Services_Payment_Terms__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Services Request link</displayNameOverride>
+            <field>Services_Request_link__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>SFA Cap</displayNameOverride>
+            <field>SFA_Cap__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>SFA Cap after Initial Term</displayNameOverride>
+            <field>CPI__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>SFA Other</displayNameOverride>
+            <field>CPI_Other__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>SFA Override ( % )</displayNameOverride>
+            <field>SFA_Override__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>SFDC Services Project</displayNameOverride>
+            <field>SFDC_Services_Project__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Shipper Tracking Number (App. 2 - opt.)</displayNameOverride>
+            <field>Shipper_Tracking_Number_Appliance_2__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Shipper Tracking Number (Appliance 1)</displayNameOverride>
+            <field>Shipper_Tracking_Number__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Shipping Account</displayNameOverride>
+            <field>Shipping_Account__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Shipping Address</displayNameOverride>
+            <field>ShippingAddress</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Shipping Address</displayNameOverride>
+            <field>Shipping_Address__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Shipping City</displayNameOverride>
+            <field>ShippingCity</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Shipping Company (App. 2 - opt.)</displayNameOverride>
+            <field>Shipping_Company_Appliance_2_opt__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Shipping Company (Appliance 1)</displayNameOverride>
+            <field>Shipping_Company__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Shipping Country</displayNameOverride>
+            <field>ShippingCountry</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Shipping Geocode Accuracy</displayNameOverride>
+            <field>ShippingGeocodeAccuracy</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Shipping Latitude</displayNameOverride>
+            <field>ShippingLatitude</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Shipping Longitude</displayNameOverride>
+            <field>ShippingLongitude</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Shipping Method</displayNameOverride>
+            <field>AVA_SFCPQ__Shipping_Method__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Shipping State/Province</displayNameOverride>
+            <field>ShippingState</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Shipping Status</displayNameOverride>
+            <field>Shipping_Status__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Shipping Street</displayNameOverride>
+            <field>ShippingStreet</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Shipping Zip/Postal Code</displayNameOverride>
+            <field>ShippingPostalCode</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Ship To Address</displayNameOverride>
+            <field>Ship_To_Address__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Software Billing Frequency (1st Year)</displayNameOverride>
+            <field>Software_Billing_Frequency_1st_Year__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Software Billing Frequency (Renewal)</displayNameOverride>
+            <field>Software_Billing_Frequency_Renewal__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Software Days Payment Due (Net x,1st Yr)</displayNameOverride>
+            <field>Software_Payment_Terms__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Software Days Payment Due (Renewal)</displayNameOverride>
+            <field>Software_Days_Payment_Due_Renewal__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>SOW</displayNameOverride>
+            <field>SOW__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Special Financing Terms</displayNameOverride>
+            <field>Special_Financing_Terms__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Special Terms</displayNameOverride>
+            <field>SpecialTerms</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Standard - Development</displayNameOverride>
+            <field>Standard_Development__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Standard - Production</displayNameOverride>
+            <field>Standard_Production__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Status</displayNameOverride>
+            <field>Status</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Status Category</displayNameOverride>
+            <field>StatusCode</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Subsidiary</displayNameOverride>
+            <field>Subsidiary__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Superseded by (OSA)</displayNameOverride>
+            <field>Superseded_by_OSA__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Superseded by (OSA) 2</displayNameOverride>
+            <field>Superseded_by_OSA_2__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Superseded by (OSA) 3</displayNameOverride>
+            <field>Superseded_by_OSA_3__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Superseded by (OSA) 4</displayNameOverride>
+            <field>Superseded_by_OSA_4__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Superseded by (OSA) 5</displayNameOverride>
+            <field>Superseded_by_OSA_5__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Support SLA</displayNameOverride>
+            <field>Support_SLA__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Support Stream</displayNameOverride>
+            <field>Support_Stream__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Tax Calculation Status</displayNameOverride>
+            <field>AVA_SFCPQ__Tax_Calculation_Status__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Time Builder Terms</displayNameOverride>
+            <field>Time_Builder_Terms__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Total Contract Value</displayNameOverride>
+            <field>Total_Contract_Value__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Transport</displayNameOverride>
+            <field>AVA_SFCPQ__Transport__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Type</displayNameOverride>
+            <field>Type__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Validate Address Before(Deprecated)</displayNameOverride>
+            <field>AVA_SFCPQ__AutomaticValidateAddress__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Vera&apos;s Email Address</displayNameOverride>
+            <field>Vera_s_Email_Address__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>VPN Access Limitation Type</displayNameOverride>
+            <field>VPN_Access_Limitation_Type__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Warranty</displayNameOverride>
+            <field>Warranty__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Xactly ID</displayNameOverride>
+            <field>Xactly_ID__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contract : Parent Terms Contract : Booking Date</displayNameOverride>
+            <field>Parent_Contract__c.Booking_Date__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contract : Parent Terms Contract : Renewal Opportunity</displayNameOverride>
+            <field>Parent_Contract__c.SBQQ__RenewalOpportunity__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contract : Parent Terms Contract : Renewal Quoted</displayNameOverride>
+            <field>Parent_Contract__c.SBQQ__RenewalQuoted__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contract : Parent Terms Contract : Renewal Forecast</displayNameOverride>
+            <field>Parent_Contract__c.SBQQ__RenewalForecast__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contract : Parent Terms Contract : Renewal Opportunity : Close Date</displayNameOverride>
+            <field>Parent_Contract__c.SBQQ__RenewalOpportunity__c.CloseDate</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contract : Parent Terms Contract : Renewal Opportunity : Stage</displayNameOverride>
+            <field>Parent_Contract__c.SBQQ__RenewalOpportunity__c.StageName</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contract : Parent Terms Contract : Is Migrated Contract</displayNameOverride>
+            <field>Parent_Contract__c.Is_Migrated_Contract__c</field>
+            <table>Contract</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Parent_Contract__c.EndDate</field>
+            <table>Contract</table>
+        </columns>
+        <masterLabel>Contracts</masterLabel>
+    </sections>
+</ReportType>

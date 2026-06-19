@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TimeAssess_Assessment_Type__c</fullName>
+    <inlineHelpText>Select the proper time builder assessment type from the listing provided.</inlineHelpText>
+    <label>Assessment Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Diagnostic Assessment for existing customer</fullName>
+                <default>false</default>
+                <label>Diagnostic Assessment for existing customer</label>
+            </value>
+            <value>
+                <fullName>Post-Pilot Assessment</fullName>
+                <default>false</default>
+                <label>Post-Pilot Assessment</label>
+            </value>
+            <value>
+                <fullName>Post-Rollout Assessment for Case Study</fullName>
+                <default>false</default>
+                <label>Post-Rollout Assessment for Case Study</label>
+            </value>
+            <value>
+                <fullName>Time Recording Assessment (Pre-Sales)</fullName>
+                <default>false</default>
+                <label>Time Recording Assessment (Pre-Sales)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

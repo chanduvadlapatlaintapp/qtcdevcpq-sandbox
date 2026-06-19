@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Region__c</fullName>
+    <description>Which region does this salesperson work in?</description>
+    <inlineHelpText>Which region does this salesperson work in?</inlineHelpText>
+    <label>Sales Region</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>APAC</fullName>
+                <default>false</default>
+                <label>APAC</label>
+            </value>
+            <value>
+                <fullName>Eastern US</fullName>
+                <default>false</default>
+                <label>Eastern US</label>
+            </value>
+            <value>
+                <fullName>Western US/Canada</fullName>
+                <default>false</default>
+                <label>Western US/Canada</label>
+            </value>
+            <value>
+                <fullName>UK/EMEA</fullName>
+                <default>false</default>
+                <label>UK/EMEA</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

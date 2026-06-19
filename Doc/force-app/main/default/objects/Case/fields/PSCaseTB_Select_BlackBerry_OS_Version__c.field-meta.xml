@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSCaseTB_Select_BlackBerry_OS_Version__c</fullName>
+    <inlineHelpText>If you will be integrating BlackBerry devices with Time Builder, select the BlackBerry OS version used in your organization from the drop-down list.</inlineHelpText>
+    <label>Select BlackBerry OS Version</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>BlackBerry - OS 4.2 or later</fullName>
+                <default>false</default>
+                <label>BlackBerry - OS 4.2 or later</label>
+            </value>
+            <value>
+                <fullName>BlackBerry - OS 4.0 or later</fullName>
+                <default>false</default>
+                <label>BlackBerry - OS 4.0 or later</label>
+            </value>
+            <value>
+                <fullName>BlackBerry Capture Not Required</fullName>
+                <default>true</default>
+                <label>BlackBerry Capture Not Required</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

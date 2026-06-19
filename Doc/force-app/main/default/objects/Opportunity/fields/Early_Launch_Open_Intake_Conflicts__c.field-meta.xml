@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Early_Launch_Open_Intake_Conflicts__c</fullName>
+    <description>Is this customer looking at Intake, Conflicts, or Both?</description>
+    <inlineHelpText>Is this customer looking at Intake, Conflicts, or Both?</inlineHelpText>
+    <label>Open Intake + Conflicts?</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Intake Only</fullName>
+                <default>false</default>
+                <label>Intake Only</label>
+            </value>
+            <value>
+                <fullName>Conflicts Only</fullName>
+                <default>false</default>
+                <label>Conflicts Only</label>
+            </value>
+            <value>
+                <fullName>Intake + Conflicts</fullName>
+                <default>false</default>
+                <label>Intake + Conflicts</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

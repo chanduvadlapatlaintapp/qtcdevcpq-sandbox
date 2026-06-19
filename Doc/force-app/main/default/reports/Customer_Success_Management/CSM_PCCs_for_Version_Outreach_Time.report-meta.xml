@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Subscription__c$Account__c.IntApp_Account_Number__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Account__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Subscription_Name__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c.Subscription_Contact__r$Contact__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c.Subscription_Contact__r$Subscription_Contact_Title__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c.Subscription_Contact__r$Contact_Email__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c.Subscription_Contact__r$Audited_Date__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Account__c.SRT_Time_Capture_Status__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Account__c.Simple_TE_Version__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Account__c.SRT_Time_Entry_Status__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Account__c.SRT_Time_Entry_Last_Check_In__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Account__c.Simple_TB_Version__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Account__c.SRT_Time_Capture_Last_Check_In__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Account__c.CSM_Account_Mgr_Name__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND (5 OR 6)</booleanFilter>
+        <criteriaItems>
+            <column>Subscription__c$Product_LineNew__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Time - On Prem</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c.Subscription_Contact__r$Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Active</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c.Subscription_Contact__r$Role__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>IT Administrator</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c$Customer_Lifecycle_Stage__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>In Production</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c$Account__c.SRT_Time_Entry_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>,Installed - Stopped checking in</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c$Account__c.SRT_Time_Capture_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>,Installed - Stopped checking in</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>CSM: PCCs for Version Outreach (Time)</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Subscriptions_with_Subscription_Contacts__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Subscription__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

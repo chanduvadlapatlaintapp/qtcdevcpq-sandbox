@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validation_On_SFA_Cap</fullName>
+    <active>true</active>
+    <description>BIZ-51615:When SFA Cap is filled in, the SFA Time Horizon should be a required field.</description>
+    <errorConditionFormula>AND(NOT(ISPICKVAL(Renewal_Increase_SFA_Cap__c,&quot;&quot;)),NOT(ISPICKVAL(Renewal_Increase_SFA_Cap__c,&quot;Silent&quot;)),ISPICKVAL(SFA_Cap_Time_Horizon__c,&quot;&quot;))</errorConditionFormula>
+    <errorMessage>Please provide a value for SFA Time Horizon</errorMessage>
+</ValidationRule>

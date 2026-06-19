@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSCaseTB_Select_desktop_browser_software__c</fullName>
+    <inlineHelpText>Select the desktop web browser software used in your organization from the drop-down list.</inlineHelpText>
+    <label>Select desktop web browser software</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Internet Explorer 9/8/7</fullName>
+                <default>false</default>
+                <label>Internet Explorer 9/8/7</label>
+            </value>
+            <value>
+                <fullName>Mozilla Firefox 4</fullName>
+                <default>false</default>
+                <label>Mozilla Firefox 4</label>
+            </value>
+            <value>
+                <fullName>Mozilla Firefox 3.x</fullName>
+                <default>false</default>
+                <label>Mozilla Firefox 3.x</label>
+            </value>
+            <value>
+                <fullName>Other web browser software</fullName>
+                <default>false</default>
+                <label>Other web browser software</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

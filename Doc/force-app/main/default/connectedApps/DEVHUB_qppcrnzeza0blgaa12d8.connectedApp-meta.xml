@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>support.automation@intapp.com</contactEmail>
+    <description>The Developer Hub lets you view, create and manage scratch orgs and namespace registries from one location.</description>
+    <iconUrl>https://intapp.my.salesforce.com/environmenthub/images/connected_app_logo.png</iconUrl>
+    <label>SalesforceDX Namespace Registry</label>
+    <logoUrl>https://intapp.my.salesforce.com/environmenthub/images/connected_app_logo.png</logoUrl>
+    <oauthConfig>
+        <callbackUrl>https://intapp.my.salesforce.com/environmenthub/soma-callback.apexp</callbackUrl>
+        <consumerKey>3MVG9y08DauEe.80Y.NnMFYaE0hsjLD23bXVVuNLmzP6hupL5V17goyurQax6snbi5UtPVVH1AoPp_Deg7pUg</consumerKey>
+        <isAdminApproved>false</isAdminApproved>
+        <isClientCredentialEnabled>false</isClientCredentialEnabled>
+        <isCodeCredentialEnabled>false</isCodeCredentialEnabled>
+        <isCodeCredentialPostOnly>false</isCodeCredentialPostOnly>
+        <isConsumerSecretOptional>false</isConsumerSecretOptional>
+        <isIntrospectAllTokens>false</isIntrospectAllTokens>
+        <isNamedUserJwtEnabled>false</isNamedUserJwtEnabled>
+        <isPkceRequired>false</isPkceRequired>
+        <isRefreshTokenRotationEnabled>false</isRefreshTokenRotationEnabled>
+        <isSecretRequiredForRefreshToken>false</isSecretRequiredForRefreshToken>
+        <isSecretRequiredForTokenExchange>false</isSecretRequiredForTokenExchange>
+        <isTokenExchangeEnabled>false</isTokenExchangeEnabled>
+        <scopes>Basic</scopes>
+        <scopes>Api</scopes>
+    </oauthConfig>
+    <oauthPolicy>
+        <ipRelaxation>ENFORCE</ipRelaxation>
+        <isTokenExchangeFlowEnabled>false</isTokenExchangeFlowEnabled>
+        <refreshTokenPolicy>infinite</refreshTokenPolicy>
+    </oauthPolicy>
+</ConnectedApp>

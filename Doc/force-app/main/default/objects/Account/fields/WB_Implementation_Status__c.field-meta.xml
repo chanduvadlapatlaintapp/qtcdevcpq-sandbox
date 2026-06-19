@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WB_Implementation_Status__c</fullName>
+    <description>Current status of the Wall Builder implementation</description>
+    <inlineHelpText>Current status of the Wall Builder implementation</inlineHelpText>
+    <label>WB Implementation Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Not Yet Started</fullName>
+                <color>#F3D904</color>
+                <default>false</default>
+                <label>Not Yet Started</label>
+            </value>
+            <value>
+                <fullName>Implementing</fullName>
+                <color>#0B6FCE</color>
+                <default>false</default>
+                <label>Implementing</label>
+            </value>
+            <value>
+                <fullName>Production</fullName>
+                <color>#419249</color>
+                <default>false</default>
+                <label>Production</label>
+            </value>
+            <value>
+                <fullName>Upgrading</fullName>
+                <color>#A845DC</color>
+                <default>false</default>
+                <label>Upgrading</label>
+            </value>
+            <value>
+                <fullName>POC</fullName>
+                <color>#AFCADF</color>
+                <default>false</default>
+                <label>POC</label>
+            </value>
+            <value>
+                <fullName>Stalled</fullName>
+                <color>#A53711</color>
+                <default>false</default>
+                <label>Stalled</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

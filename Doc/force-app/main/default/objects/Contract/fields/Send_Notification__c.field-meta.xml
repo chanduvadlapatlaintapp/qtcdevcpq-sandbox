@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Send_Notification__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Checkbox to determine whether notification should be sent to contact. Has associated validation rule to ensure that contact is filled out and workflow rule to sent notification</description>
+    <inlineHelpText>Check this box to send notification to contact once the contract is signed</inlineHelpText>
+    <label>Send External Notification</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

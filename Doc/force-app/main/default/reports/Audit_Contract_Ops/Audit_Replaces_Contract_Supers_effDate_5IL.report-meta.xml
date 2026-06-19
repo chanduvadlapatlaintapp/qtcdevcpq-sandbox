@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>SBQQ__QuoteTerm__c$Name</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>SBQQ__QuoteTerm__c$Contract__c.Audited_for_Supersession__c</field>
+    </columns>
+    <columns>
+        <field>SBQQ__QuoteTerm__c$Contract__c.Account</field>
+    </columns>
+    <columns>
+        <field>SBQQ__QuoteTerm__c$SBQQ__Body__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>SBQQ__QuoteTerm__c$Contract__c.Replace_existing_agreement__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>SBQQ__QuoteTerm__c$Contract__c.Includes_modification_to_contract_term__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Use to audit &quot;Includes modification to contract term&quot; for super&apos;g a multiyr and &quot;Replace Existing Agreement&quot; (all deals). Tickbox, noting audit for super in quote terms. DC supers may not match OSA number. seek DC contract #.</description>
+    <filter>
+        <booleanFilter>(1 OR 2) AND 3</booleanFilter>
+        <criteriaItems>
+            <column>SBQQ__QuoteTerm__c$SBQQ__Body__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>replaces,BillStream,Repstor,gwabbit,OnePlace Order Form</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>SBQQ__QuoteTerm__c$SBQQ__Quote__c.Cancellation_terms__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Supersede DC Subscription</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>SBQQ__QuoteTerm__c$Contract__c.Audited_for_Supersession__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>SBQQ__QuoteTerm__c$SBQQ__Quote__c.SBQQ__Opportunity2__c.StageName</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>SBQQ__QuoteTerm__c$SBQQ__Quote__c.SBQQ__Opportunity2__c.Line_of_Business__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>SBQQ__QuoteTerm__c$Contract__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Audit: RR_Replaces Contr_Supers_effDate</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Quote_Terms_to_Opportunity__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>SBQQ__QuoteTerm__c$Contract__c.ActivatedDate</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,166 @@
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+    </template>
+
+    <div class="slds-p-around_medium">
+        <div class="page-header">
+            <div class="header-icon">
+                <lightning-icon icon-name="utility:upload" size="x-small"></lightning-icon>
+            </div>
+            <div>
+                <h2 class="header-title">Pricebook Launch</h2>
+                <p class="header-subtitle">Create new pricing or copy from existing fiscal years</p>
+            </div>
+        </div>
+
+        <!-- Result Summary -->
+        <template if:true={showResult}>
+            <div class="result-card">
+                <div class="result-card-header">Launch Results</div>
+                <div class="result-card-body">
+                    <div class="slds-grid slds-gutters slds-m-bottom_small">
+                        <div class="slds-col result-stat stat-total">
+                            <div class="result-stat-value">{launchResult.totalCount}</div>
+                            <div class="result-stat-label">Total</div>
+                        </div>
+                        <div class="slds-col result-stat stat-success">
+                            <div class="result-stat-value">{launchResult.successCount}</div>
+                            <div class="result-stat-label">Succeeded</div>
+                        </div>
+                        <div class="slds-col result-stat stat-error">
+                            <div class="result-stat-value">{launchResult.errorCount}</div>
+                            <div class="result-stat-label">Failed</div>
+                        </div>
+                    </div>
+                    <template if:true={hasResultErrors}>
+                        <div class="error-list">
+                            <strong>Errors:</strong>
+                            <ul class="slds-list_dotted slds-m-top_xx-small">
+                                <template for:each={resultErrors} for:item="err">
+                                    <li key={err.key}>{err.message}</li>
+                                </template>
+                            </ul>
+                        </div>
+                    </template>
+                    <div class="slds-m-top_small slds-text-align_center">
+                        <lightning-button label="Start Over" variant="neutral" onclick={handleReset}></lightning-button>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <!-- Configuration -->
+        <template if:false={showResult}>
+            <!-- Mode Selection -->
+            <div class="mode-card">
+                <lightning-radio-group name="mode" label="Mode" value={mode}
+                    options={modeOptions} onchange={handleModeChange}
+                    type="button"></lightning-radio-group>
+            </div>
+
+            <!-- Create Mode -->
+            <template if:true={isCreateMode}>
+                <div class="filter-card">
+                <div class="slds-grid slds-gutters slds-m-bottom_medium">
+                    <div class="slds-col slds-size_1-of-3">
+                        <lightning-combobox label="Target Fiscal Year" value={targetFY}
+                            options={fiscalYearOptions} onchange={handleTargetFYChange}
+                            required></lightning-combobox>
+                    </div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <c-lookup data-id="plFilter" label="Filter by Product Line"
+                            placeholder="Search product lines..."
+                            is-multi-entry={isNotMultiEntry}
+                            onsearch={handleProductLineSearch}
+                            onselectionchange={handleProductLineSelected}>
+                        </c-lookup>
+                    </div>
+                    <div class="slds-col slds-size_1-of-3 slds-grid slds-grid_vertical-align-end">
+                        <lightning-button label="Load Products" variant="neutral"
+                            onclick={handleLoadProducts}
+                            class="slds-m-bottom_xx-small"></lightning-button>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Product Selection Table -->
+                <template if:true={hasProducts}>
+                    <div class="selection-info"><strong>{selectedCount}</strong> of {products.length} products selected</div>
+                    <div class="slds-scrollable_x" style="max-height:400px;">
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped slds-table_fixed-layout branded-table">
+                            <thead>
+                                <tr>
+                                    <th style="width:40px;">
+                                        <lightning-input type="checkbox" onchange={handleSelectAll}
+                                            variant="label-hidden" label="Select All"></lightning-input>
+                                    </th>
+                                    <th>Product Name</th>
+                                    <th>Product Code</th>
+                                    <th>Product Type</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={products} for:item="prod">
+                                    <tr key={prod.Id}>
+                                        <td>
+                                            <lightning-input type="checkbox" checked={prod.selected}
+                                                data-id={prod.Id} onchange={handleProductSelect}
+                                                variant="label-hidden" label="Select"></lightning-input>
+                                        </td>
+                                        <td>{prod.Name}</td>
+                                        <td>{prod.ProductCode}</td>
+                                        <td>{prod.Product_Type__c}</td>
+                                        <td>
+                                            <lightning-input type="number" value={prod.Price__c}
+                                                data-id={prod.Id} data-field="Price__c"
+                                                onchange={handleProductFieldChange}
+                                                variant="label-hidden" label="Price"
+                                                step="0.01" formatter="currency"></lightning-input>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="toolbar slds-m-top_medium">
+                        <lightning-button label="Launch Pricebook" variant="brand"
+                            onclick={handleLaunch} disabled={isLoading}
+                            icon-name="utility:upload"></lightning-button>
+                    </div>
+                </template>
+            </template>
+
+            <!-- Copy Mode -->
+            <template if:true={isCopyMode}>
+                <div class="filter-card">
+                <div class="slds-grid slds-gutters slds-m-bottom_medium">
+                    <div class="slds-col slds-size_1-of-3">
+                        <lightning-combobox label="Source Fiscal Year" value={sourceFY}
+                            options={fiscalYearOptions} onchange={handleSourceFYChange}
+                            required></lightning-combobox>
+                    </div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <lightning-combobox label="Target Fiscal Year" value={targetFY}
+                            options={fiscalYearOptions} onchange={handleTargetFYChange}
+                            required></lightning-combobox>
+                    </div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <lightning-input type="number" label="Price Adjustment %" value={adjustPct}
+                            onchange={handleAdjustPctChange} step="0.01"
+                            field-level-help="Enter positive number for increase (e.g. 5 for 5%), negative for decrease."></lightning-input>
+                    </div>
+                </div>
+                </div>
+
+                <div class="toolbar">
+                    <lightning-button label="Copy Pricing Records" variant="brand"
+                        onclick={handleCopy} disabled={isCopyDisabled}
+                        icon-name="utility:copy"></lightning-button>
+                </div>
+            </template>
+        </template>
+    </div>
+</template>

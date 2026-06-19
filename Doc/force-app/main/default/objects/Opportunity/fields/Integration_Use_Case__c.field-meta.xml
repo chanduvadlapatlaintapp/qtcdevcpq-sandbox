@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Integration_Use_Case__c</fullName>
+    <description>This is a piclist that is required when integration checkbox is selected as main use case. This was developed after Main Use Case fields.</description>
+    <label>Integration Use Cases</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <controllingField>Integration__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Integration Platform</fullName>
+                <default>false</default>
+                <label>Integration Platform</label>
+            </value>
+            <value>
+                <fullName>User Provisioning/NHI</fullName>
+                <default>false</default>
+                <label>User Provisioning/NHI</label>
+            </value>
+            <value>
+                <fullName>Client Matter Propagation/NBI</fullName>
+                <default>false</default>
+                <label>Client Matter Propagation/NBI</label>
+            </value>
+            <value>
+                <fullName>Elite Integration</fullName>
+                <default>false</default>
+                <label>Elite Integration</label>
+            </value>
+            <value>
+                <fullName>Additional appliance</fullName>
+                <default>false</default>
+                <label>Additional appliance</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>Integration Platform</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>User Provisioning/NHI</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>Client Matter Propagation/NBI</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>Elite Integration</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>Additional appliance</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+    </valueSet>
+    <visibleLines>7</visibleLines>
+</CustomField>

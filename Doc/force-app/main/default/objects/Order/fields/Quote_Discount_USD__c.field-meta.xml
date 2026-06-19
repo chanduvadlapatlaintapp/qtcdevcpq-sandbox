@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quote_Discount_USD__c</fullName>
+    <description>Formula field to get discount amount from the underlying Quote in terms of USD when Order currency is non USD.</description>
+    <externalId>false</externalId>
+    <formula>IF( TEXT( CurrencyIsoCode )&lt;&gt;&apos;USD&apos; ,  Quote_Discount__c  * CURRENCYRATE( TEXT(CurrencyIsoCode ) ) , Quote_Discount__c )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Quote Discount (USD)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Order_Number__c</fullName>
+    <description>Order Number of the Order that created this subscription line. Used to trace amendment activity (positive/negative quantity changes and new product additions) to the originating Order.</description>
+    <externalId>false</externalId>
+    <formula>SBQQ__OrderProduct__r.Order.OrderNumber</formula>
+    <label>Order Number</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

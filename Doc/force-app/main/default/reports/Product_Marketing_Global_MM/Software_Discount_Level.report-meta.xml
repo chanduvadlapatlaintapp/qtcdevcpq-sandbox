@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <calculatedFormula>AGE:AVG - Opportunity.Needs_Business_Case_to_Shop_or_Today__c:AVG</calculatedFormula>
+        <datatype>number</datatype>
+        <developerName>FORMULA1</developerName>
+        <isActive>false</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Shop to Close</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <buckets>
+        <bucketType>text</bucketType>
+        <developerName>BucketField_62530949</developerName>
+        <masterLabel>Territory</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>ACCOUNT_OWNER</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Chris Kessler</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Aimee Spirlin</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Drew O&apos;Neill</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Greg Giblin</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Tim Prinsen</sourceValue>
+            </sourceValues>
+            <value>NA Mid-Size Law</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Adam Friedman</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>John Sharkey</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Mike Speltz</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Pam Snyder</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Rod Fleck</sourceValue>
+            </sourceValues>
+            <value>NA Large Law</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Daragh McLaughlin</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Samia Rauf</sourceValue>
+            </sourceValues>
+            <value>EMEA Large Law</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Chloe Doyle</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Jones Oviawe</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Vicki Mayhew</sourceValue>
+            </sourceValues>
+            <value>EMEA Mid-Size Law</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Marin Sardelic</sourceValue>
+            </sourceValues>
+            <value>APAC</value>
+        </values>
+    </buckets>
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <aggregate>Average</aggregate>
+            <axisBinding>y</axisBinding>
+            <column>Opportunity.Discount_Level_Software_Year_1__c</column>
+        </chartSummaries>
+        <chartType>VerticalColumnGrouped</chartType>
+        <enableHoverLabels>false</enableHoverLabels>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>CLOSE_DATE</groupingColumn>
+        <legendPosition>Right</legendPosition>
+        <location>CHART_TOP</location>
+        <secondaryGroupingColumn>BucketField_62530949</secondaryGroupingColumn>
+        <showAxisLabels>true</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>false</showValues>
+        <size>Medium</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>12</textSize>
+        <titleColor>#000000</titleColor>
+        <titleSize>18</titleSize>
+    </chart>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>AMOUNT</field>
+    </columns>
+    <columns>
+        <field>OPPORTUNITY_NAME</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>Opportunity.Discount_Level_Software_Year_1__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>TYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Legal - Add-on module,Add-on module,Legal - New Converted Customer,Legal - New Converted Product,Legal - New Customer,New Customer,Legal - New Product,New Product,Legal - Recovered Customer,Legal - Recovered Product</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>FiscalQuarter</dateGranularity>
+        <field>CLOSE_DATE</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Opportunity.Product_Line_Simple__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_62530949</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Software Discount Level</name>
+    <params>
+        <name>open</name>
+        <value>closedwon</value>
+    </params>
+    <params>
+        <name>probability</name>
+        <value>&gt;0</value>
+    </params>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Opportunity</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CLOSE_DATE</dateColumn>
+        <interval>INTERVAL_PREVCURFY</interval>
+    </timeFrameFilter>
+</Report>

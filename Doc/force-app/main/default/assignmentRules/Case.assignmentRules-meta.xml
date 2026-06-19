@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssignmentRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignmentRule>
+        <fullName>IntApp case assignment</fullName>
+        <active>false</active>
+        <ruleEntry>
+            <assignedTo>Tier1</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Status</field>
+                <operation>equals</operation>
+                <value>New</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Support</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>User.UserType</field>
+                <operation>contains</operation>
+                <value>High Volume Portal,Customer Portal User</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>bizappsdev@intapp.com</assignedTo>
+            <assignedToType>User</assignedToType>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>contains</operation>
+                <value>Web</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Tier1</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>Message Notification</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Unidentified</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 or 10 or 11 or 12</booleanFilter>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>[SPAM:</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>(Forward to attendees)</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>Error: Illegal</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>Error: The added</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>Error: Collection was</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>Error: Cannot access</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>Error: The operation</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>Error: Unhandled Exception</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>Error: Object reference</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>Error: A generic error occurred in GDI element</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>Error: Attempted to read or write protected memory</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>Error: Arithmetic operation</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Unidentified</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>equals</operation>
+                <value>Daily Activity Report</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Unidentified</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <booleanFilter>(1 OR 2 OR 3 or 5) AND 4</booleanFilter>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>startsWith</operation>
+                <value>Out of Office</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>is out of the office</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>is out of office</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email2Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>automatic reply</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Unidentified</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <booleanFilter>(1 OR 2 OR 3 OR 4 OR 5 or 6 or 7 or 8 or 9)</booleanFilter>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>Delivery Status Notification (Failure)</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>IntApp Disk Space Alert</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>[DISPATCHER]</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>Agent restart warning</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>[REPORTS]</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>IntApp test email</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>equals</operation>
+                <value>Rule Activity Warning</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>startsWith</operation>
+                <value>Appliance and Network Settings for</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>out of the office</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Unidentified</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <booleanFilter>1 OR 2 OR 3</booleanFilter>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>startsWith</operation>
+                <value>Undeliverable</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>startsWith</operation>
+                <value>Absence du bureau</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>Email Delivery Failure</value>
+            </criteriaItems>
+            <template>PostSalesSupport/SupportCaseAssignment</template>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Tier1</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.SuppliedEmail</field>
+                <operation>contains</operation>
+                <value>mapmobile.com</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Tier1</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email2Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Support</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry/>
+    </assignmentRule>
+    <assignmentRule>
+        <fullName>Ops Assignment Rule</fullName>
+        <active>true</active>
+        <ruleEntry>
+            <assignedTo>AM_Ops_Support</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>AM Ops Support</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Finance_Support</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Finance Ops Support</value>
+            </criteriaItems>
+        </ruleEntry>
+    </assignmentRule>
+</AssignmentRules>

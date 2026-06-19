@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Compliance_Status_Revenue__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(License_Band_Basis__c,
+  &quot;Revenue&quot;,IF(Account_Name__r.License_Band_Revenue__c &lt;= License_Band__c,&quot;Compliant&quot;,&quot;Not compliant&quot;),
+  &quot;&quot;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Compliance Status Revenue</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

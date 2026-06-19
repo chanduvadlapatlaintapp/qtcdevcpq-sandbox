@@ -1,0 +1,24 @@
+<messaging:emailTemplate subject=" Liability Annex is required for {!relatedto.SBQQ__Account__r.Name}, Line of Business: {!relatedTo.Line_of_Business__c}"  recipientType="User" relatedToType="SBQQ__Quote__c">
+<messaging:plainTextEmailBody >
+
+
+Legal team, please provide a Liability Annex to Contracts Ops. MSSA Link and version are below.
+
+Line of Business: {!relatedTo.Line_of_Business__c}
+
+Seller, you are being cc'd for the following reasons:
+1. Action Item: Please update your quote Contract Master Terms to Existing Terms plus Annex
+2. Awareness: Since this is a customized annex, his may take an extra day to get your bundle out since LegalOps will need to draft it.
+
+
+Account: {!relatedto.SBQQ__Account__r.Name}
+Master Terms: Contract Number: {!relatedto.SBQQ__Account__r.Master_Terms_Contract_Number__r.ContractNumber}
+MSSA Version Number: {!relatedto.SBQQ__Account__r.Contract_Term_Version__c}
+Master Terms: Contract Number URL: https://intapp.my.salesforce.com/{!relatedto.SBQQ__Account__r.Master_Terms_Contract_Number__c}
+ 
+
+
+
+Rule Code: QUO-090Exxx
+</messaging:plainTextEmailBody>
+</messaging:emailTemplate>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Services__c</fullName>
+    <label>Services Expiration</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>6 Months or Less</fullName>
+                <default>false</default>
+                <label>6 Months or Less</label>
+            </value>
+            <value>
+                <fullName>9 Months or Less</fullName>
+                <default>false</default>
+                <label>9 Months or Less</label>
+            </value>
+            <value>
+                <fullName>9 Months or More</fullName>
+                <default>false</default>
+                <label>9 Months or More</label>
+            </value>
+            <value>
+                <fullName>Non-Standard Expiration</fullName>
+                <default>false</default>
+                <label>Non-Standard Expiration</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

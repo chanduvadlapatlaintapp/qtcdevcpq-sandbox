@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Timekeppers__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  NOT(ISPICKVAL(Unit__c,&quot;Lawyers&quot;)),
+  0,
+  IF(
+    OR(
+      Quantity__c = 83,
+      Quantity__c = 133,
+      Quantity__c = 233
+    ),
+    ROUND(Quantity__c * 1.5,0),
+    IF(
+      Quantity__c = 67,
+      100,
+      IF(
+        Quantity__c = 167,
+        250,
+        Quantity__c * 1.5
+      )
+    )
+  )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Timekeepers</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

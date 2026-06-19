@@ -1,0 +1,273 @@
+<template>
+    <section class="modal-overlay" onclick={handleOverlayClick}>
+        <div class="modal-content" onclick={stopPropagation}>
+
+            <!-- Header -->
+            <div class="modal-header">
+                <h3>Preview &amp; Send OSA</h3>
+                <lightning-button-icon icon-name="utility:close" onclick={handleClose} variant="bare-inverse"></lightning-button-icon>
+            </div>
+
+            <!-- Progress Indicator -->
+            <div class="progress-wrapper">
+                <lightning-progress-indicator
+                    current-step={currentStep}
+                    type="path"
+                    has-error={hasError}>
+                    <lightning-progress-step label="Additional Documents" value="step1"></lightning-progress-step>
+                    <lightning-progress-step label="Generate OSA" value="step2"></lightning-progress-step>
+                    <lightning-progress-step label="Review &amp; Send" value="step3"></lightning-progress-step>
+                </lightning-progress-indicator>
+            </div>
+
+            <!-- ─────────────────────────────────────────────────────────────── -->
+            <!-- Step 1: Additional Documents                                    -->
+            <!-- ─────────────────────────────────────────────────────────────── -->
+            <template if:true={isStep1}>
+                <div class="modal-body">
+                    <h4 class="section-title">Additional Documents</h4>
+                    <p class="section-desc">
+                        Upload any PDFs to include alongside the OSA.
+                        They will appear in the Appendix of the generated document.
+                    </p>
+
+                    <!-- Loading state -->
+                    <template if:true={isLoadingDocs}>
+                        <div class="step-center">
+                            <lightning-spinner alternative-text="Loading documents..." size="small"></lightning-spinner>
+                        </div>
+                    </template>
+
+                    <!-- Uploaded docs list — drag to reorder, up/down arrows as fallback, X to remove -->
+                    <template if:false={isLoadingDocs}>
+                        <template if:true={hasRelatedDocs}>
+                            <div class="doc-list">
+                                <template for:each={relatedDocsDisplay} for:item="doc">
+                                    <div
+                                        key={doc.key}
+                                        class="doc-row doc-row--draggable"
+                                        draggable="true"
+                                        data-id={doc.id}
+                                        ondragstart={handleDragStart}
+                                        ondragover={handleDragOver}
+                                        ondrop={handleDrop}
+                                        ondragend={handleDragEnd}>
+                                        <lightning-icon
+                                            icon-name="utility:rows"
+                                            size="x-small"
+                                            class="drag-handle"
+                                            alternative-text="Drag to reorder">
+                                        </lightning-icon>
+                                        <span class="doc-order">{doc.orderLabel}</span>
+                                        <lightning-icon icon-name="doctype:pdf" size="x-small"></lightning-icon>
+                                        <span class="doc-name">{doc.name}</span>
+                                        <template if:true={doc.documentType}>
+                                            <span class="doc-type-chip">{doc.documentType}</span>
+                                        </template>
+                                        <lightning-button-icon
+                                            class="doc-move"
+                                            icon-name="utility:up"
+                                            variant="bare"
+                                            size="small"
+                                            alternative-text="Move up"
+                                            title="Move up"
+                                            data-id={doc.id}
+                                            disabled={doc.isFirst}
+                                            onclick={handleMoveUp}>
+                                        </lightning-button-icon>
+                                        <lightning-button-icon
+                                            class="doc-move"
+                                            icon-name="utility:down"
+                                            variant="bare"
+                                            size="small"
+                                            alternative-text="Move down"
+                                            title="Move down"
+                                            data-id={doc.id}
+                                            disabled={doc.isLast}
+                                            onclick={handleMoveDown}>
+                                        </lightning-button-icon>
+                                        <lightning-button-icon
+                                            class="doc-remove"
+                                            icon-name="utility:close"
+                                            variant="bare"
+                                            size="small"
+                                            alternative-text="Remove document"
+                                            title="Remove document"
+                                            data-id={doc.id}
+                                            onclick={handleRemoveDoc}>
+                                        </lightning-button-icon>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </template>
+
+                    <div class="upload-section">
+                        <h4>Upload Additional PDF</h4>
+                        <lightning-file-upload
+                            label="Upload PDF"
+                            name="additionalDocs"
+                            record-id={quoteId}
+                            accept=".pdf"
+                            onuploadfinished={handleUploadFinished}>
+                        </lightning-file-upload>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <lightning-button label="Close" onclick={handleClose}></lightning-button>
+                    <lightning-button label="Next" variant="brand" onclick={handleNextToStep2}></lightning-button>
+                </div>
+            </template>
+
+            <!-- ─────────────────────────────────────────────────────────────── -->
+            <!-- Step 2: Generate OSA                                            -->
+            <!-- ─────────────────────────────────────────────────────────────── -->
+            <template if:true={isStep2}>
+                <div class="modal-body">
+
+                    <!-- Waiting state (Conga polling) -->
+                    <template if:true={isWaitingForDoc}>
+                        <div class="step-center">
+                            <lightning-spinner alternative-text="Waiting for OSA..." size="medium"></lightning-spinner>
+                            <p class="step-message">Generating OSA&hellip; The Conga tab will close automatically when done.</p>
+                        </div>
+                    </template>
+
+                    <template if:false={isWaitingForDoc}>
+
+                        <!-- Error state (shown after any generation failure) -->
+                        <template if:true={hasError}>
+                            <div class="status-box status-error">
+                                <lightning-icon icon-name="utility:error" variant="error" size="small"></lightning-icon>
+                                <span>{errorMessage}</span>
+                            </div>
+                            <!-- Retry resets both generation paths -->
+                            <div class="step-center">
+                                <div class="generate-actions">
+                                    <lightning-button label="Retry via Conga" variant="neutral" icon-name="utility:new_window" onclick={handleOpenConga}></lightning-button>
+                                    <!-- Instant PDF retry hidden behind showInstantPdf flag (BIZ-81419) -->
+                                    <template if:true={showInstantPdf}>
+                                        <lightning-button label="Retry Instant PDF" variant="brand" icon-name="utility:lightning_alt" onclick={handleGenerateInstantPdf}></lightning-button>
+                                    </template>
+                                </div>
+                            </div>
+                        </template>
+
+                        <template if:false={hasError}>
+
+                            <!-- Success state — shown briefly before auto-advance -->
+                            <template if:true={generatedDoc}>
+                                <div class="status-box status-success">
+                                    <lightning-icon icon-name="utility:success" variant="success" size="small"></lightning-icon>
+                                    <span>OSA generated successfully: <strong>{generatedDoc.title}</strong></span>
+                                </div>
+                            </template>
+
+                            <!-- ── Initial state: choose generation method ── -->
+                            <template if:false={generatedDoc}>
+                                <div class="step-center">
+                                    <p class="step-message">
+                                        Choose how to generate the OSA.
+                                        Any documents uploaded in the previous step will be included.
+                                    </p>
+
+                                    <!-- Two buttons side by side -->
+                                    <div class="generate-actions">
+
+                                        <!-- Option A: Conga (existing DS7=11 background flow) -->
+                                        <div class="generate-option">
+                                            <lightning-button
+                                                label="Open Conga to Generate OSA"
+                                                variant="neutral"
+                                                icon-name="utility:new_window"
+                                                onclick={handleOpenConga}
+                                                disabled={isGeneratingInstantPdf}>
+                                            </lightning-button>
+                                            <p class="generate-option-desc">Opens Conga in a new tab, auto-advances when done</p>
+                                        </div>
+
+                                        <!-- Option B: Native Salesforce PDF (instant + browser-side merge) -->
+                                        <!-- Hidden behind showInstantPdf flag — kept in place, not removed (BIZ-81419) -->
+                                        <template if:true={showInstantPdf}>
+                                            <div class="generate-option">
+                                                <lightning-button
+                                                    label="Generate PDF — Instant"
+                                                    variant="brand"
+                                                    icon-name="utility:lightning_alt"
+                                                    onclick={handleGenerateInstantPdf}
+                                                    disabled={isGeneratingInstantPdf}>
+                                                </lightning-button>
+                                                <p class="generate-option-desc">Native Salesforce PDF — uploaded documents merged in the chosen order</p>
+                                            </div>
+                                        </template>
+
+                                    </div>
+
+                                    <!-- Spinner shown while render → merge → save is running -->
+                                    <template if:true={isGeneratingInstantPdf}>
+                                        <lightning-spinner alternative-text="Generating PDF..." size="small"></lightning-spinner>
+                                        <p class="step-message">{instantPdfStatus}</p>
+                                    </template>
+
+                                </div>
+                            </template>
+
+                        </template>
+                    </template>
+
+                </div>
+                <div class="modal-footer">
+                    <lightning-button label="Back" onclick={handleBackToStep1} disabled={isGeneratingInstantPdf}></lightning-button>
+                    <lightning-button label="Close" onclick={handleClose}></lightning-button>
+                    <lightning-button label="Next" variant="brand" onclick={handleNextToStep3}
+                        disabled={step2NextDisabled}></lightning-button>
+                </div>
+            </template>
+
+            <!-- ─────────────────────────────────────────────────────────────── -->
+            <!-- Step 3: Review & Send                                           -->
+            <!-- ─────────────────────────────────────────────────────────────── -->
+            <template if:true={isStep3}>
+                <div class="modal-body">
+                    <h4 class="section-title">Review Document</h4>
+
+                    <!-- Generated OSA row with preview + download icons -->
+                    <template if:true={generatedDoc}>
+                        <div class="review-section">
+                            <h5 class="review-label">Generated OSA</h5>
+                            <div class="doc-row">
+                                <lightning-icon icon-name="doctype:pdf" size="small"></lightning-icon>
+                                <span class="doc-title">{generatedDoc.title}</span>
+                                <lightning-button-icon
+                                    icon-name="utility:preview"
+                                    variant="bare"
+                                    onclick={handlePreviewOsa}
+                                    title="Preview OSA">
+                                </lightning-button-icon>
+                                <lightning-button-icon
+                                    icon-name="utility:download"
+                                    variant="bare"
+                                    onclick={handleDownloadOsa}
+                                    title="Download OSA">
+                                </lightning-button-icon>
+                            </div>
+                        </div>
+                    </template>
+
+                    <!-- DocuSign placeholder (future feature) -->
+                    <div class="docusign-placeholder">
+                        <lightning-icon icon-name="utility:info" size="x-small" class="info-icon"></lightning-icon>
+                        <span>Send via DocuSign — coming soon</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <lightning-button label="Back" onclick={handleBackToStep2}></lightning-button>
+                    <lightning-button label="Close" onclick={handleClose}></lightning-button>
+                    <lightning-button label="Download OSA" variant="brand" icon-name="utility:download"
+                        onclick={handleDownloadOsa}></lightning-button>
+                </div>
+            </template>
+
+        </div>
+    </section>
+</template>

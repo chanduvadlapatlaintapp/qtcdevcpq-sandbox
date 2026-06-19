@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Closing_Plan__c</fullName>
+    <description>Have you agreed on a closing plan that includes milestones with intermediate dates, leading up to a signature on the closing date?</description>
+    <inlineHelpText>Have you agreed on a closing plan that includes milestones with intermediate dates, leading up to a signature on the closing date?</inlineHelpText>
+    <label>Closing Plan status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>We have agreed on closing plan milestones and dates in writing</fullName>
+                <default>false</default>
+                <label>We have agreed on closing plan milestones and dates in writing</label>
+            </value>
+            <value>
+                <fullName>We have agreed on closing plan milestones and dates verbally</fullName>
+                <default>false</default>
+                <label>We have agreed on closing plan milestones and dates verbally</label>
+            </value>
+            <value>
+                <fullName>We are discussing the details of a closing plan</fullName>
+                <default>false</default>
+                <label>We are discussing the details of a closing plan</label>
+            </value>
+            <value>
+                <fullName>We have agreed on a closing date, but not really on milestones to get there</fullName>
+                <default>false</default>
+                <label>We have agreed on a closing date, but not really on milestones to get there</label>
+            </value>
+            <value>
+                <fullName>We have not discussed a closing plan</fullName>
+                <default>false</default>
+                <label>We have not discussed a closing plan</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

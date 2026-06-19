@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Pricing</fullName>
+    <columns>NAME</columns>
+    <columns>Price__c</columns>
+    <columns>Pricebook_Name__c</columns>
+    <columns>Price_book_rule__c</columns>
+    <columns>Product_Code__c</columns>
+    <columns>CURRENCY_ISO_CODE</columns>
+    <columns>OP4I_Pricebook_Tier__c</columns>
+    <columns>Tiered_Pricing__c</columns>
+    <columns>Meter_Type__c</columns>
+    <columns>Bundle_Discount__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Product_Code__c</field>
+        <operation>equals</operation>
+        <value>DC-01734</value>
+    </filters>
+    <filters>
+        <field>Meter_Type__c</field>
+        <operation>equals</operation>
+        <value>Firmwide</value>
+    </filters>
+    <filters>
+        <field>CURRENCY_ISO_CODE</field>
+        <operation>equals</operation>
+        <value>USD</value>
+    </filters>
+    <filters>
+        <field>Price_book_rule__c</field>
+        <operation>equals</operation>
+        <value>FY25_All_Products</value>
+    </filters>
+    <filters>
+        <field>Bundle_Discount__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>All Pricing Filtered</label>
+    <language>en_US</language>
+</ListView>

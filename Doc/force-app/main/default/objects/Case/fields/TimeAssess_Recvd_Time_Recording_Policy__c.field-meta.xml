@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TimeAssess_Recvd_Time_Recording_Policy__c</fullName>
+    <label>Received Time Recording Policy</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Attached</fullName>
+                <default>false</default>
+                <label>Attached</label>
+            </value>
+            <value>
+                <fullName>Not Available</fullName>
+                <default>false</default>
+                <label>Not Available</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

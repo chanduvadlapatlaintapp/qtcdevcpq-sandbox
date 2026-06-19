@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Uplift__c</fullName>
+    <description>BIZ-721 // Used in Contract Email Template</description>
+    <externalId>false</externalId>
+    <formula>if(Third_Year_Software_Net_Total__c!=0,&apos;&apos;+TEXT(ROUND(((Round((Second_Year_Software_Net_Total__c- ((First_Year_Software_Net_Total__c * 12)/ First_Segment_Months__c) )/((First_Year_Software_Net_Total__c * 12)/ First_Segment_Months__c)*100,2)) +
+(ROUND((Third_Year_Software_Net_Total__c - Second_Year_Software_Net_Total__c )/Second_Year_Software_Net_Total__c*100,2)))/2,2)) +&apos;%&apos;,
+if(Second_Year_Software_Net_Total__c!=0, &apos;&apos;+TEXT(Round((Second_Year_Software_Net_Total__c- ((First_Year_Software_Net_Total__c * 12)/ First_Segment_Months__c) )/((First_Year_Software_Net_Total__c * 12)/ First_Segment_Months__c)*100,2))+&apos;%&apos;, &apos;&apos;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Uplift %</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

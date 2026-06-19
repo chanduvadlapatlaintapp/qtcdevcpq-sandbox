@@ -1,0 +1,21 @@
+<messaging:emailTemplate subject=" Quote Requires Review for {!relatedTo.SBQQ__Opportunity2__r.name} before Processing, Line of Business: {!relatedTo.Line_of_Business__c}"  recipientType="User" relatedToType="SBQQ__Quote__c">
+<messaging:plainTextEmailBody >
+
+Quote needs review. Please update according to the comments in OP4I under the field: Quote Special Comments (Contracts).  Please update the deal, and reply in the Changes since last request field that the issue has been addressed, then resubmit the OSA Request.  
+REMEMBER, PLEASE CLICK "REQUEST OSA" BUTTON TO GET THE DEAL BACK INTO THE QUEUE.
+
+Line of Business: {!relatedTo.Line_of_Business__c}
+
+Opportunity name: {!relatedTo.SBQQ__Opportunity2__r.name}
+
+Quote {!relatedTo.Name}: {!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+relatedTo.Id}
+
+Special Comments (to Sellers):{!relatedTo.Special_Comments__c}
+
+  
+
+
+
+
+</messaging:plainTextEmailBody>
+</messaging:emailTemplate>

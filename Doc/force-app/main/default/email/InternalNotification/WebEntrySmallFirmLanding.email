@@ -1,0 +1,16 @@
+Kathy,
+
+A lead was just created by someone coming off the internet and registering on the small firm landing page on our web site. This is under the "Jul05 Small Firm" campaign.
+
+The user who registered did not receive any automatic response. There should be a lead record in salesforce assigned to you. Here is the data associated with that record:
+
+Firm: {!Account.Name}
+Contact Name: {!Contact.FirstName} {!Contact.LastName}
+Email: {!Contact.Email}
+Title: {!Contact.Title}
+Phone: {!Contact.Phone}
+
+
+If you have any questions, contact Dan B.
+
+[This form message was created 7/05]

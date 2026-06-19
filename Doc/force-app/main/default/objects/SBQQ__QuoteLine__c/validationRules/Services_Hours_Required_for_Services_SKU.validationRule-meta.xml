@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Services_Hours_Required_for_Services_SKU</fullName>
+    <active>false</active>
+    <description>Requires Services Hours to be entered if the product is Services (but not services credits or collaborative integration development products).</description>
+    <errorConditionFormula>AND( 
+  ISPICKVAL(SBQQ__Product__r.Product_Type__c, &quot;Services&quot;), 
+  ISBLANK(Services_Hours__c),
+  SBQQ__ProductCode__c &lt;&gt; &quot;IB-00012&quot;, 
+  SBQQ__ProductCode__c &lt;&gt; &quot;IB-00013&quot;,
+  SBQQ__ProductCode__c &lt;&gt; &quot;IB-00014&quot;,
+  SBQQ__ProductCode__c &lt;&gt; &quot;IB-00331&quot;,
+  SBQQ__ProductCode__c &lt;&gt; &quot;IB-00332&quot;,
+  SBQQ__ProductCode__c &lt;&gt; &quot;GE-01566&quot;,
+  SBQQ__ProductCode__c &lt;&gt; &quot;GE-01564&quot;,
+  SBQQ__ProductCode__c &lt;&gt; &quot;GE-01562&quot;,
+  SBQQ__ProductCode__c &lt;&gt; &quot;GE-01565&quot;,
+  SBQQ__ProductCode__c &lt;&gt; &quot;GE-01563&quot;,
+  SBQQ__ProductCode__c &lt;&gt; &quot;GE-01561&quot;,
+  SBQQ__ProductCode__c &lt;&gt; &quot;BU-01619&quot;
+)</errorConditionFormula>
+    <errorMessage>Please enter Services Hours for Services Products.</errorMessage>
+</ValidationRule>

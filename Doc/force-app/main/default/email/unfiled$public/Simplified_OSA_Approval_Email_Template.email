@@ -1,0 +1,193 @@
+<!-- 
+    @name        QuoteApprovalEmailTemplate
+    @description This Visualforce Email Template is used to notify approvers when a quote requires their approval.
+                 It includes detailed deal information, financial metrics, custom terms, approval history,
+                 prior approver comments, and next approver details.
+    @controller  N/A (Uses standard merge fields and Visualforce components)
+    @components  - EmailAttachmentVFComponent
+                 - TermQuoteVFComponent
+                 - PriorApproverComments
+                 - NextApproverComments
+    @relatedTo   sbaa__Approval__c (Approval record related to a Quote)
+    @jira        BIZ-68135
+-->
+<messaging:emailTemplate subject="[URGENT] Quote approval request for: {!relatedTo.sbaa__Opportunity__r.Name}" recipientType="User" relatedToType="sbaa__Approval__c">
+<messaging:htmlEmailBody >
+<html>
+    <body>
+<apex:image id="Logo" value="https://intapp--qtcdev.sandbox.file.force.com/servlet/servlet.ImageServer?id=015D7000001oaPc&oid=00DD7000000o3Hr&lastMod=1695229429000" />
+
+<p>Dear {!relatedTo.sbaa__AssignedTo__r.Name} </p>
+
+<p>Your approval of Contract# {!relatedTo.Quote__r.Contract__r.ContractNumber} is required for {!relatedTo.Quote__r.Account_Name__c}</p>
+<p><b>You can approve the request by responding to this email with YES, APPROVE or APPROVED. You can reject this request by responding to this email with NO, REJECT or REJECTED.</b></p>
+<br />
+
+<p>
+    <b>Approvals:</b><br/>
+    <sbaa:relatedList recordId="{!relatedTo.Quote__c}" relationshipName="Approvals__r" fieldSetName="TemplateFields"/>
+</p>
+<br/>
+
+<table cellspacing="0" cellpadding="2" style="border: 1px solid black; border-collapse: collapse; text-align: left; padding: 10px;">
+    <tr>
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Customer Name:</th>
+        <td style="border: 1px solid black;">{!relatedTo.Quote__r.Account_Name__c}</td>
+
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Link to OSA:</th>
+        <td style="border: 1px solid black;"><b><c:EmailAttachmentVFComponent quoteId="{!relatedTo.Quote__r.Id}"></c:EmailAttachmentVFComponent></b></td>
+    </tr>
+    <tr>
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Deal Name:</th>
+        <td style="border: 1px solid black;">{!relatedTo.sbaa__Opportunity__r.Name}</td>
+
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Current Account ACV:</th>
+        <td style="border: 1px solid black;">
+            {!relatedTo.Quote__r.Currency_Symbol__c}<apex:outputText value="{0, number, ###,###,###,###.00}"><apex:param value="{!relatedTo.Quote__r.Account_ACV__c}" /></apex:outputText>
+        </td>
+    </tr>
+    <tr>
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Deal Owner:</th>
+        <td style="border: 1px solid black;">{!relatedTo.Quote__r.OP4I_Deal_Owner__c}</td>
+
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">ACV Change:</th>
+        <td style="border: 1px solid black;">{!relatedTo.Quote__r.Deal_ACV__c}</td>
+    </tr>
+    <tr>
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Effective Date:</th>
+        <td style="border: 1px solid black;">
+            <apex:outputText value="{0, date, dd-MMM-yy}"><apex:param value="{!relatedTo.Quote__r.SBQQ__StartDate__c}" /></apex:outputText>
+        </td>
+
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Deal TCV:</th>
+        <td style="border: 1px solid black;">
+            {!relatedTo.Quote__r.Currency_Symbol__c}<apex:outputText value="{0, number, ###,###,###,###.00}"><apex:param value="{!relatedTo.Quote__r.SBQQ__NetAmount__c}" /></apex:outputText>
+        </td>
+    </tr>
+    <tr>
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">First Segment Months:</th>
+        <td style="border: 1px solid black;">
+            <apex:outputText >{!FLOOR(relatedTo.Quote__r.First_Segment_Months__c)}</apex:outputText>
+        </td>
+
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Services TCV:</th>
+        <td style="border: 1px solid black;">
+            {!relatedTo.Quote__r.Currency_Symbol__c}<apex:outputText value="{0, number, ###,###,###,###.00}"><apex:param value="{!relatedTo.Quote__r.Services_Net_Total__c}" /></apex:outputText>
+        </td>
+    </tr>
+    <tr>
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Total Contract Months:</th>
+        <td style="border: 1px solid black;">
+            <apex:outputText >{!FLOOR(relatedTo.Quote__r.SBQQ__SubscriptionTerm__c)}</apex:outputText>
+        </td>
+   
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Payment Terms:</th>
+        <td style="border: 1px solid black;">{!relatedTo.Quote__r.Software_Payment_Terms__c}</td>
+    </tr>
+    <tr>
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Average YoY Increase (%):</th>
+        <td style="border: 1px solid black;">{!relatedTo.Quote__r.Uplift__c}</td>
+   
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Billing Frequency:</th>
+        <td style="border: 1px solid black;">{!relatedTo.Quote__r.SBQQ__BillingFrequency__c}</td>
+    </tr>
+    <tr>
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Yearly Software Uplift (%):</th>
+        <td style="border: 1px solid black;">{!relatedTo.Quote__r.Yearly_Uplift__c}</td>
+
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Initial Term Discount (%):</th>
+        <td style="border: 1px solid black;">{!relatedTo.Quote__r.Initial_Term_Discount__c}%</td>
+    </tr>
+    <tr>
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Termination for Convenience:</th>
+        <td style="border: 1px solid black;">{!IF(relatedTo.Quote__r.Termination_with_Cancellation_Fee__c, "Yes", "No")}</td>
+    
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Services Discount (%):</th>
+        <td style="border: 1px solid black;">{!relatedTo.Quote__r.Services_Discount_Percentage__c}%</td>
+    </tr>
+    <tr>
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Cancellation Fee (%):</th>
+        <td style="border: 1px solid black;">{!relatedTo.Quote__r.Cancellation_fee__c}</td>
+    
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Additional Free months at no cost:</th>
+        <td style="border: 1px solid black;">
+            <apex:outputText >{!FLOOR(relatedTo.Quote__r.Additional_Free_months_at_no_cost__c)}</apex:outputText>
+        </td>
+    </tr>
+    <tr>
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Right of Return:</th>
+        <td style="border: 1px solid black;">{!relatedTo.Quote__r.ROR__c}</td>
+    
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">SFA Cap:</th>
+        <td style="border: 1px solid black;">{!relatedTo.Quote__r.Renewal_Increase_SFA_Cap__c}</td>
+   
+    </tr>
+    <tr>
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Right of Return Exp Date:</th>
+        <td style="border: 1px solid black;">
+            <apex:outputText value="{0, date, dd-MMM-yy}"><apex:param value="{!relatedTo.Quote__r.ROR_Expiration_Date__c}" /></apex:outputText>
+        </td>
+    
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">SFA Cap Length:</th>
+        <td style="border: 1px solid black;">{!relatedTo.Quote__r.SFA_Term__c}</td>
+    </tr>
+    <tr>
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Development Obligation:</th>
+        <td style="border: 1px solid black;">{!IF(relatedTo.Quote__r.Development_Obligation__c, "Yes", "No")}</td>
+    
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Non-Standard Package/Pricing Structure:</th>
+        <td style="border: 1px solid black;">{!IF(relatedTo.Quote__r.Non_Standard_Packaging_Structure__c, "Yes", "No")}</td>
+    </tr>
+    <tr>
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Cloud Migration:</th>
+        <td style="border: 1px solid black;">{!IF(relatedTo.Quote__r.Cloud_Migration__c, "Yes", "No")}</td>
+    
+        <th style="font-weight:bold; border: 1px solid black; background-color: #d9e1f2;">Platform:</th>
+        <td style="border: 1px solid black;">{!IF(relatedTo.Quote__r.Platform__c, "Yes", "No")}</td>
+    </tr>
+</table>
+<br />
+    
+    
+<b> Custom Quote Terms: <c:TermQuoteVFComponent quoteId="{!relatedTo.Quote__r.Id}"></c:TermQuoteVFComponent></b><br />
+<b> Custom Deal Justification: </b> {!relatedTo.Quote__r.Deal_Justification__c} <br /><br />
+<b> Requester Notes: </b> {!relatedTo.Quote__r.Approval_Request_Notes__c} <br /><br />
+<b> Custom Approval History: </b>  
+<apex:outputLink value="{!$Label.recordurl}/flow/Approval_screen_flow_for_comments?recordId={!relatedTo.Id}">
+  Click Here
+</apex:outputLink> <br /> <br /> 
+
+<b> Deal Cloud PUPM (If applicable): </b> {!relatedTo.Quote__r.Deal_Cloud_PUPM__c} <br />
+<b> Outstanding Balance (Subscription): </b> {!relatedTo.Quote__r.Outstanding_Balance_Subscription__c} <br />
+<b> Outstanding Balance (Services): </b> {!relatedTo.Quote__r.Outstanding_Balance_Services__c} <br /> <br />
+
+Click on the following link to go directly to the Quote: 
+<a href="{!$Label.recordurl}/{!relatedTo.Quote__r.Id}">View related Quote</a>
+<br /><br />
+Click on the following link to go directly to the Deal: 
+<a href="{!relatedTo.Quote__r.OP4I_Quote_URL__c}">View related Deal</a>
+
+<!-- 
+<b> Custom Deal Justification: </b> {!relatedTo.Quote__r.Deal_Justification__c} <br /><br />
+-->
+<br /><br />
+<b> Deal Cloud PUPM (If applicable): </b> {!relatedTo.Quote__r.Deal_Cloud_PUPM__c} <br /><br />   
+<!--Commented Via - BIZ-69220<b> Last OSA Comment: </b> {!relatedTo.Quote__r.Last_OSA_Comment__c} <br/><br/> -->  
+<b> Approval Request Notes:</b> {!relatedTo.Quote__r.Approval_Request_Notes__c} <br/><br/>   
+<b> Custom Quote Terms: <c:QuoteTermVFComponent quoteId="{!relatedTo.Quote__r.Id}"></c:QuoteTermVFComponent></b><br />
+<!--Commented Via - BIZ-69220
+<b>Prior Approver Comments:</b><br/>
+<c:PriorApproverComments recordId="{!relatedTo.Quote__r.Id}"/>
+<b>Next Approver Name:</b><br/>
+<c:NextApproverComments approval="{!relatedTo.Id}" recordId="{!relatedTo.Quote__r.Id}"/>
+<br/><br/>-->
+
+<p><b>Note: If you have questions on this approval, do not reply to this email as it is an automated one. Please forward it to the appropriate person if you have any questions.</b></p><br />
+
+<p>Disclaimer: The information in this email (including any attachments) may contain confidential or legally privileged information and is intended solely for the individual(s) or entity(ies) named above. If you are not an intended recipient or an authorized agent, you are hereby notified that reading, distributing, or otherwise disseminating or copying, or taking any action based on the contents of this email is strictly prohibited and any unauthorized interception of this e-mail is illegal. If you have received this transmission in error, please immediately notify the sender by return email and permanently delete all copies of the email. Although the individual(s) or entity(ies) named above have taken reasonable precautions to ensure no viruses are present in this email, the same cannot accept responsibility for any loss or damage arising from the use of this email or attachments. © Integration Appliance, Inc. All rights reserved. Intapp, OnePlace, and DealCloud are registered trademarks of Integration Appliance, Inc., or its subsidiaries.</p>
+<p style="color:white"><apex:outputText value="{!relatedTo.ID}"/></p>
+
+</body>
+</html>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

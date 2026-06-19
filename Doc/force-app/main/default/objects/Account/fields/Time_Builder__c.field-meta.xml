@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_Builder__c</fullName>
+    <description>This is used to track customers who have Time Builder products, and any opportunites associated with them.</description>
+    <inlineHelpText>Does this customer own Time Builder?</inlineHelpText>
+    <label>Time Builder</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>-</fullName>
+                <color>#0B6FCE</color>
+                <default>false</default>
+                <label>-</label>
+            </value>
+            <value>
+                <fullName>Suspect</fullName>
+                <color>#0B24BE</color>
+                <default>false</default>
+                <label>Suspect</label>
+            </value>
+            <value>
+                <fullName>Legal 55</fullName>
+                <color>#E27001</color>
+                <default>false</default>
+                <label>Legal 55</label>
+            </value>
+            <value>
+                <fullName>Rekoop</fullName>
+                <default>false</default>
+                <label>Rekoop</label>
+            </value>
+            <value>
+                <fullName>Open Opportunity</fullName>
+                <color>#F3D904</color>
+                <default>false</default>
+                <label>Open Opportunity</label>
+            </value>
+            <value>
+                <fullName>Own it</fullName>
+                <color>#78C953</color>
+                <default>false</default>
+                <label>Own it</label>
+            </value>
+            <value>
+                <fullName>Billing Paused</fullName>
+                <color>#FF6666</color>
+                <default>false</default>
+                <label>Billing Paused</label>
+            </value>
+            <value>
+                <fullName>Lapsed</fullName>
+                <color>#FF0000</color>
+                <default>false</default>
+                <label>Lapsed</label>
+            </value>
+            <value>
+                <fullName>SmartTime</fullName>
+                <default>false</default>
+                <label>SmartTime</label>
+            </value>
+            <value>
+                <fullName>Aderant FoundTime</fullName>
+                <default>false</default>
+                <label>Aderant FoundTime</label>
+            </value>
+            <value>
+                <fullName>DTE Axiom</fullName>
+                <default>false</default>
+                <label>DTE Axiom</label>
+            </value>
+            <value>
+                <fullName>AirTime A4P</fullName>
+                <default>false</default>
+                <label>AirTime A4P</label>
+            </value>
+            <value>
+                <fullName>Own it - Trial</fullName>
+                <default>false</default>
+                <label>Own it - Trial</label>
+            </value>
+            <value>
+                <fullName>Converted</fullName>
+                <default>false</default>
+                <label>Converted</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

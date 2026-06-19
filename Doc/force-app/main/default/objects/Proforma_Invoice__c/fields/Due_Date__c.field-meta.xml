@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Due_Date__c</fullName>
+    <description>BIZ-64677 - The due date on a renewal letter should always be 30 days prior to the start date of the new contract</description>
+    <formula>Renewal_Quote__r.SBQQ__Opportunity2__r.SBQQ__RenewedContract__r.EndDate - 29</formula>
+    <label>Due Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

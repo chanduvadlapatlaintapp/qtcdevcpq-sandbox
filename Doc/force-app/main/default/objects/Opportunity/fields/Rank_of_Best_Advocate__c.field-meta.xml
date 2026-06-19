@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Rank_of_Best_Advocate__c</fullName>
+    <description>This is the person who is interested in talking to Intapp and is willing to give you information.</description>
+    <inlineHelpText>This is the person who is interested in talking to Intapp and is willing to give you information.</inlineHelpText>
+    <label>Focus of Receptivity Picklist</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>4) MP or Management Committee Partner</fullName>
+                <default>false</default>
+                <label>4) MP or Management Committee Partner</label>
+            </value>
+            <value>
+                <fullName>3) GC, PGL, Others reporting to MP</fullName>
+                <default>false</default>
+                <label>3) GC, PGL, Others reporting to MP</label>
+            </value>
+            <value>
+                <fullName>2) ED, COO or CFO</fullName>
+                <default>false</default>
+                <label>2) ED, COO or CFO</label>
+            </value>
+            <value>
+                <fullName>1) CIO, Records, Conflicts, Others reporting to ED or CFO</fullName>
+                <default>false</default>
+                <label>1) CIO, Records, Conflicts, Others reporting to ED or CFO</label>
+            </value>
+            <value>
+                <fullName>0) Below that</fullName>
+                <default>false</default>
+                <label>0) Below that</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

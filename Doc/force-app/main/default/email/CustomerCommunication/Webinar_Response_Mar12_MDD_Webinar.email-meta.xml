@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Response for March 2012 MDD webinar featuring White &amp; Case</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - Mar12 MDD Webinar</name>
+    <style>none</style>
+    <subject>IntApp Webinar Confirmation</subject>
+    <textOnly>{!Lead.FirstName} {!Lead.LastName}:
+
+Thank you for registering for the IntApp Integration Builder Webinar. The login details are below.
+
+Title: Mastering Master Data and IT Architecture
+Date: Wednesday, March 28
+Time: 8am Pacific / 11am Eastern / 4pm BST
+Duration: 1 hour
+
+Video:
+
+Conference URL: http://www.infiniteconferencing.com/Events/intapp/
+Participant Code: 97447854
+
+Audio:
+
+Conference Audio Dial In: 
+US/Canada: (888) 567-1603
+UK: 00 800 4747 4646
+International Toll: (201) 604-5052
+
+(You will not need to give the operator a passcode, just the title of the webinar)
+
+http://www.intapp.com
+All information Copyright 2011 IntApp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

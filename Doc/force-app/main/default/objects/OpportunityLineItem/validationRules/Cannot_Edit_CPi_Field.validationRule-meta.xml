@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Edit_CPi_Field</fullName>
+    <active>false</active>
+    <description>Prevents users from editing the CPI field used for renewal Opportunities.</description>
+    <errorConditionFormula>AND(
+  $User.Id != &quot;00550000001QEeI&quot;, /* Diane Lawyer */
+  $User.Id != &quot;00550000002q64G&quot;, /* Jennifer Richard */
+  $User.Id != &quot;00550000000sNmf&quot;, /* Eldean Ward */
+  $User.Id != &quot;00550000001QCqH&quot;, /* Jason Wood */
+  $User.Id != &quot;00550000005FVBK&quot;, /* Maya Peterson */
+  $User.ProfileId != &quot;00e30000000bvR3&quot;, /* System Administrator */
+  OR(
+    AND(
+      ISNEW(),
+      NOT(ISBLANK(CPI__c))
+    ),
+      ISCHANGED(CPI__c)
+  )
+)</errorConditionFormula>
+    <errorMessage>The CPI field may only be edited by CSM Operations. Please contact CSM Ops if these fields need to be updated.</errorMessage>
+</ValidationRule>

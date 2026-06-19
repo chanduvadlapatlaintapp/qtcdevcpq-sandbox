@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Send an email to Heather, Guido and Ashish</description>
+        <name>Send_Email_To_Specific_User_s</name>
+        <label>Send Email To Specific User&apos;s</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>EmailBody</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <stringValue>heather.curry@intapp.com,guido.peruzzi@intapp.com,ashish.sharma@intapp.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Contract Subsidiary Changed</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+    </actionCalls>
+    <apiVersion>57.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Subsidiary</name>
+        <label>Subsidiary Condition</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Report_Condition</name>
+            <conditionLogic>1 AND ((2 AND 3) OR (4 AND 5 AND 6 AND 7))</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>In Force</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Subsidiary__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>18:DealCloud, Inc.</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Applicable_Subsidiary__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>DealCloud</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Subsidiary__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01:200 Integration Appliance (US)</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Subsidiary__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>35:Repstor Limited</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Subsidiary__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>37:Repstor, Inc.</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Applicable_Subsidiary__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Intapp</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Email_To_Specific_User_s</targetReference>
+            </connector>
+            <label>Report Condition</label>
+        </rules>
+    </decisions>
+    <description>#SR-118584
+BIZ-66427 Contract triggers and Flows: Implement automation bypass framework</description>
+    <environments>Default</environments>
+    <interviewLabel>LoB {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>LoB Subsidiary Error</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Subsidiary</targetReference>
+        </connector>
+        <filterFormula>NOT(
+        {!$Setup.Automation_Controls__c.Active__c} &amp;&amp;
+        {!$Setup.Automation_Controls__c.Bypass_Flows__c} &amp;&amp;
+        {!$Setup.Automation_Controls__c.Contract_Bypass__c} &amp;&amp;
+        (
+            ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c}) || 
+            (
+                NOT(ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c})) &amp;&amp;
+                CONTAINS({!$Setup.Automation_Controls__c.Data_Id__c}, {!$Record.Id})
+            )
+        )
+    )</filterFormula>
+        <object>Contract</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>EmailBody</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;Hi Team,&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: inherit; font-family: inherit;&quot;&gt;Subsidiary&lt;/span&gt;&amp;nbsp;field has been changed for&amp;nbsp;&lt;span style=&quot;color: inherit; font-family: inherit;&quot;&gt;contract&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);&quot;&gt;{!$Record.ContractNumber}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Quote Number : {!$Record.SBQQ__Quote__r.Name}&lt;/p&gt;&lt;p&gt;Contract Number : {!$Record.ContractNumber}&lt;/p&gt;&lt;p&gt;Contract Subsidiary : {!$Record.Subsidiary__c}&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;Contract Line Of Business : {!$Record.Applicable_Subsidiary__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;OSA Type : {!$Record.OSA_Type__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;Opportunity Name : {!$Record.SBQQ__Opportunity__r.Name}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;Thank you&lt;/span&gt;&lt;/p&gt;</text>
+    </textTemplates>
+</Flow>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Wall_Builder_Count__c</fullName>
+    <description>Counts 1 if the firm owns Wall Builder.</description>
+    <externalId>false</externalId>
+    <formula>IF(
+  OR(ISPICKVAL(Wall_Builder__c , &quot;Own It&quot;),ISPICKVAL(Wall_Builder__c,&quot;Own Partial&quot;)), 
+  1,
+  0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Counts 1 if the firm owns Wall Builder.</inlineHelpText>
+    <label>Intapp Walls Count</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

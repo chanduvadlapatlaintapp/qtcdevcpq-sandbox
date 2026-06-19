@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Only_Sales_Ops_Close_Contracts</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+NOT(CONTAINS($Label.Profiles_Contract,$Profile.Name)),
+ISCHANGED(Status),
+ISPICKVAL(StatusCode,&quot;Activated&quot;)
+)</errorConditionFormula>
+    <errorDisplayField>Status</errorDisplayField>
+    <errorMessage>Only Sales Ops can activate contracts.</errorMessage>
+</ValidationRule>

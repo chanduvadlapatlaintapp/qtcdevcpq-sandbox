@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Product_Migration_Placeholder__c$Name</field>
+    </columns>
+    <currency>USD</currency>
+    <format>Tabular</format>
+    <name>PMP and Opp-s</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>C_Product_Migration_Placeholder_and_Opportunities__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Product_Migration_Placeholder__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

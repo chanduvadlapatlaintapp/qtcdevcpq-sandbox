@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account$Owner</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r$Subscription_Name__c</field>
+    </columns>
+    <columns>
+        <field>Account$CRD__c</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r$Customer_Lifecycle_Stage__c</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r$Notes__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Account$IntApp_Open_Intake__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Own it,Own it - Cloud</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$IntApp_Open_Conflicts__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Own it,Own it - Cloud</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$Intapp_Open_Terms_of_Business__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Own it,Own it - Cloud</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$Type</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Customer</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Subscriptions__r$Product_Line__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Intapp Open - Conflicts,Intapp Open - Intake,Intapp Open - Workflow,Intapp Open - Terms of Business,Intapp Open - Terms of Business - Cloud</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Intake-Conflicts-Terms Customers</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_and_Subscription__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Account$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

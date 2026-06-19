@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Timekeepers__c</fullName>
+    <description>Fee Earners track hours. All lawyers are timekeepers, but some non-lawyers are also timekeepers, like people in litigation support or paralegals. Elite charges for software based on the number of Timekeepers. Timekeepers are called Fee Earners in the UK.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Fee Earners track hours but may not necessarily be lawyers i.e. paralegals</inlineHelpText>
+    <label>Fee Earners</label>
+    <precision>8</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

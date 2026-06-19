@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Opportunities$LastStageChangeDate</field>
+    </columns>
+    <columns>
+        <field>Account.Opportunities$CloseDate</field>
+    </columns>
+    <columns>
+        <field>Account.Opportunities$IMF_Upside__c</field>
+    </columns>
+    <columns>
+        <field>Account$Owner</field>
+    </columns>
+    <columns>
+        <field>Account.Opportunities$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Opportunities$LastActivityDate</field>
+    </columns>
+    <columns>
+        <field>Account.Opportunities$NextStep</field>
+    </columns>
+    <columns>
+        <field>Account$Large_Firm_Status__c</field>
+    </columns>
+    <columns>
+        <field>Account.Opportunities$Maintenance_Amount__c.CONVERT</field>
+    </columns>
+    <crossFilters>
+        <criteriaItems>
+            <column>Product__c</column>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>LegalKEY - Conflicts</value>
+        </criteriaItems>
+        <operation>with</operation>
+        <primaryTableColumn>Account$Id</primaryTableColumn>
+        <relatedTable>Product_Ownership_Detail__c</relatedTable>
+        <relatedTableJoinColumn>Account_Name__c</relatedTableJoinColumn>
+    </crossFilters>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>1 AND 2 AND (3 OR 4)</booleanFilter>
+        <criteriaItems>
+            <column>Account.Opportunities$Type</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Legal - New Converted Customer,Legal - New Converted Product,Legal - New Customer,New Customer,Legal - New Product,New Product,License Conversion - Recurring Decrease,Entitlement Conversion - Recurring Decrease,License Conversion - Recurring Increase,Entitlement Conversion - Recurring Increase</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$Conflicts__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>includes</operator>
+            <value>LegalKEY Conflicts</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$Conflicts_Software_Previous__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>LegalKEY Conflicts</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Opportunities$StageName</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>LK Conversion Funnel - Updated</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_with_Opportunities__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Account$Name</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Account.Opportunities$CloseDate</dateColumn>
+        <endDate>2019-06-30</endDate>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2016-07-01</startDate>
+    </timeFrameFilter>
+</Report>

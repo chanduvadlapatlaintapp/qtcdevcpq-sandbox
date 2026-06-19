@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Upsell_Integration_Non_Bundles__c</fullName>
+    <label>Upsell Integration (Non-Bundles)</label>
+    <summaryFilterItems>
+        <field>Opportunity.IsClosed</field>
+        <operation>equals</operation>
+        <value>False</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Opportunity.Type</field>
+        <operation>equals</operation>
+        <value>Legal - Add-on module, License Conversion - Recurring Decrease, License Conversion - Recurring Increase</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Opportunity.Practice_Group__c</field>
+        <operation>equals</operation>
+        <value>IT, Flow &amp; Intake Bundle</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Opportunity.StageName</field>
+        <operation>notEqual</operation>
+        <value>Target Account, Opportunity Reset</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Opportunity.AccountId</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>PS_Letterhead</letterhead>
+    <name>Contract Activation for PS</name>
+    <style>formalLetter</style>
+    <subject>Welcome to Intapp Professional Services</subject>
+    <textOnly>Dear {!Contract.Recipient__c},
+
+Intapp thanks you for your business.  Your signed contract has been received and transferred over to our Professional Services team to setup a project and commence work.
+An Intapp Professional Services representative will contact you within the next 10 business days to schedule next steps, including the project kickoff.  The assigned Intapp Project Manager will introduce him/herself to your designated project manager, and send over some documentation to be completed prior to starting work.  This documentation provides the Intapp Professional Services team with vital information that allows us to get the project off to a quick start.
+
+We look forward to working with your team and helping you realize the value of your investment in Intapp’s products and services.
+Intapp Professional Services</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

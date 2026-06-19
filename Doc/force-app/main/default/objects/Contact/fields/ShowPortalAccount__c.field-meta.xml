@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ShowPortalAccount__c</fullName>
+    <description>Status of Customer Portal account creation.</description>
+    <inlineHelpText>To create a Customer Portal account, please select PleaseCreate.</inlineHelpText>
+    <label>PortalAccount</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CreatingAccount</fullName>
+                <default>false</default>
+                <label>CreatingAccount</label>
+            </value>
+            <value>
+                <fullName>AccountCreated</fullName>
+                <default>false</default>
+                <label>AccountCreated</label>
+            </value>
+            <value>
+                <fullName>DeprovisioningAccount</fullName>
+                <default>false</default>
+                <label>DeprovisioningAccount</label>
+            </value>
+            <value>
+                <fullName>AccountDeprovisioned</fullName>
+                <default>false</default>
+                <label>AccountDeprovisioned</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

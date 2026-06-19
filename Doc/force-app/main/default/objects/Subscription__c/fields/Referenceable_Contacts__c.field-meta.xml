@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Referenceable_Contacts__c</fullName>
+    <label>Referenceable Contacts</label>
+    <summaryFilterItems>
+        <field>Subscription_Contact__c.Reference_Status__c</field>
+        <operation>equals</operation>
+        <value>Active Reference</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Subscription_Contact__c.Subscription__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

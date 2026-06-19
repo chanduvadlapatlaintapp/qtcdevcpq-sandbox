@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Walls_Whitespace_USD__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  New_Walls_Prospect__c = &quot;Customer (Walls)&quot;,
+  0,
+  IF(
+    ISPICKVAL(CG_Protect__c,&quot;Own it&quot;),
+    IF(
+      CONTAINS(Large_Firm_Status__c,&quot;Large Firm&quot;),
+      0.5*50000,
+      0.5*25000
+    ),
+    IF(
+      CONTAINS(New_Walls_Prospect__c,&quot;Customer (Walls)&quot;),
+      IF(
+        CONTAINS(Large_Firm_Status__c,&quot;Large Firm&quot;),
+        0.3*50000,
+        0.3*25000
+      ),
+      IF(
+        CONTAINS(Large_Firm_Status__c,&quot;Large Firm&quot;),
+        50000,
+        25000
+      )
+    )
+  )
+)</formula>
+    <inlineHelpText>This is an estimated whitespace amount for Walls based on planned ASP depending on firm size. This is not an exact number and you should refer to the pricebook for quoting.</inlineHelpText>
+    <label>Walls Whitespace (USD)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

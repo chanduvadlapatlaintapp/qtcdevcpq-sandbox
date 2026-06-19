@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Client_Advisory_Group</fullName>
+    <active>true</active>
+    <description>Record type for Client Advisory Group team</description>
+    <label>Client Advisory Group</label>
+    <picklistValues>
+        <picklist>Priority</picklist>
+        <values>
+            <fullName>High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Normal</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status</picklist>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>On Hold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Waiting on Client</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Working</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Subject</picklist>
+        <values>
+            <fullName>Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fax</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Meeting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quote via email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quote via fax</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quote via phone</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Scheduled Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Send Letter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unscheduled Call</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Engage with business unit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Engage with client</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Engage with community</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Engage with product team</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

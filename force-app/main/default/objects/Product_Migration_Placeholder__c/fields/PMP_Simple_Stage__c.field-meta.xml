@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PMP_Simple_Stage__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+OR(
+CONTAINS(TEXT(PMP_Stage__c),&apos;Not yet started&apos;),
+CONTAINS(TEXT(PMP_Stage__c),&apos;Client not contacted/responded&apos;)
+),
+&apos;Not Started&apos;,
+IF(
+OR(
+/* ISPICKVAL(PMP_Stage__c, &apos;7. Rejected all offers or cancelled. PMP closed.&apos;),*/
+ISPICKVAL(PMP_Stage__c, &apos;Not Migrating&apos;),
+ISPICKVAL(PMP_Stage__c, &apos;Customer inclined to move forward with FMS time recording. PMP closed.&apos;),
+CONTAINS(TEXT(PMP_Stage__c),&apos;declined&apos;),
+CONTAINS(TEXT(PMP_Stage__c),&apos;Rejected all offers or cancelled.&apos;),
+CONTAINS(TEXT(PMP_Stage__c),&apos;Declined&apos;)
+),
+&apos;Completed – Declined&apos;,
+IF(
+/* ISPICKVAL(PMP_Stage__c, &apos;Customer cancelling Intapp product(s). PMP closed.&apos;),*/
+OR(
+CONTAINS(TEXT(PMP_Stage__c),&apos;cancelling&apos;),
+CONTAINS(TEXT(PMP_Stage__c),&apos;Cancelled&apos;)
+),
+&apos;Completed – Cancelled&apos;,
+IF(
+OR(
+ISPICKVAL(PMP_Stage__c, &apos;5. Migration Opportunity confirmed and created. PMP closed.&apos;),
+ISPICKVAL(PMP_Stage__c, &apos;6. Sales Opportunity confirmed and created. PMP closed.&apos;),
+ISPICKVAL(PMP_Stage__c, &apos;Confirmation of workflows in production. PMP closed.&apos;),
+ISPICKVAL(PMP_Stage__c, &apos;Opportunity confirmed and created. PMP closed.&apos;),
+ISPICKVAL(PMP_Stage__c, &apos;Objective successful. PMP closed.&apos;),
+ISPICKVAL(PMP_Stage__c, &apos;Conversion to Time 8 confirmed. Opportunity created. PMP closed.&apos;),
+ISPICKVAL(PMP_Stage__c, &apos;Customer accepted 3-year Walls offer. PMP closed.&apos;),
+ISPICKVAL(PMP_Stage__c, &apos;Customer review complete - firm does not require HF. PMP Closed.&apos;),
+ISPICKVAL(PMP_Stage__c, &apos;Customer review complete - firm does not require rule update. PMP Closed.&apos;),
+ISPICKVAL(PMP_Stage__c, &apos;Customer has completed analysis and remediation. PMP Closed.&apos;),
+ISPICKVAL(PMP_Stage__c, &apos;Opportunity Closed Won&apos;),
+ISPICKVAL(PMP_Stage__c, &apos;Committed / In Contracts&apos;),
+ISPICKVAL(PMP_Stage__c, &apos;Sales Opportunity&apos;),
+ISPICKVAL(PMP_Stage__c, &apos;Client contacted, not an opportunity&apos;),
+ISPICKVAL(PMP_Stage__c, &apos;Client contacted, opportunity recorded&apos;),
+ISPICKVAL(PMP_Stage__c, &apos;Client contacted, already a RAPTOR customer&apos;),
+ISPICKVAL(PMP_Stage__c, &apos;Request Complete&apos;)
+),
+&apos;Completed – Successful&apos;,
+&apos;In Progress&apos;
+)
+)
+)
+)</formula>
+    <label>PMP Simple Stage</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

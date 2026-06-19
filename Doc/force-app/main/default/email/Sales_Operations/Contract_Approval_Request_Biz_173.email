@@ -1,0 +1,149 @@
+<messaging:emailTemplate recipientType="User"
+    relatedToType="Contract"
+    subject="Contract approval request for: {!relatedTo.name}"
+    replyTo="s@e.com">
+
+
+    <messaging:htmlEmailBody >
+
+        <html>
+            <body>
+            
+            <img src="{!$Label.Contract_Operation_Logo}"/>
+          
+<p>Dear {!recipient.name} </p>
+
+<p>Your approval of Contract #  {!relatedTo.ContractNumber} is required for {!relatedTo.Account.Name}</p>
+<br></br>
+<apex:outputPanel rendered="{!relatedTo.SBQQ__Quote__c != null}">
+
+<b>Customer Name</b> : {!relatedTo.Account.Name}<br/>
+
+<b>Current Account ACV</b> : <apex:outputPanel rendered="{!relatedTo.SBQQ__Quote__r.Account_ACV__c == null}">
+<apex:outputText value="{0, number, ###,###,###,###.00}"><apex:param value="{!relatedTo.SBQQ__Quote__r.Account_ACV__c}"/></apex:outputText><br/>
+</apex:outputPanel> 
+<apex:outputPanel rendered="{!relatedTo.SBQQ__Quote__r.Account_ACV__c!= null}">
+{!relatedTo.SBQQ__Quote__r.Currency_Symbol__c}<apex:outputText value="{0, number, ###,###,###,###.00}"><apex:param value="{!relatedTo.SBQQ__Quote__r.Account_ACV__c}"/></apex:outputText><br/>
+</apex:outputPanel> 
+
+<br></br>
+
+<b>Deal Name</b> : {!relatedTo.SBQQ__Quote__r.SBQQ__Opportunity2__r.Name}<br/>
+
+<b>Start Date</b> : <apex:outputText value="{0, date, yyyy-MM-dd}"><apex:param value="{!relatedTo.SBQQ__Quote__r.SBQQ__StartDate__c}" /> </apex:outputText><br/>
+
+<b>Deal Owner</b> : {!relatedTo.OP4I_Deal_Owner_Id__c}<br/>
+
+<b>First Segment Months</b>: <apex:outputtext >{!FLOOR(relatedTo.SBQQ__Quote__r.First_Segment_Months__c)}</apex:outputtext> <br/>
+
+<b>Total Contract Months</b> : <apex:outputtext >{!FLOOR(relatedTo.SBQQ__Quote__r.SBQQ__SubscriptionTerm__c)}</apex:outputtext> <br/>
+<b>ACV Change</b> : <apex:outputPanel rendered="{!relatedTo.SBQQ__Quote__r.Deal_ACV__c == null}">
+<apex:outputText value="{0, number, ###,###,###,###.00}"><apex:param value="{!relatedTo.SBQQ__Quote__r.Deal_ACV__c}"/></apex:outputText><br/>
+</apex:outputPanel> 
+<apex:outputPanel rendered="{!relatedTo.SBQQ__Quote__r.Deal_ACV__c!= null}">
+{!relatedTo.SBQQ__Quote__r.Currency_Symbol__c}<apex:outputText value="{0, number, ###,###,###,###.00}"><apex:param value="{!relatedTo.SBQQ__Quote__r.Deal_ACV__c}"/></apex:outputText><br/>
+</apex:outputPanel>
+
+<b>Deal TCV</b> : <apex:outputPanel rendered="{!relatedTo.SBQQ__Quote__r.Total_Subscription_Fees__c == null}">
+<apex:outputText value="{0, number, ###,###,###,###.00}"><apex:param value="{!relatedTo.SBQQ__Quote__r.Total_Subscription_Fees__c}"/></apex:outputText><br/>
+</apex:outputPanel> 
+<apex:outputPanel rendered="{!relatedTo.SBQQ__Quote__r.Total_Subscription_Fees__c!= null}">
+{!relatedTo.SBQQ__Quote__r.Currency_Symbol__c}<apex:outputText value="{0, number, ###,###,###,###.00}"><apex:param value="{!relatedTo.SBQQ__Quote__r.Total_Subscription_Fees__c}"/></apex:outputText><br/>
+</apex:outputPanel>
+
+<b>Total  Discount</b> : {!relatedTo.SBQQ__Quote__r.Initial_Term_Discount__c}% <br/>
+
+<b>Additional Free months at no cost</b> : <apex:outputtext >{!FLOOR(relatedTo.SBQQ__Quote__r.Free_Months__c)}</apex:outputtext> <br/>
+
+<b>Payment Terms</b> : {!relatedTo.SBQQ__Quote__r.Software_Payment_Terms__c}<br/>
+
+<b>Billing Frequency</b> : {!relatedTo.SBQQ__Quote__r.SBQQ__BillingFrequency__c}<br/>
+
+<b>Min YoY increase</b> : {!relatedTo.SBQQ__Quote__r.Min_year_on_year_committed_spend__c}%<br/>
+
+<b>Yearly Software Uplift% </b> : {!relatedTo.SBQQ__Quote__r.Uplift__c}<br/>
+
+<b>Services TCV</b> : <apex:outputPanel rendered="{!relatedTo.SBQQ__Quote__r.Services_Net_Total__c == null}">
+<apex:outputText value="{0, number, ###,###,###,###.00}"><apex:param value="{!relatedTo.SBQQ__Quote__r.Services_Net_Total__c}"/></apex:outputText><br/>
+</apex:outputPanel> 
+<apex:outputPanel rendered="{!relatedTo.SBQQ__Quote__r.Services_Net_Total__c!= null}">
+{!relatedTo.SBQQ__Quote__r.Currency_Symbol__c}<apex:outputText value="{0, number, ###,###,###,###.00}"><apex:param value="{!relatedTo.SBQQ__Quote__r.Services_Net_Total__c}"/></apex:outputText><br/>
+</apex:outputPanel> 
+
+<b>Services Discount</b> : {!relatedTo.SBQQ__Quote__r.Services_Discount_Percentage__c}% <br/>
+
+<b>Contract Number</b> : {!relatedTo.ContractNumber}<br/>
+
+<b>Line of Business</b> : {!relatedTo.Applicable_Subsidiary__c}<br/>
+
+<br></br>
+<b>Last requested OSA comments</b> : {!relatedTo.SBQQ__Quote__r.Last_OSA_Comment__c}<br/>
+<br></br>
+
+<b>Deal Cloud PUPM (If applicable)</b> : <apex:outputPanel rendered="{!relatedTo.SBQQ__Quote__r.Deal_Cloud_PUPM__c == null}">
+<apex:outputText value="{0, number, ###,###,###,###0.00}"><apex:param value="{!relatedTo.SBQQ__Quote__r.Deal_Cloud_PUPM__c}"/></apex:outputText><br/>
+</apex:outputPanel> 
+<apex:outputPanel rendered="{!relatedTo.SBQQ__Quote__r.Deal_Cloud_PUPM__c!= null}">
+{!relatedTo.SBQQ__Quote__r.Currency_Symbol__c}<apex:outputText value="{0, number, ###,###,###,###0.00}"><apex:param value="{!relatedTo.SBQQ__Quote__r.Deal_Cloud_PUPM__c}"/></apex:outputText><br/>
+</apex:outputPanel> 
+
+<b>Outstanding Balance (Subscription)</b> : <apex:outputPanel rendered="{!relatedTo.SBQQ__Quote__r.Outstanding_Balance_Subscription__c == null}">
+<apex:outputText value="{0, number, ###,###,###,###0.00}"><apex:param value="{!relatedTo.SBQQ__Quote__r.Outstanding_Balance_Subscription__c}"/></apex:outputText><br/>
+</apex:outputPanel> 
+<apex:outputPanel rendered="{!relatedTo.SBQQ__Quote__r.Outstanding_Balance_Subscription__c!= null}">
+{!relatedTo.SBQQ__Quote__r.Currency_Symbol__c}<apex:outputText value="{0, number, ###,###,###,###0.00}"><apex:param value="{!relatedTo.SBQQ__Quote__r.Outstanding_Balance_Subscription__c}"/></apex:outputText><br/>
+</apex:outputPanel> 
+
+
+<b>Outstanding Balance (Services)</b> :<apex:outputPanel rendered="{!relatedTo.SBQQ__Quote__r.Outstanding_Balance_Services__c == null}">
+<apex:outputText value="{0, number, ###,###,###,###0.00}"><apex:param value="{!relatedTo.SBQQ__Quote__r.Outstanding_Balance_Services__c}"/></apex:outputText><br/>
+</apex:outputPanel> 
+<apex:outputPanel rendered="{!relatedTo.SBQQ__Quote__r.Outstanding_Balance_Services__c!= null}">
+{!relatedTo.SBQQ__Quote__r.Currency_Symbol__c}<apex:outputText value="{0, number, ###,###,###,###0.00}"><apex:param value="{!relatedTo.SBQQ__Quote__r.Outstanding_Balance_Services__c}"/></apex:outputText><br/>
+</apex:outputPanel> 
+
+<b>Contract</b> : <apex:outputlink value="{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+relatedTo.Id}">{!relatedTo.Name}</apex:outputlink><br/>
+
+<br></br>
+<b>Contract Approval Notes</b> :
+<br></br>
+{!relatedTo.Approval_Request_Notes__c}<br/>
+<br></br>
+
+<p> Click on the following link to go directly to the Contract: </p>
+
+<p> <apex:outputlink value="{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+relatedTo.Id}">{!relatedTo.Name}</apex:outputlink></p>
+
+<b>Client Entitlement</b> : {!$Label.Client_Entitlement}{!relatedTo.SBQQ__Quote__r.OP4I_Account_Id__c}<br/>
+
+<b>OP4I Deal Link</b>: {!$Label.OP4I_Deal_Link}<apex:outputtext >{!relatedTo.SBQQ__Quote__r.OP4IDealID__c}</apex:outputtext><br/>
+
+<p><b>Note: If you have questions on this approval, do not reply to this email as it is an automated one. Please forward it to the appropriate person if you have any questions.</b></p>
+
+<p>You can approve the request by responding to this email with YES, APPROVE or APPROVED. You can reject this request by responding to this email with NO, REJECT or REJECTED.</p>
+</apex:outputPanel> 
+
+<apex:outputPanel rendered="{!relatedTo.SBQQ__Quote__c == null}">
+
+<p> Line of Business: {!relatedTo.Applicable_Subsidiary__c}</p>
+
+<p> OP4I Deal Owner: {!relatedTo.OP4I_Deal_Owner_Id__c}</p>
+
+<p> Contract Approval Notes: </p>
+
+<p> {!relatedTo.Approval_Request_Notes__c} </p>
+
+<p> Click on the following link to either approve or reject this approval request: </p>
+
+<p> Click on the following link to go directly to the Contract: </p>
+
+<p> <apex:outputlink value="{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+relatedTo.Id}">{!relatedTo.Name}</apex:outputlink></p>
+
+<p><b>Note: If you have questions on this approval, do not reply to this email as it is an automated one. Please forward it to the appropriate person if you have any questions.</b></p>
+
+</apex:outputPanel> 
+ 
+            </body>
+        </html>
+    </messaging:htmlEmailBody>
+</messaging:emailTemplate>

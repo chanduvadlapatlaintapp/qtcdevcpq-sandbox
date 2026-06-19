@@ -1,0 +1,178 @@
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+    </template>
+
+    <div class="slds-p-around_medium">
+        <div class="page-header">
+            <div class="header-icon">
+                <lightning-icon icon-name="utility:contract" size="x-small"></lightning-icon>
+            </div>
+            <div>
+                <h2 class="header-title">Manage Quote Terms</h2>
+                <p class="header-subtitle">Update existing quote terms and conditions</p>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filter-card">
+            <!-- Row 1: Picklist filters -->
+            <div class="slds-grid slds-gutters slds-m-bottom_small">
+                <div class="slds-col slds-size_1-of-4">
+                    <lightning-combobox label="Filter by Type" value={filterType}
+                        options={typeFilterOptions} onchange={handleFilterTypeChange}></lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_1-of-4">
+                    <lightning-combobox label="Filter by Status" value={filterStatus}
+                        options={statusFilterOptions} onchange={handleFilterStatusChange}></lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_1-of-4">
+                    <lightning-combobox label="Filter by Active" value={filterActive}
+                        options={activeFilterOptions} onchange={handleFilterActiveChange}></lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_1-of-4">
+                    <lightning-combobox label="Term Category" value={filterCategory}
+                        options={categoryFilterOptions} onchange={handleFilterCategoryChange}></lightning-combobox>
+                </div>
+            </div>
+            <!-- Row 2: Search fields -->
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-3">
+                    <lightning-input label="Search by Name" value={searchTerm}
+                        onchange={handleSearchChange} onkeyup={handleSearchKeyUp}
+                        placeholder="Enter search term..."></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-3">
+                    <lightning-input label="Search by Description" value={filterDesc}
+                        onchange={handleFilterDescChange} onkeyup={handleFilterDescKeyUp}
+                        placeholder="Min 2 chars..."></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-3 slds-grid slds-grid_vertical-align-end">
+                    <lightning-button label="Search" variant="neutral" onclick={handleFilterSearch}
+                        class="slds-m-bottom_xx-small"></lightning-button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <lightning-button label="Save All" variant="brand" icon-name="utility:save"
+                onclick={handleSave}></lightning-button>
+            <div class="toolbar-spacer"></div>
+            <template if:true={hasRecords}>
+                <span class="record-count">
+                    <lightning-icon icon-name="utility:rows" size="xx-small" class="slds-m-right_xx-small"></lightning-icon>
+                    {recordCountLabel}
+                </span>
+            </template>
+        </div>
+
+        <!-- Records Table -->
+        <template if:true={hasRecords}>
+            <div class="slds-scrollable_x">
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped slds-table_fixed-layout branded-table">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th style="width:130px;">Name</th>
+                            <th style="width:420px;">Body</th>
+                            <th style="width:110px;">Type</th>
+                            <th style="width:90px;">Print Order</th>
+                            <th style="width:150px;">Category</th>
+                            <th style="width:180px;">Description</th>
+                            <th style="width:110px;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={records} for:item="rec">
+                            <tr key={rec.rowIndex} class={rec.rowClass}>
+                                <td>
+                                    <template if:true={rec.Id}>
+                                        <span class="slds-truncate">{rec.Name}</span>
+                                    </template>
+                                    <template if:false={rec.Id}>
+                                        <span class="slds-text-color_weak">Auto</span>
+                                    </template>
+                                </td>
+                                <td class="body-col-cell">
+                                    <lightning-input-rich-text value={rec.SBQQ__Body__c}
+                                        data-index={rec.rowIndex} data-field="SBQQ__Body__c"
+                                        onchange={handleFieldChange}
+                                        label-visible="false"
+                                        placeholder="Enter body..."></lightning-input-rich-text>
+                                </td>
+                                <td>
+                                    <span class="slds-truncate">{rec.SBQQ__Type__c}</span>
+                                </td>
+                                <td>
+                                    <lightning-input type="number" value={rec.SBQQ__PrintOrder__c}
+                                        data-index={rec.rowIndex} data-field="SBQQ__PrintOrder__c"
+                                        onchange={handleFieldChange} variant="label-hidden"
+                                        label="Order" step="1"></lightning-input>
+                                </td>
+                                <td>
+                                    <lightning-combobox value={rec.Term_Category__c}
+                                        options={categoryOptions} data-index={rec.rowIndex}
+                                        data-field="Term_Category__c"
+                                        onchange={handleFieldChange} variant="label-hidden"
+                                        label="Category"></lightning-combobox>
+                                </td>
+                                <td>
+                                    <lightning-input value={rec.Description__c}
+                                        data-index={rec.rowIndex} data-field="Description__c"
+                                        onchange={handleFieldChange} variant="label-hidden"
+                                        label="Description"></lightning-input>
+                                </td>
+                                <td class="action-cell">
+                                    <template if:true={rec.SBQQ__Active__c}>
+                                        <lightning-button label="Inactivate" variant="destructive-text"
+                                            data-index={rec.rowIndex}
+                                            onclick={handleToggleActive}
+                                            class="slds-text-body_small"></lightning-button>
+                                    </template>
+                                    <template if:false={rec.SBQQ__Active__c}>
+                                        <lightning-button label="Activate" variant="brand-outline"
+                                            data-index={rec.rowIndex}
+                                            onclick={handleToggleActive}
+                                            class="slds-text-body_small"></lightning-button>
+                                    </template>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </template>
+
+        <template if:false={hasRecords}>
+            <div class="empty-state">
+                <div class="empty-state-icon">
+                    <lightning-icon icon-name="utility:add" size="small"></lightning-icon>
+                </div>
+                <h3 class="empty-state-heading">No quote terms found</h3>
+                <p class="empty-state-text">No quote terms match the current filters. Try adjusting your search criteria.</p>
+            </div>
+        </template>
+
+        <!-- Confirmation Modal -->
+        <template if:true={showConfirmModal}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header">
+                        <h2 class="slds-modal__title">{confirmTitle}</h2>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <p>{confirmMessage}</p>
+                    </div>
+                    <div class="slds-modal__footer">
+                        <lightning-button label="Cancel" variant="neutral"
+                            onclick={handleCancelToggle}></lightning-button>
+                        <lightning-button label={confirmButtonLabel} variant={confirmButtonVariant}
+                            onclick={handleConfirmToggle}
+                            class="slds-m-left_x-small"></lightning-button>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </div>
+</template>

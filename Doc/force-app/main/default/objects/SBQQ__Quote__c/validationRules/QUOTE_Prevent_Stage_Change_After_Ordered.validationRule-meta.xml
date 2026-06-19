@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>QUOTE_Prevent_Stage_Change_After_Ordered</fullName>
+    <active>true</active>
+    <description>BIZ-73470</description>
+    <errorConditionFormula>AND(
+SBQQ__Ordered__c = TRUE,
+NOT(ISCHANGED(SBQQ__Ordered__c))
+)</errorConditionFormula>
+    <errorMessage>Quote cannot be changed after it has been marked as &quot;Ordered.&quot; If this change is required, please contact your System Administrator.</errorMessage>
+</ValidationRule>

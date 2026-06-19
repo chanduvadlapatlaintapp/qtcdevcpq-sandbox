@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Client_Advocacy</fullName>
+    <active>true</active>
+    <description>Record type for Client Advocacy team</description>
+    <label>Client Advocacy</label>
+    <picklistValues>
+        <picklist>Priority</picklist>
+        <values>
+            <fullName>High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Normal</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status</picklist>
+        <values>
+            <fullName>Call Scheduled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>On Hold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Waiting on Client</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Working</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Subject</picklist>
+        <values>
+            <fullName>Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fax</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Meeting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quote via email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quote via fax</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quote via phone</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Scheduled Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Send Letter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unscheduled Call</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>ABR Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Critical Case Review</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Internal Check-In</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Live Webinar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Client Intro</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other - Client Work</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product Campaign</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Release Communication</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Support Case Escalation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Support Success Check-In</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Survey Follow-Up</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>University Video</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

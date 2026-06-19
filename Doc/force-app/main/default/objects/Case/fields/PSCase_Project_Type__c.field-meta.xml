@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSCase_Project_Type__c</fullName>
+    <description>Identifies the type of Professional Services case.</description>
+    <inlineHelpText>&quot;New Install&quot; criteria:
+	- virgin customer
+	- first installation of a product 
+	- installation of AT for a WB customer. 
+	- installation of WB for an  AT customer. 
+	- phase 1 of cases matching above criteria; subsequent phases do not count.</inlineHelpText>
+    <label>Project Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>New Install</fullName>
+                <default>false</default>
+                <label>New Install</label>
+            </value>
+            <value>
+                <fullName>POC</fullName>
+                <default>false</default>
+                <label>POC</label>
+            </value>
+            <value>
+                <fullName>Upgrade</fullName>
+                <default>false</default>
+                <label>Upgrade</label>
+            </value>
+            <value>
+                <fullName>Training</fullName>
+                <default>false</default>
+                <label>Training</label>
+            </value>
+            <value>
+                <fullName>Bug Fix</fullName>
+                <default>false</default>
+                <label>Bug Fix</label>
+            </value>
+            <value>
+                <fullName>Extension</fullName>
+                <default>false</default>
+                <label>Extension</label>
+            </value>
+            <value>
+                <fullName>Services Only</fullName>
+                <default>false</default>
+                <label>Services Only</label>
+            </value>
+            <value>
+                <fullName>VM Migration</fullName>
+                <default>false</default>
+                <label>VM Migration</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

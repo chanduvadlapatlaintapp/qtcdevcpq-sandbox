@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stage__c</fullName>
+    <label>Stage</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Target Account</fullName>
+                <default>false</default>
+                <label>Target Account</label>
+            </value>
+            <value>
+                <fullName>Making Exploratory Calls</fullName>
+                <default>false</default>
+                <label>Making Exploratory Calls</label>
+            </value>
+            <value>
+                <fullName>Expression of Interest</fullName>
+                <default>false</default>
+                <label>Expression of Interest</label>
+            </value>
+            <value>
+                <fullName>Lead Submitted to reseller</fullName>
+                <default>false</default>
+                <label>Lead Submitted to reseller</label>
+            </value>
+            <value>
+                <fullName>Reseller rep assigned</fullName>
+                <default>false</default>
+                <label>Reseller rep assigned</label>
+            </value>
+            <value>
+                <fullName>First Meeting Completed</fullName>
+                <default>false</default>
+                <label>First Meeting Completed</label>
+            </value>
+            <value>
+                <fullName>Discussing Asssessment Program</fullName>
+                <default>false</default>
+                <label>Discussing Asssessment Program</label>
+            </value>
+            <value>
+                <fullName>Investigative Calls and Demos</fullName>
+                <default>false</default>
+                <label>Investigative Calls and Demos</label>
+            </value>
+            <value>
+                <fullName>Joint presentation scheduled</fullName>
+                <default>false</default>
+                <label>Joint presentation scheduled</label>
+            </value>
+            <value>
+                <fullName>Developing Initial Findings</fullName>
+                <default>false</default>
+                <label>Developing Initial Findings</label>
+            </value>
+            <value>
+                <fullName>Engaged in Assessment</fullName>
+                <default>false</default>
+                <label>Engaged in Assessment</label>
+            </value>
+            <value>
+                <fullName>Considering Assessment Results</fullName>
+                <default>false</default>
+                <label>Considering Assessment Results</label>
+            </value>
+            <value>
+                <fullName>Business Case Validation</fullName>
+                <default>false</default>
+                <label>Business Case Validation</label>
+            </value>
+            <value>
+                <fullName>Recognition of Needs</fullName>
+                <default>false</default>
+                <label>Recognition of Needs</label>
+            </value>
+            <value>
+                <fullName>On Reseller&apos;s Forecast</fullName>
+                <default>false</default>
+                <label>On Reseller&apos;s Forecast</label>
+            </value>
+            <value>
+                <fullName>Getting Budget Approval</fullName>
+                <default>false</default>
+                <label>Getting Budget Approval</label>
+            </value>
+            <value>
+                <fullName>Evaluation of Options</fullName>
+                <default>false</default>
+                <label>Evaluation of Options</label>
+            </value>
+            <value>
+                <fullName>Negotiating Pilot terms</fullName>
+                <default>false</default>
+                <label>Negotiating Pilot terms</label>
+            </value>
+            <value>
+                <fullName>Engaged in Pilot - Technical rollout</fullName>
+                <default>false</default>
+                <label>Engaged in Pilot - Technical rollout</label>
+            </value>
+            <value>
+                <fullName>Engaged in Pilot - Adoption program</fullName>
+                <default>false</default>
+                <label>Engaged in Pilot - Adoption program</label>
+            </value>
+            <value>
+                <fullName>Developing Final Proposal</fullName>
+                <default>false</default>
+                <label>Developing Final Proposal</label>
+            </value>
+            <value>
+                <fullName>Considering PIlot results</fullName>
+                <default>false</default>
+                <label>Considering PIlot results</label>
+            </value>
+            <value>
+                <fullName>Resolution of Concerns</fullName>
+                <default>false</default>
+                <label>Resolution of Concerns</label>
+            </value>
+            <value>
+                <fullName>Negotiating with Budget Owner</fullName>
+                <default>false</default>
+                <label>Negotiating with Budget Owner</label>
+            </value>
+            <value>
+                <fullName>Negotiating License terms</fullName>
+                <default>false</default>
+                <label>Negotiating License terms</label>
+            </value>
+            <value>
+                <fullName>Engaged in Implementation - Technical</fullName>
+                <default>false</default>
+                <label>Engaged in Implementation - Technical</label>
+            </value>
+            <value>
+                <fullName>Helping Owner Get EDM Approval</fullName>
+                <default>false</default>
+                <label>Helping Owner Get EDM Approval</label>
+            </value>
+            <value>
+                <fullName>Engaged in Usage Assessment - Adoption</fullName>
+                <default>false</default>
+                <label>Engaged in Usage Assessment - Adoption</label>
+            </value>
+            <value>
+                <fullName>Considering Usage Assessment results</fullName>
+                <default>false</default>
+                <label>Considering Usage Assessment results</label>
+            </value>
+            <value>
+                <fullName>Developing Addendum</fullName>
+                <default>false</default>
+                <label>Developing Addendum</label>
+            </value>
+            <value>
+                <fullName>Negotiating Additional Users</fullName>
+                <default>false</default>
+                <label>Negotiating Additional Users</label>
+            </value>
+            <value>
+                <fullName>Management Approval</fullName>
+                <default>false</default>
+                <label>Management Approval</label>
+            </value>
+            <value>
+                <fullName>Exchanging Paperwork</fullName>
+                <default>false</default>
+                <label>Exchanging Paperwork</label>
+            </value>
+            <value>
+                <fullName>In Contract</fullName>
+                <default>false</default>
+                <label>In Contract</label>
+            </value>
+            <value>
+                <fullName>In Evaluation Program</fullName>
+                <default>false</default>
+                <label>In Evaluation Program</label>
+            </value>
+            <value>
+                <fullName>Closed Won</fullName>
+                <default>false</default>
+                <label>Closed Won</label>
+            </value>
+            <value>
+                <fullName>Closed Lost</fullName>
+                <default>false</default>
+                <label>Closed Lost</label>
+            </value>
+            <value>
+                <fullName>Closed - No Decision</fullName>
+                <default>false</default>
+                <label>Closed - No Decision</label>
+            </value>
+            <value>
+                <fullName>Recurring Cancelled</fullName>
+                <default>false</default>
+                <label>Recurring Cancelled</label>
+            </value>
+            <value>
+                <fullName>Closed Won Adjustment</fullName>
+                <default>false</default>
+                <label>Closed Won Adjustment</label>
+            </value>
+            <value>
+                <fullName>Not In Production</fullName>
+                <default>false</default>
+                <label>Not In Production</label>
+            </value>
+            <value>
+                <fullName>No AM Activity</fullName>
+                <default>false</default>
+                <label>No AM Activity</label>
+            </value>
+            <value>
+                <fullName>Low Usage</fullName>
+                <default>false</default>
+                <label>Low Usage</label>
+            </value>
+            <value>
+                <fullName>Poor Service Quality</fullName>
+                <default>false</default>
+                <label>Poor Service Quality</label>
+            </value>
+            <value>
+                <fullName>Loss of Service Sponsor/Merger</fullName>
+                <default>false</default>
+                <label>Loss of Service Sponsor/Merger</label>
+            </value>
+            <value>
+                <fullName>Commercial Issues</fullName>
+                <default>false</default>
+                <label>Commercial Issues</label>
+            </value>
+            <value>
+                <fullName>Remedial Plan Underway</fullName>
+                <default>false</default>
+                <label>Remedial Plan Underway</label>
+            </value>
+            <value>
+                <fullName>Safe Account</fullName>
+                <default>false</default>
+                <label>Safe Account</label>
+            </value>
+            <value>
+                <fullName>Discounted Renewal</fullName>
+                <default>false</default>
+                <label>Discounted Renewal</label>
+            </value>
+            <value>
+                <fullName>Maintenance Holiday</fullName>
+                <default>false</default>
+                <label>Maintenance Holiday</label>
+            </value>
+            <value>
+                <fullName>Waiting for Kickoff</fullName>
+                <default>false</default>
+                <label>Waiting for Kickoff</label>
+            </value>
+            <value>
+                <fullName>Technical Implementation</fullName>
+                <default>false</default>
+                <label>Technical Implementation</label>
+            </value>
+            <value>
+                <fullName>Initial Adoption Program</fullName>
+                <default>false</default>
+                <label>Initial Adoption Program</label>
+            </value>
+            <value>
+                <fullName>Monitoring monthly usage</fullName>
+                <default>false</default>
+                <label>Monitoring monthly usage</label>
+            </value>
+            <value>
+                <fullName>Discussing adoption improvement program</fullName>
+                <default>false</default>
+                <label>Discussing adoption improvement program</label>
+            </value>
+            <value>
+                <fullName>Adoption improvement program underway</fullName>
+                <default>false</default>
+                <label>Adoption improvement program underway</label>
+            </value>
+            <value>
+                <fullName>Approaching EUL Evaluation</fullName>
+                <default>false</default>
+                <label>Approaching EUL Evaluation</label>
+            </value>
+            <value>
+                <fullName>Discussing uplift with Account Owner</fullName>
+                <default>false</default>
+                <label>Discussing uplift with Account Owner</label>
+            </value>
+            <value>
+                <fullName>Discussing uplift with Customer</fullName>
+                <default>false</default>
+                <label>Discussing uplift with Customer</label>
+            </value>
+            <value>
+                <fullName>Developing license count recommendation</fullName>
+                <default>false</default>
+                <label>Developing license count recommendation</label>
+            </value>
+            <value>
+                <fullName>Waiting for Finance to send bill</fullName>
+                <default>false</default>
+                <label>Waiting for Finance to send bill</label>
+            </value>
+            <value>
+                <fullName>Waiting for payment</fullName>
+                <default>false</default>
+                <label>Waiting for payment</label>
+            </value>
+            <value>
+                <fullName>Closed - Renewed without change</fullName>
+                <default>false</default>
+                <label>Closed - Renewed without change</label>
+            </value>
+            <value>
+                <fullName>Closed - Renewed with User Increase</fullName>
+                <default>false</default>
+                <label>Closed - Renewed with User Increase</label>
+            </value>
+            <value>
+                <fullName>Closed - Renewed with User Decrease</fullName>
+                <default>false</default>
+                <label>Closed - Renewed with User Decrease</label>
+            </value>
+            <value>
+                <fullName>Closed - Cancelled</fullName>
+                <default>false</default>
+                <label>Closed - Cancelled</label>
+            </value>
+            <value>
+                <fullName>Closed - Should Never have been opened</fullName>
+                <default>false</default>
+                <label>Closed - Should Never have been opened</label>
+            </value>
+            <value>
+                <fullName>Anticipated Cancellation</fullName>
+                <default>false</default>
+                <label>Anticipated Cancellation</label>
+            </value>
+            <value>
+                <fullName>Anticipated Unsuccessful Conversion</fullName>
+                <default>false</default>
+                <label>Anticipated Unsuccessful Conversion</label>
+            </value>
+            <value>
+                <fullName>Trial Period</fullName>
+                <default>false</default>
+                <label>Trial Period</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

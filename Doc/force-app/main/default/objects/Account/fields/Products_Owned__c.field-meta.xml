@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Products_Owned__c</fullName>
+    <description>Of Intapp&apos;s five product lines that can be purchased separately, how many does the customer own? (Integration Builder, Wall Builder, Intapp Time, Open Intake, Open Conflicts)</description>
+    <externalId>false</externalId>
+    <formula>0</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Of Intapp&apos;s five product lines (Walls, Open Conflicts, Integrate, Time, Open Intake) how many does this account own? This field is calculated based on the Own It section</inlineHelpText>
+    <label>Products Owned - OLD</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

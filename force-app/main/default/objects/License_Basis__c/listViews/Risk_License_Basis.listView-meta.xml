@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Risk_License_Basis</fullName>
+    <columns>Product_Line__c</columns>
+    <columns>NAME</columns>
+    <columns>Highest_Package__c</columns>
+    <columns>License_Basis_Description__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Product_Line__c</field>
+        <operation>contains</operation>
+        <value>walls,intake,conflicts,terms</value>
+    </filters>
+    <label>Risk License Basis</label>
+    <language>en_US</language>
+</ListView>

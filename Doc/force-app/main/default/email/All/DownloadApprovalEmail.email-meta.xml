@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Default_Letterhead</letterhead>
+    <name>DownloadApprovalEmail</name>
+    <style>freeForm</style>
+    <subject>A new Download Article requires approval</subject>
+    <textOnly>The following Download article requires approval:
+
+Article Number: {!Download__kav.ArticleNumber}
+Title: {!Download__kav.Title}
+Created By: {!Download__kav.CreatedBy}
+URL: {!Download__kav.Link}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

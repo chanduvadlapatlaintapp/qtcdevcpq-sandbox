@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OP4I_SF_Combined_Pricebook__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( ISBLANK(OP4I_Pricebook__c) , SBQQ__Quote__r.Price_book_rule__c , OP4I_Pricebook__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>OP4I SF Combined Pricebook</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

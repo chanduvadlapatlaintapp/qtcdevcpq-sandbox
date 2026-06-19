@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_Whitespace_USD__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  OR(
+    New_Intapp_Time_Prospect__c = &quot;Customer (Time)&quot;,
+    New_Intapp_Time_Prospect__c = &quot;Customer (Time - Cloud)&quot;
+  ),
+  0,
+  IF(
+    CONTAINS(New_Intapp_Time_Prospect__c,&quot;Customer (Time)&quot;),
+    IF(
+      CONTAINS(Large_Firm_Status__c,&quot;Large Firm&quot;),
+      0.3*105000,
+      0.3*59000
+    ),
+    IF(
+      CONTAINS(Large_Firm_Status__c,&quot;Large Firm&quot;),
+      105000,
+      59000
+    )
+  )
+)</formula>
+    <inlineHelpText>This is an estimated whitespace amount for Time based on planned ASP depending on firm size. This is not an exact number and you should refer to the pricebook for quoting.</inlineHelpText>
+    <label>Time Whitespace (USD)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

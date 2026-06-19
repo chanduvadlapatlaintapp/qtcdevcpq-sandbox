@@ -1,0 +1,143 @@
+<template>
+  <lightning-card
+    title="OSA Subscription Fee Summary"
+    icon-name="standard:contract_line_outcome"
+  >
+    <div slot="actions">
+      <lightning-button-icon
+        icon-name="utility:refresh"
+        variant="border-filled"
+        alternative-text="Refresh"
+        title="Refresh"
+        onclick={handleRefresh}
+      ></lightning-button-icon>
+    </div>
+    <template lwc:if={isLoading}>
+      <div class="slds-is-relative slds-p-around_large">
+        <lightning-spinner
+          alternative-text="Loading OSA summary"
+          size="medium"
+        ></lightning-spinner>
+      </div>
+    </template>
+    <template lwc:if={hasError}>
+      <div class="slds-m-around_medium">
+        <div
+          class="slds-notify slds-notify_alert slds-alert_error"
+          role="alert"
+        >
+          <lightning-icon
+            icon-name="utility:error"
+            size="x-small"
+            class="slds-m-right_x-small"
+          ></lightning-icon>
+          {errorMessage}
+        </div>
+      </div>
+    </template>
+    <template lwc:if={hasData}>
+      <div class="slds-m-around_medium">
+        <template for:each={summary.segments} for:item="seg">
+          <div key={seg.segmentKey} class="osa-segment slds-m-bottom_x-small">
+            <div
+              class={seg.headerClass}
+              onclick={handleToggle}
+              data-key={seg.segmentKey}
+              role="button"
+              tabindex="0"
+            >
+              <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center slds-p-vertical_x-small slds-p-horizontal_small">
+                <div class="slds-grid slds-grid_vertical-align-center slds-col">
+                  <lightning-icon
+                    icon-name={seg.chevronIcon}
+                    size="x-small"
+                    class="slds-m-right_x-small osa-chevron"
+                  ></lightning-icon>
+                  <span class={seg.indexChipClass}>{seg.indexLabel}</span>
+                  <div class="slds-m-left_small">
+                    <div class="slds-text-title_bold">{seg.segmentLabel}</div>
+                    <div class="slds-text-body_small slds-text-color_weak">
+                      {seg.dateRange}
+                      <template lwc:if={seg.hasLines}>&nbsp;&middot;&nbsp; {seg.lineCount} line(s)</template>
+                    </div>
+                  </div>
+                </div>
+                <div class="slds-col slds-text-align_right slds-m-left_medium">
+                  <div class={seg.yearLabelClass}>{seg.yearLabel}</div>
+                  <div class={seg.yearAmountClass}>{seg.formattedHeaderTotal}</div>
+                </div>
+              </div>
+            </div>
+            <template lwc:if={seg.isOpen}>
+              <div class="osa-segment-detail">
+                <template lwc:if={seg.hasLines}>
+                  <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                    <thead>
+                      <tr class="slds-line-height_reset">
+                        <th scope="col"><div class="slds-truncate">Product Code</div></th>
+                        <th scope="col"><div class="slds-truncate">Product Name</div></th>
+                        <th scope="col"><div class="slds-truncate">Support</div></th>
+                        <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Qty</div></th>
+                        <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Sale Price / Month</div></th>
+                        <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Net Total</div></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <template for:each={seg.lines} for:item="line">
+                        <tr key={line.productCode} class="slds-hint-parent">
+                          <td><span class="osa-prod-code">{line.productCode}</span></td>
+                          <td>{line.productName}</td>
+                          <td>
+                            <lightning-badge
+                              label={line.supportLevel}
+                              class={line.supportBadgeClass}
+                            ></lightning-badge>
+                          </td>
+                          <td class="slds-text-align_right">{line.formattedQty}</td>
+                          <td class="slds-text-align_right">
+                            <span class="slds-text-color_weak">{line.currencyCode}* </span>{line.formattedSalePrice}
+                          </td>
+                          <td class="slds-text-align_right">
+                            <span class="slds-text-color_weak">{line.currencyCode}* </span>{line.formattedNetTotal}
+                          </td>
+                        </tr>
+                      </template>
+                    </tbody>
+                    <tfoot>
+                      <tr class="osa-subtotal-row">
+                        <td colspan="5" class="slds-text-align_right slds-text-color_weak">
+                          <em>Subtotal ({seg.segmentLabel})</em>
+                        </td>
+                        <td class="slds-text-align_right slds-text-title_bold">{seg.formattedLineSubtotal}</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </template>
+                <template lwc:if={seg.hasOneTimeCredit}>
+                  <div class="osa-otc-row slds-grid slds-grid_align-spread slds-p-horizontal_small slds-p-vertical_x-small">
+                    <span class="slds-text-body_small slds-text-color_weak">One Time Credit</span>
+                    <span class="slds-text-body_small slds-text-title_bold osa-otc-amount">{seg.formattedOneTimeCredit}</span>
+                  </div>
+                </template>
+                <template lwc:if={seg.hasNoLines}>
+                  <div class="slds-p-around_medium slds-text-color_weak slds-text-body_small">
+                    No Quote Lines for {seg.segmentLabel}.
+                  </div>
+                </template>
+              </div>
+            </template>
+          </div>
+        </template>
+      </div>
+      <div class="osa-grand-total slds-m-horizontal_medium slds-m-bottom_medium slds-p-around_medium slds-border_rounded">
+        <div>
+          <div class="slds-text-heading_small">NET SUBSCRIPTION FEES</div>
+          <div class="slds-text-body_small osa-grand-sub">
+            Year 1 + Year 2 + Year 3 + Year 4 + Year 5 + Year 6
+          </div>
+        </div>
+        <div class="slds-text-heading_medium">{summary.formattedNetTotal}</div>
+      </div>
+    </template>
+  </lightning-card>
+</template>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSCaseTB_desktop_spreadsheet_software__c</fullName>
+    <inlineHelpText>Select the desktop spreadsheet software used in your organization from the drop-down list.</inlineHelpText>
+    <label>Select desktop spreadsheet software</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Excel 2010</fullName>
+                <default>false</default>
+                <label>Excel 2010</label>
+            </value>
+            <value>
+                <fullName>Excel 2007</fullName>
+                <default>false</default>
+                <label>Excel 2007</label>
+            </value>
+            <value>
+                <fullName>Excel 2003</fullName>
+                <default>false</default>
+                <label>Excel 2003</label>
+            </value>
+            <value>
+                <fullName>Other desktop spreadsheet software</fullName>
+                <default>false</default>
+                <label>Other desktop spreadsheet software</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

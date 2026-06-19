@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recurring_Per_Lawyer_Risk__c</fullName>
+    <description>What is the Recurring Per Lawyer for all Risk Practice deals at this Account?</description>
+    <formula>Recurring_Amount_Risk__c /  Lawyers__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>What is the Recurring Per Lawyer for all Risk Practice deals at this Account?</inlineHelpText>
+    <label>Recurring Per Lawyer/Prof - Risk</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

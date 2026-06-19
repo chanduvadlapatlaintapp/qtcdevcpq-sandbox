@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Restrict_Address_Update_Once_Verified</fullName>
+    <active>true</active>
+    <description>BIZ-45061:When user other than the one having permission &apos;ADDRESS_ADMIN_OVERRIDE&apos; tries to update any field on the address when Status is verified then trow error.
+BIZ-49280</description>
+    <errorConditionFormula>AND(NOT( $Permission.Operations_User), ISPICKVAL(PRIORVALUE(Status__c),&apos;Verification Approved&apos;),ISPICKVAL(Status__c,&apos;Verification Approved&apos;),OR( ISCHANGED( Account__c ),ISCHANGED(  Address__City__s ),ISCHANGED(  Address__CountryCode__s ),
+ISCHANGED(   Address__Street__s ),ISCHANGED(  Address__StateCode__s ),ISCHANGED(  Address__PostalCode__s ),ISCHANGED(   Department__c ),ISCHANGED(Name),ISCHANGED( Status__c)))</errorConditionFormula>
+    <errorMessage>For updating the record, please create a Task for Contract Ops by clicking &apos;Update Address&apos; button</errorMessage>
+</ValidationRule>

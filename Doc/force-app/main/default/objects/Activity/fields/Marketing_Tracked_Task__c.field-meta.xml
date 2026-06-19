@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Marketing_Tracked_Task__c</fullName>
+    <description>Calculation field for Marketing</description>
+    <externalId>false</externalId>
+    <formula>CASE(Campaign_Follow_Up__c, 
+&quot;&quot;, &quot;Archived&quot;,
+&quot;Not Going to Follow Up&quot;, &quot;Archived&quot;,
+&quot;Expired - No Action&quot;,&quot;Archived&quot;,
+&quot;Expired - Sent EM / Left VM&quot;, &quot;Archived&quot;,
+&quot;Communicated With&quot;, IF(DATEVALUE(CreatedDate) &gt;DATE(2012, 12, 31) ,&quot;Tracked&quot;,&quot;Archived&quot;),
+&quot;Closed by Owner&quot;, IF(DATEVALUE(CreatedDate) &gt;DATE(2012, 12, 31) ,&quot;Tracked&quot;,&quot;Archived&quot;),&quot;Tracked&quot;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Tracks open tasks plus &quot;Communicated With&quot; in the current half</inlineHelpText>
+    <label>Marketing Tracked Task</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

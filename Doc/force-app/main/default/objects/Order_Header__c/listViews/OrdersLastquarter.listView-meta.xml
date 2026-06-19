@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OrdersLastquarter</fullName>
+    <columns>NAME</columns>
+    <columns>Recipient_Name__c</columns>
+    <columns>Account__c</columns>
+    <columns>Product_Component__c</columns>
+    <columns>Shipping_Postal_Code__c</columns>
+    <columns>OrderStage__c</columns>
+    <columns>Order_System_Status__c</columns>
+    <columns>Actual_Ship_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>greaterThan</operation>
+        <value>7/1/2021 12:00 AM</value>
+    </filters>
+    <label>Orders: Last quarter</label>
+    <language>en_US</language>
+</ListView>

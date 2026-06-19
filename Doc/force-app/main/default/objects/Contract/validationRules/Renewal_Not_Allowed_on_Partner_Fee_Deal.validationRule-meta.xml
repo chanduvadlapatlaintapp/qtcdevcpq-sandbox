@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_Not_Allowed_on_Partner_Fee_Deal</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL(Deal_Type__c, &apos;Partner_Fee&apos;) &amp;&amp; ( SBQQ__RenewalForecast__c  = true ||  SBQQ__RenewalQuoted__c  = true)</errorConditionFormula>
+    <errorMessage>Renewals are not allowed for partner fee deals.</errorMessage>
+</ValidationRule>

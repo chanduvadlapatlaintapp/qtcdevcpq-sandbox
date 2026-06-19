@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Start_End_Date</name>
+        <label>Assign Start &amp; End Date</label>
+        <locationX>562</locationX>
+        <locationY>621</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.ServiceDate</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.SBQQ__QuoteLine__r.SBQQ__StartDate__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.EndDate</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.SBQQ__QuoteLine__r.SBQQ__EndDate__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>If_migration_quote_Non_annual</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Check_Order_Product</name>
+        <label>Check Order Product</label>
+        <locationX>1383</locationX>
+        <locationY>611</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>If_Invoice_Plan</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__BillingFrequency__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Invoice Plan</stringValue>
+                </rightValue>
+            </conditions>
+            <label>If Invoice Plan</label>
+        </rules>
+        <rules>
+            <name>Other_segments</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__SegmentIndex__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>1.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__ChargeType__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Recurring</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__BillingFrequency__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Invoice Plan</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Activated</stringValue>
+                </rightValue>
+            </conditions>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>Other segments</label>
+        </rules>
+        <rules>
+            <name>If_one_time</name>
+            <conditionLogic>1 AND 2</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Parent_of_Bundle__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Product2.Product_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Services</stringValue>
+                </rightValue>
+            </conditions>
+            <label>If one time</label>
+        </rules>
+        <rules>
+            <name>If_annual_and_segment_12months</name>
+            <conditionLogic>(1 AND (3 OR 6)) AND 2 AND 4 AND 5</conditionLogic>
+            <conditions>
+                <leftValueReference>SegmentMonths</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>12.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__BillingFrequency__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Annual</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__SegmentIndex__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>1.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__ChargeType__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Recurring</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Activated</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__SegmentIndex__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>If annual and segment &gt; 12months</label>
+        </rules>
+        <rules>
+            <name>If_not_equal_annual_and_segment_12months</name>
+            <conditionLogic>(1 AND (3 OR 6))  AND 2 AND 4 AND 5 AND 7</conditionLogic>
+            <conditions>
+                <leftValueReference>SegmentMonths</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>12.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__BillingFrequency__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Annual</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__SegmentIndex__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>1.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__ChargeType__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Recurring</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__BillingFrequency__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Invoice Plan</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__SegmentIndex__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Activated</stringValue>
+                </rightValue>
+            </conditions>
+            <label>If not equal annual and segment &gt; 12months</label>
+        </rules>
+        <rules>
+            <name>If_not_equal_annual_and_segment_12month</name>
+            <conditionLogic>(1 AND (3 OR 5)) AND 2 AND 4 AND 6</conditionLogic>
+            <conditions>
+                <leftValueReference>SegmentMonths</leftValueReference>
+                <operator>LessThanOrEqualTo</operator>
+                <rightValue>
+                    <numberValue>12.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__BillingFrequency__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Invoice Plan</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__SegmentIndex__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>1.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__ChargeType__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Recurring</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__SegmentIndex__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Activated</stringValue>
+                </rightValue>
+            </conditions>
+            <label>If not equal annual and segment &lt;= 12months</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>CheckSubsidiary_in_Order</name>
+        <label>CheckSubsidiary in Order</label>
+        <locationX>351</locationX>
+        <locationY>311</locationY>
+        <defaultConnector>
+            <targetReference>Date_Validation</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>If_Subsidiary_is_not_null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Order.Subsidiary__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>If Subsidiary is not null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Date_Validation</name>
+        <label>Date Validation</label>
+        <locationX>759</locationX>
+        <locationY>347</locationY>
+        <defaultConnector>
+            <targetReference>If_migration_quote_Non_annual</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Start_and_End_Date_Blank</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__QuoteLine__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ServiceDate</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.EndDate</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Start_End_Date</targetReference>
+            </connector>
+            <label>Is Start and End Date Blank?</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>If_migration_quote_Non_annual</name>
+        <label>Check for migration quote &amp; Non annual</label>
+        <locationX>1005</locationX>
+        <locationY>616</locationY>
+        <defaultConnector>
+            <targetReference>Check_Order_Product</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>If_migration</name>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Order.SBQQ__Quote__r.SBQQ__Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Migration Quote</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__BillingFrequency__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Quarterly</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__BillingFrequency__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Semiannual</stringValue>
+                </rightValue>
+            </conditions>
+            <label>If migration</label>
+        </rules>
+    </decisions>
+    <description>Updated Hold Billing conditions. Changed event trigger and merged with Order Product : Before Insert or Update - V1
+Added a extra condition to decision and Added condition to work for Invoice Plan BF
+Added condition to skip migration quotes
+BIZ-66420- Flow bypass logic</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>Billingtreatmentname</name>
+        <dataType>String</dataType>
+        <expression>&quot;Billing Treatment&quot; &amp; &quot; &quot; &amp; {!$Record.OrderItemNumber}</expression>
+    </formulas>
+    <formulas>
+        <name>NullDatevalue</name>
+        <dataType>Date</dataType>
+        <expression>DATEVALUE(&quot;&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>Overridenextbilldateformula</name>
+        <dataType>Date</dataType>
+        <expression>CASE(TEXT({!$Record.Order.SBQQ__PaymentTerm__c}),
+ &quot;Net 7&quot;, ({!$Record.ServiceDate} - 37),
+ &quot;Net 30&quot;, ({!$Record.ServiceDate} - 60), 
+ &quot;Net 45&quot;, ({!$Record.ServiceDate} - 75),
+&quot;Net 60&quot;, ({!$Record.ServiceDate} - 90),
+&quot;Net 90&quot;, ({!$Record.ServiceDate} - 120),
+&quot;Net 120&quot;, ({!$Record.ServiceDate} - 150),
+{!$Record.ServiceDate})</expression>
+    </formulas>
+    <formulas>
+        <name>Segment1nextbillingdate</name>
+        <dataType>Date</dataType>
+        <expression>IF(ISNULL({!$Record.Order.SBQQ__Quote__r.Override_Next_Billing_date__c}), DATEVALUE({!$Record.Order.ActivatedDate}), {!$Record.Order.SBQQ__Quote__r.Override_Next_Billing_date__c})</expression>
+    </formulas>
+    <formulas>
+        <name>SegmentMonths</name>
+        <dataType>Number</dataType>
+        <expression>IF(DAY({!$Record.EndDate}) &lt; DAY({!$Record.ServiceDate}),
+(MONTH({!$Record.EndDate})) + (12*(YEAR({!$Record.EndDate})-(YEAR({!$Record.ServiceDate})))) -
+(MONTH({!$Record.ServiceDate})),
+(MONTH({!$Record.EndDate})) + (12*(YEAR({!$Record.EndDate})-YEAR({!$Record.ServiceDate}))) -
+MONTH({!$Record.ServiceDate}) + 1
+)</expression>
+        <scale>0</scale>
+    </formulas>
+    <formulas>
+        <name>SubsidiaryName</name>
+        <dataType>String</dataType>
+        <expression>IF((LEFT(TEXT({!$Record.Order.Subsidiary__c}), 1) = &quot;0&quot;), 
+MID(TEXT({!$Record.Order.Subsidiary__c}), 2, 1), 
+LEFT(TEXT({!$Record.Order.Subsidiary__c}), 2))</expression>
+    </formulas>
+    <interviewLabel>Update Billing day &amp; Override billing date in Order {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Order Product Before Insert or Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>644</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>CheckSubsidiary_in_Order</targetReference>
+        </connector>
+        <filterFormula>NOT({!$Setup.Automation_Controls__c.Active__c} 
+&amp;&amp; {!$Setup.Automation_Controls__c.Bypass_Flows__c} 
+&amp;&amp; {!$Setup.Automation_Controls__c.Orderline_Bypass__c} 
+&amp;&amp; (
+	ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c}) 
+	|| (
+		NOT(ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c})) 
+		&amp;&amp; CONTAINS({!$Setup.Automation_Controls__c.Data_Id__c}, {!$Record.Id})
+	)
+))</filterFormula>
+        <object>OrderItem</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>othersegmentoverridedate</name>
+        <dataType>Date</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>Segment1overridedate</name>
+        <dataType>Date</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>SetOneTimasNobBilling</name>
+        <dataType>Picklist</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

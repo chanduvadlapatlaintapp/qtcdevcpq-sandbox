@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <description>This field indicates the current status of the proposal.</description>
+    <label>Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Creating Initial Draft</fullName>
+                <default>true</default>
+                <label>Creating Initial Draft</label>
+            </value>
+            <value>
+                <fullName>In Review</fullName>
+                <default>false</default>
+                <label>In Review</label>
+            </value>
+            <value>
+                <fullName>Sent to Customer</fullName>
+                <default>false</default>
+                <label>Sent to Customer</label>
+            </value>
+            <value>
+                <fullName>Never Sent</fullName>
+                <default>false</default>
+                <label>Never Sent</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

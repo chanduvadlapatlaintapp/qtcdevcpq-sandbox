@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lotus_Customer_Reaction_Rating__c</fullName>
+    <label>Lotus Customer Reaction Rating</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Red</fullName>
+                <color>#CC0000</color>
+                <default>false</default>
+                <label>Red</label>
+            </value>
+            <value>
+                <fullName>Yellow</fullName>
+                <color>#F3D904</color>
+                <default>false</default>
+                <label>Yellow</label>
+            </value>
+            <value>
+                <fullName>Green</fullName>
+                <color>#78C953</color>
+                <default>false</default>
+                <label>Green</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

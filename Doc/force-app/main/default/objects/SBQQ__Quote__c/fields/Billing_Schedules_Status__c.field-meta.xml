@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_Schedules_Status__c</fullName>
+    <description>Tracks whether Billing Schedules have been created already (Completed), whether there was an exception/error in the process (Error) or whether a refresh of billing schedules already created/edited is required to proceed.</description>
+    <inlineHelpText>If Refresh Required is shown, please click the Refresh Billing Schedules button at the top of this page to continue.</inlineHelpText>
+    <label>Billing Schedule Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Refresh Required</fullName>
+                <default>false</default>
+                <label>Refresh Required</label>
+            </value>
+            <value>
+                <fullName>Completed</fullName>
+                <default>false</default>
+                <label>Completed</label>
+            </value>
+            <value>
+                <fullName>Error</fullName>
+                <default>false</default>
+                <label>Error</label>
+            </value>
+            <value>
+                <fullName>Pending</fullName>
+                <default>true</default>
+                <label>Pending</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

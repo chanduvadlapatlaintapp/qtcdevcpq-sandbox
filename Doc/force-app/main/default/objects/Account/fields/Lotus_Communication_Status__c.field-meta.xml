@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lotus_Communication_Status__c</fullName>
+    <label>Lotus Communication Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>1. Not Started</fullName>
+                <default>false</default>
+                <label>1. Not Started</label>
+            </value>
+            <value>
+                <fullName>2. Email Announcement Completed</fullName>
+                <default>false</default>
+                <label>2. Email Announcement Completed</label>
+            </value>
+            <value>
+                <fullName>3. Exchanging Emails to Setup Call</fullName>
+                <default>false</default>
+                <label>3. Exchanging Emails to Setup Call</label>
+            </value>
+            <value>
+                <fullName>4. Phone Call Scheduled</fullName>
+                <default>false</default>
+                <label>4. Phone Call Scheduled</label>
+            </value>
+            <value>
+                <fullName>5. Phone Call Completed</fullName>
+                <default>false</default>
+                <label>5. Phone Call Completed</label>
+            </value>
+            <value>
+                <fullName>6. On-Site Meeting Scheduled</fullName>
+                <default>false</default>
+                <label>6. On-Site Meeting Scheduled</label>
+            </value>
+            <value>
+                <fullName>7. On-Site Meeting Completed</fullName>
+                <default>false</default>
+                <label>7. On-Site Meeting Completed</label>
+            </value>
+            <value>
+                <fullName>8. On-Site Meeting Not Applicable</fullName>
+                <default>false</default>
+                <label>8. On-Site Meeting Not Applicable</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

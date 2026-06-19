@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Response for April 2011 IB Ogilvy Webinar</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - Apr11 IB Ogilvy Webinar</name>
+    <style>none</style>
+    <subject>IntApp Webinar Confirmation</subject>
+    <textOnly>{!Lead.FirstName} {!Lead.LastName}: 
+
+Thank you for registering for the IntApp Integration Builder Webinar. The login details are below.
+
+Date: Thursday, April 7
+Time: 8am Pacific / 11am Eastern / 4pm GMT
+
+Video:
+
+Conference URL: https://www.livemeeting.com/cc/vcc/join?id=w2099761&amp;role=attend&amp;pw=A209976
+Meeting ID: w2099761
+Entry Code: A209976
+
+Audio:
+
+Conference Audio Dial In: 
+US/Canada: 888-287-5532 
+UK: 0 800 404 7656 
+Passcode: 2099761
+
+
+http://www.intapp.com
+All information Copyright 2011 IntApp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

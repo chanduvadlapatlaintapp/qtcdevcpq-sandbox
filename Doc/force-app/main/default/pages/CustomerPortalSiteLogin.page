@@ -1,0 +1,13 @@
+<apex:page id="loginPage" showHeader="false" title="{!$Label.site.site_login}" action="{!if (!isPickVal($User.userType, 'Guest'), urlfor('/home/home.jsp'), null)}">
+  <apex:composition template="{!$Site.Template}">
+    <apex:define name="body">  
+      <center>
+        <br/>
+        <apex:outputText styleClass="title" value="{!$Label.site.login}"/>
+        <br/>
+        <c:SiteLogin id="siteLogin"/>
+      </center>
+      <br/>
+    </apex:define>
+  </apex:composition>
+</apex:page>

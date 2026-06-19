@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>SBQQ__Field__c</columns>
+    <columns>SBQQ__Rule__c</columns>
+    <columns>SBQQ__Value__c</columns>
+    <columns>SBQQ__ValueField__c</columns>
+    <columns>SBQQ__SourceLookupField__c</columns>
+    <columns>SBQQ__TargetObject__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>SBQQ__Field__c</field>
+        <operation>contains</operation>
+        <value>Segment_Term__c</value>
+    </filters>
+    <label>All</label>
+</ListView>

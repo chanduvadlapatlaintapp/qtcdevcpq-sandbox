@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Complete_Task</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Complete Task</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/21.0/connection.js&quot;)}
+
+if (confirm(&quot;Are you sure wou want to Complete this task?&quot;)) 
+{ 
+var task = new sforce.SObject(&quot;Task&quot;); 
+task.id = &quot;{!Task.Id}&quot;; 
+task.Status = &quot;Completed&quot;;
+
+var result = sforce.connection.update([task]);
+
+if (result[0].getBoolean(&quot;success&quot;)) 
+{ 
+// Refresh window 
+window.location.reload(); 
+} 
+else 
+{ 
+alert(&quot;Error saving event&quot;); 
+}
+
+}
+else 
+{
+alert(&quot;The task has NOT been updated.&quot;);
+}</url>
+</WebLink>

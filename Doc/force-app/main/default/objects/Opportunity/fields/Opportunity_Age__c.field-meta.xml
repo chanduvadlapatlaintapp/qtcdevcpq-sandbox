@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opportunity_Age__c</fullName>
+    <description>Calculated Age field for use in calculations</description>
+    <externalId>false</externalId>
+    <formula>IF(
+  IsClosed,
+  IF(
+    CloseDate-DATEVALUE(CreatedDate)&lt;0,
+    0,
+    CloseDate-DATEVALUE(CreatedDate)
+  ),
+  IF(
+    TODAY()-DATEVALUE(CreatedDate)&lt;0,
+    0,
+    TODAY()-DATEVALUE(CreatedDate)
+  )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Calculated Age field for use in calculations</inlineHelpText>
+    <label>Opportunity Age</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_28004294</developerName>
+        <masterLabel>Production Status</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>Subscription__c$Customer_Lifecycle_Stage__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Implementation</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Within 90 days of Production</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Project not started yet</sourceValue>
+            </sourceValues>
+            <value>Not Yet Live</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>In Production</sourceValue>
+            </sourceValues>
+            <value>Live</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>Subscription__c$Name</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Account__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Subscription_Name__c</field>
+    </columns>
+    <columns>
+        <field>Subscription__c$Customer_Lifecycle_Stage__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Subscription__c$Product_Line__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Intapp Open - Conflicts</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c$Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Active</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_28004294</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>CSM: Open Conflicts Customers</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Subscriptions__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Subscription__c$Account__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Subscription__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

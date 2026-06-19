@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Law_Department_RFP_Program__c</fullName>
+    <label>Law Department RFP Program</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Program target</fullName>
+                <default>false</default>
+                <label>Program target</label>
+            </value>
+            <value>
+                <fullName>Met with us</fullName>
+                <default>false</default>
+                <label>Met with us</label>
+            </value>
+            <value>
+                <fullName>Attended RR event</fullName>
+                <default>false</default>
+                <label>Attended RR event</label>
+            </value>
+            <value>
+                <fullName>Committed to RFP/OCGs</fullName>
+                <default>false</default>
+                <label>Committed to RFP/OCGs</label>
+            </value>
+            <value>
+                <fullName>Incorporated Guidelines</fullName>
+                <default>false</default>
+                <label>Incorporated Guidelines</label>
+            </value>
+            <value>
+                <fullName>Initiated firm audit</fullName>
+                <default>false</default>
+                <label>Initiated firm audit</label>
+            </value>
+            <value>
+                <fullName>Firms buys b/c of RFP</fullName>
+                <default>false</default>
+                <label>Firms buys b/c of RFP</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>text</bucketType>
+        <developerName>BucketField_6709596</developerName>
+        <masterLabel>Country</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>Case.Account_Territory__c</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Australia-NZ</sourceValue>
+            </sourceValues>
+            <value>APAC</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Mid Atlantic/South East AE</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>MidAtlantic-North</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>North Central</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>North Central AE</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Northeast</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>South East/Central</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>West-Canada</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>West-Canada AE</sourceValue>
+            </sourceValues>
+            <value>North America</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>UK</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>UK AE</sourceValue>
+            </sourceValues>
+            <value>Europe</value>
+        </values>
+    </buckets>
+    <buckets>
+        <bucketType>text</bucketType>
+        <developerName>BucketField_15685244</developerName>
+        <masterLabel>Support Owners</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>OWNER</sourceColumnName>
+        <useOther>false</useOther>
+    </buckets>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>STATUS</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Closed - Resolved</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Month</dateGranularity>
+        <field>CREATED_DATEONLY</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>OWNER</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Closed Cases by Engineer</name>
+    <params>
+        <name>units</name>
+        <value>h</value>
+    </params>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CaseList</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATEONLY</dateColumn>
+        <endDate>2020-06-30</endDate>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2019-01-01</startDate>
+    </timeFrameFilter>
+</Report>

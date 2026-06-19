@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Install_Type__c</fullName>
+    <label>Install Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Upgrade</fullName>
+                <default>false</default>
+                <label>Upgrade</label>
+            </value>
+            <value>
+                <fullName>New Install</fullName>
+                <default>false</default>
+                <label>New Install</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

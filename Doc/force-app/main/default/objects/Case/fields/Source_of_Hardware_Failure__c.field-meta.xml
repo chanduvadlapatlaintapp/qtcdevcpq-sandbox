@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Source_of_Hardware_Failure__c</fullName>
+    <description>This is to categorize RMA cases</description>
+    <label>Source of Hardware Failure</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Hard Disk</fullName>
+                <default>false</default>
+                <label>Hard Disk</label>
+            </value>
+            <value>
+                <fullName>Disk/RAID Controller</fullName>
+                <default>false</default>
+                <label>Disk/RAID Controller</label>
+            </value>
+            <value>
+                <fullName>Network Card</fullName>
+                <default>false</default>
+                <label>Network Card</label>
+            </value>
+            <value>
+                <fullName>Power Supply</fullName>
+                <default>false</default>
+                <label>Power Supply</label>
+            </value>
+            <value>
+                <fullName>CPU</fullName>
+                <default>false</default>
+                <label>CPU</label>
+            </value>
+            <value>
+                <fullName>Memory</fullName>
+                <default>false</default>
+                <label>Memory</label>
+            </value>
+            <value>
+                <fullName>Chassis and Chassis Fans</fullName>
+                <default>false</default>
+                <label>Chassis and Chassis Fans</label>
+            </value>
+            <value>
+                <fullName>Yeti Backplane</fullName>
+                <default>false</default>
+                <label>Yeti Backplane</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+                <label>Unknown</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>10</visibleLines>
+</CustomField>

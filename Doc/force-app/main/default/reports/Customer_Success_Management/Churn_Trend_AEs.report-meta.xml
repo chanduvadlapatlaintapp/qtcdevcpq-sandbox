@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <calculatedFormula>-Sales_Productivity_Snapshot__c.Recurring_Amount_Change__c:SUM</calculatedFormula>
+        <datatype>currency</datatype>
+        <developerName>FORMULA1</developerName>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Churn</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <buckets>
+        <bucketType>text</bucketType>
+        <developerName>BucketField_82811658</developerName>
+        <masterLabel>Region</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>Sales_Productivity_Snapshot__c.Account_Owner__c</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Mark Bilson</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Norm Mullock</sourceValue>
+            </sourceValues>
+            <value>APAC</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Adam Friedman</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Brooke Barber</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>John Sharkey</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Kathy Meltzer</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Stuart Douglass</sourceValue>
+            </sourceValues>
+            <value>Eastern US</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Catherine Phan-Dang</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Gary Foreman</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Kerry Stivaletti</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Pam Snyder</sourceValue>
+            </sourceValues>
+            <value>Western US/Canada</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Andrea Brian</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Chloe Doyle</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Daragh McLaughlin</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Kaye Sycamore</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Richard Hill</sourceValue>
+            </sourceValues>
+            <value>UK/EMEA</value>
+        </values>
+    </buckets>
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <axisBinding>y</axisBinding>
+            <column>FORMULA1</column>
+        </chartSummaries>
+        <chartType>LineGrouped</chartType>
+        <enableHoverLabels>false</enableHoverLabels>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>Sales_Productivity_Snapshot__c.Snapshot_Date__c</groupingColumn>
+        <legendPosition>Right</legendPosition>
+        <location>CHART_TOP</location>
+        <secondaryGroupingColumn>Sales_Productivity_Snapshot__c.Account_Owner__c</secondaryGroupingColumn>
+        <showAxisLabels>false</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>false</showValues>
+        <size>Medium</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>12</textSize>
+        <title>TTM Churn (Snapshot-based)</title>
+        <titleColor>#000000</titleColor>
+        <titleSize>18</titleSize>
+    </chart>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Sales_Productivity_Snapshot__c.Recurring_Amount_Change__c</field>
+    </columns>
+    <columns>
+        <field>Sales_Productivity_Snapshot__c.Practice_Group__c</field>
+    </columns>
+    <columns>
+        <field>Sales_Productivity_Snapshot__c.Stage__c</field>
+    </columns>
+    <columns>
+        <field>BucketField_82811658</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>1 AND 2 AND 3 AND (4 OR 5)</booleanFilter>
+        <criteriaItems>
+            <column>Sales_Productivity_Snapshot__c.Stage__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Closed Won,Recurring Cancelled,Closed - Renewed without change,Closed - Renewed with User Increase,Closed - Renewed with User Decrease</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Sales_Productivity_Snapshot__c.Recurring_Amount_Change__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>lessThan</operator>
+            <value>USD 0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Sales_Productivity_Snapshot__c.Account_Owner__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Aimee Spirlin,Brooke Barber,Drew O&apos;Neill,Tim Prinsen,Chloe Doyle</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>CUST_CREATED_DATE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>LAST_N_DAYS:365</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>CUST_CREATED_DATE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>TODAY</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Sales_Productivity_Snapshot__c.Snapshot_Date__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Sales_Productivity_Snapshot__c.Account_Owner__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Churn Trend - AEs</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Sales_Productivity_Snapshot__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

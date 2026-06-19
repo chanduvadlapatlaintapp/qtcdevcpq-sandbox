@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Processing_Status__c</fullName>
+    <label>Processing Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Opportunity Created</fullName>
+                <default>false</default>
+                <label>Opportunity Created</label>
+            </value>
+            <value>
+                <fullName>Quote Created</fullName>
+                <default>false</default>
+                <label>Quote Created</label>
+            </value>
+            <value>
+                <fullName>Parent Quote Line Created</fullName>
+                <default>false</default>
+                <label>Parent Quote Line Created</label>
+            </value>
+            <value>
+                <fullName>Order and OLI created</fullName>
+                <default>false</default>
+                <label>Order and OLI created</label>
+            </value>
+            <value>
+                <fullName>Contract Created</fullName>
+                <default>false</default>
+                <label>Contract Created</label>
+            </value>
+            <value>
+                <fullName>Contract Activated</fullName>
+                <default>false</default>
+                <label>Contract Activated</label>
+            </value>
+            <value>
+                <fullName>Child Quote Line Created</fullName>
+                <default>false</default>
+                <label>Child Quote Line Created</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VPN_Access_Declined__c</fullName>
+    <description>Pick from the list if a customer historically declines VPN access. This has implications on services scoping.</description>
+    <inlineHelpText>What type of remote access does this account allow?</inlineHelpText>
+    <label>PS Remote Access Permissions</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>No Restrictions</fullName>
+                <default>true</default>
+                <label>No Restrictions</label>
+            </value>
+            <value>
+                <fullName>Limited Access Window</fullName>
+                <default>false</default>
+                <label>Limited Access Window</label>
+            </value>
+            <value>
+                <fullName>Pre-scheduled Access Only</fullName>
+                <default>false</default>
+                <label>Pre-scheduled Access Only</label>
+            </value>
+            <value>
+                <fullName>Remote Access Denied</fullName>
+                <default>false</default>
+                <label>Remote Access Denied</label>
+            </value>
+            <value>
+                <fullName>Supervised Access Only</fullName>
+                <default>false</default>
+                <label>Supervised Access Only</label>
+            </value>
+            <value>
+                <fullName>Citrix</fullName>
+                <default>false</default>
+                <label>Citrix</label>
+            </value>
+            <value>
+                <fullName>LogMeIn</fullName>
+                <default>false</default>
+                <label>LogMeIn</label>
+            </value>
+            <value>
+                <fullName>RDP</fullName>
+                <default>false</default>
+                <label>RDP</label>
+            </value>
+            <value>
+                <fullName>SecureLink</fullName>
+                <default>false</default>
+                <label>SecureLink</label>
+            </value>
+            <value>
+                <fullName>TeamViewer</fullName>
+                <default>false</default>
+                <label>TeamViewer</label>
+            </value>
+            <value>
+                <fullName>VPN Access</fullName>
+                <default>false</default>
+                <label>VPN Access</label>
+            </value>
+            <value>
+                <fullName>Webex</fullName>
+                <default>false</default>
+                <label>Webex</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

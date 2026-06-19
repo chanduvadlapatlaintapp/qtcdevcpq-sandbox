@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>T_M_Services_Discount__c</fullName>
+    <description>This will calculate Total of Partner Discounts for T&amp;M Service Product Type</description>
+    <label>T&amp;M Services Discount</label>
+    <summarizedField>SBQQ__QuoteLine__c.SBQQ__PartnerDiscount__c</summarizedField>
+    <summaryFilterItems>
+        <field>SBQQ__QuoteLine__c.Services_Product_Type__c</field>
+        <operation>equals</operation>
+        <value>T&amp;M</value>
+    </summaryFilterItems>
+    <summaryForeignKey>SBQQ__QuoteLine__c.SBQQ__Quote__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

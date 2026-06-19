@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_time_Used_as_a_Reference__c</fullName>
+    <label>Last time Used as a Reference</label>
+    <summarizedField>Reference_Event__c.Reference_Event_Date__c</summarizedField>
+    <summaryForeignKey>Reference_Event__c.Prospect_Contact__c</summaryForeignKey>
+    <summaryOperation>max</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

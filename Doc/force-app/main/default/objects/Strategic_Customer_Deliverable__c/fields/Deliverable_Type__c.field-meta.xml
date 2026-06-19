@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deliverable_Type__c</fullName>
+    <label>Deliverable Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Business Review</fullName>
+                <default>false</default>
+                <label>Business Review</label>
+            </value>
+            <value>
+                <fullName>Roadmap Briefing</fullName>
+                <default>false</default>
+                <label>Roadmap Briefing</label>
+            </value>
+            <value>
+                <fullName>Strategic/Executive Briefing</fullName>
+                <default>false</default>
+                <label>Strategic/Executive Briefing</label>
+            </value>
+            <value>
+                <fullName>Support Review (On-site)</fullName>
+                <default>false</default>
+                <label>Support Review (On-site)</label>
+            </value>
+            <value>
+                <fullName>Support Review (Remote)</fullName>
+                <default>false</default>
+                <label>Support Review (Remote)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

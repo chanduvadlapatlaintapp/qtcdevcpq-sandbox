@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Urgency_Driver_for_Q4_2006__c</fullName>
+    <label>Urgency Driver</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>3) Partner deadline</fullName>
+                <default>false</default>
+                <label>3) Partner deadline</label>
+            </value>
+            <value>
+                <fullName>2) Administrator deadline</fullName>
+                <default>false</default>
+                <label>2) Administrator deadline</label>
+            </value>
+            <value>
+                <fullName>1) Verbal Agreement with Powerful person whom I trust</fullName>
+                <default>false</default>
+                <label>1) Verbal Agreement with Powerful person whom I trust</label>
+            </value>
+            <value>
+                <fullName>0) No agreed deadline yet - Trying to find one</fullName>
+                <default>false</default>
+                <label>0) No agreed deadline yet - Trying to find one</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

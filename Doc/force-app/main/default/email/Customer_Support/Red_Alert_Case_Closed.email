@@ -1,0 +1,11 @@
+Project Escalation Case Closed {!Case.CaseNumber} has been closed.
+
+
+Engagement Manager: {!Case.Engagement_Manager__c}
+CSM Account Mgr: {!Account.CSM_Account_Mgr_Name__c}
+Case Owner: {!Case.OwnerFullName}
+Start Date: {!Case.DateOpen__c}
+Duration: {!Case.Duration__c}
+Link to Case: {!Case.Link}
+
+Latest Case Comment: {!Case.Latest_Case_Comment__c}

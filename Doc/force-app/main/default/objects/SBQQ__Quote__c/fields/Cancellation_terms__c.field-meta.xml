@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cancellation_terms__c</fullName>
+    <label>Supersession Term</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>APS_and_Intapp_entity_for_DTE_product</fullName>
+                <default>false</default>
+                <label>APS and Intapp  (entity for DTE product)</label>
+            </value>
+            <value>
+                <fullName>APS Cancellation with outstanding fees (entity for DTE product)</fullName>
+                <default>false</default>
+                <label>APS Cancellation with outstanding fees (entity for DTE product)</label>
+            </value>
+            <value>
+                <fullName>APS Only</fullName>
+                <default>false</default>
+                <label>APS Only</label>
+            </value>
+            <value>
+                <fullName>Break Bundle + Sign Contemporaneously</fullName>
+                <default>false</default>
+                <label>Break Bundle + Sign Contemporaneously</label>
+            </value>
+            <value>
+                <fullName>Break Bundle + Sign Contemporaneously + Keep MSSA</fullName>
+                <default>false</default>
+                <label>Break Bundle + Sign Contemporaneously + Keep MSSA</label>
+            </value>
+            <value>
+                <fullName>Full OSA Supersession</fullName>
+                <default>false</default>
+                <label>Full OSA Supersession</label>
+            </value>
+            <value>
+                <fullName>Gwabbit</fullName>
+                <default>false</default>
+                <label>Gwabbit</label>
+            </value>
+            <value>
+                <fullName>Intapp and APS Upgrades/Conversions keeping Master t&amp;c’s in place (entity for DTE product)</fullName>
+                <default>false</default>
+                <label>Intapp and APS Upgrades/Conversions keeping Master t&amp;c’s in place (entity for DTE product)</label>
+            </value>
+            <value>
+                <fullName>Intapp Cancellation with Outstanding Fees</fullName>
+                <default>false</default>
+                <label>Intapp Cancellation with Outstanding Fees</label>
+            </value>
+            <value>
+                <fullName>Intapp Only Upgrades/Conversions keeping Master t&amp;c’s in place</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Intapp Only Upgrades/Conversions keeping Master t&amp;c’s in place</label>
+            </value>
+            <value>
+                <fullName>Intapp OSA, Keeping MSSA</fullName>
+                <default>false</default>
+                <label>Intapp OSA, Keeping MSSA DealCloud Paper</label>
+            </value>
+            <value>
+                <fullName>One Place</fullName>
+                <default>false</default>
+                <label>One Place</label>
+            </value>
+            <value>
+                <fullName>OP Legacy OF cancels other OP OF</fullName>
+                <default>false</default>
+                <label>OP Legacy OF cancels other OP OF</label>
+            </value>
+            <value>
+                <fullName>Partial OSA Supersession_Software</fullName>
+                <default>false</default>
+                <label>Partial OSA Supersession_Software</label>
+            </value>
+            <value>
+                <fullName>Partial OSA Supersession_Software_keep MSSA</fullName>
+                <default>false</default>
+                <label>Partial OSA Supersession_Software_keep MSSA</label>
+            </value>
+            <value>
+                <fullName>Rekoop</fullName>
+                <default>false</default>
+                <label>Rekoop</label>
+            </value>
+            <value>
+                <fullName>Supersede DC Subscription</fullName>
+                <default>false</default>
+                <label>Supersede DC Subscription</label>
+            </value>
+            <value>
+                <fullName>Supersede OSA_keep MSSA</fullName>
+                <default>false</default>
+                <label>Supersede OSA_keep MSSA</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

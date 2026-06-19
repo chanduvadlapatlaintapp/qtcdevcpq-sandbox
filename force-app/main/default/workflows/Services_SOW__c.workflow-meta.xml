@@ -1,0 +1,1242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Early_Resouce_Request_Assigned</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <description>Early Resouce Request Assigned</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Assigned_Resource__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>Requesting_Employee__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>InternalNotification/Early_Resource_Request_Assigned</template>
+    </alerts>
+    <alerts>
+        <fullName>Early_Resouce_Request_Assigned_PB</fullName>
+        <ccEmails>orest.skoropad@intapp.com.invalid</ccEmails>
+        <description>Early Resouce Request Assigned PB</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Assigned_Resource__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <recipient>maiya.hilliard@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>Requesting_Employee__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales_Operations/Early_Resource_Request_Assigned_Addition</template>
+    </alerts>
+    <alerts>
+        <fullName>Early_Resouce_Request_Created_Demo</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <ccEmails>jesse.meredith@intapp.com.invalid</ccEmails>
+        <description>Early Resouce Request Created - Sales Engineer</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>InternalNotification/Early_Resource_Request_Created</template>
+    </alerts>
+    <alerts>
+        <fullName>Early_Resouce_Request_Created_Professional_Services</fullName>
+        <ccEmails>orest.skoropad@intapp.com.invalid</ccEmails>
+        <description>Early Resouce Request Created - Professional Services</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>brandon.wolf@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>mark.burgard@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>InternalNotification/Early_Resource_Request_Created</template>
+    </alerts>
+    <alerts>
+        <fullName>Early_Resouce_Request_Created_Professional_Services_scoping</fullName>
+        <ccEmails>orest.skoropad@intapp.com.invalid</ccEmails>
+        <description>Early Resouce Request Created - Professional Services Scoping</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>alejandro.arteaga@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>kevin.ehrie@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>maiya.hilliard@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>petra.haltmayer@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>InternalNotification/Early_Resource_Request_Created</template>
+    </alerts>
+    <alerts>
+        <fullName>Early_Resource_Request_Created_Business_Consulting</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <ccEmails>meg.block@intapp.com.invalid</ccEmails>
+        <description>Early Resource Request Created - Business Consulting</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>InternalNotification/Early_Resource_Request_Created</template>
+    </alerts>
+    <alerts>
+        <fullName>Early_Resource_Request_Returned_for_Edits</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <description>Early Resource Request Returned for Edits</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Requesting_Employee__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>InternalNotification/Early_Resource_Request_Returned_for_Edits</template>
+    </alerts>
+    <alerts>
+        <fullName>New_SOW_Request_NA_Legal_South_APAC</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <ccEmails>servicessales@intapp.com.invalid</ccEmails>
+        <description>New SOW Request NA Legal South/APAC</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>kevin.ehrie@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>Requesting_Employee__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Professional_Services/New_SOW_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>New_SOW_Request_Sales_Segment_PS_EMEA</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <ccEmails>servicessales@intapp.com.invalid</ccEmails>
+        <description>New SOW Request Sales Segment: PS EMEA</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>tim.cooper@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>Requesting_Employee__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Professional_Services/New_SOW_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>New_SOW_Request_Sales_Segment_PS_NA_South_APAC</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <ccEmails>servicessales@intapp.com.invalid</ccEmails>
+        <description>New SOW Request Sales Segment: PS NA South/APAC</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>kevin.ehrie@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>Requesting_Employee__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Professional_Services/New_SOW_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>New_SOW_request</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <ccEmails>servicessales@intapp.com.invalid</ccEmails>
+        <description>New SOW request Accounting/Consulting</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>mark.burgard@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>Requesting_Employee__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Professional_Services/New_SOW_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>New_SOW_request_Sales_Segment_Financial_Services</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <ccEmails>servicessales@intapp.com.invalid</ccEmails>
+        <description>New SOW request Sales Segment: Financial Services</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Requesting_Employee__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Professional_Services/New_SOW_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>New_SOW_request_Sales_Segment_PS_NA_North</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <ccEmails>servicessales@intapp.com.invalid</ccEmails>
+        <description>New SOW request Sales Segment: PS NA North</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>jim.jacobsen@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>Requesting_Employee__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Professional_Services/New_SOW_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>New_SOW_request_Sales_Segment_Unknown</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <ccEmails>servicessales@intapp.com.invalid</ccEmails>
+        <description>New SOW request Sales Segment: Unknown</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Requesting_Employee__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Professional_Services/New_SOW_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_technical_scoping_needed</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <ccEmails>ServicesSales@intapp.com.invalid</ccEmails>
+        <description>Notify technical scoping needed</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>jim.jacobsen@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>Requesting_Employee__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Technical_Scoping_Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Professional_Services/SOW_Technical_Scoping_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_technical_scoping_needed_EMEA</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <ccEmails>ServicesSales@intapp.com.invalid</ccEmails>
+        <description>Notify technical scoping needed - EMEA</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>tim.cooper@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>Requesting_Employee__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Technical_Scoping_Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Professional_Services/SOW_Technical_Scoping_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_technical_scoping_needed_Financial_Services</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <ccEmails>ServicesSales@intapp.com.invalid</ccEmails>
+        <description>Notify technical scoping needed Financial Services</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Requesting_Employee__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Technical_Scoping_Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Professional_Services/SOW_Technical_Scoping_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_technical_scoping_needed_PS_NA_South_APAC</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <ccEmails>ServicesSales@intapp.com.invalid</ccEmails>
+        <description>Notify technical scoping needed - PS NA South/APAC</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Requesting_Employee__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Technical_Scoping_Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Professional_Services/SOW_Technical_Scoping_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_technical_scoping_needed_Unknown</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <ccEmails>ServicesSales@intapp.com.invalid</ccEmails>
+        <description>Notify technical scoping needed Unknown</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Requesting_Employee__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Technical_Scoping_Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Professional_Services/SOW_Technical_Scoping_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>RFP_Completed</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <description>RFP Completed</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Requesting_Employee__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>InternalNotification/RFP_Completed</template>
+    </alerts>
+    <alerts>
+        <fullName>RFP_Created</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <description>RFP Created</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>jesse.meredith@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>kevin.ehrie@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>petra.haltmayer@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>Delegated_Owner__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Requesting_Employee__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>InternalNotification/RFP_Created</template>
+    </alerts>
+    <alerts>
+        <fullName>SOW_Completed_APAC</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <ccEmails>servicessales@intapp.com.invalid</ccEmails>
+        <description>SOW Completed - NA Legal South/APAC</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>kevin.ehrie@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>Requesting_Employee__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Technical_Scoping_Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Professional_Services/SOW_Complete</template>
+    </alerts>
+    <alerts>
+        <fullName>SOW_Completed_EMEA</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <ccEmails>servicessales@intapp.com.invalid</ccEmails>
+        <description>SOW Completed - EMEA</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>tim.cooper@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>Requesting_Employee__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Technical_Scoping_Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Professional_Services/SOW_Complete</template>
+    </alerts>
+    <alerts>
+        <fullName>SOW_Completed_Financial_Services</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <ccEmails>servicessales@intapp.com.invalid</ccEmails>
+        <description>SOW Completed - Financial Services</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Requesting_Employee__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Technical_Scoping_Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Professional_Services/SOW_Complete</template>
+    </alerts>
+    <alerts>
+        <fullName>SOW_Completed_North_America</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <ccEmails>servicessales@intapp.com.invalid</ccEmails>
+        <description>SOW Completed (North America)</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>jim.jacobsen@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>Requesting_Employee__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Technical_Scoping_Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Professional_Services/SOW_Complete</template>
+    </alerts>
+    <alerts>
+        <fullName>SOW_Completed_Unknown</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <ccEmails>servicessales@intapp.com.invalid</ccEmails>
+        <description>SOW Completed - Unknown</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Requesting_Employee__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Technical_Scoping_Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Professional_Services/SOW_Complete</template>
+    </alerts>
+    <alerts>
+        <fullName>SOW_Ready_for_Review</fullName>
+        <ccEmails>sfdc_donotreply@intapp.com.invalid</ccEmails>
+        <ccEmails>ServicesSales@intapp.com.invalid</ccEmails>
+        <description>SOW Ready for Review</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>ashish.sharma@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>daniel.giampietro@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>heather.curry@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>sarah.bakeer@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Professional_Services/SOW_Ready_for_Review</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Populate_CRD_Email</fullName>
+        <field>CRD_Email__c</field>
+        <formula>Account__r.CRD__r.Email</formula>
+        <name>Populate CRD Email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Completion_Date</fullName>
+        <field>Completion_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>Populate Completion Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_Date_Technical_Scoping_Assigned</fullName>
+        <field>Date_Technical_Scoping_Assigned__c</field>
+        <formula>TODAY()</formula>
+        <name>Populate Date Technical Scoping Assigned</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_SE_Manager</fullName>
+        <field>SE_Manager_Email__c</field>
+        <formula>IF(
+  ISPICKVAL(Recurring_Involved__c,&quot;Yes&quot;),
+  IF(
+    OR(
+      CONTAINS(TEXT(Product__c),&quot;Intapp Open&quot;),
+      ISPICKVAL(Product__c, &quot;Engagement Letters&quot;),
+      ISPICKVAL(Product__c,&quot;Intapp Walls&quot;)
+    ),
+    &quot;kristian.uggla@intapp.com&quot;,
+    IF(
+      OR(
+        CONTAINS(TEXT(Product__c),&quot;Intapp Time&quot;),
+        ISPICKVAL(Product__c, &quot;Rekoop&quot;)
+      ),
+        &quot;david.robinson@intapp.com&quot;,
+      &quot;&quot;
+    )
+  ),
+  IF(
+    ISPICKVAL(Geography__c,&quot;EMEA&quot;),
+    &quot;&quot;,
+    IF(
+      OR(
+        CONTAINS(TEXT(Product__c),&quot;Intapp Open&quot;),
+        ISPICKVAL(Product__c, &quot;Engagement Letters&quot;)
+       ),
+      &quot;mark.burgard@intapp.com&quot;,
+      IF(
+        ISPICKVAL(Product__c,&quot;RollCall&quot;),
+        &quot;kshama.swamy@intapp.com&quot;,
+        IF(
+          OR(
+            ISPICKVAL(Product__c,&quot;CG Protect&quot;),
+            ISPICKVAL(Product__c,&quot;CG Analyze&quot;),
+            ISPICKVAL(Product__c,&quot;CG Flow&quot;),
+            ISPICKVAL(Product__c,&quot;LegalKEY&quot;)
+          ),
+          &quot;margos.grigoryan@intapp.com&quot;,
+          IF(
+            ISPICKVAL(Geography__c,&quot;APAC&quot;),
+            &quot;paul.pastura@intapp.com&quot;,
+            IF(
+              CONTAINS(TEXT(Product__c),&quot;Intapp Time&quot;),
+              &quot;david.skweres@intapp.com&quot;,
+              IF(
+                ISPICKVAL(Product__c,&quot;Intapp Walls&quot;),
+                &quot;jonathan.smith@intapp.com&quot;,
+                &quot;&quot;
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+)</formula>
+        <name>Populate SME 1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_SOW_Creator</fullName>
+        <field>SOW_Creator_Email__c</field>
+        <formula>IF(
+  AND(
+    NOT(ISPICKVAL(Geography__c,&quot;EMEA&quot;)),
+    OR(
+      ISPICKVAL(Product__c,&quot;CG Protect&quot;),
+      ISPICKVAL(Product__c,&quot;CG Analyze&quot;),
+      ISPICKVAL(Product__c,&quot;CG Flow&quot;),
+      ISPICKVAL(Product__c,&quot;LegalKEY&quot;)
+    )
+  ),
+  &quot;polina.glikina@intapp.com&quot;,
+  IF(
+    AND(
+      ISPICKVAL(Geography__c,&quot;EMEA&quot;),
+      ISPICKVAL(Recurring_Involved__c,&quot;Yes&quot;)
+    ),
+    &quot;peter.scott@intapp.com&quot;,
+    &quot;&quot;
+  )
+)</formula>
+        <name>Populate SME 2</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_SOW_to_In_Process</fullName>
+        <field>Status__c</field>
+        <literalValue>In Process</literalValue>
+        <name>Set SOW to In Process</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Completion_Checkbox</fullName>
+        <field>SOW_Complete__c</field>
+        <literalValue>1</literalValue>
+        <name>Update Completion Checkbox</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Opportunity_Probability_at_Reques</fullName>
+        <field>Opportunity_Probability_at_Request__c</field>
+        <formula>Opportunity__r.Probability</formula>
+        <name>Update Opportunity Probability at Reques</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Opportunity_Stage_at_request</fullName>
+        <field>Opportunity_Stage_at_Request__c</field>
+        <formula>TEXT(Opportunity__r.StageName)</formula>
+        <name>Update Opportunity Stage at request</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_SOW_Start_Date</fullName>
+        <field>Start_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>Update SOW Start Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_SOW_Status</fullName>
+        <description>SC-000017</description>
+        <field>Status__c</field>
+        <literalValue>Ready for Review</literalValue>
+        <name>Update SOW Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_SOW_Status_Quote_Only</fullName>
+        <field>Status__c</field>
+        <literalValue>SOW Completed</literalValue>
+        <name>Update SOW Status Quote Only</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ill_out_request_date</fullName>
+        <field>Start_Date__c</field>
+        <formula>Today()</formula>
+        <name>ill out request date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Rule Code%3A SOW-004xFxx</fullName>
+        <actions>
+            <name>Populate_Completion_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Services_SOW__c.SOW_Complete__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <description>Rule Code: SOW-004xFxx
+Populate Completion Date when Completed Checkbox is checked
+Populates the Completion Date field when the Completed checkbox field is checked.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-005xFxx</fullName>
+        <actions>
+            <name>Populate_CRD_Email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Populate_SE_Manager</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Populate_SOW_Creator</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SOW-005xFxx
+Populate Services SOW Emails
+Populates the SE Manager, SOW Creator, and CRD Email fields whenever Recurring Involved is set to &quot;Not Sure&quot;</description>
+        <formula>AND(   NOT(ISPICKVAL(Recurring_Involved__c,&quot;Not Sure&quot;)),   OR(     ISNEW(),     ISCHANGED(Recurring_Involved__c)   ) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-006EFxx</fullName>
+        <actions>
+            <name>Notify_technical_scoping_needed</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Set_SOW_to_In_Process</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SOW-006EFxx
+Notify SOW Technical Scoping needed (PS NA North)
+Sends an email notification when a scoper is assigned.</description>
+        <formula>AND( NOT(ISBLANK(Technical_Scoping_Assigned_To__c)), Sales_Territory__c = &quot;PS NA North&quot; )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-007xFxx</fullName>
+        <actions>
+            <name>Populate_Completion_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Completion_Checkbox</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Services_SOW__c.Status__c</field>
+            <operation>equals</operation>
+            <value>SOW Completed</value>
+        </criteriaItems>
+        <description>Rule Code: SOW-007xFxx
+Check the SOW Completed Flag
+Populates the &quot;Completion Date&quot; with the current date when the Services SOW &quot;Status&quot; field is &quot;SOW Completed.&quot; Also updates the &quot;SOW Completed&quot; field by checking the box when the criteria is met.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-011Exxx</fullName>
+        <actions>
+            <name>Notify_technical_scoping_needed_EMEA</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Set_SOW_to_In_Process</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SOW-011Exxx
+Notify SOW Technical Scoping needed (PS EMEA)
+Sends an email notification when a scoper is assigned.</description>
+        <formula>AND( NOT(ISBLANK(Technical_Scoping_Assigned_To__c)), Sales_Territory__c = &quot;PS EMEA&quot; )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-012Exxx</fullName>
+        <actions>
+            <name>SOW_Completed_North_America</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Services_SOW__c.Status__c</field>
+            <operation>equals</operation>
+            <value>SOW Completed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Services_SOW__c.Sales_Territory__c</field>
+            <operation>equals</operation>
+            <value>PS NA North</value>
+        </criteriaItems>
+        <description>Rule Code: SOW-012Exxx
+SOW Completed Notification (PS NA North)
+Sends an email notification whenever a SOW Status is &quot;SOW Completed&quot; and Sales Segment is PS NA North</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-013Exxx</fullName>
+        <actions>
+            <name>SOW_Completed_EMEA</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Services_SOW__c.Status__c</field>
+            <operation>equals</operation>
+            <value>SOW Completed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Services_SOW__c.Sales_Territory__c</field>
+            <operation>equals</operation>
+            <value>PS EMEA</value>
+        </criteriaItems>
+        <description>Rule Code: SOW-013Exxx
+SOW Completed Notification (EMEA)
+Sends an email to whenever a SOW Status is &quot;SOW Completed&quot; and Sales Segment is &quot;PS EMEA&quot;</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-014Exxx</fullName>
+        <actions>
+            <name>SOW_Completed_APAC</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Services_SOW__c.Status__c</field>
+            <operation>equals</operation>
+            <value>SOW Completed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Services_SOW__c.Sales_Territory__c</field>
+            <operation>equals</operation>
+            <value>PS NA South/APAC</value>
+        </criteriaItems>
+        <description>Rule Code: SOW-014Exxx
+SOW Completed Notification (PS NA South/APAC)
+Sends an email notification whenever a SOW Status is &quot;SOW Completed&quot; and Sales Segment is PS NA South/APAC</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-016EFxx</fullName>
+        <actions>
+            <name>SOW_Ready_for_Review</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Update_SOW_Status</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SOW-016EFxx
+Completed Services SOW Update
+SC-000017
+Resets the status of an SOW to &quot;Ready for Review&quot; if an SOW is in status &quot;SOW Completed&quot; and is edited.</description>
+        <formula>AND( ISPICKVAL(Status__c, &quot;SOW Completed&quot;), Completion_Date__c&lt;DATEVALUE(LastModifiedDate), NOT($User.Id=&quot;0055000000760CW&quot;), /*Ashish Sharma*/ NOT($User.Id=&quot;0052J000008gkfV&quot;), /*Sarah Bakeer*/ NOT($User.Id=&quot;0052J000008V2aD&quot;), /*Daniel Giampietro*/ NOT($User.Id=&quot;005500000074rL8&quot;) /*Heather Curry*/ )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-017Exxx</fullName>
+        <actions>
+            <name>Early_Resouce_Request_Assigned</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SOW-017Exxx
+SC-000057
+Early Resource Request Assigned
+Sends an email notification whenever Assigned Resource is changed and its prior value was a blank value.</description>
+        <formula>AND(   ISCHANGED(Assigned_Resource__c),    PRIORVALUE(Assigned_Resource__c)=NULL )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-018Exxx</fullName>
+        <actions>
+            <name>Early_Resource_Request_Returned_for_Edits</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SOW-018Exxx
+SC-000057
+Early Resource Request Returned for Edits
+Sends an email notification to requester when Services Request Status is set to &quot;Returned for Edits&quot;</description>
+        <formula>AND(   ISCHANGED(Services_Request_Status__c),   ISPICKVAL(Services_Request_Status__c, &quot;Returned for Edits&quot;) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-019xFxx</fullName>
+        <actions>
+            <name>Update_SOW_Status_Quote_Only</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SOW-019xFxx
+Quote Only SOW Status Update
+Sets SOW status to &apos;&apos;SOW Completed&apos;&apos; whenever  Status value is set to &quot;Ready for Review&quot; and Request Type is &quot;Quote only&quot;</description>
+        <formula>AND(      ISCHANGED(Status__c),      ISPICKVAL(Status__c, &quot;Ready for Review&quot;),   ISPICKVAL(Request_Type__c, &quot;Quote only&quot;) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-020Exxx</fullName>
+        <actions>
+            <name>SOW_Ready_for_Review</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SOW-020Exxx
+SOW Ready to Review Notification
+SC-000009
+Sends an email notification when an SOW is ready to be reviewed.</description>
+        <formula>AND(      ISCHANGED(Status__c),      ISPICKVAL(Status__c, &quot;Ready for Review&quot;),   ISPICKVAL(Request_Type__c, &quot;SOW document required&quot;) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-021xFxx</fullName>
+        <actions>
+            <name>Populate_Date_Technical_Scoping_Assigned</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SOW-021xFxx
+Populate Date Technical Scoping Assigned
+Populates Date Technical Scoping Assigned field whenever Technical Scoping Assigned To field is changed from blank value</description>
+        <formula>AND(   ISCHANGED(Technical_Scoping_Assigned_To__c),    PRIORVALUE(Technical_Scoping_Assigned_To__c)=NULL )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-022xFxx</fullName>
+        <actions>
+            <name>Update_Opportunity_Probability_at_Reques</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Opportunity_Stage_at_request</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SOW-022xFxx
+Update Opportunity Stage for new SOW Requests
+Updates the field &quot;Opportunity Stage at Request&quot; field whenever a new SOW is created.</description>
+        <formula>OR(   RecordType.Name = &quot;Early Resource Tracking&quot;,   AND(     RecordType.Name = &quot;SOW&quot;,     ISPICKVAL(Request_Type__c, &quot;SOW document required&quot;)   ) )</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-023xFxx</fullName>
+        <actions>
+            <name>Populate_Completion_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Services_SOW__c.Status__c</field>
+            <operation>equals</operation>
+            <value>SOW Modified</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Services_SOW__c.Services_Request_Status__c</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </criteriaItems>
+        <description>Rule Code: SOW-023xFxx
+Populate SOW: Completion Date
+Populates the &quot;Completion Date&quot; with the current date when the Services SOW &quot;Status&quot; field is &quot;SOW Modified&quot;</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-025Exxx</fullName>
+        <actions>
+            <name>RFP_Completed</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SOW-025Exxx
+RFP Completed
+Sends an email notification when an incomplete RFP has been completed.</description>
+        <formula>AND(   ISCHANGED(Services_Request_Status__c),   ISPICKVAL(Services_Request_Status__c, &quot;Completed&quot;) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-027xFxx</fullName>
+        <actions>
+            <name>ill_out_request_date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Services_SOW__c.Start_Date__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <description>Rule Code: SOW-027xFxx
+Updates default start date</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-028EFxx</fullName>
+        <actions>
+            <name>New_SOW_request_Sales_Segment_PS_NA_North</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Update_SOW_Start_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SOW-0028EFxx
+
+Sends an email alert whenever a new SOW request is created or the Status of the Services SOW is changed to &quot;Submitted&quot; (PS NA North)
+
+
+Sales Segment: PS NA North</description>
+        <formula>AND(    Sales_Territory__c=&quot;PS NA North&quot;,   RecordTypeId=&quot;012500000006rcw&quot;,    OR(      ISNEW(),      AND(        ISCHANGED(Status__c),        ISPICKVAL(Status__c,&quot;Submitted&quot;)      )    )  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-029EFxx</fullName>
+        <actions>
+            <name>New_SOW_Request_Sales_Segment_PS_NA_South_APAC</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Update_SOW_Start_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SOW-029EFxx
+New SOW Request - PS NA South/APAC
+Sends an email alert whenever a new SOW request is created or the Status of the Services SOW is changed to &quot;Submitted&quot; (PS NA South/APAC)
+
+
+Sales Segment: PS NA South/APAC</description>
+        <formula>AND( Sales_Territory__c=&quot;PS NA South/APAC&quot;, RecordTypeId=&quot;012500000006rcw&quot;,  OR(  ISNEW(),  AND( ISCHANGED(Status__c),  ISPICKVAL(Status__c,&quot;Submitted&quot;)  )  )  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-030EFxx</fullName>
+        <actions>
+            <name>New_SOW_Request_Sales_Segment_PS_EMEA</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Update_SOW_Start_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SOW-030EFxx
+New SOW Request - EMEA
+Sends an email alert whenever a new SOW request is created or the Status of the Services SOW is changed to &quot;Submitted&quot;
+
+
+Sales Segment: PS EMEA</description>
+        <formula>AND( Sales_Territory__c=&quot;PS EMEA&quot;, RecordTypeId=&quot;012500000006rcw&quot;, OR( ISNEW(), AND( ISCHANGED(Status__c), ISPICKVAL(Status__c,&quot;Submitted&quot;) ) ) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-031EFxx</fullName>
+        <actions>
+            <name>New_SOW_request</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Update_SOW_Start_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SOW-031EFxx
+New SOW Request - 
+Sends an email alert whenever a new SOW request is created or the Status of the Services SOW is changed to &quot;Submitted&quot; 
+
+
+Sales Segment: Accounting/Consulting</description>
+        <formula>AND(   NOT(ISPICKVAL(Recurring_Involved__c,&quot;Yes&quot;)),   NOT(ISPICKVAL(Recurring_Involved__c,&quot;Not Sure&quot;)),   Sales_Territory__c=&quot;Accounting/Consulting&quot;,   RecordTypeId=&quot;012500000006rcw&quot;,   OR(     ISNEW(),     AND(       ISCHANGED(Status__c),       ISPICKVAL(Status__c,&quot;Submitted&quot;)     )   ) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-032EFxx</fullName>
+        <actions>
+            <name>New_SOW_Request_NA_Legal_South_APAC</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Update_SOW_Start_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SOW-032EFxx
+Sends an email alert whenever a new SOW request is created or the Status of the Services SOW is changed to &quot;Submitted&quot; (North America)
+
+
+Sales Segment: NA Legal South/APAC</description>
+        <formula>AND(   NOT(ISPICKVAL(Recurring_Involved__c,&quot;Yes&quot;)),   NOT(ISPICKVAL(Recurring_Involved__c,&quot;Not Sure&quot;)),   Sales_Territory__c=&quot;NA Legal South/APAC&quot;,   RecordTypeId=&quot;012500000006rcw&quot;,   OR(     ISNEW(),     AND(       ISCHANGED(Status__c),       ISPICKVAL(Status__c,&quot;Submitted&quot;)     )   ) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-034Exxx</fullName>
+        <actions>
+            <name>RFP_Created</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Services_SOW__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>RFP Request</value>
+        </criteriaItems>
+        <description>Rule Code: SOW-034Exxx
+RFP Request Created
+Sends an email notification whenever a new RFP request is created</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-036Exxx</fullName>
+        <actions>
+            <name>SOW_Completed_Financial_Services</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Services_SOW__c.Status__c</field>
+            <operation>equals</operation>
+            <value>SOW Completed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Services_SOW__c.Sales_Territory__c</field>
+            <operation>equals</operation>
+            <value>Financial Services</value>
+        </criteriaItems>
+        <description>Rule Code: SOW-036Exxx
+SOW Completed Notification (Financial Services)
+Sends an email to whenever a SOW Status is &quot;SOW Completed&quot; and Sales Segment is &quot;Financial Services&quot;</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-037Exxx</fullName>
+        <actions>
+            <name>SOW_Completed_Unknown</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Services_SOW__c.Status__c</field>
+            <operation>equals</operation>
+            <value>SOW Completed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Services_SOW__c.Sales_Territory__c</field>
+            <operation>equals</operation>
+            <value>Unknown</value>
+        </criteriaItems>
+        <description>Rule Code: SOW-037Exxx
+SOW Completed Notification (Financial Services)
+Sends an email to whenever a SOW Status is &quot;SOW Completed&quot; and Sales Segment is &quot;Financial Services&quot;</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-038EFxx</fullName>
+        <actions>
+            <name>New_SOW_request_Sales_Segment_Financial_Services</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Update_SOW_Start_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SOW-038EFxx
+Sends an email alert whenever a new SOW request is created or the Status of the Services SOW is changed to &quot;Submitted&quot; (Financial Services)
+
+
+Sales Segment: Financial Services</description>
+        <formula>AND( Sales_Territory__c=&quot;Financial Services&quot;, RecordTypeId=&quot;012500000006rcw&quot;, OR( ISNEW(), AND( ISCHANGED(Status__c), ISPICKVAL(Status__c,&quot;Submitted&quot;) ) ) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-039EFxx</fullName>
+        <actions>
+            <name>New_SOW_request_Sales_Segment_Unknown</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Update_SOW_Start_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SOW-039EFxx
+Sends an email alert whenever a new SOW request is created or the Status of the Services SOW is changed to &quot;Submitted&quot; (North America)
+
+
+Sales Segment: Unknown</description>
+        <formula>AND( Sales_Territory__c=&quot;Unknown&quot;, RecordTypeId=&quot;012500000006rcw&quot;, OR( ISNEW(), AND( ISCHANGED(Status__c), ISPICKVAL(Status__c,&quot;Submitted&quot;) ) ) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-040EFxx</fullName>
+        <actions>
+            <name>Notify_technical_scoping_needed_PS_NA_South_APAC</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Set_SOW_to_In_Process</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SOW-040EFxx
+Notify SOW Technical Scoping needed (PS NA South/APAC)
+Sends an email notification when a scoper is assigned.</description>
+        <formula>AND( NOT(ISBLANK(Technical_Scoping_Assigned_To__c)), Sales_Territory__c = &quot;PS NA South/APAC&quot; )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-041EFxx</fullName>
+        <actions>
+            <name>Notify_technical_scoping_needed_Financial_Services</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Set_SOW_to_In_Process</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SOW-041EFxx
+Notify SOW Technical Scoping needed (Financial Services)
+Sends an email notification when a scoper is assigned.</description>
+        <formula>AND( NOT(ISBLANK(Technical_Scoping_Assigned_To__c)), Sales_Territory__c = &quot;Financial Services&quot; )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Rule Code%3A SOW-042EFxx</fullName>
+        <actions>
+            <name>Notify_technical_scoping_needed_Unknown</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Set_SOW_to_In_Process</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: SOW-042EFxx
+Notify SOW Technical Scoping needed (Unknown)
+Sends an email notification when a scoper is assigned.</description>
+        <formula>AND( NOT(ISBLANK(Technical_Scoping_Assigned_To__c)), Sales_Territory__c = &quot;Unknown&quot; )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

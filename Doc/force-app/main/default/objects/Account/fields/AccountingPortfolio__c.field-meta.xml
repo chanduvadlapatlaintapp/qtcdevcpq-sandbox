@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AccountingPortfolio__c</fullName>
+    <description>This is to designate the accounting system in use at the account. This replaced the original checkboxes that were used.</description>
+    <inlineHelpText>What accounting software does this account use?</inlineHelpText>
+    <label>Accounting</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Aderant Back Office</fullName>
+                <default>false</default>
+                <label>Aderant Back Office</label>
+            </value>
+            <value>
+                <fullName>Aderant Expert 7</fullName>
+                <default>false</default>
+                <label>Aderant Expert 7</label>
+            </value>
+            <value>
+                <fullName>Aderant Expert 8</fullName>
+                <default>false</default>
+                <label>Aderant Expert 8</label>
+            </value>
+            <value>
+                <fullName>Advanced Legal</fullName>
+                <default>false</default>
+                <label>Advanced Legal</label>
+            </value>
+            <value>
+                <fullName>Affinity</fullName>
+                <default>false</default>
+                <label>Affinity</label>
+            </value>
+            <value>
+                <fullName>Axxia</fullName>
+                <default>false</default>
+                <label>Axxia</label>
+            </value>
+            <value>
+                <fullName>Axxia DNA</fullName>
+                <default>false</default>
+                <label>Axxia DNA</label>
+            </value>
+            <value>
+                <fullName>Bespoke</fullName>
+                <default>false</default>
+                <label>Bespoke</label>
+            </value>
+            <value>
+                <fullName>BHL Insight</fullName>
+                <default>false</default>
+                <label>BHL Insight</label>
+            </value>
+            <value>
+                <fullName>CCH Axcess</fullName>
+                <default>false</default>
+                <label>CCH Axcess</label>
+            </value>
+            <value>
+                <fullName>CCH ProSystems fx</fullName>
+                <default>false</default>
+                <label>CCH ProSystems fx</label>
+            </value>
+            <value>
+                <fullName>Civica Galaxy</fullName>
+                <default>false</default>
+                <label>Civica Galaxy</label>
+            </value>
+            <value>
+                <fullName>CMS</fullName>
+                <default>false</default>
+                <label>CMS</label>
+            </value>
+            <value>
+                <fullName>CMS 5.0</fullName>
+                <default>false</default>
+                <label>CMS 5.0</label>
+            </value>
+            <value>
+                <fullName>CS Group AIM Evolution</fullName>
+                <default>false</default>
+                <label>CS Group AIM Evolution</label>
+            </value>
+            <value>
+                <fullName>CS Group Videss</fullName>
+                <default>false</default>
+                <label>CS Group Videss</label>
+            </value>
+            <value>
+                <fullName>Custom</fullName>
+                <default>false</default>
+                <label>Custom</label>
+            </value>
+            <value>
+                <fullName>Deltek</fullName>
+                <default>false</default>
+                <label>Deltek</label>
+            </value>
+            <value>
+                <fullName>Dexco Acumin</fullName>
+                <default>false</default>
+                <label>Dexco Acumin</label>
+            </value>
+            <value>
+                <fullName>Dynamics Solomon</fullName>
+                <default>false</default>
+                <label>Dynamics Solomon</label>
+            </value>
+            <value>
+                <fullName>Eclipse</fullName>
+                <default>false</default>
+                <label>Eclipse</label>
+            </value>
+            <value>
+                <fullName>Elite (3E)</fullName>
+                <default>false</default>
+                <label>Elite (3E)</label>
+            </value>
+            <value>
+                <fullName>Elite (Informix)</fullName>
+                <default>false</default>
+                <label>Elite (Informix)</label>
+            </value>
+            <value>
+                <fullName>Elite (Oracle)</fullName>
+                <default>false</default>
+                <label>Elite (Oracle)</label>
+            </value>
+            <value>
+                <fullName>Elite (Web Services)</fullName>
+                <default>false</default>
+                <label>Elite (Web Services)</label>
+            </value>
+            <value>
+                <fullName>Elite Enterprise</fullName>
+                <default>false</default>
+                <label>Elite Enterprise</label>
+            </value>
+            <value>
+                <fullName>Elite Enterprise 3.10</fullName>
+                <default>false</default>
+                <label>Elite Enterprise 3.10</label>
+            </value>
+            <value>
+                <fullName>Elite Enterprise 3.3</fullName>
+                <default>false</default>
+                <label>Elite Enterprise 3.3</label>
+            </value>
+            <value>
+                <fullName>Elite Enterprise 3.4</fullName>
+                <default>false</default>
+                <label>Elite Enterprise 3.4</label>
+            </value>
+            <value>
+                <fullName>Elite Enterprise 3.5</fullName>
+                <default>false</default>
+                <label>Elite Enterprise 3.5</label>
+            </value>
+            <value>
+                <fullName>Elite Enterprise 3.6</fullName>
+                <default>false</default>
+                <label>Elite Enterprise 3.6</label>
+            </value>
+            <value>
+                <fullName>Elite Enterprise 3.7</fullName>
+                <default>false</default>
+                <label>Elite Enterprise 3.7</label>
+            </value>
+            <value>
+                <fullName>Elite Enterprise 3.8</fullName>
+                <default>false</default>
+                <label>Elite Enterprise 3.8</label>
+            </value>
+            <value>
+                <fullName>Elite Enterprise 3.9</fullName>
+                <default>false</default>
+                <label>Elite Enterprise 3.9</label>
+            </value>
+            <value>
+                <fullName>Elite Enterprise 3.x</fullName>
+                <default>false</default>
+                <label>Elite Enterprise 3.x</label>
+            </value>
+            <value>
+                <fullName>Elite Envision</fullName>
+                <default>false</default>
+                <label>Elite Envision</label>
+            </value>
+            <value>
+                <fullName>Enterprise 3.11</fullName>
+                <default>false</default>
+                <label>Enterprise 3.11</label>
+            </value>
+            <value>
+                <fullName>FWBS Paragon</fullName>
+                <default>false</default>
+                <label>FWBS Paragon</label>
+            </value>
+            <value>
+                <fullName>InfinityLaw</fullName>
+                <default>false</default>
+                <label>InfinityLaw</label>
+            </value>
+            <value>
+                <fullName>Intalec for SAP</fullName>
+                <default>false</default>
+                <label>Intalec for SAP</label>
+            </value>
+            <value>
+                <fullName>Intervolve Exemplar</fullName>
+                <default>false</default>
+                <label>Intervolve Exemplar</label>
+            </value>
+            <value>
+                <fullName>IRIS Group</fullName>
+                <default>false</default>
+                <label>IRIS Group</label>
+            </value>
+            <value>
+                <fullName>Javelan</fullName>
+                <default>false</default>
+                <label>Javelan</label>
+            </value>
+            <value>
+                <fullName>Juris</fullName>
+                <default>false</default>
+                <label>Juris</label>
+            </value>
+            <value>
+                <fullName>Keystone on Oracle</fullName>
+                <default>false</default>
+                <label>Keystone on Oracle</label>
+            </value>
+            <value>
+                <fullName>Lawman</fullName>
+                <default>false</default>
+                <label>Lawman</label>
+            </value>
+            <value>
+                <fullName>LawMaster</fullName>
+                <default>false</default>
+                <label>LawMaster</label>
+            </value>
+            <value>
+                <fullName>Lawtime</fullName>
+                <default>false</default>
+                <label>Lawtime</label>
+            </value>
+            <value>
+                <fullName>LegalVision</fullName>
+                <default>false</default>
+                <label>LegalVision</label>
+            </value>
+            <value>
+                <fullName>LexisOne</fullName>
+                <default>false</default>
+                <label>LexisOne</label>
+            </value>
+            <value>
+                <fullName>LMS Accounting</fullName>
+                <default>false</default>
+                <label>LMS Accounting</label>
+            </value>
+            <value>
+                <fullName>Microsoft Dynamics</fullName>
+                <default>false</default>
+                <label>Microsoft Dynamics</label>
+            </value>
+            <value>
+                <fullName>Miles 33</fullName>
+                <default>false</default>
+                <label>Miles 33</label>
+            </value>
+            <value>
+                <fullName>NetSuite</fullName>
+                <default>false</default>
+                <label>NetSuite</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Norwel</fullName>
+                <default>false</default>
+                <label>Norwel</label>
+            </value>
+            <value>
+                <fullName>Omega</fullName>
+                <default>false</default>
+                <label>Omega</label>
+            </value>
+            <value>
+                <fullName>Open Practice</fullName>
+                <default>false</default>
+                <label>Open Practice</label>
+            </value>
+            <value>
+                <fullName>Oracle</fullName>
+                <default>false</default>
+                <label>Oracle</label>
+            </value>
+            <value>
+                <fullName>Orion</fullName>
+                <default>false</default>
+                <label>Orion</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>PCLaw</fullName>
+                <default>false</default>
+                <label>PCLaw</label>
+            </value>
+            <value>
+                <fullName>Peppermint Technology</fullName>
+                <default>false</default>
+                <label>Peppermint Technology</label>
+            </value>
+            <value>
+                <fullName>PerfectLaw</fullName>
+                <default>false</default>
+                <label>PerfectLaw</label>
+            </value>
+            <value>
+                <fullName>Practice Engine</fullName>
+                <default>false</default>
+                <label>Practice Engine</label>
+            </value>
+            <value>
+                <fullName>Proclaim</fullName>
+                <default>false</default>
+                <label>Proclaim</label>
+            </value>
+            <value>
+                <fullName>Prolaw</fullName>
+                <default>false</default>
+                <label>Prolaw</label>
+            </value>
+            <value>
+                <fullName>ProVantage</fullName>
+                <default>false</default>
+                <label>ProVantage</label>
+            </value>
+            <value>
+                <fullName>Rainmaker</fullName>
+                <default>false</default>
+                <label>Rainmaker</label>
+            </value>
+            <value>
+                <fullName>Rippe &amp; Kingston/LMS</fullName>
+                <default>false</default>
+                <label>Rippe &amp; Kingston/LMS</label>
+            </value>
+            <value>
+                <fullName>SAP</fullName>
+                <default>false</default>
+                <label>SAP</label>
+            </value>
+            <value>
+                <fullName>Solace Millennium</fullName>
+                <default>false</default>
+                <label>Solace Millennium</label>
+            </value>
+            <value>
+                <fullName>SOS</fullName>
+                <default>false</default>
+                <label>SOS</label>
+            </value>
+            <value>
+                <fullName>Star</fullName>
+                <default>false</default>
+                <label>Star</label>
+            </value>
+            <value>
+                <fullName>Tab 3</fullName>
+                <default>false</default>
+                <label>Tab 3</label>
+            </value>
+            <value>
+                <fullName>TFB</fullName>
+                <default>false</default>
+                <label>TFB</label>
+            </value>
+            <value>
+                <fullName>Tikit Firmware</fullName>
+                <default>false</default>
+                <label>Tikit Firmware</label>
+            </value>
+            <value>
+                <fullName>Timeslice</fullName>
+                <default>false</default>
+                <label>Timeslice</label>
+            </value>
+            <value>
+                <fullName>Timeslips</fullName>
+                <default>false</default>
+                <label>Timeslips</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

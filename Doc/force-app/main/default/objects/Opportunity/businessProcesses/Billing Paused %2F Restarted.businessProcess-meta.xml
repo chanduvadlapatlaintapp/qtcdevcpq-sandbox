@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BusinessProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing Paused %2F Restarted</fullName>
+    <isActive>true</isActive>
+    <values>
+        <fullName>Billing Pause Approved</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Closed - Cancelled</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Closed - Deferred</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Closed - Should Never have been opened</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Closed Won</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Pending Approval - Billing Pause</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Pending Cancellation</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Pending Closure</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Pending Superseding</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Processing Pause</fullName>
+        <default>false</default>
+    </values>
+</BusinessProcess>

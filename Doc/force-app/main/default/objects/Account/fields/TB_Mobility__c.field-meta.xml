@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TB_Mobility__c</fullName>
+    <description>Do they have an explicit or implicit license to the mobility application?</description>
+    <inlineHelpText>Does this customer own Time Builder Mobility?</inlineHelpText>
+    <label>TB Mobility</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Own It</fullName>
+                <default>false</default>
+                <label>Own It</label>
+            </value>
+            <value>
+                <fullName>Suspect</fullName>
+                <default>false</default>
+                <label>Suspect</label>
+            </value>
+            <value>
+                <fullName>Lapsed</fullName>
+                <default>false</default>
+                <label>Lapsed</label>
+            </value>
+            <value>
+                <fullName>Own it - Trial</fullName>
+                <default>false</default>
+                <label>Own it - Trial</label>
+            </value>
+            <value>
+                <fullName>Converted</fullName>
+                <default>false</default>
+                <label>Converted</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

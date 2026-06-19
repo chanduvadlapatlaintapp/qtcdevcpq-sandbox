@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Type_Non_Bundle__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF ( OR(SBQQ__RequiredBy__c != NULL, Is_Bundle_Product__c == TRUE) , &apos;&apos; , TEXT( Product_Type__c) )</formula>
+    <label>Product Type Non Bundle</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

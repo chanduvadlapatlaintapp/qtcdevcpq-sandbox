@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fiscal_Year__c</fullName>
+    <description>BIZ-60393</description>
+    <label>Fiscal Year</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>FY25</fullName>
+                <default>false</default>
+                <label>FY25</label>
+            </value>
+            <value>
+                <fullName>FY26</fullName>
+                <default>false</default>
+                <label>FY26</label>
+            </value>
+            <value>
+                <fullName>FY27</fullName>
+                <default>false</default>
+                <label>FY27</label>
+            </value>
+            <value>
+                <fullName>FY28</fullName>
+                <default>false</default>
+                <label>FY28</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+
+<meta name="copyright" content="(C) Copyright 2000-2006 salesforce.com, inc.  All rights reserved. 2005" />
+<meta name="DC.rights.owner" content="(C) Copyright 2000-2006 salesforce.com, inc.  All rights reserved. 2005" />
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+<meta content="public" name="security" />
+<meta content="index,follow" name="Robots" />
+<meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+<meta content="topic" name="DC.Type" />
+<meta name="DC.Title" content="Service Entitlements User Guide" />
+<meta content="toc_section text" name="DC.Coverage" />
+<meta content="XHTML" name="DC.Format" />
+<meta content="salesforce_using_sla" name="DC.Identifier" />
+<link id="csslink" href="http://na1.salesforce.com//dCSS/Theme2/default/help.css" type="text/css" rel="stylesheet" />
+<title>Service Entitlements User Guide</title>
+
+<script type="text/javascript" language="JavaScript" src="/js/functions.js"> </script>
+</head>
+<body onLoad=" " id="salesforce_using_sla"><a name="salesforce_using_sla"><!-- --></a>
+<a name="top"><!-- --></a>
+<h1 class="helpHead1"><a name="N1000C"><!-- --></a><span id="topic-title"><a name="topic-title"><!-- --></a>Service Entitlements User Guide</span></h1>
+<div>
+
+<div><a name="slaEditions"><!-- --></a><table class="editionTable" width="100%" summary="Salesforce editions needed for the documented functionality" cellspacing="0" cellpadding="0" border="0" id="slaEditions" frame="border">
+<tbody>
+<tr>
+<td class="subHead">Available in: <strong>Enterprise</strong>, <strong>Unlimited</strong>, and <strong>Developer</strong> Editions</td>
+
+</tr>
+
+</tbody>
+
+</table><br />
+</div>
+
+<div class="p">The <cite>Service Entitlements User Guide</cite> is designed to
+help you quickly learn how to create and use your organization's service
+level agreements and entitlements. The information in this guide is
+organized as follows:<ul>
+<li><a href="#aboutsla"><span>About Service Level Agreements and Entitlements</span></a></li>
+
+<li><a href="#settingupsla"><span>Setting Up Service Level Agreements and
+Service Entitlements</span></a></li>
+
+<li><a href="#verifyingslas"><span>Verifying Service Entitlements</span></a></li>
+
+<li><a href="#workingwithcasesandentitlements"><span>Working with Cases
+and Service Entitlements</span></a></li>
+
+<li><a href="#reportingoncaseswithentitlements"><span>Reporting on Service
+Entitlements</span></a></li>
+
+</ul>
+</div>
+
+<p>This guide is intended for two audiences: users who want to create
+and manage service level agreements and entitlements, and customer
+support reps who verify entitlements and work with customers. The
+required user permissions for each activity are listed within each
+topic.</p>
+
+<p>This guide also defines the service entitlements terminology and
+provides step-by-step instructions for the service entitlements app.
+For instructions on using <span>Salesforce</span>, consult the <span>Salesforce</span> online help
+by clicking <strong>Help &amp; Training</strong> at the top
+right corner of any page.</p>
+
+</div>
+<div class="nested1" id="aboutsla-topic"><a name="aboutsla-topic"><!-- --></a><h2 class="helpHead2"><a name="N100DD"><!-- --></a><span id="aboutsla"><a name="aboutsla"><!-- --></a>About Service Level Agreements and Entitlements</span></h2>
+<div>
+<div class="p" id="AboutText"><a name="AboutText"><!-- --></a>Service Entitlements is an <span>AppExchange</span> app
+that is completely integrated with <span>Salesforce</span>. Use service
+level agreements and entitlements to:<ul>
+<li>Manage your customer service based on clearly defined terms</li>
+
+<li>Easily determine the level of service to which a customer is entitled</li>
+
+<li>Automatically calculate first response times, entitled resolution
+times, and actual resolution times</li>
+
+<li>Automatically escalate cases that violate service level agreements</li>
+
+</ul>
+</div>
+
+<div class="p" id="Terminology"><a name="Terminology"><!-- --></a>Review the following terminology:<dl>
+
+<dt class="dlterm">Service level agreement</dt>
+
+<dd>A contract between a company and a customer that determines the
+level of support a customer is entitled to receive.</dd>
+
+
+
+<dt class="dlterm">Service Entitlement</dt>
+
+<dd>An individual service term included on a service level agreement.
+For example, a service level agreement may state that a customer is
+entitled to a response time to an inquiry within one hour and a resolution
+time to an inquiry within four hours. Both the response time and the
+resolution time are service entitlements in the service level agreement.</dd>
+
+
+
+<dt class="dlterm" id="namedcaller"><a name="namedcaller"><!-- --></a>Named caller</dt>
+
+<dd>A contact authorized to receive service on a particular service
+level agreement contract.</dd>
+
+
+</dl>
+</div>
+
+<div class="p">Review the following process:<ol>
+<li><a href="#settingupsla">Set up</a> service level agreements.</li>
+
+<li><a href="#verifyingslas">Verify</a> that customers with
+inquiries are entitled to support.</li>
+
+<li><a href="#workingwithcasesandentitlements">Create or update</a> cases with service entitlements as defined in customers' service
+level agreements.</li>
+
+</ol>
+</div>
+
+</div>
+</div>
+<div class="nested1" id="settingupsla-topic"><a name="settingupsla-topic"><!-- --></a><h2 class="helpHead2"><a name="N101A3"><!-- --></a><span id="settingupsla"><a name="settingupsla"><!-- --></a>Setting Up Service Level Agreements and
+Service Entitlements</span></h2>
+<div>
+<div class="p">Set up service level agreements and service entitlements so support
+reps can verify that customers with inquiries are entitled to support.
+See the following for details:<ul>
+<li><a href="#creatingcontractswithsla"><span>Creating Contracts with Service
+Level Agreements</span></a></li>
+
+<li><a href="#addingnamedcallerstocontracts"><span>Adding Named Callers
+to Contracts</span></a></li>
+
+<li><a href="#addingentitlementstocontracts"><span>Adding Service Entitlements
+to Contracts</span></a></li>
+
+<li><a href="#creatingentitlementswithorwithoutcontract"><span>Creating
+Service Entitlements without Contracts</span></a></li>
+
+<li><a href="#deletingentitlements"><span>Deleting Service Entitlements</span></a></li>
+
+</ul>
+</div>
+
+</div>
+<div class="nested2" id="creatingcontractswithsla-topic"><a name="creatingcontractswithsla-topic"><!-- --></a><h3 class="helpHead3"><a name="N1021D"><!-- --></a><span id="creatingcontractswithsla"><a name="creatingcontractswithsla"><!-- --></a>Creating Contracts with Service
+Level Agreements</span></h3>
+<div>
+
+<div><table border="0" width="100%" summary="Permissions needed for the documented functionality" cellspacing="0" cellpadding="0" class="permTable" frame="border">
+<thead align="left">
+<tr>
+<th class="permTableHeader" colspan="2" id="N1025A">User Permissions
+Needed</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+<tr>
+<td class="permRowLeft" headers="N1025A ">To create contracts with service level agreements:</td>
+
+<td class="permRowRight" headers="N1025A ">"Create" on contracts and "Read" on accounts<p>AND</p>
+<p>"Create"
+on service entitlements</p>
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+</div>
+
+<div class="p">To create a contract with a service level agreement:<ol>
+<li>View the account for which you want to create a contract, and
+click <strong>New</strong> on the Contracts related list. You
+must have at least read access to an account in order to associate
+a contract with it. </li>
+
+<li>Enter information for the contract, and click <strong>Save</strong>.</li>
+
+<li>Click <strong>New</strong> on the Service Entitlements related
+list of the contract.</li>
+
+<li>Enter information for the service entitlement, and click <strong>Save</strong>.</li>
+
+</ol>
+</div>
+
+</div>
+</div>
+<div class="nested2" id="addingnamedcallerstocontracts-topic"><a name="addingnamedcallerstocontracts-topic"><!-- --></a><h3 class="helpHead3"><a name="N102CB"><!-- --></a><span id="addingnamedcallerstocontracts"><a name="addingnamedcallerstocontracts"><!-- --></a>Adding Named Callers
+to Contracts</span></h3>
+<div>
+
+<div><table border="0" width="100%" summary="Permissions needed for the documented functionality" cellspacing="0" cellpadding="0" class="permTable" frame="border">
+<thead align="left">
+<tr>
+<th class="permTableHeader" colspan="2" id="N10308">User Permissions
+Needed</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+<tr>
+<td class="permRowLeft" headers="N10308 ">To add named callers to contracts:</td>
+
+<td class="permRowRight" headers="N10308 ">"Edit" on contracts and "Read" on accounts<p>AND</p>
+<p>"Create"
+on named callers</p>
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+</div>
+
+<div class="p">Optionally, if set up by your administrator, you can add named
+callers to a service level agreement contract. Named callers are contacts
+authorized to receive customer support. <ol>
+<li>Select a contract, and click <strong>New</strong> on the
+Named Callers related list.</li>
+
+<li>Select a contact. The contract is automatically selected for you.</li>
+
+<li>Click <strong>Save</strong> to save the named caller, or
+click <strong>Save &amp; New</strong> to save the named caller
+and create another.<fieldset class="note"><legend>Note </legend><div class="noteBody"><img align="left" src="http://na1.salesforce.com/img/help/helpNote_icon.gif" /><span id="pin"><a name="pin"><!-- --></a>Each named caller is automatically
+assigned a personal identification number (PIN) displayed in the <span class="fieldName">PIN</span> field. The <span class="fieldName">PIN</span> field is an auto-number
+custom field whose values are automatically generated and cannot be
+modified.</span><p>You can provide each named caller with their PIN
+so that when they contact support they can give a support rep their
+PIN which can be used to quickly identify the contact record and service
+level agreement that entitles them to support.</p>
+<p>When you update
+the contact for a named caller, the new contact receives the original
+named caller's PIN.</p>
+</div></fieldset>
+</li>
+
+</ol>
+</div>
+
+</div>
+</div>
+<div class="nested2" id="addingentitlementstocontracts-topic"><a name="addingentitlementstocontracts-topic"><!-- --></a><h3 class="helpHead3"><a name="N1038D"><!-- --></a><span id="addingentitlementstocontracts"><a name="addingentitlementstocontracts"><!-- --></a>Adding Service Entitlements
+to Contracts</span></h3>
+<div>
+
+<div><table border="0" width="100%" summary="Permissions needed for the documented functionality" cellspacing="0" cellpadding="0" class="permTable" frame="border">
+<thead align="left">
+<tr>
+<th class="permTableHeader" colspan="2" id="N103CA">User Permissions
+Needed</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+<tr>
+<td class="permRowLeft" headers="N103CA ">To add service entitlements to contracts:</td>
+
+<td class="permRowRight" headers="N103CA ">"Edit" on contracts and "Read" on accounts<p>AND</p>
+<p>"Create"
+on service entitlements</p>
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+</div>
+
+<div class="p">To add a service entitlement to a contract:<ol>
+<li>Select a contract and click <strong>New</strong> on the
+Service Entitlements related list.</li>
+
+<li> Enter information for the service entitlement.<a name="entitlementsCreating"><!-- --></a><ul id="entitlementsCreating">
+<li>Optionally, select an asset and picklist values from the <span class="fieldName">Case Type</span> and <span class="fieldName">Account Rating</span> fields
+to define the service entitlement. This helps you specify what type
+of issue or support a customer is entitled to receive.</li>
+
+<li>Optionally, select the <span class="fieldName">Include Business Hours</span> checkbox to automatically calculate entitled response and resolve
+times for cases using your organization's business hours. If the checkbox
+is not selected, entitled response and resolve times on cases associated
+with the service entitlement are automatically calculated as if your
+support team is always available and offers "24x7" support.</li>
+
+<li> Enter a number in the <span class="fieldName">Entitled Response (Hours)</span> field to define the number of hours by which customers are entitled
+to receive a first response to a case.</li>
+
+<li>Enter a number in the <span class="fieldName">Entitled Resolve (Hours)</span> field to define the number of hours by which customers are entitled
+to a resolution to a case.<fieldset class="note"><legend>Note </legend><div class="noteBody"><img align="left" src="http://na1.salesforce.com/img/help/helpNote_icon.gif" />You can enter a number in either the <span class="fieldName">Entitled Response (Hours)</span> field or the <span class="fieldName">Entitled
+Resolve (Hours)</span> field. You do not have to enter a number
+in both fields to create a service entitlement.</div></fieldset>
+</li>
+
+</ul>
+</li>
+
+<li><span id="entitlementSaveandNew"><a name="entitlementSaveandNew"><!-- --></a>Click <strong>Save</strong>, or click <strong>Save &amp; New</strong> to save the service
+entitlement and create another.</span></li>
+
+</ol>
+<fieldset class="note"><legend>Note </legend><div class="noteBody"><img align="left" src="http://na1.salesforce.com/img/help/helpNote_icon.gif" /><span id="modifySla"><a name="modifySla"><!-- --></a>Cases associated with service entitlements
+that are changed do not automatically update. You must manually update
+any cases associated with service entitlements that are changed.</span></div></fieldset>
+</div>
+
+</div>
+</div>
+<div class="nested2" id="creatingentitlementswithorwithoutcontract-topic"><a name="creatingentitlementswithorwithoutcontract-topic"><!-- --></a><h3 class="helpHead3"><a name="N1048B"><!-- --></a><span id="creatingentitlementswithorwithoutcontract"><a name="creatingentitlementswithorwithoutcontract"><!-- --></a>Creating
+Service Entitlements without Contracts</span></h3>
+<div>
+
+<div><table border="0" width="100%" summary="Permissions needed for the documented functionality" cellspacing="0" cellpadding="0" class="permTable" frame="border">
+<thead align="left">
+<tr>
+<th class="permTableHeader" colspan="2" id="N104C8">User Permissions
+Needed</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+<tr>
+<td class="permRowLeft" headers="N104C8 ">To create service entitlements:</td>
+
+<td class="permRowRight" headers="N104C8 ">"Create" on service entitlements</td>
+
+</tr>
+
+</tbody>
+
+</table>
+</div>
+
+<p>You can create service entitlements that are not associated to
+a contract. <span id="entitlementExample"><a name="entitlementExample"><!-- --></a>If a service entitlement is
+not associated with a contract, then it can be applied to multiple
+accounts and contacts. For example, if your organization offers standard
+support to all customers, then instead of creating a service level
+agreement contract for every customer, you could create one service
+entitlement that covers all customers.</span></p>
+
+<div class="p">To create a service entitlement that is not associated with a contract:<ol>
+<li>Select the Service Entitlements tab, and click <strong>New</strong>. </li>
+
+<li>Enter information for the service entitlement.<ul>
+<li>Optionally, select an asset and picklist values from the <span class="fieldName">Case Type</span> and <span class="fieldName">Account Rating</span> fields
+to define the service entitlement. This helps you specify what type
+of issue or support a customer is entitled to receive.</li>
+
+<li>Optionally, select the <span class="fieldName">Include Business Hours</span> checkbox to automatically calculate entitled response and resolve
+times for cases using your organization's business hours. If the checkbox
+is not selected, entitled response and resolve times on cases associated
+with the service entitlement are automatically calculated as if your
+support team is always available and offers "24x7" support.</li>
+
+<li> Enter a number in the <span class="fieldName">Entitled Response (Hours)</span> field to define the number of hours by which customers are entitled
+to receive a first response to a case.</li>
+
+<li>Enter a number in the <span class="fieldName">Entitled Resolve (Hours)</span> field to define the number of hours by which customers are entitled
+to a resolution to a case.<fieldset class="note"><legend>Note </legend><div class="noteBody"><img align="left" src="http://na1.salesforce.com/img/help/helpNote_icon.gif" />You can enter a number in either the <span class="fieldName">Entitled Response (Hours)</span> field or the <span class="fieldName">Entitled
+Resolve (Hours)</span> field. You do not have to enter a number
+in both fields to create a service entitlement.</div></fieldset>
+</li>
+
+</ul>
+</li>
+
+<li><span>Click <strong>Save</strong>, or click <strong>Save &amp; New</strong> to save the service
+entitlement and create another.</span></li>
+
+</ol>
+<fieldset class="note"><legend>Note </legend><div class="noteBody"><img align="left" src="http://na1.salesforce.com/img/help/helpNote_icon.gif" /><span>Cases associated with service entitlements
+that are changed do not automatically update. You must manually update
+any cases associated with service entitlements that are changed.</span></div></fieldset>
+ </div>
+
+</div>
+</div>
+<div class="nested2" id="deletingentitlements-topic"><a name="deletingentitlements-topic"><!-- --></a><h3 class="helpHead3"><a name="N10589"><!-- --></a><span id="deletingentitlements"><a name="deletingentitlements"><!-- --></a>Deleting Service Entitlements</span></h3>
+<div>
+
+<div><table border="0" width="100%" summary="Permissions needed for the documented functionality" cellspacing="0" cellpadding="0" class="permTable" frame="border">
+<thead align="left">
+<tr>
+<th class="permTableHeader" colspan="2" id="N105C6">User Permissions
+Needed</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+<tr>
+<td class="permRowLeft" headers="N105C6 ">To delete service entitlements:</td>
+
+<td class="permRowRight" headers="N105C6 ">"Delete" on service entitlements</td>
+
+</tr>
+
+</tbody>
+
+</table>
+</div>
+
+<p>To delete a service entitlement, click <strong>Del</strong> next to the service entitlement on a contract, or click <strong>Delete</strong> on the service entitlement detail page.</p>
+
+<p>When you delete a service entitlement that has cases associated
+with it, the <strong>Verify Service Entitlement</strong> button
+displays on the cases to notify support reps that they need to verify
+if the case is entitled to support. For more information, see <a href="#verifyingentitlementsoncases"><span>Verifying Service Entitlements
+on Cases</span></a>. The deleted service entitlement is moved to the Recycle
+Bin. If you undelete the service entitlement, any associated contracts
+and cases are not restored.</p>
+
+</div>
+</div>
+</div>
+<div class="nested1" id="verifyingslas-topic"><a name="verifyingslas-topic"><!-- --></a><h2 class="helpHead2"><a name="N1061B"><!-- --></a><span id="verifyingslas"><a name="verifyingslas"><!-- --></a>Verifying Service Entitlements</span></h2>
+<div>
+<div class="p">After service level agreements and service entitlements are set
+up, you can verify whether or not customers with inquiries are entitled
+to support. See the following for details: <ul>
+<li><a href="#verifyingentitlementsoncontracts"><span>Verifying Service
+Entitlements on Contacts</span></a></li>
+
+<li><a href="#verifyingentitlementsoncases"><span>Verifying Service Entitlements
+on Cases</span></a></li>
+
+</ul>
+</div>
+
+</div>
+<div class="nested2" id="verifyingentitlementsoncontracts-topic"><a name="verifyingentitlementsoncontracts-topic"><!-- --></a><h3 class="helpHead3"><a name="N10668"><!-- --></a><span id="verifyingentitlementsoncontracts"><a name="verifyingentitlementsoncontracts"><!-- --></a>Verifying Service
+Entitlements on Contacts</span></h3>
+<div>
+
+<div><table border="0" width="100%" summary="Permissions needed for the documented functionality" cellspacing="0" cellpadding="0" class="permTable" frame="border">
+<thead align="left">
+<tr>
+<th class="permTableHeader" colspan="2" id="N106A5">User Permissions
+Needed</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+<tr>
+<td class="permRowLeft" headers="N106A5 ">To verify service entitlements on contacts:</td>
+
+<td class="permRowRight" headers="N106A5 ">"Read" on contacts<p>AND</p>
+<p>"Read" on service entitlements</p>
+</td>
+
+</tr>
+
+<tr>
+<td class="permRowLeft" headers="N106A5 ">To create cases:</td>
+
+<td class="permRowRight" headers="N106A5 ">"Create" on cases</td>
+
+</tr>
+
+</tbody>
+
+</table>
+</div>
+
+<div class="p">To verify that a contact is entitled to support:<ol>
+<li>View the contact.</li>
+
+<li id="verifysla"><a name="verifysla"><!-- --></a>Click <strong>Verify Service Entitlement</strong>. <p><span id="entitlementsFound"><a name="entitlementsFound"><!-- --></a>If no service entitlements are found
+for the contact, then a <span class="fieldName">No Active Entitlements Found for
+this Contact</span> field displays. If the contact is entitled
+to support, then a list of service entitlements displays from which
+you can choose to create a case.</span></p>
+</li>
+
+<li id="selectslaornot"><a name="selectslaornot"><!-- --></a>Next, either select a service entitlement
+or create a case without a service entitlement:<ul>
+<li>Click <strong>Select</strong> next to a service entitlement
+to automatically create a new case for the contact using that service
+entitlement. <span id="calculatedFields"><a name="calculatedFields"><!-- --></a>The fields that are automatically
+calculated on the case include the <span class="fieldName">Service Entitlement</span>, <span class="fieldName">Entitled First Response</span>, and <span class="fieldName">Entitled
+Close Date</span> fields.</span> <p>If set up by your administrator, <span class="fieldName">Not Named Caller</span> displays next to service entitlements
+where the contact is not a named caller. </p>
+<p>Service entitlements
+associated with contracts set to expire within 30 days are noted.</p>
+</li>
+
+<li><span id="createCaseNoEntitlement"><a name="createCaseNoEntitlement"><!-- --></a>Click <strong>Create New Case
+without Entitlement</strong> to create a new case without a service
+entitlement for the contact.</span></li>
+
+</ul>
+</li>
+
+</ol>
+<fieldset class="note"><legend>Note </legend><div class="noteBody"><img align="left" src="http://na1.salesforce.com/img/help/helpNote_icon.gif" />If a contact provides you with a valid PIN (Personal Identification
+Number), you can click the PIN from the Named Callers related list
+on the contact's record to verify that he or she is a named caller
+on a contract. When viewing the details of the named caller, you can
+select the contract to view the details of the contact's service entitlement.</div></fieldset>
+</div>
+
+</div>
+</div>
+<div class="nested2" id="verifyingentitlementsoncases-topic"><a name="verifyingentitlementsoncases-topic"><!-- --></a><h3 class="helpHead3"><a name="N10781"><!-- --></a><span id="verifyingentitlementsoncases"><a name="verifyingentitlementsoncases"><!-- --></a>Verifying Service Entitlements
+on Cases</span></h3>
+<div>
+
+<div><table border="0" width="100%" summary="Permissions needed for the documented functionality" cellspacing="0" cellpadding="0" class="permTable" frame="border">
+<thead align="left">
+<tr>
+<th class="permTableHeader" colspan="2" id="N107BE">User Permissions
+Needed</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+<tr>
+<td class="permRowLeft" headers="N107BE ">To verify service entitlements on cases:</td>
+
+<td class="permRowRight" headers="N107BE ">"Edit" on cases<p>AND</p>
+<p>"Read" on service entitlements</p>
+</td>
+
+</tr>
+
+<tr>
+<td class="permRowLeft" headers="N107BE ">To create cases:</td>
+
+<td class="permRowRight" headers="N107BE ">"Create" on cases</td>
+
+</tr>
+
+</tbody>
+
+</table>
+</div>
+
+<div class="p">To verify that a case is entitled to support:<ol>
+<li>View the case, and click <strong>Verify Service Entitlement</strong>.<p>If no service entitlements are found for the contact associated
+with the case, then a <span class="fieldName">No Active Entitlements Found for this
+Contact</span> field is displayed. If the contact is entitled
+to support, then a list of service entitlements displays from which
+you can choose to associate with the case.</p>
+</li>
+
+<li>Click <strong>Select</strong> next to a service entitlement
+to automatically update the case using that entitlement. <span>The fields that are automatically
+calculated on the case include the <span class="fieldName">Service Entitlement</span>, <span class="fieldName">Entitled First Response</span>, and <span class="fieldName">Entitled
+Close Date</span> fields.</span> <p>If set up by your administrator, <span class="fieldName">Not Named Caller</span> displays next to service entitlements where the contact is not a
+named caller.</p>
+<p>Service entitlements associated with contracts
+set to expire within 30 days are noted.</p>
+</li>
+
+</ol>
+ </div>
+
+<p>Be aware of the following when verifying service entitlements on
+cases:</p>
+
+<div class="p"><ul>
+<li><span id="invalidEntitlement"><a name="invalidEntitlement"><!-- --></a>The <strong>Invalid Entitlement
+- Change</strong> button displays on cases where the asset associated
+with the case no longer matches the asset associated with the case's
+service entitlement. Click the <strong>Invalid Entitlement - Change</strong> button to select a valid service entitlement for the case. If there
+are no valid entitlements to choose from, then click <strong>Create
+New Case without Entitlement</strong> to replace the case with
+a new case without a service entitlement. Remember to delete the original
+case with the invalid service entitlement. </span></li>
+
+<li>All cases submitted via the <span>Self-Service</span> portal
+and Email-to-Case require verification because customers cannot select
+a service entitlement for themselves before submitting a case.</li>
+
+<li>The <strong>Change Service Entitlement</strong> button displays
+on cases whose service entitlements have already been verified. However,
+you can click <strong>Change Service Entitlement</strong> to
+change the service entitlement on the case.</li>
+
+</ul>
+</div>
+
+</div>
+</div>
+</div>
+<div class="nested1" id="workingwithcasesandentitlements-topic"><a name="workingwithcasesandentitlements-topic"><!-- --></a><h2 class="helpHead2"><a name="N108B2"><!-- --></a><span id="workingwithcasesandentitlements"><a name="workingwithcasesandentitlements"><!-- --></a>Working with Cases
+and Service Entitlements</span></h2>
+<div>
+<div class="p">After verifying that customers with inquiries are entitled to support,
+you can work with cases and service entitlements in a number of ways.
+See the following for details:<ul>
+<li><a href="#creatingcaseswithentitlements"><span>Creating Cases with
+Service Entitlements</span></a></li>
+
+<li><a href="#respondingtocaseswithentitlements"><span>Responding to Cases
+with Service Entitlements</span></a></li>
+
+<li><a href="#editingcaseswithentitlements"><span>Changing Service Entitlements
+on Cases</span></a></li>
+
+</ul>
+</div>
+
+</div>
+<div class="nested2" id="creatingcaseswithentitlements-topic"><a name="creatingcaseswithentitlements-topic"><!-- --></a><h3 class="helpHead3"><a name="N1090E"><!-- --></a><span id="creatingcaseswithentitlements"><a name="creatingcaseswithentitlements"><!-- --></a>Creating Cases with
+Service Entitlements</span></h3>
+<div>
+
+<div><table border="0" width="100%" summary="Permissions needed for the documented functionality" cellspacing="0" cellpadding="0" class="permTable" frame="border">
+<thead align="left">
+<tr>
+<th class="permTableHeader" colspan="2" id="N1094B">User Permissions
+Needed</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+<tr>
+<td class="permRowLeft" headers="N1094B ">To create cases with service entitlements:</td>
+
+<td class="permRowRight" headers="N1094B ">"Create" on cases<p>AND</p>
+<p>"Read" on service entitlements</p>
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+</div>
+
+<div class="p">To create a case with a service entitlement:<ol>
+<li>View the contact for whom you want to create a case.</li>
+
+<li>Click <strong>Verify Service Entitlement</strong>. <p><span id="entitlementsFound"><a name="entitlementsFound"><!-- --></a>If no service entitlements are found
+for the contact, then a <span class="fieldName">No Active Entitlements Found for
+this Contact</span> field displays. If the contact is entitled
+to support, then a list of service entitlements displays from which
+you can choose to create a case.</span></p>
+</li>
+
+<li>Next, either select a service entitlement
+or create a case without a service entitlement:<ul>
+<li>Click <strong>Select</strong> next to a service entitlement
+to automatically create a new case for the contact using that service
+entitlement. <span id="calculatedFields"><a name="calculatedFields"><!-- --></a>The fields that are automatically
+calculated on the case include the <span class="fieldName">Service Entitlement</span>, <span class="fieldName">Entitled First Response</span>, and <span class="fieldName">Entitled
+Close Date</span> fields.</span> <p>If set up by your administrator, <span class="fieldName">Not Named Caller</span> displays next to service entitlements
+where the contact is not a named caller. </p>
+<p>Service entitlements
+associated with contracts set to expire within 30 days are noted.</p>
+</li>
+
+<li><span id="createCaseNoEntitlement"><a name="createCaseNoEntitlement"><!-- --></a>Click <strong>Create New Case
+without Entitlement</strong> to create a new case without a service
+entitlement for the contact.</span></li>
+
+</ul>
+</li>
+
+</ol>
+ </div>
+
+</div>
+</div>
+<div class="nested2" id="respondingtocaseswithentitlements-topic"><a name="respondingtocaseswithentitlements-topic"><!-- --></a><h3 class="helpHead3"><a name="N10A05"><!-- --></a><span id="respondingtocaseswithentitlements"><a name="respondingtocaseswithentitlements"><!-- --></a>Responding to Cases
+with Service Entitlements</span></h3>
+<div>
+
+<div><table border="0" width="100%" summary="Permissions needed for the documented functionality" cellspacing="0" cellpadding="0" class="permTable" frame="border">
+<thead align="left">
+<tr>
+<th class="permTableHeader" colspan="2" id="N10A42">User Permissions
+Needed</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+<tr>
+<td class="permRowLeft" headers="N10A42 ">To respond to cases with service entitlements:</td>
+
+<td class="permRowRight" headers="N10A42 ">"Edit" on cases</td>
+
+</tr>
+
+</tbody>
+
+</table>
+</div>
+
+<div class="p">You can respond to cases with service entitlements so that your
+first response dates and times are automatically calculated on each
+case. To respond to a case with a service entitlement:<ol>
+<li>View the case.</li>
+
+<li>Click <strong>Respond with Email</strong> to send an email
+to a contact, another user, or any other email address; or click <strong>Respond with Call</strong> to log the results of a phone call.
+Responses are recorded on the Activity History related list of the
+case.</li>
+
+</ol>
+</div>
+
+</div>
+</div>
+<div class="nested2" id="editingcaseswithentitlements-topic"><a name="editingcaseswithentitlements-topic"><!-- --></a><h3 class="helpHead3"><a name="N10A91"><!-- --></a><span id="editingcaseswithentitlements"><a name="editingcaseswithentitlements"><!-- --></a>Changing Service Entitlements
+on Cases</span></h3>
+<div>
+
+<div><table border="0" width="100%" summary="Permissions needed for the documented functionality" cellspacing="0" cellpadding="0" class="permTable" frame="border">
+<thead align="left">
+<tr>
+<th class="permTableHeader" colspan="2" id="N10ACE">User Permissions
+Needed</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+<tr>
+<td class="permRowLeft" headers="N10ACE ">To change a service entitlements on a case:</td>
+
+<td class="permRowRight" headers="N10ACE ">"Edit" on cases</td>
+
+</tr>
+
+</tbody>
+
+</table>
+</div>
+
+<div class="p">To change a service entitlement associated with a case:<ol>
+<li>Select <strong>Change Service Entitlement</strong> on the
+case.</li>
+
+<li>Click <strong>Select</strong> next to the entitlement you
+want to associate with the case. <p>The case's <span class="fieldName">Entitled
+First Response</span> and <span class="fieldName">Entitled Close Date</span> fields automatically update with the new service entitlement's response
+times. However, if you already responded to the case's previous service
+entitlement, then the date and time in the case's <span class="fieldName">Actual
+First Response</span> field will not change.</p>
+</li>
+
+</ol>
+ </div>
+
+<fieldset class="note"><legend>Note </legend><div class="noteBody"><img align="left" src="http://na1.salesforce.com/img/help/helpNote_icon.gif" />If you update the <span class="fieldName">Asset</span> field on a case
+and it conflicts with the <span class="fieldName">Asset</span> field on the
+service entitlement associated with the case, the <strong>Invalid
+Entitlement - Change</strong> button displays on the case detail
+page. Click the button to select a valid service entitlement for the
+case. For more information, see <a href="#verifyingentitlementsoncases"><span>Verifying Service Entitlements
+on Cases</span></a>.</div></fieldset>
+
+</div>
+</div>
+</div>
+<div class="nested1" id="reportingoncaseswithentitlements-topic"><a name="reportingoncaseswithentitlements-topic"><!-- --></a><h2 class="helpHead2"><a name="N10B58"><!-- --></a><span id="reportingoncaseswithentitlements"><a name="reportingoncaseswithentitlements"><!-- --></a>Reporting on Service
+Entitlements</span></h2>
+<div>
+
+<div><table border="0" width="100%" summary="Permissions needed for the documented functionality" cellspacing="0" cellpadding="0" class="permTable" frame="border">
+<thead align="left">
+<tr>
+<th class="permTableHeader" colspan="2" id="N10B95">User Permissions
+Needed</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+<tr>
+<td class="permRowLeft" headers="N10B95 ">To run reports on service entitlements:</td>
+
+<td class="permRowRight" headers="N10B95 ">"Run Reports"<p>AND</p>
+<p>"Read" on the records included in
+report</p>
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+</div>
+
+<div class="p">If set up by your administrator, you can report on service entitlement
+information that includes:<ul>
+<li>The number of service entitlement violations for your organization
+and by support rep.</li>
+
+<li>The number of cases that have been closed on or before service
+entitlement resolution dates.</li>
+
+<li>The average first response and resolution time of cases in hours
+for your organization and by case owner.</li>
+
+</ul>
+</div>
+
+<p>Contact your administrator for more information on reporting on
+service entitlements.</p>
+
+</div>
+</div>
+<div class="helpPageFooter">© Copyright 2000-2006 salesforce.com, inc.  All rights reserved.<br />Various trademarks held by their respective owners.</div>
+</body>
+</html>

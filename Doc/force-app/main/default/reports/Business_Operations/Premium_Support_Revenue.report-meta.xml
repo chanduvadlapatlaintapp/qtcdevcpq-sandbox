@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Opportunities$Name</field>
+    </columns>
+    <columns>
+        <field>Account$Support_Level_Integration_Builder__c</field>
+    </columns>
+    <columns>
+        <field>Account$Support_Level_Intapp_Open_Conflicts__c</field>
+    </columns>
+    <columns>
+        <field>Account$Support_Level_Intapp_Open_Intake__c</field>
+    </columns>
+    <columns>
+        <field>Account$Support_Level_Intapp_Time__c</field>
+    </columns>
+    <columns>
+        <field>Account$Support_Level_Wall_Builder__c</field>
+    </columns>
+    <columns>
+        <field>Account.Opportunities$Package__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>((1 or 2 or 3 or 4 or 5) AND 6) AND 7</booleanFilter>
+        <criteriaItems>
+            <column>Account$Support_Level_Integration_Builder__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Premium (Gold),Premium (Platinum)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$Support_Level_Intapp_Open_Conflicts__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Premium (Gold),Premium (Platinum)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$Support_Level_Intapp_Open_Intake__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Premium (Gold),Premium (Platinum)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$Support_Level_Intapp_Time__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Premium (Gold),Premium (Platinum)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$Support_Level_Wall_Builder__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Premium (Gold),Premium (Platinum)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Opportunities$Package__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Support - Premium,Support - Extended</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Opportunities$StageName</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Closed Won</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Premium Support Revenue</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_with_Opps__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Account$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

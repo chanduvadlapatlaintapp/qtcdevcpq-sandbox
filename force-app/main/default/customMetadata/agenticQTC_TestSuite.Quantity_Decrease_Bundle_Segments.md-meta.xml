@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Quantity Decrease Bundle Segments</label>
+    <protected>false</protected>
+    <values>
+        <field>Allow_Multiple_Account__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Default_Accounts__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Description__c</field>
+        <value xsi:type="xsd:string">Tests MDQ regular quantity decrease. Enriches each row with effQty and headroom arrays; picks Product A (must have positive min-headroom across all segments) and Product B (prefer different row with headroom at idxB, falls back to same row). Steps: (1) Year-1 propagation with adaptive delta, (2) optional floor-aware propagation (non-Y1 segments pin at priorQty while Y1 continues), (3) Year-N isolation, (4) set to priorQty → Eff. Qty shows 0, (5) type below priorQty → clamped, (6) save + DB verify. Skips if no MDQ row has positive headroom. 3 scenarios.</value>
+    </values>
+    <values>
+        <field>Is_Active__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Module__c</field>
+        <value xsi:type="xsd:string">Simplified AgenticQTC</value>
+    </values>
+    <values>
+        <field>Sort_Order__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Suite_Value__c</field>
+        <value xsi:type="xsd:string">agenticQtcQuantityDecreaseBundleSegments</value>
+    </values>
+</CustomMetadata>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bill_To_Entity__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <inlineHelpText>Account wide Bill To – OSA will be papered to/billed to this entity for all OSAs going forward. If blank then OSA/bill to will default to Account name/address.</inlineHelpText>
+    <label>Bill To Entity</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Accounts (Services Companies bill to account)</relationshipLabel>
+    <relationshipName>Accounts3</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

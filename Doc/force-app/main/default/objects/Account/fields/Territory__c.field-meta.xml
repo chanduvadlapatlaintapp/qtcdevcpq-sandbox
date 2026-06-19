@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Territory__c</fullName>
+    <description>Deprecated as part of ticket #32918</description>
+    <externalId>false</externalId>
+    <formula>IF(
+    BillingCountry=&quot;&quot;,
+    &quot;Unknown Country&quot;, 
+      IF(
+        CONTAINS(&quot;Spain:France:Netherlands:Germany:Sweden:Austria:Denmark:Italy:Lux:Luxembourg:Norway:Finland:Russia:Switzerland:Portugal:Belgium:Estonia:SA:South Africa&quot;, BillingCountry),
+        &quot;EMEA&quot;,
+        IF(
+          CONTAINS(&quot;UK:Scotland:Ireland:Channel Islands&quot;, BillingCountry),
+          &quot;UK&quot;,
+          IF(
+            CONTAINS(&quot;Australia:New Zealand&quot;,BillingCountry),
+            &quot;Australia-NZ&quot;,
+            IF(
+              CONTAINS(&quot;Singapore&quot;,BillingCountry),
+              &quot;APAC&quot;,
+              IF(
+                NOT(CONTAINS(&quot;USA:United States: United States of America:CA:Canada&quot;,BillingCountry)),
+                &quot;Unknown&quot;,
+                If(
+                  BillingState=&quot;&quot;,
+                  &quot;Unknown State/Province&quot;,          
+                  IF(
+                    AND(
+                      CONTAINS(&quot;AK:WA:OR:CA:NV:ID:MT:WY:UT:CO:AZ:NM:HI:MO:KS:AB:BC:NB:NS:PE:QC:MB:NT:NU:ON:SK:YT:British Columbia:Manitoba&quot;, BillingState),
+                      Intapp_Master_Ranking__c&lt;331
+                    ),
+                    &quot;West-Canada&quot;,
+                    IF(
+                      CONTAINS(&quot;AK:WA:OR:CA:NV:ID:MT:WY:UT:CO:AZ:NM:HI:MO:KS:AB:BC:NB:NS:PE:QC:MB:NT:NU:ON:SK:YT:British Columbia:Manitoba&quot;, BillingState),
+                      &quot;West-Canada AE&quot;,
+                      IF(
+                          CONTAINS(&quot;NY:NJ:PA:DE:WV&quot;, BillingState),
+                          &quot;MidAtlantic-North&quot;,
+                          IF(
+                            CONTAINS(&quot;ME:VT:NH:MA:CT:RI:MD:DE&quot;, BillingState),
+                            &quot;Northeast&quot;,
+                            IF(
+                              AND(
+                                CONTAINS(&quot;TX:OK:AR:KY:LA:TN:MS:AL:GA:FL:VA&quot;, BillingState),
+                                Intapp_Master_Ranking__c  &lt;331
+                              ),
+                              &quot;South East/Central&quot;,
+                              IF(
+                                CONTAINS(&quot;TX:OK:AR:KY:LA:TN:MS:AL:GA:FL:SC:NC:VA:DC&quot;, BillingState),
+                                &quot;Mid Atlantic/South East AE&quot;,
+                                IF(
+                                  AND(
+                                    CONTAINS(&quot;ND:SD:NE:MN:IA:WI:IL:MS:OH:IN:MI&quot;, BillingState),
+                                    Intapp_Master_Ranking__c  &lt;331
+                                  ),
+                                  &quot;North Central&quot;,                         
+                                  IF(
+                                    CONTAINS(&quot;ND:SD:NE:MN:IA:WI:IL:MS:OH:IN:MI&quot;, BillingState),
+                                    &quot;North Central AE&quot;,
+                                    &quot;Unknown&quot;
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )</formula>
+    <label>Territory</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

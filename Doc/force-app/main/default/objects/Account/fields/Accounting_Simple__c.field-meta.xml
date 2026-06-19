@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accounting_Simple__c</fullName>
+    <description>This simplifies all the possible accounting systems, and returns only Elite, Aderant, and Other.</description>
+    <externalId>false</externalId>
+    <formula>IF(
+  OR(
+    INCLUDES(AccountingPortfolio__c, &quot;Elite (3E)&quot;),
+    INCLUDES(AccountingPortfolio__c, &quot;Elite Enterprise 3.x&quot;),
+    INCLUDES(AccountingPortfolio__c, &quot;Enterprise 3.11&quot;),
+    INCLUDES(AccountingPortfolio__c, &quot;Elite Enterprise 3.10&quot;),
+    INCLUDES(AccountingPortfolio__c, &quot;Elite Enterprise 3.9&quot;),
+    INCLUDES(AccountingPortfolio__c, &quot;Elite Enterprise 3.8&quot;),
+    INCLUDES(AccountingPortfolio__c, &quot;Elite Enterprise 3.7&quot;),
+    INCLUDES(AccountingPortfolio__c, &quot;Elite Enterprise 3.6&quot;),
+    INCLUDES(AccountingPortfolio__c, &quot;Elite Enterprise 3.5&quot;),
+    INCLUDES(AccountingPortfolio__c, &quot;Elite Enterprise 3.4&quot;),
+    INCLUDES(AccountingPortfolio__c, &quot;Elite Enterprise 3.3&quot;),
+    INCLUDES(AccountingPortfolio__c, &quot;Elite (Informix)&quot;), 
+    INCLUDES(AccountingPortfolio__c, &quot;Elite (Oracle)&quot;), 
+    INCLUDES(AccountingPortfolio__c, &quot;Elite (SQL)&quot;), 
+    INCLUDES(AccountingPortfolio__c, &quot;Elite (Web Services)&quot;), 
+    INCLUDES(AccountingPortfolio__c, &quot;Elite Enterprise&quot;),
+    INCLUDES(AccountingPortfolio__c, &quot;Elite Envision&quot;),
+    INCLUDES(AccountingPortfolio__c, &quot;LegalVision&quot;),
+    INCLUDES(AccountingPortfolio__c, &quot;Pilgrim LawSoft&quot;),
+    INCLUDES(AccountingPortfolio__c, &quot;Prolaw&quot;)
+    ),
+  &quot;Elite&quot;,
+  IF(
+    OR(
+    INCLUDES(AccountingPortfolio__c, &quot;Aderant Back Office&quot;), 
+    INCLUDES(AccountingPortfolio__c, &quot;Aderant Expert&quot;), 
+    INCLUDES(AccountingPortfolio__c, &quot;Aderant Expert 8&quot;), 
+    INCLUDES(AccountingPortfolio__c, &quot;Aderant Expert 7&quot;), 
+    INCLUDES(AccountingPortfolio__c, &quot;CMS&quot;),
+    INCLUDES(AccountingPortfolio__c, &quot;CMS 5.0&quot;),
+    INCLUDES(AccountingPortfolio__c, &quot;Javelan&quot;),
+    INCLUDES(AccountingPortfolio__c, &quot;Keystone on Oracle&quot;),
+    INCLUDES(AccountingPortfolio__c, &quot;Omega&quot;),
+    INCLUDES(AccountingPortfolio__c, &quot;Rainmaker&quot;)
+    ),
+    &quot;Aderant&quot;,
+   IF(
+        OR(
+          INCLUDES(AccountingPortfolio__c, &quot;Affinity&quot;),
+          INCLUDES(AccountingPortfolio__c, &quot;Axxia&quot;),
+          INCLUDES(AccountingPortfolio__c, &quot;Axxia DNA&quot;),
+          INCLUDES(AccountingPortfolio__c, &quot;LexisOne&quot;),
+          INCLUDES(AccountingPortfolio__c, &quot;Juris&quot;)),
+        &quot;LexisNexis&quot;,
+    IF(
+      OR(
+        INCLUDES(AccountingPortfolio__c, &quot;TFB&quot;),
+        INCLUDES(AccountingPortfolio__c, &quot;Tikit Firmware&quot;)),
+      &quot;Tikit&quot;,
+        IF(
+          OR(
+            INCLUDES(AccountingPortfolio__c, &quot;LMS Accounting&quot;),
+            INCLUDES(AccountingPortfolio__c, &quot;Rippe &amp; Kingston/LMS&quot;)),
+          &quot;Rippe &amp; Kingston&quot;,
+          &quot;Unknown/Other&quot;)))))</formula>
+    <inlineHelpText>This simplifies all the possible accounting systems, and returns only Elite, Aderant, and Other.</inlineHelpText>
+    <label>Accounting - Simple</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

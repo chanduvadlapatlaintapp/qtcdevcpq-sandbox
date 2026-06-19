@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_On_Hold</fullName>
+    <columns>NAME</columns>
+    <columns>Geography__c</columns>
+    <columns>Status__c</columns>
+    <columns>Account__c</columns>
+    <columns>Product__c</columns>
+    <columns>Requesting_Employee__c</columns>
+    <columns>Description__c</columns>
+    <columns>Client_Contact__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>Deadline__c</columns>
+    <columns>Technical_Scoping_Assigned_To__c</columns>
+    <columns>Opportunity_Stage__c</columns>
+    <columns>Start_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>On Hold</value>
+    </filters>
+    <label>All On Hold</label>
+    <language>en_US</language>
+</ListView>

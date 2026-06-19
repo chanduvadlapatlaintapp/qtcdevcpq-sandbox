@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fr_maximum_service_Level__c</fullName>
+    <description>Formula to get the maximum approval service level updated logic. Added 25k equal condition</description>
+    <externalId>false</externalId>
+    <formula>IF(Implementationdiscountlevel__c = 1 &amp;&amp; Implementation_Service__c = true &amp;&amp; Services_Net_Total__c &lt;&gt; 0,1,
+IF(Implementationdiscountlevel__c = 3 &amp;&amp; Implementation_Service__c = true &amp;&amp; Services_Net_Total__c &gt;= 25000,3,
+	IF(((Implementation_Service__c = true &amp;&amp; (Implementationdiscountlevel__c= 3 || Implementationdiscountlevel__c= 7) &amp;&amp; Services_Net_Total__c &lt; 25000) || (Service_Only__c = true &amp;&amp; Service_Only_level_no__c = 7 &amp;&amp; Services_Net_Total__c &lt;25000) || (Service_Only__c = true &amp;&amp; Service_Only_level_no__c = 6) || (Services_Discount_Percentage__c*100) = 100),6,
+	 IF(((Implementation_Service__c = true &amp;&amp; Implementationdiscountlevel__c =7 &amp;&amp; Services_Net_Total__c &gt;= 25000) || (Service_Only__c = true &amp;&amp; Service_Only_level_no__c = 7 &amp;&amp; Services_Net_Total__c &gt;= 25000)),7,0))))</formula>
+    <label>Fr maximum service Level</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

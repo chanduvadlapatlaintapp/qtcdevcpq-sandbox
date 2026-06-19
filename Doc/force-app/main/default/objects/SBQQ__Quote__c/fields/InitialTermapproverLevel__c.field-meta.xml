@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>InitialTermapproverLevel__c</fullName>
+    <description>Created to calculate the highest discount approval level</description>
+    <externalId>false</externalId>
+    <formula>IF((Initial_Term_Discount__c*100)= 0 ,0,
+IF((Initial_Term_Discount__c*100)&gt; 0 &amp;&amp; (Initial_Term_Discount__c*100) &lt;= 20 &amp;&amp; (First_Year_Software_Net_Total__c &gt; 10000) , 1,
+IF((Initial_Term_Discount__c*100)&gt; 0 &amp;&amp; (Initial_Term_Discount__c*100) &lt;= 40 &amp;&amp; (First_Year_Software_Net_Total__c &lt; 10000) , 1,
+IF((Initial_Term_Discount__c*100) &gt; 20 &amp;&amp; (Initial_Term_Discount__c*100) &lt;= 30, 2,
+IF((Initial_Term_Discount__c*100)&gt; 30 &amp;&amp; (Initial_Term_Discount__c*100) &lt;= 40, 3,
+IF((Initial_Term_Discount__c*100) &gt; 40 &amp;&amp; (First_Year_Software_Net_Total__c &lt; 10000),3,
+IF((Initial_Term_Discount__c*100) &gt; 40 &amp;&amp; (First_Year_Software_Net_Total__c &gt; 10000),5,0)))))
+))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Initial Term approver Level</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

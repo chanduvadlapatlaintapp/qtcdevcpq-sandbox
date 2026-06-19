@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Manual_OSA_Indicator__c</fullName>
+    <label>Manual OSA Indicator</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Manual Excel</fullName>
+                <default>false</default>
+                <label>Manual Excel</label>
+            </value>
+            <value>
+                <fullName>Manual PDF</fullName>
+                <default>false</default>
+                <label>Manual PDF</label>
+            </value>
+            <value>
+                <fullName>Edit Existing PDF</fullName>
+                <default>false</default>
+                <label>Edit Existing PDF</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

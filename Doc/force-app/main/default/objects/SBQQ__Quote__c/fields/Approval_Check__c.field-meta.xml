@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approval_Check__c</fullName>
+    <description>Created field for BIZ-45134 story -  to show approval alert on pricing proposal</description>
+    <externalId>false</externalId>
+    <formula>IF(ISPICKVAL(Quote_Stage__c,&quot;Finalize OSA&quot;) &amp;&amp; Approval_Level__c = 0, &apos;No Approval Required&apos;,
+IF(ISPICKVAL(Quote_Stage__c,&quot;Finalize OSA&quot;) &amp;&amp; Hierarchy_level__c = 1, IMAGE(&quot;/resource/SegmentLeader&quot;,&apos;SL&apos;,25,25)+&apos;Segment Leader&apos;,
+IF(ISPICKVAL(Quote_Stage__c,&quot;Finalize OSA&quot;) &amp;&amp; Hierarchy_level__c = 2, IMAGE(&quot;/resource/IndustrySalesLead&quot;,&apos;ISL&apos;,25,25)+&apos;Industry Sales Lead&apos;,
+IF(ISPICKVAL(Quote_Stage__c,&quot;Finalize OSA&quot;) &amp;&amp; Hierarchy_level__c = 3, IMAGE(&quot;/resource/CRO&quot;,&apos;CRO&apos;,25,25)+&apos;CRO&apos;,
+IF(ISPICKVAL(Quote_Stage__c,&quot;Finalize OSA&quot;) &amp;&amp; (Hierarchy_level__c = 4), IMAGE(&quot;/resource/COO&quot;,&apos;COO&apos;,25,25)+&apos;COO&apos;,
+IF(ISPICKVAL(Quote_Stage__c,&quot;Finalize OSA&quot;) &amp;&amp; (Hierarchy_level__c = 5), IMAGE(&quot;/resource/SVPFinance&quot;,&apos;SF&apos;,25,25)+&apos;SVP Finance&apos;,
+IF(ISPICKVAL(Quote_Stage__c,&quot;Finalize OSA&quot;) &amp;&amp; (Approval_Level__c = 6) &amp;&amp; (Hierarchy_level__c = 0),&apos;Service segment lead&apos;,
+IF(ISPICKVAL(Quote_Stage__c,&quot;Finalize OSA&quot;) &amp;&amp; (Approval_Level__c = 7)&amp;&amp; (Hierarchy_level__c = 0),&apos;SVP Service&apos;,
+IF(ISPICKVAL(Quote_Stage__c,&quot;Finalize OSA&quot;) &amp;&amp; (Hierarchy_level__c = 8),&apos;CRO/COO&apos;,
+IF(ISPICKVAL(Quote_Stage__c,&quot;Finalize OSA&quot;) &amp;&amp; (Approval_Level__c = 9)&amp;&amp; (Hierarchy_level__c = 0),&apos;COO/CPO&apos;,
+IF(ISPICKVAL(Quote_Stage__c,&quot;Finalize OSA&quot;) &amp;&amp; (Approval_Level__c = 10)&amp;&amp; (Hierarchy_level__c = 0),&apos;CPO&amp;COO&apos;,
+IF(ISPICKVAL(Quote_Stage__c,&quot;Finalize OSA&quot;) &amp;&amp; (Approval_Level__c = 11)&amp;&amp; (Hierarchy_level__c = 0),&apos;Others&apos;,&apos;&apos; ))))))
+))))
+))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Approval Check</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

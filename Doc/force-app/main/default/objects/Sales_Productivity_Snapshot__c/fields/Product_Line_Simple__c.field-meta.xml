@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Line_Simple__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(CONTAINS(Product_Line__c,&quot;DTE Axiom&quot;), &quot;Time&quot;, 
+IF(CONTAINS(Product_Line__c,&quot;Time Builder&quot;), &quot;Time&quot;, 
+IF(CONTAINS(Product_Line__c,&quot;Intapp Time&quot;), &quot;Time&quot;, 
+IF(CONTAINS(Product_Line__c,&quot;Integration Builder&quot;), &quot;Integration&quot;, 
+IF(CONTAINS(Product_Line__c,&quot;Intapp Open - Conflicts&quot;), &quot;Business Acceptance&quot;, 
+IF(CONTAINS(Product_Line__c,&quot;Intapp Open - Intake&quot;), &quot;Business Acceptance&quot;, 
+IF(CONTAINS(Product_Line__c,&quot;Wall Builder&quot;), &quot;Confidentiality&quot;, 
+IF(CONTAINS(Product_Line__c,&quot;Records Management&quot;), &quot;LegalKey&quot;, 
+IF(CONTAINS(Product_Line__c,&quot;TFG - Other&quot;), &quot;LegalKey&quot;, 
+IF(CONTAINS(Product_Line__c,&quot;Flow &amp; Intake Bundle&quot;),&quot;Flow &amp; Intake Bundle&quot;, 
+IF(CONTAINS(Product_Line__c,&quot;Intapp Open - Terms of Business&quot;),&quot;Business Acceptance&quot;, 
+IF(CONTAINS(Product_Line__c, &quot;Intapp Time - Cloud&quot;), &quot;Time&quot;, 
+IF(CONTAINS(Product_Line__c,&quot;LegalKey&quot;), &quot;LegalKey&quot;, 
+IF(CONTAINS(Product_Line__c,&quot;Intapp Open - Experience&quot;), &quot;Experience&quot;, 
+&quot;Unknown&quot;))))))))))))))</formula>
+    <label>Product Line - Simple</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

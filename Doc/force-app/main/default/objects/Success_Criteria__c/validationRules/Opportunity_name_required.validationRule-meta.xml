@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opportunity_name_required</fullName>
+    <active>true</active>
+    <description>Opportunity name and product line is required for Non-Internal Projects; only Internal Projects can have no &apos;Product Line&apos;</description>
+    <errorConditionFormula>AND( 
+OR( 
+AND( 
+ISBLANK(Opportunity_Name__c), 
+ISBLANK(Product_Customer__c) 
+), 
+AND( 
+ISBLANK(TEXT(Product_Line__c))
+) 
+), 
+NOT($Profile.Id = &quot;00e30000000bvR3&quot;)
+)</errorConditionFormula>
+    <errorMessage>Please make sure you have a Product Line and one of the major linkage objects (Opportunity, Project, Product Customer) populated.</errorMessage>
+</ValidationRule>

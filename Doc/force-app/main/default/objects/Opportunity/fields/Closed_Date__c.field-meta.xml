@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Closed_Date__c</fullName>
+    <formula>IF(CloseDate &gt; DATEVALUE(LastModifiedDate), TRUE, FALSE)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Last_Date_Greater_Than_Closed_Date</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

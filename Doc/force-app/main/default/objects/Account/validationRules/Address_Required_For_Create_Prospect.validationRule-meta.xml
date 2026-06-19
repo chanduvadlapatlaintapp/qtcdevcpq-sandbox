@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Address_Required_For_Create_Prospect</fullName>
+    <active>true</active>
+    <description>Created for BIZ-68453. Updated for BIZ-71234.</description>
+    <errorConditionFormula>AND(
+NOT(ISBLANK(TEXT(Create_Prospect__c))),
+ISBLANK(BillingCountry)
+)</errorConditionFormula>
+    <errorMessage>Billing Country is required for Create Prospect for NS Subsidiary.</errorMessage>
+</ValidationRule>

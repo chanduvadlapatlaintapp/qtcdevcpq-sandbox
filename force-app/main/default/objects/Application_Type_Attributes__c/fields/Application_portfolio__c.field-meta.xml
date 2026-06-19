@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Application_portfolio__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Application portfolio</label>
+    <referenceTo>Client_Application_portfolio__c</referenceTo>
+    <relationshipLabel>Application Type &amp; Attributes</relationshipLabel>
+    <relationshipName>Application_Type_Attributes</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

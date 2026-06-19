@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Contract$Account</field>
+    </columns>
+    <columns>
+        <field>Contract.Opportunity__r$Name</field>
+    </columns>
+    <columns>
+        <field>Contract$Account.Account_Owner_Name__c</field>
+    </columns>
+    <columns>
+        <field>Contract$ContractNumber</field>
+    </columns>
+    <columns>
+        <field>Contract$EndDate</field>
+    </columns>
+    <columns>
+        <field>Contract$Custom_Terms__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Contract.Opportunity__r$Campaign</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>OnePlace Migration Campaign</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contract.Opportunity__r$Type</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Legal - Recurring Adjustment,Recurring Adjustment</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contract$Status</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>In Force</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Contract$Account.Simple_Territory__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>AM: OP Migration Deals w/SF Dates</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Contracts_with_Opportunities__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Contract$ActivatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

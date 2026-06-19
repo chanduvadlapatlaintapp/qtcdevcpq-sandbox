@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status_Field_Mandatory</fullName>
+    <active>true</active>
+    <description>Status field must be filled.</description>
+    <errorConditionFormula>ISPICKVAL(Status , &quot;&quot;)</errorConditionFormula>
+    <errorDisplayField>Status</errorDisplayField>
+    <errorMessage>Please select the status of Campaign; Campaign status cannot be Null OR Blank.</errorMessage>
+</ValidationRule>

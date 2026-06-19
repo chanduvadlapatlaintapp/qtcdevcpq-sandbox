@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Subscription_Products</fullName>
+    <columns>PRODUCT2.NAME</columns>
+    <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+    <columns>PRODUCT2.DESCRIPTION</columns>
+    <columns>Intapp_ID__c</columns>
+    <columns>PRODUCT2.ACTIVE</columns>
+    <columns>SBQQ__ConfigurationType__c</columns>
+    <columns>Product_Type__c</columns>
+    <columns>Guided_Selling_Type__c</columns>
+    <columns>Product_Type_Sales__c</columns>
+    <columns>Revenue_Type__c</columns>
+    <columns>SBQQ__QuantityEditable__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Intapp_ID__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>All Software Products</label>
+</ListView>

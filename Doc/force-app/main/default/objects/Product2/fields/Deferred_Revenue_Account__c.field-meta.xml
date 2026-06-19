@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deferred_Revenue_Account__c</fullName>
+    <description>Deferred Revenue Account from Item Master Product Object.</description>
+    <externalId>false</externalId>
+    <formula>TEXT( Item_Master_Product__r.Deferred_Revenue_Account__c )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Deferred Revenue Account</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email template used when PS Project Manager changes the Confidence in Completion date field for an open case.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PS_Letterhead</letterhead>
+    <name>PS Case Confidence in Completion Date Changed</name>
+    <style>freeForm</style>
+    <subject>PS Notification: Confidence in Completion Date has changed for case {!Case.CaseNumber} / {!Case.Subject}</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

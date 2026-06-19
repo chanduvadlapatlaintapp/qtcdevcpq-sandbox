@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r$Subscription_Name__c</field>
+    </columns>
+    <columns>
+        <field>Account$CRD__c</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r$CSM_Health_Rating__c</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r$Customer_Lifecycle_Stage__c</field>
+    </columns>
+    <crossFilters>
+        <criteriaItems>
+            <column>Product_Line__c</column>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Intake</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>License_Basis__c</column>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Advanced,Advanced - Cloud</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Status__c</column>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Own it,Own Partial,Own it - Limited License,Own it - Trial</value>
+        </criteriaItems>
+        <operation>with</operation>
+        <primaryTableColumn>Account$Id</primaryTableColumn>
+        <relatedTable>Product_Ownership_Detail__c</relatedTable>
+        <relatedTableJoinColumn>Account_Name__c</relatedTableJoinColumn>
+    </crossFilters>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Account.Subscriptions__r$Product_Line__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Intapp Open - Intake,Intapp Open - Intake - Cloud</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <name>CSM: Firms with Advanced Intake</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_and_Subscription__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Account$Name</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Account$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

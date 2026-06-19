@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Invoice_Date__c</fullName>
+    <description>Picklist for Software Invoice Date BIZ-45643, Label updated for BIZ-47803</description>
+    <label>Software Invoice Date</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Agreement Signature</fullName>
+                <default>true</default>
+                <label>Agreement Signature</label>
+            </value>
+            <value>
+                <fullName>Effective Date</fullName>
+                <default>false</default>
+                <label>Effective Date</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

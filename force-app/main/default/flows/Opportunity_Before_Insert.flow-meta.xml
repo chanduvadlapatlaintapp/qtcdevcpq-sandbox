@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Amendment_Opportunity_Name_Assignment</name>
+        <label>Amendment Opportunity Name Assignment</label>
+        <locationX>544</locationX>
+        <locationY>750</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varAmendmentOpptyName</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>myRule_1</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Fulfilling_entity</name>
+        <label>Fulfilling entity</label>
+        <locationX>597</locationX>
+        <locationY>1849</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Fulfilling_Entity__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue> Intapp</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>myRule_11</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>fulfilling_entity_Intapp</name>
+        <label>fulfilling entity Intapp</label>
+        <locationX>597</locationX>
+        <locationY>2449</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Fulfilling_Entity__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Intapp</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Opportunity_Name_Assignment</name>
+        <label>Opportunity Name Assignment</label>
+        <locationX>545</locationX>
+        <locationY>542</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varRenewalOpptyName</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_Amendment_Opportunity</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Reset_adjustment_checkbox_on_cloned_Opp</name>
+        <label>Reset adjustment checkbox on cloned Opp</label>
+        <locationX>598</locationX>
+        <locationY>1019</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Old_Opportunity_needs_adjustment__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>myRule_3</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Fulfilling_Entity</name>
+        <label>Update Fulfilling Entity</label>
+        <locationX>597</locationX>
+        <locationY>1549</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Fulfilling_Entity__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>formula_1_myRule_5_A1_1408298077</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Services_Partner__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>formula_2_myRule_5_A1_0365525144</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>myRule_9</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_New_Deal</name>
+        <label>Update New Deal</label>
+        <locationX>597</locationX>
+        <locationY>1249</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.New_Deal__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>myRule_5</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>update_owner_manager</name>
+        <label>update owner manager</label>
+        <locationX>597</locationX>
+        <locationY>2149</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Account_owner_manager__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Account.Owner.ManagerId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>myRule_13</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Is_Amendment_Opportunity</name>
+        <label>Is Amendment Opportunity</label>
+        <locationX>741</locationX>
+        <locationY>644</locationY>
+        <defaultConnector>
+            <targetReference>myRule_1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Amended_Opportunity_True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__AmendedContract__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Related_Opportunity__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Amendment_Opportunity_Name_Assignment</targetReference>
+            </connector>
+            <label>Amended Opportunity True</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Renewal_Opportunity</name>
+        <label>Is Renewal Opportunity</label>
+        <locationX>740</locationX>
+        <locationY>465</locationY>
+        <defaultConnector>
+            <targetReference>Is_Amendment_Opportunity</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Renewal_OpportunityTrue</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__RenewedContract__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Related_Opportunity__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Opportunity_Name_Assignment</targetReference>
+            </connector>
+            <label>Renewal OpportunityTrue</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_1</name>
+        <label>Cloned Opportunity</label>
+        <locationX>736</locationX>
+        <locationY>875</locationY>
+        <defaultConnector>
+            <targetReference>Update_the_PriceBook_Id2</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_Cloned Opportunity</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_myRule_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Old_Opportunity_needs_adjustment__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.New_Deal__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_the_PriceBook_Id</targetReference>
+            </connector>
+            <label>TRUE_Cloned Opportunity</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_11</name>
+        <label>Populate account owner manager</label>
+        <locationX>729</locationX>
+        <locationY>2041</locationY>
+        <defaultConnector>
+            <targetReference>myRule_13</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_Populate account owner manager</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_myRule_11</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Account_owner_manager__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>update_owner_manager</targetReference>
+            </connector>
+            <label>TRUE_Populate account owner manager</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_13</name>
+        <label>Consulting services internal</label>
+        <locationX>729</locationX>
+        <locationY>2341</locationY>
+        <defaultConnectorLabel>FALSE_Consulting services internal</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_myRule_13</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Services_Project_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Consulting Services – Internal</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>fulfilling_entity_Intapp</targetReference>
+            </connector>
+            <label>TRUE_Consulting services internal</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_3</name>
+        <label>Type is New Customer or New Product</label>
+        <locationX>729</locationX>
+        <locationY>1141</locationY>
+        <defaultConnector>
+            <targetReference>myRule_5</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_Type is New Customer or New Product</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_myRule_3</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>01250000000Hd58AAC</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>01250000000Hq3WAAS</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Old_Opportunity_needs_adjustment__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_New_Deal</targetReference>
+            </connector>
+            <label>TRUE_Type is New Customer or New Product</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_5</name>
+        <label>Populate Fulfilling Entity</label>
+        <locationX>729</locationX>
+        <locationY>1441</locationY>
+        <defaultConnector>
+            <targetReference>myRule_9</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_Populate Fulfilling Entity</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_myRule_5</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01250000000NBx2AAG</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Fulfilling_Entity</targetReference>
+            </connector>
+            <label>TRUE_Populate Fulfilling Entity</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_9</name>
+        <label>strategic consulting</label>
+        <locationX>729</locationX>
+        <locationY>1741</locationY>
+        <defaultConnector>
+            <targetReference>myRule_11</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_strategic consulting</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_myRule_9</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Services_Project_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Consulting</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Fulfilling_entity</targetReference>
+            </connector>
+            <label>TRUE_strategic consulting</label>
+        </rules>
+    </decisions>
+    <description>BIZ-986 // Process Builder - Set Price Book for New Deal BIZ-46250,Populate the pricebook Id
+BIZ-71695 - updated opp name with Account_Short_Name__c</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>formula_1_myRule_5_A1_1408298077</name>
+        <dataType>String</dataType>
+        <expression>IF({!$Record.Account.Primary_Services_Provider__r.Name = &apos;Intapp&apos;}, &apos;Intapp&apos;, &apos;	Partner - Partner paper&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_2_myRule_5_A1_0365525144</name>
+        <dataType>String</dataType>
+        <expression>IF({!$Record.Account.Primary_Services_Provider__r.Name = &apos;Intapp&apos;},  {!$Label.Primary_Services_Provider_Id}, 	{!$Record.Account.Primary_Services_Provider__c })</expression>
+    </formulas>
+    <formulas>
+        <name>varAmendmentOpptyName</name>
+        <dataType>String</dataType>
+        <expression>&apos;Amendment to OSA &apos; + {!$Record.SBQQ__AmendedContract__r.OSA_Number__c}</expression>
+    </formulas>
+    <formulas>
+        <name>varRenewalOpptyName</name>
+        <dataType>String</dataType>
+        <expression>BLANKVALUE({!$Record.Account.Account_Short_Name__c}, {!$Record.Account.Name}) +&apos; - OSA: &apos; + {!$Record.SBQQ__RenewedContract__r.OSA_Number__c} + &apos; - Renewal - &apos; + TEXT(YEAR({!varRenewalYear}))</expression>
+    </formulas>
+    <formulas>
+        <name>varRenewalYear</name>
+        <dataType>Date</dataType>
+        <expression>{!$Record.SBQQ__RenewedContract__r.EndDate} + 1</expression>
+    </formulas>
+    <interviewLabel>Opportunity Before Insert {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Opportunity Before Insert</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Pricebook_Id</name>
+        <label>Get Pricebook Id</label>
+        <locationX>745</locationX>
+        <locationY>342</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_Renewal_Opportunity</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Label.PricebookId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Pricebook2</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>BIZ-46250</description>
+        <name>Update_the_PriceBook_Id</name>
+        <label>Update the PriceBook Id</label>
+        <locationX>499</locationX>
+        <locationY>886</locationY>
+        <connector>
+            <targetReference>Reset_adjustment_checkbox_on_cloned_Opp</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Pricebook2Id</field>
+            <value>
+                <elementReference>Get_Pricebook_Id.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>BIZ-46250</description>
+        <name>Update_the_PriceBook_Id2</name>
+        <label>Update the PriceBook Id</label>
+        <locationX>929</locationX>
+        <locationY>874</locationY>
+        <connector>
+            <targetReference>myRule_3</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Pricebook2Id</field>
+            <value>
+                <elementReference>Get_Pricebook_Id.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>617</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Get_Pricebook_Id</targetReference>
+        </connector>
+        <filterFormula>NOT({!$Setup.Automation_Controls__c.Active__c} &amp;&amp; {!$Setup.Automation_Controls__c.Bypass_Flows__c} &amp;&amp; {!$Setup.Automation_Controls__c.Opportunity_Bypass__c} &amp;&amp; (ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c}) || (NOT(ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c})) &amp;&amp; CONTAINS({!$Setup.Automation_Controls__c.Data_Id__c}, {!$Record.Id}))))</filterFormula>
+        <object>Opportunity</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

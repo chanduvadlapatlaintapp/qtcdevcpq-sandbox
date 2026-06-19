@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Confidentiality_Svcs_Data_Sheet__c</fullName>
+    <description>Confidentiality Services Data Sheet</description>
+    <label>Confidentiality Svcs Data Sheet</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>None</fullName>
+                <default>true</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Optional</fullName>
+                <default>false</default>
+                <label>Optional</label>
+            </value>
+            <value>
+                <fullName>Required</fullName>
+                <default>false</default>
+                <label>Required</label>
+            </value>
+            <value>
+                <fullName>Received</fullName>
+                <default>false</default>
+                <label>Received</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

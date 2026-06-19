@@ -1,0 +1,179 @@
+<template>
+    <div class="pa-root">
+        <!-- Header -->
+        <header class="pa-header">
+            <div class="pa-header-inner">
+                <!-- Left: Title + Search -->
+                <div class="pa-header-left">
+                    <div class="pa-brand">
+                        <span class="pa-brand-name">Intapp</span>
+                        <div class="pa-brand-divider"></div>
+                        <span class="pa-brand-subtitle">Portfolio Analysis</span>
+                    </div>
+
+                    <!-- Account Search -->
+                    <div class="pa-search-wrapper">
+                        <div class="pa-search-container">
+                            <svg class="pa-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A4B9D7" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.3-4.3"></path>
+                            </svg>
+                            <input
+                                type="text"
+                                class="pa-search-input"
+                                placeholder="Search client accounts..."
+                                value={searchQuery}
+                                oninput={handleSearchInput}
+                                onfocus={handleSearchFocus}
+                                onblur={handleSearchBlur}
+                            />
+                            <template if:true={isSearching}>
+                                <div class="pa-search-spinner">
+                                    <svg width="18" height="18" viewBox="0 0 24 24">
+                                        <circle cx="12" cy="12" r="10" stroke="rgba(32,124,236,0.2)" stroke-width="2.5" fill="none"></circle>
+                                        <path d="M12 2a10 10 0 0 1 10 10" stroke="#207CEC" stroke-width="2.5" fill="none" stroke-linecap="round"></path>
+                                    </svg>
+                                </div>
+                            </template>
+                            <template if:true={showClearButton}>
+                                <button class="pa-search-clear" onclick={handleClearSearch}>&times;</button>
+                            </template>
+                        </div>
+
+                        <!-- Search Dropdown -->
+                        <template if:true={showSearchDropdown}>
+                            <div class="pa-search-dropdown">
+                                <template for:each={searchResults} for:item="account">
+                                    <button
+                                        key={account.Id}
+                                        class="pa-search-result"
+                                        data-id={account.Id}
+                                        data-name={account.Name}
+                                        onclick={handleSelectAccount}
+                                    >
+                                        {account.Name}
+                                    </button>
+                                </template>
+                            </div>
+                        </template>
+                        <template if:true={showNoResults}>
+                            <div class="pa-search-dropdown pa-search-empty">
+                                No client accounts found
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Right: Controls -->
+                <div class="pa-header-right">
+                    <template if:true={showExportButtons}>
+                        <button class="export-btn export-btn-excel" onclick={handleExportExcel} disabled={isExportingExcel}>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            <template if:true={isExportingExcel}>Exporting...</template>
+                            <template if:false={isExportingExcel}>Excel</template>
+                        </button>
+                    </template>
+                    <template if:true={hasAccount}>
+                        <button class={clientFacingClass} onclick={handleToggleClientFacing}>
+                            {clientFacingLabel}
+                        </button>
+                    </template>
+                </div>
+            </div>
+        </header>
+
+        <!-- Tab Navigation -->
+        <template if:true={showTabs}>
+            <div class="pa-tab-bar">
+                <div class="pa-tab-inner">
+                    <template for:each={tabs} for:item="tab">
+                        <button
+                            key={tab.key}
+                            class={tab.cssClass}
+                            data-tab={tab.key}
+                            onclick={handleTabClick}
+                        >
+                            <span class="tab-icon">{tab.icon}</span>
+                            {tab.label}
+                        </button>
+                    </template>
+                    <div class="pa-tab-meta">
+                        <span class="badge">{subscriptionCountLabel}</span>
+                        <span class={viewModeBadgeClass}>{viewModeLabel}</span>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <!-- Content Area -->
+        <main class="pa-content">
+            <!-- Empty State -->
+            <template if:true={showEmptyState}>
+                <div class="pa-empty">
+                    <div class="pa-empty-icon">{searchIcon}</div>
+                    <p class="pa-empty-title">Search for a client account</p>
+                    <p class="pa-empty-subtitle">Start typing in the search bar above to begin analysis</p>
+                </div>
+            </template>
+
+            <!-- Loading State -->
+            <template if:true={showLoadingState}>
+                <div class="pa-loading">
+                    <div class="pa-spinner">
+                        <svg width="44" height="44" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" stroke="rgba(32,124,236,0.12)" stroke-width="3" fill="none"></circle>
+                            <path d="M12 2a10 10 0 0 1 10 10" stroke="#207CEC" stroke-width="3" fill="none" stroke-linecap="round"></path>
+                        </svg>
+                    </div>
+                    <p class="pa-loading-text">Loading subscriptions for {loadingAccountName}...</p>
+                    <p class="pa-loading-sub">Fetching data from Salesforce</p>
+                </div>
+            </template>
+
+            <!-- Error State -->
+            <template if:true={showErrorState}>
+                <div class="pa-error">
+                    <div class="pa-error-icon">{warningIcon}</div>
+                    <p class="pa-error-title">Error Loading Data</p>
+                    <p class="pa-error-message">{loadError}</p>
+                </div>
+            </template>
+
+            <!-- Overview Tab -->
+            <template if:true={showOverview}>
+                <c-portfolio-overview
+                    subscriptions={subscriptions}
+                    account-name={selectedAccount.name}
+                    currency-code={currency}
+                    account-details={accountDetails}
+                ></c-portfolio-overview>
+            </template>
+
+            <!-- Contracts Tab -->
+            <template if:true={showContracts}>
+                <c-portfolio-contract-detail
+                    subscriptions={subscriptions}
+                    client-facing={clientFacing}
+                    currency-code={currency}
+                    invoice-map={invoiceMap}
+                    is-loading-invoices={isLoadingInvoices}
+                    invoice-error={invoiceError}
+                    onfilterchange={handleFilterChange}
+                ></c-portfolio-contract-detail>
+            </template>
+
+            <!-- Revenue Tab -->
+            <template if:true={showRevenue}>
+                <c-portfolio-revenue-analysis
+                    subscriptions={subscriptions}
+                    client-facing={clientFacing}
+                    currency-code={currency}
+                ></c-portfolio-revenue-analysis>
+            </template>
+        </main>
+    </div>
+</template>

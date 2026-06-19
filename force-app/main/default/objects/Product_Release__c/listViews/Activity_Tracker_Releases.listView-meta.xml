@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Activity_Tracker_Releases</fullName>
+    <columns>NAME</columns>
+    <columns>Description__c</columns>
+    <columns>Estimated_Release_Date__c</columns>
+    <columns>Percent_Complete__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Product_Line__c</field>
+        <operation>equals</operation>
+        <value>Activity Tracker</value>
+    </filters>
+    <label>Activity Tracker Releases</label>
+</ListView>

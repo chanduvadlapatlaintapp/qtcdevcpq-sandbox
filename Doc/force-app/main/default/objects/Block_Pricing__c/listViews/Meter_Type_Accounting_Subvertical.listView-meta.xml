@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Meter_Type_Accounting_Subvertical</fullName>
+    <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+    <columns>Product_Business_Unit__c</columns>
+    <columns>Product_Family__c</columns>
+    <columns>Product_type__c</columns>
+    <columns>Product__c</columns>
+    <columns>Product_Code_Formula__c</columns>
+    <columns>meter_type_Accounting__c</columns>
+    <columns>meter_type_Consulting__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Type__c</field>
+        <operation>equals</operation>
+        <value>Meter Type</value>
+    </filters>
+    <filters>
+        <field>meter_type_Accounting__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>meter_type_Consulting__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>Meter Type - A&amp;C Subverticals</label>
+</ListView>

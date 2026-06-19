@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Full Regression E2E</label>
+    <protected>false</protected>
+    <values>
+        <field>Allow_Multiple_Account__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Default_Accounts__c</field>
+        <value xsi:type="xsd:string">Andersen Tax LLC
+Bates White
+Jacobs Holding AG</value>
+    </values>
+    <values>
+        <field>Description__c</field>
+        <value xsi:type="xsd:string">Multi-account full regression. For each account in the ACCOUNTS list (default: Bates White, Jacobs Holding AG, Baker McKenzie LLP), discovers contracts for all 3 OSA-selector branches, opens each quote, and runs the same all-product-category increase (same logic as IncreaseE2EFlow but with a richer pre-flight SOQL classification that handles Percent Of Total, unknown option types, and lines without data-line-id). Catches CPQ pricing-constraint save failures and skips rather than failing. Aggregates all per-scenario results in _allScenarioResults and writes one combined results.json in afterAll.</value>
+    </values>
+    <values>
+        <field>Is_Active__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Module__c</field>
+        <value xsi:type="xsd:string">Simplified AgenticQTC</value>
+    </values>
+    <values>
+        <field>Sort_Order__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Suite_Value__c</field>
+        <value xsi:type="xsd:string">agenticQtcFullRegressionE2E</value>
+    </values>
+</CustomMetadata>

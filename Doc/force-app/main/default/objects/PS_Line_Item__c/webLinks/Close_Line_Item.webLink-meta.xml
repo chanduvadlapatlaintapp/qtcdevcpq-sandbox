@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Close_Line_Item</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Close Line Item</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/21.0/connection.js&quot;)}
+
+if (confirm(&quot;Are you sure you want to Close this PS Line Item?&quot;)) 
+{ 
+
+function right(str, len) 
+{     
+	return str.substring(str.length-len, str.length) 
+} 
+
+function mynow() 
+{     
+d = new Date();     
+return right(&quot;00&quot;+d.getFullYear(), 4) + &quot;-&quot; + right(&quot;00&quot;+(1+d.getMonth()), 2) + &quot;-&quot; + right(&quot;00&quot;+d.getDate(), 2);     // format &quot;2009-007-02&quot; 
+} 
+
+var litemObj = new sforce.SObject(&quot;PS_Line_Item__c&quot;);
+litemObj.Id = &apos;{!PS_Line_Item__c.Id}&apos;;
+litemObj.Status__c = &apos;Completed&apos;;
+litemObj.Date_Closed__c = mynow();
+var result = sforce.connection.update([litemObj]);
+
+if (result[0].success==&apos;false&apos;) {
+     alert(result[0].errors.message);
+} else {
+     location.reload(true);
+}
+
+}
+else 
+{
+alert(&quot;The PS Line Item has NOT been closed.&quot;);
+}</url>
+</WebLink>

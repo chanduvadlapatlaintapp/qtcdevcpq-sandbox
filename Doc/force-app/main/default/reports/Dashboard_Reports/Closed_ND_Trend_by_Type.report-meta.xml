@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>text</bucketType>
+        <developerName>BucketField_62302146</developerName>
+        <masterLabel>Type</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>Sales_Productivity_Snapshot__c.Type__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Legal - New Customer</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Legal - New Converted Customer</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Legal - Recovered Customer</sourceValue>
+            </sourceValues>
+            <value>New Customer</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Legal - New Converted Product</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Legal - New Product</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Legal - Recovered Product</sourceValue>
+            </sourceValues>
+            <value>New Product</value>
+        </values>
+    </buckets>
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <axisBinding>y</axisBinding>
+            <column>RowCount</column>
+        </chartSummaries>
+        <chartType>LineGrouped</chartType>
+        <enableHoverLabels>true</enableHoverLabels>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>Sales_Productivity_Snapshot__c.Snapshot_Date__c</groupingColumn>
+        <legendPosition>Bottom</legendPosition>
+        <location>CHART_TOP</location>
+        <secondaryGroupingColumn>BucketField_62302146</secondaryGroupingColumn>
+        <showAxisLabels>false</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>false</showValues>
+        <size>Medium</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>12</textSize>
+        <title>Sales Productivity (Snapshot-based)</title>
+        <titleColor>#000000</titleColor>
+        <titleSize>18</titleSize>
+    </chart>
+    <columns>
+        <field>Sales_Productivity_Snapshot__c.Opportunity_Name__c</field>
+    </columns>
+    <columns>
+        <field>Sales_Productivity_Snapshot__c.Recurring_Amount_Change__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>1 AND 2 AND (3 OR 4)</booleanFilter>
+        <criteriaItems>
+            <column>Sales_Productivity_Snapshot__c.Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Legal - New Customer,Legal - New Product,Legal - Recovered Customer,Legal - Recovered Product,Legal - New Converted Customer,Legal - New Converted Product</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Sales_Productivity_Snapshot__c.Stage__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Closed - No Decision</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>CUST_CREATED_DATE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>LAST_N_DAYS:365</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>CUST_CREATED_DATE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>TODAY</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Sales_Productivity_Snapshot__c.Snapshot_Date__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_62302146</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Closed ND Trend - by Type</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Sales_Productivity_Snapshot__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

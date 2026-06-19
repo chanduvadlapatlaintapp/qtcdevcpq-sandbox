@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tsunami_Lead_Type__c</fullName>
+    <label>Intapp Lead Type</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Partner</fullName>
+                <default>false</default>
+                <label>Partner</label>
+            </value>
+            <value>
+                <fullName>Box</fullName>
+                <default>false</default>
+                <label>Box</label>
+            </value>
+            <value>
+                <fullName>Unsure of Action</fullName>
+                <default>true</default>
+                <label>Unsure of Action</label>
+            </value>
+            <value>
+                <fullName>Awaiting Identity Confirmation</fullName>
+                <default>false</default>
+                <label>Awaiting Identity Confirmation</label>
+            </value>
+            <value>
+                <fullName>Priority</fullName>
+                <default>false</default>
+                <label>Priority</label>
+            </value>
+            <value>
+                <fullName>Convert</fullName>
+                <default>false</default>
+                <label>Convert</label>
+            </value>
+            <value>
+                <fullName>In Process</fullName>
+                <default>false</default>
+                <label>In Process</label>
+            </value>
+            <value>
+                <fullName>630 Priority</fullName>
+                <default>false</default>
+                <label>630 Priority</label>
+            </value>
+            <value>
+                <fullName>Expired</fullName>
+                <default>false</default>
+                <label>Expired</label>
+            </value>
+            <value>
+                <fullName>Technology Partnership Request</fullName>
+                <default>false</default>
+                <label>Technology Partnership Request</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

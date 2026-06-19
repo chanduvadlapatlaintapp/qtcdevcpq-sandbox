@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_Past_Dates_for_CampaignStatuses</fullName>
+    <active>true</active>
+    <description>Checks for Old/Past End Dates on Campaigns when Status = &apos;Planned&apos;, &apos;Approved&apos;, &apos;In Progress&apos; for New campaigns or if the status is changed.</description>
+    <errorConditionFormula>AND( 
+$User.ProfileId != &quot;00e30000000bvR3&quot;, /*System Administrator*/ 
+OR( 
+ISPICKVAL(Status , &quot;Planned&quot;), 
+ISPICKVAL(Status , &quot;Approved&quot;), 
+ISPICKVAL(Status , &quot;In Progress&quot;) 
+), 
+OR( 
+ISNEW(), 
+ISCHANGED(Status) 
+), 
+EndDate &lt;= TODAY() 
+)</errorConditionFormula>
+    <errorDisplayField>EndDate</errorDisplayField>
+    <errorMessage>Campaign End Date cannot be a past date for Campaign Status = &apos;Planned&apos; OR &apos;Approved&apos; OR &apos;In Progress&apos; status.</errorMessage>
+</ValidationRule>

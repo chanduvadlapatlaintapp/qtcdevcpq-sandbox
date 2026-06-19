@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Check_Null</name>
+        <label>Check Null</label>
+        <locationX>669</locationX>
+        <locationY>479</locationY>
+        <defaultConnector>
+            <targetReference>Verify_Services_Product_Type_Field</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Null_OppProduct</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Related_OppProduct</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update</targetReference>
+            </connector>
+            <label>Null OppProduct</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Verify_If_Quantity_is_Negative</name>
+        <label>Verify If Quantity is Negative</label>
+        <locationX>705</locationX>
+        <locationY>1046</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Qu</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Quantity</leftValueReference>
+                <operator>LessThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Order.Is_RMA_Order__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Yes</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_RMA_On_Order</targetReference>
+            </connector>
+            <label>Quantity Is Negative</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Verify_Services_Product_Type_Field</name>
+        <label>Verify Services Product Type Field</label>
+        <locationX>703</locationX>
+        <locationY>824</locationY>
+        <defaultConnector>
+            <targetReference>Verify_If_Quantity_is_Negative</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Services_Product_Type_Check</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Services_Product_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>T&amp;M</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_NS_Category_on_Order</targetReference>
+            </connector>
+            <label>Services Product Type Check</label>
+        </rules>
+    </decisions>
+    <description>Removed Billing package references
+BIZ-66420 - Flow bypass logic
+BIZ-75633 - Update NS Category field population logic</description>
+    <environments>Default</environments>
+    <interviewLabel>Order Product After Insert {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Order Product After Insert</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Related_OppProduct</name>
+        <label>Get Related OppProduct</label>
+        <locationX>669</locationX>
+        <locationY>371</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_Null</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>SBQQ__QuoteLine__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.SBQQ__QuoteLine__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>OpportunityLineItem</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update</name>
+        <label>Update OpportunityLineItem</label>
+        <locationX>517</locationX>
+        <locationY>557</locationY>
+        <connector>
+            <targetReference>Verify_Services_Product_Type_Field</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Related_OppProduct.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Salesforce_Order_Line_Id__c</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>OpportunityLineItem</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_NS_Category_on_Order</name>
+        <label>Update NS Category on Order</label>
+        <locationX>510</locationX>
+        <locationY>932</locationY>
+        <connector>
+            <targetReference>Verify_If_Quantity_is_Negative</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>NS_Order_Category__c</field>
+            <value>
+                <stringValue>T&amp;M</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.Order</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_RMA_On_Order</name>
+        <label>Update RMA On Order</label>
+        <locationX>515</locationX>
+        <locationY>1153</locationY>
+        <inputAssignments>
+            <field>Is_RMA_Order__c</field>
+            <value>
+                <stringValue>Yes</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.Order</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>543</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>Get_Related_OppProduct</targetReference>
+        </connector>
+        <filterFormula>NOT({!$Setup.Automation_Controls__c.Active__c} 
+&amp;&amp; {!$Setup.Automation_Controls__c.Bypass_Flows__c} 
+&amp;&amp; {!$Setup.Automation_Controls__c.Orderline_Bypass__c} 
+&amp;&amp; (
+	ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c}) 
+	|| (
+		NOT(ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c})) 
+		&amp;&amp; CONTAINS({!$Setup.Automation_Controls__c.Data_Id__c}, {!$Record.Id})
+	)
+))</filterFormula>
+        <object>OrderItem</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

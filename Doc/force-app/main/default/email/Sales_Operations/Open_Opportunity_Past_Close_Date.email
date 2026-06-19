@@ -1,0 +1,20 @@
+<table height="400" width="600" cellpadding="5" border="0" cellspacing="5" >
+<tr height="50" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[{!Opportunity.Name} is open, but has a Close Date in the past. Please change the Close Date to a date in the future, or close the opportunity.<br>]]></td>
+</tr>
+<tr height="300" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r2" locked="0" aEditID="c1r2" >
+<![CDATA[<span style="FONT-WEIGHT: bold; TEXT-DECORATION: underline">{!Opportunity.Name}<br><br></span>
+<div style="MARGIN-LEFT: 40px"><span style="FONT-WEIGHT: bold">Owner:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; {!Opportunity.OwnerFullName}<br></div>
+
+<div style="MARGIN-LEFT: 40px"><span style="font-weight: bold;">Close Date:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {!Opportunity.CloseDate}<span style="FONT-WEIGHT: bold"><br></span><br><span style="FONT-WEIGHT: bold">Recurring:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; {!Opportunity.Maintenance_Amount__c}<br></div>
+<div style="MARGIN-LEFT: 40px"><span style="FONT-WEIGHT: bold">Recurring/Lawyer:</span> {!Opportunity.Recurring_per_Lawyer__c}<br></div>
+<div style="MARGIN-LEFT: 40px"><span style="FONT-WEIGHT: bold">Total Amount:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {!Opportunity.Amount}<br>&nbsp;</div><b><span style="FONT-FAMILY: 'Arial','sans-serif'; COLOR: black; FONT-SIZE: 12pt">For more information, please click here:<br></span></b><span style="FONT-FAMILY: 'Arial','sans-serif'; COLOR: black; FONT-SIZE: 12pt">{!Opportunity.Link}</span><b><span style="FONT-FAMILY: 'Arial','sans-serif'; COLOR: black; FONT-SIZE: 12pt; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA"><br><br><br></span></b>
+<div style="MARGIN-LEFT: 40px"><span style="FONT-WEIGHT: bold; TEXT-DECORATION: underline"></span></div>]]></td>
+</tr>
+<tr height="50" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r3" locked="0" aEditID="c1r3" >
+<![CDATA[]]></td>
+</tr>
+</table>

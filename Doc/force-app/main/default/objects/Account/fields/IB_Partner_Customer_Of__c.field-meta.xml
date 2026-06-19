@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IB_Partner_Customer_Of__c</fullName>
+    <description>Of which of our partners is this account a customer?</description>
+    <inlineHelpText>Of which of our partners is this account a customer?</inlineHelpText>
+    <label>IB Partner Customer Of</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Askew</fullName>
+                <default>false</default>
+                <label>Askew</label>
+            </value>
+            <value>
+                <fullName>Athenian</fullName>
+                <default>false</default>
+                <label>Athenian</label>
+            </value>
+            <value>
+                <fullName>Aurora North/Chris Kave</fullName>
+                <default>false</default>
+                <label>Aurora North/Chris Kave</label>
+            </value>
+            <value>
+                <fullName>Feynbrook</fullName>
+                <default>false</default>
+                <label>Feynbrook</label>
+            </value>
+            <value>
+                <fullName>HBR</fullName>
+                <default>false</default>
+                <label>HBR</label>
+            </value>
+            <value>
+                <fullName>Huron Consulting</fullName>
+                <default>false</default>
+                <label>Huron Consulting</label>
+            </value>
+            <value>
+                <fullName>Opes</fullName>
+                <default>false</default>
+                <label>Opes</label>
+            </value>
+            <value>
+                <fullName>Pinnacle</fullName>
+                <default>false</default>
+                <label>Pinnacle</label>
+            </value>
+            <value>
+                <fullName>Wilson Legal</fullName>
+                <default>false</default>
+                <label>Wilson Legal</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

@@ -1,0 +1,142 @@
+<aura:component  access="global" implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,forceCommunity:themeLayout,force:hasRecordId">
+
+
+<ltng:require  styles="{!$Resource.calltoactionassets + '/styles.css'}"/>
+
+
+  <div class="flex-container">
+
+    <div>
+      <!--<a href="/s/news/welcome-to-our-new-community-20Ym0000000CaRgEAK" target="_blank">-->
+       <a href="/s/welcome" target="_blank">   
+        <div class="card cta1">
+          <div class="card-section">
+            <div class="content">
+              <h5>Welcome to our new community</h5>
+              
+            </div>
+         
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div>
+        <!--<a href="/s/news/common-releases-20Ym0000000CaRlEAK" target="_blank"> -->
+         <a href="/s/learn-more" target="_blank">   
+        <div class="card cta2">
+          <div class="card-section">
+            <div class="content">
+              <h5>Introducing the Intapp Flow Client Care Program</h5>
+              
+                
+              
+            </div>
+           
+          </div>
+        </div>
+      </a>
+    </div>
+	<!--
+    <div>
+      <a href="/s/news/join-our-risk-and-business-acceptance-community-20Ym0000000CaRqEAK" target="_blank">
+         <a href="/s/join-our-risk" target="_blank">   
+        <div class="card cta3">
+          <div class="card-section">
+            <div class="content">
+              <h5>Join our Risk &amp; Business acceptance community</h5>
+              
+            </div>
+           
+          </div>
+        </div>
+      </a>
+    </div>
+	-->
+    <div>
+     <!-- <a href="/s/news/software-downloads-20Ym0000000CaRWEA0" target="_blank">-->
+         <a href="/s/download" target="_blank">   
+        <div class="card cta3">
+          <div class="card-section">
+            <div class="content">
+              <!--<h5>Download our latest software</h5>-->
+                <h5>Learn About the Winter 2021 Software Release</h5>
+              
+            </div>
+           
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+    
+    <!--
+     <ltng:require styles="{!$Resource.AppResource + '/assets/styles/salesforce-lightning-design-system.css'}"/>
+    
+      <article  >
+        <div class="white">
+          <div class="slds-theme_default">
+              <div class="slds-grid">
+                  <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                      <div class="slds-media__body"> 
+                    
+                          <div class="slds-grid slds-grid_pull-padded slds-wrap">
+                                  
+                              <a href="/s/news/welcome-to-our-new-community-20Ym0000000CaRgEAK" class="slds-panel slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4 "  > 
+                              <div class="slds-card" style="margin: 1rem;" onmouseover="{!c.addColor}" onmouseout="{!c.removeColor}" data-card="card1" aura:id="imgOver"> 
+                                <div class="slds-panel__section slds-align_absolute-center">
+                                    <lightning:icon iconName="utility:connected_apps" alternativeText="Connected" />
+                                </div>
+                                <div class="slds-panel__section slds-align_absolute-center" style="text-decoration: none;">
+                                    <span style="color: black !important;">Welcome to our new community!<br/></span>                                    
+                                </div>  
+                              </div> 
+                            </a>      
+
+
+                              <a href="/s/news/common-releases-20Ym0000000CaRlEAK" class="slds-panel slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4" style="margin-top: 0rem;">
+                                <div class="slds-card" data-card="card2" style="margin: 1rem;" onmouseover="{!c.addColor}" onmouseout="{!c.removeColor}" aura:id="imgOver1"> 
+                                  <div class="slds-panel__section slds-align_absolute-center">
+                                      <lightning:icon iconName="utility:color_swatch" alternativeText="Connected" />
+                                  </div>
+                                  <div class="slds-panel__section slds-align_absolute-center" style="text-decoration: none;">
+                                      <span style="color: black !important;">Learn more about our common release schedule </span>                                 
+                                  </div>
+                                </div>
+                            </a>
+
+  
+                              <a href="/s/news/join-our-risk-and-business-acceptance-community-20Ym0000000CaRqEAK"  class="slds-panel slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4" style="margin-top: 0rem;">
+                                  <div class="slds-card" data-card="card3" style="margin: 1rem;" onmouseover="{!c.addColor}" onmouseout="{!c.removeColor}" aura:id="imgOver2"> 
+                                    <div class="slds-panel__section slds-align_absolute-center">
+                                        <lightning:icon iconName="utility:company" alternativeText="Connected" />
+                                    </div>
+                                    <div class="slds-panel__section slds-align_absolute-center" style="text-decoration: none;" >
+                                        <span style="color: black !important;">Join our Risk and Business Acceptance community</span>                                  
+                                    </div> 
+                                  </div>
+                                </a> 
+ 
+ 
+                                <a href="/s/news/software-downloads-20Ym0000000CaRWEA0"  class="slds-panel slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4" style="margin-top: 0rem;">
+                                    <div class="slds-card" data-card="card4" style="margin: 1rem;" onmouseover="{!c.addColor}" onmouseout="{!c.removeColor}" aura:id="imgOver3"> 
+                                      <div class="slds-panel__section slds-align_absolute-center">
+                                          <lightning:icon iconName="utility:desktop" alternativeText="Connected" />
+                                      </div>
+                                      <div class="slds-panel__section slds-align_absolute-center" style="text-decoration: none;">
+                                          <span style="color: black !important;">Download our latest software<br/></span>                                  
+                                      </div>
+                                    </div>
+                                  </a>     
+                                              
+                          </div> 
+                      </div>
+                  </header>
+              </div>
+          </div>
+          </div>    
+      </article>
+      -->        
+   </aura:component>

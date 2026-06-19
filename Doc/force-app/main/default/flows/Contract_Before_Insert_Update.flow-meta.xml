@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_SFA_Cap_Duration</name>
+        <label>Assign SFA Cap Duration</label>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.SFA_Cap_Length__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Quote__r.SFA_Term__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.CPI__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Quote__r.SFA_Cap_after_Initial_Term__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_Update</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Includes_Termination_Clause_false</name>
+        <label>Includes Termination Clause false</label>
+        <locationX>314</locationX>
+        <locationY>1187</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Includes_Termination_Clause__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Includes_Termination_Clause_true</name>
+        <label>Includes Termination Clause true</label>
+        <locationX>50</locationX>
+        <locationY>1187</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Includes_Termination_Clause__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Retain_Old_Order</name>
+        <label>Retain Old Order</label>
+        <locationX>204</locationX>
+        <locationY>803</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.SBQQ__Order__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record__Prior.SBQQ__Order__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>ROR_Multi_Year</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Is_Order_Changed</name>
+        <label>Is Order Changed</label>
+        <locationX>336</locationX>
+        <locationY>695</locationY>
+        <defaultConnector>
+            <targetReference>ROR_Multi_Year</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Order_Changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Order__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.SBQQ__Order__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Order__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record__Prior.SBQQ__Order__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Order__r.SBQQ__Quote__r.SBQQ__Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Amendment</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Order__r.SBQQ__Quote__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record__Prior.SBQQ__Order__r.SBQQ__Quote__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Retain_Old_Order</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Update</name>
+        <label>Is Update</label>
+        <locationX>182</locationX>
+        <locationY>587</locationY>
+        <defaultConnector>
+            <targetReference>Is_Order_Changed</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Is_Update</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>isNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>ROR_Multi_Year</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>If a Contract has a related Quote and Status = &apos;in force&apos;, &apos;lapsed/cancelled&apos;, or &apos;superseded&apos;, updates to the Quote SFA Cap Initial Term and SFA Cap Duration is not applied to the Contract.</description>
+        <name>Quote_Exists</name>
+        <label>Quote Exists?</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <defaultConnector>
+            <targetReference>Is_Update</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Quote__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Cancelled / Lapsed</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Superseded by Newer Contract</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CPI__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_SFA_Cap_Duration</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>ROR_Multi_Year</name>
+        <label>ROR Multi Year</label>
+        <locationX>182</locationX>
+        <locationY>1079</locationY>
+        <defaultConnector>
+            <targetReference>Includes_Termination_Clause_false</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>ROR Multi year false</defaultConnectorLabel>
+        <rules>
+            <name>ROR_Multi_Year_Condition</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.ROR__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Terminate MultiYear for Convenience w Fee</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Includes_Termination_Clause_true</targetReference>
+            </connector>
+            <label>ROR Multi Year Condition</label>
+        </rules>
+    </decisions>
+    <description>BIZ-62662 Update Contract CPI__C from Quote only when it is blank and allow in Force status
+BIZ-66427 Contract triggers and Flows: Implement automation bypass framework</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>isNew</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
+    </formulas>
+    <interviewLabel>Contract Before Insert Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Contract Before Insert Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Quote_Exists</targetReference>
+        </connector>
+        <filterFormula>NOT(
+        {!$Setup.Automation_Controls__c.Active__c} &amp;&amp;
+        {!$Setup.Automation_Controls__c.Bypass_Flows__c} &amp;&amp;
+        {!$Setup.Automation_Controls__c.Contract_Bypass__c} &amp;&amp;
+        (
+            ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c}) || 
+            (
+                NOT(ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c})) &amp;&amp;
+                CONTAINS({!$Setup.Automation_Controls__c.Data_Id__c}, {!$Record.Id})
+            )
+        )
+    )</filterFormula>
+        <object>Contract</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>Deployment</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opportunity_Owner_Read_Only</fullName>
+    <active>true</active>
+    <description>Prevents users from manually changing the Opportunity Owner. Owner changes are managed in OP4I and synced via Boomi. See BIZ-82919.</description>
+    <errorConditionFormula>AND(
+    NOT(ISNEW()),
+    ISCHANGED(OwnerId),
+    NOT(OR(
+        $Profile.Name = &quot;System Administrator&quot;,
+        $User.Alias = &quot;boomi&quot;,
+        $Profile.Name = &quot;Integration User&quot;
+    ))
+)</errorConditionFormula>
+    <errorDisplayField>OwnerId</errorDisplayField>
+    <errorMessage>Opportunity Owner cannot be changed manually. For OP4I deals, update the Deal Owner in OP4I. For SFDC deals, the Owner is automatically managed based on the Account Owner.</errorMessage>
+</ValidationRule>

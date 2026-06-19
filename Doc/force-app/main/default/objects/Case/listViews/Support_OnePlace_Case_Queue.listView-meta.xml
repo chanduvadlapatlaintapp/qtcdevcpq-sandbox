@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Support_OnePlace_Case_Queue</fullName>
+    <booleanFilter>1 AND 2 AND 3</booleanFilter>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>OWNER_NAME</columns>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>Product__c</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>Support_Type__c</columns>
+    <filterScope>Queue</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.Support</value>
+    </filters>
+    <filters>
+        <field>OWNER_NAME</field>
+        <operation>notEqual</operation>
+        <value>unidentified</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>notContain</operation>
+        <value>Closed</value>
+    </filters>
+    <label>Support: OnePlace Case Queue (Team View)</label>
+    <language>en_US</language>
+    <queue>OnePlace_Support_Queue</queue>
+    <sharedTo>
+        <group>InternalUsers</group>
+    </sharedTo>
+</ListView>

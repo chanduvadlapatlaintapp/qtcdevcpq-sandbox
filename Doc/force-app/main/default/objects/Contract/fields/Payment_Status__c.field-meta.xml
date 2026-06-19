@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Status__c</fullName>
+    <label>Payment Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Invoiced</fullName>
+                <default>false</default>
+                <label>Invoiced</label>
+            </value>
+            <value>
+                <fullName>Invoiced/No Response</fullName>
+                <default>false</default>
+                <label>Invoiced/No Response</label>
+            </value>
+            <value>
+                <fullName>In Process</fullName>
+                <default>false</default>
+                <label>In Process</label>
+            </value>
+            <value>
+                <fullName>Late Payment Expected</fullName>
+                <default>false</default>
+                <label>Late Payment Expected</label>
+            </value>
+            <value>
+                <fullName>Received</fullName>
+                <default>false</default>
+                <label>Received</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

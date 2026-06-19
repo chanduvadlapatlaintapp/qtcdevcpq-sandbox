@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Quotes_RG_SOX_KRR48_Premium_Supprt</fullName>
+    <columns>CREATED_DATE</columns>
+    <columns>SBQQ__EndDate__c</columns>
+    <columns>Account_Name__c</columns>
+    <columns>SBQQ__MasterContract__c</columns>
+    <columns>Start_Date_International__c</columns>
+    <columns>End_Date_from_Quote_Line_max__c</columns>
+    <columns>SBQQ__FirstSegmentTermEndDate__c</columns>
+    <columns>Created_Date_International__c</columns>
+    <columns>Latest_end_date_quote_lines__c</columns>
+    <columns>SBQQ__NetAmount__c</columns>
+    <columns>Software_Net_Total__c</columns>
+    <columns>Support_Value__c</columns>
+    <columns>Support_value_premium__c</columns>
+    <columns>Total_Subscription_Fees__c</columns>
+    <columns>SBQQ__Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>SBQQ__Primary__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Opportunity_Stage__c</field>
+        <operation>equals</operation>
+        <value>Closed Won</value>
+    </filters>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>greaterOrEqual</operation>
+        <value>10/1/2021 12:00 AM</value>
+    </filters>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>lessOrEqual</operation>
+        <value>12/31/2021 12:00 AM</value>
+    </filters>
+    <filters>
+        <field>Support_Value__c</field>
+        <operation>notEqual</operation>
+        <value>Standard</value>
+    </filters>
+    <label>x_All Quotes-RG SOX KRR48 Premium Supprt</label>
+    <language>en_US</language>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

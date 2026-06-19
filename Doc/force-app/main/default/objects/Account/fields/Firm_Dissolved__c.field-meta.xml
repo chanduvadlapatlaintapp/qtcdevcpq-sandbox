@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Firm_Dissolved__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>If a Firm has dissolved, this box is checked. We use this to identify firms that should be excluded from current reports, but we retain the ability to report on our history with the former firm.</description>
+    <inlineHelpText>If a Firm has dissolved, this box is checked. We use this to identify firms that should be excluded from current reports, but we retain the ability to report on our history with the former firm.</inlineHelpText>
+    <label>Firm Dissolved</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

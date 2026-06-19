@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>text</bucketType>
+        <developerName>BucketField_20238013</developerName>
+        <masterLabel>Product Grouping</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>Account.Subscriptions__r$Product_LineNew__c</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Conflicts - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Conflicts - On Prem</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Intake - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Intake - On Prem</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Terms - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Terms - On Prem</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Third Party Product - D&amp;B</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>TFG - Legacy</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Walls - On Prem</sourceValue>
+            </sourceValues>
+            <value>Risk</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>CRM - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Experience - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Experience - On Prem</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Relationships - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Relationships - On Prem</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Third Party Product - Experience</sourceValue>
+            </sourceValues>
+            <value>Marketing</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Time - On Prem</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Time - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Pricing - Cloud</sourceValue>
+            </sourceValues>
+            <value>Finance</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Integrate - On Prem</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Integrate - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Flow - On Prem</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Flow - Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Integration Service - Cloud</sourceValue>
+            </sourceValues>
+            <value>IT</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>L&amp;P - Cloud</sourceValue>
+            </sourceValues>
+            <value>L&amp;P</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Third Party Content - D&amp;B Tree</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Third Party Connectors</sourceValue>
+            </sourceValues>
+            <value>Content</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>Account$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r$Subscription_Name__c</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r$Product_LineNew__c</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r$Customer_Lifecycle_Stage__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.Subscriptions__r$Amount__c</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r$Amount__c.CONVERT</field>
+    </columns>
+    <columns>
+        <field>Account$Account_Recurring_Amount__c</field>
+    </columns>
+    <columns>
+        <field>Account$Account_Recurring_Amount__c.CONVERT</field>
+    </columns>
+    <currency>USD</currency>
+    <description>ACV by Business Unit</description>
+    <filter>
+        <criteriaItems>
+            <column>Account$Type</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Customer</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Subscriptions__r$Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Active</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account$Simple_Territory__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>ACV by Business Unit</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_and_Subscription__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Account$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

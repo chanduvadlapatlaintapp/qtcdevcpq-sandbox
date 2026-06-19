@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Response for Risk Webinar</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - Oct09 Risk Webinar</name>
+    <style>none</style>
+    <subject>IntApp Risk Technologies Webinar</subject>
+    <textOnly>{!Lead.FirstName} {!Lead.LastName}: 
+
+Thank you for registering for the Risk Technologies Webinar.
+
+Date: Thursday, October 29
+Time: 9 am Pacific / 12 pm Eastern / 4 pm GMT
+
+Video:
+
+Conference URL: https://www.livemeeting.com/cc/vcc/join?id=w4260078&amp;role=attend&amp;pw=A426007
+Meeting ID: w4260078
+Entry Code: A426007 
+
+Audio:
+
+Conference Audio Dial In:
+US/Canada: 800-441-0022
+UK: 0-808-101-1147
+Passcode: 4260078 
+
+
+
+Please log in and dial the conference audio line 10 minutes prior to the start time.
+
+
+
+http://www.intapp.com
+All information Copyright 2009 IntApp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Response for Client Product Roadmap Webinar</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - Mar10 Client Webinar</name>
+    <style>none</style>
+    <subject>IntApp Client Webinar</subject>
+    <textOnly>{!Lead.FirstName} {!Lead.LastName}: 
+
+Thank you for registering for the IntApp Product and Services Roadmap Webinar. The login details are below.
+
+Date: Friday, March 12
+Time: 9 am Pacific / 12 pm Eastern (5 pm GMT)
+
+Video:
+
+Conference URL: https://www.livemeeting.com/cc/vcc/join?id=w7325486&amp;role=attend&amp;pw=A732548
+Meeting ID: w7325486
+Entry Code: A732548 
+
+Audio:
+
+Conference Audio Dial In:
+US/Canada: 800-946-0708
+UK: 0-808-101-1147
+Passcode: 7325486 
+
+
+http://www.intapp.com
+All information Copyright 2010 IntApp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

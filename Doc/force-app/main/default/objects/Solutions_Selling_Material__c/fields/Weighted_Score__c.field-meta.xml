@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Weighted_Score__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISBLANK(TEXT(Pain__c)),0,VALUE(LEFT(TEXT(Pain__c),1))*3)+
+IF(ISBLANK(TEXT(Reasons_for_Pain__c)),0,VALUE(LEFT(TEXT(Reasons_for_Pain__c),1))*2)+
+IF(ISBLANK(TEXT(Buying_Vision__c)),0,VALUE(LEFT(TEXT(Buying_Vision__c),1))*2)+
+IF(ISBLANK(TEXT(Agreement_to_Explore__c)),0,VALUE(LEFT(TEXT(Agreement_to_Explore__c),1)))+
+IF(ISBLANK(TEXT(Power_Sponsor_Organizational_Impact__c)),0,VALUE(LEFT(TEXT(Power_Sponsor_Organizational_Impact__c),1)))+
+IF(ISBLANK(TEXT(Power_Sponsor_Mutual_Evaluation_Plan__c)),0,VALUE(LEFT(TEXT(Power_Sponsor_Mutual_Evaluation_Plan__c),1))*3)+
+IF(ISBLANK(TEXT(Sponsor_Access_to_Power__c)),0,VALUE(LEFT(TEXT(Sponsor_Access_to_Power__c),1))*3)+
+IF(ISBLANK(TEXT(Sponsor_Proposed_Proof_Next_Steps__c)),0,VALUE(LEFT(TEXT(Sponsor_Proposed_Proof_Next_Steps__c),1)))*2</formula>
+    <label>Weighted Score</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

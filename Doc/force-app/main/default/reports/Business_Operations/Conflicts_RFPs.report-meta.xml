@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account.AccountingPortfolio__c</field>
+    </columns>
+    <columns>
+        <field>Account.Time_Entry__c</field>
+    </columns>
+    <columns>
+        <field>Account.IntApp_Open_Conflicts__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>((1 OR 2) AND 3) AND 4</booleanFilter>
+        <criteriaItems>
+            <column>Account.AccountingPortfolio__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Aderant Back Office,Aderant Expert 7,Aderant Expert 8</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Time_Entry__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Aderant (Unknown),Aderant CMS,Aderant Expert (Unknown),Aderant Expert 7,Aderant Expert 8</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.IntApp_Open_Conflicts__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Own it</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription__c.Customer_Lifecycle_Stage__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Implementation - T&amp;M/Custom,In Production - Not Deployed to End Users,In Production - Deployed to some End Users,In Production - Deployed to End Users Firm Wide</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>ACCOUNT.NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Subscription__c.Customer_Lifecycle_Stage__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Conflicts RFPs</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountCustomEntity$Subscription__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>DUE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

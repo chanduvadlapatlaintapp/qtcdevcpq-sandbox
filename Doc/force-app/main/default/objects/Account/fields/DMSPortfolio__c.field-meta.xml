@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DMSPortfolio__c</fullName>
+    <description>This is to designate the DMS application in use at the account. This replaced the old checkbox system.</description>
+    <inlineHelpText>What Document Management System does this account use?</inlineHelpText>
+    <label>DMS</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Affinity</fullName>
+                <default>false</default>
+                <label>Affinity</label>
+            </value>
+            <value>
+                <fullName>Axxia</fullName>
+                <default>false</default>
+                <label>Axxia</label>
+            </value>
+            <value>
+                <fullName>Bespoke</fullName>
+                <default>false</default>
+                <label>Bespoke</label>
+            </value>
+            <value>
+                <fullName>Client Profiles</fullName>
+                <default>false</default>
+                <label>Client Profiles</label>
+            </value>
+            <value>
+                <fullName>Custom</fullName>
+                <default>false</default>
+                <label>Custom</label>
+            </value>
+            <value>
+                <fullName>DM5</fullName>
+                <default>false</default>
+                <label>DM5</label>
+            </value>
+            <value>
+                <fullName>DM6</fullName>
+                <default>false</default>
+                <label>DM6</label>
+            </value>
+            <value>
+                <fullName>DOCS Open</fullName>
+                <default>false</default>
+                <label>DOCS Open</label>
+            </value>
+            <value>
+                <fullName>Documentum</fullName>
+                <default>false</default>
+                <label>Documentum</label>
+            </value>
+            <value>
+                <fullName>eDocs DM10</fullName>
+                <default>false</default>
+                <label>eDocs DM10</label>
+            </value>
+            <value>
+                <fullName>Epona - DMSforLegal</fullName>
+                <default>false</default>
+                <label>Epona - DMSforLegal</label>
+            </value>
+            <value>
+                <fullName>FileNet</fullName>
+                <default>false</default>
+                <label>FileNet</label>
+            </value>
+            <value>
+                <fullName>Fileshare</fullName>
+                <default>false</default>
+                <label>Fileshare</label>
+            </value>
+            <value>
+                <fullName>Hosted iManage</fullName>
+                <default>false</default>
+                <label>Hosted iManage</label>
+            </value>
+            <value>
+                <fullName>Hummingbird Unknown</fullName>
+                <default>false</default>
+                <label>Hummingbird Unknown</label>
+            </value>
+            <value>
+                <fullName>iManage</fullName>
+                <default>false</default>
+                <label>iManage</label>
+            </value>
+            <value>
+                <fullName>Interwoven</fullName>
+                <default>false</default>
+                <label>Interwoven</label>
+            </value>
+            <value>
+                <fullName>Interwoven Unknown</fullName>
+                <default>false</default>
+                <label>Interwoven Unknown</label>
+            </value>
+            <value>
+                <fullName>LawMaster</fullName>
+                <default>false</default>
+                <label>LawMaster</label>
+            </value>
+            <value>
+                <fullName>Lotus Domino</fullName>
+                <default>false</default>
+                <label>Lotus Domino</label>
+            </value>
+            <value>
+                <fullName>NetDocuments</fullName>
+                <default>false</default>
+                <label>NetDocuments</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Open Practice</fullName>
+                <default>false</default>
+                <label>Open Practice</label>
+            </value>
+            <value>
+                <fullName>Open Text</fullName>
+                <default>false</default>
+                <label>Open Text</label>
+            </value>
+            <value>
+                <fullName>Open Text Livelink</fullName>
+                <default>false</default>
+                <label>Open Text Livelink</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Peppermint Technology</fullName>
+                <default>false</default>
+                <label>Peppermint Technology</label>
+            </value>
+            <value>
+                <fullName>Perceptive Mentor</fullName>
+                <default>false</default>
+                <label>Perceptive Mentor</label>
+            </value>
+            <value>
+                <fullName>ProLaw</fullName>
+                <default>false</default>
+                <label>ProLaw</label>
+            </value>
+            <value>
+                <fullName>SharePoint</fullName>
+                <default>false</default>
+                <label>SharePoint</label>
+            </value>
+            <value>
+                <fullName>StarLaw</fullName>
+                <default>false</default>
+                <label>StarLaw</label>
+            </value>
+            <value>
+                <fullName>Visualfiles</fullName>
+                <default>false</default>
+                <label>Visualfiles</label>
+            </value>
+            <value>
+                <fullName>Worldox</fullName>
+                <default>false</default>
+                <label>Worldox</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

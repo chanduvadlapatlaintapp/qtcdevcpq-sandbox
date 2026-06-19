@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsRORExpDateChecked__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>conditionally visible if ROR field has value other than ‘None’ - BIZ-45142</description>
+    <inlineHelpText>Date that the customer can exercise ROR until</inlineHelpText>
+    <label>ROR Expiration Date</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>SFDC_Survey__c$Name</field>
+    </columns>
+    <columns>
+        <field>SFDC_Survey__c$CreatedDate</field>
+    </columns>
+    <columns>
+        <field>SFDC_Survey__c$PjM_Objective_Fulfilment_Score__c</field>
+    </columns>
+    <columns>
+        <field>SFDC_Survey__c$Owner_Objective_Fulfilment_Score__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+        <criteriaItems>
+            <column>SFDC_Survey__c$Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>PS</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>SFDC_Survey__c$PjM_Objective_Fulfilment_Score__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>SFDC_Survey__c$Owner_Objective_Fulfilment_Score__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <name>Metrics: Client Surveys</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Surveys_with_Intapp_Resources__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>SFDC_Survey__c$Date_Business_IT_Owner_Interviewed__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

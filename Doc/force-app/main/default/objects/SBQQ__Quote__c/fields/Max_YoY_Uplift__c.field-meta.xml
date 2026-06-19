@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Max_YoY_Uplift__c</fullName>
+    <description>Maximum Year-over-Year uplift. Populated via Apex trigger with OTD calculation for new quotes, or via data migration for historical quotes.</description>
+    <inlineHelpText>Maximum YoY uplift percentage.</inlineHelpText>
+    <label>Max YoY Uplift</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

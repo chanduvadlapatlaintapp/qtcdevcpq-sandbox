@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Copy_of_all_opps_MLK</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>SBQQ__RenewedContract__c</columns>
+    <columns>Associated_Contract_OSA__c</columns>
+    <columns>Contract_Status__c</columns>
+    <columns>Deal_Type__c</columns>
+    <columns>OPPORTUNITY.AMOUNT</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.NAME</field>
+        <operation>contains</operation>
+        <value>NYMY</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.CREATED_DATE</field>
+        <operation>greaterThan</operation>
+        <value>8/1/2025 12:00 AM</value>
+    </filters>
+    <label>NYMY opportunities</label>
+    <sharedTo>
+        <group>SFDC_Admins</group>
+    </sharedTo>
+</ListView>

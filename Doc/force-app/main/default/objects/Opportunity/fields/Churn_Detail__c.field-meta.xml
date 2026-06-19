@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Churn_Detail__c</fullName>
+    <label>Churn Detail</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Churn_Category__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Adoption:  Business Case / Usage Expectations - not Achieved</fullName>
+                <default>false</default>
+                <label>Adoption:  Business Case / Usage Expectations - not Achieved</label>
+            </value>
+            <value>
+                <fullName>Adoption:  License / Entitlement Reduction</fullName>
+                <default>false</default>
+                <label>Adoption:  License / Entitlement Reduction</label>
+            </value>
+            <value>
+                <fullName>Adoption:  Module No Longer Required</fullName>
+                <default>false</default>
+                <label>Adoption:  Module No Longer Required</label>
+            </value>
+            <value>
+                <fullName>Adoption:  Product No Longer Required</fullName>
+                <default>false</default>
+                <label>Adoption:  Product No Longer Required</label>
+            </value>
+            <value>
+                <fullName>Commercial: 60 Days Past Due</fullName>
+                <default>false</default>
+                <label>Commercial: 60 Days Past Due</label>
+            </value>
+            <value>
+                <fullName>Commercial: Cancelling Maintenance</fullName>
+                <default>false</default>
+                <label>Commercial: Cancelling Maintenance</label>
+            </value>
+            <value>
+                <fullName>Commercial:  License / Entitlement Reduction</fullName>
+                <default>false</default>
+                <label>Commercial:  License / Entitlement Reduction</label>
+            </value>
+            <value>
+                <fullName>Commercial: Loss due to EOL/EOS Program</fullName>
+                <default>false</default>
+                <label>Commercial: Loss due to EOL/EOS Program</label>
+            </value>
+            <value>
+                <fullName>Commercial:  Loss due to Intapp Acquisition</fullName>
+                <default>false</default>
+                <label>Commercial:  Loss due to Intapp Acquisition</label>
+            </value>
+            <value>
+                <fullName>Commercial:  Negotiated Price Concession</fullName>
+                <default>false</default>
+                <label>Commercial:  Negotiated Price Concession</label>
+            </value>
+            <value>
+                <fullName>Competition: Replaced by Alternative</fullName>
+                <default>false</default>
+                <label>Competition: Replaced by Alternative</label>
+            </value>
+            <value>
+                <fullName>Customer:  Dissolution</fullName>
+                <default>false</default>
+                <label>Customer:  Dissolution</label>
+            </value>
+            <value>
+                <fullName>Customer:  Management Change / Sponsorship Issues</fullName>
+                <default>false</default>
+                <label>Customer:  Management Change / Sponsorship Issues</label>
+            </value>
+            <value>
+                <fullName>Customer:  Merger / Split</fullName>
+                <default>false</default>
+                <label>Customer:  Merger / Split</label>
+            </value>
+            <value>
+                <fullName>Customer: Project Never Started</fullName>
+                <default>false</default>
+                <label>Customer: Project Never Started</label>
+            </value>
+            <value>
+                <fullName>Product:  Lack of Required Features</fullName>
+                <default>false</default>
+                <label>Product:  Lack of Required Features</label>
+            </value>
+            <value>
+                <fullName>Product:  Partner Product Cancellation</fullName>
+                <default>false</default>
+                <label>Product:  Partner Product Cancellation</label>
+            </value>
+            <value>
+                <fullName>Product:  Technical Issues</fullName>
+                <default>false</default>
+                <label>Product:  Technical Issues</label>
+            </value>
+            <value>
+                <fullName>Uncoded</fullName>
+                <default>false</default>
+                <label>Uncoded</label>
+            </value>
+            <value>
+                <fullName>Commercial: Subscription costs too high</fullName>
+                <default>false</default>
+                <label>Commercial: Subscription costs too high</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Adoption</controllingFieldValue>
+            <valueName>Adoption:  Business Case / Usage Expectations - not Achieved</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Adoption</controllingFieldValue>
+            <valueName>Adoption:  License / Entitlement Reduction</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Adoption</controllingFieldValue>
+            <valueName>Adoption:  Module No Longer Required</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Adoption</controllingFieldValue>
+            <valueName>Adoption:  Product No Longer Required</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Commercial</controllingFieldValue>
+            <valueName>Commercial: 60 Days Past Due</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Commercial</controllingFieldValue>
+            <valueName>Commercial: Cancelling Maintenance</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Commercial</controllingFieldValue>
+            <valueName>Commercial:  License / Entitlement Reduction</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Commercial</controllingFieldValue>
+            <valueName>Commercial: Loss due to EOL/EOS Program</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Commercial</controllingFieldValue>
+            <valueName>Commercial:  Loss due to Intapp Acquisition</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Commercial</controllingFieldValue>
+            <valueName>Commercial:  Negotiated Price Concession</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Commercial</controllingFieldValue>
+            <valueName>Commercial: Subscription costs too high</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Competition</controllingFieldValue>
+            <valueName>Competition: Replaced by Alternative</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer</controllingFieldValue>
+            <valueName>Customer:  Dissolution</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer</controllingFieldValue>
+            <valueName>Customer:  Management Change / Sponsorship Issues</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer</controllingFieldValue>
+            <valueName>Customer:  Merger / Split</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer</controllingFieldValue>
+            <valueName>Customer: Project Never Started</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Product:  Lack of Required Features</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Product:  Partner Product Cancellation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Product:  Technical Issues</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uncoded</controllingFieldValue>
+            <valueName>Uncoded</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

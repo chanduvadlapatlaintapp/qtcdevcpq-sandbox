@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TB_Invoice_Status__c</fullName>
+    <label>Invoice Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Future</fullName>
+                <default>true</default>
+                <label>Future</label>
+            </value>
+            <value>
+                <fullName>Waived</fullName>
+                <default>false</default>
+                <label>Waived</label>
+            </value>
+            <value>
+                <fullName>Pending Review</fullName>
+                <default>false</default>
+                <label>Pending Review</label>
+            </value>
+            <value>
+                <fullName>Sent</fullName>
+                <default>false</default>
+                <label>Sent</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

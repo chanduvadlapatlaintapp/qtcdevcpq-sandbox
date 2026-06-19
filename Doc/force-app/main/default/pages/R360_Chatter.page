@@ -1,0 +1,11 @@
+<apex:page showHeader="false" sideBar="false" >
+
+<style> body{padding: 20px;} </style>
+
+<div id="chatterDivId">
+
+<chatter:feed entityId="{!$CurrentPage.parameters.rid}" id="chatterIdCTA" />
+
+</div>
+
+</apex:page>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Services Request</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Services Requests</value>
+    </caseValues>
+    <recordTypes>
+        <description><!-- Used for sellers to request PS resources when needed to close an opportunity. --></description>
+        <label><!-- Early Resource Tracking --></label>
+        <name>Early_Resource_Tracking</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Use this to submit RFPs --></description>
+        <label><!-- RFP Request --></label>
+        <name>RFP_Request</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Use this type to request an SOW. --></description>
+        <label><!-- SOW --></label>
+        <name>SOW</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- This product cannot involve recurring. Please pick &quot;No&quot;. --></errorMessage>
+        <name>Cannot_Pick_Recurring_for_Some_Products</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Services Request Status field is not editable. Please contact Professional Services Sales if you believe this value should be updated. --></errorMessage>
+        <name>Cannot_change_Services_Request_Status</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Fill out deliverable field --></errorMessage>
+        <name>Check_if_deliverable_is_blank</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please do not edit the SOW once it&apos;s submitted or in process. --></errorMessage>
+        <name>Lock_SOW</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please provide notes to the requester when sending it back for edits. --></errorMessage>
+        <name>Notes_Required_before_sending_to_Request</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Only Services Sales Specialists can update this field --></errorMessage>
+        <name>Only_Serv_Sales_Specialist_can_update</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please provide a reason for your high urgency categorization. --></errorMessage>
+        <name>Provide_Reason_High_Urgency</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select &quot;Ready for Review&quot; to have this SOW reviewed and approved for completion. --></errorMessage>
+        <name>SOW_Completed_Status</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Services Section (Services Amount - Fixed Fee, Services Amount - T&amp;M, Services Hours - Fixed Fee, and Services Hours - T&amp;M) are required before an SOW can be marked as &quot;SOW Completed&quot; --></errorMessage>
+        <name>Services_Section_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Time Questionnaire Available is required when there is Recurring Involved. --></errorMessage>
+        <name>Time_Questionnaire_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A time questionnaire must be available before an SOW can be submitted. --></errorMessage>
+        <name>Time_Questionnaire_Required_to_Submit</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please make sure the Client Contact is populated. --></errorMessage>
+        <name>Verify_Client_Contact_is_not_blank</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- New_Early_Resource_Request --></label>
+        <name>New_Early_Resource_Request</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- New_Services_SOW_with_Bounding_Questions --></label>
+        <name>New_Services_SOW_with_Bounding_Questions</name>
+    </webLinks>
+</CustomObjectTranslation>

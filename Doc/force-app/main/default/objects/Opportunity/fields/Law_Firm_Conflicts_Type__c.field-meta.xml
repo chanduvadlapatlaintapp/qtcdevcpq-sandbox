@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Law_Firm_Conflicts_Type__c</fullName>
+    <description>What style of conflicts checking does the law firm use?</description>
+    <inlineHelpText>What style of conflicts checking does the law firm use?</inlineHelpText>
+    <label>Law Firm Conflicts Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Lawyer Led</fullName>
+                <default>false</default>
+                <label>Lawyer Led</label>
+            </value>
+            <value>
+                <fullName>Compliance Team Lead</fullName>
+                <default>false</default>
+                <label>Compliance Team Lead</label>
+            </value>
+            <value>
+                <fullName>Blended (Lawyer/Compliance Team)</fullName>
+                <default>false</default>
+                <label>Blended (Lawyer/Compliance Team)</label>
+            </value>
+            <value>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+                <label>Unknown</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

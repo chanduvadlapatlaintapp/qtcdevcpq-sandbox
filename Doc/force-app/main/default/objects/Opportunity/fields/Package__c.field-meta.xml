@@ -1,0 +1,1285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Package__c</fullName>
+    <description>Practice-specific list of products.</description>
+    <inlineHelpText>Select the product for this opportunity.</inlineHelpText>
+    <label>Package</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Product_Line__c</controllingField>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Activity Tracker (ADAM)</fullName>
+                <color>#A53711</color>
+                <default>false</default>
+                <label>Activity Tracker (ADAM)</label>
+            </value>
+            <value>
+                <fullName>Activity Tracker Pro</fullName>
+                <default>false</default>
+                <label>Activity Tracker Pro</label>
+            </value>
+            <value>
+                <fullName>Advanced Flow</fullName>
+                <default>false</default>
+                <label>Advanced Flow</label>
+            </value>
+            <value>
+                <fullName>Adv Flow &amp; Adv IB</fullName>
+                <default>false</default>
+                <label>Adv Flow &amp; Adv IB</label>
+            </value>
+            <value>
+                <fullName>Adv Flow and Adv Intake</fullName>
+                <default>false</default>
+                <label>Adv Flow and Adv Intake</label>
+            </value>
+            <value>
+                <fullName>AI Module</fullName>
+                <default>false</default>
+                <label>AI Module</label>
+            </value>
+            <value>
+                <fullName>Bi Directional License</fullName>
+                <default>false</default>
+                <label>Bi Directional License</label>
+            </value>
+            <value>
+                <fullName>Box Builder</fullName>
+                <default>false</default>
+                <label>Box Builder</label>
+            </value>
+            <value>
+                <fullName>CG Analyze</fullName>
+                <default>false</default>
+                <label>CG Analyze</label>
+            </value>
+            <value>
+                <fullName>CG Clear</fullName>
+                <default>false</default>
+                <label>CG Clear</label>
+            </value>
+            <value>
+                <fullName>CG Enterprise - Analyze</fullName>
+                <default>false</default>
+                <label>CG Enterprise - Analyze</label>
+            </value>
+            <value>
+                <fullName>CG Enterprise - Flow</fullName>
+                <default>false</default>
+                <label>CG Enterprise - Flow</label>
+            </value>
+            <value>
+                <fullName>CG Enterprise - Protect</fullName>
+                <default>false</default>
+                <label>CG Enterprise - Protect</label>
+            </value>
+            <value>
+                <fullName>CG Flow</fullName>
+                <default>false</default>
+                <label>CG Flow</label>
+            </value>
+            <value>
+                <fullName>CG Hold</fullName>
+                <default>false</default>
+                <label>CG Hold</label>
+            </value>
+            <value>
+                <fullName>CG Lateral Hire</fullName>
+                <default>false</default>
+                <label>CG Lateral Hire</label>
+            </value>
+            <value>
+                <fullName>CG Mobile</fullName>
+                <default>false</default>
+                <label>CG Mobile</label>
+            </value>
+            <value>
+                <fullName>CG Protect</fullName>
+                <default>false</default>
+                <label>CG Protect</label>
+            </value>
+            <value>
+                <fullName>DTE Added to Time Management</fullName>
+                <default>false</default>
+                <label>DTE Added to Time Management</label>
+            </value>
+            <value>
+                <fullName>DTE Axiom</fullName>
+                <default>false</default>
+                <label>DTE Axiom</label>
+            </value>
+            <value>
+                <fullName>DTE Axiom Mobile</fullName>
+                <default>false</default>
+                <label>DTE Axiom Mobile</label>
+            </value>
+            <value>
+                <fullName>DTE Legacy</fullName>
+                <default>false</default>
+                <label>DTE Legacy</label>
+            </value>
+            <value>
+                <fullName>eBillingHub Module</fullName>
+                <default>false</default>
+                <label>eBillingHub Module</label>
+            </value>
+            <value>
+                <fullName>Experience</fullName>
+                <default>false</default>
+                <label>Experience</label>
+            </value>
+            <value>
+                <fullName>Experience Cloud</fullName>
+                <default>false</default>
+                <label>Experience Cloud</label>
+            </value>
+            <value>
+                <fullName>Flow &amp; IB</fullName>
+                <default>false</default>
+                <label>Flow &amp; IB</label>
+            </value>
+            <value>
+                <fullName>Flow &amp; IB: Cloud</fullName>
+                <default>false</default>
+                <label>Flow &amp; IB: Cloud</label>
+            </value>
+            <value>
+                <fullName>Flow &amp; Intake</fullName>
+                <default>false</default>
+                <label>Flow &amp; Intake</label>
+            </value>
+            <value>
+                <fullName>Flow &amp; Intake &amp; IB</fullName>
+                <default>false</default>
+                <label>Flow &amp; Intake &amp; IB</label>
+            </value>
+            <value>
+                <fullName>Flow - Advanced</fullName>
+                <default>false</default>
+                <label>Flow - Advanced</label>
+            </value>
+            <value>
+                <fullName>Flow Cloud &amp; IB</fullName>
+                <default>false</default>
+                <label>Flow Cloud &amp; IB</label>
+            </value>
+            <value>
+                <fullName>Flow Enterprise</fullName>
+                <default>false</default>
+                <label>Flow Enterprise</label>
+            </value>
+            <value>
+                <fullName>Flow Services</fullName>
+                <default>false</default>
+                <label>Flow Services</label>
+            </value>
+            <value>
+                <fullName>Flow - Standard</fullName>
+                <default>false</default>
+                <label>Flow - Standard</label>
+            </value>
+            <value>
+                <fullName>IB Application Limited License</fullName>
+                <default>false</default>
+                <label>IB Application Limited License</label>
+            </value>
+            <value>
+                <fullName>IB for Distribution List Management</fullName>
+                <default>false</default>
+                <label>IB for Distribution List Management</label>
+            </value>
+            <value>
+                <fullName>IB for File Shares integration</fullName>
+                <default>false</default>
+                <label>IB for File Shares integration</label>
+            </value>
+            <value>
+                <fullName>IB for Lawyer Provisioning</fullName>
+                <default>false</default>
+                <label>IB for Lawyer Provisioning</label>
+            </value>
+            <value>
+                <fullName>IB for MDD</fullName>
+                <default>false</default>
+                <label>IB for MDD</label>
+            </value>
+            <value>
+                <fullName>IB for NBI</fullName>
+                <default>false</default>
+                <label>IB for NBI</label>
+            </value>
+            <value>
+                <fullName>IB for Tier 1 Applications</fullName>
+                <default>false</default>
+                <label>IB for Tier 1 Applications</label>
+            </value>
+            <value>
+                <fullName>IB for Tier 2 Applications</fullName>
+                <default>false</default>
+                <label>IB for Tier 2 Applications</label>
+            </value>
+            <value>
+                <fullName>Intapp Flow</fullName>
+                <default>false</default>
+                <label>Intapp Flow</label>
+            </value>
+            <value>
+                <fullName>Intapp Flow - Extranet</fullName>
+                <default>false</default>
+                <label>Intapp Flow - Extranet</label>
+            </value>
+            <value>
+                <fullName>Intapp Open:  Advanced Conflicts</fullName>
+                <default>false</default>
+                <label>Intapp Open:  Advanced Conflicts</label>
+            </value>
+            <value>
+                <fullName>Intapp Open: Conflicts</fullName>
+                <default>false</default>
+                <label>Intapp Open: Conflicts</label>
+            </value>
+            <value>
+                <fullName>Intapp Open: Conflicts and Intake</fullName>
+                <default>false</default>
+                <label>Intapp Open: Conflicts and Intake</label>
+            </value>
+            <value>
+                <fullName>Intapp Open:  Connected Conflicts</fullName>
+                <default>false</default>
+                <label>Intapp Open:  Connected Conflicts</label>
+            </value>
+            <value>
+                <fullName>Intapp Open: Intake Advanced</fullName>
+                <default>false</default>
+                <label>Intapp Open: Intake Advanced</label>
+            </value>
+            <value>
+                <fullName>Intapp Open: Intake – Assessments Module</fullName>
+                <default>false</default>
+                <label>Intapp Open: Intake – Assessments Module</label>
+            </value>
+            <value>
+                <fullName>Intapp Open: Intake - Document Assembly Module</fullName>
+                <default>false</default>
+                <label>Intapp Open: Intake - Document Assembly Module</label>
+            </value>
+            <value>
+                <fullName>Intapp Open: Intake - Engagement Letter Module</fullName>
+                <default>false</default>
+                <label>Intapp Open: Intake - Engagement Letter Module</label>
+            </value>
+            <value>
+                <fullName>Intapp Open: Intake Extend</fullName>
+                <default>false</default>
+                <label>Intapp Open: Intake Extend</label>
+            </value>
+            <value>
+                <fullName>Intapp Open: Intake Standard</fullName>
+                <default>false</default>
+                <label>Intapp Open: Intake Standard</label>
+            </value>
+            <value>
+                <fullName>Intapp Open - Conflicts Advanced - Cloud</fullName>
+                <default>false</default>
+                <label>Intapp Open - Conflicts Advanced - Cloud</label>
+            </value>
+            <value>
+                <fullName>Intapp Open - Conflicts Standard - Cloud</fullName>
+                <default>false</default>
+                <label>Intapp Open - Conflicts Standard - Cloud</label>
+            </value>
+            <value>
+                <fullName>Intapp Open - Engagement Letters Module - Cloud</fullName>
+                <default>false</default>
+                <label>Intapp Open - Engagement Letters Module - Cloud</label>
+            </value>
+            <value>
+                <fullName>Intapp Open - Experience - Cloud</fullName>
+                <default>false</default>
+                <label>Intapp Open - Experience - Cloud</label>
+            </value>
+            <value>
+                <fullName>Intapp Open Intake Advanced - Cloud</fullName>
+                <default>false</default>
+                <label>Intapp Open Intake Advanced - Cloud</label>
+            </value>
+            <value>
+                <fullName>Intapp Open - Intake Standard - Cloud</fullName>
+                <default>false</default>
+                <label>Intapp Open - Intake Standard - Cloud</label>
+            </value>
+            <value>
+                <fullName>Intapp Open - Terms of Business - Cloud</fullName>
+                <default>false</default>
+                <label>Intapp Open - Terms of Business - Cloud</label>
+            </value>
+            <value>
+                <fullName>Intapp Open Workflow - Limited License</fullName>
+                <default>false</default>
+                <label>Intapp Open Workflow - Limited License</label>
+            </value>
+            <value>
+                <fullName>Intapp Open Workflow - Standard License</fullName>
+                <default>false</default>
+                <label>Intapp Open Workflow - Standard License</label>
+            </value>
+            <value>
+                <fullName>Intapp Prime</fullName>
+                <default>false</default>
+                <label>Intapp Prime</label>
+            </value>
+            <value>
+                <fullName>Intapp Time: Capture, Firmwide</fullName>
+                <default>false</default>
+                <label>Intapp Time: Capture, Firmwide</label>
+            </value>
+            <value>
+                <fullName>Intapp Time: Compliance Module</fullName>
+                <default>false</default>
+                <label>Intapp Time: Compliance Module</label>
+            </value>
+            <value>
+                <fullName>Intapp Time: Core Management</fullName>
+                <default>false</default>
+                <label>Intapp Time: Core Management</label>
+            </value>
+            <value>
+                <fullName>Intapp Time:  Mobile Only, Firmwide</fullName>
+                <default>false</default>
+                <label>Intapp Time:  Mobile Only, Firmwide</label>
+            </value>
+            <value>
+                <fullName>Intapp Time:  Mobile Only, Point of Entry Bundle</fullName>
+                <default>false</default>
+                <label>Intapp Time:  Mobile Only, Point of Entry Bundle</label>
+            </value>
+            <value>
+                <fullName>Intapp Time: Total Management</fullName>
+                <default>false</default>
+                <label>Intapp Time: Total Management</label>
+            </value>
+            <value>
+                <fullName>Integrate: Cloud Connect</fullName>
+                <default>false</default>
+                <label>Integrate: Cloud Connect</label>
+            </value>
+            <value>
+                <fullName>Integrate Managed Service</fullName>
+                <default>false</default>
+                <label>Integrate Managed Service</label>
+            </value>
+            <value>
+                <fullName>Integration, Walls and Time Builder</fullName>
+                <default>false</default>
+                <label>Integration, Walls and Time Builder</label>
+            </value>
+            <value>
+                <fullName>Integration and Time Builder</fullName>
+                <default>false</default>
+                <label>Integration and Time Builder</label>
+            </value>
+            <value>
+                <fullName>Integration and Walls</fullName>
+                <default>false</default>
+                <label>Integration and Walls</label>
+            </value>
+            <value>
+                <fullName>Integration Builder, Standard</fullName>
+                <color>#0B6FCE</color>
+                <default>false</default>
+                <label>Integration Builder, Standard</label>
+            </value>
+            <value>
+                <fullName>Lateral Hire</fullName>
+                <default>false</default>
+                <label>Lateral Hire</label>
+            </value>
+            <value>
+                <fullName>Legal Holds</fullName>
+                <default>false</default>
+                <label>Legal Holds</label>
+            </value>
+            <value>
+                <fullName>LegalKey Conflicts</fullName>
+                <default>false</default>
+                <label>LegalKey Conflicts</label>
+            </value>
+            <value>
+                <fullName>LegalKey Critical Dates</fullName>
+                <default>false</default>
+                <label>LegalKey Critical Dates</label>
+            </value>
+            <value>
+                <fullName>LegalKey Records Management</fullName>
+                <default>false</default>
+                <label>LegalKey Records Management</label>
+            </value>
+            <value>
+                <fullName>Matter Team Manager</fullName>
+                <color>#A845DC</color>
+                <default>false</default>
+                <label>Matter Team Manager</label>
+            </value>
+            <value>
+                <fullName>Mobile</fullName>
+                <default>false</default>
+                <label>Mobile</label>
+            </value>
+            <value>
+                <fullName>Mobile Only</fullName>
+                <default>false</default>
+                <label>Mobile Only</label>
+            </value>
+            <value>
+                <fullName>Mobility Module</fullName>
+                <default>false</default>
+                <label>Mobility Module</label>
+            </value>
+            <value>
+                <fullName>Multiple Products</fullName>
+                <default>false</default>
+                <label>Multiple Products</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Open Pricing</fullName>
+                <default>false</default>
+                <label>Open Pricing</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Rekoop - Time Management</fullName>
+                <default>false</default>
+                <label>Rekoop - Time Management</label>
+            </value>
+            <value>
+                <fullName>RollCall</fullName>
+                <default>false</default>
+                <label>RollCall</label>
+            </value>
+            <value>
+                <fullName>Secure File Sharing</fullName>
+                <default>false</default>
+                <label>Secure File Sharing</label>
+            </value>
+            <value>
+                <fullName>Services</fullName>
+                <default>false</default>
+                <label>Services</label>
+            </value>
+            <value>
+                <fullName>Services - Activity Tracker</fullName>
+                <default>false</default>
+                <label>Services - Activity Tracker</label>
+            </value>
+            <value>
+                <fullName>Services - CID</fullName>
+                <default>false</default>
+                <label>Services - CID</label>
+            </value>
+            <value>
+                <fullName>Services - Conflicts</fullName>
+                <default>false</default>
+                <label>Services - Conflicts</label>
+            </value>
+            <value>
+                <fullName>Services - Intake</fullName>
+                <default>false</default>
+                <label>Services - Intake</label>
+            </value>
+            <value>
+                <fullName>Services - Intapp Time</fullName>
+                <default>false</default>
+                <label>Services - Intapp Time</label>
+            </value>
+            <value>
+                <fullName>Services - Integration Builder</fullName>
+                <default>false</default>
+                <label>Services - Integration Builder</label>
+            </value>
+            <value>
+                <fullName>Services - ISO 27001 Assessment</fullName>
+                <default>false</default>
+                <label>Services - ISO 27001 Assessment</label>
+            </value>
+            <value>
+                <fullName>Services - Open</fullName>
+                <default>false</default>
+                <label>Services - Open</label>
+            </value>
+            <value>
+                <fullName>Services - Roll Call</fullName>
+                <default>false</default>
+                <label>Services - Roll Call</label>
+            </value>
+            <value>
+                <fullName>Services - Time Capture</fullName>
+                <default>false</default>
+                <label>Services - Time Capture</label>
+            </value>
+            <value>
+                <fullName>Services - Time Entry</fullName>
+                <default>false</default>
+                <label>Services - Time Entry</label>
+            </value>
+            <value>
+                <fullName>Services - Time Mobile</fullName>
+                <default>false</default>
+                <label>Services - Time Mobile</label>
+            </value>
+            <value>
+                <fullName>Services - Wall Builder</fullName>
+                <default>false</default>
+                <label>Services - Wall Builder</label>
+            </value>
+            <value>
+                <fullName>SmartLink</fullName>
+                <default>false</default>
+                <label>SmartLink</label>
+            </value>
+            <value>
+                <fullName>Standard - Cloud</fullName>
+                <default>false</default>
+                <label>Standard - Cloud</label>
+            </value>
+            <value>
+                <fullName>Support - Extended</fullName>
+                <default>false</default>
+                <label>Support - Extended</label>
+            </value>
+            <value>
+                <fullName>Support - Premium</fullName>
+                <default>false</default>
+                <label>Support - Premium</label>
+            </value>
+            <value>
+                <fullName>TB and DTE Upgraded to Time Management</fullName>
+                <default>false</default>
+                <label>TB and DTE Upgraded to Time Management</label>
+            </value>
+            <value>
+                <fullName>TB for TM - Historic</fullName>
+                <default>false</default>
+                <label>TB for TM - Historic</label>
+            </value>
+            <value>
+                <fullName>Terms of Business</fullName>
+                <default>false</default>
+                <label>Terms of Business</label>
+            </value>
+            <value>
+                <fullName>TFG - Custom</fullName>
+                <default>false</default>
+                <label>TFG - Custom</label>
+            </value>
+            <value>
+                <fullName>TFG - NBI</fullName>
+                <default>false</default>
+                <label>TFG - NBI</label>
+            </value>
+            <value>
+                <fullName>TFG - Other</fullName>
+                <default>false</default>
+                <label>TFG - Other</label>
+            </value>
+            <value>
+                <fullName>TFG - Utility</fullName>
+                <default>false</default>
+                <label>TFG - Utility</label>
+            </value>
+            <value>
+                <fullName>Third Party Product - D&amp;B</fullName>
+                <default>false</default>
+                <label>Third Party Product - D&amp;B</label>
+            </value>
+            <value>
+                <fullName>Third Party Product - Experience</fullName>
+                <default>false</default>
+                <label>Third Party Product - Experience</label>
+            </value>
+            <value>
+                <fullName>Time Builder Added to Time Management</fullName>
+                <default>false</default>
+                <label>Time Builder Added to Time Management</label>
+            </value>
+            <value>
+                <fullName>Time Builder for Mobility</fullName>
+                <default>false</default>
+                <label>Time Builder for Mobility</label>
+            </value>
+            <value>
+                <fullName>Time Builder for Time Capture</fullName>
+                <color>#78C953</color>
+                <default>false</default>
+                <label>Time Builder for Time Capture</label>
+            </value>
+            <value>
+                <fullName>Time Capture</fullName>
+                <default>false</default>
+                <label>Time Capture</label>
+            </value>
+            <value>
+                <fullName>Time Entry</fullName>
+                <default>false</default>
+                <label>Time Entry</label>
+            </value>
+            <value>
+                <fullName>Time Management</fullName>
+                <color>#009900</color>
+                <default>false</default>
+                <label>Time Management</label>
+            </value>
+            <value>
+                <fullName>Total Time</fullName>
+                <default>false</default>
+                <label>Total Time</label>
+            </value>
+            <value>
+                <fullName>Total Time Cloud</fullName>
+                <default>false</default>
+                <label>Total Time Cloud</label>
+            </value>
+            <value>
+                <fullName>Training</fullName>
+                <default>false</default>
+                <label>Training</label>
+            </value>
+            <value>
+                <fullName>Upsell to IB Advanced</fullName>
+                <default>false</default>
+                <label>Upsell to IB Advanced</label>
+            </value>
+            <value>
+                <fullName>Upsell to Intapp Time:  Capture, Firmwide</fullName>
+                <default>false</default>
+                <label>Upsell to Intapp Time:  Capture, Firmwide</label>
+            </value>
+            <value>
+                <fullName>Upsell to Intapp Time: Core Limited</fullName>
+                <default>false</default>
+                <label>Upsell to Intapp Time: Core Limited</label>
+            </value>
+            <value>
+                <fullName>Upsell to Intapp Time: Core Management</fullName>
+                <default>false</default>
+                <label>Upsell to Intapp Time: Core Management</label>
+            </value>
+            <value>
+                <fullName>Upsell to Intapp Time: Total Management</fullName>
+                <default>false</default>
+                <label>Upsell to Intapp Time: Total Management</label>
+            </value>
+            <value>
+                <fullName>Upsell to Mobile-Only, Firmwide</fullName>
+                <default>false</default>
+                <label>Upsell to Mobile-Only, Firmwide</label>
+            </value>
+            <value>
+                <fullName>Upsell to Total Time</fullName>
+                <default>false</default>
+                <label>Upsell to Total Time</label>
+            </value>
+            <value>
+                <fullName>Upsell to Total Time Cloud</fullName>
+                <default>false</default>
+                <label>Upsell to Total Time Cloud</label>
+            </value>
+            <value>
+                <fullName>Wall Builder</fullName>
+                <color>#E27001</color>
+                <default>false</default>
+                <label>Wall Builder</label>
+            </value>
+            <value>
+                <fullName>Wall Builder: Additional Module</fullName>
+                <default>false</default>
+                <label>Wall Builder: Additional Module</label>
+            </value>
+            <value>
+                <fullName>Wall Builder: Advanced Security Package</fullName>
+                <default>false</default>
+                <label>Wall Builder: Advanced Security Package</label>
+            </value>
+            <value>
+                <fullName>Wall Builder: Auditing Package</fullName>
+                <default>false</default>
+                <label>Wall Builder: Auditing Package</label>
+            </value>
+            <value>
+                <fullName>Wall Builder: Confidentiality Package</fullName>
+                <default>false</default>
+                <label>Wall Builder: Confidentiality Package</label>
+            </value>
+            <value>
+                <fullName>Confidentiality Plus</fullName>
+                <default>false</default>
+                <label>Wall Builder: Confidentiality Plus</label>
+            </value>
+            <value>
+                <fullName>Wall Builder: DMS Package</fullName>
+                <default>false</default>
+                <label>Wall Builder: DMS Package</label>
+            </value>
+            <value>
+                <fullName>Wall Builder: Matter Security Package</fullName>
+                <default>false</default>
+                <label>Wall Builder: Matter Security Package</label>
+            </value>
+            <value>
+                <fullName>Wall Builder: Upsell to Advanced Security Package</fullName>
+                <default>false</default>
+                <label>Wall Builder: Upsell to Advanced Security Package</label>
+            </value>
+            <value>
+                <fullName>Wall Builder: Upsell to Auditing Package</fullName>
+                <default>false</default>
+                <label>Wall Builder: Upsell to Auditing Package</label>
+            </value>
+            <value>
+                <fullName>Wall Builder: Upsell to Confidentiality Package</fullName>
+                <default>false</default>
+                <label>Wall Builder: Upsell to Confidentiality Package</label>
+            </value>
+            <value>
+                <fullName>Wall Builder: Upsell to Matter Security Package</fullName>
+                <default>false</default>
+                <label>Wall Builder: Upsell to Matter Security Package</label>
+            </value>
+            <value>
+                <fullName>Walls and Time Builder</fullName>
+                <default>false</default>
+                <label>Walls and Time Builder</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Time - Cloud</controllingFieldValue>
+            <valueName>Rekoop - Time Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - Cloud</controllingFieldValue>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>RollCall</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - Cloud</controllingFieldValue>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>LegalKey - Legacy</controllingFieldValue>
+            <controllingFieldValue>Experience - On Prem</controllingFieldValue>
+            <controllingFieldValue>Experience - Cloud</controllingFieldValue>
+            <controllingFieldValue>TFG - Legacy</controllingFieldValue>
+            <controllingFieldValue>Records Management</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - Cloud</controllingFieldValue>
+            <valueName>Services</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - Cloud</controllingFieldValue>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Services - Intapp Time</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - Cloud</controllingFieldValue>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Services - Roll Call</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - Cloud</controllingFieldValue>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Services - Time Capture</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - Cloud</controllingFieldValue>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Services - Time Entry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - Cloud</controllingFieldValue>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Services - Time Mobile</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - Cloud</controllingFieldValue>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>TFG - Legacy</controllingFieldValue>
+            <controllingFieldValue>Records Management</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>Support - Extended</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - Cloud</controllingFieldValue>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>TFG - Legacy</controllingFieldValue>
+            <controllingFieldValue>Records Management</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>Support - Premium</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - Cloud</controllingFieldValue>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>TB and DTE Upgraded to Time Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - Cloud</controllingFieldValue>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>TB for TM - Historic</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - Cloud</controllingFieldValue>
+            <valueName>Total Time Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - Cloud</controllingFieldValue>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>LegalKey - Legacy</controllingFieldValue>
+            <controllingFieldValue>Experience - On Prem</controllingFieldValue>
+            <controllingFieldValue>Experience - Cloud</controllingFieldValue>
+            <controllingFieldValue>Integrate - Cloud</controllingFieldValue>
+            <controllingFieldValue>Multiple Products - On Prem</controllingFieldValue>
+            <controllingFieldValue>Pricing - On Prem</controllingFieldValue>
+            <controllingFieldValue>TFG - Legacy</controllingFieldValue>
+            <controllingFieldValue>Records Management</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - Cloud</controllingFieldValue>
+            <valueName>Training</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - Cloud</controllingFieldValue>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Upsell to Total Time Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - Cloud</controllingFieldValue>
+            <valueName>AI Module</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>DTE Added to Time Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>DTE Axiom</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>DTE Axiom Mobile</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>DTE Legacy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <valueName>eBillingHub Module</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Intapp Time: Capture, Firmwide</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Intapp Time: Compliance Module</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Intapp Time: Core Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Intapp Time:  Mobile Only, Firmwide</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Intapp Time:  Mobile Only, Point of Entry Bundle</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Intapp Time: Total Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Integration, Walls and Time Builder</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Integration and Time Builder</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Mobile</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Mobile Only</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Mobility Module</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>TFG - Legacy</controllingFieldValue>
+            <controllingFieldValue>Records Management</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>None</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>TFG - Legacy</controllingFieldValue>
+            <controllingFieldValue>Records Management</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Time Builder Added to Time Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Time Builder for Mobility</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Time Builder for Time Capture</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Time Capture</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Time Entry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Time Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Total Time</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Upsell to Intapp Time:  Capture, Firmwide</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Upsell to Intapp Time: Core Limited</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Upsell to Intapp Time: Core Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Upsell to Intapp Time: Total Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Upsell to Mobile-Only, Firmwide</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Upsell to Total Time</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <valueName>Walls and Time Builder</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>LegalKey - Legacy</controllingFieldValue>
+            <valueName>LegalKey Conflicts</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>LegalKey - Legacy</controllingFieldValue>
+            <valueName>LegalKey Critical Dates</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>LegalKey - Legacy</controllingFieldValue>
+            <controllingFieldValue>Records Management</controllingFieldValue>
+            <valueName>LegalKey Records Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Experience - On Prem</controllingFieldValue>
+            <controllingFieldValue>Experience - Cloud</controllingFieldValue>
+            <valueName>Experience</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Experience - On Prem</controllingFieldValue>
+            <controllingFieldValue>Experience - Cloud</controllingFieldValue>
+            <valueName>Experience Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integrate - Cloud</controllingFieldValue>
+            <valueName>Advanced Flow</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integrate - Cloud</controllingFieldValue>
+            <valueName>Flow &amp; IB: Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integrate - Cloud</controllingFieldValue>
+            <valueName>Flow Enterprise</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integrate - Cloud</controllingFieldValue>
+            <valueName>Intapp Flow - Extranet</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integrate - Cloud</controllingFieldValue>
+            <valueName>Integrate: Cloud Connect</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integrate - Cloud</controllingFieldValue>
+            <valueName>Integrate Managed Service</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Multiple Products - On Prem</controllingFieldValue>
+            <valueName>Intapp Prime</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Multiple Products - On Prem</controllingFieldValue>
+            <valueName>Multiple Products</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Pricing - On Prem</controllingFieldValue>
+            <controllingFieldValue>Pricing - Cloud</controllingFieldValue>
+            <valueName>Open Pricing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>TFG - Legacy</controllingFieldValue>
+            <controllingFieldValue>Records Management</controllingFieldValue>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>CG Analyze</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>TFG - Legacy</controllingFieldValue>
+            <controllingFieldValue>Records Management</controllingFieldValue>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>CG Clear</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>TFG - Legacy</controllingFieldValue>
+            <controllingFieldValue>Records Management</controllingFieldValue>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>CG Enterprise - Analyze</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>TFG - Legacy</controllingFieldValue>
+            <controllingFieldValue>Records Management</controllingFieldValue>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>CG Enterprise - Flow</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>TFG - Legacy</controllingFieldValue>
+            <controllingFieldValue>Records Management</controllingFieldValue>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>CG Enterprise - Protect</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>TFG - Legacy</controllingFieldValue>
+            <controllingFieldValue>Records Management</controllingFieldValue>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>CG Flow</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>TFG - Legacy</controllingFieldValue>
+            <controllingFieldValue>Records Management</controllingFieldValue>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>CG Hold</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>TFG - Legacy</controllingFieldValue>
+            <controllingFieldValue>Records Management</controllingFieldValue>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>CG Lateral Hire</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>TFG - Legacy</controllingFieldValue>
+            <controllingFieldValue>Records Management</controllingFieldValue>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>CG Mobile</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>TFG - Legacy</controllingFieldValue>
+            <controllingFieldValue>Records Management</controllingFieldValue>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>CG Protect</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>TFG - Legacy</controllingFieldValue>
+            <controllingFieldValue>Records Management</controllingFieldValue>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>TFG - Custom</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>TFG - Legacy</controllingFieldValue>
+            <controllingFieldValue>Records Management</controllingFieldValue>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>TFG - NBI</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>TFG - Legacy</controllingFieldValue>
+            <controllingFieldValue>Records Management</controllingFieldValue>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>TFG - Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>TFG - Legacy</controllingFieldValue>
+            <controllingFieldValue>Records Management</controllingFieldValue>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>TFG - Utility</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Terms - On Prem</controllingFieldValue>
+            <controllingFieldValue>Terms - Cloud</controllingFieldValue>
+            <valueName>Terms of Business</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <valueName>Intapp Open:  Advanced Conflicts</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <valueName>Intapp Open: Conflicts</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>Intapp Open: Conflicts and Intake</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <valueName>Intapp Open:  Connected Conflicts</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <valueName>Services - Conflicts</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>Services - ISO 27001 Assessment</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Conflicts - On Prem</controllingFieldValue>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>Services - Open</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>Intapp Open: Intake Advanced</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>Intapp Open: Intake – Assessments Module</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>Intapp Open: Intake - Document Assembly Module</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>Intapp Open: Intake - Engagement Letter Module</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>Intapp Open: Intake Extend</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>Intapp Open: Intake Standard</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>Intapp Open Workflow - Limited License</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>Intapp Open Workflow - Standard License</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake - On Prem</controllingFieldValue>
+            <valueName>Services - Intake</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Terms - Cloud</controllingFieldValue>
+            <valueName>Intapp Open - Terms of Business - Cloud</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

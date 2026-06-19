@@ -1,0 +1,3038 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Deal_Owner</name>
+        <label>Assign Opportunity Owner</label>
+        <locationX>1634</locationX>
+        <locationY>503</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.OwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varAccountOwner</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>OP4I_OSA_Formula_to_Text</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Type</name>
+        <label>Assign Type</label>
+        <locationX>1502</locationX>
+        <locationY>1019</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Type</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Amendment</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Set_Bill_to_Account_Account_Name</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Change_Request</name>
+        <label>Change Request</label>
+        <locationX>2426</locationX>
+        <locationY>5219</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Services_Project_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Change Request</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>X14_Intapp_Prime</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>clean_the_value</name>
+        <label>clean the value</label>
+        <locationX>1634</locationX>
+        <locationY>2219</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Entering_Funnel_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>formula_1_myRule_4_A1_6103619939</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Entering_Funnel_Date_created</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Clear_Advance_AcceptedAssig</name>
+        <label>Clear Advance AcceptedAssig</label>
+        <locationX>1634</locationX>
+        <locationY>3419</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Advance_Accepted__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Opportunity_Accepted1</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Clear_Rejection_Reason</name>
+        <label>Clear Rejection Reason</label>
+        <locationX>1634</locationX>
+        <locationY>4019</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Acceptance_Date__c</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Rejection_Reasons__c</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <connector>
+            <targetReference>Populate_default_value1</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Consulting</name>
+        <label>Consulting</label>
+        <locationX>50</locationX>
+        <locationY>5219</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Services_Project_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Consulting</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>X14_Intapp_Prime</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Copy_1_of_Assign_Type</name>
+        <label>Copy 1 of Assign Type</label>
+        <locationX>1766</locationX>
+        <locationY>1019</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Type</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Renewal</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Set_Bill_to_Account_Account_Name</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Early_Adopter</name>
+        <label>Early Adopter</label>
+        <locationX>2162</locationX>
+        <locationY>5219</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Services_Project_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Early Adopter</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>X14_Intapp_Prime</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Entering_Funnel_Date</name>
+        <label>Entering Funnel Date</label>
+        <locationX>1634</locationX>
+        <locationY>2519</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Entering_Funnel_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>formula_2_myRule_7_A1_4899296448</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>recurring_adjustment_follow_up</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Intapp_Prime</name>
+        <label>Intapp Prime</label>
+        <locationX>842</locationX>
+        <locationY>5219</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Services_Project_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Intapp Prime</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>X14_Intapp_Prime</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Managed_Service</name>
+        <label>Managed Service</label>
+        <locationX>1634</locationX>
+        <locationY>5219</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Services_Project_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Managed Service</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>X14_Intapp_Prime</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>New_Implementation</name>
+        <label>New Implementation</label>
+        <locationX>314</locationX>
+        <locationY>5219</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Services_Project_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>New Implementation</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>X14_Intapp_Prime</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>NullCondition</name>
+        <label>NullCondition</label>
+        <locationX>3218</locationX>
+        <locationY>5219</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Services_Project_Type__c</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <connector>
+            <targetReference>X14_Intapp_Prime</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>OP4I_OSA_Formula_to_Text</name>
+        <label>OP4I OSA Formula to Text</label>
+        <locationX>1766</locationX>
+        <locationY>695</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.OP4I_OSA__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>OP4IOSAFormula</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Primary_Quote</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Populate_Advance_Date</name>
+        <label>Populate Advance Date</label>
+        <locationX>1634</locationX>
+        <locationY>3119</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Advance_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Date</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Clear_Advance_Accepted</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Populate_Primary_Services_Provider</name>
+        <label>Populate Primary Services Provider</label>
+        <locationX>1634</locationX>
+        <locationY>4919</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Services_Partner__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Account.Primary_Services_Provider__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>DecisionBox</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Populate_weekly_deal_review</name>
+        <label>Populate weekly deal review</label>
+        <locationX>1634</locationX>
+        <locationY>4319</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Weekly_Deal_Review_Notes__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>PopulateweeklydealreviewFormula</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>X0_Accounting_Consulting</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Services_Only</name>
+        <label>Services Only</label>
+        <locationX>1370</locationX>
+        <locationY>5219</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Services_Project_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Services Only</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>X14_Intapp_Prime</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Services_Project_type</name>
+        <label>Services Project type</label>
+        <locationX>2954</locationX>
+        <locationY>5219</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Services_Project_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Consulting Services – Internal</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>X14_Intapp_Prime</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Solution_Extension_Module</name>
+        <label>Solution Extension / Module</label>
+        <locationX>1898</locationX>
+        <locationY>5219</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Services_Project_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Solution Extension / Module</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>X14_Intapp_Prime</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>SOW_Amendment</name>
+        <label>SOW Amendment</label>
+        <locationX>2690</locationX>
+        <locationY>5219</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Services_Project_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>SOW Amendment</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>X14_Intapp_Prime</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Test_PB_52534</name>
+        <label>Test PB 52534</label>
+        <locationX>3350</locationX>
+        <locationY>7475</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Opportunity_Closed_Won_Notification_Fire__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Renewal At Risk</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Test_PB_Rule</name>
+        <label>Test PB Rule</label>
+        <locationX>1634</locationX>
+        <locationY>5519</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Opportunity_Closed_Won_Notification_Fire__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Intapp Prime</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>X1_Segment_lead_notification</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Test_PB_Rule1</name>
+        <label>Test PB Rule1</label>
+        <locationX>1634</locationX>
+        <locationY>5819</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Opportunity_Closed_Won_Notification_Fire__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Engagement Letter</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>X0_OnePlace</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Test_PB_rule11</name>
+        <label>Test PB rule11</label>
+        <locationX>1766</locationX>
+        <locationY>6527</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Opportunity_Closed_Won_Notification_Fire__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Sales Notification for equal or less than 20K</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Test_PB_Rule12</name>
+        <label>Test PB Rule12</label>
+        <locationX>1502</locationX>
+        <locationY>6419</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Opportunity_Closed_Won_Notification_Fire__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Sales Notification for greater than 20K</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Test_PB_Rule2</name>
+        <label>Test PB Rule2</label>
+        <locationX>1634</locationX>
+        <locationY>6119</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Opportunity_Closed_Won_Notification_Fire__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>OnePlace</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>X1_Sales_Notification_for_greater_than_20K</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Test_PB_Rule234</name>
+        <label>Test PB Rule234</label>
+        <locationX>2030</locationX>
+        <locationY>6635</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Opportunity_Closed_Won_Notification_Fire__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Training Opportunity Closed</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Test_PB_Rule2345</name>
+        <label>Test PB Rule2345</label>
+        <locationX>2682</locationX>
+        <locationY>6851</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Opportunity_Closed_Won_Notification_Fire__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Email Cancellation</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>X6_Cloud_Email_Cancellation</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Test_PB_Rule45</name>
+        <label>Test PB Rule45</label>
+        <locationX>2558</locationX>
+        <locationY>7151</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Opportunity_Closed_Won_Notification_Fire__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Cloud Email Cancellation</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Test_PB_Rule456</name>
+        <label>Test PB Rule456</label>
+        <locationX>2294</locationX>
+        <locationY>6743</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Opportunity_Closed_Won_Notification_Fire__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Billing Pause</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Test_PB_Rule533645</name>
+        <label>Test PB Rule533645</label>
+        <locationX>3614</locationX>
+        <locationY>7583</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Opportunity_Closed_Won_Notification_Fire__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Finance Catch All Notification</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Test_PB_Rule633</name>
+        <label>Test PB Rule633</label>
+        <locationX>2822</locationX>
+        <locationY>7259</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Opportunity_Closed_Won_Notification_Fire__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Services - Partner Opportunities closure</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Test_PB_Rule6332</name>
+        <label>Test PB Rule6332</label>
+        <locationX>3086</locationX>
+        <locationY>7367</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Opportunity_Closed_Won_Notification_Fire__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Legal - Consulting Services</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Training</name>
+        <label>Training</label>
+        <locationX>578</locationX>
+        <locationY>5219</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Services_Project_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Training</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>X14_Intapp_Prime</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Acceptance_Date</name>
+        <label>Update Acceptance Date</label>
+        <locationX>1634</locationX>
+        <locationY>3719</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Acceptance_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>AcceptanceDateToday</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Rejection_Reasons__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Opportunity_None_Value1</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>update_Bill_to_Account</name>
+        <label>update Bill to Account</label>
+        <locationX>1634</locationX>
+        <locationY>1319</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Bill_to_Account__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.AccountId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Account_Baker_McKenzie</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Bill_to_Account1</name>
+        <label>Update Bill to Account</label>
+        <locationX>1634</locationX>
+        <locationY>1619</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Bill_to_Account__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Label.BillToAccount_Label</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Recurring_Amount_Update</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>update_dropdown</name>
+        <label>update dropdown</label>
+        <locationX>1634</locationX>
+        <locationY>2819</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Recurring_Adjustment_Follow_Up_checkbox__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Recurring Adjustment Required</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Advance_Accepted1</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Quota_Credit_field</name>
+        <label>Update Quota Credit field</label>
+        <locationX>1634</locationX>
+        <locationY>1919</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Quota_Credit__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Maintenance_Amount__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Entering_Funnel_Date_created_pre_funnel</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_service_lead</name>
+        <label>Update service lead</label>
+        <locationX>842</locationX>
+        <locationY>4619</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Services_Lead__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>005500000016EesAAE</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>services_partner_is_Blank</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Service_Lead1</name>
+        <label>Update Service Lead1</label>
+        <locationX>1106</locationX>
+        <locationY>4619</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Services_Lead__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>00550000005hzhlAAA</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>services_partner_is_Blank</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Service_Lead2</name>
+        <label>Update Service Lead2</label>
+        <locationX>1370</locationX>
+        <locationY>4619</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Services_Lead__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>00550000005PvuzAAC</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>services_partner_is_Blank</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Service_Lead3</name>
+        <label>Update Service Lead</label>
+        <locationX>1634</locationX>
+        <locationY>4619</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Services_Lead__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>00550000001NiJbAAK</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>services_partner_is_Blank</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Service_lead4</name>
+        <label>Update Service lead4</label>
+        <locationX>1898</locationX>
+        <locationY>4619</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Services_Lead__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>00550000001NiJbAAK</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>services_partner_is_Blank</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_service_lead_partner</name>
+        <label>Update service lead partner</label>
+        <locationX>2426</locationX>
+        <locationY>4619</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Services_Lead__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>00550000004aNFbAAM</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>services_partner_is_Blank</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_service_lead_restoftheworld</name>
+        <label>Update service lead - restoftheworld</label>
+        <locationX>2162</locationX>
+        <locationY>4619</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Services_Lead__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>00550000001PF10AAG</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>services_partner_is_Blank</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Upgrade</name>
+        <label>Upgrade</label>
+        <locationX>1106</locationX>
+        <locationY>5219</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Services_Project_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Upgrade</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>X14_Intapp_Prime</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Account_Baker_McKenzie</name>
+        <label>Account=Baker McKenzie</label>
+        <locationX>1766</locationX>
+        <locationY>1511</locationY>
+        <defaultConnector>
+            <targetReference>Recurring_Amount_Update</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_Account=Baker McKenzie</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_Account_Baker_McKenzie</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Account.IntApp_Account_Number__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>A200184</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.AccountId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>$Label.AccountIdLabel</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Bill_to_Account1</targetReference>
+            </connector>
+            <label>TRUE_Account=Baker McKenzie</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Advance_Accepted1</name>
+        <label>Advance Accepted1</label>
+        <locationX>1766</locationX>
+        <locationY>3011</locationY>
+        <defaultConnector>
+            <targetReference>Clear_Advance_Accepted</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Advance_Accepted</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>AdvAcceptedFormula</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Populate_Advance_Date</targetReference>
+            </connector>
+            <label>Advance Accepted</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_if_Oppty_Originated_from_SF</name>
+        <label>Check if Oppty Originated from SF</label>
+        <locationX>1766</locationX>
+        <locationY>287</locationY>
+        <defaultConnector>
+            <targetReference>OP4I_OSA_Formula_to_Text</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Originated_From_SF</name>
+            <conditionLogic>1 AND 2</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Source_System__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>SFDC</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>isNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Deal_Owner</targetReference>
+            </connector>
+            <label>Originated From SF</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Type</name>
+        <label>Check Type</label>
+        <locationX>1766</locationX>
+        <locationY>911</locationY>
+        <defaultConnector>
+            <targetReference>Set_Bill_to_Account_Account_Name</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Amendment</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__AmendedContract__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Type</targetReference>
+            </connector>
+            <label>Amendment</label>
+        </rules>
+        <rules>
+            <name>Renewal</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__RenewedContract__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_1_of_Assign_Type</targetReference>
+            </connector>
+            <label>Renewal</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Clear_Advance_Accepted</name>
+        <label>Clear Advance Accepted</label>
+        <locationX>1766</locationX>
+        <locationY>3311</locationY>
+        <defaultConnector>
+            <targetReference>Opportunity_Accepted1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Clear_Advance</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>ClearAdvanceAcceptedtrue</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Clear_Advance_AcceptedAssig</targetReference>
+            </connector>
+            <label>Clear Advance</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>DecisionBox</name>
+        <label>DecisionBox</label>
+        <locationX>1766</locationX>
+        <locationY>5111</locationY>
+        <defaultConnector>
+            <targetReference>X14_Intapp_Prime</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_Consulting</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_3s</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Consulting</targetReference>
+            </connector>
+            <label>TRUE_Consulting</label>
+        </rules>
+        <rules>
+            <name>TRUE_New_Implementation</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_5s</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>New_Implementation</targetReference>
+            </connector>
+            <label>TRUE_New Implementation</label>
+        </rules>
+        <rules>
+            <name>TRUE_Training</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_7s</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Training</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>TRUE_Training</label>
+        </rules>
+        <rules>
+            <name>TRUE_Intapp_Prime</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_9s</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Intapp_Prime</targetReference>
+            </connector>
+            <label>TRUE_Intapp Prime</label>
+        </rules>
+        <rules>
+            <name>TRUE_Upgrade</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_11s</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Upgrade</targetReference>
+            </connector>
+            <label>TRUE_Upgrade</label>
+        </rules>
+        <rules>
+            <name>TRUE_Services_Only</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_13s</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Services_Only</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>TRUE_Services Only</label>
+        </rules>
+        <rules>
+            <name>TRUE_Managed_Service</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_15s</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Managed_Service</targetReference>
+            </connector>
+            <label>TRUE_Managed Service</label>
+        </rules>
+        <rules>
+            <name>TRUE_Solution_Extension_Module</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_17s</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Solution_Extension_Module</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>TRUE_Solution Extension / Module</label>
+        </rules>
+        <rules>
+            <name>TRUE_Early_Adopter</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_19s</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Early_Adopter</targetReference>
+            </connector>
+            <label>TRUE_Early Adopter</label>
+        </rules>
+        <rules>
+            <name>TRUE_Change_Request</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_21s</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Change_Request</targetReference>
+            </connector>
+            <label>TRUE_Change Request</label>
+        </rules>
+        <rules>
+            <name>TRUE_SOW_Amendment</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_23s</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>SOW_Amendment</targetReference>
+            </connector>
+            <label>TRUE_SOW Amendment</label>
+        </rules>
+        <rules>
+            <name>TRUE_Consulting_Services_Internal</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_25s</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Services_Project_type</targetReference>
+            </connector>
+            <label>TRUE_Consulting Services – Internal</label>
+        </rules>
+        <rules>
+            <name>TRUE_Catch_all</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_27s</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>NullCondition</targetReference>
+            </connector>
+            <label>TRUE_Catch-all</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Entering_Funnel_Date_created</name>
+        <label>Entering Funnel Date (created)</label>
+        <locationX>1766</locationX>
+        <locationY>2411</locationY>
+        <defaultConnector>
+            <targetReference>recurring_adjustment_follow_up</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_Entering Funnel Date (created)</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_Entering_Funnel_Date_created</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_7</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Entering_Funnel_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Entering_Funnel_Date</targetReference>
+            </connector>
+            <label>TRUE_Entering Funnel Date (created)</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Entering_Funnel_Date_created_pre_funnel</name>
+        <label>Entering Funnel Date (created) pre funnel</label>
+        <locationX>1766</locationX>
+        <locationY>2111</locationY>
+        <defaultConnector>
+            <targetReference>Entering_Funnel_Date_created</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_Entering Funnel Date (created) pre funnel</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_Entering_Funnel_Date_created_pre_funnel</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_4</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>clean_the_value</targetReference>
+            </connector>
+            <label>TRUE_Entering Funnel Date (created) pre funnel</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Opportunity_Accepted1</name>
+        <label>Opportunity Accepted1</label>
+        <locationX>1766</locationX>
+        <locationY>3611</locationY>
+        <defaultConnector>
+            <targetReference>Opportunity_None_Value1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Opportunity_Accepted</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Opportunity_Accepted__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Yes</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Opportunity_Accepted__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Acceptance_Date</targetReference>
+            </connector>
+            <label>Opportunity Accepted</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Opportunity_None_Value1</name>
+        <label>Opportunity None Value1</label>
+        <locationX>1766</locationX>
+        <locationY>3911</locationY>
+        <defaultConnector>
+            <targetReference>Populate_default_value1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Opportunity_None_Value</name>
+            <conditionLogic>(1 AND 2) OR (1 AND 2 AND 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Opportunity_Accepted__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Opportunity_Accepted__c</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Rejection_Reasons__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>Clear_Rejection_Reason</targetReference>
+            </connector>
+            <label>Opportunity None Value</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Populate_default_value1</name>
+        <label>Populate default value1</label>
+        <locationX>1766</locationX>
+        <locationY>4211</locationY>
+        <defaultConnector>
+            <targetReference>X0_Accounting_Consulting</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Populate_default_value</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Weekly_Deal_Review_Notes__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed Won</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Populate_weekly_deal_review</targetReference>
+            </connector>
+            <label>Populate default value</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>recurring_adjustment_follow_up</name>
+        <label>recurring adjustment follow up</label>
+        <locationX>1766</locationX>
+        <locationY>2711</locationY>
+        <defaultConnector>
+            <targetReference>Advance_Accepted1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_recurring_adjustment_follow_up</name>
+            <conditionLogic>(5 AND 6 AND 7) AND ((1  OR 2 ) OR (3  OR 4 )) OR (7 AND 8 AND 6 AND 5 AND NOT(9) AND NOT(10))  AND 11 AND 12</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Primary_Quote.Year2_Subscription_Exists__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Primary_Quote.Year3_Subscription_Exists__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Primary_Quote.Year4_Subscription_Exists__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Primary_Quote.Year5_Subscription_Exists__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed Won</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Primary_Quote.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Primary_Quote.master_product_pins_from_all_quote_lines__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>GE-01192</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Primary_Quote.master_product_pins_from_all_quote_lines__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>GE-01554</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Primary_Quote.master_product_pins_from_all_quote_lines__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>GE-01553</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Subscription_Credit__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Recurring_Adjustment_Follow_Up_checkbox__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>update_dropdown</targetReference>
+            </connector>
+            <label>TRUE_recurring adjustment follow up</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Recurring_Amount_Update</name>
+        <label>Recurring Amount Update</label>
+        <locationX>1766</locationX>
+        <locationY>1811</locationY>
+        <defaultConnector>
+            <targetReference>Entering_Funnel_Date_created_pre_funnel</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Recurring_Amount_Update1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Maintenance_Amount__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Quota_Credit_field</targetReference>
+            </connector>
+            <label>Recurring Amount Update1</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>services_partner_is_Blank</name>
+        <label>services partner is Blank</label>
+        <locationX>1766</locationX>
+        <locationY>4811</locationY>
+        <defaultConnector>
+            <targetReference>DecisionBox</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_services partner is Blank</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_services_partner_is_Blank</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_1s</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Services_Partner__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Populate_Primary_Services_Provider</targetReference>
+            </connector>
+            <label>TRUE_services partner is Blank</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Set_Bill_to_Account_Account_Name</name>
+        <label>Set Bill to Account = Account Name</label>
+        <locationX>1766</locationX>
+        <locationY>1211</locationY>
+        <defaultConnector>
+            <targetReference>Account_Baker_McKenzie</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_Set Bill to Account = Account Name</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_Set_Bill_to_Account_Account_Name</name>
+            <conditionLogic>(1 AND 2  AND 3) OR (1 AND 4)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Account.IntApp_Account_Number__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>A200184</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Bill_to_Account__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.AccountId</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Bill_to_Account__c</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>update_Bill_to_Account</targetReference>
+            </connector>
+            <label>TRUE_Set Bill to Account = Account Name</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>X0_Accounting_Consulting</name>
+        <label>0.Accounting/Consulting</label>
+        <locationX>1766</locationX>
+        <locationY>4511</locationY>
+        <defaultConnector>
+            <targetReference>services_partner_is_Blank</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_0_Accounting_Consulting</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_service_lead</targetReference>
+            </connector>
+            <label>TRUE_0.Accounting/Consulting</label>
+        </rules>
+        <rules>
+            <name>TRUE_1_NA_Legal_South_APAC_s</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_3</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Service_Lead1</targetReference>
+            </connector>
+            <label>TRUE_1. NA Legal South/APAC-s</label>
+        </rules>
+        <rules>
+            <name>TRUE_2_NA_Legal_North_Geography_NOT_APAC_s</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_5</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Service_Lead2</targetReference>
+            </connector>
+            <label>TRUE_2. NA Legal North  , Geography: NOT APAC-s</label>
+        </rules>
+        <rules>
+            <name>TRUE_3_NA_Legal_North_Geography_APAC_s</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_7new</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Service_Lead3</targetReference>
+            </connector>
+            <label>TRUE_3. NA Legal North, Geography: APAC-s</label>
+        </rules>
+        <rules>
+            <name>TRUE_4_EMEA_s</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_9</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Service_lead4</targetReference>
+            </connector>
+            <label>TRUE_4. EMEA-s</label>
+        </rules>
+        <rules>
+            <name>TRUE_5_Service_Lead_RestOftheworld_s</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_11</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_service_lead_restoftheworld</targetReference>
+            </connector>
+            <label>TRUE_5. Service Lead - RestOftheworld-s</label>
+        </rules>
+        <rules>
+            <name>TRUE_6_Services_Lead_Partner_s</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_13</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_service_lead_partner</targetReference>
+            </connector>
+            <label>TRUE_6. Services Lead - Partner-s</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>X0_OnePlace</name>
+        <label>0. OnePlace</label>
+        <locationX>1766</locationX>
+        <locationY>6011</locationY>
+        <defaultConnector>
+            <targetReference>X1_Sales_Notification_for_greater_than_20K</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_0. OnePlace</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_0_OnePlace</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>CampaignName</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>OnePlace</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed Won</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Test_PB_Rule2</targetReference>
+            </connector>
+            <label>TRUE_0. OnePlace</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>X12_Renewal_At_Risk</name>
+        <label>12. Renewal At Risk</label>
+        <locationX>3548</locationX>
+        <locationY>7367</locationY>
+        <defaultConnector>
+            <targetReference>X8_Finance_Catch_All_Notification</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_12_Renewal_At_Risk</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_4266</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Test_PB_52534</targetReference>
+            </connector>
+            <label>TRUE_12. Renewal At Risk</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>X14_Intapp_Prime</name>
+        <label>14. Intapp Prime</label>
+        <locationX>1766</locationX>
+        <locationY>5411</locationY>
+        <defaultConnector>
+            <targetReference>X1_Segment_lead_notification</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_14. Intapp Prime</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_14_Intapp_Prime</name>
+            <conditionLogic>(1 OR 2) AND 3 AND 4</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Intapp Prime</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Package__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Intapp Prime</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.IsWon</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.IsWon</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Test_PB_Rule</targetReference>
+            </connector>
+            <label>TRUE_14. Intapp Prime</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>X1_Sales_Notification_for_greater_than_20K</name>
+        <label>1. Sales Notification for greater than 20K</label>
+        <locationX>1766</locationX>
+        <locationY>6311</locationY>
+        <defaultConnector>
+            <targetReference>X2_Sales_Notification_for_equal_or_less_than_20K</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_1. Sales Notification for greater than 20K</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_1_Sales_Notification_for_greater_than_20K</name>
+            <conditionLogic>(1 OR 2 OR 3 OR 8 OR 9) AND 4 AND 5 AND 6 AND 7 AND 10</conditionLogic>
+            <conditions>
+                <leftValueReference>SaleCategory</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>New Product Customer</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SaleCategory</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Add-on Software</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SaleCategory</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>License Uplift</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed Won</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Exclude_from_Notifications__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Maintenance_Amount__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>20000.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SaleCategory</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Module</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SaleCategory</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Legal - Recurring Adjustment</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Test_PB_Rule12</targetReference>
+            </connector>
+            <label>TRUE_1. Sales Notification for greater than 20K</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>X1_Segment_lead_notification</name>
+        <label>-1. Segment lead notification</label>
+        <locationX>1766</locationX>
+        <locationY>5711</locationY>
+        <defaultConnector>
+            <targetReference>X0_OnePlace</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_1_Segment_lead_notification</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed Won</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Services_Opportunity_Product_Count__c</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Services_Project_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>New Implementation</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Services_Project_Type__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Intapp Prime</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Services_Project_Type__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Consulting</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Services_Project_Type__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Partner</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Test_PB_Rule1</targetReference>
+            </connector>
+            <label>TRUE_-1. Segment lead notification</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>X2_Sales_Notification_for_equal_or_less_than_20K</name>
+        <label>2. Sales Notification for equal or less than 20K</label>
+        <locationX>2029</locationX>
+        <locationY>6419</locationY>
+        <defaultConnector>
+            <targetReference>X3_Training_Opportunity_Closed</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_2_Sales_Notification_for_equal_or_less_than_20K</name>
+            <conditionLogic>(1 OR 2 OR 3 OR 8 OR 9) AND 4 AND 5 AND 6 AND 7 AND 10</conditionLogic>
+            <conditions>
+                <leftValueReference>SaleCategory</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>New Product Customer</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SaleCategory</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Add-on Software</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SaleCategory</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>License Uplift</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed Won</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Exclude_from_Notifications__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Maintenance_Amount__c</leftValueReference>
+                <operator>LessThanOrEqualTo</operator>
+                <rightValue>
+                    <numberValue>20000.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SaleCategory</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Module</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SaleCategory</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Recurring Adjustment</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Legal - Recurring Adjustment</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Test_PB_rule11</targetReference>
+            </connector>
+            <label>TRUE_2. Sales Notification for equal or less than 20K</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>X3_Training_Opportunity_Closed</name>
+        <label>3. Training Opportunity Closed</label>
+        <locationX>2292</locationX>
+        <locationY>6527</locationY>
+        <defaultConnector>
+            <targetReference>X4_Billing_Pause</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_3_Training_Opportunity_Closed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_283</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Test_PB_Rule234</targetReference>
+            </connector>
+            <label>TRUE_3. Training Opportunity Closed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>X4_Billing_Pause</name>
+        <label>4. Billing Pause</label>
+        <locationX>2554</locationX>
+        <locationY>6635</locationY>
+        <defaultConnector>
+            <targetReference>X5_Email_Cancellation</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_4_Billing_Pause</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_304</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Test_PB_Rule456</targetReference>
+            </connector>
+            <label>TRUE_4. Billing Pause</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>X5_Email_Cancellation</name>
+        <label>5. Email Cancellation</label>
+        <locationX>2814</locationX>
+        <locationY>6743</locationY>
+        <defaultConnector>
+            <targetReference>X6_Cloud_Email_Cancellation</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_5_Email_Cancellation</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_326</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Test_PB_Rule2345</targetReference>
+            </connector>
+            <label>TRUE_5. Email Cancellation</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>X6_Cloud_Email_Cancellation</name>
+        <label>6. Cloud Email Cancellation</label>
+        <locationX>2814</locationX>
+        <locationY>7043</locationY>
+        <defaultConnector>
+            <targetReference>X7_Services_Partner_Opportunities_closure</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_6_Cloud_Email_Cancellation</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_TRUE_myRule_347</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Test_PB_Rule45</targetReference>
+            </connector>
+            <label>TRUE_6. Cloud Email Cancellation</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>X7_Services_Partner_Opportunities_closure</name>
+        <label>7. Services - Partner Opportunities closure</label>
+        <locationX>3070</locationX>
+        <locationY>7151</locationY>
+        <defaultConnector>
+            <targetReference>X9_Legal_Consulting_Services</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_7_Services_Partner_Opportunities_closure</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Services - Partner</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed Won</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Exclude_from_Notifications__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Test_PB_Rule633</targetReference>
+            </connector>
+            <label>TRUE_7. Services - Partner Opportunities closure</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>X8_Finance_Catch_All_Notification</name>
+        <label>8. Finance Catch All Notification</label>
+        <locationX>3746</locationX>
+        <locationY>7475</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_8_Finance_Catch_All_Notification</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Exclude_from_Notifications__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.IsWon</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.IsWon</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Legal - Billing Paused/Restarted</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Training</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SaleCategory</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Accounting Only</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SaleCategory</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Acquired Contract</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SaleCategory</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>After Market Partner Tracking Only</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SaleCategory</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>New Software Product</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SaleCategory</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Module</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SaleCategory</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>License Uplift</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Services - Partner</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Legal - Entitlement Cleanup</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Legal - Consulting Services</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SaleCategory</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>User Count Uplift</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SaleCategory</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Churn</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SaleCategory</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>SFA</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Accounting Adjustment</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SaleCategory</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>New Product Customer</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SaleCategory</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Recurring Adjustment</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Platform Conversion - Internal Increase</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Platform Conversion - Internal Decrease</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Consulting Services - Internal</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Test_PB_Rule533645</targetReference>
+            </connector>
+            <label>TRUE_8. Finance Catch All Notification</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>X9_Legal_Consulting_Services</name>
+        <label>9. Legal - Consulting Services</label>
+        <locationX>3317</locationX>
+        <locationY>7259</locationY>
+        <defaultConnector>
+            <targetReference>X12_Renewal_At_Risk</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_9_Legal_Consulting_Services</name>
+            <conditionLogic>(3 OR 5) AND 1 AND 2 AND 4</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.IsWon</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.IsWon</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Legal - Consulting Services</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed Won</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Consulting Services - Internal</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Test_PB_Rule6332</targetReference>
+            </connector>
+            <label>TRUE_9. Legal - Consulting Services</label>
+        </rules>
+    </decisions>
+    <description>BIZ-71731 - Removed Opportunity close date update logics.
+Added opportunity type as part of BIZ-49086.
+BIZ-73453 - Updated Op4i OSA formula
+BIZ-73453 - Populate Op4i OSA from Contract Parent OSA and removed unused close date logic.
+BIZ-75845 - Cannot change opportunity owner on renewal in SFDC
+BIZ-77493 - OP4i deal owner should populate in insert case only
+BIZ-76610 - OP4i deal owner should populate in insert case only(Other, Cancellation, Amendment_to_Supercede, NextYear_MultiYear and Renewal)
+BIZ-79793 - Added is changed deal type logic
+BIZ-82919 - Removed Owner re-sync on update; Originated_From_SF rule now fires on insert only (Source_System = SFDC AND isNew = TRUE). OP4I is the single source of truth for Owner changes via Boomi.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>AcceptanceDateToday</name>
+        <dataType>Date</dataType>
+        <expression>TODAY ()</expression>
+    </formulas>
+    <formulas>
+        <name>AdvAcceptedFormula</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISCHANGED({!$Record.Advance_Accepted__c }),
+ISPICKVAL({!$Record.Advance_Accepted__c }, &apos;Yes&apos;))</expression>
+    </formulas>
+    <formulas>
+        <name>CampaignName</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.Campaign.Name}</expression>
+    </formulas>
+    <formulas>
+        <name>ClearAdvanceAcceptedtrue</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISCHANGED({!$Record.StageName }),
+OR(
+ISPICKVAL({!$Record.StageName}, &apos;Pre-funnel&apos;),
+ISPICKVAL({!$Record.StageName}, &apos;Qualify&apos;),
+ISPICKVAL({!$Record.StageName}, &apos;Verify&apos;)
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>Date</name>
+        <dataType>Date</dataType>
+        <expression>NOW()</expression>
+    </formulas>
+    <formulas>
+        <name>formula_1_myRule_4_A1_6103619939</name>
+        <dataType>Date</dataType>
+        <expression>Null</expression>
+    </formulas>
+    <formulas>
+        <name>formula_2_myRule_7_A1_4899296448</name>
+        <dataType>Date</dataType>
+        <expression>NOW()</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_1</name>
+        <dataType>Boolean</dataType>
+        <expression>OR ( 
+AND(ISNEW(),  
+ISPICKVAL({!$Record.Fulfilling_Entity__c},&quot;Intapp&quot;),
+ {!$Record.Sales_Territory__c =&quot;Accounting/Consulting&quot;   }),
+
+AND(
+    ISCHANGED({!$Record.Fulfilling_Entity__c}),
+    ISPICKVAL({!$Record.Fulfilling_Entity__c},&quot;Intapp&quot;),
+    {!$Record.Sales_Territory__c =&quot;Accounting/Consulting&quot;
+})
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_11</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+
+AND(
+    ISNEW(),
+    ISPICKVAL({!$Record.Fulfilling_Entity__c},&quot;Intapp&quot;),
+   OR (
+{!$Record.Geography__c=&quot;South America&quot;},
+{!$Record.Geography__c=&quot;Unknown geography&quot;})),
+
+AND(
+    ISCHANGED({!$Record.Fulfilling_Entity__c}),
+    ISPICKVAL({!$Record.Fulfilling_Entity__c},&quot;To be determined&quot;),
+   OR (
+{!$Record.Geography__c=&quot;South America&quot;},
+{!$Record.Geography__c=&quot;Unknown geography&quot;}))
+
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_11s</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT(ISBLANK(TEXT({!$Record.Type}))),
+NOT(ISBLANK({!$Record.Contract_Signer__c })),
+OR(
+ISNEW(),
+ISCHANGED({!$Record.Type}) 
+),
+OR(
+ISPICKVAL({!$Record.Type}, &apos;Upgrade&apos;)
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_13</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+AND(
+    ISNEW(),
+OR(
+ISPICKVAL({!$Record.Fulfilling_Entity__c},&quot;Partner - Intapp paper&quot;),
+ISPICKVAL({!$Record.Fulfilling_Entity__c},&quot;Partner - Partner paper&quot;),
+ISPICKVAL({!$Record.Fulfilling_Entity__c},&quot;Partner - Intapp paper (blended)&quot;))),
+
+
+
+
+
+AND(
+    ISCHANGED({!$Record.Fulfilling_Entity__c}),
+OR(
+ISPICKVAL({!$Record.Fulfilling_Entity__c},&quot;Partner - Intapp paper&quot;),
+ISPICKVAL({!$Record.Fulfilling_Entity__c},&quot;Partner - Partner paper&quot;),
+ISPICKVAL({!$Record.Fulfilling_Entity__c},&quot;Partner - Intapp paper (blended)&quot;)))
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_13s</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT(ISBLANK(TEXT({!$Record.Type}))),
+OR(
+ISNEW(),
+ISCHANGED({!$Record.Type}) 
+),
+OR(
+ISPICKVAL({!$Record.Type}, &apos;Legal - Additional Services&apos;),
+ISPICKVAL({!$Record.Type}, &apos;Services - Partner&apos;)
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_15s</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT(ISBLANK(TEXT({!$Record.Type}))),
+OR(
+ISNEW(),
+ISCHANGED({!$Record.Type}) 
+),
+OR(
+ISPICKVAL({!$Record.Type}, &apos;Managed Service&apos;)
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_17s</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT(ISBLANK(TEXT({!$Record.Type}))),
+OR(
+ISNEW(),
+ISCHANGED({!$Record.Type}) 
+),
+OR(
+ISPICKVAL({!$Record.Type}, &apos;Legal - Add-on module&apos;)
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_19s</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT(ISBLANK(TEXT({!$Record.Type}))),
+OR(
+ISNEW(),
+ISCHANGED({!$Record.Type}) 
+),
+OR(
+ISPICKVAL({!$Record.Type}, &apos;Early Adopter Program&apos;)
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_1s</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+  ISNEW(),
+  NOT(ISBLANK({!$Record.AccountId})),
+  NOT(ISBLANK({!$Record.Account.Primary_Services_Provider__c}))
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_21s</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT(ISBLANK(TEXT({!$Record.Type}))),
+OR(
+ISNEW(),
+ISCHANGED({!$Record.Type}) 
+),
+OR(
+ISPICKVAL({!$Record.Type}, &apos;Legal - Services Change Request&apos;)
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_23s</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT(ISBLANK(TEXT({!$Record.Type}))),
+OR(
+ISNEW(),
+ISCHANGED({!$Record.Type}) 
+),
+OR(
+ISPICKVAL({!$Record.Type}, &apos;SOW Amendment&apos;)
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_25s</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+OR(
+ISNEW(),
+ISCHANGED({!$Record.Type })
+),
+ISPICKVAL({!$Record.Type},&apos;Consulting Services – Internal&apos;)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_27s</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+  NOT(ISBLANK(TEXT({!$Record.Type}))),
+  OR(
+    ISNEW(),
+    ISCHANGED({!$Record.Type}) 
+  ),
+  NOT(
+    OR(
+      ISPICKVAL({!$Record.Type}, &apos;Legal - Consulting Services&apos;),
+      ISPICKVAL({!$Record.Type}, &apos;Legal - New Converted Customer&apos;),
+      ISPICKVAL({!$Record.Type}, &apos;Legal - New Converted Product&apos;),
+      ISPICKVAL({!$Record.Type}, &apos;Legal - New Customer&apos;),
+      ISPICKVAL({!$Record.Type}, &apos;Legal - New Product&apos;),
+      ISPICKVAL({!$Record.Type}, &apos;Training&apos;),
+      ISPICKVAL({!$Record.Type}, &apos;Intapp Prime&apos;),
+      ISPICKVAL({!$Record.Type}, &apos;Legal - Additional Services&apos;),
+ISPICKVAL({!$Record.Type}, &apos;Managed Service&apos;),
+ISPICKVAL({!$Record.Type}, &apos;Legal - Add-on module&apos;),
+ISPICKVAL({!$Record.Type}, &apos;Early Adopter Program&apos;),
+ISPICKVAL({!$Record.Type}, &apos;Services - Partner&apos;),
+ISPICKVAL({!$Record.Type}, &apos;Legal - Recovered Customer&apos;),
+ISPICKVAL({!$Record.Type}, &apos;Legal - Recovered Product&apos;),
+ISPICKVAL({!$Record.Type}, &apos;Upgrade&apos;),
+ISPICKVAL({!$Record.Type}, &apos;Legal - Services Change Request&apos;)
+    ) 
+  )
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_28</name>
+        <dataType>Boolean</dataType>
+        <expression>AND( 
+{!$Record.Exclude_from_Notifications__c=FALSE}, 
+{!$Record.IsWon}, 
+ISCHANGED({!$Record.IsWon}), 
+ISPICKVAL({!$Record.StageName},&quot;Closed Won&quot;), 
+ISPICKVAL({!$Record.Type}, &quot;Training&quot;) 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_283</name>
+        <dataType>Boolean</dataType>
+        <expression>AND( 
+{!$Record.Exclude_from_Notifications__c=FALSE}, 
+{!$Record.IsWon}, 
+ISCHANGED({!$Record.IsWon}), 
+ISPICKVAL({!$Record.StageName},&quot;Closed Won&quot;), 
+ISPICKVAL({!$Record.Type}, &quot;Training&quot;) 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_3</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+
+AND(
+   ISNEW(),
+    ISPICKVAL({!$Record.Fulfilling_Entity__c},&quot;Intapp&quot;),
+    {!$Record.Sales_Territory__c =&quot;NA Legal South/APAC&quot;
+}),
+
+
+AND(
+    ISCHANGED({!$Record.Fulfilling_Entity__c}),
+    ISPICKVAL({!$Record.Fulfilling_Entity__c},&quot;Intapp&quot;),
+    {!$Record.Sales_Territory__c =&quot;NA Legal South/APAC&quot;
+})
+
+
+
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_30</name>
+        <dataType>Boolean</dataType>
+        <expression>AND( 
+{!$Record.Exclude_from_Notifications__c=FALSE}, 
+{!$Record.IsWon}, 
+ISCHANGED({!$Record.IsWon}), 
+ISPICKVAL({!$Record.Type}, &quot;Legal - Billing Paused/Restarted&quot;)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_304</name>
+        <dataType>Boolean</dataType>
+        <expression>AND( 
+{!$Record.Exclude_from_Notifications__c=FALSE}, 
+{!$Record.IsWon}, 
+ISCHANGED({!$Record.IsWon}), 
+ISPICKVAL({!$Record.Type}, &quot;Legal - Billing Paused/Restarted&quot;)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_32</name>
+        <dataType>Boolean</dataType>
+        <expression>AND( 
+{!$Record.Exclude_from_Notifications__c=FALSE},
+{!$Record.IsWon}, 
+ISCHANGED({!$Record.IsWon}),
+ISCHANGED({!$Record.StageName }),
+{!$Record.Sale_Category__c =&quot;Churn&quot;},
+NOT(ISPICKVAL({!$Record.Type},&quot;ACV Recovery/Partial ACV Reinstatement&quot;)) 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_326</name>
+        <dataType>Boolean</dataType>
+        <expression>AND( 
+{!$Record.Exclude_from_Notifications__c=FALSE},
+{!$Record.IsWon}, 
+ISCHANGED({!$Record.IsWon}),
+ISCHANGED({!$Record.StageName }),
+{!$Record.Sale_Category__c =&quot;Churn&quot;},
+NOT(ISPICKVAL({!$Record.Type},&quot;ACV Recovery/Partial ACV Reinstatement&quot;)) 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_34</name>
+        <dataType>Boolean</dataType>
+        <expression>AND( 
+{!$Record.Exclude_from_Notifications__c=FALSE},
+{!$Record.IsWon}, 
+ISCHANGED({!$Record.IsWon}), 
+CONTAINS({!$Record.Opp_Product_Lines__c},&quot;Cloud&quot;),
+OR(
+ISPICKVAL({!$Record.Type},&quot;Cancellation - Customer&quot;) ,
+ISPICKVAL({!$Record.Type},&quot;Cancellation - Product&quot;)) 
+
+
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_347</name>
+        <dataType>Boolean</dataType>
+        <expression>AND( 
+{!$Record.Exclude_from_Notifications__c=FALSE},
+{!$Record.IsWon}, 
+ISCHANGED({!$Record.IsWon}), 
+CONTAINS({!$Record.Opp_Product_Lines__c},&quot;Cloud&quot;),
+OR(
+ISPICKVAL({!$Record.Type},&quot;Cancellation - Customer&quot;) ,
+ISPICKVAL({!$Record.Type},&quot;Cancellation - Product&quot;)) 
+
+
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_3s</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT(ISBLANK(TEXT({!$Record.Type}))),
+OR(
+ISNEW(),
+ISCHANGED({!$Record.Type}) 
+),
+OR(
+ISPICKVAL({!$Record.Type}, &apos;Legal - Consulting Services&apos;)
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_4</name>
+        <dataType>Boolean</dataType>
+        <expression>AND( ISNEW(),
+ISPICKVAL({!$Record.StageName },&apos;Pre-Funnel&apos;))</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_42</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+{!$Record.Concession_Amount__c &lt; 0},
+ISPICKVAL({!$Record.Type}, &quot;Legal - CPI / Recurring Increase&quot;),
+{!$Record.IsClosed = FALSE
+})</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_4266</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+{!$Record.Concession_Amount__c &lt; 0},
+ISPICKVAL({!$Record.Type}, &quot;Legal - CPI / Recurring Increase&quot;),
+{!$Record.IsClosed = FALSE
+})</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_5</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+
+AND(
+    ISNEW(),
+    ISPICKVAL({!$Record.Fulfilling_Entity__c},&quot;Intapp&quot;),
+    NOT({!$Record.Geography__c=&quot;APAC&quot;}),
+    {!$Record.Sales_Territory__c =&quot;NA Legal North&quot;
+}),
+
+
+AND(
+    ISCHANGED({!$Record.Fulfilling_Entity__c}),
+    ISPICKVAL({!$Record.Fulfilling_Entity__c},&quot;Intapp&quot;),
+    NOT({!$Record.Geography__c=&quot;APAC&quot;}),
+    {!$Record.Sales_Territory__c =&quot;NA Legal North&quot;
+})
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_5s</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT(ISBLANK(TEXT({!$Record.Type}))),
+OR(
+ISNEW(),
+ISCHANGED({!$Record.Type}) 
+),
+OR(
+ISPICKVAL({!$Record.Type}, &apos;Legal - New Converted Customer&apos;),
+ISPICKVAL({!$Record.Type}, &apos;Legal - New Converted Product&apos;),
+ISPICKVAL({!$Record.Type}, &apos;New Implementation&apos;),
+ISPICKVAL({!$Record.Type}, &apos;Legal - New Customer&apos;),
+ISPICKVAL({!$Record.Type}, &apos;Legal - New Product&apos;),
+ISPICKVAL({!$Record.Type}, &apos;Legal - Recovered Customer&apos;),
+ISPICKVAL({!$Record.Type}, &apos;Legal - Recovered Product&apos;)
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_7</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+ISPICKVAL({!$Record.StageName },&apos;Qualify&apos;),
+ISPICKVAL({!$Record.StageName },&apos;Verify&apos;),
+ISPICKVAL({!$Record.StageName },&apos;Position&apos;),
+ISPICKVAL({!$Record.StageName },&apos;Propose&apos;),
+ISPICKVAL({!$Record.StageName },&apos;Selected&apos;),
+ISPICKVAL({!$Record.StageName },&apos;Closed Won&apos;)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_7new</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+AND(
+    ISNEW(),
+    ISPICKVAL({!$Record.Fulfilling_Entity__c},&quot;Intapp&quot;),
+    {!$Record.Geography__c=&quot;APAC&quot;},
+    {!$Record.Sales_Territory__c =&quot;NA Legal North&quot;
+}),
+
+
+
+AND(
+    ISCHANGED({!$Record.Fulfilling_Entity__c}),
+    ISPICKVAL({!$Record.Fulfilling_Entity__c},&quot;Intapp&quot;),
+    {!$Record.Geography__c=&quot;APAC&quot;},
+    {!$Record.Sales_Territory__c =&quot;NA Legal North&quot;
+})
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_7s</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT(ISBLANK(TEXT({!$Record.Type}))),
+OR(
+ISNEW(),
+ISCHANGED({!$Record.Type}) 
+),
+OR(
+ISPICKVAL({!$Record.Type}, &apos;Training&apos;)
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_9</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+
+AND(
+    ISNEW(),
+    ISPICKVAL({!$Record.Fulfilling_Entity__c},&quot;Intapp&quot;),
+    {!$Record.Sales_Territory__c =&quot;EMEA&quot;
+}),
+
+AND(
+    ISCHANGED({!$Record.Fulfilling_Entity__c}),
+    ISPICKVAL({!$Record.Fulfilling_Entity__c},&quot;Intapp&quot;),
+    {!$Record.Sales_Territory__c =&quot;EMEA&quot;
+})
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_TRUE_myRule_9s</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT(ISBLANK(TEXT({!$Record.Type}))),
+NOT(ISBLANK({!$Record.Intapp_Prime_Contact_1__c})),
+OR(
+ISNEW(),
+ISCHANGED({!$Record.Type}) 
+),
+OR(
+ISPICKVAL({!$Record.Type}, &apos;Intapp Prime&apos;)
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>isNew</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
+    </formulas>
+    <formulas>
+        <name>OP4IOSAFormula</name>
+        <dataType>String</dataType>
+        <expression>IF(
+  OR(ISBLANK({!$Record.SBQQ__RenewedContract__c}),ISNULL({!$Record.SBQQ__RenewedContract__c})) ,
+   CASESAFEID({!$Record.Associated_Contract_OSA__c}),
+   CASESAFEID({!$Record.SBQQ__RenewedContract__r.Parent_OSA__c})
+)</expression>
+    </formulas>
+    <formulas>
+        <name>PopulateweeklydealreviewFormula</name>
+        <dataType>String</dataType>
+        <expression>&apos;[ ]&apos;&amp;BR() &amp;
+&apos;-TOP PRIORITY&apos;&amp;BR() &amp;
+&apos;TCV&apos;&amp;BR() &amp;
+&apos;OH&apos;&amp;BR()  &amp;
+&apos;OPC&apos;&amp;BR() &amp;
+&apos;-CONTRACT&apos;&amp;BR() &amp;
+&apos;CT&apos;&amp;BR() &amp;
+&apos;Bkg Date&apos;&amp;BR() &amp;
+&apos;Eff Date&apos;&amp;BR() &amp;
+&apos;Sig&apos;&amp;BR() &amp;
+&apos;Super by&apos;&amp;BR() &amp;
+&apos;-ACCOUNT&apos;&amp;BR() &amp;
+&apos;AT&apos;&amp;BR() &amp;
+&apos;AT1&apos;&amp;BR() &amp;
+&apos;-OPPORTUNITY&apos;&amp;BR() &amp;
+&apos;CDate&apos;&amp;BR()</expression>
+    </formulas>
+    <formulas>
+        <name>SaleCategory</name>
+        <dataType>String</dataType>
+        <expression>CASE({!$Record.Type},
+&quot;Legal - New Customer&quot;,&quot;New Product Customer&quot;,
+&quot;Legal - New Product&quot;,&quot;New Product Customer&quot;,
+&quot;Legal - Thomson Elite&quot;,&quot;New Product Customer&quot;,
+&quot;Legal - Recovered Customer&quot;,&quot;New Product Customer&quot;,
+&quot;Legal - Recovered Product&quot;,&quot;New Product Customer&quot;,
+&quot;Legal - New Converted Product&quot;,&quot;New Product Customer&quot;,
+&quot;Legal - New Converted Customer&quot;,&quot;New Product Customer&quot;,
+&quot;MDY&quot;,&quot;New Product Customer&quot;,
+&quot;Legal - Add-on module&quot;,&quot;Module&quot;,
+&quot;Legal - Version License&quot;,&quot;Module&quot;,
+&quot;Legal - Recurring Adjustment&quot;,&quot;Recurring Adjustment&quot;,
+&quot;License Conversion - Recurring Decrease&quot;,&quot;Churn&quot;,
+&quot;License Conversion - Recurring Increase&quot;,&quot;License Uplift&quot;,
+&quot;Legal - Assessment/POC&quot;,&quot;Other&quot;,
+&quot;Legal - License Band Uplift&quot;,&quot;License Uplift&quot;,
+&quot;Legal - User Count Uplift&quot;,&quot;License Uplift&quot;,
+&quot;Legal - Additional Services&quot;,&quot;Additional Services&quot;,
+&quot;Intapp Prime&quot;,&quot;Additional Services&quot;,
+&quot;Legal - Services Change Request&quot;,&quot;Additional Services&quot;,
+&quot;Legal - Services Change Request Internal&quot;,&quot;Additional Services&quot;,
+&quot;Training&quot;, &quot;Additional Services&quot;,
+&quot;Services - Partner&quot;, &quot;Additional Services&quot;,
+&quot;Legal - CPI / Recurring Increase&quot;,&quot;SFA&quot;,
+&quot;Cancellation - Customer&quot;,&quot;Churn&quot;,
+&quot;Cancellation - Module&quot;,&quot;Churn&quot;,
+&quot;Cancellation - Product&quot;,&quot;Churn&quot;,
+&quot;Downgrade - Product&quot;,&quot;Churn&quot;,
+&quot;Legal - User Count Decrease&quot;,&quot;Churn&quot;,
+&quot;Downgrade - License Conversion&quot;,&quot;Churn&quot;,
+&quot;Cancellation - CPI&quot;,&quot;Churn&quot;,
+&quot;Cancellation - Recurring Adjustment&quot;,&quot;Churn&quot;,
+&quot;Legal - Acquired New Customer&quot;,&quot;Acquired Contract&quot;,
+&quot;Legal - Acquired New Product&quot;,&quot;Acquired Contract&quot;,
+&quot;Legal - Acquired Add-on Module&quot;,&quot;Acquired Contract&quot;,
+&quot;Legal - Consulting Services&quot;,&quot;Additional Services&quot;,
+&quot;Upgrade&quot;, &quot;Additional Services&quot;,
+&quot;Intapp Prime&quot;, &quot;Additional Services&quot;,
+&quot;ACV Downgrade/Partial ACV Cancellation&quot;, &quot;Churn&quot;,
+&quot;New Implementation&quot;, &quot;Additional Services&quot;,
+&quot;ACV Recovery/Partial ACV Reinstatement&quot;, &quot;Churn&quot;,
+&quot;Platform Conversion - Increase&quot;, &quot;Module&quot;,
+&quot;Platform Conversion - Internal Increase&quot;, &quot;Other&quot;,
+&quot;Platform Conversion - Decrease&quot;, &quot;Module&quot;,
+&quot;Platform Conversion - Internal Decrease&quot;, &quot;Other&quot;,
+&quot;Other&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>varAccountOwner</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.Account.OwnerId}</expression>
+    </formulas>
+    <interviewLabel>Opportunity Before Insert Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Opportunity Before Insert Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Account_Owner</name>
+        <label>Account Owner</label>
+        <locationX>1634</locationX>
+        <locationY>395</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Deal_Owner</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varAccountOwner</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Primary_Quote</name>
+        <label>Get Primary Quote</label>
+        <locationX>1766</locationX>
+        <locationY>803</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_Type</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.SBQQ__PrimaryQuote__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SBQQ__Quote__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>1640</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_if_Oppty_Originated_from_SF</targetReference>
+        </connector>
+        <filterFormula>NOT({!$Setup.Automation_Controls__c.Active__c} &amp;&amp; {!$Setup.Automation_Controls__c.Bypass_Flows__c} &amp;&amp; {!$Setup.Automation_Controls__c.Opportunity_Bypass__c} &amp;&amp; (ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c}) || (NOT(ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c})) &amp;&amp; CONTAINS({!$Setup.Automation_Controls__c.Data_Id__c}, {!$Record.Id}))))</filterFormula>
+        <object>Opportunity</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

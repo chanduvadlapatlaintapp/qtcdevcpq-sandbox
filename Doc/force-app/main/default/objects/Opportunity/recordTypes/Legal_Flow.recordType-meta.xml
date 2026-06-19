@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Legal_Flow</fullName>
+    <active>false</active>
+    <businessProcess>July 2014 Active Sales Process</businessProcess>
+    <compactLayoutAssignment>Opportunity_Compact_Layout</compactLayoutAssignment>
+    <description>Use this when selling Flow. If you are selling Flow as part of an Intake bundle - use the Intapp Open Record Type</description>
+    <label>Legal - Flow/Multiple Products</label>
+    <picklistValues>
+        <picklist>ForecastCategoryName</picklist>
+        <values>
+            <fullName>Best Case</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Omitted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pipeline</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>LeadSource</picklist>
+        <values>
+            <fullName>Online Advertising</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Early Adopter Program</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Prime</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - Add-on module</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - Additional Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - Assessment%2FPOC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - License Band Uplift</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - New Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - New Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - Recurring Adjustment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>License Conversion - Recurring Decrease</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>License Conversion - Recurring Increase</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

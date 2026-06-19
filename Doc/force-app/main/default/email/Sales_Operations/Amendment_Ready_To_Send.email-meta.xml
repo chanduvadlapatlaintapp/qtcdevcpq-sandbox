@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>To notify sales manager that an amendment / change request has been fully approved and is ready to send</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Amendment Ready to Send</name>
+    <style>none</style>
+    <subject>{!Contract.Account} Amendment / Change Request is now ready to send. Line of Business: {!Contract.Applicable_Subsidiary__c}</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

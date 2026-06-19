@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>When a quote is created update the bill to and ship to account same as the quote account.
+build according to user story BIZ-45104.</description>
+    <environments>Default</environments>
+    <interviewLabel>Quote : update bill to and ship to accounts {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Quote : Update Bill to and Ship to Accounts</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Once a quote is created , update the bill to and ship to account same as the quote account.</description>
+        <name>Quote_update_bill_to_and_ship_to_account_as_the_account</name>
+        <label>Quote : update bill to and ship to account as the account</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>SBQQ__Account__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Bill_To_Account__c</field>
+            <value>
+                <elementReference>$Record.SBQQ__Account__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Ship_To_Account__c</field>
+            <value>
+                <elementReference>$Record.SBQQ__Account__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Quote_update_bill_to_and_ship_to_account_as_the_account</targetReference>
+        </connector>
+        <object>SBQQ__Quote__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+</Flow>

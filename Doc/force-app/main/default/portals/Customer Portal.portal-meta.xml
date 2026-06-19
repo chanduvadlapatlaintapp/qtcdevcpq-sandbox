@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Portal xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <admin>bizappsdev@intapp.com</admin>
+    <defaultLanguage>en_US</defaultLanguage>
+    <description>Customer Portal</description>
+    <emailSenderAddress>support.automation@intapp.com</emailSenderAddress>
+    <emailSenderName>IntApp Support</emailSenderName>
+    <enableSelfCloseCase>true</enableSelfCloseCase>
+    <footerDocument>Customer_Portal/portalfooter_html.html</footerDocument>
+    <forgotPassTemplate>Customer_Support/ChangePwdEmail</forgotPassTemplate>
+    <headerDocument>Customer_Portal/portalheader_html.txt</headerDocument>
+    <isSelfRegistrationActivated>false</isSelfRegistrationActivated>
+    <logoDocument>Customer_Portal/intapp_logo_gif.gif</logoDocument>
+    <logoutUrl>https://www.intapp.com/</logoutUrl>
+    <newPassTemplate>Customer_Support/ChangePwdEmail</newPassTemplate>
+    <newUserTemplate>Customer_Support/NewUserEmail</newUserTemplate>
+    <selfRegUserDefaultProfile>overage high volume customer portal user</selfRegUserDefaultProfile>
+    <selfRegUserTemplate>Customer_Support/SelfRegUserEmail</selfRegUserTemplate>
+    <showActionConfirmation>false</showActionConfirmation>
+    <type>CustomerSuccess</type>
+</Portal>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Show info about an invoice that has changed status that is over 90 days old.</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>PS_Survey_Letterhead</letterhead>
+    <name>60+ Past Due Invoice Status Change</name>
+    <style>freeForm</style>
+    <subject>60+ Past Due Invoice Status Change - {!Invoice__c.OSA_Number__c} {!Invoice__c.Account_Name__c}</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

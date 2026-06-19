@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_27304702</developerName>
+        <masterLabel>Customer Lifecycle Stage</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>Subscription__c.Customer_Lifecycle_Stage__c</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Within 90 days of Production</sourceValue>
+            </sourceValues>
+            <value>In Production</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Implementation</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Project not started yet</sourceValue>
+            </sourceValues>
+            <value>In Implementation</value>
+        </values>
+        <values>
+            <value>Not Fully in Production</value>
+        </values>
+    </buckets>
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_55882774</developerName>
+        <masterLabel>Simple Product</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>Subscription__c.Product_Line__c</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <value>Integration</value>
+        </values>
+        <values>
+            <value>Walls</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Intapp Time</sourceValue>
+            </sourceValues>
+            <value>Time</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Intapp Time - Cloud</sourceValue>
+            </sourceValues>
+            <value>Time - Cloud</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Intapp Open - Intake</sourceValue>
+            </sourceValues>
+            <value>Intake</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Intapp Open - Conflicts</sourceValue>
+            </sourceValues>
+            <value>Conflicts</value>
+        </values>
+        <values>
+            <value>Terms</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>TFG - Other</sourceValue>
+            </sourceValues>
+            <value>TFG</value>
+        </values>
+    </buckets>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Subscription__c.Subscription_Count__c</field>
+    </columns>
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>BucketField_27304702</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Other</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_55882774</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_27304702</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Customer Lifecycle Stage Count</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>AccountCustomEntity$Subscription__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>DUE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

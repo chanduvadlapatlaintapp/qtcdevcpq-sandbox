@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Related_Approval__c</fullName>
+    <description>Created as a part of story BIZ-47951
+User for product related approval</description>
+    <formula>IF((D_b__c = true)||(S_pfr__c = true)||(On_Prem__c = true)||( On_Prem_Multi_year_product__c= true)||(Has_Trial_Product__c = true)|| ISPICKVAL(Deal_Type__c, &apos;Contract Replacement&apos;)||(Cloud_Migration__c = true)|| (Repstor__c = true)|| (Legacy_Repstor_Agreement__c=true)|| (Repstor_Retro__c=true)|| (Partner_Related__c=true), true, false)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Product Related Approval</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

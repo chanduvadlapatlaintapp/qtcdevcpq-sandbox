@@ -1,0 +1,15 @@
+{!Task.CreatedBy} has assigned you the following new task:
+
+Subject: {!Task.Subject}
+Account: {!Task.Account_Name__c}
+Contact: {!Task.Who}
+Campaign: {!Task.What}
+Due Date: {!Task.ActivityDate}
+Priority: {!Task.Priority}
+License Band(Fee Earners): {!Task.License_Band_Timekeepers_Fee_Earners__c} 
+License Band (Lawyers): {!Task.License_Band_Lawyers_Professionals__c} 
+Comments: {!Task.Description}
+
+For more details, click the following link:
+
+{!Task.Link}

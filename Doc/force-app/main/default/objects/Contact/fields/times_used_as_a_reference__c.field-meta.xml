@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>times_used_as_a_reference__c</fullName>
+    <inlineHelpText>How many times has this Contact being used as a reference?</inlineHelpText>
+    <label>#times used as a reference</label>
+    <summaryForeignKey>Reference_Event__c.Prospect_Contact__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

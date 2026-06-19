@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Only_Serv_Sales_Specialist_can_update</fullName>
+    <active>true</active>
+    <description>Only Services Sales Specialist have permission to update this field.</description>
+    <errorConditionFormula>AND(
+   ISCHANGED(Services_Sales_Specialist__c),
+   $User.Id  &lt;&gt; &quot;0052J000008gpbV&quot;, /*Kate Hann*/
+   $User.Id  &lt;&gt; &quot;0052J000008ghJC&quot;,/*Lea Smith*/
+   $User.Id  &lt;&gt; &quot;0052J000008gwrB&quot;, /*Kwabena Asiedu*/
+   $User.Id  &lt;&gt; &quot;0052J000008gkfV&quot;, /*Sarah Bakeer*/
+   $Profile.Id  &lt;&gt; &quot;00e30000000bvR3&quot; /*System 
+   Administrator*/
+)</errorConditionFormula>
+    <errorDisplayField>Services_Sales_Specialist__c</errorDisplayField>
+    <errorMessage>Only Services Sales Specialists can update this field</errorMessage>
+</ValidationRule>

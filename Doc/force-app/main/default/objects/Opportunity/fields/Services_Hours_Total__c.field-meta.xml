@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Services_Hours_Total__c</fullName>
+    <label>Services Hours Total</label>
+    <summarizedField>OpportunityLineItem.Services_Hours__c</summarizedField>
+    <summaryFilterItems>
+        <field>OpportunityLineItem.Product_type_for_roll_up__c</field>
+        <operation>equals</operation>
+        <value>Risk, Transformation, Professional, Intapp Prime</value>
+    </summaryFilterItems>
+    <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

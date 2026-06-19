@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>License_Band_Basis__c</fullName>
+    <label>License Band Basis</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Lawyer</fullName>
+                <default>false</default>
+                <label>Lawyer</label>
+            </value>
+            <value>
+                <fullName>Fee Earner</fullName>
+                <default>false</default>
+                <label>Fee Earner</label>
+            </value>
+            <value>
+                <fullName>Revenue</fullName>
+                <default>false</default>
+                <label>Revenue</label>
+            </value>
+            <value>
+                <fullName>Timekeepers</fullName>
+                <default>false</default>
+                <label>Timekeepers</label>
+            </value>
+            <value>
+                <fullName>N/A</fullName>
+                <default>false</default>
+                <label>N/A</label>
+            </value>
+            <value>
+                <fullName>Named User</fullName>
+                <default>false</default>
+                <label>Named User</label>
+            </value>
+            <value>
+                <fullName>Records</fullName>
+                <default>false</default>
+                <label>Records</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

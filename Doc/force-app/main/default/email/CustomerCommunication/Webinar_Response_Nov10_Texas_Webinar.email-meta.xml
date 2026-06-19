@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Response for Texas WB Webinar</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - Nov10 Texas Webinar</name>
+    <style>none</style>
+    <subject>IntApp Webinar Confirmation</subject>
+    <textOnly>{!Lead.FirstName} {!Lead.LastName}: 
+
+Thank you for registering for the IntApp Texas Ethical Screening Requirements Webinar. The login details are below.
+
+Date: Tuesday, November 16
+Time: 10 am Central
+
+Video:
+
+Conference URL: https://www.livemeeting.com/cc/vcc/join?id=w4621040&amp;role=attend&amp;pw=A462104
+Meeting ID: w4621040
+Entry Code: A462104
+
+Audio:
+
+Conference Audio Dial In: 888-215-6955
+Passcode: 4621040
+
+
+http://www.intapp.com
+All information Copyright 2010 IntApp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

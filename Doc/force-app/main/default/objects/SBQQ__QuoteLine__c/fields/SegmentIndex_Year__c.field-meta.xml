@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SegmentIndex_Year__c</fullName>
+    <description>Updated to ensure proper handling of segmented v. non-segmented lines as a part of BIZ-61867</description>
+    <externalId>false</externalId>
+    <formula>IF(
+  AND(
+    OR(
+      SBQQ__Quote__r.SegmentIndex_Max_Value__c = 0, 
+      AND(SBQQ__Quote__r.SegmentIndex_Max_Value__c &gt; 0, ISBLANK(SBQQ__RequiredBy__c)), 
+      NOT(ISBLANK(SBQQ__RequiredBy__c))
+    ), 
+    SBQQ__SegmentIndex__c = 0
+  ), 
+  1, 
+  SBQQ__SegmentIndex__c
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>SegmentIndex (Year)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

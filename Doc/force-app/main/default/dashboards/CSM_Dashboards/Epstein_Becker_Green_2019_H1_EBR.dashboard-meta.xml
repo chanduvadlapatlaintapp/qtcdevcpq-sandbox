@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dashboard xmlns="http://soap.sforce.com/2006/04/metadata">
+    <backgroundEndColor>#FFFFFF</backgroundEndColor>
+    <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
+    <backgroundStartColor>#FFFFFF</backgroundStartColor>
+    <dashboardType>SpecifiedUser</dashboardType>
+    <isGridLayout>false</isGridLayout>
+    <leftSection>
+        <columnSize>Wide</columnSize>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <componentType>Table</componentType>
+            <dashboardTableColumn>
+                <column>Invoice__c$Name</column>
+                <sortBy>RowLabelDescending</sortBy>
+            </dashboardTableColumn>
+            <dashboardTableColumn>
+                <calculatePercent>false</calculatePercent>
+                <column>Invoice__c$Sales_Order_Type__c</column>
+                <showTotal>false</showTotal>
+            </dashboardTableColumn>
+            <dashboardTableColumn>
+                <aggregateType>Sum</aggregateType>
+                <calculatePercent>false</calculatePercent>
+                <column>Invoice__c$Outstanding_Bln__c.CONVERT</column>
+                <showTotal>true</showTotal>
+            </dashboardTableColumn>
+            <displayUnits>Integer</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <footer>Open Invoices in the past 90 days</footer>
+            <groupingSortProperties/>
+            <header>Epstein Becker &amp; Green</header>
+            <indicatorHighColor>#54C254</indicatorHighColor>
+            <indicatorLowColor>#C25454</indicatorLowColor>
+            <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
+            <report>Customer_Success_Management/Epstein_Becker_Green_Invoices</report>
+            <showPicturesOnTables>true</showPicturesOnTables>
+            <title>Open Invoices</title>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <componentType>Bar</componentType>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>false</enableHover>
+            <expandOthers>false</expandOthers>
+            <footer>Opened Cases in the last 90 days</footer>
+            <groupingSortProperties/>
+            <header>Epstein Becker &amp; Green</header>
+            <legendPosition>Bottom</legendPosition>
+            <report>Customer_Success_Management/Epstein_Becker_Green_Cases_by_PC</report>
+            <showPercentage>false</showPercentage>
+            <showPicturesOnCharts>false</showPicturesOnCharts>
+            <showValues>true</showValues>
+            <sortBy>RowLabelDescending</sortBy>
+            <sortLegendValues>false</sortLegendValues>
+            <title>Cases by Status</title>
+            <useReportChart>true</useReportChart>
+        </components>
+    </leftSection>
+    <middleSection>
+        <columnSize>Wide</columnSize>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <componentType>Table</componentType>
+            <dashboardTableColumn>
+                <column>CUST_NAME</column>
+                <sortBy>RowLabelAscending</sortBy>
+            </dashboardTableColumn>
+            <dashboardTableColumn>
+                <calculatePercent>false</calculatePercent>
+                <column>Project__c.Project_Type__c</column>
+                <showTotal>false</showTotal>
+            </dashboardTableColumn>
+            <dashboardTableColumn>
+                <calculatePercent>false</calculatePercent>
+                <column>RowCount</column>
+                <showTotal>true</showTotal>
+            </dashboardTableColumn>
+            <displayUnits>Integer</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <footer>Open Projects in the past 90 days</footer>
+            <groupingSortProperties/>
+            <header>Epstein Becker &amp; Green</header>
+            <indicatorHighColor>#54C254</indicatorHighColor>
+            <indicatorLowColor>#C25454</indicatorLowColor>
+            <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
+            <maxValuesDisplayed>10</maxValuesDisplayed>
+            <report>Customer_Success_Management/Epstein_Becker_Green_OA_Projects</report>
+            <showPicturesOnTables>true</showPicturesOnTables>
+            <title>Open Projects</title>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <componentType>ColumnGrouped</componentType>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>false</enableHover>
+            <expandOthers>false</expandOthers>
+            <footer>Opened Cases in the last 90 days</footer>
+            <groupingSortProperties/>
+            <header>Epstein Becker &amp; Green</header>
+            <legendPosition>Bottom</legendPosition>
+            <report>Customer_Success_Management/Epstein_Becker_Green_Cases_by_Severity</report>
+            <showPercentage>false</showPercentage>
+            <showValues>true</showValues>
+            <sortBy>RowLabelAscending</sortBy>
+            <sortLegendValues>false</sortLegendValues>
+            <title>Cases by Severity</title>
+            <useReportChart>false</useReportChart>
+        </components>
+    </middleSection>
+    <owner>maya.peterson@intapp.com</owner>
+    <rightSection>
+        <columnSize>Medium</columnSize>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <componentType>Funnel</componentType>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>true</drillToDetailEnabled>
+            <enableHover>false</enableHover>
+            <expandOthers>true</expandOthers>
+            <groupingSortProperties/>
+            <header>Epstein Becker &amp; Green</header>
+            <legendPosition>Bottom</legendPosition>
+            <report>Customer_Success_Management/Epstein_Becker_Green</report>
+            <showPercentage>false</showPercentage>
+            <showValues>true</showValues>
+            <sortBy>RowValueDescending</sortBy>
+            <sortLegendValues>false</sortLegendValues>
+            <title>Active Opportunities</title>
+            <useReportChart>false</useReportChart>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <componentType>Bar</componentType>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>true</drillToDetailEnabled>
+            <enableHover>false</enableHover>
+            <expandOthers>false</expandOthers>
+            <footer>Opened Cases in the last 90 days</footer>
+            <groupingSortProperties/>
+            <header>Epstein Becker &amp; Green</header>
+            <legendPosition>Bottom</legendPosition>
+            <report>Customer_Success_Management/Epstein_Becker_Green_Cases_by_Product</report>
+            <showPercentage>false</showPercentage>
+            <showPicturesOnCharts>false</showPicturesOnCharts>
+            <showValues>false</showValues>
+            <sortBy>RowLabelDescending</sortBy>
+            <sortLegendValues>false</sortLegendValues>
+            <title>Cases by Product</title>
+            <useReportChart>true</useReportChart>
+        </components>
+    </rightSection>
+    <runningUser>maya.peterson@intapp.com</runningUser>
+    <textColor>#000000</textColor>
+    <title>Epstein Becker &amp; Green - 2019 H1 EBR</title>
+    <titleColor>#000000</titleColor>
+    <titleSize>12</titleSize>
+</Dashboard>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deal_Justification_is_Required</fullName>
+    <active>true</active>
+    <description>Created as part of BIZ-45114.</description>
+    <errorConditionFormula>AND( 
+OR(
+NOT(ISBLANK(TEXT( SFA_Prefix__c ))),
+NOT(ISBLANK(TEXT( SFA_Suffix__c )))),
+ISBLANK(Deal_Justification__c))</errorConditionFormula>
+    <errorMessage>Deal Justification is required.</errorMessage>
+</ValidationRule>

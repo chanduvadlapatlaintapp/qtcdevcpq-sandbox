@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IE_OPRC</fullName>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Client_Account__c</columns>
+    <columns>Product__c</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CASES.LAST_UPDATE</columns>
+    <columns>Duration__c</columns>
+    <columns>JIRA_Issue__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Product__c</field>
+        <operation>contains</operation>
+        <value>Conflicts,Intapp Conflicts Cloud,Intapp Flow,Intapp Flow Cloud,Intake,Intap</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>notContain</operation>
+        <value>Closed</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>contains</operation>
+        <value>irynak,hannap,chiragp,Implementation Expert Queue</value>
+    </filters>
+    <filters>
+        <field>Product__c</field>
+        <operation>notContain</operation>
+        <value>DTE,DTE Axiom,DTE Axiom Mobile,DealCloud,Experience,Intapp Time,Intapp Tim</value>
+    </filters>
+    <label>IE - OPRC</label>
+    <language>en_US</language>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Flow__c</fullName>
+    <label>Flow</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Flow - Cloud</fullName>
+                <default>false</default>
+                <label>Flow - Cloud</label>
+            </value>
+            <value>
+                <fullName>Flow - On Prem</fullName>
+                <default>false</default>
+                <label>Flow - On Prem</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

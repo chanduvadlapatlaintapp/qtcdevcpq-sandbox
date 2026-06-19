@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Submitted_Pre_Request_Review</fullName>
+    <columns>Line_of_Business__c</columns>
+    <columns>OSA_Requested_Date__c</columns>
+    <columns>NAME</columns>
+    <columns>SBQQ__MasterContract__c</columns>
+    <columns>Special_Comments__c</columns>
+    <columns>Recurring_Amount_Change__c</columns>
+    <columns>SBQQ__CustomerAmount__c</columns>
+    <columns>SBQQ__Primary__c</columns>
+    <columns>SBQQ__Status__c</columns>
+    <columns>previous_owner__c</columns>
+    <columns>OWNER.ALIAS</columns>
+    <columns>SBQQ__Opportunity2__c</columns>
+    <columns>SBQQ__StartDate__c</columns>
+    <columns>SBQQ__ExpirationDate__c</columns>
+    <columns>OP4I_Deal_Owner__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>SBQQ__Status__c</field>
+        <operation>equals</operation>
+        <value>Submitted</value>
+    </filters>
+    <filters>
+        <field>LAST_UPDATE</field>
+        <operation>greaterOrEqual</operation>
+        <value>7/2/2021 12:00 AM</value>
+    </filters>
+    <label>Total Submitted_Pre-Request Review</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>ContractsOps</group>
+        <role>Business_Operations</role>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NavigationMenu xmlns="http://soap.sforce.com/2006/04/metadata">
+    <container>Intapp Client Community</container>
+    <containerType>Network</containerType>
+    <label>Default Navigation</label>
+    <navigationMenuItem>
+        <label>Support</label>
+        <position>1</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/case</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Intapp University</label>
+        <position>2</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <subMenu>
+            <navigationMenuItem>
+                <label>Intapp University Home</label>
+                <position>0</position>
+                <publiclyAvailable>false</publiclyAvailable>
+                <target>https://training.intapp.com/</target>
+                <type>ExternalLink</type>
+            </navigationMenuItem>
+            <navigationMenuItem>
+                <label>Training</label>
+                <position>1</position>
+                <publiclyAvailable>false</publiclyAvailable>
+                <target>https://training.intapp.com/courses</target>
+                <type>ExternalLink</type>
+            </navigationMenuItem>
+            <navigationMenuItem>
+                <label>Events</label>
+                <position>2</position>
+                <publiclyAvailable>false</publiclyAvailable>
+                <target>https://training.intapp.com/events/</target>
+                <type>ExternalLink</type>
+            </navigationMenuItem>
+        </subMenu>
+        <type>MenuLabel</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Software Downloads</label>
+        <position>3</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/contentdocument/ContentDocument/All</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Community Help</label>
+        <position>4</position>
+        <publiclyAvailable>true</publiclyAvailable>
+        <target>/community-help</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+</NavigationMenu>

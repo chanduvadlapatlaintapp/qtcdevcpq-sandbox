@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Subscription_Contact__c$Name</field>
+    </columns>
+    <columns>
+        <field>Subscription_Contact__c$Reference_Validated_By__c</field>
+    </columns>
+    <columns>
+        <field>Subscription_Contact__c$Intapp_Reference_Contact_1__c</field>
+    </columns>
+    <columns>
+        <field>Subscription_Contact__c$Intapp_Reference_Contact_2__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <booleanFilter>1 OR 2 OR 3</booleanFilter>
+        <criteriaItems>
+            <column>Subscription_Contact__c$Reference_Validated_By__c.UserRole</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>Sales</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription_Contact__c$Intapp_Reference_Contact_1__c.UserRole</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>Sales</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Subscription_Contact__c$Intapp_Reference_Contact_2__c.UserRole</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>Sales</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>PC Contacts Sales Reps</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Product_Customer_Contacts__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Subscription_Contact__c$Audited_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

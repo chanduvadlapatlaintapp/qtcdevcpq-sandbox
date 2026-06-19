@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Partnership__c</fullName>
+    <description>For tracking partnerships</description>
+    <inlineHelpText>For tracking partnerships</inlineHelpText>
+    <label>Partnership</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>BRCO</fullName>
+                <default>false</default>
+                <label>BRCO</label>
+            </value>
+            <value>
+                <fullName>EIM</fullName>
+                <default>false</default>
+                <label>EIM</label>
+            </value>
+            <value>
+                <fullName>PLA</fullName>
+                <default>false</default>
+                <label>PLA</label>
+            </value>
+            <value>
+                <fullName>Aurora North</fullName>
+                <default>false</default>
+                <label>Aurora North</label>
+            </value>
+            <value>
+                <fullName>ANS</fullName>
+                <default>false</default>
+                <label>ANS</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

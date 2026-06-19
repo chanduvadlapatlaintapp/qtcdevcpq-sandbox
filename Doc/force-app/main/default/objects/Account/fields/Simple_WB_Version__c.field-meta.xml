@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Simple_WB_Version__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( 
+  CONTAINS(WB_Product_Release__r.Name, &quot;.&quot;), 
+  LEFT(WB_Product_Release__r.Name, FIND(&quot;.&quot;, WB_Product_Release__r.Name) + 1), 
+  WB_Product_Release__r.Name
+)</formula>
+    <label>Simple WB Version</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

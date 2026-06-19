@@ -1,0 +1,23 @@
+<apex:component controller="ProductNewsController">
+  <apex:attribute assignTo="{!recordLimit}" name="limit" description="Number of records to return"  type="String" required="true"/>
+  <apex:attribute name="label" description="Table Header"  type="String" required="true"/>
+  <apex:attribute name="recordTypeName" assignTo="{!recordTypeName}" description="Record Type to Display"  type="String" required="true"/>
+  
+  <style>
+    .headerClass {
+      width:120px;
+     }
+     .mainTitle {
+      white-space:nowrap;
+     }
+  </style>
+  
+  <apex:pageBlock title="{!label}">
+	  <apex:pageBlockTable var="news" value="{!NewsAlerts}">
+	    <apex:column headerValue="Date" value="{!news.createdDate}" headerClass="headerClass"/>
+	    <apex:column value="{!news.Content__c}" />
+	  </apex:pageBlockTable>
+<!-- 	  <a href="/knowledge/knowledgeHome.apexp" target="_blank">More</a> -->
+  </apex:pageBlock>
+     
+</apex:component>

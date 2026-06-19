@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Submit_for_Approval</fullName>
+    <availability>online</availability>
+    <description>Standard button doesn&apos;t work if there are fewer approvers than 5. This custom button does!</description>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Submit for Approval</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/apex.js&quot;)}
+{!REQUIRESCRIPT(&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js&quot;)}
+
+var result = sforce.apex.execute(&quot;ContractApprovalHelper&quot;,&quot;submitForApprovalWS&quot;,{contractId:&apos;{!Contract.Id}&apos;});
+
+if(result != &apos;&apos;){
+   showPopup(result);
+}else{
+   location.reload(true);
+}
+
+function showPopup(result){
+   box = sfdcPage.dialogs[&apos;SFDCDialog&apos;], close;
+   if(!box){
+      //if the dialog doesn&apos;t exist create one
+      box = sfdcPage.dialogs[&apos;SFDCDialog&apos;] = new SimpleDialog(&apos;SFDCDialog&apos;, false);
+      //set general information on your dialog and finally run the create function
+      box.setTitle(&apos;Error&apos;);
+      box.setWidth(350);
+      box.createDialog();
+   }
+	
+   // we also need to make sure we have a close button on the dialog
+   if($(box.dialog).find(&apos;#InlineEditDialogX&apos;).size() == 0){
+      // if there is none we create it
+      close = $(&apos;&lt;a id=&quot;InlineEditDialogX&quot; title=&quot;Close&quot; tabindex=&quot;0&quot; href=&quot;javascript:void(0)&quot; class=&quot;dialogClose&quot;&gt;Close&lt;/a&gt;&apos;);
+      // add some functionality to the close button 
+      // for the default ui we change the classname on mouseover/out
+      close.mouseover(function(){
+         this.className = &apos;dialogCloseOn&apos;;
+      }).mouseout(function(){
+         this.className = &apos;dialogClose&apos;;
+      }).click(function(){
+         // finally our on click handler which closes the dialog
+         box.hide();
+      });
+
+      // insert the new generated close button before the h2 tag so it&apos;ll 
+      // show up on the top right corner
+      close.insertBefore($(box.dialog).find(&apos;.topLeft h2&apos;));
+   }
+	
+   box.setContentInnerHTML(&quot;&lt;p align=&apos;center&apos;&gt;&quot; + result + &quot;&lt;/p&gt;&lt;p align=&apos;center&apos;&gt;&lt;br /&gt;&lt;button class=&apos;btn&apos; onclick=&apos;window.parent.box.hide(); return false;&apos;&gt;Close&lt;/button&gt;&lt;/p&gt;&quot;);
+
+   // now it&apos;s time to show the new dialog
+   box.show();
+}</url>
+</WebLink>

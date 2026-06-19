@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>T_M</fullName>
+    <columns>NAME</columns>
+    <columns>Term_Category__c</columns>
+    <columns>Description__c</columns>
+    <columns>SBQQ__PrintOrder__c</columns>
+    <columns>SBQQ__Body__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>SBQQ__AdvancedCondition__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>UPDATEDBY_USER.ALIAS</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>SBQQ__Type__c</field>
+        <operation>equals</operation>
+        <value>Standard</value>
+    </filters>
+    <filters>
+        <field>SBQQ__Active__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Description__c</field>
+        <operation>contains</operation>
+        <value>T&amp;M</value>
+    </filters>
+    <label>T&amp;M</label>
+</ListView>

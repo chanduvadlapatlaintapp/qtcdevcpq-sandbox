@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Opportunities_RG_SOX_Testing_KRR45</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND ( 6 OR 7)</booleanFilter>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>OPPORTUNITY.TYPE</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>Maintenance_Amount__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>Forecast_Status__c</columns>
+    <columns>Associated_Contract_OSA__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Services_Amount_Total__c</columns>
+    <columns>Services_Hours_Total__c</columns>
+    <columns>Services_Project_Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Closed Won</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.CLOSE_DATE</field>
+        <operation>greaterOrEqual</operation>
+        <value>12/1/2021</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.CLOSE_DATE</field>
+        <operation>lessOrEqual</operation>
+        <value>12/31/2021</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.TYPE</field>
+        <operation>notEqual</operation>
+        <value>Legal - Services Change Request Internal</value>
+    </filters>
+    <filters>
+        <field>Fulfilling_Entity__c</field>
+        <operation>equals</operation>
+        <value>Intapp,Partner - Intapp paper,Partner - Intapp paper (blended)</value>
+    </filters>
+    <filters>
+        <field>Services_Hours_Total__c</field>
+        <operation>notEqual</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Services_Amount_Total__c</field>
+        <operation>notEqual</operation>
+        <value>USD 0</value>
+    </filters>
+    <label>All Opportunities - RG SOX Testing-KRR45</label>
+    <language>en_US</language>
+</ListView>

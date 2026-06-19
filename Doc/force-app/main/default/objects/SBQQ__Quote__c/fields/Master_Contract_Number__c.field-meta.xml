@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Master_Contract_Number__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  OR(
+    ISPICKVAL(Version__c,&quot;1&quot;),
+    ISPICKVAL(Version__c,&quot;&quot;)
+  ),
+  SBQQ__MasterContract__r.ContractNumber,
+  SBQQ__MasterContract__r.ContractNumber&amp;&quot;v&quot;&amp;TEXT(Version__c)
+)</formula>
+    <label>Master Contract Number</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

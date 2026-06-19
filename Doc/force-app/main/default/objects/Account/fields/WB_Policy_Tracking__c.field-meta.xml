@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WB_Policy_Tracking__c</fullName>
+    <description>Wall Builder for Policy Tracking</description>
+    <inlineHelpText>Wall Builder for Policy Tracking</inlineHelpText>
+    <label>WB Policy Tracking</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Own It</fullName>
+                <default>false</default>
+                <label>Own It</label>
+            </value>
+            <value>
+                <fullName>Suspect</fullName>
+                <default>false</default>
+                <label>Suspect</label>
+            </value>
+            <value>
+                <fullName>Prospect</fullName>
+                <default>false</default>
+                <label>Prospect</label>
+            </value>
+            <value>
+                <fullName>-</fullName>
+                <default>false</default>
+                <label>-</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

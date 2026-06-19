@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Price_book_exception__c</fullName>
+    <label>Price book exception</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Outside price book</fullName>
+                <default>false</default>
+                <label>Outside price book</label>
+            </value>
+            <value>
+                <fullName>Future product development</fullName>
+                <default>false</default>
+                <label>Future product development</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

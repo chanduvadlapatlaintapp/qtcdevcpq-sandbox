@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ILTA_Outreach__c</fullName>
+    <label>ILTA Outreach</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Attempt (No Answer)</fullName>
+                <default>false</default>
+                <label>Attempt (No Answer)</label>
+            </value>
+            <value>
+                <fullName>Left Voicemail / Email</fullName>
+                <default>false</default>
+                <label>Left Voicemail / Email</label>
+            </value>
+            <value>
+                <fullName>Communicated With - Positive</fullName>
+                <default>false</default>
+                <label>Communicated With - Positive</label>
+            </value>
+            <value>
+                <fullName>Communicated With - Neutral</fullName>
+                <default>false</default>
+                <label>Communicated With - Neutral</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

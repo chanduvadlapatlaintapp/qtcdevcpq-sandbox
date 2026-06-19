@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Quantity Decrease Bundle Non Segment</label>
+    <protected>false</protected>
+    <values>
+        <field>Allow_Multiple_Account__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Default_Accounts__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Description__c</field>
+        <value xsi:type="xsd:string">Targets non-segment Static Bundle lines. Adaptive delta: capped at each line&apos;s effective qty so quantity never falls below priorQuantity. Verifies floor clamp (typing below priorQty rejects). Saves. DB: asserts dbQty ≥ priorQuantity for bundle lines, detects 100% discount anomaly, and verifies Static Component children match bundle qty with non-zero Revenue_Allocation__c. Skips lines with Eff. Qty = 0 and the whole test if none are eligible. 3 scenarios.</value>
+    </values>
+    <values>
+        <field>Is_Active__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Module__c</field>
+        <value xsi:type="xsd:string">Simplified AgenticQTC</value>
+    </values>
+    <values>
+        <field>Sort_Order__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Suite_Value__c</field>
+        <value xsi:type="xsd:string">agenticQtcQuantityDecreaseBundleNonSegment</value>
+    </values>
+</CustomMetadata>

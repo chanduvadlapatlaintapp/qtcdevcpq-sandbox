@@ -1,0 +1,885 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>License_Basis__c</fullName>
+    <label>License Basis (EXPIRING 3/8)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Product_Line__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Activity Tracker</fullName>
+                <default>false</default>
+                <label>Activity Tracker</label>
+            </value>
+            <value>
+                <fullName>Additional Security Extensions</fullName>
+                <default>false</default>
+                <label>Additional Security Extensions</label>
+            </value>
+            <value>
+                <fullName>Advanced</fullName>
+                <default>false</default>
+                <label>Advanced</label>
+            </value>
+            <value>
+                <fullName>Advanced - Cloud</fullName>
+                <default>false</default>
+                <label>Advanced - Cloud</label>
+            </value>
+            <value>
+                <fullName>Advanced Security Package</fullName>
+                <default>false</default>
+                <label>Advanced Security Package</label>
+            </value>
+            <value>
+                <fullName>AI Module</fullName>
+                <default>false</default>
+                <label>AI Module</label>
+            </value>
+            <value>
+                <fullName>Assessment Module</fullName>
+                <default>false</default>
+                <label>Assessment Module</label>
+            </value>
+            <value>
+                <fullName>Attorney Acknowledgements</fullName>
+                <default>false</default>
+                <label>Attorney Acknowledgements</label>
+            </value>
+            <value>
+                <fullName>Auditing Package</fullName>
+                <default>false</default>
+                <label>Auditing Package</label>
+            </value>
+            <value>
+                <fullName>CG Analyze</fullName>
+                <default>false</default>
+                <label>CG Analyze</label>
+            </value>
+            <value>
+                <fullName>CG Clear</fullName>
+                <default>false</default>
+                <label>CG Clear</label>
+            </value>
+            <value>
+                <fullName>CG Flow</fullName>
+                <default>false</default>
+                <label>CG Flow</label>
+            </value>
+            <value>
+                <fullName>CG Hold</fullName>
+                <default>false</default>
+                <label>CG Hold</label>
+            </value>
+            <value>
+                <fullName>CG Lateral Hire</fullName>
+                <default>false</default>
+                <label>CG Lateral Hire</label>
+            </value>
+            <value>
+                <fullName>CG Mobile</fullName>
+                <default>false</default>
+                <label>CG Mobile</label>
+            </value>
+            <value>
+                <fullName>CG Protect</fullName>
+                <default>false</default>
+                <label>CG Protect</label>
+            </value>
+            <value>
+                <fullName>Cloud</fullName>
+                <default>false</default>
+                <label>Cloud</label>
+            </value>
+            <value>
+                <fullName>Confidentiality Package</fullName>
+                <default>false</default>
+                <label>Confidentiality Package</label>
+            </value>
+            <value>
+                <fullName>Confidentiality Plus</fullName>
+                <default>false</default>
+                <label>Confidentiality Plus Package</label>
+            </value>
+            <value>
+                <fullName>Connected (Including Quick Search &amp; IRC)</fullName>
+                <default>false</default>
+                <label>Connected (Including Quick Search &amp; IRC)</label>
+            </value>
+            <value>
+                <fullName>Contractors</fullName>
+                <default>false</default>
+                <label>Contractors</label>
+            </value>
+            <value>
+                <fullName>Criteria Based Access</fullName>
+                <default>false</default>
+                <label>Criteria Based Access</label>
+            </value>
+            <value>
+                <fullName>D&amp;B Company Profile &amp; Family Tree</fullName>
+                <default>false</default>
+                <label>D&amp;B Company Profile &amp; Family Tree</label>
+            </value>
+            <value>
+                <fullName>DMS Package</fullName>
+                <default>false</default>
+                <label>DMS Package</label>
+            </value>
+            <value>
+                <fullName>Axiom</fullName>
+                <default>false</default>
+                <label>DTE - Axiom</label>
+            </value>
+            <value>
+                <fullName>Axiom Mobile</fullName>
+                <default>false</default>
+                <label>DTE - Axiom Mobile</label>
+            </value>
+            <value>
+                <fullName>Legacy DTE</fullName>
+                <default>false</default>
+                <label>DTE - Legacy</label>
+            </value>
+            <value>
+                <fullName>Legacy Mobile</fullName>
+                <default>false</default>
+                <label>DTE - Legacy Mobile</label>
+            </value>
+            <value>
+                <fullName>Dynamic Groups</fullName>
+                <default>false</default>
+                <label>Dynamic Groups</label>
+            </value>
+            <value>
+                <fullName>eBillingHub Module</fullName>
+                <default>false</default>
+                <label>eBillingHub Module</label>
+            </value>
+            <value>
+                <fullName>Document Assembly</fullName>
+                <default>false</default>
+                <label>Engagement Letters for OEM (w/o CE License)</label>
+            </value>
+            <value>
+                <fullName>Engage. Letter w/BI</fullName>
+                <default>false</default>
+                <label>Engagement Letters for OEM (with CE License)</label>
+            </value>
+            <value>
+                <fullName>Enterprise</fullName>
+                <default>false</default>
+                <label>Flow - Enterprise</label>
+            </value>
+            <value>
+                <fullName>Enterprise - Cloud</fullName>
+                <default>false</default>
+                <label>Flow - Enterprise - Cloud</label>
+            </value>
+            <value>
+                <fullName>Extend</fullName>
+                <default>false</default>
+                <label>Extend</label>
+            </value>
+            <value>
+                <fullName>Flow - Advanced</fullName>
+                <default>false</default>
+                <label>Flow - Advanced</label>
+            </value>
+            <value>
+                <fullName>Flow - Advanced - Cloud</fullName>
+                <default>false</default>
+                <label>Flow - Advanced - Cloud</label>
+            </value>
+            <value>
+                <fullName>Flow - Standard</fullName>
+                <default>false</default>
+                <label>Flow - Standard</label>
+            </value>
+            <value>
+                <fullName>Flow - Standard - Cloud</fullName>
+                <default>false</default>
+                <label>Flow - Standard - Cloud</label>
+            </value>
+            <value>
+                <fullName>Foundational Walls</fullName>
+                <default>false</default>
+                <label>Foundational Walls</label>
+            </value>
+            <value>
+                <fullName>Intapp Document Assembly Cloud</fullName>
+                <default>false</default>
+                <label>Intapp Document Assembly Cloud</label>
+            </value>
+            <value>
+                <fullName>Engage. Letter w/BI - Cloud</fullName>
+                <default>false</default>
+                <label>Intapp Engagement Letters</label>
+            </value>
+            <value>
+                <fullName>Application</fullName>
+                <default>false</default>
+                <label>Integrate - Application</label>
+            </value>
+            <value>
+                <fullName>Bi-Directional</fullName>
+                <default>false</default>
+                <label>Integrate - Bi-Directional</label>
+            </value>
+            <value>
+                <fullName>IB limited</fullName>
+                <default>false</default>
+                <label>Integrate - IB limited</label>
+            </value>
+            <value>
+                <fullName>Infrastructure</fullName>
+                <default>false</default>
+                <label>Integrate - Infrastructure</label>
+            </value>
+            <value>
+                <fullName>MDD</fullName>
+                <default>false</default>
+                <label>Integrate - MDD</label>
+            </value>
+            <value>
+                <fullName>New Business Intake</fullName>
+                <default>false</default>
+                <label>Integrate - NBI Client Matter Propagation</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Integrate - Other</label>
+            </value>
+            <value>
+                <fullName>Secure File Sharing</fullName>
+                <default>false</default>
+                <label>Integrate - Secure File Sharing</label>
+            </value>
+            <value>
+                <fullName>SmartLink</fullName>
+                <default>false</default>
+                <label>Integrate - SmartLink</label>
+            </value>
+            <value>
+                <fullName>Smartlink - Limited 2R/2W to Bridgeway Legal Hold</fullName>
+                <default>false</default>
+                <label>Integrate - Smartlink - Limited 2R/2W to Bridgeway Legal Hold</label>
+            </value>
+            <value>
+                <fullName>Smartlink - Limited 2R/2W to eCounsel</fullName>
+                <default>false</default>
+                <label>Integrate - Smartlink - Limited 2R/2W to eCounsel</label>
+            </value>
+            <value>
+                <fullName>Smartlink - Unlimited to eCounsel</fullName>
+                <default>false</default>
+                <label>Integrate - Smartlink - Unlimited to eCounsel</label>
+            </value>
+            <value>
+                <fullName>Integrate - Standard</fullName>
+                <default>false</default>
+                <label>Integrate - Standard</label>
+            </value>
+            <value>
+                <fullName>Standard - Cloud</fullName>
+                <default>false</default>
+                <label>Standard - Cloud</label>
+            </value>
+            <value>
+                <fullName>Standard IB &amp; Box Builder</fullName>
+                <default>false</default>
+                <label>Integrate - Standard IB &amp; Box Builder</label>
+            </value>
+            <value>
+                <fullName>Standard IB &amp; Box Builder (Box Trial)</fullName>
+                <default>false</default>
+                <label>Integrate - Standard IB &amp; Box Builder (Box Trial)</label>
+            </value>
+            <value>
+                <fullName>Standard IB &amp; Secure File Sharing</fullName>
+                <default>false</default>
+                <label>Integrate - Standard IB &amp; Secure File Sharing</label>
+            </value>
+            <value>
+                <fullName>Standard IB &amp; SmartLink</fullName>
+                <default>false</default>
+                <label>Integrate - Standard IB &amp; SmartLink</label>
+            </value>
+            <value>
+                <fullName>User Provisioning</fullName>
+                <default>false</default>
+                <label>Integrate - User Provisioning</label>
+            </value>
+            <value>
+                <fullName>Lawyer Portal</fullName>
+                <default>false</default>
+                <label>Lawyer Portal</label>
+            </value>
+            <value>
+                <fullName>Legal Holds</fullName>
+                <default>false</default>
+                <label>Legal Holds</label>
+            </value>
+            <value>
+                <fullName>LegalKEY - Conflicts</fullName>
+                <default>false</default>
+                <label>LegalKEY - Conflicts</label>
+            </value>
+            <value>
+                <fullName>LegalKEY - Records</fullName>
+                <default>false</default>
+                <label>LegalKEY - Records</label>
+            </value>
+            <value>
+                <fullName>People, Places &amp; Printers</fullName>
+                <default>false</default>
+                <label>People, Places &amp; Printers</label>
+            </value>
+            <value>
+                <fullName>Regulatory Reporting</fullName>
+                <default>false</default>
+                <label>Regulatory Reporting</label>
+            </value>
+            <value>
+                <fullName>Analyse</fullName>
+                <default>false</default>
+                <label>Rekoop - Analyse</label>
+            </value>
+            <value>
+                <fullName>Monitor</fullName>
+                <default>false</default>
+                <label>Rekoop - Monitor</label>
+            </value>
+            <value>
+                <fullName>Time Management</fullName>
+                <default>false</default>
+                <label>Rekoop - Time Management</label>
+            </value>
+            <value>
+                <fullName>RollCall</fullName>
+                <default>false</default>
+                <label>RollCall</label>
+            </value>
+            <value>
+                <fullName>Self Maintaining Walls</fullName>
+                <default>false</default>
+                <label>Self Maintaining Walls</label>
+            </value>
+            <value>
+                <fullName>Standard</fullName>
+                <default>false</default>
+                <label>Standard</label>
+            </value>
+            <value>
+                <fullName>Connected</fullName>
+                <default>false</default>
+                <label>Standard (Connected)</label>
+            </value>
+            <value>
+                <fullName>Connected - Cloud</fullName>
+                <default>false</default>
+                <label>Standard (Connected) - Cloud</label>
+            </value>
+            <value>
+                <fullName>Matter Team Manager</fullName>
+                <default>false</default>
+                <label>Team Manager</label>
+            </value>
+            <value>
+                <fullName>Time - AI Module</fullName>
+                <default>false</default>
+                <label>Time - AI Module</label>
+            </value>
+            <value>
+                <fullName>Time Builder - Mobility</fullName>
+                <default>false</default>
+                <label>Time Builder - Mobility</label>
+            </value>
+            <value>
+                <fullName>Time Builder - Time Entry Toolkit</fullName>
+                <default>false</default>
+                <label>Time Builder - Time Entry Toolkit</label>
+            </value>
+            <value>
+                <fullName>Capture</fullName>
+                <default>false</default>
+                <label>Time - Capture</label>
+            </value>
+            <value>
+                <fullName>Cloud: Total Management</fullName>
+                <default>false</default>
+                <label>Time - Cloud</label>
+            </value>
+            <value>
+                <fullName>Compliance Module</fullName>
+                <default>false</default>
+                <label>Time - Compliance Module</label>
+            </value>
+            <value>
+                <fullName>Core Limited</fullName>
+                <default>false</default>
+                <label>Time - Core Limited</label>
+            </value>
+            <value>
+                <fullName>Core Management</fullName>
+                <default>false</default>
+                <label>Time - Core Management</label>
+            </value>
+            <value>
+                <fullName>Mobile</fullName>
+                <default>false</default>
+                <label>Time - Mobile</label>
+            </value>
+            <value>
+                <fullName>Total Management</fullName>
+                <default>false</default>
+                <label>Time - Total Time Management</label>
+            </value>
+            <value>
+                <fullName>Wall Builder</fullName>
+                <default>false</default>
+                <label>Wall Builder</label>
+            </value>
+            <value>
+                <fullName>On-Premise Fee</fullName>
+                <default>false</default>
+                <label>On-Premise Fee</label>
+            </value>
+            <value>
+                <fullName>Integrate - Standard - Cloud</fullName>
+                <default>false</default>
+                <label>Integrate - Standard - Cloud</label>
+            </value>
+            <value>
+                <fullName>Leadership &amp; Partners Module</fullName>
+                <default>false</default>
+                <label>Leadership &amp; Partners Module</label>
+            </value>
+            <value>
+                <fullName>Enterprise Unlimited</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Enterprise Unlimited</label>
+            </value>
+            <value>
+                <fullName>Firm size - Lawyers or Timekeepers</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Firm size - Lawyers or Timekeepers</label>
+            </value>
+            <value>
+                <fullName>Flow - Enterprise</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Flow - Enterprise</label>
+            </value>
+            <value>
+                <fullName>Flow - Enterprise - Cloud</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Flow - Enterprise - Cloud</label>
+            </value>
+            <value>
+                <fullName>Mobility</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Mobility</label>
+            </value>
+            <value>
+                <fullName>Standard (Connected)</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Standard (Connected)</label>
+            </value>
+            <value>
+                <fullName>Standard (Connected) - Cloud</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Standard (Connected) - Cloud</label>
+            </value>
+            <value>
+                <fullName>Time Builder</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Time Builder</label>
+            </value>
+            <value>
+                <fullName>Time Entry Toolkit</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Time Entry Toolkit</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Third Party Product - D&amp;B</controllingFieldValue>
+            <valueName>D&amp;B Company Profile &amp; Family Tree</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Pricing - Cloud</controllingFieldValue>
+            <controllingFieldValue>Terms - Cloud</controllingFieldValue>
+            <controllingFieldValue>Integrate - Cloud</controllingFieldValue>
+            <controllingFieldValue>Intake - Cloud</controllingFieldValue>
+            <controllingFieldValue>Experience - Cloud</controllingFieldValue>
+            <valueName>Standard - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - Cloud</controllingFieldValue>
+            <valueName>Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - Cloud</controllingFieldValue>
+            <valueName>Analyse</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - Cloud</controllingFieldValue>
+            <valueName>Monitor</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - Cloud</controllingFieldValue>
+            <valueName>Time Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time - Cloud</controllingFieldValue>
+            <valueName>Cloud: Total Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integrate - Cloud</controllingFieldValue>
+            <controllingFieldValue>Intake - Cloud</controllingFieldValue>
+            <controllingFieldValue>Conflicts - Cloud</controllingFieldValue>
+            <valueName>Advanced - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integrate - Cloud</controllingFieldValue>
+            <valueName>Enterprise - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integrate - Cloud</controllingFieldValue>
+            <valueName>Flow - Advanced - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integrate - Cloud</controllingFieldValue>
+            <valueName>Flow - Standard - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integrate - Cloud</controllingFieldValue>
+            <valueName>Intapp Document Assembly Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake - Cloud</controllingFieldValue>
+            <valueName>Engage. Letter w/BI - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Conflicts - Cloud</controllingFieldValue>
+            <valueName>Connected - Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Conflicts</controllingFieldValue>
+            <controllingFieldValue>Intake</controllingFieldValue>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <valueName>Advanced</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Conflicts</controllingFieldValue>
+            <controllingFieldValue>Terms</controllingFieldValue>
+            <valueName>AI Module</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Conflicts</controllingFieldValue>
+            <valueName>CG Analyze</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Conflicts</controllingFieldValue>
+            <valueName>Connected (Including Quick Search &amp; IRC)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Conflicts</controllingFieldValue>
+            <controllingFieldValue>Experience</controllingFieldValue>
+            <controllingFieldValue>Intake</controllingFieldValue>
+            <controllingFieldValue>Terms</controllingFieldValue>
+            <controllingFieldValue>Pricing</controllingFieldValue>
+            <valueName>Standard</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Experience</controllingFieldValue>
+            <valueName>On-Premise Fee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake</controllingFieldValue>
+            <valueName>Assessment Module</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake</controllingFieldValue>
+            <valueName>CG Flow</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake</controllingFieldValue>
+            <valueName>Document Assembly</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake</controllingFieldValue>
+            <valueName>Engage. Letter w/BI</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intake</controllingFieldValue>
+            <valueName>Extend</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <valueName>Enterprise</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <valueName>Flow - Advanced</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <valueName>Flow - Standard</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <valueName>Application</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <valueName>Bi-Directional</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <valueName>IB limited</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <valueName>Infrastructure</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <valueName>MDD</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <valueName>New Business Intake</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <valueName>Secure File Sharing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <valueName>SmartLink</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <valueName>Smartlink - Limited 2R/2W to Bridgeway Legal Hold</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <valueName>Smartlink - Limited 2R/2W to eCounsel</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <valueName>Smartlink - Unlimited to eCounsel</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <valueName>Integrate - Standard</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <valueName>Standard IB &amp; Box Builder</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <valueName>Standard IB &amp; Box Builder (Box Trial)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <valueName>Standard IB &amp; Secure File Sharing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <valueName>Standard IB &amp; SmartLink</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <valueName>User Provisioning</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>LegalKey</controllingFieldValue>
+            <valueName>LegalKEY - Conflicts</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>LegalKey</controllingFieldValue>
+            <valueName>LegalKEY - Records</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>TFG - Other</controllingFieldValue>
+            <valueName>CG Clear</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>TFG - Other</controllingFieldValue>
+            <valueName>CG Hold</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>TFG - Other</controllingFieldValue>
+            <valueName>CG Lateral Hire</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>TFG - Other</controllingFieldValue>
+            <valueName>CG Mobile</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>Axiom</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>Axiom Mobile</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>Legacy DTE</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>Legacy Mobile</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>eBillingHub Module</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>RollCall</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>Time - AI Module</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>Time Builder - Mobility</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>Time Builder - Time Entry Toolkit</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>Capture</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>Compliance Module</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>Core Limited</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>Core Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>Mobile</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time</controllingFieldValue>
+            <valueName>Total Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Activity Tracker</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Additional Security Extensions</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Advanced Security Package</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Attorney Acknowledgements</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Auditing Package</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>CG Protect</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Confidentiality Package</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Confidentiality Plus</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Contractors</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Criteria Based Access</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>DMS Package</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Dynamic Groups</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Foundational Walls</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Lawyer Portal</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Legal Holds</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>People, Places &amp; Printers</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Regulatory Reporting</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Self Maintaining Walls</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Matter Team Manager</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Walls</controllingFieldValue>
+            <valueName>Wall Builder</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CRM</controllingFieldValue>
+            <valueName>Leadership &amp; Partners Module</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

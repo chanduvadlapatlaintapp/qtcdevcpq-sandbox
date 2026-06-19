@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>it_support@intapp.com</contactEmail>
+    <label>Slack</label>
+    <logoUrl>https://intapp--c.na3.content.force.com/servlet/servlet.ImageServer?id=01550000002ND8V&amp;oid=00DWA000005pTQ5</logoUrl>
+    <samlConfig>
+        <acsUrl>https://yourteamname.slack.com/sso/saml</acsUrl>
+        <encryptionType>AES_128</encryptionType>
+        <entityUrl>https://intappx.slack.com</entityUrl>
+        <issuer>https://intapp.my.salesforce.com</issuer>
+        <samlNameIdFormat>Persistent</samlNameIdFormat>
+        <samlSigningAlgoType>SHA1</samlSigningAlgoType>
+        <samlSubjectType>Username</samlSubjectType>
+    </samlConfig>
+    <startUrl>https://intappx.slack.com</startUrl>
+</ConnectedApp>

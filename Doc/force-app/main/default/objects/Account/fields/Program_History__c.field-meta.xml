@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Program_History__c</fullName>
+    <description>Field for PR Marketing Use to track customer participation in programs.</description>
+    <inlineHelpText>Field for PR Marketing Use to track customer participation in programs.</inlineHelpText>
+    <label>Program History</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Integration Case Study</fullName>
+                <default>false</default>
+                <label>Integration Case Study</label>
+            </value>
+            <value>
+                <fullName>Integration Press Release</fullName>
+                <default>false</default>
+                <label>Integration Press Release</label>
+            </value>
+            <value>
+                <fullName>Integration Webinar</fullName>
+                <default>false</default>
+                <label>Integration Webinar</label>
+            </value>
+            <value>
+                <fullName>Open Case Study</fullName>
+                <default>false</default>
+                <label>Open Case Study</label>
+            </value>
+            <value>
+                <fullName>Open Press Release</fullName>
+                <default>false</default>
+                <label>Open Press Release</label>
+            </value>
+            <value>
+                <fullName>Open Webinar</fullName>
+                <default>false</default>
+                <label>Open Webinar</label>
+            </value>
+            <value>
+                <fullName>Risk Case Study</fullName>
+                <default>false</default>
+                <label>Risk Case Study</label>
+            </value>
+            <value>
+                <fullName>Risk Press Release</fullName>
+                <default>false</default>
+                <label>Risk Press Release</label>
+            </value>
+            <value>
+                <fullName>Risk Roundtable Host</fullName>
+                <default>false</default>
+                <label>Risk Roundtable Host</label>
+            </value>
+            <value>
+                <fullName>Risk Webinar</fullName>
+                <default>false</default>
+                <label>Risk Webinar</label>
+            </value>
+            <value>
+                <fullName>Time Case Study</fullName>
+                <default>false</default>
+                <label>Time Case Study</label>
+            </value>
+            <value>
+                <fullName>Time Press Release</fullName>
+                <default>false</default>
+                <label>Time Press Release</label>
+            </value>
+            <value>
+                <fullName>Time Webinar</fullName>
+                <default>false</default>
+                <label>Time Webinar</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

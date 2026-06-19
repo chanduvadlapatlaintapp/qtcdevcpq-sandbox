@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Subsidiary_Address_Info__c</fullName>
+    <description>Set address based on the quote subsidiary. This value will be displayed on the Renewal Letter</description>
+    <externalId>false</externalId>
+    <formula>CASE(TEXT( Subsidiary__c ) ,
+&quot;01:200 Integration Appliance (US)&quot;, $CustomMetadata.Invoice_Template__mdt.Address_INTAPP_Inc.Address_subsidiary__c ,
+&quot;05:400 TFG - US&quot;, $CustomMetadata.Invoice_Template__mdt.Address_The_Frayman_Group.Address_subsidiary__c ,
+&quot;06:700 Rekoop Limited (UK)&quot;, $CustomMetadata.Invoice_Template__mdt.Address_Rekoop.Address_subsidiary__c ,
+&quot;09:750 Rekoop Pty Limited (AUS)&quot;, $CustomMetadata.Invoice_Template__mdt.Address_Rekoop.Address_subsidiary__c,
+&quot;23:Gwabbit&quot;,
+$CustomMetadata.Invoice_Template__mdt.Address_gwabbit_Inc.Address_subsidiary__c ,
+&quot;28:OnePlace Pte Ltd&quot;,
+$CustomMetadata.Invoice_Template__mdt.Address_OnePlace_Pte_Ltd.Address_subsidiary__c,
+&quot;35:Repstor Limited&quot;, $CustomMetadata.Invoice_Template__mdt.Address_Repstor_Limited.Address_subsidiary__c ,
+&quot;37:Repstor, Inc.&quot;, $CustomMetadata.Invoice_Template__mdt.Address_Repstor_Inc.Address_subsidiary__c ,
+&quot;18:DealCloud, Inc.&quot;, $CustomMetadata.Invoice_Template__mdt.Address_DealCloud.Address_subsidiary__c ,
+&quot;42:Paragon Data Labs, Inc.&quot;, $CustomMetadata.Invoice_Template__mdt.Address_Paragon_Data_Labs.Address_subsidiary__c ,
+&quot;44:Intapp Germany GmbH&quot;,
+$CustomMetadata.Invoice_Template__mdt.Address_Intapp_Germany_GmbH.Address_subsidiary__c,
+&quot;46:Transform Data International&quot;,
+$CustomMetadata.Invoice_Template__mdt.Address_Intapp_Netherlands_B_V.Address_subsidiary__c,
+&quot;&quot;)</formula>
+    <label>Subsidiary Address Info</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

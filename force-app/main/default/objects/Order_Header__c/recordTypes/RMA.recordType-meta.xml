@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RMA</fullName>
+    <active>false</active>
+    <label>RMA</label>
+    <picklistValues>
+        <picklist>Delivery_Type__c</picklist>
+        <values>
+            <fullName>Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>On Premise</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>IIS_package__c</picklist>
+        <values>
+            <fullName>Integrate Customer - Tier A</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Integrate Customer - Tier B</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Integrate Customer - Tier C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non-Integrate Customer - Tier A</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non-Integrate Customer - Tier B</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Instance_Type__c</picklist>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platform Instance %28unknown%2Fmixed use%29</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Platform Instance for IB</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platform Instance for TB</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platform Instance for WB</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Label_Generation_Status__c</picklist>
+        <values>
+            <fullName>Complete</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Process</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Needs Manual Generation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Started</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Void In Process</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Void Requested</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Void Successful</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Order_System_Status__c</picklist>
+        <values>
+            <fullName>Error</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Finished</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ready</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Working%2E%2E%2E</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Order_Type__c</picklist>
+        <values>
+            <fullName>Evaluation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Purchase</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Shipper__c</picklist>
+        <values>
+            <fullName>DHL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FEDEX</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>UPS</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fully Shipped</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Generate Shipping Label</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+</RecordType>

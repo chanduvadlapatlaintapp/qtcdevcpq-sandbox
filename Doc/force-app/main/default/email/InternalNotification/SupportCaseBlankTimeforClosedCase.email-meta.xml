@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Alert for no time filled in for case</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EmptyLetterhead</letterhead>
+    <name>Support Case: Blank Time for Closed Case</name>
+    <style>freeForm</style>
+    <subject>[Integration Appliance Salesforce] Case &quot;{!Case.Subject}&quot; Closed with No Time Entered</subject>
+    <textOnly>A case was closed with no time entered.  It&apos;s important we record time spent on each case so we know how well we&apos;re doing!
+
+
+
+Case: {!Case.CaseNumber}
+
+Link to Case: http://na1.salesforce.com/{!Case.Id}
+
+Subject: {!Case.Subject}
+
+Customer: {!Case.Contact}
+
+Problem: {!Case.Problem__c}
+
+Resolution: {!Case.Resolution__c}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

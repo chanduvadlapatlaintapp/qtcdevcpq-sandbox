@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_37097829</developerName>
+        <masterLabel>Product</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>Case.Product__c</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>DTE Axiom</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>DTE</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>DTE Axiom Mobile</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Intapp Time</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Intapp Time Cloud</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Time Builder</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Rekoop</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>RollCall</sourceValue>
+            </sourceValues>
+            <value>Time</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Activity Tracker</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Wall Builder</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>LegalKey</sourceValue>
+            </sourceValues>
+            <value>Walls</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Integration Builder VM</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Integration Builder/Training</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Integration Builder</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Intapp Flow</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Series 4</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>C I D</sourceValue>
+            </sourceValues>
+            <value>Integrate</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>CompliGuard Analyze</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>CompliGuard Flow</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>CompliGuard Protect</sourceValue>
+            </sourceValues>
+            <value>CompliGuard</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Conflicts</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Intake</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Terms of Business</sourceValue>
+            </sourceValues>
+            <value>OPEN</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>CASE_NUMBER</field>
+    </columns>
+    <currency>USD</currency>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_37097829</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Ian - Time Cases vs All Others</name>
+    <params>
+        <name>units</name>
+        <value>h</value>
+    </params>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CaseList</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATEONLY</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

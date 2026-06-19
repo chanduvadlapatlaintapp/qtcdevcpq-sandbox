@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bill_To_Address_Label__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  OR(
+    Text(Contract_Master_Terms__c) = &quot;Reseller&quot;,
+    CONTAINS(OP4I_Sales_Segment__c, &quot;Partner Reseller Channel&quot;)
+  ),
+  &quot;Reseller Partner:&quot;,
+  &quot;Bill To:&quot;
+)</formula>
+    <label>Bill To Address Label</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

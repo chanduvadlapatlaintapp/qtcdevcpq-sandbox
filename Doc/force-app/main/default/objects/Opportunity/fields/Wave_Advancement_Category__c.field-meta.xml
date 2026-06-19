@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Wave_Advancement_Category__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  NOT(ISBLANK(First_Entered_Shopping_Date__c)),
+  &quot;1. Advanced&quot;,
+  IF(
+    ISBLANK(Advancement_Forecast_Date__c),
+    &quot;5. Not in Forecast&quot;,
+    CASE(Advancement_Confidence__c,
+      &quot;Commit&quot;,&quot;2. In Forecast - Commit&quot;,
+      &quot;Best Case&quot;,&quot;3. In Forecast - Best Case&quot;,
+      &quot;4. In Forecast&quot;
+    )
+  )
+)</formula>
+    <label>Wave: Advancement Category</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

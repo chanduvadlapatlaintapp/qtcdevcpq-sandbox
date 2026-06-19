@@ -1,0 +1,41 @@
+<template>
+    <div class="overlay">
+        <div class="loader-card">
+            <div class="svg-wrap">
+                <!-- Two overlapping groups of concentric rounded diamonds, mirroring the Intapp logo -->
+                <svg viewBox="0 0 200 124" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <!-- Left group (blue), center at 75,62 -->
+                    <rect class="ring lo" x="48" y="35" width="54" height="54" rx="12"
+                          fill="none" stroke="#4A6FE3" stroke-width="4.5"
+                          transform="rotate(45,75,62)"/>
+                    <rect class="ring lm" x="56" y="43" width="38" height="38" rx="8"
+                          fill="none" stroke="#5277E7" stroke-width="4.5"
+                          transform="rotate(45,75,62)"/>
+                    <rect class="ring li" x="64" y="51" width="22" height="22" rx="5"
+                          fill="none" stroke="#5A7EEB" stroke-width="4.5"
+                          transform="rotate(45,75,62)"/>
+
+                    <!-- Right group (teal), center at 125,62 -->
+                    <rect class="ring ri" x="114" y="51" width="22" height="22" rx="5"
+                          fill="none" stroke="#5AE6CE" stroke-width="4.5"
+                          transform="rotate(45,125,62)"/>
+                    <rect class="ring rm" x="106" y="43" width="38" height="38" rx="8"
+                          fill="none" stroke="#51E2C8" stroke-width="4.5"
+                          transform="rotate(45,125,62)"/>
+                    <rect class="ring ro" x="98" y="35" width="54" height="54" rx="12"
+                          fill="none" stroke="#48DEC2" stroke-width="4.5"
+                          transform="rotate(45,125,62)"/>
+                </svg>
+            </div>
+            <template if:true={isProgressMode}>
+                <div class="progress-bar-wrap">
+                    <div class="progress-bar-fill" style={progressBarStyle}></div>
+                </div>
+                <p class="progress-step-label">{progressMessage}</p>
+            </template>
+            <template if:false={isProgressMode}>
+                <p class="loading-label">{message}<span class="dots">...</span></p>
+            </template>
+        </div>
+    </div>
+</template>

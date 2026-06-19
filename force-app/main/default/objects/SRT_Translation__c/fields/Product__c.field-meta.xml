@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product__c</fullName>
+    <label>Product</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Integration Builder</fullName>
+                <default>false</default>
+                <label>Integration Builder</label>
+            </value>
+            <value>
+                <fullName>Wall Builder</fullName>
+                <default>false</default>
+                <label>Wall Builder</label>
+            </value>
+            <value>
+                <fullName>Intapp Time</fullName>
+                <default>false</default>
+                <label>Intapp Time</label>
+            </value>
+            <value>
+                <fullName>Intapp Open - Conflicts</fullName>
+                <default>false</default>
+                <label>Intapp Open - Conflicts</label>
+            </value>
+            <value>
+                <fullName>Intapp Open - Intake</fullName>
+                <default>false</default>
+                <label>Intapp Open - Intake</label>
+            </value>
+            <value>
+                <fullName>Intapp Open</fullName>
+                <default>false</default>
+                <label>Intapp Open</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

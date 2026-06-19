@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DC_MSA_Addendum_Notes_Required</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(NOT(ISBLANK(DC_MSA_Addendum__c)), 
+ISBLANK(DC_MSA_Addendum_Notes__c ) 
+)</errorConditionFormula>
+    <errorDisplayField>DC_MSA_Addendum_Notes__c</errorDisplayField>
+    <errorMessage>DC MSA Addendum-Notes Is Required When DC MSA Addendum contains a Contract Number</errorMessage>
+</ValidationRule>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Intapp_Item_Master_Number_Prefix__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+OR(
+ISBLANK(Product_LineNew__r.IMP_prefix__c),
+ISNULL(Product_LineNew__r.IMP_prefix__c)
+),
+&apos;GE&apos;,
+Product_LineNew__r.IMP_prefix__c)
+/*CASE(Product_LineNew__c,
+/*&quot;a0O5000000UH8Ff&quot;,&quot;TM&quot;, /* Time - On Prem*/
+/*&quot;a0O5000000UH8Fg&quot;, &quot;TM&quot;, /* Time - Cloud */
+/*&quot;a0O2J00000WmTRd&quot;,&quot;CC&quot;, /*Collaboration &amp; Content - Cloud*/
+/*&quot;a0O5000000UH8Fk&quot;,&quot;PR&quot;, /*Pricing - Cloud */
+/*&quot;a0O5000000UH8Fh&quot;,&quot;IB&quot;, /*Integrate - On Prem*/
+/*&quot;a0O5000000UH8Fe&quot;,&quot;WB&quot;, /* Walls - On Prem*/
+/*&quot;a0O5000000UH8Fa&quot;,&quot;CO&quot;, /* Conflicts - On Prem*/
+/*&quot;a0O5000000UH8Fb&quot;,&quot;CO&quot;, /*Conflicts - Cloud */
+/*&quot;a0O5000000UH8FY&quot;,&quot;IN&quot;, /* Intake - On Prem*/
+/*&quot;a0O5000000UH8FZ&quot;,&quot;IN&quot;, /*Intake - Cloud*/
+/*&quot;a0O5000000UH8FX&quot;,&quot;EX&quot;, /*Experience - Cloud*/
+/*&quot;a0O2J00000Wm9IW&quot;,&quot;TP&quot;, /*Third Party Content - D&amp;B Data Mgmt*/
+/*&quot;a0O5000000UH8Fp&quot;,&quot;BU&quot;, /*Multiple Products - On Prem*/
+/*&quot;a0O5000000UH8Fc&quot;,&quot;TB&quot;, /*Terms - On Prem*/
+/*&quot;a0O5000000UH8Fd&quot;,&quot;TB&quot;, /*Terms - Cloud*/
+/*&quot;a0O5000000UH8Fl&quot;,&quot;TP&quot;, /*Third Party Product - D&amp;B Tree */
+/*&quot;a0O2J00000Ug6PY&quot;, &quot;RI&quot;, /*Relationships - Cloud*/
+/*&quot;a0O2J00000Ug8sS&quot;, &quot;CR&quot;, /*CRM - Cloud*/
+/*&quot;a0O2J00000UgAOA&quot;, &quot;FL&quot;, /*Flow - Cloud*/
+/*&quot;a0O2J00000UgAO5&quot;, &quot;FL&quot;, /*Flow - On Prem*/
+/*&quot;a0O2J00000Wm6Hp&quot;, &quot;IS&quot;, /*Integration Service - Cloud*/
+/*&quot;a0O2J00000UgDbN&quot;, &quot;DC&quot;, /*DealCloud - Cloud*/
+/*&quot;a0O2J00000TfOvb&quot;, &quot;BU&quot;, /*Multiple Products - Cloud*/
+/*&quot;a0O2J00000Wlsj0&quot;, &quot;TP&quot;, /*Third Party Referrals*/
+/*&quot;a0O2J00000WmDyl&quot;, &quot;TP&quot;, /*Third Party Content - S&amp;P*/
+/*&quot;a0O2J00000Wm6I9&quot;, &quot;BU&quot;, /*Multiple Products - Cloud*/
+/*&quot;a0O2J00000Wm6IJ&quot;, &quot;BU&quot;, /*Multiple Products - Cloud*/
+/*&quot;a0O2J00000Wm6IT&quot;, &quot;BU&quot;, /*Multiple Products - Cloud*/
+/*&quot;a0O2J00000Wm6IE&quot;, &quot;BU&quot;, /*Multiple Products - On Prem*/
+/*&quot;a0O2J00000Wm7NP&quot;, &quot;BU&quot;, /*Multiple Products - On Prem*/
+/*&quot;a0O2J00000Wm6IY&quot;, &quot;BU&quot;, /*Multiple Products - On Prem*/
+/*&quot;a0O2J00000WmTDq&quot;, &quot;ON&quot;, /*OnePlace - Cloud*/
+/*&quot;a0O2J00000WmTDv&quot;, &quot;ON&quot;, /*OnePlace - On Prem*/
+/*&quot;a0O2J00000WmTku&quot;, &quot;ON&quot;, /*OnePlace*/
+/*&quot;GE&quot;
+/*)*/</formula>
+    <label>Intapp Item Master Number Prefix</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

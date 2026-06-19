@@ -1,0 +1,18 @@
+<messaging:emailTemplate subject=" Cloud Addendum Required for {!relatedto.SBQQ__Account__r.Name}, Line of Business: {!relatedTo.Line_of_Business__c}"  recipientType="User" relatedToType="SBQQ__Quote__c">
+<messaging:plainTextEmailBody >
+
+
+An OSA has been requested but the Cloud Addendum is not on file for {!relatedto.SBQQ__Account__r.Name}.
+
+Line of Business: {!relatedTo.Line_of_Business__c}
+
+Contracts Ops please include a Cloud Addendum in the bundle. 
+
+Account: {!relatedto.SBQQ__Account__r.Name}
+Master Terms: Contract Number: {!relatedto.SBQQ__Account__r.Master_Terms_Contract_Number__r.ContractNumber}
+MSSA Version Number: {!relatedto.SBQQ__Account__r.Contract_Term_Version__c}
+MSSA Link: {!relatedto.SBQQ__Account__r.Master_Terms_Contract_Number_URL__c}
+ 
+Rule Code: QUO-091Exxx
+</messaging:plainTextEmailBody>
+</messaging:emailTemplate>

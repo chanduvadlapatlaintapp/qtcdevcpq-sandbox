@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Change_Other_4__c</fullName>
+    <formula>OR(
+  CSM_Health_Change_Code__c=&quot;E to E&quot;,
+  CSM_Health_Change_Code__c=&quot;E to New&quot;,
+  CSM_Health_Change_Code__c=&quot;F to Blank&quot;,
+  CSM_Health_Change_Code__c=&quot;F to E&quot;,
+  CSM_Health_Change_Code__c=&quot;F to F&quot;,
+  CSM_Health_Change_Code__c=&quot;F to New&quot;,
+  CSM_Health_Change_Code__c=&quot;New to Blank&quot;,
+  CSM_Health_Change_Code__c=&quot;New to A&quot;,
+  CSM_Health_Change_Code__c=&quot;New to B&quot;,
+  CSM_Health_Change_Code__c=&quot;New to E&quot;,
+  CSM_Health_Change_Code__c=&quot;New to New&quot;
+)</formula>
+    <label>Change Other (4)?</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>blaine.sullivan@intapp.com</contactEmail>
+    <iconUrl>https://login.salesforce.com/logos/Apps/Webex/icon.png</iconUrl>
+    <label>WebEx_test</label>
+    <logoUrl>https://login.salesforce.com/logos/Apps/Webex/logo.png</logoUrl>
+    <samlConfig>
+        <acsUrl>https://intappinc-test.webex.com</acsUrl>
+        <encryptionType>AES_128</encryptionType>
+        <entityUrl>webexSSO</entityUrl>
+        <issuer>https://saml.salesforce.com</issuer>
+        <samlNameIdFormat>Persistent</samlNameIdFormat>
+        <samlSigningAlgoType>SHA1</samlSigningAlgoType>
+        <samlSubjectCustomAttr>WebEx_Username</samlSubjectCustomAttr>
+        <samlSubjectType>CustomAttribute</samlSubjectType>
+    </samlConfig>
+    <startUrl>https://intappinc-test.webex.com</startUrl>
+</ConnectedApp>

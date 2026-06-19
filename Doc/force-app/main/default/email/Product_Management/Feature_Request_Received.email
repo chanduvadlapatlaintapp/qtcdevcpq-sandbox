@@ -1,0 +1,42 @@
+<table border="0" cellpadding="5" width="600" cellspacing="5" height="400" >
+<tr valign="top" height="50" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<P>A feature request was received for a product related to your practice&nbsp;or for an unknown product.&nbsp; Please review the information below.</P>]]></td>
+</tr>
+<tr valign="top" height="300" >
+<td tEditID="c1r2" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r2" locked="0" >
+<![CDATA[<p style="font-size: 12pt;"><strong>Product:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>{! NULLVALUE(Case.Product__c, "(UNKNOWN)")} </p>
+<p style="font-size: 12pt;">&nbsp;</p>
+<p style="font-size: 12pt;"><strong>Scenario</strong>:&nbsp;&nbsp;&nbsp;&nbsp; {!Case.FeatureRequest_Scenario__c}</p>
+<p style="font-size: 12pt;">&nbsp;</p>
+<p style="font-size: 12pt;"><strong>Impact Assessment:</strong>&nbsp;&nbsp;&nbsp;&nbsp; {!Case.FeatureRequest_ImpactAssessment__c}</p>
+<p style="font-size: 12pt;">&nbsp;</p>
+<p style="font-size: 12pt;"><strong>Feature Request Description:</strong>&nbsp;&nbsp;&nbsp;&nbsp; {!Case.Description}</p>
+<p style="font-size: 12pt;">&nbsp;</p>
+<p style="font-size: 12pt;"><strong>Opened For:</strong></p>
+<blockquote style="margin-right: 0px;" dir="ltr">
+<p style="font-size: 12pt;">{!Case.Contact}</p>
+<p style="font-size: 12pt;">{!Case.Account}</p>
+<p style="font-size: 12pt;">{!Contact.Phone}</p>
+<p style="font-size: 12pt;">{!Contact.Email}</p><p style="font-size: 12pt;"><br></p><p style="font-size: 12pt;"><br></p><p style="font-size: 12pt;"><font size="2"><br></font></p><table border="0" cellpadding="0" cellspacing="0" width="162" style="font-size: 12pt; border-collapse: collapse; width: 121pt;"><tbody><tr height="19" style="height:14.4pt">
+  <td height="19" width="162" style="height:14.4pt;width:121pt"><font size="2">Rule Code:
+  CASE-005Exxx</font></td></tr></tbody></table><table border="0" cellpadding="0" cellspacing="0" width="162" style="font-size: 12pt; border-collapse: collapse; width: 121pt;"><tbody><tr height="19" style="height:14.4pt">
+  <td height="19" width="162" style="height:14.4pt;width:121pt"><font size="2">Rule Code:
+  CASE-006Exxx<br></font><table border="0" cellpadding="0" cellspacing="0" width="162" style="border-collapse:
+ collapse;width:121pt"><tbody><tr height="19" style="height:14.4pt">
+  <td height="19" width="162" style="height:14.4pt;width:121pt"><font size="2">Rule Code:
+  CASE-007Exxx</font></td></tr></tbody></table></td></tr></tbody></table><table border="0" cellpadding="0" cellspacing="0" width="162" style="border-collapse:
+ collapse;width:121pt"><tbody><tr height="19" style="height:14.4pt">
+  <td height="19" width="162" style="height:14.4pt;width:121pt"><font size="2">Rule Code:
+  CASE-008Exxx</font></td></tr></tbody></table></blockquote>]]></td>
+</tr>
+<tr valign="top" height="50" >
+<td tEditID="c1r3" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r3" locked="0" >
+<![CDATA[<P><STRONG>For more information about this Feature Request, please click on the link below:</STRONG></P>
+<P>{!Case.Link}</P>
+<P>&nbsp;</P>
+<P><STRONG>To see ALL Feature requests, please click on the link below:</STRONG></P>
+<P><A href="https://na3.salesforce.com/500?fcf=00B500000060s4e&amp;rolodexIndex=-1&amp;page=1">https://na3.salesforce.com/500?fcf=00B500000060s4e&amp;rolodexIndex=-1&amp;page=1</A></P>
+<P>&nbsp;</P>]]></td>
+</tr>
+</table>

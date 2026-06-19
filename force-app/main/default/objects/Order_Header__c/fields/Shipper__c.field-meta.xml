@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Shipper__c</fullName>
+    <label>Shipper</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>DHL</fullName>
+                <default>false</default>
+                <label>DHL</label>
+            </value>
+            <value>
+                <fullName>FEDEX</fullName>
+                <default>false</default>
+                <label>FEDEX</label>
+            </value>
+            <value>
+                <fullName>UPS</fullName>
+                <default>false</default>
+                <label>UPS</label>
+            </value>
+            <value>
+                <fullName>Royal Mail</fullName>
+                <default>false</default>
+                <label>Royal Mail</label>
+            </value>
+            <value>
+                <fullName>Download</fullName>
+                <default>true</default>
+                <label>Download</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

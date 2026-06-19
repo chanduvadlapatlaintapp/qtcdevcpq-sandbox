@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contracted_Stage_Validation_NonAdminUser</fullName>
+    <active>true</active>
+    <description>Only the users with &apos;Intapp CPQ Operations User Permission Set&apos;  can update the stage to Contract Executed and Closed-Lost. Built as per BIZ-45102, BIZ-47445
+formula changed according to BIZ-48358. Include Billing Ops User exception BIZ-50636</description>
+    <errorConditionFormula>AND(
+ NOT( 
+					OR( $Permission.Operations_User, $Permission.Billing_Ops_User ) 
+	   ),
+				OR(
+								AND(
+     ISPICKVAL(Quote_Stage__c, &quot;Closed-Lost&quot;),
+     ISPICKVAL(PRIORVALUE(Quote_Stage__c), &quot;Contract Executed&quot;)
+   ),
+   AND(
+     ISCHANGED(Quote_Stage__c),
+     ISPICKVAL(Quote_Stage__c, &apos;Contract Executed&apos;)
+   )
+ )
+)</errorConditionFormula>
+    <errorMessage>Only Ops users with &apos;Intapp CPQ Operations User Permission Set&apos;  are allowed to change the status to Contract Executed and Closed-Lost stage.</errorMessage>
+</ValidationRule>

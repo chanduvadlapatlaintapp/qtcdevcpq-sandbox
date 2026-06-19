@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Disposition__c</fullName>
+    <label>Disposition</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Target for site visit</fullName>
+                <default>false</default>
+                <label>Target for site visit</label>
+            </value>
+            <value>
+                <fullName>Visit Complete - request in-process</fullName>
+                <default>false</default>
+                <label>Visit Complete - request in-process</label>
+            </value>
+            <value>
+                <fullName>Visit Complete - request not feasible</fullName>
+                <default>false</default>
+                <label>Visit Complete - request not feasible</label>
+            </value>
+            <value>
+                <fullName>Visit Complete - request on hold</fullName>
+                <default>false</default>
+                <label>Visit Complete - request on hold</label>
+            </value>
+            <value>
+                <fullName>Visit Complete - request confirmed</fullName>
+                <default>false</default>
+                <label>Visit Complete - request confirmed</label>
+            </value>
+            <value>
+                <fullName>CRM - Contacted to confirm</fullName>
+                <default>false</default>
+                <label>CRM - Contacted to confirm</label>
+            </value>
+            <value>
+                <fullName>CRM - Contacted  &amp; in-discussion</fullName>
+                <default>false</default>
+                <label>CRM - Contacted  &amp; in-discussion</label>
+            </value>
+            <value>
+                <fullName>CRM - Contacted &amp; Confirmed</fullName>
+                <default>false</default>
+                <label>CRM - Contacted &amp; Confirmed</label>
+            </value>
+            <value>
+                <fullName>CRM - Contacted &amp; Declined</fullName>
+                <default>false</default>
+                <label>CRM - Contacted &amp; Declined</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

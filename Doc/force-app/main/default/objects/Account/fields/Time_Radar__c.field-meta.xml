@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_Radar__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  OR(
+    ISPICKVAL(Intapp_Time_Total_Management__c, &quot;Own it&quot;),
+    ISPICKVAL(Rekoop_Time_Management__c, &quot;Own it - Cloud&quot;)
+  ),
+  &quot;Blue&quot;,
+IF(
+  AND(
+    Fresh_Opportunities__c &gt; 0, 
+    New_Intapp_Time_Prospect__c=&quot;Unengaged Non-Customer&quot;
+  ),
+  &quot;Green-ish&quot;,
+IF(
+    Fresh_Opportunities__c &gt; 0, 
+  &quot;Green&quot;,
+IF(
+  AND(
+    Fresh_Opportunities__c = 0,
+    New_Time_Opportunities__c &gt; 0
+  ),
+  &quot;Amber&quot;,
+  &quot; &quot;
+))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Green-ish: Fresh opportunity in Target Stage
+Green: Fresh Opportunity
+Blue: Own TTM or Rekoop TTM
+Amber: Open Time opportunity that is not fresh</inlineHelpText>
+    <label>Time Radar</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

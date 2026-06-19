@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loss_Type__c</fullName>
+    <inlineHelpText>Select a type of loss.</inlineHelpText>
+    <label>Loss Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Type</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Loss</fullName>
+                <default>false</default>
+                <label>Loss</label>
+            </value>
+            <value>
+                <fullName>Loss to Dissolution</fullName>
+                <default>false</default>
+                <label>Loss to Dissolution</label>
+            </value>
+            <value>
+                <fullName>Loss with Salvage</fullName>
+                <default>false</default>
+                <label>Loss with Salvage</label>
+            </value>
+            <value>
+                <fullName>Loss - ROR/POC</fullName>
+                <default>false</default>
+                <label>Loss - ROR/POC</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Downgrade - Merger</fullName>
+                <default>false</default>
+                <label>Downgrade - Merger</label>
+            </value>
+            <value>
+                <fullName>Downgrade - Bill Consolidation</fullName>
+                <default>false</default>
+                <label>Downgrade - Bill Consolidation</label>
+            </value>
+            <value>
+                <fullName>Downgrade - Module or Extension</fullName>
+                <default>false</default>
+                <label>Downgrade - Module or Extension</label>
+            </value>
+            <value>
+                <fullName>Downgrade - Customer Retention</fullName>
+                <default>false</default>
+                <label>Downgrade - Customer Retention</label>
+            </value>
+            <value>
+                <fullName>Downgrade - End User License</fullName>
+                <default>false</default>
+                <label>Downgrade - End User License</label>
+            </value>
+            <value>
+                <fullName>Downgrade - License Conversion</fullName>
+                <default>false</default>
+                <label>Downgrade - License Conversion</label>
+            </value>
+            <value>
+                <fullName>Downgrade - License Band Reduction</fullName>
+                <default>false</default>
+                <label>Downgrade - License Band Reduction</label>
+            </value>
+            <value>
+                <fullName>Downgrade - CPI</fullName>
+                <default>false</default>
+                <label>Downgrade - CPI</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Cancellation - Customer</controllingFieldValue>
+            <controllingFieldValue>Cancellation - Product</controllingFieldValue>
+            <controllingFieldValue>Cancellation - Module</controllingFieldValue>
+            <controllingFieldValue>Cancellation - Recurring Adjustment</controllingFieldValue>
+            <valueName>Loss</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancellation - Customer</controllingFieldValue>
+            <controllingFieldValue>Cancellation - Product</controllingFieldValue>
+            <controllingFieldValue>Cancellation - Module</controllingFieldValue>
+            <valueName>Loss to Dissolution</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancellation - Customer</controllingFieldValue>
+            <controllingFieldValue>Cancellation - Product</controllingFieldValue>
+            <controllingFieldValue>Cancellation - Module</controllingFieldValue>
+            <valueName>Loss with Salvage</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancellation - Customer</controllingFieldValue>
+            <controllingFieldValue>Cancellation - Product</controllingFieldValue>
+            <controllingFieldValue>Cancellation - Module</controllingFieldValue>
+            <valueName>Loss - ROR/POC</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancellation - Customer</controllingFieldValue>
+            <controllingFieldValue>Cancellation - Product</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Downgrade - Product</controllingFieldValue>
+            <valueName>Downgrade - Merger</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Downgrade - Product</controllingFieldValue>
+            <valueName>Downgrade - Bill Consolidation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Downgrade - Product</controllingFieldValue>
+            <valueName>Downgrade - Module or Extension</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Downgrade - Product</controllingFieldValue>
+            <valueName>Downgrade - Customer Retention</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Downgrade - Product</controllingFieldValue>
+            <valueName>Downgrade - License Band Reduction</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>License Conversion - Recurring Decrease</controllingFieldValue>
+            <valueName>Downgrade - License Conversion</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Legal - User Count Decrease</controllingFieldValue>
+            <valueName>Downgrade - End User License</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

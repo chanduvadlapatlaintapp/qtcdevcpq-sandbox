@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Opportunity changed: Renewal at risk</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Renewal_Operations_Letterhead</letterhead>
+    <name>Opportunity changed: Renewal at risk</name>
+    <style>freeForm</style>
+    <subject>{!Opportunity.Name} at risk is changed</subject>
+    <textOnly>A new renewal risk has been documented on {!Opportunity.Name}
+
+
+Opportunity Name: {!Opportunity.Name}
+Product Line(s): {!Opportunity.Opp_Product_Lines__c}
+
+Amount at Risk: {!Opportunity.Concession_Amount__c}
+
+Invoice Due Date: {!Opportunity.RnwlOpp_Invoice_Due_Date__c}
+
+Risk Type: {!Opportunity.Risk_Type__c}
+Risk Category: {!Opportunity.Risk_Category__c}
+Risk Category Detail: {!Opportunity.Risk_Category_Detail__c}
+Forecasted Outcome: {!Opportunity.Forecasted_Outcome__c}
+
+Renewal Notes and Next Steps: {!Opportunity.Renewal_Notes__c}
+
+For more information, please click here:
+{!Opportunity.Link}
+
+
+
+
+
+
+
+
+
+
+
+
+Process Builder: OPP-001Exxx v2 Node: Renewal at Risk</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

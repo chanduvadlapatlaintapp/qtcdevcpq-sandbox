@@ -1,0 +1,92 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<font face="Arial, sans-serif">The closing survey for&nbsp;{!SFDC_Survey__c} has been completed:</font><div><br></div><div><table border="0" cellpadding="0" cellspacing="0" width="251" style="border-collapse:
+ collapse;width:188pt">
+ <colgroup><col width="251" style="mso-width-source:userset;mso-width-alt:8931;width:188pt">
+ </colgroup><tbody><tr height="19" style="height:14.4pt">
+  <td height="19" width="251" style="height:14.4pt;width:188pt"><font face="Arial, sans-serif"><b>Account:</b>&nbsp;{!SFDC_Survey__c.Account__c}</font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><b>Product Line:</b>&nbsp;{!SFDC_Survey__c.Product_Line__c}</font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><b>Client Contact:</b>&nbsp;{!SFDC_Survey__c.Contact__c}</font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><b>Client Owner:</b>&nbsp;{!SFDC_Survey__c.Client_Owner__c}</font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><b>Intapp PjM:</b>&nbsp;{!SFDC_Survey__c.Intapp_PjM__c}</font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><b>Intapp SE:</b> {!SFDC_Survey__c.Intapp_SE__c}&nbsp;</font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><b>Intapp AC:</b>&nbsp;{!SFDC_Survey__c.Intapp_AC__c}</font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><b>Intapp PC:</b>&nbsp;{!SFDC_Survey__c.Intapp_PC__c}<br><br></font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><b>PjM Project Objective:</b>&nbsp;{!SFDC_Survey__c.Intapp_PC__c}</font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><b>PjM Objective Fulfilment: </b>Score:&nbsp;{!SFDC_Survey__c.Intapp_PC__c}<br><br></font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><b>Owner Project <br>Objective:</b>&nbsp;{!SFDC_Survey__c.Owner_Project_Objective__c}</font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><b>Owner Objective Fulfilment: Score:</b>&nbsp;{!SFDC_Survey__c.Owner_Objective_Fulfilment_Score__c}</font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><br><b>Project Manager: Score:</b>&nbsp;{!SFDC_Survey__c.Project_Manager_Score__c}</font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><br><b>Solutions Engineer: Score:</b>&nbsp;{!SFDC_Survey__c.Solutions_Engineer_Score__c}</font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><br><b>Principal Consultant: Score:&nbsp;</b>{!SFDC_Survey__c.Principal_Consultant_Score__c}</font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><br><b>Adoption Consultant: Score:</b>&nbsp;{!SFDC_Survey__c.Adoption_Consultant_Score__c}</font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><br><b>PjM Impression of Intapp Score:&nbsp;</b>{!SFDC_Survey__c.PjM_Impression_of_Intapp_Score__c}</font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><b>Owner Impression of Intapp: Score:</b>&nbsp;{!SFDC_Survey__c.Owner_Impression_of_Intapp_Score__c}</font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><br><b>PjM Impression of Partner Score:</b>&nbsp;{!SFDC_Survey__c.PjM_Impression_of_Partner_Score__c}</font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><b>Owner Impression of Partner: Score:&nbsp;</b>{!SFDC_Survey__c.Owner_Impression_of_Partner_Score__c}</font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><br><b>PjM Impression of Product Score:</b>&nbsp;{!SFDC_Survey__c.PjM_Impression_of_Product_Score__c}</font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><span style="font-family: Arial, sans-serif;"><b>Owner Impression of Product Score:</b>&nbsp;{!SFDC_Survey__c.Owner_Impression_of_Product_Score__c}</span><font face="Arial, sans-serif"><br><br><b>PjM End User Satisfaction: Score:</b>&nbsp;{!SFDC_Survey__c.PjM_End_User_Satisfaction_Score__c}</font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><span style="font-family: Arial, sans-serif;"><b>Owner End User Satisfaction: Score:&nbsp;</b>{!SFDC_Survey__c.Owner_End_User_Satisfaction_Score__c}</span></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><br></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><b>Impression of Project: Score:</b>&nbsp;{!SFDC_Survey__c.Impression_of_Project_Score__c}<br><br></font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><b>Impression of Support Handover: Score:</b>&nbsp;{!SFDC_Survey__c.Impression_of_Support_Handover_Score__c}</font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><br><b>General PjM Comments:</b>&nbsp;{!SFDC_Survey__c.General_PjM_Comments__c}</font></td>
+ </tr>
+ <tr height="19" style="height:14.4pt">
+  <td height="19" style="height:14.4pt"><font face="Arial, sans-serif"><b>General Owner Comments:&nbsp;</b>{!SFDC_Survey__c.General_Owner_Comments__c}<br><br><br><b>Detail Link:</b>&nbsp;{!SFDC_Survey__c.Link}</font></td>
+ </tr></tbody></table></div><div style="font-size: 12pt; font-family: arial;"><br></div>]]></td>
+</tr>
+</table>

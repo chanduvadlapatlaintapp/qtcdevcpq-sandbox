@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Services_Expiration_Duration__c</fullName>
+    <label>Services Expiration Duration</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>180 Days or less</fullName>
+                <default>false</default>
+                <label>180 Days or less</label>
+            </value>
+            <value>
+                <fullName>270 Days or less</fullName>
+                <default>false</default>
+                <label>270 Days or less</label>
+            </value>
+            <value>
+                <fullName>270 Days or more</fullName>
+                <default>false</default>
+                <label>270 Days or more</label>
+            </value>
+            <value>
+                <fullName>365 Days or Less</fullName>
+                <default>false</default>
+                <label>365 Days or Less</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

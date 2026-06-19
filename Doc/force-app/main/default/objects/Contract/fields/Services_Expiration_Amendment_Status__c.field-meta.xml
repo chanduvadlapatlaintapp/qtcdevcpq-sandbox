@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Services_Expiration_Amendment_Status__c</fullName>
+    <label>Services Expiration Amendment Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Amendment In Force</fullName>
+                <default>false</default>
+                <label>Amendment In Force</label>
+            </value>
+            <value>
+                <fullName>Processing Amendment</fullName>
+                <default>false</default>
+                <label>Processing Amendment</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

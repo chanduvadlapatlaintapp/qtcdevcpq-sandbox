@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Segment__c</fullName>
+    <description>Account Segment prioritizes and categorizes the accounts through a progression of engagement stages:
+Customer - how many products? how many open/historic opportunities?
+Prospect - how many open/Hx opportunities?
+Suspect - Hx opportunities? IntApp connections? Leaders respoding to Campaigns?</description>
+    <inlineHelpText>Note: responses are measured as Leaders with &quot;Responded&quot; checked for campaigns since July 1, 2010.</inlineHelpText>
+    <label>Account Segment</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Hattrick</fullName>
+                <default>false</default>
+                <label>Hattrick</label>
+            </value>
+            <value>
+                <fullName>2 Products - Lapsed 3rd</fullName>
+                <default>false</default>
+                <label>2 Products - Lapsed 3rd</label>
+            </value>
+            <value>
+                <fullName>2 Products - Open TB Oppy</fullName>
+                <default>false</default>
+                <label>2 Products - Open TB Oppy</label>
+            </value>
+            <value>
+                <fullName>2 Products - Open WB Oppy</fullName>
+                <default>false</default>
+                <label>2 Products - Open WB Oppy</label>
+            </value>
+            <value>
+                <fullName>2 Products - Open IB Oppy</fullName>
+                <default>false</default>
+                <label>2 Products - Open IB Oppy</label>
+            </value>
+            <value>
+                <fullName>2 Products - Competitor 3rd</fullName>
+                <default>false</default>
+                <label>2 Products - Competitor 3rd</label>
+            </value>
+            <value>
+                <fullName>2 Products - Hx TB Oppy</fullName>
+                <default>false</default>
+                <label>2 Products - Hx TB Oppy</label>
+            </value>
+            <value>
+                <fullName>2 Products - Hx WB Oppy</fullName>
+                <default>false</default>
+                <label>2 Products - Hx WB Oppy</label>
+            </value>
+            <value>
+                <fullName>2 Products - Hx IB Oppy</fullName>
+                <default>false</default>
+                <label>2 Products - Hx IB Oppy</label>
+            </value>
+            <value>
+                <fullName>2 Products - No Hx TB Oppy</fullName>
+                <default>false</default>
+                <label>2 Products - No Hx TB Oppy</label>
+            </value>
+            <value>
+                <fullName>2 Products - No Hx WB Oppy</fullName>
+                <default>false</default>
+                <label>2 Products - No Hx WB Oppy</label>
+            </value>
+            <value>
+                <fullName>2 Products - No Hx IB Oppy</fullName>
+                <default>false</default>
+                <label>2 Products - No Hx IB Oppy</label>
+            </value>
+            <value>
+                <fullName>1 Product - 1 or More Lapsed</fullName>
+                <default>false</default>
+                <label>1 Product - 1 or More Lapsed</label>
+            </value>
+            <value>
+                <fullName>1 Product - 2 Open Opps</fullName>
+                <default>false</default>
+                <label>1 Product - 2 Open Opps</label>
+            </value>
+            <value>
+                <fullName>1 Product - 1 Open Oppy</fullName>
+                <default>false</default>
+                <label>1 Product - 1 Open Oppy</label>
+            </value>
+            <value>
+                <fullName>1 Product - 2 Hx Opps</fullName>
+                <default>false</default>
+                <label>1 Product - 2 Hx Opps</label>
+            </value>
+            <value>
+                <fullName>1 Product - 1 Hx Oppy</fullName>
+                <default>false</default>
+                <label>1 Product - 1 Hx Oppy</label>
+            </value>
+            <value>
+                <fullName>1 Product - No Hx Opps</fullName>
+                <default>false</default>
+                <label>1 Product - No Hx Opps</label>
+            </value>
+            <value>
+                <fullName>0 Products - 1 or More Lapsed</fullName>
+                <default>false</default>
+                <label>0 Products - 1 or More Lapsed</label>
+            </value>
+            <value>
+                <fullName>0 Products - 3 Open Opps</fullName>
+                <default>false</default>
+                <label>0 Products - 3 Open Opps</label>
+            </value>
+            <value>
+                <fullName>0 Products - 2 Open Opps</fullName>
+                <default>false</default>
+                <label>0 Products - 2 Open Opps</label>
+            </value>
+            <value>
+                <fullName>0 Products - 1 Open Oppy</fullName>
+                <default>false</default>
+                <label>0 Products - 1 Open Oppy</label>
+            </value>
+            <value>
+                <fullName>0 Products - 0 Open Opps - W/ Hx Opps - W/ IntApp Connections</fullName>
+                <default>false</default>
+                <label>0 Products - 0 Open Opps - W/ Hx Opps - W/ IntApp Connections</label>
+            </value>
+            <value>
+                <fullName>0 Products - 0 Open Opps - W/ Hx Opps - 0 Connections - &gt;2 Responses</fullName>
+                <default>false</default>
+                <label>0 Products - 0 Open Opps - W/ Hx Opps - 0 Connections - &gt;2 Responses</label>
+            </value>
+            <value>
+                <fullName>0 Products - 0 Open Opps - W/ Hx Opps - 0 Connections - 1-2 Responses</fullName>
+                <default>false</default>
+                <label>0 Products - 0 Open Opps - W/ Hx Opps - 0 Connections - 1-2 Responses</label>
+            </value>
+            <value>
+                <fullName>0 Products - 0 Open Opps - W/ Hx Opps - 0 Connections - 0 Responses</fullName>
+                <default>false</default>
+                <label>0 Products - 0 Open Opps - W/ Hx Opps - 0 Connections - 0 Responses</label>
+            </value>
+            <value>
+                <fullName>0 Products - 0 Open Opps - 0 Hx Opps - W/ IntApp Connections</fullName>
+                <default>false</default>
+                <label>0 Products - 0 Open Opps - 0 Hx Opps - W/ IntApp Connections</label>
+            </value>
+            <value>
+                <fullName>0 Products - 0 Open Opps - 0 Hx Opps - 0 Connections - &gt;2 Responses</fullName>
+                <default>false</default>
+                <label>0 Products - 0 Open Opps - 0 Hx Opps - 0 Connections - &gt;2 Responses</label>
+            </value>
+            <value>
+                <fullName>0 Products - 0 Open Opps - 0 Hx Opps - 0 Connections - 1-2 Responses</fullName>
+                <default>false</default>
+                <label>0 Products - 0 Open Opps - 0 Hx Opps - 0 Connections - 1-2 Responses</label>
+            </value>
+            <value>
+                <fullName>0 Products - 0 Open Opps - 0 Hx Opps - 0 Connections - 0 Responses</fullName>
+                <default>false</default>
+                <label>0 Products - 0 Open Opps - 0 Hx Opps - 0 Connections - 0 Responses</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

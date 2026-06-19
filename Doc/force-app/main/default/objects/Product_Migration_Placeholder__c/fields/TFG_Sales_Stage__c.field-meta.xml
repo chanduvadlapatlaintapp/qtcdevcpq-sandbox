@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TFG_Sales_Stage__c</fullName>
+    <label>TFG Sales Stage</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>10% - Create</fullName>
+                <default>false</default>
+                <label>10% - Create</label>
+            </value>
+            <value>
+                <fullName>25% - Qualify</fullName>
+                <default>false</default>
+                <label>25% - Qualify</label>
+            </value>
+            <value>
+                <fullName>50% - Develop</fullName>
+                <default>false</default>
+                <label>50% - Develop</label>
+            </value>
+            <value>
+                <fullName>75% - Prove</fullName>
+                <default>false</default>
+                <label>75% - Prove</label>
+            </value>
+            <value>
+                <fullName>90% - Negotiate</fullName>
+                <default>false</default>
+                <label>90% - Negotiate</label>
+            </value>
+            <value>
+                <fullName>100% - Closed</fullName>
+                <default>false</default>
+                <label>100% - Closed</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>BIZ-72861: Check if Deal Desk Audit checkbox changed</description>
+        <name>Check_Deal_Desk_Audit_Updated</name>
+        <label>Check Deal Desk Audit Updated</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>No Update Needed</defaultConnectorLabel>
+        <rules>
+            <name>Deal_Desk_Audit_Changed</name>
+            <conditionLogic>((1 AND 4) OR (3 AND 4)) AND 2</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Deal_Desk_Audit_Complete__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Quote__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.Deal_Desk_Audit_Complete__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Deal_Desk_Audit_Complete__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Opportunity_Field</targetReference>
+            </connector>
+            <label>Deal Desk Audit Changed</label>
+        </rules>
+    </decisions>
+    <description>BIZ-72861: Updates Opportunity field from Validation Checklist
+BIZ-72861: Added checks for Validation record inserts in the Opportunity Update Decision element.</description>
+    <environments>Default</environments>
+    <interviewLabel>Validation Checklist After Insert Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Validation Checklist After Insert Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>BIZ-72861: Update Opportunity Deal_Desk_Audit_Complete__c field directly using filters</description>
+        <name>Update_Opportunity_Field</name>
+        <label>Update Opportunity Field</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>SBQQ__PrimaryQuote__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Quote__c</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Deal_Desk_Audit_Complete__c</field>
+            <value>
+                <elementReference>$Record.Deal_Desk_Audit_Complete__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Opportunity</object>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_Deal_Desk_Audit_Updated</targetReference>
+        </connector>
+        <filterFormula>NOT({!$Setup.Automation_Controls__c.Active__c} &amp;&amp; {!$Setup.Automation_Controls__c.Bypass_Flows__c} &amp;&amp; (ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c}) || (NOT(ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c})) &amp;&amp; CONTAINS({!$Setup.Automation_Controls__c.Data_Id__c}, {!$Record.Id}))))</filterFormula>
+        <object>Validation_Checklist__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

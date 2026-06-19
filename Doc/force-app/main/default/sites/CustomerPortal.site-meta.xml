@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomSite xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>false</active>
+    <allowGuestPaymentsApi>false</allowGuestPaymentsApi>
+    <allowHomePage>false</allowHomePage>
+    <allowStandardAnswersPages>false</allowStandardAnswersPages>
+    <allowStandardIdeasPages>false</allowStandardIdeasPages>
+    <allowStandardLookups>false</allowStandardLookups>
+    <allowStandardPortalPages>true</allowStandardPortalPages>
+    <allowStandardSearch>false</allowStandardSearch>
+    <authorizationRequiredPage>Unauthorized</authorizationRequiredPage>
+    <bandwidthExceededPage>BandwidthExceeded</bandwidthExceededPage>
+    <browserXssProtection>false</browserXssProtection>
+    <cachePublicVisualforcePagesInProxyServers>true</cachePublicVisualforcePagesInProxyServers>
+    <changePasswordPage>ChangePassword</changePasswordPage>
+    <clickjackProtectionLevel>AllowAllFraming</clickjackProtectionLevel>
+    <contentSniffingProtection>false</contentSniffingProtection>
+    <description>Customer Portal Site</description>
+    <enableAuraRequests>true</enableAuraRequests>
+    <fileNotFoundPage>RedirectToLoginPage</fileNotFoundPage>
+    <genericErrorPage>Exception</genericErrorPage>
+    <inMaintenancePage>InMaintenance</inMaintenancePage>
+    <inactiveIndexPage>InMaintenance</inactiveIndexPage>
+    <indexPage>CustomerPortalSiteLogin</indexPage>
+    <masterLabel>Customer Portal</masterLabel>
+    <portal>Customer Portal</portal>
+    <redirectToCustomDomain>false</redirectToCustomDomain>
+    <referrerPolicyOriginWhenCrossOrigin>false</referrerPolicyOriginWhenCrossOrigin>
+    <siteAdmin>bizappsdev@intapp.com</siteAdmin>
+    <siteGuestRecordDefaultOwner>bizappsdev@intapp.com</siteGuestRecordDefaultOwner>
+    <siteRedirectMappings>
+        <action>Permanent</action>
+        <isActive>true</isActive>
+        <isDynamic>false</isDynamic>
+        <source>/group/CollaborationGroup/Default</source>
+        <target>https://support.intapp.com/s/case</target>
+    </siteRedirectMappings>
+    <siteTemplate>CustomerPortalSiteTemplate</siteTemplate>
+    <siteType>Visualforce</siteType>
+    <subdomain>intapp-portal</subdomain>
+    <urlPathPrefix>portal</urlPathPrefix>
+</CustomSite>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Additional_Approver_Group__c</fullName>
+    <description>Approver group for the special approver functionality</description>
+    <label>Additional Approver Group</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Controller</fullName>
+                <default>false</default>
+                <label>Controller</label>
+            </value>
+            <value>
+                <fullName>Revenue</fullName>
+                <default>false</default>
+                <label>Revenue</label>
+            </value>
+            <value>
+                <fullName>Services Sales</fullName>
+                <default>false</default>
+                <label>Services Sales</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

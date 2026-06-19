@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Internal email sent to PS when new PS Survey received</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PS_Letterhead</letterhead>
+    <name>New PS Survey Received</name>
+    <style>freeForm</style>
+    <subject>New Survey Received - {!Case.Account}</subject>
+    <textOnly>A new case closing survey has been received for {!Case.Account}
+
+
+Name: {!Case.Survey_Name__c}
+Project Manager: {!Case.Survey_ProjectManagerName__c}
+Engineer: {!Case.Survey_EngineerName__c}
+Consultant: {!Case.Survey_Consultant__c}
+
+Product: {!Case.Survey_ProductName__c}
+
+Overall Score: {!Case.Survey_OverallScore__c}
+Project Manager Score: {!Case.Survey_ProjectManagerScore__c}
+Engineer Score: {!Case.Survey_EngineerScore__c}
+Product Score: {!Case.Survey_ProductScore__c}
+
+For additional information, please click here:
+{!Case.Link}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

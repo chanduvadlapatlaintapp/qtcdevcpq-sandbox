@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Max_year_on_year_committed_spend__c</fullName>
+    <description>BIZ-69669, BIZ-78642. If Opp closed after cutover OR open Opp and TODAY &gt; cutover: uses Max_YoY_Uplift__c (Percent field, auto-converted to decimal by Salesforce in formulas). Else: legacy formula (software total only, no OTC).</description>
+    <formula>IF(
+  OR(
+    SBQQ__Opportunity2__r.Date_Opportunity_Closed__c &gt; DATEVALUE($Label.Max_YoY_Formula_Cutover_Date),
+    AND(
+      ISBLANK(SBQQ__Opportunity2__r.Date_Opportunity_Closed__c),
+      NOT(CONTAINS(TEXT(SBQQ__Opportunity2__r.StageName), &apos;Closed&apos;)),
+      TODAY() &gt; DATEVALUE($Label.Max_YoY_Formula_Cutover_Date)
+    )
+  ),
+  BLANKVALUE(Max_YoY_Uplift__c, 0),
+  /* Legacy: software total only, no OTC */
+  IF(First_Year_Software_Total__c != 0 &amp;&amp; Second_Year_Software_Total__c != 0,
+    IF(Sixth_Year_Software_Total__c != 0,
+      MAX(
+        (Sixth_Year_Software_Total__c - Fifth_Year_Software_Total__c) / Fifth_Year_Software_Total__c,
+        (Fifth_Year_Software_Total__c - Fourth_Year_Software_Total__c) / Fourth_Year_Software_Total__c,
+        (Fourth_Year_Software_Total__c - Third_Year_Software_Total__c) / Third_Year_Software_Total__c,
+        (Third_Year_Software_Total__c - Second_Year_Software_Total__c) / Second_Year_Software_Total__c,
+        (Second_Year_Software_Total__c - First_Year_Software_Total__c) / First_Year_Software_Total__c
+      ),
+      IF(Fifth_Year_Software_Total__c != 0,
+        MAX(
+          (Fifth_Year_Software_Total__c - Fourth_Year_Software_Total__c) / Fourth_Year_Software_Total__c,
+          (Fourth_Year_Software_Total__c - Third_Year_Software_Total__c) / Third_Year_Software_Total__c,
+          (Third_Year_Software_Total__c - Second_Year_Software_Total__c) / Second_Year_Software_Total__c,
+          (Second_Year_Software_Total__c - First_Year_Software_Total__c) / First_Year_Software_Total__c
+        ),
+        IF(Fourth_Year_Software_Total__c != 0,
+          MAX(
+            (Fourth_Year_Software_Total__c - Third_Year_Software_Total__c) / Third_Year_Software_Total__c,
+            (Third_Year_Software_Total__c - Second_Year_Software_Total__c) / Second_Year_Software_Total__c,
+            (Second_Year_Software_Total__c - First_Year_Software_Total__c) / First_Year_Software_Total__c
+          ),
+          IF(Third_Year_Software_Total__c != 0,
+            MAX(
+              (Third_Year_Software_Total__c - Second_Year_Software_Total__c) / Second_Year_Software_Total__c,
+              (Second_Year_Software_Total__c - First_Year_Software_Total__c) / First_Year_Software_Total__c
+            ),
+            (Second_Year_Software_Total__c - First_Year_Software_Total__c) / First_Year_Software_Total__c
+          )
+        )
+      )
+    ),
+    0
+  )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Max Yoy Uplift</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

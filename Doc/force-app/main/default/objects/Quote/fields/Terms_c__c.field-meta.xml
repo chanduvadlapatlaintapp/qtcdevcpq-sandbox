@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Terms_c__c</fullName>
+    <label>Terms (c)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Terms_b_and_bI__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Standard No Retainer</fullName>
+                <default>false</default>
+                <label>Standard No Retainer</label>
+            </value>
+            <value>
+                <fullName>Standard With Retainer</fullName>
+                <default>false</default>
+                <label>Standard With Retainer</label>
+            </value>
+            <value>
+                <fullName>Standard No Retainer with Credit</fullName>
+                <default>false</default>
+                <label>Standard No Retainer with Credit</label>
+            </value>
+            <value>
+                <fullName>Standard Retainer with Credit</fullName>
+                <default>false</default>
+                <label>Standard Retainer with Credit</label>
+            </value>
+            <value>
+                <fullName>Fixed Fee</fullName>
+                <default>false</default>
+                <label>Fixed Fee</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>T&amp;M Change Order</controllingFieldValue>
+            <controllingFieldValue>T&amp;M Statement of Work</controllingFieldValue>
+            <valueName>Standard No Retainer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>T&amp;M Change Order</controllingFieldValue>
+            <controllingFieldValue>T&amp;M Statement of Work</controllingFieldValue>
+            <valueName>Standard No Retainer with Credit</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>T&amp;M Statement of Work</controllingFieldValue>
+            <valueName>Standard With Retainer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>T&amp;M Statement of Work</controllingFieldValue>
+            <valueName>Standard Retainer with Credit</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FF Change Order</controllingFieldValue>
+            <controllingFieldValue>FF Statement of Work</controllingFieldValue>
+            <valueName>Fixed Fee</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

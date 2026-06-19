@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Needs_Business_Case_to_Shop_or_Today__c</fullName>
+    <description>If the Opportunity has reached Shopping phase then time to reach First Entered Shopping, otherwise Opportunity Age</description>
+    <externalId>false</externalId>
+    <formula>IF( 
+  First_Shop_to_Close_or_Today__c &gt;0, 
+  First_Entered_Shopping_Date__c - DATEVALUE(CreatedDate), 
+  IF(
+    First_Entered_Shopping_Date__c= NULL,
+    CloseDate - DATEVALUE(CreatedDate),
+    TODAY()- DATEVALUE(CreatedDate)
+  )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Open to Shop or Today</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

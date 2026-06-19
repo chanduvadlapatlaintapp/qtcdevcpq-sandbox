@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This notification should go to the CS Acct Mgr and CSMOps</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>PS_Survey_Letterhead</letterhead>
+    <name>Reference Program: Account Changed</name>
+    <style>freeForm</style>
+    <subject>Detached Reference: {!Contact.Name}</subject>
+    <textOnly>{!Contact.Name} has been moved to {!Account.Name} and previously had a reference status of {!Contact.Reference_Tracking_Status__c}.
+
+Please contact the former CS Account Mgr and contact to determine if reference status should remain.
+
+Please remember to update any reference fields on the contact record, including notes, once determined.
+
+Contact: {!Contact.Link}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

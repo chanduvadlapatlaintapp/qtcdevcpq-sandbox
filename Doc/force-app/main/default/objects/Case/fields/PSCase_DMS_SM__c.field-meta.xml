@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSCase_DMS_SM__c</fullName>
+    <description>DMS Self Maintaining</description>
+    <label>DMS SM</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>iManage 8.x</fullName>
+                <default>false</default>
+                <label>iManage 8.x</label>
+            </value>
+            <value>
+                <fullName>Open Text DM5</fullName>
+                <default>false</default>
+                <label>Open Text DM5</label>
+            </value>
+            <value>
+                <fullName>NetDocuments</fullName>
+                <default>false</default>
+                <label>NetDocuments</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

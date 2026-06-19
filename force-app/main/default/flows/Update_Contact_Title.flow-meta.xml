@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>If Contact Title has &amp;amp; then convert it to &amp;.</description>
+    <formulas>
+        <description>If contact tile has &amp;amp; then convert it to &amp;</description>
+        <name>ConvertTitle</name>
+        <dataType>String</dataType>
+        <expression>SUBSTITUTE({!$Record.Title} , &apos;&amp;amp;&apos;, &apos;&amp;&apos;)</expression>
+    </formulas>
+    <interviewLabel>Update Contact Title {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update Contact Title</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Contact_Title</name>
+        <label>Update Contact Title</label>
+        <locationX>497</locationX>
+        <locationY>363</locationY>
+        <inputAssignments>
+            <field>Title</field>
+            <value>
+                <elementReference>ConvertTitle</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>373</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>Update_Contact_Title</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Title</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>%&amp;amp;%</stringValue>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2022-05-12</startDate>
+            <startTime>23:30:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

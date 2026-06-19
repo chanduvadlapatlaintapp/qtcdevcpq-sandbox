@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Verification</fullName>
+    <active>false</active>
+    <description>The contact account must match the case account.</description>
+    <errorConditionFormula>NOT(Contact__r.Account.IntApp_Account_Number__c = Case__r.Account.AccountNumber)
+&amp;&amp;
+NOT($Profile.Id=&quot;00e30000000bvR3&quot;)</errorConditionFormula>
+    <errorDisplayField>Contact__c</errorDisplayField>
+    <errorMessage>Your Contact Account and Case Accounts don&apos;t match. Please pick a contact related to the Account your case is for.</errorMessage>
+</ValidationRule>

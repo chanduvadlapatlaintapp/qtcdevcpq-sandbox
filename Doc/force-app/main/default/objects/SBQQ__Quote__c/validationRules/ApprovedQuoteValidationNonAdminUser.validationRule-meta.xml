@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ApprovedQuoteValidationNonAdminUser</fullName>
+    <active>false</active>
+    <errorConditionFormula>OR(AND((ISPICKVAL(ApprovalStatus__c ,&apos;Pending&apos;)),
+RecordType.DeveloperName = &apos;Approved_Quote&apos;,
+NOT(ISCHANGED( ApprovalStatus__c )),
+NOT(ISCHANGED( PO_Number__c )),
+NOT(ISCHANGED( SBQQ__PrimaryContact__c )),
+NOT(ISCHANGED( Software_Delivery_Contact__c)),
+NOT(ISCHANGED( Pricing_Proposal_Approval__c))
+),
+(AND
+((ISPICKVAL( ApprovalStatus__c ,&apos;Approved&apos;)),
+RecordType.DeveloperName = &apos;Approved_Quote&apos;,
+NOT(ISCHANGED( ApprovalStatus__c )),
+NOT(ISCHANGED( PO_Number__c )),
+NOT(ISCHANGED( Quote_Stage__c )),
+NOT(ISCHANGED( SBQQ__PrimaryContact__c )),
+NOT(ISCHANGED( Software_Delivery_Contact__c)),
+NOT(ISCHANGED( Pricing_Proposal_Approval__c)),
+NOT(ISCHANGED( Contract__c)),
+NOT(ISCHANGED( Order__c)),
+NOT(ISCHANGED( Line_of_Business__c)),
+NOT(ISCHANGED( OSA_Signature_Date__c)),
+NOT(ISCHANGED( Deal_Checklist_Status__c)),
+NOT(ISCHANGED( Validation_Checklist__c)),
+NOT(ISCHANGED( Deal_Type__c)),
+NOT(ISCHANGED( OP4IDealID__c)),
+NOT(ISCHANGED( SBQQ__Ordered__c)),
+NOT(ISCHANGED( Case_Count__c)),
+NOT(ISCHANGED( Opportunity_Stage__c)),
+NOT(ISCHANGED( SBQQ__OrderBy__c)),
+NOT(ISCHANGED( Id)),
+NOT(ISCHANGED( SBQQ__Status__c)),
+NOT(ISCHANGED( SBQQ__Opportunity2__c)),
+NOT(ISCHANGED( NS_Order_Category__c)),
+NOT(ISCHANGED( SBQQ__LineItemCount__c)),
+NOT(ISCHANGED( SBQQ__WatermarkShown__c)),
+NOT(ISCHANGED( Request_OSA__c)),
+NOT(ISCHANGED( SBQQ__Primary__c)),
+NOT(ISCHANGED( SBQQ__OrderByQuoteLineGroup__c)),
+NOT(ISCHANGED( SBQQ__OrderGroupID__c)),
+NOT(ISCHANGED( Subsidiary__c)),
+NOT(ISCHANGED( Booking_Date__c))
+)))</errorConditionFormula>
+    <errorMessage>This quote record is locked. Please recall the approval request to make changes</errorMessage>
+</ValidationRule>

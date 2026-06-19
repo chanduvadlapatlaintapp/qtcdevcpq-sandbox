@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Pricings</fullName>
+    <columns>NAME</columns>
+    <columns>Product_Code__c</columns>
+    <columns>Price_Book__c</columns>
+    <columns>Intapp_ID__c</columns>
+    <columns>Premium_price__c</columns>
+    <columns>Premium_Intapp_ID__c</columns>
+    <columns>Price__c</columns>
+    <columns>Meter_Type__c</columns>
+    <columns>CURRENCY_ISO_CODE</columns>
+    <columns>Tier__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>Tiered_Pricing__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Price_book_rule__c</field>
+        <operation>contains</operation>
+        <value>FY24</value>
+    </filters>
+    <label>All Pricings</label>
+</ListView>

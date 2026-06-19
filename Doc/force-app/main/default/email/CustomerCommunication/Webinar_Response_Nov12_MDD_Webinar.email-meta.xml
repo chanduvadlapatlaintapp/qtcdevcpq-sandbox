@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Response for Nov 2012 MDD webinar featuring Hogan Lovells</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - Nov12 MDD Webinar</name>
+    <style>none</style>
+    <subject>IntApp Webinar Confirmation</subject>
+    <textOnly>{!Contact.FirstName} {!Contact.LastName}: 
+
+Thank you for registering for the Integration Builder Webinar. The login details are below.
+
+Title: Improving Data and Processes Management with a Master Data Directory
+Date: Wednesday, November 28
+Time: 8am Pacific / 11am Eastern / 4pm GMT
+Duration: 1 hour
+
+Video:
+
+Conference URL: http://www.infiniteconferencing.com/Events/intapp/
+Participant Code: 97447854
+
+Audio:
+
+US/Canada Audio Dial In: (888) 567-1603
+UK Audio Dial In: 00 800 4747 4646
+(You will not need to give the operator a passcode, just the title of the webinar)
+
+http://www.intapp.com
+All information Copyright 2012 IntApp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

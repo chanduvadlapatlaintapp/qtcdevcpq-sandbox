@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <recordTypes>
+        <label><!-- Acute Situation Alert --></label>
+        <name>Acute_Situation_Alert</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Customer Success - IntApp Open --></label>
+        <name>Customer_Success_IntApp_Open</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Customer Success - Integration Builder --></label>
+        <name>Customer_Success_Integration_Builder</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Customer Success - Other --></label>
+        <name>Customer_Success_Other</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Customer Success - Time Builder --></label>
+        <name>Customer_Success_Time_Builder</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Customer Success - Wall Builder --></label>
+        <name>Customer_Success_Wall_Builder</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Case Record Type for tracking support cases requiring executive team focus. --></description>
+        <label><!-- Project Escalation --></label>
+        <name>Executive_Support</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Executive Support Case --></label>
+        <name>Executive_Support_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Field Replaceable Unit - Use this to send replacement components (e.g. disk, power supply) --></description>
+        <label><!-- FRU --></label>
+        <name>FRU</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Feature Requests generated from the public Feature Request Form --></description>
+        <label><!-- Feature Request --></label>
+        <name>FeatureRequest</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Capturing email coming from the feedback link in the Time Builder web app --></description>
+        <label><!-- Feedback: Time Builder --></label>
+        <name>FeedbackTimeBuilder</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Professional Services implementation record type for Activity Tracker projects. --></description>
+        <label><!-- Implementation - Activity Tracker --></label>
+        <name>Implementation_Activity_Tracker</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Professional Services record type for Collaborative Integration Development (CID) projects. --></description>
+        <label><!-- Implementation - CID --></label>
+        <name>Implementation_CID</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Implementation Record Type for all open DTE Axiom Projects --></description>
+        <label><!-- Implementation - DTE Axiom --></label>
+        <name>Implementation_DTE_Axiom</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Professional Services implementation record type for all other projects. --></description>
+        <label><!-- Implementation - Generic --></label>
+        <name>Implementation_Generic</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Professional Services implementation record type for IntApp Open projects. --></description>
+        <label><!-- Implementation - Open --></label>
+        <name>Implementation_Open</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Professional Services implementation record type for Time Builder projects. --></description>
+        <label><!-- Implementation - Time Builder --></label>
+        <name>Implementation_Time_Builder</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Professional Services record type for Time Builder Pilot &amp; Rollout projects. --></description>
+        <label><!-- Implementation - Time Builder Pilot &amp; Rollout --></label>
+        <name>Implementation_Time_Builder_Pilot_Rollout</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Professional Services implementation record type for Wall Builder projects. --></description>
+        <label><!-- Implementation - Wall Builder --></label>
+        <name>Implementation_Wall_Builder</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This is a case record type for tracking large Salesforce and Operations change requests and work involved in it. --></description>
+        <label><!-- Internal - Operations Change Request --></label>
+        <name>Internal_Operations_Change_Request</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- OSA Support for quote management. Related to BIZ-45882 --></description>
+        <label><!-- OSA Support --></label>
+        <name>OSA_Support</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Catch-all for uncategorized INTERNAL cases --></description>
+        <label><!-- Other --></label>
+        <name>Other</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- RETIRED: Now layered into the Implementation cases - Deactivated 3-24-2013 - (Case type for managing partner owned projects) --></description>
+        <label><!-- Partner Managment --></label>
+        <name>Partner_Managment</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Customer outreach Post Sale; e.g. customer interviews, satisfaction checks, etc. --></description>
+        <label><!-- Post-sale: Customer Maintenance --></label>
+        <name>PostSaleCustomerMaintenance</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- PLEASE DO NOT USE (Deactivated 12/17/2010) --></description>
+        <label><!-- Post-sale: Implementation --></label>
+        <name>PostsaleImplementation</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Training sessions for new and existing customers completed with or without a partner --></description>
+        <label><!-- Post-sale: Training --></label>
+        <name>PostsaleTraining</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Procurement of internal materials --></description>
+        <label><!-- Procurement --></label>
+        <name>Procurement</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Hardware replacements for appliances that have hardware failures --></description>
+        <label><!-- RMA --></label>
+        <name>RMA</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Used to track cases for the Risk Management Practice --></description>
+        <label><!-- Risk Management Case --></label>
+        <name>RiskManagementCase</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Deprecated - Do not use --></description>
+        <label><!-- Sales/Business team support --></label>
+        <name>SalesBusinessteamsupport</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Desktop sharing or in-person demo to potential customer --></description>
+        <label><!-- Sales Demo --></label>
+        <name>SalesDemo</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Customer assistance, from requests, pro bono, and asking for favors --></description>
+        <label><!-- Support --></label>
+        <name>Support</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Support Surveys --></description>
+        <label><!-- Support Survey --></label>
+        <name>SupportSurvey</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- For use with surveys --></description>
+        <label><!-- Survey --></label>
+        <name>Survey</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Case record type for Time Builder assessment projects --></description>
+        <label><!-- Time Builder Assessment --></label>
+        <name>Time_Builder_Assessment</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Please pick an expected completion date of today or later. --></errorMessage>
+        <name>Case_Open_Exp_Com_Date_in_Future</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please provide an action plan for any cases where the overall health is &apos;Amber&apos; or &apos;Red&apos;. --></errorMessage>
+        <name>Case_RAG_Action_Plan_Population</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please provide a description as to why the overall health is &apos;Amber&apos; or &apos;Red&apos;. --></errorMessage>
+        <name>Case_RAG_Description_Population</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This employee is on Out Of Office --></errorMessage>
+        <name>Check_if_support_engineer_is_on_vacation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Client account is required field --></errorMessage>
+        <name>Client_Account_is_required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill out RCA and Solution --></errorMessage>
+        <name>Fillout_RCA_and_Solution</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please update the kickoff date to be later than the opened date. --></errorMessage>
+        <name>Kickoff_Date_greater_than_open_date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please make sure that both the &quot;Services Revenue Model&quot; and the &quot;Partner Engagement&quot; fields match for partner led cases. --></errorMessage>
+        <name>Partner_Led_Fields_have_to_match</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- If a case is escalated to Engineering, please pick an associated JIRA issue. --></errorMessage>
+        <name>Populate_Jira_Issue_when_Escalated</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please populate the partner --></errorMessage>
+        <name>Populate_Partner_if_identified</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please check the revenue delay flag or adjust the project dates --></errorMessage>
+        <name>Rev_Rec_past_Compl_Date_Check_Flag</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You have not supplied a reason to not survey the contact for this support case. --></errorMessage>
+        <name>SupportClosingValidation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Unable to create Acute Notification case in Completed status --></errorMessage>
+        <name>Unable_to_create_case_in_Completed_statu</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please contact Operations team to update the status. --></errorMessage>
+        <name>Validation_on_Status</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please assign this case to a valid support engineer. Make sure that this support engineer is currently in the office. (Check the Support Availability calendar in Outlook to confirm). Thank you. --></errorMessage>
+        <name>Verify_Support_Engineer_Availability</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Conga_Composer_OAuth --></label>
+        <name>APXTConga4__Conga_Composer_OAuth</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Conga_Mail_Merge --></label>
+        <name>APXTConga4__Conga_Mail_Merge</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Account_Cases --></label>
+        <name>Account_Cases</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Begin_Shipping_Process --></label>
+        <name>Begin_Shipping_Process</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Bugzilla --></label>
+        <name>Bugzilla</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- CRMReplAppliance --></label>
+        <name>CRMReplAppliance</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- CRMRetAppliance --></label>
+        <name>CRMRetAppliance</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- CaseTimeline --></label>
+        <name>CaseTimeline</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Case_Logging_Report --></label>
+        <name>Case_Logging_Report</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Update_JIRA --></label>
+        <name>Create_Update_JIRA</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Link_Case_to_an_existing_JIRA_issue --></label>
+        <name>Link_Case_to_an_existing_JIRA_issue</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Link_to_JIRA --></label>
+        <name>Link_to_JIRA</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- NPI_Projects --></label>
+        <name>NPI_Projects</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- New_Red_Alert_Case --></label>
+        <name>New_Red_Alert_Case</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- ReOpenasnewCase --></label>
+        <name>ReOpenasnewCase</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- ReassignEmails --></label>
+        <name>ReassignEmails</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- RecordedDemosTraining --></label>
+        <name>RecordedDemosTraining</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- ReplApplianceFedExTracking --></label>
+        <name>ReplApplianceFedExTracking</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- RetApplianceFedExTracking --></label>
+        <name>RetApplianceFedExTracking</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Save_to_JIRA --></label>
+        <name>Save_to_JIRA</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_PS_Survey --></label>
+        <name>Send_PS_Survey</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Start_RMA_Process --></label>
+        <name>Start_RMA_Process</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Sync_to_JIRA --></label>
+        <name>Sync_to_JIRA</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Unfollow --></label>
+        <name>Unfollow</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_with_DocuSign --></label>
+        <name>dsfs__Send_with_DocuSign</name>
+    </webLinks>
+</CustomObjectTranslation>

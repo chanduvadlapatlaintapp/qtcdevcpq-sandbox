@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Engagement_Style__c</fullName>
+    <description>SC-000022</description>
+    <label>Engagement Style</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Personalized Outreach</fullName>
+                <default>false</default>
+                <label>Personalized Outreach</label>
+            </value>
+            <value>
+                <fullName>Product Email</fullName>
+                <default>false</default>
+                <label>Product Email</label>
+            </value>
+            <value>
+                <fullName>Product Email/CSM Follow-Up</fullName>
+                <default>false</default>
+                <label>Product Email/CSM Follow-Up</label>
+            </value>
+            <value>
+                <fullName>CSM Led</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>CSM Led</label>
+            </value>
+            <value>
+                <fullName>Management Escalated</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Management Escalated</label>
+            </value>
+            <value>
+                <fullName>Time Practice Led</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Time Practice Led</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

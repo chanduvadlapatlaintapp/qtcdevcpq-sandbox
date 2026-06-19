@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Active Contract Lookup --></label>
+        <name>SBQQ__ActiveContractLookup</name>
+    </fieldSets>
+    <recordTypes>
+        <description><!-- Contract information for appliances associated with partnerships or evals --></description>
+        <label><!-- Partner/Eval Contract --></label>
+        <name>PartnerEvalContract</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- These contracts are for standard direct sales. --></description>
+        <label><!-- Standard Direct --></label>
+        <name>StandardDirect</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Migrated Add-on Contracts cannot be renewed --></errorMessage>
+        <name>Cannot_Renew_Migrated_AddOn_Contracts</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Only Sales Ops can activate contracts. --></errorMessage>
+        <name>Only_Sales_Ops_Close_Contracts</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please populate the SFA Cap Length field. Since the SFA Cap after Initial Term field is populated on this contract --></errorMessage>
+        <name>Populate_SFA_Cap_Length_when_SFA_filled</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Contracts with only One-Time Subscriptions cannot be renewed --></errorMessage>
+        <name>Renewal_Forecast_for_Service_Only</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Renewals are not allowed for partner fee deals. --></errorMessage>
+        <name>Renewal_Not_Allowed_on_Partner_Fee_Deal</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cancellation Fee is mandatory when ROR is Terminate MultiYear for Convenience w Fee --></errorMessage>
+        <name>Require_Cancellation_Fee</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Contracts may only be set to executed by Sales Ops. --></errorMessage>
+        <name>Sales_Reps_Cannot_Execute_Contracts</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Conga_Composer_OAuth --></label>
+        <name>APXTConga4__Conga_Composer_OAuth</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Conga_Mail_Merge --></label>
+        <name>APXTConga4__Conga_Mail_Merge</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Conga_Merge --></label>
+        <name>APXTConga4__Conga_Merge</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Validate_Addresses --></label>
+        <name>AVA_SFCPQ__Validate_Addresses</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Validate_Shipping_Address --></label>
+        <name>AVA_SFCPQ__Validate_Shipping_Address</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Assign_Default_Approvers --></label>
+        <name>Assign_Default_Approvers</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Amend --></label>
+        <name>SBQQ__Amend</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- RenewContracts --></label>
+        <name>SBQQ__RenewContracts</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_With_DocuSign --></label>
+        <name>Send_With_DocuSign</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Submit_for_Approval --></label>
+        <name>Submit_for_Approval</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Superseded_by_OSA --></label>
+        <name>Superseded_by_OSA</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_with_DocuSign --></label>
+        <name>dsfs__Send_with_DocuSign</name>
+    </webLinks>
+</CustomObjectTranslation>

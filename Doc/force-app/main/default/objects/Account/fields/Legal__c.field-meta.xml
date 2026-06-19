@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Legal__c</fullName>
+    <description>Does this firm use a Legal Project Management software?</description>
+    <inlineHelpText>Does this firm use a legal project management software? If so, which one?</inlineHelpText>
+    <label>Legal Project Management</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Elevate Cael</fullName>
+                <default>false</default>
+                <label>Elevate Cael</label>
+            </value>
+            <value>
+                <fullName>Engage</fullName>
+                <default>false</default>
+                <label>Engage</label>
+            </value>
+            <value>
+                <fullName>Hubshare</fullName>
+                <default>false</default>
+                <label>Hubshare</label>
+            </value>
+            <value>
+                <fullName>K2</fullName>
+                <default>false</default>
+                <label>K2</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

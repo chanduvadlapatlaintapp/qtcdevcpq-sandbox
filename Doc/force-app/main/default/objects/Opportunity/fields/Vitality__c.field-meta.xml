@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vitality__c</fullName>
+    <description>In the sales executive&apos;s opinion, what is the level of urgency/interest at this firm?</description>
+    <inlineHelpText>In the sales executive&apos;s opinion, what is the level of urgency/interest at this firm?</inlineHelpText>
+    <label>Vitality</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Hot</fullName>
+                <color>#A53711</color>
+                <default>false</default>
+                <label>Hot</label>
+            </value>
+            <value>
+                <fullName>Warm</fullName>
+                <color>#E27001</color>
+                <default>false</default>
+                <label>Warm</label>
+            </value>
+            <value>
+                <fullName>Cold</fullName>
+                <color>#0B6FCE</color>
+                <default>false</default>
+                <label>Cold</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

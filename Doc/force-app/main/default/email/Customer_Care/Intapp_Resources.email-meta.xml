@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>PS_Survey_Letterhead</letterhead>
+    <name>Intapp Resources</name>
+    <style>freeForm</style>
+    <subject>Closing Survey {!Intapp_Resource__c.Survey_Number__c} Completed</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

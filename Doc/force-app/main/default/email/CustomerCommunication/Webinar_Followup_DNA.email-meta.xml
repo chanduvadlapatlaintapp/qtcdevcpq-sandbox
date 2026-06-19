@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Followup email for webinar</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Followup - DNA</name>
+    <style>none</style>
+    <subject>IntApp Webinar Followup</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+I&apos;m sorry you were unable to attend the IntApp webinar on the ABA changes to Rule 1.10 last week. We had over 100 attendees and have received very positive feedback. 
+
+A recording of the webinar is now available on our website and can be found at http://www.intapp.com/products/wbwebinars.html.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

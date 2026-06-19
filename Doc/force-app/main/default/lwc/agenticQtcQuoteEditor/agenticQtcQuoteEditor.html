@@ -1,0 +1,322 @@
+<template>
+    <div class="editor-container">
+        <div class="editor-header">
+            <div class="header-left-section">
+                <lightning-button-icon icon-name="utility:back" onclick={handleBack} variant="bare"></lightning-button-icon>
+                <div>
+                    <h2 class="header-title">
+                        <template if:true={hasAccountLink}>
+                            <a class="header-title-link" href={accountRecordUrl} target="_blank" rel="noopener noreferrer">{accountName}</a>
+                        </template>
+                        <template if:true={showHeaderSeparator}>
+                            <span class="header-title-separator"> | </span>
+                        </template>
+                        <template if:true={hasQuoteLink}>
+                            <a class="header-title-link" href={quoteRecordUrl} target="_blank" rel="noopener noreferrer">{quoteName}</a>
+                        </template>
+                        <template if:true={showFallbackHeader}>{headerTitle}</template>
+                    </h2>
+                    <p>Configure products and pricing for this contract</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <lightning-button label="Save" onclick={handleSave} variant="brand" icon-name="utility:save" disabled={isSaveDisabled}></lightning-button>
+                <template if:true={anyApprovalRequired}>
+                    <lightning-button label="Submit for Approval" onclick={handleSubmitForApproval}
+                        variant="success" icon-name="utility:approval"
+                        disabled={isSubmitForApprovalDisabled}></lightning-button>
+                </template>
+                <!-- VK: Contract Ops button hidden — approval workflow out of scope for
+                     this release. Re-enable the {anyApprovalRequired} branch together
+                     with handleContractOps() and the createContractOpsCase import in
+                     the JS when the approval flow returns.
+                <template if:true={anyApprovalRequired}>
+                    <lightning-button label="Contract Ops" onclick={handleContractOps} variant="brand"
+                        icon-name="utility:cases"></lightning-button>
+                </template>
+                -->
+                <lightning-button label="Preview and Send OSA" onclick={handlePreviewSend} variant="brand"
+                    icon-name="utility:send" disabled={isPreviewSendDisabled}></lightning-button>
+            </div>
+        </div>
+
+        <!-- Metrics bar -->
+        <div class="metrics-bar">
+            <div class="metric-item">
+                <span class="metric-label">ACV</span>
+                <span class="metric-value">{displayTotalAcv}</span>
+            </div>
+            <!-- VK: ACV Change tile hidden for the current phase. Re-enable
+                 the block below when the metric is needed again. -->
+            <!--
+            <div class="metric-item">
+                <span class="metric-label">ACV Change</span>
+                <span class={acvChangeClass}>{displayTotalAcvChange}</span>
+            </div>
+            -->
+            <div class="metric-item">
+                <span class="metric-label">TCV</span>
+                <span class="metric-value">{displayTotalTcv}</span>
+            </div>
+            <div class="metric-item">
+                <span class="metric-label">YoY Uplift</span>
+                <span class={yoyUpliftClass}>{displayTotalYoyUplift}</span>
+            </div>
+            <div class="metric-item">
+                <span class="metric-label">Deal Quality Score</span>
+                <span class={dqScoreClass}>{displayDealQualityScore}</span>
+            </div>
+        </div>
+
+        <!-- Approvals bar -->
+        <template if:true={anyApprovalRequired}>
+            <div class={approvalsBarClass}>
+                <div class="approvals-left">
+                    <lightning-icon icon-name="utility:person" size="x-small"></lightning-icon>
+                    <span class="approvals-label">Approvals required before sending</span>
+                    <lightning-badge label={approvalCount} class="approver-count"></lightning-badge>
+                </div>
+                <div class="approvals-chips-row">
+                    <template for:each={approvalChips} for:item="chip">
+                        <span key={chip.key} class="approver-chip-inline">
+                            <span class={chip.dotClass}></span>
+                            <span class="approver-chip-name">{chip.label}</span>
+                        </span>
+                    </template>
+                </div>
+                <div class="approvals-right">
+                    <button class="show-reasons-btn" onclick={handleToggleReasons}>
+                        {showReasonsLabel}
+                        <lightning-icon icon-name={showReasonsIcon} size="xx-small" class="reasons-chevron-icon"></lightning-icon>
+                    </button>
+                </div>
+            </div>
+            <template if:true={showReasons}>
+                <div class="reasons-panel">
+                    <template for:each={displayApprovalItems} for:item="item">
+                        <div key={item.ruleName} class="reason-row">
+                            <div class="reason-row-name">
+                                <span class={item.avatarClass}>{item.initials}</span>
+                                <div class="reason-approver-info">
+                                    <span class="reason-approver-name" title={item.approverName}>{item.approverName}</span>
+                                    <span class="reason-approver-title" title={item.approverTitle}>{item.approverTitle}</span>
+                                </div>
+                            </div>
+                            <div class="reason-text-cell">
+                                <div class={item.reasonTextWrapperClass} tabindex="0">
+                                    <span class="reason-text">{item.reason}</span>
+                                    <template if:true={item.hasDescription}>
+                                        <div class="description-popover" role="tooltip">
+                                            <div class="description-popover-header">
+                                                <lightning-icon icon-name="utility:info_alt" size="xx-small" class="description-popover-icon"></lightning-icon>
+                                                <span class="description-popover-title">Why this approval is required</span>
+                                            </div>
+                                            <p class="description-popover-text">{item.description}</p>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                            <div class="reason-rule-cell">
+                                <span class="reason-rule-chip" title={item.ruleName}>{item.ruleName}</span>
+                            </div>
+                        </div>
+                    </template>
+                    <div class="reasons-tip">
+                        <lightning-icon icon-name="utility:info" size="xx-small" class="tip-icon"></lightning-icon>
+                        <span>Tip: Address all approval requirements before sending to reduce turnaround time</span>
+                    </div>
+                </div>
+            </template>
+        </template>
+
+        <!-- Settings bar with quote fields -->
+        <div class="settings-bar">
+            <div class="setting-item">
+                <label>Quote Start Date</label>
+                <lightning-input type="date" value={quoteStartDate} onchange={handleStartDateChange}
+                    variant="label-hidden" class="date-input"></lightning-input>
+            </div>
+            <div class="setting-item">
+                <label>Total Contract Months</label>
+                <input type="text" value={totalContractMonths} disabled class="field-disabled" />
+            </div>
+            <div class="setting-item">
+                <label>First Segment Months</label>
+                <input type="text" value={firstSegmentMonths} disabled class="field-disabled" />
+            </div>
+            <div class="setting-item">
+                <label>Discount</label>
+                <div class="discount-wrapper">
+                    <input type="text" value={contractDiscount} disabled class="field-disabled field-discount" />
+                    <span class="pct-sign">%</span>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Billing Frequency</label>
+                <div class="field-select-disabled">
+                    <span class="field-select-value">{billingFrequency}</span>
+                    <lightning-icon icon-name="utility:down" size="xx-small" class="select-chevron"></lightning-icon>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Payment Terms</label>
+                <div class="field-select-disabled">
+                    <span class="field-select-value">{paymentTerms}</span>
+                    <lightning-icon icon-name="utility:down" size="xx-small" class="select-chevron"></lightning-icon>
+                </div>
+            </div>
+            <div class="setting-item setting-item-checkbox">
+                <label>Special Terms</label>
+                <input type="checkbox" checked={specialTerms} disabled class="special-terms-check field-disabled" />
+            </div>
+        </div>
+
+        <!-- Contacts card -->
+        <div class="contacts-bar">
+            <div class="contact-card-section">
+                <div class="contact-label-row">
+                    <span class="contact-label">Invoicing Contact</span>
+                    <button type="button" class="contact-search-btn" data-type="invoicing"
+                        onclick={handleOpenContactPicker} title="Search and select contact"
+                        aria-label="Select invoicing contact">
+                        <lightning-icon icon-name="utility:search" size="x-small" class="contact-search-icon"></lightning-icon>
+                    </button>
+                </div>
+                <template if:true={hasInvoicingContact}>
+                    <span class="contact-name">{invoicingContactName}</span>
+                    <template if:true={hasInvoicingContactAccountName}>
+                        <span class="contact-account">{invoicingContactAccountName}</span>
+                    </template>
+                    <span class="contact-detail">{invoicingContactEmail}</span>
+                    <template if:true={hasInvoicingContactTitle}>
+                        <span class="contact-title">{invoicingContactTitle}</span>
+                    </template>
+                </template>
+                <template if:false={hasInvoicingContact}>
+                    <span class="contact-empty">No contact selected</span>
+                </template>
+            </div>
+            <div class="contact-card-section contact-card-right">
+                <div class="contact-label-row">
+                    <span class="contact-label">Software Delivery Contact</span>
+                    <button type="button" class="contact-search-btn" data-type="delivery"
+                        onclick={handleOpenContactPicker} title="Search and select contact"
+                        aria-label="Select software delivery contact">
+                        <lightning-icon icon-name="utility:search" size="x-small" class="contact-search-icon"></lightning-icon>
+                    </button>
+                </div>
+                <template if:true={hasDeliveryContact}>
+                    <span class="contact-name">{softwareDeliveryContactName}</span>
+                    <template if:true={hasDeliveryContactAccountName}>
+                        <span class="contact-account">{softwareDeliveryContactAccountName}</span>
+                    </template>
+                    <span class="contact-detail">{softwareDeliveryContactEmail}</span>
+                    <template if:true={hasDeliveryContactTitle}>
+                        <span class="contact-title">{softwareDeliveryContactTitle}</span>
+                    </template>
+                </template>
+                <template if:false={hasDeliveryContact}>
+                    <span class="contact-empty">No contact selected</span>
+                </template>
+            </div>
+        </div>
+
+        <template if:true={isInitialLoading}>
+            <c-agentic-qtc-loading progress-value={progressValue} progress-message={progressMessage}></c-agentic-qtc-loading>
+        </template>
+
+        <template if:true={isRegularLoading}>
+            <c-agentic-qtc-loading message={loadingMessage}></c-agentic-qtc-loading>
+        </template>
+
+        <template if:true={hasLines}>
+            <div class="lines-section">
+                <div class="lines-header">
+                    <h3>Software</h3>
+                </div>
+                <div class="lines-list">
+                    <template for:each={termGroupedProducts} for:item="termGroup">
+                        <c-agentic-qtc-mdq-term-group
+                            key={termGroup.key}
+                            term-data={termGroup}
+                            quote-start-date={quoteStartDate}
+                            currency-iso-code={currencyIsoCode}
+                            onmdqquantitychange={handleMdqQuantityChange}
+                            onmdqvalidationerror={handleMdqValidationError}
+                            onacvchange={handleAcvChange}>
+                        </c-agentic-qtc-mdq-term-group>
+                    </template>
+                </div>
+            </div>
+        </template>
+
+        <!-- VK: agenticQtcAddProduct dependency removed from this deploy. Re-enable when
+             the Add Product entry point (button/event) is added back to the editor.
+        <template if:true={showAddProduct}>
+            <c-agentic-qtc-add-product
+                quote-id={quoteId}
+                onproductadded={handleProductAdded}
+                onclose={handleCloseAddProduct}>
+            </c-agentic-qtc-add-product>
+        </template>
+        -->
+
+
+        <template if:true={showPreviewSend}>
+            <c-agentic-qtc-preview-send
+                quote-id={quoteId}
+                contract-number={contractNumber}
+                account-id={accountId}
+                onclose={handleClosePreviewSend}>
+            </c-agentic-qtc-preview-send>
+        </template>
+
+        <!-- Select Contact modal -->
+        <template if:true={showContactPicker}>
+            <div class="contact-picker-backdrop" onclick={handleCloseContactPicker}>
+                <div class="contact-picker-modal" role="dialog" aria-modal="true"
+                    aria-labelledby="contact-picker-title" onclick={handleContactPickerStop}>
+                    <div class="contact-picker-header">
+                        <h3 id="contact-picker-title" class="contact-picker-title">Select Contact</h3>
+                        <button type="button" class="contact-picker-close"
+                            onclick={handleCloseContactPicker} aria-label="Close">
+                            <lightning-icon icon-name="utility:close" size="x-small"></lightning-icon>
+                        </button>
+                    </div>
+                    <div class="contact-picker-search">
+                        <lightning-icon icon-name="utility:search" size="xx-small"
+                            class="contact-picker-search-icon"></lightning-icon>
+                        <input type="text" placeholder="Search contacts..."
+                            value={contactSearchTerm} oninput={handleContactSearch}
+                            class="contact-picker-search-input" aria-label="Search contacts" />
+                    </div>
+                    <div class="contact-picker-list">
+                        <template for:each={filteredContacts} for:item="contact">
+                            <div key={contact.id} class={contact.itemClass} data-id={contact.id}
+                                onclick={handleContactSelect} tabindex="0" role="button"
+                                aria-pressed={contact.ariaPressed}>
+                                <span class="contact-picker-avatar">{contact.initials}</span>
+                                <div class="contact-picker-info">
+                                    <span class="contact-picker-name">{contact.name}</span>
+                                    <span class="contact-picker-meta">{contact.subtitle}</span>
+                                </div>
+                                <template if:true={contact.isSelected}>
+                                    <span class="contact-picker-dot" aria-label="Currently selected"></span>
+                                </template>
+                            </div>
+                        </template>
+                        <template if:true={contactPickerEmpty}>
+                            <div class="contact-picker-empty">No contacts found</div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template if:true={toastMessage}>
+            <div class={toastClass}>
+                <span>{toastMessage}</span>
+            </div>
+        </template>
+    </div>
+</template>

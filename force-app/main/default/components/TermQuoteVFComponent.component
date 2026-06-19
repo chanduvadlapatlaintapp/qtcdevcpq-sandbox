@@ -1,0 +1,16 @@
+<apex:component controller="GetTermQuote"  access="GLOBAL">
+<apex:attribute name="quoteId" description="Attribute on the component."
+                  type="String" required="required" assignTo="{!relatedId}"/>
+    <table style="border:1px solid black;border-collapse:collapse;">
+    <apex:variable var="v" value="" rendered="{!termQuotes.size>0}">
+    <tr>
+        <td>Quote Term Body</td>    
+    </tr>
+    </apex:variable>
+    <apex:repeat value="{!termQuotes}" var="f">
+    <tr> 
+        <td style="border:1px solid black;">{!f.Body__c}</td>            
+    </tr>
+    </apex:repeat>       
+</table>
+</apex:component>

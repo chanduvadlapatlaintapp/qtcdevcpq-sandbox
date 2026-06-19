@@ -1,0 +1,174 @@
+<apex:page showHeader="false" sidebar="false" title="Next Gen CPQ By Intapp" standardStylesheets="false" applyBodyTag="false" docType="html-5.0" controller="SingleQuoteSingleDealController">
+    <html>
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <style>
+                body {
+                    margin: 0;
+                    padding: 0;
+                    overflow: hidden;
+                    height: 100vh;
+                }
+                /* Hide Salesforce header */
+                #oneHeader,
+                .slds-global-header_container,
+                .branding-header {
+                    display: none !important;
+                }
+                #nextGenCPQContainer {
+                    width: 100%;
+                    height: 100vh;
+                }
+                .loading-container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    font-family: 'Salesforce Sans', Arial, sans-serif;
+                    color: #706e6b;
+                }
+                .loading-spinner {
+                    border: 4px solid #f3f3f3;
+                    border-top: 4px solid #0176d3;
+                    border-radius: 50%;
+                    width: 40px;
+                    height: 40px;
+                    animation: spin 1s linear infinite;
+                    margin-right: 12px;
+                }
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+            </style>
+        </head>
+        <body>
+            <div id="nextGenCPQContainer">
+                <div class="loading-container" id="loadingIndicator">
+                    <div class="loading-spinner"></div>
+                    <span>Loading CPQ...</span>
+                </div>
+            </div>
+            
+            <!-- Lightning Out Scripts -->
+            <script src="/lightning/lightning.out.js"></script>
+            
+            <script>
+                // Get URL parameter by name
+                function getUrlParameter(name) {
+                    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                    var results = regex.exec(location.search);
+                    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+                }
+                
+                // Collect all URL parameters
+                var accId = getUrlParameter('c__accId') || '';
+                var dealId = getUrlParameter('c__dealId') || '';
+                var dealType = getUrlParameter('c__DealType') || '';
+                var dealStage = getUrlParameter('c__DealStage') || '';
+                var currencyIso = getUrlParameter('c__currencyIso') || '';
+                var existingClient = getUrlParameter('c__existingClient') || '';
+                var osaNumber = getUrlParameter('c__OSA') || '';
+                var salesSegment = getUrlParameter('c__SalesSegment') || '';
+                var amendmentStartDate = getUrlParameter('c__AmendmentStartDate') || '';
+                var expectedSignatureDate = getUrlParameter('c__expectedSignatureDate') || '';
+                var dealOwnerId = getUrlParameter('c__dealOwnerId') || '';
+                
+                // Check if we already have a quoteId in URL (direct access)
+                var existingQuoteId = getUrlParameter('quoteId') || getUrlParameter('c__quoteid') || '';
+                
+                function hideLoading() {
+                    var loadingIndicator = document.getElementById('loadingIndicator');
+                    if (loadingIndicator) {
+                        loadingIndicator.style.display = 'none';
+                    }
+                }
+                
+                function createLightningComponent(quoteId) {
+                    $Lightning.use("c:NextGenCPQApp", function() {
+                        $Lightning.createComponent(
+                            "c:nextGenCPQ",
+                            {
+                                "quoteId": quoteId
+                            },
+                            "nextGenCPQContainer",
+                            function(component) {
+                                hideLoading();
+                                console.log("NextGenCPQ component created successfully with quoteId:", quoteId);
+                            }
+                        );
+                    });
+                }
+                
+                // If we have deal parameters, call checkAndCreateQuote to get/create quote
+                if (accId && dealId) {
+                    console.log("Calling checkAndCreateQuote with parameters:", {
+                        dealId: dealId,
+                        accId: accId,
+                        dealType: dealType,
+                        dealStage: dealStage,
+                        currencyIso: currencyIso,
+                        osaNumber: osaNumber,
+                        salesSegment: salesSegment,
+                        amendmentStartDate: amendmentStartDate,
+                        expectedSignatureDate: expectedSignatureDate,
+                        dealOwnerId: dealOwnerId
+                    });
+                    
+                    Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.SingleQuoteSingleDealController.checkAndCreateQuoteAction}',
+                        dealId,
+                        '001VZ00000VNagsYAD',
+                        dealType,
+                        dealStage,
+                        currencyIso,
+                        osaNumber,
+                        salesSegment,
+                        amendmentStartDate,
+                        expectedSignatureDate,
+                        dealOwnerId,
+                        function(result, event) {
+                            if (event.status) {
+                                console.log("checkAndCreateQuote result:", result);
+                                // Parse the result: 'Success;SBQQ__Quote__c;quoteId' or 'Error;message'
+                                if (result && result.startsWith('Success;')) {
+                                    var parts = result.split(';');
+                                    if (parts.length >= 3) {
+                                        var quoteId = parts[2];
+                                        console.log("Quote ID obtained:", quoteId);
+                                        createLightningComponent(quoteId);
+                                    } else {
+                                        console.error("Unexpected response format:", result);
+                                        hideLoading();
+                                    }
+                                } else if (result && result.startsWith('Error;')) {
+                                    console.error("Error from checkAndCreateQuote:", result.substring(6));
+                                    hideLoading();
+                                    alert("Error: " + result.substring(6));
+                                } else {
+                                    console.error("Unexpected response:", result);
+                                    hideLoading();
+                                }
+                            } else {
+                                console.error("Remote action failed:", event.message);
+                                hideLoading();
+                                alert("Error: " + event.message);
+                            }
+                        },
+                        { escape: true }
+                    );
+                } else if (existingQuoteId) {
+                    // If we have an existing quoteId, use it directly
+                    console.log("Using existing quoteId from URL:", existingQuoteId);
+                    createLightningComponent(existingQuoteId);
+                } else {
+                    // No parameters provided, show error or empty state
+                    console.warn("No deal parameters or quoteId provided in URL");
+                    hideLoading();
+                    createLightningComponent('');
+                }
+            </script>
+        </body>
+    </html>
+</apex:page>

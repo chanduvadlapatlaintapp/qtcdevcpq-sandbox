@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verify_Client_Contact_is_not_blank</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND((ISPICKVAL(Submit_directly_for_Approval__c, &apos;Yes&apos;)), ISBLANK(Client_Contact__c), NOT($Profile.Id=&quot;00e30000000bvR3&quot;))</errorConditionFormula>
+    <errorMessage>Please make sure the Client Contact is populated.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notification that a contract has been created and has been linked to opportunity where Fulfilling entity = Intapp and what the details are</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Contract Created and linked to Opp with Fulfilling Entity = Intapp  Notification</name>
+    <style>none</style>
+    <subject>{!Contract.Account}: A New Contract Has Been Created</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

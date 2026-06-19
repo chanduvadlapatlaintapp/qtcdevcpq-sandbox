@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Has:
+* Read and write on all GS objects and fields (including the CustomerInfo field on Account object)
+* Access to all Gainsight pages (except dataload config), classes, components and tabs 
+
+Assign to admins, e.g CS Ops or Success Designers.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Gainsight Admin Copilot</label>
+</PermissionSet>

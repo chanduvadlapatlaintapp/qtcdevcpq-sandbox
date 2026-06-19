@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>PS_Survey_Letterhead</letterhead>
+    <name>Project Cancelled</name>
+    <style>freeForm</style>
+    <subject>Project {!Project__c.Name} Status Changed to {!Project__c.Project_State__c}</subject>
+    <textOnly>CSM Team,
+
+The following Project has been marked as {!Project__c.Project_State__c}:
+
+Project Name: {!Project__c.Name}
+Link: {!Project__c.Link}
+
+
+
+
+
+Rule Code: OAP-003Exxx</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

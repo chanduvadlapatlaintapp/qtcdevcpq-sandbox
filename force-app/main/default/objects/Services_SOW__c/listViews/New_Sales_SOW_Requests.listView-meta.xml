@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_Sales_SOW_Requests</fullName>
+    <columns>Geography__c</columns>
+    <columns>NAME</columns>
+    <columns>SOW_Name__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>Requesting_Employee__c</columns>
+    <columns>Product__c</columns>
+    <columns>Technical_Scoping_Assigned_To__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Recurring_Involved__c</field>
+        <operation>equals</operation>
+        <value>Yes,Not Sure</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Submitted,In Process,Returned to Requesting Employee for Edits</value>
+    </filters>
+    <label>New Sales SOW Requests</label>
+    <language>en_US</language>
+</ListView>

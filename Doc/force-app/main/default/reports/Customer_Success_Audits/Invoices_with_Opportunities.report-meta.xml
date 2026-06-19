@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Invoice__c$Name</field>
+    </columns>
+    <columns>
+        <field>Invoice__c.Opportunities__r$Name</field>
+    </columns>
+    <columns>
+        <field>Invoice__c$Related_renewal_Opportunity__c</field>
+    </columns>
+    <columns>
+        <field>Invoice__c.Opportunities__r$StageName</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Invoices with Opportunities</description>
+    <filter>
+        <criteriaItems>
+            <column>Invoice__c$Related_renewal_Opportunity__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value></value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>CS Audit:Invoices with Missing Opps</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Custom_Invoices_with_Opportunities__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Invoice__c.Opportunities__r$Name</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Invoice__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

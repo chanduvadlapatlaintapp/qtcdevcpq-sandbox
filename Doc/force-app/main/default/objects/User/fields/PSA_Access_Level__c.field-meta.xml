@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSA_Access_Level__c</fullName>
+    <label>PSA Access Level</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Full License</fullName>
+                <default>false</default>
+                <label>Full License</label>
+            </value>
+            <value>
+                <fullName>Field License</fullName>
+                <default>false</default>
+                <label>Field License</label>
+            </value>
+            <value>
+                <fullName>360 License</fullName>
+                <default>false</default>
+                <label>360 License</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

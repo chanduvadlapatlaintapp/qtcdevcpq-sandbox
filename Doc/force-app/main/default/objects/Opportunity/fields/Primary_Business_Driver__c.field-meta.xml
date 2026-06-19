@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Primary_Business_Driver__c</fullName>
+    <description>Primary business reason that the firm bought software</description>
+    <inlineHelpText>Primary business reason that the firm bought software (regardless of whom they bought from). If multiple, pick the most important one. If not included in the list, select Other and email Salesforce Administration to add the value.</inlineHelpText>
+    <label>Primary Business Driver</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Practice_Group__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Enhance User Provisioning process</fullName>
+                <default>false</default>
+                <label>Enhance User Provisioning process</label>
+            </value>
+            <value>
+                <fullName>Better manage Distribution Lists</fullName>
+                <default>false</default>
+                <label>Better manage Distribution Lists</label>
+            </value>
+            <value>
+                <fullName>Increase speed of client/matter opening</fullName>
+                <default>false</default>
+                <label>Increase speed of client/matter opening</label>
+            </value>
+            <value>
+                <fullName>Speed up firm merger</fullName>
+                <default>false</default>
+                <label>Speed up firm merger</label>
+            </value>
+            <value>
+                <fullName>Migrate to 3E from old accounting system</fullName>
+                <default>false</default>
+                <label>Migrate to 3E from old accounting system</label>
+            </value>
+            <value>
+                <fullName>Deploy SharePoint client or matter sites</fullName>
+                <default>false</default>
+                <label>Deploy SharePoint client or matter sites</label>
+            </value>
+            <value>
+                <fullName>Increase use and effectiveness of CRM</fullName>
+                <default>false</default>
+                <label>Increase use and effectiveness of CRM</label>
+            </value>
+            <value>
+                <fullName>Build an MDD</fullName>
+                <default>false</default>
+                <label>Build an MDD</label>
+            </value>
+            <value>
+                <fullName>Better comply with Outside Counsel Guidelines</fullName>
+                <default>false</default>
+                <label>Better comply with Outside Counsel Guidelines</label>
+            </value>
+            <value>
+                <fullName>Reduce chance of litigation disqualification</fullName>
+                <default>false</default>
+                <label>Reduce chance of litigation disqualification</label>
+            </value>
+            <value>
+                <fullName>Improve regulatory compliance (HIPAA, ITAR, MAD, etc.)</fullName>
+                <default>false</default>
+                <label>Improve regulatory compliance (HIPAA, ITAR, MAD, etc.)</label>
+            </value>
+            <value>
+                <fullName>Help firm win and bring on new business</fullName>
+                <default>false</default>
+                <label>Help firm win and bring on new business</label>
+            </value>
+            <value>
+                <fullName>Protect firm reputation</fullName>
+                <default>false</default>
+                <label>Protect firm reputation</label>
+            </value>
+            <value>
+                <fullName>Improve efficiency and reduce costs</fullName>
+                <default>false</default>
+                <label>Improve efficiency and reduce costs</label>
+            </value>
+            <value>
+                <fullName>Protect book of business during firm merger</fullName>
+                <default>false</default>
+                <label>Protect book of business during firm merger</label>
+            </value>
+            <value>
+                <fullName>General improvement of risk management effectiveness</fullName>
+                <default>false</default>
+                <label>General improvement of risk management effectiveness</label>
+            </value>
+            <value>
+                <fullName>Grow revenue by capturing lost time</fullName>
+                <default>false</default>
+                <label>Grow revenue by capturing lost time</label>
+            </value>
+            <value>
+                <fullName>Improve lawyer experience / quality of life</fullName>
+                <default>false</default>
+                <label>Improve lawyer experience / quality of life</label>
+            </value>
+            <value>
+                <fullName>Improve mobile time entry</fullName>
+                <default>false</default>
+                <label>Improve mobile time entry</label>
+            </value>
+            <value>
+                <fullName>Replace existing unsupported time entry solution</fullName>
+                <default>false</default>
+                <label>Replace existing unsupported time entry solution</label>
+            </value>
+            <value>
+                <fullName>Enhance financial reporting / cost accounting</fullName>
+                <default>false</default>
+                <label>Enhance financial reporting / cost accounting</label>
+            </value>
+            <value>
+                <fullName>Minimize fee-lockup / collections delays</fullName>
+                <default>false</default>
+                <label>Minimize fee-lockup / collections delays</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Increased pressure to manage OCGs</fullName>
+                <default>false</default>
+                <label>Increased pressure to manage OCGs</label>
+            </value>
+            <value>
+                <fullName>Concern about reputational / financial risk</fullName>
+                <default>false</default>
+                <label>Concern about reputational / financial risk</label>
+            </value>
+            <value>
+                <fullName>Increased efficiency</fullName>
+                <default>false</default>
+                <label>Increased efficiency</label>
+            </value>
+            <value>
+                <fullName>Pursuing strategic business objective</fullName>
+                <default>false</default>
+                <label>Pursuing strategic business objective</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Better comply with Outside Counsel Guidelines</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Reduce chance of litigation disqualification</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Improve regulatory compliance (HIPAA, ITAR, MAD, etc.)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Help firm win and bring on new business</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Protect firm reputation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Improve efficiency and reduce costs</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Protect book of business during firm merger</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>General improvement of risk management effectiveness</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <controllingFieldValue>IT</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <valueName>Grow revenue by capturing lost time</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <valueName>Improve lawyer experience / quality of life</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <valueName>Improve mobile time entry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <valueName>Replace existing unsupported time entry solution</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <valueName>Enhance financial reporting / cost accounting</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <valueName>Minimize fee-lockup / collections delays</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IT</controllingFieldValue>
+            <valueName>Enhance User Provisioning process</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IT</controllingFieldValue>
+            <valueName>Better manage Distribution Lists</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IT</controllingFieldValue>
+            <valueName>Increase speed of client/matter opening</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IT</controllingFieldValue>
+            <valueName>Speed up firm merger</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IT</controllingFieldValue>
+            <valueName>Migrate to 3E from old accounting system</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IT</controllingFieldValue>
+            <valueName>Deploy SharePoint client or matter sites</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IT</controllingFieldValue>
+            <valueName>Increase use and effectiveness of CRM</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IT</controllingFieldValue>
+            <valueName>Build an MDD</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Owner</field>
+        <field>Order__c</field>
+        <field>Order_Change_Status__c</field>
+        <field>Billing_Frequency_New__c</field>
+        <field>Billing_Frequency_Old__c</field>
+        <field>Payment_terms_New__c</field>
+        <field>Payment_terms_Old__c</field>
+        <field>Shipping_Address_New__c</field>
+        <field>Shipping_Address_Old__c</field>
+        <field>Billing_Address_New__c</field>
+        <field>Billing_Address_Old__c</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <approvalActions>
+            <action>
+                <name>Update_status_as_Order_Management</name>
+                <type>FieldUpdate</type>
+            </action>
+        </approvalActions>
+        <assignedApprover>
+            <approver>
+                <name>Order_Management_Team</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <formula>OR(New_Invoicing_Contact__c  &lt;&gt;  Old_Invoicing_Contact__c , New_PO_Number__c  &lt;&gt;  Old_PO_Number__c )</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>RejectRecord</ifCriteriaNotMet>
+        <label>Order Management Approval</label>
+        <name>Order_Management_Approval</name>
+    </approvalStep>
+    <description>BIZ-64703</description>
+    <emailTemplate>unfiled$public/Request_for_changes_to_existing_Order</emailTemplate>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <criteriaItems>
+            <field>Order_Change__c.Order_Change_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Approved</value>
+        </criteriaItems>
+    </entryCriteria>
+    <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>Update_status_as_Pending</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>Order change request approval (OM)</label>
+    <processOrder>1</processOrder>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <showApprovalHistory>false</showApprovalHistory>
+</ApprovalProcess>

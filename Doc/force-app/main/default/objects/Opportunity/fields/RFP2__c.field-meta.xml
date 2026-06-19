@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RFP2__c</fullName>
+    <label>RFP?</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Discretionary</fullName>
+                <default>false</default>
+                <label>Discretionary</label>
+            </value>
+            <value>
+                <fullName>Funded</fullName>
+                <default>false</default>
+                <label>Funded</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

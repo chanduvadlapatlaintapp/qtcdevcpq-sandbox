@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Main_Use_Case__c</fullName>
+    <label>Main Use Case</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>StageName</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Unknown</fullName>
+                <default>true</default>
+                <label>Unknown</label>
+            </value>
+            <value>
+                <fullName>Client Matter Propagation/NBI</fullName>
+                <default>false</default>
+                <label>Client Matter Propagation/NBI</label>
+            </value>
+            <value>
+                <fullName>Ethical Walls</fullName>
+                <default>false</default>
+                <label>Ethical Walls</label>
+            </value>
+            <value>
+                <fullName>Integration Platform</fullName>
+                <default>false</default>
+                <label>Integration Platform</label>
+            </value>
+            <value>
+                <fullName>Integrated Time Management</fullName>
+                <default>false</default>
+                <label>Integrated Time Management</label>
+            </value>
+            <value>
+                <fullName>Series 4 Upgrade</fullName>
+                <default>false</default>
+                <label>Series 4 Upgrade</label>
+            </value>
+            <value>
+                <fullName>User Provisioning/NHI</fullName>
+                <default>false</default>
+                <label>User Provisioning/NHI</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Client Matter Propagation/NBI</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Ethical Walls</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Integration Platform</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Integrated Time Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Series 4 Upgrade</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>User Provisioning/NHI</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Closed Won</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

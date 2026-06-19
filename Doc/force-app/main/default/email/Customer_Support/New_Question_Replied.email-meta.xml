@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email template to notify support of Customer Community Reply</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>New Question Replied</name>
+    <style>none</style>
+    <subject>Intapp Customer Community Question Replied: {!Question.Title}</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Invoice_Status__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(Is_Deleted_in_NS__c,
+  &quot;Deleted&quot;,
+  IF(
+    ROUND(Amount_Invoiced__c,2)=0,
+    &quot;Paid In Full&quot;,
+    IF(
+      ROUND(Outstanding_Bln__c,2) &lt;= 0,
+      IF(
+        OR(ROUND(amt_credited__c,0) &gt;= ROUND(Amount_Invoiced__c,0), 
+        amt_credited__c + 0.99 &gt;= Amount_Invoiced__c),
+        &quot;Credited in Full&quot;,
+        IF(
+          ROUND(amt_credited__c,2) &gt; 0,
+          &quot;Paid but Partially Credited&quot;,
+          &quot;Paid In Full&quot;
+        )
+      ),
+      IF(
+        ROUND(amt_credited__c,2) &gt; 0,
+        &quot;Partially Credited&quot;,
+        IF(
+          ROUND(Amt_Paid__c,2) &gt; 0 ,
+          &quot;Partially Paid&quot;, &quot;Open&quot;
+        )
+      )
+    )
+  )
+)</formula>
+    <label>Status (New)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

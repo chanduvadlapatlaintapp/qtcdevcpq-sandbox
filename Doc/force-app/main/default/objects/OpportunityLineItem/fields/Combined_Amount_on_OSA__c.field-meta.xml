@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Combined_Amount_on_OSA__c</fullName>
+    <description>This is the combined total that we show on the OSA for items that are split on the Opportunity Products. For example, use this field to show what the total bundled Discount is.</description>
+    <inlineHelpText>Bundled amount shown on OSA, if you have to split the amount among multiple opportunity products.</inlineHelpText>
+    <label>Combined Amount on OSA</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <type>Currency</type>
+</CustomField>

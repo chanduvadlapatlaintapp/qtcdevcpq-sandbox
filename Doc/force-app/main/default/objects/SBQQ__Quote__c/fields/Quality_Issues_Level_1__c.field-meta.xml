@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quality_Issues_Level_1__c</fullName>
+    <description>Higher Level Issue found by Contract Ops when reviewing Contract Requests</description>
+    <label>Quality Issues Level 1</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Deal</fullName>
+                <default>false</default>
+                <label>Deal</label>
+            </value>
+            <value>
+                <fullName>Incorrect SOW</fullName>
+                <default>false</default>
+                <label>Incorrect SOW</label>
+            </value>
+            <value>
+                <fullName>Incorrect MSSA</fullName>
+                <default>false</default>
+                <label>Incorrect MSSA</label>
+            </value>
+            <value>
+                <fullName>System Error</fullName>
+                <default>false</default>
+                <label>System Error</label>
+            </value>
+            <value>
+                <fullName>Other-Contract/ CRM</fullName>
+                <default>false</default>
+                <label>Other-Contract/ CRM</label>
+            </value>
+            <value>
+                <fullName>CPQ Integration Issue</fullName>
+                <default>false</default>
+                <label>CPQ Integration Issue</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

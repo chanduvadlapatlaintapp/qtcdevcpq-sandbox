@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>LetPSSknowanewsalesorderhasbeenentered</fullName>
+        <ccEmails>pss@intapp.com</ccEmails>
+        <ccEmails>sfdc_donotreply@intapp.com</ccEmails>
+        <description>Let PSS know a new sales order has been entered</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>OperationsDirectorAPAC</recipient>
+            <type>role</type>
+        </recipients>
+        <recipients>
+            <recipient>bret.mcmillan@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>diane.lawyer@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>karl.larson@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>lan.phan@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>leah.cruz@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>mark.peterson@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>valerie.dendinger@intapp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>OrderFulfillment/Ordertobeshipped</template>
+    </alerts>
+    <rules>
+        <fullName>Rule Code%3A OH-001Exxx</fullName>
+        <actions>
+            <name>LetPSSknowanewsalesorderhasbeenentered</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Order_Header__c.Status__c</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Order_Header__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Appliance Hardware,Virtual Edition - Media,Virtual Edition - Key</value>
+        </criteriaItems>
+        <description>Rule Code: OH-001Exxx
+Support: New Order Header Created
+Updates status to new when a new order is created</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <tasks>
+        <fullName>AddPurchasedAppliancestoOrder</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>Please add the appliances purchased to the order header by creating new order detail entries, one order detail per appliance purchased.
+
+Have the following information ready for each appliance:
+License features
+Users
+Datasources</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <offsetFromField>Order_Header__c.CreatedDate</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Add Purchased Appliances to Order</subject>
+    </tasks>
+    <tasks>
+        <fullName>BuildApplianceforOrder</fullName>
+        <assignedTo>bizappsdev@intapp.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>This order has been approved.  Please build the appliances for this order.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>High</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Build Appliance for Order</subject>
+    </tasks>
+</Workflow>

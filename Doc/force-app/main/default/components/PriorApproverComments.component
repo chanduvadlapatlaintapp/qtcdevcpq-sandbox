@@ -1,0 +1,32 @@
+<!-- 
+    @description Visualforce component to render prior approval comments for a Quote
+                 using ApprovalEmailTemplateController.
+                 Displays approver name, comment, and date in a table format.
+    @author Manisha
+    @jira BIZ-68135
+-->
+
+<apex:component controller="ApprovalEmailTemplateController" access="global">
+    
+    <!-- Quote ID passed from the template -->
+    <apex:attribute name="recordId" assignTo="{!quoteId}" type="Id" description="Quote Id"/>
+
+    <!-- Approvals List -->
+    <apex:variable var="approvals" value="{!priorApprovals}"/>
+
+    <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse;">
+        <tr>
+            <th>Approver Name</th>
+            <th>Comment</th>
+            <th>Date</th>
+        </tr>
+        <apex:repeat value="{!approvals}" var="a">
+            <tr>
+                <td>{!a.sbaa__AssignedTo__r.Name}</td>
+                <td>{!a.sbaa__CommentsLong__c}</td>
+                <td>{!a.CreatedDate}</td>
+            </tr>
+        </apex:repeat>
+    </table>
+
+</apex:component>

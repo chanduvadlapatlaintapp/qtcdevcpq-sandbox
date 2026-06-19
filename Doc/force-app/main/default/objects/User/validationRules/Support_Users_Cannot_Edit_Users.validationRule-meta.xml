@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Support_Users_Cannot_Edit_Users</fullName>
+    <active>true</active>
+    <description>Prevents support users from editing the user record.</description>
+    <errorConditionFormula>AND( 
+  $User.ProfileId=&quot;00e50000001BfGZ&quot;, 
+  ProfileId!=&quot;00e2J000000tKLq&quot;,
+OR(
+ISCHANGED( LastName),
+ISCHANGED( FirstName),
+ISCHANGED( Email),
+ISCHANGED( Intapp_Start_Date__c),
+ISCHANGED( User_Practice_Group__c),
+ISCHANGED( box_username__c),
+ISCHANGED( Opportunity_Deletion_Notification__c),
+ISCHANGED( Manager__c),
+ISCHANGED( dsfs__DSProSFUsername__c),
+ISCHANGED( OutOfOffice__c),
+ISCHANGED( DigestQA__c),
+ISCHANGED( DigestProductNews__c	),
+ISCHANGED( Sales_Region__c),
+ISCHANGED( Sales_Team_Level__c),
+ISCHANGED( FederationIdentifier),
+ISCHANGED( PSA_Access_Level__c),
+ISCHANGED( Territory__c),
+ISCHANGED( Fax),
+ISCHANGED( Extension),
+ISCHANGED( Email),
+ISCHANGED( Email),
+ISCHANGED( Sales_Region__c),
+ISCHANGED( MDD_Employee_ID__c ),
+ISCHANGED( CommunityNickname),
+ISCHANGED( ProfileId),
+ISCHANGED( Title),
+ISCHANGED( Department),
+ISCHANGED( Division),
+ISCHANGED( EmployeeNumber),
+ISCHANGED( CompanyName),
+ISCHANGED( Alias),
+ISCHANGED( ManagerId),
+ISCHANGED( Street),
+ISCHANGED( MobilePhone),
+ISCHANGED( Phone),
+ISCHANGED( Country),
+ISCHANGED( MDD_Employee_ID__c),
+ISCHANGED( UserRoleId )
+
+)
+)</errorConditionFormula>
+    <errorMessage>Please contact Business Applications for changes to the user record.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Consulting_services_total__c</fullName>
+    <label>Strategic Consulting Amount Total</label>
+    <summarizedField>OpportunityLineItem.UnitPrice</summarizedField>
+    <summaryFilterItems>
+        <field>OpportunityLineItem.Product_type_for_roll_up__c</field>
+        <operation>equals</operation>
+        <value>Risk, Transformation</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>OpportunityLineItem.Product_Code_Text__c</field>
+        <operation>notEqual</operation>
+        <value>IN-00989</value>
+    </summaryFilterItems>
+    <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

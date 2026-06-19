@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <interviewLabel>Ser status quote approval rejected {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Ser status quote approval rejected</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>select_quotes</name>
+        <label>select quotes</label>
+        <locationX>555</locationX>
+        <locationY>108</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>update_quote</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>SBQQ__MasterContract__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>contractID</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SBQQ__Quote__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>update_quote</name>
+        <label>update quote</label>
+        <locationX>801</locationX>
+        <locationY>107</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>SBQQ__MasterContract__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>contractID</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>SBQQ__Status__c</field>
+            <value>
+                <stringValue>Approval Rejected</stringValue>
+            </value>
+        </inputAssignments>
+        <object>SBQQ__Quote__c</object>
+    </recordUpdates>
+    <start>
+        <locationX>214</locationX>
+        <locationY>109</locationY>
+        <connector>
+            <targetReference>select_quotes</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>contractID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

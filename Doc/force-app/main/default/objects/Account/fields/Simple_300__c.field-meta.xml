@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Simple_300__c</fullName>
+    <description>This field tells you whether this Account is a candidate for the 2012 IntApp 600.</description>
+    <externalId>false</externalId>
+    <formula>IF(NOT(ISPICKVAL(Industry,&quot;Legal&quot;)),
+  &quot;Outside Legal&quot;,
+  IF(NOT(ISPICKVAL(Legal_Entity_Type__c, &quot;Firm&quot;)),
+    &quot;Legal - Not a Firm&quot;,
+      IF(AND(OR(ISBLANK(Lawyers__c), Lawyers__c &lt;50), OR(ISBLANK(Timekeepers__c), Timekeepers__c &lt; 50)),
+        &quot;Law Firm under both 50 Lawyers and 50 Timekeepers&quot;,
+        IF(AND(OR(ISBLANK(Lawyers__c), Lawyers__c &lt;100), OR(ISBLANK(Timekeepers__c), Timekeepers__c &lt; 100)),
+          &quot;Law Firm under both 100 Lawyers and 100 Timekeepers&quot;,        
+          IF(AND(OR(ISBLANK(Lawyers__c),Lawyers__c &lt; 100), Timekeepers__c &gt;=100),
+            &quot;Law Firm under 100 Lawyers but over 100 Timekeepers&quot;,
+             IF(OR(ISBLANK(Intapp_Master_Ranking__c), Intapp_Master_Ranking__c &gt;300),
+                &quot;Law Firm over 100 Lawyers and 100 Timekeepers&quot;,
+                &quot;2009 IntApp 1-300&quot;))))))</formula>
+    <inlineHelpText>This field tells you whether this Account is a candidate for the 2012 IntApp 600.</inlineHelpText>
+    <label>Simple 300</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

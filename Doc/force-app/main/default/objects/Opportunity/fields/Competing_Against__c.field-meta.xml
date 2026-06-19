@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Competing_Against__c</fullName>
+    <description>Who are the Competitors</description>
+    <label>Competing Against</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <controllingField>Practice_Group__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Aderant Expert Time Entry</fullName>
+                <default>false</default>
+                <label>Aderant Expert Time Entry</label>
+            </value>
+            <value>
+                <fullName>Aderant Found Time</fullName>
+                <default>false</default>
+                <label>Aderant Found Time</label>
+            </value>
+            <value>
+                <fullName>BizTalk</fullName>
+                <default>false</default>
+                <label>BizTalk</label>
+            </value>
+            <value>
+                <fullName>Carpe Diem Classic</fullName>
+                <default>false</default>
+                <label>Carpe Diem Classic</label>
+            </value>
+            <value>
+                <fullName>Carpe Diem Enterprise</fullName>
+                <default>false</default>
+                <label>Carpe Diem Enterprise</label>
+            </value>
+            <value>
+                <fullName>Prosperoware</fullName>
+                <default>false</default>
+                <label>Prosperoware</label>
+            </value>
+            <value>
+                <fullName>DocAuto</fullName>
+                <default>false</default>
+                <label>DocAuto</label>
+            </value>
+            <value>
+                <fullName>Doing nothing</fullName>
+                <default>false</default>
+                <label>Doing nothing</label>
+            </value>
+            <value>
+                <fullName>Don&apos;t know</fullName>
+                <default>false</default>
+                <label>Don&apos;t know</label>
+            </value>
+            <value>
+                <fullName>DTE Axiom</fullName>
+                <default>false</default>
+                <label>DTE Axiom</label>
+            </value>
+            <value>
+                <fullName>Elite 3E Time Entry</fullName>
+                <default>false</default>
+                <label>Elite 3E Time Entry</label>
+            </value>
+            <value>
+                <fullName>Elite WebView</fullName>
+                <default>false</default>
+                <label>Elite WebView</label>
+            </value>
+            <value>
+                <fullName>Frayman Group</fullName>
+                <default>false</default>
+                <label>Frayman Group</label>
+            </value>
+            <value>
+                <fullName>HP Autonomy</fullName>
+                <default>false</default>
+                <label>HP Autonomy</label>
+            </value>
+            <value>
+                <fullName>Internal Development</fullName>
+                <default>false</default>
+                <label>Internal Development</label>
+            </value>
+            <value>
+                <fullName>Legal 55</fullName>
+                <default>false</default>
+                <label>Legal 55</label>
+            </value>
+            <value>
+                <fullName>Rekoop</fullName>
+                <default>false</default>
+                <label>Rekoop</label>
+            </value>
+            <value>
+                <fullName>SmartTime</fullName>
+                <default>false</default>
+                <label>SmartTime</label>
+            </value>
+            <value>
+                <fullName>TimeKM</fullName>
+                <default>false</default>
+                <label>TimeKM</label>
+            </value>
+            <value>
+                <fullName>Zapproved Legal Hold Pro</fullName>
+                <default>false</default>
+                <label>Zapproved Legal Hold Pro</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>RBRO</fullName>
+                <default>false</default>
+                <label>RBRO</label>
+            </value>
+            <value>
+                <fullName>Wertheim / Winc Tools</fullName>
+                <default>false</default>
+                <label>Wertheim / Winc Tools</label>
+            </value>
+            <value>
+                <fullName>Whitehill</fullName>
+                <default>false</default>
+                <label>Whitehill</label>
+            </value>
+            <value>
+                <fullName>Aderant</fullName>
+                <default>false</default>
+                <label>Aderant</label>
+            </value>
+            <value>
+                <fullName>APS (DTE)</fullName>
+                <default>false</default>
+                <label>APS (DTE)</label>
+            </value>
+            <value>
+                <fullName>Bellefield iTimeKeep</fullName>
+                <default>false</default>
+                <label>Bellefield iTimeKeep</label>
+            </value>
+            <value>
+                <fullName>Elite</fullName>
+                <default>false</default>
+                <label>Elite</label>
+            </value>
+            <value>
+                <fullName>Tikit</fullName>
+                <default>false</default>
+                <label>Tikit</label>
+            </value>
+            <value>
+                <fullName>Upsell existing customer</fullName>
+                <default>false</default>
+                <label>Upsell existing customer</label>
+            </value>
+            <value>
+                <fullName>Metastorm</fullName>
+                <default>false</default>
+                <label>Metastorm</label>
+            </value>
+            <value>
+                <fullName>K2</fullName>
+                <default>false</default>
+                <label>K2</label>
+            </value>
+            <value>
+                <fullName>Elegrity</fullName>
+                <default>false</default>
+                <label>Elegrity</label>
+            </value>
+            <value>
+                <fullName>FloSuite</fullName>
+                <default>false</default>
+                <label>FloSuite</label>
+            </value>
+            <value>
+                <fullName>W Ventures</fullName>
+                <default>false</default>
+                <label>W Ventures</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Prosperoware</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>DocAuto</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <controllingFieldValue>IT</controllingFieldValue>
+            <valueName>Doing nothing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <controllingFieldValue>IT</controllingFieldValue>
+            <valueName>Don&apos;t know</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Frayman Group</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>HP Autonomy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <controllingFieldValue>IT</controllingFieldValue>
+            <valueName>Internal Development</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <valueName>Legal 55</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Zapproved Legal Hold Pro</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <controllingFieldValue>IT</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>RBRO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Wertheim / Winc Tools</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <controllingFieldValue>IT</controllingFieldValue>
+            <valueName>Whitehill</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Aderant</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>APS (DTE)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Elite</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Tikit</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <controllingFieldValue>IT</controllingFieldValue>
+            <valueName>Upsell existing customer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Metastorm</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>K2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>Elegrity</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>FloSuite</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk &amp; Compliance</controllingFieldValue>
+            <valueName>W Ventures</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <valueName>Aderant Expert Time Entry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <valueName>Aderant Found Time</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <valueName>Carpe Diem Classic</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <valueName>Carpe Diem Enterprise</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <valueName>DTE Axiom</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <valueName>Elite 3E Time Entry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <valueName>Elite WebView</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <valueName>Rekoop</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <valueName>SmartTime</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Operations &amp; Finance</controllingFieldValue>
+            <valueName>Bellefield iTimeKeep</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IT</controllingFieldValue>
+            <valueName>BizTalk</valueName>
+        </valueSettings>
+    </valueSet>
+    <visibleLines>10</visibleLines>
+</CustomField>

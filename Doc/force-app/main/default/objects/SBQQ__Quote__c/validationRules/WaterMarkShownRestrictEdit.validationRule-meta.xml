@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WaterMarkShownRestrictEdit</fullName>
+    <active>true</active>
+    <description>Only users with Edit Permission for Watermark will be able to edit the water mark field.</description>
+    <errorConditionFormula>ISCHANGED(SBQQ__WatermarkShown__c)
+&amp;&amp;
+NOT( $Permission.EditPermissionforWatermarkShown)</errorConditionFormula>
+    <errorDisplayField>SBQQ__WatermarkShown__c</errorDisplayField>
+    <errorMessage>User is not allowed to edit the watermark shown field</errorMessage>
+</ValidationRule>

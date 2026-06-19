@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_ID</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>FK_$Contract.Applicable_Subsidiary__c</field>
+    </columns>
+    <columns>
+        <field>SBQQ__Quote__c.Line_of_Business__c</field>
+    </columns>
+    <columns>
+        <field>SBQQ__Quote__c.SBQQ__Opportunity2__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>CUST_NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>,Q-03658,Q-03664,Q-03672,Q-03678,Q-03708,Q-03716,Q-03718,Q-03719,Q-03720,Q-03721,Q-03723,Q-03725,Q-03726,Q-03727,Q-03729,Q-03730,Q-03733,Q-03734,Q-03735,Q-03737,Q-03738,Q-03745,Q-03754,Q-03756,Q-03757,Q-03759,Q-03762,Q-03763,Q-03764,Q-03765,Q-03766,Q-03769,Q-03774,Q-03787,Q-03788,Q-03789,Q-03790,Q-03800,Q-03810,Q-03812,Q-03816,Q-03820,Q-03821,Q-03823,Q-03824,Q-03825,Q-03830,Q-03831,Q-03833,Q-03834</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Quotes with Associaciated Contract(LOB)</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$SBQQ__Quote__c@SBQQ__Quote__c.SBQQ__MasterContract__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>SBQQ__Quote__c.SBQQ__StartDate__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Affiliate_Association__c</fullName>
+    <description>Affiliation or association. Usually included on law firm website.</description>
+    <inlineHelpText>Find other firms with the same affiliation/association (usually listed on firm website) for use in outreach efforts.</inlineHelpText>
+    <label>Affiliation/Association</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ALFA International</fullName>
+                <default>false</default>
+                <label>ALFA International</label>
+            </value>
+            <value>
+                <fullName>Lex Mundi</fullName>
+                <default>false</default>
+                <label>Lex Mundi</label>
+            </value>
+            <value>
+                <fullName>Meritas</fullName>
+                <default>false</default>
+                <label>Meritas</label>
+            </value>
+            <value>
+                <fullName>TAGLaw</fullName>
+                <default>false</default>
+                <label>TAGLaw</label>
+            </value>
+            <value>
+                <fullName>TerraLex</fullName>
+                <default>false</default>
+                <label>TerraLex</label>
+            </value>
+            <value>
+                <fullName>USLaw Network</fullName>
+                <default>false</default>
+                <label>USLaw Network</label>
+            </value>
+            <value>
+                <fullName>USLFG - US Law Firm Group</fullName>
+                <default>false</default>
+                <label>USLFG - US Law Firm Group</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

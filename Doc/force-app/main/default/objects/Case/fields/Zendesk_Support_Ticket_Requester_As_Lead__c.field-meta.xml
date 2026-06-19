@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Zendesk_Support_Ticket_Requester_As_Lead__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Zendesk Support Ticket&apos;s Case synced to Salesforce as Lead, this field was automatically created by Zendesk Integration for Salesforce. PLEASE DO NOT DELETE OR MODIFY THIS FIELD if you are using Zendesk Ticket Sync feature.</description>
+    <inlineHelpText>Zendesk Support Ticket&apos;s Case synced to Salesforce as Lead</inlineHelpText>
+    <label>Zendesk Support Ticket Requester As Lead</label>
+    <referenceTo>Lead</referenceTo>
+    <relationshipLabel>Zendesk Support Ticket As Case</relationshipLabel>
+    <relationshipName>Zendesk_Support_Tiicket_As_Case</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

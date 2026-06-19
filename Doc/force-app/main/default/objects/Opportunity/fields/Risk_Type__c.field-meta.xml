@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Risk_Type__c</fullName>
+    <label>Risk Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Potential Partial Cancellation</fullName>
+                <default>false</default>
+                <label>Potential Partial Cancellation</label>
+            </value>
+            <value>
+                <fullName>Potential Cancellation</fullName>
+                <default>false</default>
+                <label>Potential Cancellation</label>
+            </value>
+            <value>
+                <fullName>Billing Pause/Financial Concession</fullName>
+                <default>false</default>
+                <label>Billing Pause/Financial Concession</label>
+            </value>
+            <value>
+                <fullName>No Risk</fullName>
+                <default>false</default>
+                <label>No Risk</label>
+            </value>
+            <value>
+                <fullName>Unrated</fullName>
+                <default>true</default>
+                <label>Unrated</label>
+            </value>
+            <value>
+                <fullName>Anticipated Cancellation</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Anticipated Cancellation</label>
+            </value>
+            <value>
+                <fullName>Anticipated Partial Cancellation</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Anticipated Partial Cancellation</label>
+            </value>
+            <value>
+                <fullName>Billing Pause</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Billing Pause</label>
+            </value>
+            <value>
+                <fullName>Cancellation</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Cancellation</label>
+            </value>
+            <value>
+                <fullName>Financial Concession</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Financial Concession</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

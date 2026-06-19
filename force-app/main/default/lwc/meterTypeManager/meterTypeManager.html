@@ -1,0 +1,161 @@
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+    </template>
+
+    <div class="slds-p-around_medium">
+        <template if:false={hideLookup}>
+            <div class="page-header">
+                <div class="header-icon">
+                    <lightning-icon icon-name="utility:metrics" size="x-small"></lightning-icon>
+                </div>
+                <div>
+                    <h2 class="header-title">Manage Default Meter Types</h2>
+                    <p class="header-subtitle">Configure default meter types for products</p>
+                </div>
+            </div>
+
+            <!-- Product Lookup -->
+            <div class="filter-card">
+                <div class="slds-grid slds-gutters slds-m-bottom_medium">
+                    <div class="slds-col slds-size_1-of-2">
+                        <c-lookup
+                            data-id="productLookup"
+                            label="Select Product"
+                            placeholder="Search products..."
+                            is-multi-entry={isNotMultiEntry}
+                            onsearch={handleProductSearch}
+                            onselectionchange={handleProductSelected}>
+                        </c-lookup>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <!-- Meter Type Record Form -->
+        <template if:true={isProductSelected}>
+            <template if:true={hasRecord}>
+                <div class="record-card">
+                    <!-- Toolbar -->
+                    <div class="toolbar">
+                        <lightning-button label="Save" variant="brand" icon-name="utility:save"
+                            onclick={handleSave}></lightning-button>
+                    </div>
+
+                    <div class="record-form">
+                        <!-- Name (read-only) -->
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label class="field-label">Block Pricing Name</label>
+                                <div class="field-value-readonly">{record.Name}</div>
+                            </div>
+                        </div>
+
+                        <!-- Legal fields row -->
+                        <div class="form-row form-row_two-col">
+                            <div class="form-field">
+                                <lightning-combobox
+                                    label="Legal metertype (GBP&EUR)"
+                                    value={record.Legal__c}
+                                    options={legalGbpEurOptions}
+                                    data-field="Legal__c"
+                                    onchange={handleFieldChange}>
+                                </lightning-combobox>
+                            </div>
+                            <div class="form-field">
+                                <lightning-combobox
+                                    label="Legal meter type (USD,AUD)"
+                                    value={record.Legal_meter_type_USD_AUD__c}
+                                    options={legalUsdAudOptions}
+                                    data-field="Legal_meter_type_USD_AUD__c"
+                                    onchange={handleFieldChange}>
+                                </lightning-combobox>
+                            </div>
+                        </div>
+
+                        <!-- Meter type fields grid -->
+                        <div class="form-row form-row_three-col">
+                            <div class="form-field">
+                                <lightning-combobox
+                                    label="Accounting Meter Type"
+                                    value={record.meter_type_Accounting__c}
+                                    options={accountingOptions}
+                                    data-field="meter_type_Accounting__c"
+                                    onchange={handleFieldChange}>
+                                </lightning-combobox>
+                            </div>
+                            <div class="form-field">
+                                <lightning-combobox
+                                    label="Consulting Meter Type"
+                                    value={record.meter_type_Consulting__c}
+                                    options={consultingOptions}
+                                    data-field="meter_type_Consulting__c"
+                                    onchange={handleFieldChange}>
+                                </lightning-combobox>
+                            </div>
+                            <div class="form-field">
+                                <lightning-combobox
+                                    label="Corporate Meter Type"
+                                    value={record.meter_type_Corporate__c}
+                                    options={corporateOptions}
+                                    data-field="meter_type_Corporate__c"
+                                    onchange={handleFieldChange}>
+                                </lightning-combobox>
+                            </div>
+                        </div>
+
+                        <div class="form-row form-row_three-col">
+                            <div class="form-field">
+                                <lightning-combobox
+                                    label="IBA Meter Type"
+                                    value={record.meter_type_IBA__c}
+                                    options={ibaOptions}
+                                    data-field="meter_type_IBA__c"
+                                    onchange={handleFieldChange}>
+                                </lightning-combobox>
+                            </div>
+                            <div class="form-field">
+                                <lightning-combobox
+                                    label="PCM Meter Type"
+                                    value={record.meter_type_PCM__c}
+                                    options={pcmOptions}
+                                    data-field="meter_type_PCM__c"
+                                    onchange={handleFieldChange}>
+                                </lightning-combobox>
+                            </div>
+                            <div class="form-field">
+                                <lightning-combobox
+                                    label="Real Assets Meter Type"
+                                    value={record.meter_type_RealAssets__c}
+                                    options={realAssetsOptions}
+                                    data-field="meter_type_RealAssets__c"
+                                    onchange={handleFieldChange}>
+                                </lightning-combobox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <template if:false={hasRecord}>
+                <div class="empty-state">
+                    <div class="empty-state-icon">
+                        <lightning-icon icon-name="utility:info" size="small"></lightning-icon>
+                    </div>
+                    <h3 class="empty-state-heading">No Meter Type record found</h3>
+                    <p class="empty-state-text">This product does not have a Block Pricing record with Type = Meter Type.</p>
+                </div>
+            </template>
+        </template>
+
+        <template if:false={isProductSelected}>
+            <div class="empty-state">
+                <div class="empty-state-icon">
+                    <lightning-icon icon-name="utility:search" size="small"></lightning-icon>
+                </div>
+                <h3 class="empty-state-heading">Select a product</h3>
+                <p class="empty-state-text">Search and select a product to manage its meter types.</p>
+            </div>
+        </template>
+    </div>
+</template>

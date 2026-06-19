@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This button is created as part of BIZ-45115. Labe modified as part of BIZ-47763</description>
+    <fieldOverrides>
+        <field>AccountId</field>
+        <formula>SBQQ__Quote__c.SBQQ__Account__c</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Case_Partner__c</field>
+        <formula>$User.Id</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Status</field>
+        <literalValue>Submitted</literalValue>
+    </fieldOverrides>
+    <label>Request Ops Support</label>
+    <optionsCreateFeedItem>true</optionsCreateFeedItem>
+    <quickActionLayout>
+        <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Quote__c</field>
+                <uiBehavior>Readonly</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Subject</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Type</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Deal_Requests__c</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+        <quickActionLayoutColumns/>
+    </quickActionLayout>
+    <targetObject>Case</targetObject>
+    <targetParentField>Quote__c</targetParentField>
+    <targetRecordType>Case.OSA_Support</targetRecordType>
+    <type>Create</type>
+</QuickAction>

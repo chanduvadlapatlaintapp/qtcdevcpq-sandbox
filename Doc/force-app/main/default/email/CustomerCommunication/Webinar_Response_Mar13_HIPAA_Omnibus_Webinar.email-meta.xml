@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - Mar13 HIPAA Omnibus Webinar</name>
+    <style>none</style>
+    <subject>IntApp Webinar Confirmation</subject>
+    <textOnly>{!Contact.FirstName} {!Contact.LastName}: Thank you for registering for the HIPAA Risk Webinar. The login details are below.
+
+Title: Liability for All: The Impact of the 2013 HIPAA Omnibus Rule on Law Firms
+Date: Wednesday, March 13
+Time:  9am Pacific / 12pm Eastern
+Duration:  75 minutes
+
+Video:
+
+Conference URL:  http://www.infiniteconferencing.com/Events/intapp/
+Participant Code: 33443346
+
+Audio:
+
+US/Canada Audio Dial In: (888) 645-4404
+UK Audio Dial In: 00 800 4747 4646
+(You will not need to give the operator a passcode, just the title of the webinar)
+
+http://www.intapp.com
+
+All information Copyright 2012 IntApp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

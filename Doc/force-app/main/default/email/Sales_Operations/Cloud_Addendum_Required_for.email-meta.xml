@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>SO_Letterhead</letterhead>
+    <name>Cloud Addendum Required for</name>
+    <style>freeForm</style>
+    <subject>Cloud Addendum Required for {!Account.Name}</subject>
+    <textOnly>An OSA has been requested, but the Cloud Addendum is required for {!Account.Name} .
+
+Legal team, please provide the Cloud Addendum to ContractsOps. MSSA link and version are below.
+
+
+Account:{!Account.Name}
+MSSA Contract Number: {!Account.Master_Terms_Contract_Number__c}
+MSSA Version Number: {!Account.Contract_Term_Version__c}
+MSSA Link: {!Account.Master_Terms_Contract_Number_URL__c}
+
+
+
+
+
+
+
+
+Rule Code: OPP-091Exxx</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

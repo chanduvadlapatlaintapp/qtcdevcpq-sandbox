@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Simple_Territory__c</fullName>
+    <description>This field is used to calculate the Sales Territory based on the Account Owner. The Sales Territory does not necessarily correspond to the location of this Account which is captured in the &quot;Geography&quot; field.
+
+Field name changed from &apos;Sales Territory&apos; to &apos;Sales Segment&apos; as per FreshDesk #21822</description>
+    <externalId>false</externalId>
+    <formula>IF(
+  OR(
+    Owner.UserRoleId=&quot;00E50000000sQmp&quot;, /*EMEA Sales*/
+    Owner.UserRoleId=&quot;00E500000010Q8v&quot; /*EMEA Sales Reps*/
+  ),
+  &quot;PS EMEA&quot;,
+IF(
+  OR(
+     Owner.UserRoleId=&quot;00E500000011cAL&quot;, /*NA Large Law / APAC Sales*/
+     Owner.UserRoleId=&quot;00E500000011cAQ&quot; /*NA Large Law / APAC Sales Reps*/
+  ),
+  &quot;PS NA North&quot;,
+IF(
+  OR(
+    Owner.UserRoleId=&quot;00E500000011cAk&quot;, /*Accounting/Consulting Sales*/
+    Owner.UserRoleId=&quot;00E50000001QFAw&quot; /*Accounting/Consulting Sales Reps*/
+  ),
+  &quot;Accounting/Consulting&quot;,
+IF(
+  OR(
+    Owner.UserRoleId=&quot;00E50000001U3sn&quot;, /*Financial Services Sales*/
+    Owner.UserRoleId=&quot;00E50000001U3ss&quot; /*Financial Services Sales Reps*/
+  ),
+  &quot;Financial Services&quot;,
+IF(
+  OR(
+    Owner.UserRoleId=&quot;00E500000011cAV&quot;, /*NA Mid-size Law Sales*/
+    Owner.UserRoleId=&quot;00E500000011cAa&quot; /*NA Mid-size Law Sales Reps*/
+  ),
+  &quot;PS NA South/APAC&quot;,
+IF(
+    Owner.Id=&quot;00530000000cTWW&quot;, /*Holding Bin*/
+   &quot;Unknown&quot;,
+   &quot;Unknown&quot;
+)
+)
+)
+)
+)
+)</formula>
+    <inlineHelpText>The Sales Territory is a calculated field based on who the Account Owner is</inlineHelpText>
+    <label>Sales Segment</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

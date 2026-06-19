@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Legal_Segment__c</fullName>
+    <description>Shows five main segments being planned for FY16-18.</description>
+    <externalId>false</externalId>
+    <formula>IF(ISPICKVAL(Industry,&quot;Accounting&quot;),&quot;Accounting&quot;,
+IF(ISPICKVAL(Industry,&quot;Consulting&quot;),&quot;Consulting&quot;,
+IF(ISPICKVAL(Industry,&quot;Legal&quot;),
+  Case(Intapp_Master_Ranking__c,
+    1,&quot;Legal Global&quot;, 
+    2,&quot;Legal Global&quot;, 
+    3,&quot;Legal Global&quot;, 
+    4,&quot;Legal Global&quot;, 
+    5,&quot;Legal Global&quot;, 
+    8,&quot;Legal Global&quot;, 
+    9,&quot;Legal Global&quot;, 
+    12,&quot;Legal Global&quot;, 
+    13,&quot;Legal Global&quot;, 
+    16,&quot;Legal Global&quot;, 
+    17,&quot;Legal Global&quot;, 
+    18,&quot;Legal Global&quot;, 
+    19,&quot;Legal Global&quot;, 
+    20,&quot;Legal Global&quot;, 
+    25,&quot;Legal Global&quot;, 
+    87,&quot;Legal Global&quot;, 
+    89,&quot;Legal Global&quot;, 
+    97,&quot;Legal Global&quot;, 
+    120,&quot;Legal Global&quot;, 
+      IF(Intapp_Master_Ranking__c &lt; 331, &quot;Legal Large (1-330 Nonglobal)&quot;,
+      IF(Intapp_Master_Ranking__c &lt; 681, &quot;Legal Mid (331-680)&quot;, &quot;Legal Other&quot;))),
+    &quot;Other Industry&quot;)))</formula>
+    <inlineHelpText>Shows five main segments being planned for FY16-18.</inlineHelpText>
+    <label>Segment for FY18</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

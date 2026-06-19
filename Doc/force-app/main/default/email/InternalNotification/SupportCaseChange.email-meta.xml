@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Support Case Change</name>
+    <style>none</style>
+    <subject>[Integration Appliance Salesforce] Case &quot;{!Case.Subject}&quot; updated</subject>
+    <textOnly>Number: {!Case.CaseNumber}
+Solution Owner: {!Case.Solution_Owner__c}
+Status: {!Case.Status}
+Support Type: {!Case.Support_Type__c}
+Bug Number (if applicable): {!Case.Bug_Number__c}
+Problem: {!Case.Problem__c}
+Resolution: {!Case.Resolution__c}
+Description: {!Case.Description}
+
+https://na1.salesforce.com/{!Case.Id}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

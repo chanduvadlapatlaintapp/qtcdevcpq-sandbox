@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>Product_Code_Formula__c</columns>
+    <columns>Product__c</columns>
+    <columns>Type__c</columns>
+    <columns>Tier_Name__c</columns>
+    <columns>CURRENCY_ISO_CODE</columns>
+    <columns>Price__c</columns>
+    <columns>Product_Line__c</columns>
+    <columns>meter_type_Accounting__c</columns>
+    <columns>Block_Pricing_Meter_Type__c</columns>
+    <columns>meter_type_Consulting__c</columns>
+    <columns>meter_type_Corporate__c</columns>
+    <columns>meter_type_IBA__c</columns>
+    <columns>meter_type_PCM__c</columns>
+    <columns>Price_Book__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Product_Code__c</field>
+        <operation>equals</operation>
+        <value>BU-01670</value>
+    </filters>
+    <label>All</label>
+</ListView>

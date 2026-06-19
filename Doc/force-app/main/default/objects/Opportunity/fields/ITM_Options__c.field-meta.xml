@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ITM_Options__c</fullName>
+    <label>ITM Options</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Pilot Program</fullName>
+                <default>false</default>
+                <label>Pilot Program</label>
+            </value>
+            <value>
+                <fullName>Time Journal</fullName>
+                <default>false</default>
+                <label>Time Journal</label>
+            </value>
+            <value>
+                <fullName>Custom ITM project</fullName>
+                <default>false</default>
+                <label>Custom ITM project</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

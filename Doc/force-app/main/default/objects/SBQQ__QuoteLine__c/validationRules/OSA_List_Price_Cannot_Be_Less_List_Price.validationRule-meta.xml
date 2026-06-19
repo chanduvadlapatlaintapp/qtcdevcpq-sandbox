@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OSA_List_Price_Cannot_Be_Less_List_Price</fullName>
+    <active>false</active>
+    <errorConditionFormula>AND(
+  TEXT(SBQQ__Product__r.Product_Group__c)&lt;&gt; &quot;Subscription Credit&quot;, 
+  TEXT(SBQQ__Product__r.Product_Type__c)&lt;&gt; &quot;Services Discount&quot;,
+  OSA_List_Price__c&lt;Original_List_Unit_Price__c,
+  $User.Id &lt;&gt; &quot;00550000001QCqH&quot;, /*Jason Wood*/
+  $User.Id &lt;&gt; &quot;00550000002q64G&quot;, /*Jennifer Richard*/
+  $User.Id &lt;&gt; &quot;00550000007gzIW&quot;, /*Rita Rodriguez*/
+  $User.Id &lt;&gt; &quot;00550000001OWve&quot;, /* Vera Friss*/
+  $User.Id &lt;&gt; &quot;0052J000008ghJC&quot;, /*Lea Smith*/
+  $User.Id &lt;&gt; &quot;0052J000008gpbV&quot;, /*Kate Hann*/
+  $User.Id &lt;&gt; &quot;0052J000008geae&quot;, /*Greg Gardener*/
+  $User.Id &lt;&gt;&quot;00550000004PGDf&quot;, /* Maiya Hilliard */
+  $User.Id &lt;&gt;&quot;00550000005KJzD&quot;, /* Chris Turk */
+  $User.Id &lt;&gt;&quot;0052J000008gQZI&quot;, /*Sun Nathan*/
+  $User.Id &lt;&gt;&quot;00550000002q64u&quot;, /* Jennifer Heltsley */
+  $Profile.Id &lt;&gt; &quot;00e30000000bvR3&quot; /*System Admin*/
+)</errorConditionFormula>
+    <errorMessage>OSA List Price cannot be less than List Unit Price.</errorMessage>
+</ValidationRule>

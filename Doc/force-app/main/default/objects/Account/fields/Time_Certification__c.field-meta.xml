@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_Certification__c</fullName>
+    <label>Time Certification</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Certification in process</fullName>
+                <default>false</default>
+                <label>Certification in process</label>
+            </value>
+            <value>
+                <fullName>Certified</fullName>
+                <default>false</default>
+                <label>Certified</label>
+            </value>
+            <value>
+                <fullName>Certified - Experienced</fullName>
+                <default>false</default>
+                <label>Certified - Experienced</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

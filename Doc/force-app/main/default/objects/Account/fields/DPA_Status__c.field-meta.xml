@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DPA_Status__c</fullName>
+    <description>Requested on FreshDesk Ticket #21720 to replace existing &apos;DPA Signed&apos; and &apos;DPA Customized&apos; fields.</description>
+    <inlineHelpText>“BLANK”: No action 
+&quot;SENT&quot;: No further communication 
+&quot;IN NEGOTIATION&quot;: Communications underway 
+&quot;COMPLETE&quot;: Standard DPA has been signed 
+&quot;CUSTOM&quot;: A customized DPA has been signed 
+&quot;DECLINED&quot;: Refuse to sign (REMEMBER TO UPLOAD EVIDENCE)</inlineHelpText>
+    <label>DPA Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Sent</fullName>
+                <default>false</default>
+                <label>Sent</label>
+            </value>
+            <value>
+                <fullName>In Negotiation</fullName>
+                <default>false</default>
+                <label>In Negotiation</label>
+            </value>
+            <value>
+                <fullName>Custom</fullName>
+                <default>false</default>
+                <label>Custom</label>
+            </value>
+            <value>
+                <fullName>Declined</fullName>
+                <default>false</default>
+                <label>Declined</label>
+            </value>
+            <value>
+                <fullName>Complete</fullName>
+                <default>false</default>
+                <label>Complete v1804</label>
+            </value>
+            <value>
+                <fullName>Complete v1809</fullName>
+                <default>false</default>
+                <label>Complete v1809</label>
+            </value>
+            <value>
+                <fullName>Complete v11</fullName>
+                <default>false</default>
+                <label>Complete v11</label>
+            </value>
+            <value>
+                <fullName>Complete v12</fullName>
+                <default>false</default>
+                <label>Complete v12</label>
+            </value>
+            <value>
+                <fullName>Complete v13</fullName>
+                <default>false</default>
+                <label>Complete v13</label>
+            </value>
+            <value>
+                <fullName>Complete v14</fullName>
+                <default>false</default>
+                <label>Complete v14</label>
+            </value>
+            <value>
+                <fullName>Complete v15</fullName>
+                <default>false</default>
+                <label>Complete v15</label>
+            </value>
+            <value>
+                <fullName>Complete v16</fullName>
+                <default>false</default>
+                <label>Complete v16</label>
+            </value>
+            <value>
+                <fullName>SCC Amendment 2022</fullName>
+                <default>false</default>
+                <label>SCC Amendment 2022</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

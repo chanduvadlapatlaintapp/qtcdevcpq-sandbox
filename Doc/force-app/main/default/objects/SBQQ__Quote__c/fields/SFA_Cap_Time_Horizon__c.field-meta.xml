@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SFA_Cap_Time_Horizon__c</fullName>
+    <description>SFA Cap Time Horizon</description>
+    <label>SFA Cap Time Horizon</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>1st renewal only</fullName>
+                <default>false</default>
+                <label>1st renewal only</label>
+            </value>
+            <value>
+                <fullName>Thru 2nd renewal</fullName>
+                <default>false</default>
+                <label>Thru 2nd renewal</label>
+            </value>
+            <value>
+                <fullName>Thru 3rd Renewal</fullName>
+                <default>false</default>
+                <label>Thru 3rd Renewal</label>
+            </value>
+            <value>
+                <fullName>Perpetual</fullName>
+                <default>false</default>
+                <label>Perpetual</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

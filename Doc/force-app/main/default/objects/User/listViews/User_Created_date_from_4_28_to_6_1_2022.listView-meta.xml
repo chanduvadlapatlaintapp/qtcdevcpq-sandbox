@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>User_Created_date_from_4_28_to_6_1_2022</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>CORE.USERS.USERNAME</columns>
+    <columns>CORE.USER_ROLE.NAME</columns>
+    <columns>CORE.USERS.ACTIVE</columns>
+    <columns>CORE.PROFILE.NAME</columns>
+    <columns>CREATED_BY_NAME</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>greaterOrEqual</operation>
+        <value>4/28/2022 12:00 AM</value>
+    </filters>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>lessOrEqual</operation>
+        <value>6/1/2022 12:00 AM</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ACTIVE</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>User Created date from 4/28 to 6/1 2022</label>
+    <language>en_US</language>
+</ListView>

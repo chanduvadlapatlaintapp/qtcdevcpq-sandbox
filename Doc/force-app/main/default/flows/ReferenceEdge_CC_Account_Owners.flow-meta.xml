@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Sends out email to Account Owner when someone requests an Account as a reference</description>
+        <name>Notify_Account_Owner</name>
+        <label>Notify Account Owner</label>
+        <locationX>707</locationX>
+        <locationY>48</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>ReferenceEdge_Reference_Request</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>AccountOwnerEmail</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Notification of Reference Request for Your Account</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+    </actionCalls>
+    <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Account_Owner_Found</name>
+        <label>Account Owner Found</label>
+        <locationX>281</locationX>
+        <locationY>51</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Account_Owner_found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>AccountRecipients.OwnerId</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>Get_email_address_for_Account_Owner</targetReference>
+            </connector>
+            <label>Account Owner found</label>
+        </rules>
+    </decisions>
+    <description>This flow captures the Account Owner from an Account to send out the nomination email in the CC</description>
+    <interviewLabel>ReferenceEdge - CC Account Owners {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>ReferenceEdge - CC Account Owners</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Find_Account_Owner</name>
+        <label>Find Account Owner</label>
+        <locationX>145</locationX>
+        <locationY>49</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Account_Owner_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>accountID</elementReference>
+            </value>
+        </filters>
+        <object>Account</object>
+        <outputReference>AccountRecipients</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>OwnerId</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_email_address_for_Account_Owner</name>
+        <label>Get email address for Account Owner</label>
+        <locationX>494</locationX>
+        <locationY>48</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Notify_Account_Owner</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>AccountRecipients.OwnerId</elementReference>
+            </value>
+        </filters>
+        <object>User</object>
+        <outputAssignments>
+            <assignToReference>AccountOwnerEmail</assignToReference>
+            <field>Email</field>
+        </outputAssignments>
+    </recordLookups>
+    <startElementReference>Find_Account_Owner</startElementReference>
+    <status>Active</status>
+    <textTemplates>
+        <name>ReferenceEdge_Reference_Request</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>The following account has been requested for reference use. There’s no action required of you at this time, however, please feel free to consult with the assigned CSM or CSD to discuss current account health and reference outreach strategy. 
+
+Reference Account: {!AccountName}
+Reference Owner:{!ReferenceOwner_FirstName} {!ReferenceOwner_LastName}
+Reference Needed Type:{!ReferenceNeededType}
+
+Request Notes: {!RequestNotes}
+
+Need By: {!NeedByDate_Deadline}</text>
+    </textTemplates>
+    <variables>
+        <name>Account_Request_ID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>accountID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>AccountName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>AccountOwnerEmail</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>Captures CSM ACcount Manager and Account Owners</description>
+        <name>AccountRecipients</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Account</objectType>
+    </variables>
+    <variables>
+        <description>Deadline</description>
+        <name>NeedByDate_Deadline</name>
+        <dataType>Date</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>ReferenceNeededType</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>ReferenceOwner_FirstName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>ReferenceOwner_LastName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>RequestNotes</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>Requestor</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

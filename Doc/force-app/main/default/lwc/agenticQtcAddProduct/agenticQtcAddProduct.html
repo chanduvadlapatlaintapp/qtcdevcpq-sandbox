@@ -1,0 +1,54 @@
+<template>
+    <section class="modal-overlay" onclick={handleOverlayClick}>
+        <div class="modal-content" onclick={stopPropagation}>
+            <div class="modal-header">
+                <h3>Add Product</h3>
+                <lightning-button-icon icon-name="utility:close" onclick={handleClose} variant="bare-inverse"></lightning-button-icon>
+            </div>
+            <div class="modal-body">
+                <lightning-input type="search" label="Search Products" placeholder="Search by name or code..."
+                    value={searchTerm} onchange={handleSearchChange} class="product-search"></lightning-input>
+
+                <template if:true={isSearching}>
+                    <lightning-spinner alternative-text="Searching..." size="small"></lightning-spinner>
+                </template>
+
+                <template if:true={hasProducts}>
+                    <div class="product-list">
+                        <template for:each={products} for:item="product">
+                            <div key={product.id}
+                                 class="product-item"
+                                 data-id={product.id}
+                                 data-selected={product.isSelected}
+                                 onclick={handleSelectProduct}>
+                                <div class="product-info">
+                                    <div class="product-name">{product.name}</div>
+                                    <div class="product-meta">{product.productCode} | {product.family}</div>
+                                </div>
+                                <template if:true={product.isSelected}>
+                                    <lightning-icon icon-name="utility:check" size="x-small" variant="success"></lightning-icon>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+
+                <template if:true={selectedProduct}>
+                    <div class="product-config">
+                        <h4>Configure: {selectedProduct.name}</h4>
+                        <div class="config-grid">
+                            <lightning-input type="number" label="Quantity" value={newQuantity}
+                                onchange={handleNewQuantityChange} min="1" step="1"></lightning-input>
+                        </div>
+                        <p class="pricing-note">Pricing will be calculated after adding the product.</p>
+                    </div>
+                </template>
+            </div>
+            <div class="modal-footer">
+                <lightning-button label="Cancel" onclick={handleClose}></lightning-button>
+                <lightning-button label="Add to Quote" variant="brand" onclick={handleAddToQuote}
+                    disabled={isAddDisabled}></lightning-button>
+            </div>
+        </div>
+    </section>
+</template>

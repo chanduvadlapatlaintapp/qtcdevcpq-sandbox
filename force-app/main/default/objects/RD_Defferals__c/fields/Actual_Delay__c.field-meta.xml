@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Actual_Delay__c</fullName>
+    <description>Actual Delay = Deferral Tracking End Date - Contingency Deadline</description>
+    <externalId>false</externalId>
+    <formula>IF(Deferral_Tracking_End_Date__c-Contingency_Deadline__c&lt;0,0,Deferral_Tracking_End_Date__c-Contingency_Deadline__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Deferral Tracking End Date - Contingency Deadline</inlineHelpText>
+    <label>Actual Delay</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

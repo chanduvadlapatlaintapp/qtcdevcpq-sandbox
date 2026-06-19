@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_24512873</developerName>
+        <masterLabel>Buying Personas</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>Contact.Standard_Title__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>2. CEO / MP / President</sourceValue>
+            </sourceValues>
+            <value>CEO / MP</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>7. CFO / Finance Director / SVP</sourceValue>
+            </sourceValues>
+            <value>CFO / Finance Dir.</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>9. CIO / CTO / IT Director</sourceValue>
+            </sourceValues>
+            <value>CIO / IT Dir.</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>10. CMO / Marketing Leader / Business Development Leader</sourceValue>
+            </sourceValues>
+            <value>CMO</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>6. COO / Executive Director / EVP</sourceValue>
+            </sourceValues>
+            <value>COO</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>8. GC / Risk Partner / CCO / CRO</sourceValue>
+            </sourceValues>
+            <value>GC / Risk</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>11. Pricing Leader</sourceValue>
+            </sourceValues>
+            <value>Pricing Leader</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>SALUTATION</field>
+    </columns>
+    <columns>
+        <field>FIRST_NAME</field>
+    </columns>
+    <columns>
+        <field>LAST_NAME</field>
+    </columns>
+    <columns>
+        <field>TITLE</field>
+    </columns>
+    <columns>
+        <field>ADDRESS2_STREET</field>
+    </columns>
+    <columns>
+        <field>ADDRESS2_CITY</field>
+    </columns>
+    <columns>
+        <field>ADDRESS2_STATE</field>
+    </columns>
+    <columns>
+        <field>ADDRESS2_ZIP</field>
+    </columns>
+    <columns>
+        <field>ADDRESS2_COUNTRY</field>
+    </columns>
+    <columns>
+        <field>PHONE1</field>
+    </columns>
+    <columns>
+        <field>PHONE3</field>
+    </columns>
+    <columns>
+        <field>PHONE2</field>
+    </columns>
+    <columns>
+        <field>EMAIL</field>
+    </columns>
+    <columns>
+        <field>BucketField_24512873</field>
+    </columns>
+    <currency>GBP</currency>
+    <description>This is a report based on all the sellers in the EMEA region, with a breakdown of all their accounts and which buying personas we have associated against each account.</description>
+    <filter>
+        <criteriaItems>
+            <column>OWNER_FULL_NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Daragh McLaughlin,Jamie Gilbert,Mark McGowan,Samia Rauf,Vicki Mayhew</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contact.Standard_Title__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>2. CEO / MP / President,6. COO / Executive Director / EVP,7. CFO / Finance Director / SVP,8. GC / Risk Partner / CCO / CRO,9. CIO / CTO / IT Director,10. CMO / Marketing Leader / Business Development Leader,11. Pricing Leader</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contact.Opt_Out__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>excludes</operator>
+            <value>All Marketing</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Contact.Standard_Title__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>OWNER_FULL_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>ACCOUNT.NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>EMEA Sales Reps Buying Personas</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>ContactList</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

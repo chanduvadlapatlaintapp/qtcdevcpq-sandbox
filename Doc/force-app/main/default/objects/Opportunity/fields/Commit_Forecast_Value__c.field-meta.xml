@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Commit_Forecast_Value__c</fullName>
+    <formula>IF (
+OR (
+ISPICKVAL(Type,&apos;Legal - New Customer&apos;),
+ISPICKVAL(Type,&apos;Legal - New Product&apos;),
+ISPICKVAL(Type,&apos;Legal - Thomson Elite&apos;),
+ISPICKVAL(Type, &apos;Legal - Recovered Customer&apos;),
+ISPICKVAL(Type, &apos;Legal - Recovered Product&apos;),
+ISPICKVAL(Type,&apos;Legal - New Converted Product&apos;),
+ISPICKVAL(Type,&apos;Legal - New Converted Customer&apos;),
+ISPICKVAL(Type,&apos;MDY&apos;),
+ISPICKVAL(Type, &apos;Legal - Add-on module&apos;),
+ISPICKVAL(Type,&apos;Legal - Version License&apos;),
+ISPICKVAL(Type, &apos;License Conversion - Recurring Increase&apos;),
+ISPICKVAL(Type, &apos;Legal - License Band Uplift&apos;),
+ISPICKVAL(Type,&apos;Legal - User Count Uplift&apos;),
+ISPICKVAL(Type, &apos;Legal - Recurring Adjustment&apos;),
+ISPICKVAL(Type, &apos;License Conversion - Recurring Decrease&apos;),
+ISPICKVAL(Type, &apos;Cancellation - Customer&apos;),
+ISPICKVAL(Type, &apos;Cancellation - Module&apos;),
+ISPICKVAL(Type, &apos;Cancellation - Product&apos;),
+ISPICKVAL(Type, &apos;Downgrade - Product&apos;),
+ISPICKVAL(Type, &apos;Legal - User Count Decrease&apos;),
+ISPICKVAL(Type, &apos;Downgrade - License Conversion&apos;),
+ISPICKVAL(Type, &apos;Cancellation - CPI&apos;),
+ISPICKVAL(Type, &apos;Cancellation - Recurring Adjustment&apos;),
+ISPICKVAL(Type, &apos;ACV Downgrade/Partial ACV Cancellation&apos;),
+ISPICKVAL(Type, &apos;ACV Recovery/Partial ACV Reinstatement&apos;)),
+Maintenance_Amount__c,
+IF(
+ISPICKVAL(Forecasted_Outcome__c , &apos;Expect to Lose&apos;),
+Concession_Amount__c,
+IF(
+ISPICKVAL(Forecasted_Outcome__c , &apos;Uncertain&apos;),
+Concession_Amount__c,
+Maintenance_Amount__c
+)
+)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Commit Forecast Value</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

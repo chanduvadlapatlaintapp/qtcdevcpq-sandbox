@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Success_Wall_Builder</fullName>
+    <active>false</active>
+    <businessProcess>ProfSvcs</businessProcess>
+    <label>Customer Success - Wall Builder</label>
+    <picklistValues>
+        <picklist>Origin</picklist>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Priority</picklist>
+        <values>
+            <fullName>Critical</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Medium</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Reason</picklist>
+        <values>
+            <fullName>Complex functionality</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Existing problem</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hardware Defect</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Instructions not clear</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New problem</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Software Bug</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>User didn%27t attend training</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Customer Community Maintenance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer Maintenance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Implementation Project</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Installation %26 Setup</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Demo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Support</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Training</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_edit_status_if_order_activated</fullName>
+    <active>true</active>
+    <errorConditionFormula>Order_Activated__c = True &amp;&amp;  (ISCHANGED(Status__c)  ||   ISCHANGED(Renewal_Quote__c)  ) &amp;&amp;  NOT(TEXT(Status__c)=&apos;Payment Allocated&apos;)</errorConditionFormula>
+    <errorMessage>The Renewal Letter cannot be modified once the Renewal Order is activated.</errorMessage>
+</ValidationRule>

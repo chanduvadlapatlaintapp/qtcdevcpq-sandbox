@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>T_IsMapped__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Data Migration : 
+This filed is used for the Order Line Summary records matching scenarioes with Order Item.
+This field restricts the duplicate Order ids assignment under OrderLine Summary.</description>
+    <inlineHelpText>Populated by Data Migration Script</inlineHelpText>
+    <label>T_IsMapped?</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

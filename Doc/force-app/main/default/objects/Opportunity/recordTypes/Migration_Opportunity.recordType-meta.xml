@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Migration_Opportunity</fullName>
+    <active>true</active>
+    <businessProcess>Account Management %2F Renewal</businessProcess>
+    <label>Migration Opportunity</label>
+    <picklistValues>
+        <picklist>ForecastCategoryName</picklist>
+        <values>
+            <fullName>Best Case</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Omitted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pipeline</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>LeadSource</picklist>
+        <values>
+            <fullName>Customer Success</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Event %2F Tradeshow</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Handraiser</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Online Advertising</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paid Search</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referral %E2%80%93 Acquisition</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referral %E2%80%93 Client</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referral %E2%80%93 Partner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SDR Prospecting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Prospecting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Social</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Webinar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Website Download</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>ACV Downgrade%2FPartial ACV Cancellation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ACV Recovery%2FPartial ACV Reinstatement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Accounting Adjustment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Acquired New Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancellation - Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancellation - Module</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancellation - Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancellation - Recurring Adjustment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Consulting Services - Internal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Downgrade - Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Early Adopter Program</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp Prime</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - Acquired Add-on Module</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - Acquired New Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - Acquired New Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - Add-on module</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - Additional Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - Assessment%2FPOC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - Billing Paused%2FRestarted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - CPI %2F Recurring Increase</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - Consulting Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - Entitlement Cleanup</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - License Band Uplift</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - New Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - New Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - Recurring Adjustment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - Services Change Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - User Count Decrease</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal - User Count Uplift</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>License Conversion - Recurring Decrease</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>License Conversion - Recurring Increase</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Implementation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platform Conversion - Decrease</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platform Conversion - Increase</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platform Conversion - Internal Decrease</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platform Conversion - Internal Increase</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SOW Amendment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Services - Partner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Training</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Upgrade</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

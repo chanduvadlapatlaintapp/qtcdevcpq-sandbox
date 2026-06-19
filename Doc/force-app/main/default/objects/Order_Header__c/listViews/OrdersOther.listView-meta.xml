@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OrdersOther</fullName>
+    <columns>NAME</columns>
+    <columns>Description__c</columns>
+    <columns>Recipient_Name__c</columns>
+    <columns>OrderStage__c</columns>
+    <columns>Order_System_Status__c</columns>
+    <columns>Shipping_Postal_Code__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Order_Header__c.Other</value>
+    </filters>
+    <label>Orders: Other</label>
+</ListView>

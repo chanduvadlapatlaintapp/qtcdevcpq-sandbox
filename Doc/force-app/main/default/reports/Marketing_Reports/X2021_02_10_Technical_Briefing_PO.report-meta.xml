@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>TYPE</field>
+    </columns>
+    <columns>
+        <field>ADDRESS1_STATE</field>
+    </columns>
+    <columns>
+        <field>Account.All_Products__c</field>
+    </columns>
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>Product_Ownership_Detail__c.License_basis_link__c</field>
+    </columns>
+    <columns>
+        <field>Product_Ownership_Detail__c.Status__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.Account_Count__c</field>
+    </columns>
+    <currency>GBP</currency>
+    <description>A report summarising the firms which will be represented in attendance at the 10th February Technical Briefing event and the solutions they currently own, as well as the ones they once owned</description>
+    <filter>
+        <criteriaItems>
+            <column>Account.IntApp_Account_Number__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>A201081,A200924,A200447,A200414,A200404,A200507,A200834,A200150,A202798,A201046,A201806,A201051,A200151,A200113,A201388,A200552,A200550,A204254,A200951,A200623,A201068,A200625,A201805,A202840,A200389,A200344,A200440,A200395,A200002,A200545,A203051,A200549,A201152,A201150</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>ACCOUNT.NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>2021-02-10 Technical Briefing PO</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountCustomEntity$Product_Ownership_Detail__c@Product_Ownership_Detail__c.Product_line_link__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>DUE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

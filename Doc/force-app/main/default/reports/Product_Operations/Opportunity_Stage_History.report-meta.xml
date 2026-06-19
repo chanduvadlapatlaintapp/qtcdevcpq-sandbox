@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_55102785</developerName>
+        <masterLabel>From Stage Bucket</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>FROM_OPPORTUNITY_STAGE_NAME</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <value>01 - Target Account / Opportunity Reset</value>
+        </values>
+        <values>
+            <value>02 - Expression of Interest</value>
+        </values>
+        <values>
+            <value>03 - Investigation</value>
+        </values>
+        <values>
+            <value>04 - Business Case Development</value>
+        </values>
+        <values>
+            <value>05 - Evaluation of Options</value>
+        </values>
+        <values>
+            <value>06 - Resolution of Concerns</value>
+        </values>
+        <values>
+            <value>07 - Get Management Approval</value>
+        </values>
+        <values>
+            <value>08 - Obtain Contract</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>Opportunity.IntApp_Opportunity_Number__c</field>
+    </columns>
+    <columns>
+        <field>FROM_OPPORTUNITY_STAGE_NAME</field>
+    </columns>
+    <columns>
+        <field>Opportunity.Product_Line__c</field>
+    </columns>
+    <columns>
+        <field>Opportunity.Maintenance_Amount__c.CONVERT</field>
+    </columns>
+    <columns>
+        <field>OPPORTUNITY.NAME</field>
+    </columns>
+    <columns>
+        <field>OWNER_NAME</field>
+    </columns>
+    <columns>
+        <field>STAGE_NAME</field>
+    </columns>
+    <columns>
+        <field>LAST_UPDATE</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>STAGE_DURATION</field>
+    </columns>
+    <columns>
+        <field>CLOSE_DATE</field>
+    </columns>
+    <columns>
+        <field>TYPE</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>STAGE_CHANGE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Opportunity.Sale_Category__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>New Software Product,Add-on Software</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>TYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notContain</operator>
+            <value>Assessment/POC,Recurring Adjustment,License Conversion</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>FROM_OPPORTUNITY_STAGE_NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <name>Opportunity Stage History</name>
+    <params>
+        <name>include</name>
+        <value>open</value>
+    </params>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>OpportunityHistory</reportType>
+    <scope>all</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>OPP_CLOSE_DATE</dateColumn>
+        <endDate>2017-10-20</endDate>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2017-07-01</startDate>
+    </timeFrameFilter>
+</Report>

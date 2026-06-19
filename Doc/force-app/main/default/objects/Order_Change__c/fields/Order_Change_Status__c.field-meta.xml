@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Order_Change_Status__c</fullName>
+    <label>Order Change Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Pending</fullName>
+                <default>false</default>
+                <label>Pending</label>
+            </value>
+            <value>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+                <label>Rejected</label>
+            </value>
+            <value>
+                <fullName>Validated by Contract Ops</fullName>
+                <default>false</default>
+                <label>Validated by Contract Ops</label>
+            </value>
+            <value>
+                <fullName>Approved by Order Management</fullName>
+                <default>false</default>
+                <label>Approved by Order Management</label>
+            </value>
+            <value>
+                <fullName>Billing Approval</fullName>
+                <default>false</default>
+                <label>Billing Approval</label>
+            </value>
+            <value>
+                <fullName>Change Applied to Order</fullName>
+                <default>false</default>
+                <label>Change Applied to Order</label>
+            </value>
+            <value>
+                <fullName>Approved</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Approved</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

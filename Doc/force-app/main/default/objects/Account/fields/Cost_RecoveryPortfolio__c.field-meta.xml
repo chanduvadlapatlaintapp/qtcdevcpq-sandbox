@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cost_RecoveryPortfolio__c</fullName>
+    <description>This is to designate the Cost Recovery application in use at the account. This replaced the old checkbox system.</description>
+    <label>Cost Recovery</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Billback</fullName>
+                <default>false</default>
+                <label>Billback</label>
+            </value>
+            <value>
+                <fullName>Chrome River</fullName>
+                <default>false</default>
+                <label>Chrome River</label>
+            </value>
+            <value>
+                <fullName>Copitrak</fullName>
+                <default>false</default>
+                <label>Copitrak</label>
+            </value>
+            <value>
+                <fullName>Custom</fullName>
+                <default>false</default>
+                <label>Custom</label>
+            </value>
+            <value>
+                <fullName>Equitrac</fullName>
+                <default>false</default>
+                <label>Equitrac</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>nQueue</fullName>
+                <default>false</default>
+                <label>nQueue</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

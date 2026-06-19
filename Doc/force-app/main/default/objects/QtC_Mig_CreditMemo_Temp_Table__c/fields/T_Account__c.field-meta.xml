@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>T_Account__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>T_Account</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>QtC Mig CreditMemo Temp Table</relationshipLabel>
+    <relationshipName>QtC_Mig_CreditMemo_Temp_Table</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

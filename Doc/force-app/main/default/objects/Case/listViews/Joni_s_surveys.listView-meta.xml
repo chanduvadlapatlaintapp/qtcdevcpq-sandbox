@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Joni_s_surveys</fullName>
+    <columns>SupportEngineer__c</columns>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.CREATED_DATE_DATE_ONLY</columns>
+    <columns>Survey_AssociatedCase__c</columns>
+    <columns>NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CASES.RECORDTYPE</columns>
+    <columns>Survey_SupportCaseResolved__c</columns>
+    <columns>Survey_Comments__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.SupportSurvey,Case.Survey</value>
+    </filters>
+    <filters>
+        <field>SupportEngineer__c</field>
+        <operation>contains</operation>
+        <value>heidenreich,shaffer,boutellis</value>
+    </filters>
+    <label>_relationship team surveys</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Support</group>
+    </sharedTo>
+</ListView>

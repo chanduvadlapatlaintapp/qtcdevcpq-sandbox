@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X_CY_Budget_Status__c</fullName>
+    <description>For the current year, has this been formally budgeted as a project?</description>
+    <inlineHelpText>For the current year, has this been formally budgeted as a project?</inlineHelpText>
+    <label>CY Budget Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>It is approved for the current year budget.</fullName>
+                <default>false</default>
+                <label>It is approved for the current year budget.</label>
+            </value>
+            <value>
+                <fullName>It has been asked for as part of next year&apos;s budget.</fullName>
+                <default>false</default>
+                <label>It has been asked for as part of next year&apos;s budget.</label>
+            </value>
+            <value>
+                <fullName>Seeking approval for this year.</fullName>
+                <default>false</default>
+                <label>Seeking approval for this year.</label>
+            </value>
+            <value>
+                <fullName>They asked last year, but I don&apos;t know more.</fullName>
+                <default>false</default>
+                <label>They asked last year, but I don&apos;t know more.</label>
+            </value>
+            <value>
+                <fullName>They couldn&apos;t get it approved last year for this year.</fullName>
+                <default>false</default>
+                <label>They couldn&apos;t get it approved last year for this year.</label>
+            </value>
+            <value>
+                <fullName>I don&apos;t know.</fullName>
+                <default>false</default>
+                <label>I don&apos;t know.</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

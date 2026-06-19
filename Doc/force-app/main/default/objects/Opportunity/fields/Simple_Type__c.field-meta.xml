@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Simple_Type__c</fullName>
+    <description>This field is used to categorize opportunities for the transfer to the financial forecasting model.</description>
+    <externalId>false</externalId>
+    <formula>IF(
+   OR(
+     ISPICKVAL(Type, &quot;Legal - New Customer&quot;),
+     ISPICKVAL(Type, &quot;Legal - New Product&quot;),
+     ISPICKVAL(Type, &quot;Legal - Assessment/POC&quot;),
+     ISPICKVAL(Type, &quot;Legal - Thomson Elite&quot;),
+     ISPICKVAL(Type, &quot;Bridgeway - New&quot;),
+     ISPICKVAL(Type, &quot;Direct - Other&quot;),
+     ISPICKVAL(Type, &quot;OEM - Other&quot;),
+     ISPICKVAL(Type, &quot;MDY&quot;),
+     ISPICKVAL(Type, &quot;Micromenders&quot;),
+     ISPICKVAL(Type, &quot;Reseller - Other&quot;),
+     ISPICKVAL(Type, &quot;Legal - New Converted Customer&quot;),
+     ISPICKVAL(Type, &quot;Legal - New Converted Product&quot;),
+     ISPICKVAL(Type, &quot;Legal - Recovered Customer&quot;),
+     ISPICKVAL(Type, &quot;Legal - Recovered Product&quot;)),
+   &quot;New Sale&quot;,
+   IF(
+     OR(
+          ISPICKVAL(Type, &quot;Legal - Add-on module&quot;),
+          ISPICKVAL(Type, &quot;Legal - Additional Services&quot;),
+          ISPICKVAL(Type, &quot;Legal - Consulting Services&quot;),
+          ISPICKVAL(Type, &quot;Bridgeway - Upgrade&quot;),
+          ISPICKVAL(Type, &quot;Legal - License Band Uplift&quot;),
+          ISPICKVAL(Type, &quot;Legal - User Count Uplift&quot;),
+          ISPICKVAL(Type, &quot;Legal - Recurring Adjustment&quot;),
+          ISPICKVAL(Type, &quot;Legal - CPI / Recurring Increase&quot;),
+          ISPICKVAL(Type, &quot;Legal - Price Increase&quot;),
+          ISPICKVAL(Type, &quot;Legal - Version License&quot;),
+          ISPICKVAL(Type, &quot;Legal - Services Change Request&quot;),
+          ISPICKVAL(Type, &quot;Legal - Services Change Request Internal&quot;),
+          ISPICKVAL(Type, &quot;License Conversion - Recurring Increase&quot;)),
+     &quot;Installed Base Sale&quot;,
+  IF(
+     OR(
+          ISPICKVAL(Type, &quot;Legal - Renewal&quot;), 
+          ISPICKVAL(Type, &quot;Other - Renewal&quot;)),
+     &quot;Renewal&quot;,
+     IF(
+       OR(
+             ISPICKVAL(Type, &quot;Cancellation - Customer&quot;),
+             ISPICKVAL(Type, &quot;Downgrade - Product&quot;),
+             ISPICKVAL(Type, &quot;Cancellation - Product&quot;),
+             ISPICKVAL(Type, &quot;Legal - Billing Paused - Customer&quot;),
+             ISPICKVAL(Type, &quot;Legal - Billing Paused - Product&quot;),
+             ISPICKVAL(Type, &quot;Legal - Billing Restarted - Customer&quot;),
+             ISPICKVAL(Type, &quot;Legal - Billing Restarted - Product&quot;),
+             ISPICKVAL(Type, &quot;Legal - Billing Paused&quot;),
+             ISPICKVAL(Type, &quot;Legal - Billing Restarted&quot;),
+             ISPICKVAL(Type, &quot;Quota Credit Adjustment&quot;),
+             ISPICKVAL(Type, &quot;Unsuccessful Sales Conversion - Product&quot;),
+             ISPICKVAL(Type, &quot;Cancellation - Module&quot;),
+             ISPICKVAL(Type, &quot;Unsuccessful Sales Conversion - Module&quot;),
+             ISPICKVAL(Type, &quot;Unsuccessful Sales Conversion - Customer&quot;),
+             ISPICKVAL(Type, &quot;Cancellation - Module&quot;),
+             ISPICKVAL(Type, &quot;Unsuccessful Trial - Product Downgrade&quot;),
+             ISPICKVAL(Type, &quot;Cancellation - Recurring Adjustment&quot;),
+             ISPICKVAL(Type, &quot;Legal - User Count Decrease&quot;),
+             ISPICKVAL(Type, &quot;License Conversion - Recurring Decrease&quot;),
+             ISPICKVAL(Type, &quot;Practice Credit Adjustment&quot;),
+             ISPICKVAL(Type, &quot;Cancellation - CPI&quot;)),
+       &quot;Accounting Only&quot;,
+       IF(
+         OR(
+               ISPICKVAL(Type, &quot;Legal - Acquired New Customer&quot;),
+               ISPICKVAL(Type, &quot;Legal - Acquired New Product&quot;),
+               ISPICKVAL(Type, &quot;Legal - Acquired Add-on Module&quot;)),
+         &quot;Acquired Contract&quot;,       
+         &quot;Error?&quot;)))))</formula>
+    <inlineHelpText>This field is used to categorize opportunities for the transfer to the financial forecasting model.</inlineHelpText>
+    <label>Simple Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

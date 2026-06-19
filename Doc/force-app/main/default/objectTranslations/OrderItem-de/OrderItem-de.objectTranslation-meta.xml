@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <validationRules>
+        <errorMessage><!-- Can’t edit the bookings status on an activated order product. --></errorMessage>
+        <name>SBQQ__CannotChangeBookingIndicatorOnActivation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- When Charge Type is Recurring, a Billing Type must be selected. --></errorMessage>
+        <name>SBQQ__RecurringChargeTypeMustHaveBillingType</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- When Charge Type is &apos;One-Time&apos;, a Billing Frequency value cannot be selected. --></errorMessage>
+        <name>SBQQ__Validate_billing_frequency</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- When Charge Type is One-Time or Usage, a Billing Type value cannot be selected. --></errorMessage>
+        <name>SBQQ__Validate_billing_type</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Order Item cannot be activated without a Billing Schedule Key. --></errorMessage>
+        <name>ValidateOrderProductActivation</name>
+    </validationRules>
+</CustomObjectTranslation>

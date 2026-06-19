@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Opportunities_Targets</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>Delegated_Owner__c</columns>
+    <columns>Recurring_Value__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.NEXT_STEP</columns>
+    <columns>Firm_Procurement_Team__c</columns>
+    <columns>Contract_Signer__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Sales_Territory__c</field>
+        <operation>contains</operation>
+        <value>global</value>
+    </filters>
+    <filters>
+        <field>Recurring_Value__c</field>
+        <operation>greaterThan</operation>
+        <value>GBP 1</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Target Account</value>
+    </filters>
+    <label>Global Opportunities - Targets</label>
+    <language>en_US</language>
+</ListView>

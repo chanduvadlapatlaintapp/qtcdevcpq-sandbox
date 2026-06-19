@@ -1,0 +1,124 @@
+<apex:page standardController="Opportunity" contentType="application/pdf#TB.pdf" title="TB Renewal Summary" extensions="TB_Renewal_Summary_Controller" sidebar="false" showHeader="false" cache="false" renderas="pdf">
+    <head>
+        <style  type="text/css">
+            @page {  
+                size: Landscape;
+                font-family:Calibri,Sans-serif;
+                font-size:11pt;
+            }
+            table{
+                width:100%;
+                //border:none;
+            }
+            table th{
+                text-align:center;
+                align:center;
+                height:40px;
+                padding:0px;
+                background-color:#99CCFF;
+                //border:1px solid;
+                //border-color:black;
+            }
+            table td{
+                text-align:center;
+                align:center;
+                padding:0px;
+                height:40px;
+                //border:1px solid;
+            }
+            .tableHeader{
+                font-size:13pt;
+                font-weight:bold;
+            }
+            .topLabel{
+                color:#17365D;
+                font-size:22pt;
+                font-weight:bold;
+            }
+        </style> 
+    </head> 
+    
+    <body>
+        <br/>
+        <center><span style="width:50%;"><label class="topLabel">Time Builder Renewal Summary</label> <hr/> </span></center>
+        
+        <label class="tableHeader">Report Date</label>:<apex:outputText value="{0,date,dd/MMM/yyyy}" ><apex:param value="{!TODAY()}" /></apex:outputText><br/>
+        <label class="tableHeader">Invoice Date</label>:<apex:outputText value="{0,date,dd/MMM/yyyy}" ><apex:param value="{!Opportunity.RnwlOpp_Invoice_Date__c}" /></apex:outputText><br/>
+        <br/>
+        
+        <table cellspacing="0" cellpadding="0" border="1">
+            <tr>
+                <th>Account</th>
+                <th>Contract</th>
+                <th>Contract Date</th>
+                <th>License Type</th>
+                <th>Format*</th>
+            </tr>
+            <tr>
+                <td>{!currentOpp.Account.Name}</td>
+                <td>{!currentOpp.Associated_Contract_OSA__r.ContractNumber} </td>
+                <td><apex:outputText value="{0,date,dd/MMM/yyyy}" ><apex:param value="{!currentOpp.Associated_Contract_OSA__r.startDate}" /></apex:outputText></td>
+                <td>{!currentOpp.License_Type__c}</td>
+                <td>{!currentOpp.QS_TB_Billing_Model__c}</td>
+            </tr>
+        </table>
+        
+        <br/>
+        <label class="tableHeader">Enterprise Server License Summary</label>
+        <br/><br/>
+        
+        <table cellspacing="0" cellpadding="0" border="1">  
+            <tr>
+                <th>Base Renewal Amount</th>
+                <th>Contracted License Band</th>  
+                <th>Firm Size (Lawyers)</th>
+                <th>Firm Size (Timekeepers)</th>
+            </tr>
+            <tr>
+                <td><apex:outputField value="{!currentOpp.Amount}" ></apex:outputField></td>  
+                <td><apex:outputField value="{!currentOpp.QS_TB_Enterprise_Lawyer_Band__c}" /></td>
+                <td><apex:outputField value="{!currentOpp.Account.License_Band__c}" />
+                </td>
+                <td><apex:outputField value="{!currentOpp.Account.License_Band_Timekeepers__c}" />
+                </td>
+            </tr>
+        </table>
+        
+        <br/>
+        <label class="tableHeader">End User License Summary</label>
+        <br/><br/>
+        
+        <table cellspacing="0" cellpadding="0" border="1">
+            <tr>
+                <th>End User Renewal Amount</th>
+                <th>Contracted User Basis</th>
+                <th>+ User Price</th>
+            </tr>
+            <tr>
+                <td><apex:outputField value="{!currentOpp.QS_TB_End_User_Recurring_Amount__c}" ></apex:outputField></td>
+                <td><apex:outputField value="{!currentOpp.QS_TB_Licensed_Users__c}" /></td>
+                <td><apex:outputField value="{!currentOpp.QS_TB_Additional_User_Price__c}" /></td>
+            </tr>
+        </table>     
+        
+        <br/>
+        
+        <table cellspacing="0" cellpadding="0" border="1">
+            <tr>
+                <th>Enabled Users 3 Months</th>
+                <th>Enabled Users 12 Months</th>   
+                <th>Total Timekeeper Usage 3 Months</th>
+                <th>Total Timekeeper Usage 12 Months</th>
+            </tr>
+            <apex:repeat value="{!listWrappers}" var="wrap">    
+                <tr>
+                    <td><apex:outputText value="{0,number,###,###,##0}" ><apex:param value="{!wrap.enableUser3Months}" /></apex:outputText></td>
+                    <td><apex:outputText value="{0,number,###,###,##0}" ><apex:param value="{!wrap.enableUser12Months}" /></apex:outputText></td>
+                    <td><apex:outputText value="{0,number,###,###,##0}" ><apex:param value="{!wrap.timekeeperUsage3Months}" /></apex:outputText></td>
+                    <td><apex:outputText value="{0,number,###,###,##0}" ><apex:param value="{!wrap.timekeeperUsage12Months}" /></apex:outputText></td>
+                </tr>
+            </apex:repeat>
+        </table>
+    
+    </body>
+</apex:page>

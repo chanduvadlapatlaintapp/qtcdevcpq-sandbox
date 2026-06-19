@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Releases_with_no_actual_release_date</fullName>
+    <columns>NAME</columns>
+    <columns>Product_Line__c</columns>
+    <columns>Actual_Release_Date__c</columns>
+    <columns>Estimated_Release_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Percent_Complete__c</field>
+        <operation>equals</operation>
+        <value>100</value>
+    </filters>
+    <filters>
+        <field>Actual_Release_Date__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>Releases with no actual release date</label>
+</ListView>

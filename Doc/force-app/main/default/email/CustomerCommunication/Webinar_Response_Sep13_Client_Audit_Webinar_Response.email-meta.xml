@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - Sep13 Client Audit Webinar Response</name>
+    <style>none</style>
+    <subject>Intapp Webinar Confirmation</subject>
+    <textOnly>Webinar Invite -- Suspect
+
+
+{!Contact.FirstName} {!Contact.LastName}: Thank you for registering for the webinar. Please see below for login details.
+
+Title: Client Information Security Audits: Addressing Increasingly Stringent Requirements
+Date: Wednesday, September 25
+Time: 10am Pacific / 1pm Eastern
+
+URL: https://intapp.webex.com/intapp/j.php?J=802461592
+
+US toll-free: 1 800 434 1335
+UK toll-free: 0 808 101 4881
+
+Conference ID / Passcode: 856798
+
+http://www.intapp.com
+
+All information Copyright 2013 Intapp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lawyer_Qty_Cannot_Be_Less_than_100</fullName>
+    <active>false</active>
+    <description>The quantity entered must be at least 100 for Lawyer Meter Type.</description>
+    <errorConditionFormula>AND( (TEXT(Meter_Type__c) =&quot;Lawyers&quot;),
+License_Product__c = TRUE,
+NOT(ISPICKVAL(SBQQ__Product__r.Product_Group__c, &quot;Ops Only - Do Not Use&quot;)),
+NOT(ISPICKVAL(SBQQ__Product__r.Product_Group__c, &quot;Legacy OnePlace licenses&quot;)),
+SBQQ__Product__r.Item_Master_Product__r.Intapp_Item_Master_Number__c != &quot;EX-01542&quot;,
+SBQQ__Product__r.Item_Master_Product__r.Intapp_Item_Master_Number__c != &quot;BU-00989&quot;,
+SBQQ__Product__r.Item_Master_Product__r.Intapp_Item_Master_Number__c != &quot;TM-01544&quot;,
+SBQQ__Product__r.Item_Master_Product__r.Intapp_Item_Master_Number__c != &quot;PR-01543&quot;,
+SBQQ__Product__r.Item_Master_Product__r.Intapp_Item_Master_Number__c != &quot;IN-01465&quot;,
+SBQQ__Product__r.Item_Master_Product__r.Intapp_Item_Master_Number__c != &quot;CO-01466&quot;,
+SBQQ__Quantity__c&lt;100, 
+TEXT(SBQQ__Quote__r.SBQQ__Type__c) &lt;&gt; &quot;Amendment&quot;,
+$Profile.Name&lt;&gt;&quot;Standard User - Sales Operations&quot;,
+$User.Id &lt;&gt; &quot;00550000002q64G&quot; /*Jennifer Richard*/
+)</errorConditionFormula>
+    <errorMessage>The quantity entered must be at least 100 for Lawyer Meter Type.</errorMessage>
+</ValidationRule>

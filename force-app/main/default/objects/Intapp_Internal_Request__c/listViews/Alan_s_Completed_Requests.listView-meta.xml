@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Alan_s_Completed_Requests</fullName>
+    <columns>NAME</columns>
+    <columns>Name__c</columns>
+    <columns>Created_Date__c</columns>
+    <columns>Actual_Close_Date__c</columns>
+    <columns>Requester__c</columns>
+    <columns>Description__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>contains</operation>
+        <value>Closed</value>
+    </filters>
+    <filters>
+        <field>Request_Owner__c</field>
+        <operation>equals</operation>
+        <value>Alan Westley</value>
+    </filters>
+    <label>Alan&apos;s Completed Requests</label>
+</ListView>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <outboundMessages>
+        <fullName>SendCACToIntapp</fullName>
+        <apiVersion>35.0</apiVersion>
+        <endpointUrl>https://www.intapp.com/SalesForceSync/DTE/CAC/CACNotificationService.asmx</endpointUrl>
+        <fields>Box__c</fields>
+        <fields>Case__c</fields>
+        <fields>Contact__c</fields>
+        <fields>Id</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>alan.westley@intapp.com</integrationUser>
+        <name>SendCACToIntapp</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <rules>
+        <fullName>Rule Code%3A CAC-001xxOx</fullName>
+        <actions>
+            <name>SendCACToIntapp</name>
+            <type>OutboundMessage</type>
+        </actions>
+        <active>true</active>
+        <description>Rule Code: CAC-001xxOx
+UpdateCACInDTE
+Sends an outbound message to DTE to update Case Access Contact in it.</description>
+        <formula>ISNEW()|| 
+ISCHANGED(Box__c)|| 
+ISCHANGED(Contact__c)||
+ISCHANGED(Case__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Salesforce_User_Status__c</fullName>
+    <label>Salesforce User Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Will be paid at full amount</fullName>
+                <default>false</default>
+                <label>Will be paid at full amount</label>
+            </value>
+            <value>
+                <fullName>Will be paid but with some discount</fullName>
+                <default>false</default>
+                <label>Will be paid but with some discount</label>
+            </value>
+            <value>
+                <fullName>Customer pushing back on majority of invoice</fullName>
+                <default>false</default>
+                <label>Customer pushing back on majority of invoice</label>
+            </value>
+            <value>
+                <fullName>Will need to be written off</fullName>
+                <default>false</default>
+                <label>Will need to be written off</label>
+            </value>
+            <value>
+                <fullName>Other - comment in Notes</fullName>
+                <default>false</default>
+                <label>Other - comment in Notes</label>
+            </value>
+            <value>
+                <fullName>Need AR comments</fullName>
+                <default>false</default>
+                <label>Need AR comments</label>
+            </value>
+            <value>
+                <fullName>Currently engaging with Client</fullName>
+                <default>false</default>
+                <label>Currently engaging with Client</label>
+            </value>
+            <value>
+                <fullName>Customer not responding</fullName>
+                <default>false</default>
+                <label>Customer not responding</label>
+            </value>
+            <value>
+                <fullName>No Status Yet</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>No Status Yet</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

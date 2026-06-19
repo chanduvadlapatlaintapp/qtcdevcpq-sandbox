@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contract_Addendum__c</fullName>
+    <description>Does this deal require a New Contract to be negotiated and signed, or can it be signed as an addendum to an existing contract?</description>
+    <inlineHelpText>Does this deal require a New Contract to be negotiated and signed, or can it be signed as an addendum to an existing contract?</inlineHelpText>
+    <label>Contract/Addendum</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Order only - no terms changes (for customers)</fullName>
+                <default>false</default>
+                <label>Order only - no terms changes (for customers)</label>
+            </value>
+            <value>
+                <fullName>Amendment - no lawyer involved (for customers)</fullName>
+                <default>false</default>
+                <label>Amendment - no lawyer involved (for customers)</label>
+            </value>
+            <value>
+                <fullName>Amendment - lawyer involved (for customers)</fullName>
+                <default>false</default>
+                <label>Amendment - lawyer involved (for customers)</label>
+            </value>
+            <value>
+                <fullName>Contract - without procurement (for prospects)</fullName>
+                <default>false</default>
+                <label>Contract - without procurement (for prospects)</label>
+            </value>
+            <value>
+                <fullName>Contract - with procurement (for prospects)</fullName>
+                <default>false</default>
+                <label>Contract - with procurement (for prospects)</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

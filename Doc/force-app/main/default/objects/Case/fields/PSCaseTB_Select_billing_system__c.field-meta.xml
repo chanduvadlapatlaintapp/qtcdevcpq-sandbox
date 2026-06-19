@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSCaseTB_Select_billing_system__c</fullName>
+    <inlineHelpText>Select your billing system from the drop-down list.</inlineHelpText>
+    <label>Select billing system</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Elite Enterprise 3.x (MS SQL Server)</fullName>
+                <default>false</default>
+                <label>Elite Enterprise 3.x (MS SQL Server)</label>
+            </value>
+            <value>
+                <fullName>Elite 3E</fullName>
+                <default>false</default>
+                <label>Elite 3E</label>
+            </value>
+            <value>
+                <fullName>Aderant Expert/CMS.NET billing system</fullName>
+                <default>false</default>
+                <label>Aderant Expert/CMS.NET billing system</label>
+            </value>
+            <value>
+                <fullName>Rippe &amp; Kingston LMS</fullName>
+                <default>false</default>
+                <label>Rippe &amp; Kingston LMS</label>
+            </value>
+            <value>
+                <fullName>Other billing system</fullName>
+                <default>false</default>
+                <label>Other billing system</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

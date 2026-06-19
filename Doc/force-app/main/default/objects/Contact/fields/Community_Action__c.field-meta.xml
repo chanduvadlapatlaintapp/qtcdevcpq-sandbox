@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Community_Action__c</fullName>
+    <label>Community Action</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>PleaseCreate</fullName>
+                <default>false</default>
+                <label>PleaseCreate</label>
+            </value>
+            <value>
+                <fullName>Created</fullName>
+                <default>false</default>
+                <label>Created</label>
+            </value>
+            <value>
+                <fullName>ManualCreationNeeded</fullName>
+                <default>false</default>
+                <label>ManualCreationNeeded</label>
+            </value>
+            <value>
+                <fullName>Delete</fullName>
+                <default>false</default>
+                <label>Delete</label>
+            </value>
+            <value>
+                <fullName>AccountDeleted</fullName>
+                <default>false</default>
+                <label>AccountDeleted</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

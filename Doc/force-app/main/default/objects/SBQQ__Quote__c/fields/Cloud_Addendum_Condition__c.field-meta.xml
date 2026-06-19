@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cloud_Addendum_Condition__c</fullName>
+    <description>Created for OSA document , If the condition is true, cloud addendum section is displayed in the OSA document</description>
+    <formula>OR(
+AND((Contract_Master_Terms_Formula__c = &apos;Existing Intapp MSSA Plus Cloud&apos;) , ISPICKVAL(Line_of_Business__c, &apos;Intapp&apos;)),
+AND((Contract_Master_Terms_Formula__c = &apos;Existing Intapp MSSA plus Cloud and Annex&apos;) , ISPICKVAL(Line_of_Business__c, &apos;Intapp&apos;)) ,
+AND((Contract_Master_Terms_Formula__c = &apos;Existing Intapp MSSA Plus Cloud&apos;) , ISPICKVAL(Line_of_Business__c, &apos;DealCloud&apos;)) 
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Cloud Addendum Condition</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

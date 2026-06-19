@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Open_Opportunities_Colleen</fullName>
+    <columns>OPPORTUNITY.LAST_UPDATE</columns>
+    <columns>Next_Step_Updated_On__c</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Package__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>Proposed_Stage__c</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.AMOUNT</columns>
+    <columns>OPPORTUNITY.NEXT_STEP</columns>
+    <columns>In_Manager_Forecast__c</columns>
+    <columns>Upside__c</columns>
+    <columns>Completeness_Score__c</columns>
+    <columns>Opportunity_Age__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>OPPORTUNITY.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>Open Opportunities - Colleen</label>
+    <language>en_US</language>
+    <sharedTo>
+        <roleAndSubordinatesInternal>Accounting_Consulting_Sales_Reps</roleAndSubordinatesInternal>
+    </sharedTo>
+</ListView>

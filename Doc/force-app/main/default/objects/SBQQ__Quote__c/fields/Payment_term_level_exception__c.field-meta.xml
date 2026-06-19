@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_term_level_exception__c</fullName>
+    <description>Created for additional change to display others for lwc
+BIZ-50270</description>
+    <externalId>false</externalId>
+    <formula>MAX(IF(TEXT(Renewal_Payment_Terms__c) = &apos;Net 30&apos;,0,
+IF(TEXT(Renewal_Payment_Terms__c) = &apos;Net 45&apos; &amp;&amp; (First_Year_Software_Net_Total__c &gt; 10000),1,
+IF((TEXT(Renewal_Payment_Terms__c) = &apos;Net 45&apos;|| TEXT(Renewal_Payment_Terms__c) = &apos;Net 60&apos; || TEXT(Renewal_Payment_Terms__c) = &apos;Net 90&apos;) &amp;&amp; (First_Year_Software_Net_Total__c &lt; 10000),1,
+IF(TEXT(Renewal_Payment_Terms__c) = &apos;Net 60&apos; || TEXT(Renewal_Payment_Terms__c) = &apos;Net 90&apos;,2,
+IF(TEXT(Renewal_Payment_Terms__c) = &apos;Net 120&apos;,8,
+IF(NOT(ISBLANK(Custom_Software_Payment_Term__c)),11,0)
+)))
+)),IF((Payment_Term_Software__c) = &apos;Net 30&apos;,0,
+IF((Payment_Term_Software__c) = &apos;Net 45&apos; &amp;&amp; (First_Year_Software_Net_Total__c &gt; 10000),1,
+IF(((Payment_Term_Software__c) = &apos;Net 45&apos;|| (Payment_Term_Software__c) = &apos;Net 60&apos; || (Payment_Term_Software__c) = &apos;Net 90&apos;) &amp;&amp; (First_Year_Software_Net_Total__c &lt; 10000),1,
+IF((Payment_Term_Software__c) = &apos;Net 60&apos; || (Payment_Term_Software__c) = &apos;Net 90&apos;,2,
+IF((Payment_Term_Software__c) = &apos;Net 120&apos;,8,
+IF(NOT(ISBLANK(Custom_Software_Payment_Term__c)),11,0)
+)))
+)))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Payment term level(exception)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

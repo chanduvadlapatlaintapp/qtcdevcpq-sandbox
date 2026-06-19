@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_93088965</developerName>
+        <masterLabel>Status</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>STATUS</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>New</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>In Process</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Waiting - Customer</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Waiting - Internal</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Escalated to CRM</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Escalated to Engineering</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Escalated to PS</sourceValue>
+            </sourceValues>
+            <value>Open</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Closed - Resolved</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Closed - Unresolved</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Completed</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Closed - Abandoned</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Closed - Escalated to CRM</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Closed - PS Escalation</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Closed - PS New Project</sourceValue>
+            </sourceValues>
+            <value>Closed</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>STATUS</field>
+    </columns>
+    <columns>
+        <field>CASE_NUMBER</field>
+    </columns>
+    <columns>
+        <field>OWNER</field>
+    </columns>
+    <columns>
+        <field>ACCOUNT.TYPE</field>
+    </columns>
+    <columns>
+        <field>SUBJECT</field>
+    </columns>
+    <columns>
+        <field>PRIORITY</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>RECORDTYPE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Case.Support</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>SUBJECT</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notContain</operator>
+            <value>Undeliverable,Absence du bureau,Email Delivery Failure</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>STATUS</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>,Defect Filed,Closed - Duplicate</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>FiscalQuarter</dateGranularity>
+        <field>CREATED_DATE</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_93088965</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Open and Closed Support Cases</name>
+    <params>
+        <name>units</name>
+        <value>m</value>
+    </params>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CaseList</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATEONLY</dateColumn>
+        <interval>INTERVAL_PREVCURFY</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Product Migration Placeholder</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Product Migration Placeholders</value>
+    </caseValues>
+    <recordTypes>
+        <label><!-- Botany --></label>
+        <name>Botany</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CSM Ops Request --></label>
+        <name>CSM_Ops_Request</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Cloud IDM Migration --></label>
+        <name>Cloud_IDM_Migration</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Cloud Readiness --></label>
+        <name>Cloud_Readiness</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Conflicts Elasticsearch Issue --></label>
+        <name>Conflicts_Elasticsearch_Issue</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Executive Owner --></label>
+        <name>Executive_Owner</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Experience Success --></label>
+        <name>Experience_Success</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Flow Success --></label>
+        <name>Flow_Success</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Hot List --></label>
+        <name>Hot_List</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- TFG --></label>
+        <name>LegalKey</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OP SF CRM AOI Defect --></label>
+        <name>OP_SF_CRM_AOI_Defect</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Project Raptor --></label>
+        <name>Project_Raptor</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Rekoop/Time Cloud/Silverlight EOS --></label>
+        <name>Rekoop_Time_Cloud_Silverlight_EOS</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Relationships Success --></label>
+        <name>Relationships_Success</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Sanctions List Service Issue --></label>
+        <name>Sanctions_List_Service_Issue</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Terms Success --></label>
+        <name>Terms_Success</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Time 8 Reference Program --></label>
+        <name>Time_8_Reference_Program</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Time 8 SWAT --></label>
+        <name>Time_8_SWAT</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Time / FMS Migration --></label>
+        <name>Time_FMS_Migration</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Time Mobile TLS Program --></label>
+        <name>Time_Mobile_TLS_Program</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Time Web Vulnerability --></label>
+        <name>Time_Web_Vulnerability</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Walls Compound Document Issue --></label>
+        <name>Walls_Compound_Document_Issue</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Walls Defense --></label>
+        <name>Walls_Defense</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Watch List Issue --></label>
+        <name>Watch_List_Issue</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- This PMP is not approved to stay on a TFG product. Please contact Don or Sig for such approval. --></errorMessage>
+        <name>Cannot_move_stage_to_9_without_approval</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill &quot;Other adjacent competitor &quot; field to move on --></errorMessage>
+        <name>competitive_products_owner_is_other</name>
+    </validationRules>
+</CustomObjectTranslation>

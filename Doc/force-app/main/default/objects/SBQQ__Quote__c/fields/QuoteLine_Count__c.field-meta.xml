@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>QuoteLine_Count__c</fullName>
+    <description>RollupSummary field to calculate the number of Quote Line Items with Non Std Pkg field marked as true
+As per BIZ-48435</description>
+    <label>QuoteLine Count</label>
+    <summaryFilterItems>
+        <field>SBQQ__QuoteLine__c.Non_Std_Pkg__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryForeignKey>SBQQ__QuoteLine__c.SBQQ__Quote__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

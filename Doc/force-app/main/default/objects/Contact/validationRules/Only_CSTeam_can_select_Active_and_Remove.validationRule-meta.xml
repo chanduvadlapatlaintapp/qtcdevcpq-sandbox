@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Only_CSTeam_can_select_Active_and_Remove</fullName>
+    <active>false</active>
+    <description>Only the CS Team (Roles: VP Customer Relationship Management and CR Team) can select Reference Tracking Status = &apos;Active&apos; or &apos;Removed&apos;</description>
+    <errorConditionFormula>AND( 
+  NOT(
+    OR(
+      $UserRole.Id = &apos;00E500000010ZZv&apos;, /*VP Customer Relationship Management */
+      $UserRole.Id = &apos;00E50000000zWmY&apos;, /*CR Team */
+      $User.Id = &apos;00550000005VrvM&apos;, /*Tim Parsons*/
+      $User.Id = &apos;00550000007g7fq&apos;, /*Alex Larralde*/
+      $User.Id = &apos;005500000074yWI&apos;, /*Ruth Oyeyiola*/
+      $Profile.Id = &apos;00e30000000bvR3&apos; /*System Administrators*/
+    )
+  ),
+  NOT(ISPICKVAL(Reference_Tracking_Status__c,&quot;Nominated&quot;)),
+  ISCHANGED(Reference_Tracking_Status__c),
+  NOT(ISBLANK(TEXT(Reference_Tracking_Status__c)))
+)</errorConditionFormula>
+    <errorDisplayField>Reference_Tracking_Status__c</errorDisplayField>
+    <errorMessage>Only CR Team members can select Active or Removed</errorMessage>
+</ValidationRule>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>StandardDirect</fullName>
+    <active>false</active>
+    <description>These contracts are for standard direct sales.</description>
+    <label>Standard Direct</label>
+    <picklistValues>
+        <picklist>Status</picklist>
+        <values>
+            <fullName>Cancelled %2F Lapsed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contract Executed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Draft quote by salesperson</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Expired Draft %28Never Sent to Customer%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Expired Draft %28Never Signed%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Force</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partially Cancelled or superseded</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quote approved to send to customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sent to customer for signature</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Superseded by Newer Contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Waiting for Specialist approval to send</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

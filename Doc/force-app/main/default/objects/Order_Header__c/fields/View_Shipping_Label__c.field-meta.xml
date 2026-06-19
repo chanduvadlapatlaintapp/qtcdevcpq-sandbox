@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>View_Shipping_Label__c</fullName>
+    <description>Click to view the shipping label</description>
+    <externalId>false</externalId>
+    <formula>IF( 
+Shipping_Label_Attachment_ID__c &lt;&gt; &quot;&quot;, 
+HYPERLINK(&quot;https://na3.salesforce.com/servlet/servlet.FileDownload?file=&quot;&amp;Shipping_Label_Attachment_ID__c, &quot;view&quot;),
+ &quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>View Shipping Label</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

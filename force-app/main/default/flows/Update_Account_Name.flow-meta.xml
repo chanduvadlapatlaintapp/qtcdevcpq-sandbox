@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>Update Account Name, Account Short Name, and Legal Name Verified As when anyone contains &amp;amp; to &amp;.</description>
+    <formulas>
+        <name>ConvertAccountName</name>
+        <dataType>String</dataType>
+        <expression>SUBSTITUTE({!$Record.Name} , &apos;&amp;amp;&apos;, &apos;&amp;&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>ConvertAccountShortName</name>
+        <dataType>String</dataType>
+        <expression>SUBSTITUTE({!$Record.Account_Short_Name__c} , &apos;&amp;amp;&apos;, &apos;&amp;&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>ConvertLegalNameVerified</name>
+        <dataType>String</dataType>
+        <expression>SUBSTITUTE({!$Record.Legal_Name_Verified_As__c} , &apos;&amp;amp;&apos;, &apos;&amp;&apos;)</expression>
+    </formulas>
+    <interviewLabel>Update Account Name {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update Account Name</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Account_Name</name>
+        <label>Update Account Name</label>
+        <locationX>438</locationX>
+        <locationY>326</locationY>
+        <inputAssignments>
+            <field>Account_Short_Name__c</field>
+            <value>
+                <elementReference>ConvertAccountShortName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Legal_Name_Verified_As__c</field>
+            <value>
+                <elementReference>ConvertLegalNameVerified</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>ConvertAccountName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>311</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>Update_Account_Name</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>%&amp;amp;%</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Account_Short_Name__c</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>%&amp;amp;%</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Legal_Name_Verified_As__c</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>%&amp;amp;%</stringValue>
+            </value>
+        </filters>
+        <object>Account</object>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2022-05-17</startDate>
+            <startTime>23:00:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

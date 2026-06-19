@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Select_Competitor_if_Checkbox_Checked</fullName>
+    <active>true</active>
+    <description>Validation Rule to ensure a competitor is selected if the deal is competitive.</description>
+    <errorConditionFormula>AND( Competitive__c  = TRUE ,   ISPICKVAL( Competitor__c , &quot;&quot;)  )</errorConditionFormula>
+    <errorDisplayField>Competitor__c</errorDisplayField>
+    <errorMessage>Please select a competitor. If the desired competitor doesn&apos;t show up, please contact your Salesforce administrator.</errorMessage>
+</ValidationRule>

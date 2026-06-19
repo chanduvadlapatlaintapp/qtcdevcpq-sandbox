@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Update_ACV_Type</name>
+        <label>Update ACV Type</label>
+        <locationX>468</locationX>
+        <locationY>755</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.ACV_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Segment_1_Quote_Line.ACV_Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.ACV_Type_Override__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Segment_1_Quote_Line.ACV_Type_Override__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>updateQuoteLine</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_All_Quote_Lines</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Bypass_the_flow</name>
+        <label>Bypass the flow?</label>
+        <locationX>270</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Check_Segment_Index</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Quote_is_calculating_tax</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Quote__r.AVA_SFCPQ__AvaTaxMessage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Automated Tax Calculation Triggered, Please Refresh Your Browser</stringValue>
+                </rightValue>
+            </conditions>
+            <label>Quote is calculating tax</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Segment_Index</name>
+        <label>Check Segment Index</label>
+        <locationX>754</locationX>
+        <locationY>431</locationY>
+        <defaultConnector>
+            <targetReference>Get_All_Quote_Lines</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Index_Greater_than_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__SegmentIndex__c</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
+                <rightValue>
+                    <numberValue>2.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Segment_1_Quote_Line</targetReference>
+            </connector>
+            <label>Index Greater than 1</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Segment_Index_1</name>
+        <label>Check Segment Index 1</label>
+        <locationX>600</locationX>
+        <locationY>647</locationY>
+        <defaultConnector>
+            <targetReference>Get_All_Quote_Lines</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Segment_1_Exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Segment_1_Quote_Line</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_ACV_Type</targetReference>
+            </connector>
+            <label>Segment 1 Exists</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Customer_Sales_Price_Per_Month_is_Changed</name>
+        <label>Customer Sales Price Per Month is Changed</label>
+        <locationX>754</locationX>
+        <locationY>1439</locationY>
+        <defaultConnector>
+            <targetReference>Update_Quote_Line1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>isChanged</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Customer_Sale_Price_Per_Month__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Related_Opportunity_Product</targetReference>
+            </connector>
+            <label>isChanged</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Quote_Line_Part_of_a_Bundle</name>
+        <label>Is Quote Line Part of a Bundle</label>
+        <locationX>754</locationX>
+        <locationY>1139</locationY>
+        <defaultConnector>
+            <targetReference>Customer_Sales_Price_Per_Month_is_Changed</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Quote_is_Part_Of_a_Bundle</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_All_Quote_Lines</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__SegmentIndex__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>1.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Is_Bundle_Product_On_Quote</targetReference>
+            </connector>
+            <label>Quote is Part Of a Bundle</label>
+        </rules>
+        <rules>
+            <name>Quote_is_not_Part_Of_a_Bundle</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_All_Quote_Lines</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Quote__r.Is_Bundle_Product_PDF__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__SegmentIndex__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>1.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Is_Not_Bundle_Product_On_Quote</targetReference>
+            </connector>
+            <label>Quote is not Part Of a Bundle</label>
+        </rules>
+        <rules>
+            <name>Max_Segment_index_Is_Less_Than_2</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Quote__r.SegmentIndex_Max__c</leftValueReference>
+                <operator>LessThan</operator>
+                <rightValue>
+                    <numberValue>2.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_PDF_Checkboxes</targetReference>
+            </connector>
+            <label>Max Segment index Is Less Than 2</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Update_Quote_Line1</name>
+        <label>Update Quote Line</label>
+        <locationX>754</locationX>
+        <locationY>1747</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Update_True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>updateQuoteLine</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Quote_Line</targetReference>
+            </connector>
+            <label>Update True</label>
+        </rules>
+    </decisions>
+    <description>BIZ-65281 Multiplied quantity with Netprice in Previous ACV on Subscription
+BIZ-65821 Getting last subscription for migrated contracts in renewal
+Modified as part of BIZ-65281 - Calculate Previous ACV value for Migrated Contracts in renewal scenario,
+Modified As part of BIZ- 50449,
+Modified as part of BIZ-46894, BIZ-47135,
+BIZ-50365:  flow should update this Original ACV Change.
+RR: Updated to change quote approval status
+Code Refactoring
+Added checks for update quotes.
+BIZ-61797 Tax calculating properly but not included in Renewal Letter document
+BIZ-63601 Populate Customer Sales Price per month on Opportunity Product
+BIZ-66988 Ramping User Field incorrect during Amend of contract after new sale which has Ramping User as True
+BIZ-66416 - Added the Bypass Logic
+BIZ-68198 Populate ACV Change for New Sales and NYMY
+BIZ-77496 Replace Segment_Months__c with SBQQ__ProrateMultiplier__c in calculateMigratedPrevValue formula
+BIZ-77645 - Included Product Types: Maintenance and Support for ACV Change Calculations
+BIZ-78712 - Quoeline.SBQQ__RenewedSubscription__r.SBQQ__RevisedSubscription__c != null then only execute the Add on Subscription logic
+BIZ-78712 - Fix RenewalPreviousACVChangeformula to use calculateMigratedPrevValue for multi-year deals to correctly handle quantity changes
+REFACTORED - ACV Change calculations moved to ACVChangeCalculationService.cls Apex class (called from QuoteLineItemTriggerHandler)</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>CustomerPriceFormula</name>
+        <dataType>Currency</dataType>
+        <expression>CEILING({!SelectBundleNetTotal}/12)</expression>
+        <scale>2</scale>
+    </formulas>
+    <interviewLabel>Amend QL {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Quote Line After Insert Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_All_Quote_Lines</name>
+        <label>Get All Quote Lines</label>
+        <locationX>754</locationX>
+        <locationY>1031</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_Quote_Line_Part_of_a_Bundle</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>SBQQ__Quote__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Quote__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>SBQQ__RequiredBy__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>SBQQ__QuoteLine__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Segment_1_Quote_Line</name>
+        <label>Get Segment 1 Quote Line</label>
+        <locationX>600</locationX>
+        <locationY>539</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_Segment_Index_1</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>SBQQ__Quote__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Quote__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>SBQQ__Product__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Product__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>SBQQ__SegmentIndex__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </filters>
+        <filters>
+            <field>SBQQ__SegmentIndex__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.SBQQ__SegmentIndex__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SBQQ__QuoteLine__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Is_Bundle_Product_On_Quote</name>
+        <label>Update Is Bundle Product On Quote</label>
+        <locationX>358</locationX>
+        <locationY>1247</locationY>
+        <connector>
+            <targetReference>Customer_Sales_Price_Per_Month_is_Changed</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Quote__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Is_Bundle_Product_PDF__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Is_Bundle_Product_PDF__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>SBQQ__Quote__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Is_Not_Bundle_Product_On_Quote</name>
+        <label>Update Is Not Bundle Product On Quote</label>
+        <locationX>622</locationX>
+        <locationY>1247</locationY>
+        <connector>
+            <targetReference>Customer_Sales_Price_Per_Month_is_Changed</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Quote__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Is_Not_Bundle_Product_PDF__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Is_Not_Bundle_Product_PDF__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>SBQQ__Quote__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_PDF_Checkboxes</name>
+        <label>Update PDF Checkboxes</label>
+        <locationX>886</locationX>
+        <locationY>1247</locationY>
+        <connector>
+            <targetReference>Customer_Sales_Price_Per_Month_is_Changed</targetReference>
+        </connector>
+        <filterLogic>1 AND (2 OR 3)</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Quote__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Is_Bundle_Product_PDF__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Is_Not_Bundle_Product_PDF__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Is_Bundle_Product_PDF__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Is_Not_Bundle_Product_PDF__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>SBQQ__Quote__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Quote_Line</name>
+        <label>Update Quote Line</label>
+        <locationX>622</locationX>
+        <locationY>1855</locationY>
+        <inputAssignments>
+            <field>ACV_Type_Override__c</field>
+            <value>
+                <elementReference>$Record.ACV_Type_Override__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ACV_Type__c</field>
+            <value>
+                <elementReference>$Record.ACV_Type__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Related_Opportunity_Product</name>
+        <label>Update Related Opportunity Product</label>
+        <locationX>622</locationX>
+        <locationY>1547</locationY>
+        <connector>
+            <targetReference>Update_Quote_Line1</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>SBQQ__QuoteLine__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Customer_Sales_Price_Per_Month__c</field>
+            <value>
+                <elementReference>$Record.Customer_Sale_Price_Per_Month__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>OpportunityLineItem</object>
+    </recordUpdates>
+    <start>
+        <locationX>144</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Bypass_the_flow</targetReference>
+        </connector>
+        <filterFormula>AND(
+    NOT({!$Setup.Automation_Controls__c.Active__c} 
+    &amp;&amp; {!$Setup.Automation_Controls__c.Bypass_Flows__c} 
+    &amp;&amp; {!$Setup.Automation_Controls__c.Quoteline_Bypass__c} 
+    &amp;&amp; (
+        ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c}) 
+        || (
+            NOT(ISBLANK({!$Setup.Automation_Controls__c.Data_Id__c})) 
+            &amp;&amp; CONTAINS({!$Setup.Automation_Controls__c.Data_Id__c}, {!$Record.Id})
+        )
+    )),
+    NOT(ISPICKVAL({!$Record.SBQQ__Quote__r.SBQQ__Type__c}, &apos;Migration Quote&apos;))
+)</filterFormula>
+        <object>SBQQ__QuoteLine__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>SelectBundleNetTotal</name>
+        <dataType>Currency</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>2</scale>
+    </variables>
+    <variables>
+        <name>SelectEndDate</name>
+        <dataType>Date</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>Selectstartdate</name>
+        <dataType>Date</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>updateQuoteLine</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+</Flow>

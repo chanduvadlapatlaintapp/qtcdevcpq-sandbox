@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SFDC_SFA__c</fullName>
+    <description>BIZ-76287 - Formula field exposing the SFA % from the renewal quote for Boomi to sync to OP4i. Evaluates SFA% Override first; falls back to the base SFA % formula value.</description>
+    <formula>IF(OR(SFA_Override__c=null,SFA_Override__c=0), SFA__c, SFA_Override__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>SFDC SFA (%)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>3</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

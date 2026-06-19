@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Number__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(AND(BillingCountry=&quot;&quot;, BillingState=&quot;&quot;),&quot;Unknown&quot;,
+    IF(AND(CONTAINS(&quot;UK:Scotland:Ireland:Channel Islands&quot;, BillingCountry),contains(&quot;London&quot;,BillingCity)), &quot;A&quot;,
+      IF(CONTAINS(&quot;UK:Scotland:Ireland:Channel Islands&quot;, BillingCountry), &quot;B&quot;,
+        IF(CONTAINS(&quot;Australia:New Zealand&quot;,BillingCountry),&quot;K&quot;,
+            IF(AND(CONTAINS(&quot;AK:WA:OR:CA:NV:ID:MT:WY:UT:CO:AZ:NM:HI:AB:BC:NB:PE:MB:NT:NU:SK:YT:British Columbia:Manitoba&quot;, BillingState),  Intapp_Master_Ranking__c &lt;401), &quot;I&quot;,
+                    IF(AND(CONTAINS(&quot;NS:QC:ON&quot;, BillingState), Intapp_Master_Ranking__c&lt;401), &quot;I&quot;,
+            IF(AND(CONTAINS(&quot;AK:WA:OR:CA:NV:ID:MT:WY:UT:CO:AZ:NM:HI:AB:BC:NB:PE:MB:NT:NU:SK:YT:British Columbia:Manitoba&quot;, BillingState), Intapp_Master_Ranking__c&gt;400), &quot;J&quot;,
+                    IF(AND(CONTAINS(&quot;NS:QC:ON&quot;, BillingState), Intapp_Master_Ranking__c&gt;400), &quot;J&quot;,
+                IF(CONTAINS(&quot;ME:VT:NH:MA:CT:NY:RI&quot;, BillingState), &quot;C&quot;,
+                        IF(CONTAINS(&quot;PA:DE:WV:NJ&quot;, BillingState), &quot;D&quot;,
+                           IF(AND(CONTAINS(&quot;KY:VA:TN:NC:SC:GA:FL:AL:MD:DC:OH:IN&quot;, BillingState),Intapp_Master_Ranking__c&lt;401), &quot;E&quot;,
+                              IF(AND(CONTAINS(&quot;KY:VA:TN:NC:SC:GA:FL:AL:MD:DC:OH:IN&quot;, BillingState),Intapp_Master_Ranking__c&gt;400), &quot;F&quot;,
+                                 IF(AND(CONTAINS(&quot;ND:SD:NE:KS:OK:TX:MN:IA:MO:AR:LA:WI:IL:MS:MI&quot;, BillingState),Intapp_Master_Ranking__c&lt;401), &quot;G&quot;,
+                                    IF(AND(CONTAINS(&quot;ND:SD:NE:KS:OK:TX:MN:IA:MO:AR:LA:WI:IL:MS:MI&quot;, BillingState),Intapp_Master_Ranking__c&gt;400), &quot;H&quot;,
+
+ &quot;Unknown&quot;))))))))))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Number</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

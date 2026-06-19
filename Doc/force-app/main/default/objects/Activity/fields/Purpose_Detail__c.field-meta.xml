@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Purpose_Detail__c</fullName>
+    <label>Purpose Detail</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Purpose__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>1.0 Marketing outreach</fullName>
+                <default>false</default>
+                <label>1.0 Marketing outreach</label>
+            </value>
+            <value>
+                <fullName>1.1 Suspect attends IntApp event</fullName>
+                <default>false</default>
+                <label>1.1 Suspect attends IntApp event</label>
+            </value>
+            <value>
+                <fullName>1.2 Prospect self-id&apos;s to IntApp</fullName>
+                <default>false</default>
+                <label>1.2 Prospect self-id&apos;s to IntApp</label>
+            </value>
+            <value>
+                <fullName>1.9 Other Marketing</fullName>
+                <default>false</default>
+                <label>1.9 Other Marketing</label>
+            </value>
+            <value>
+                <fullName>2.0 Outreach</fullName>
+                <default>false</default>
+                <label>2.0 Outreach</label>
+            </value>
+            <value>
+                <fullName>2.1 Negative response</fullName>
+                <default>false</default>
+                <label>2.1 Negative response</label>
+            </value>
+            <value>
+                <fullName>2.2 Receptive exchange</fullName>
+                <default>false</default>
+                <label>2.2 Receptive exchange</label>
+            </value>
+            <value>
+                <fullName>2.3 On-site first meeting</fullName>
+                <default>false</default>
+                <label>2.3 On-site first meeting</label>
+            </value>
+            <value>
+                <fullName>2.4 Account/Product Profiling</fullName>
+                <default>false</default>
+                <label>2.4 Account/Product Profiling</label>
+            </value>
+            <value>
+                <fullName>2.9 Other Territory Development</fullName>
+                <default>false</default>
+                <label>2.9 Other Territory Development</label>
+            </value>
+            <value>
+                <fullName>3.0 Opportunity meetings</fullName>
+                <default>false</default>
+                <label>3.0 Opportunity meetings</label>
+            </value>
+            <value>
+                <fullName>3.1 Gathering deal data points</fullName>
+                <default>false</default>
+                <label>3.1 Gathering deal data points</label>
+            </value>
+            <value>
+                <fullName>3.2 Providing ranges for budget</fullName>
+                <default>false</default>
+                <label>3.2 Providing ranges for budget</label>
+            </value>
+            <value>
+                <fullName>3.3 Draft Discussion document</fullName>
+                <default>false</default>
+                <label>3.3 Draft Discussion document</label>
+            </value>
+            <value>
+                <fullName>3.4 Full/Technical demonstration</fullName>
+                <default>false</default>
+                <label>3.4 Full/Technical demonstration</label>
+            </value>
+            <value>
+                <fullName>3.5 Proposal/RFP response</fullName>
+                <default>false</default>
+                <label>3.5 Proposal/RFP response</label>
+            </value>
+            <value>
+                <fullName>3.6 References</fullName>
+                <default>false</default>
+                <label>3.6 References</label>
+            </value>
+            <value>
+                <fullName>3.7 Competitive evaluation</fullName>
+                <default>false</default>
+                <label>3.7 Competitive evaluation</label>
+            </value>
+            <value>
+                <fullName>3.8 Closed - no decision</fullName>
+                <default>false</default>
+                <label>3.8 Closed - no decision</label>
+            </value>
+            <value>
+                <fullName>3.9 Lost to competitor</fullName>
+                <default>false</default>
+                <label>3.9 Lost to competitor</label>
+            </value>
+            <value>
+                <fullName>4.0 Selected</fullName>
+                <default>false</default>
+                <label>4.0 Selected</label>
+            </value>
+            <value>
+                <fullName>4.1 Negotiating price, package and terms</fullName>
+                <default>false</default>
+                <label>4.1 Negotiating price, package and terms</label>
+            </value>
+            <value>
+                <fullName>4.2 Closed - won</fullName>
+                <default>false</default>
+                <label>4.2 Closed - won</label>
+            </value>
+            <value>
+                <fullName>4.3 Right of Return</fullName>
+                <default>false</default>
+                <label>4.3 Right of Return</label>
+            </value>
+            <value>
+                <fullName>4.9 Other Opportunity work</fullName>
+                <default>false</default>
+                <label>4.9 Other Opportunity work</label>
+            </value>
+            <value>
+                <fullName>5.0 Kick off meeting</fullName>
+                <default>false</default>
+                <label>5.0 Kick off meeting</label>
+            </value>
+            <value>
+                <fullName>5.9 Other Services</fullName>
+                <default>false</default>
+                <label>5.9 Other Services</label>
+            </value>
+            <value>
+                <fullName>6.1 Support Outreach</fullName>
+                <default>false</default>
+                <label>6.1 Support Outreach</label>
+            </value>
+            <value>
+                <fullName>7.1 Account Management Outreach</fullName>
+                <default>false</default>
+                <label>7.1 Account Management Outreach</label>
+            </value>
+            <value>
+                <fullName>7.2 At-Risk Activity</fullName>
+                <default>false</default>
+                <label>7.2 At-Risk Activity</label>
+            </value>
+            <value>
+                <fullName>7.3 Follow Up</fullName>
+                <default>false</default>
+                <label>7.3 Follow Up</label>
+            </value>
+            <value>
+                <fullName>7.9 Other Account Management</fullName>
+                <default>false</default>
+                <label>7.9 Other Account Management</label>
+            </value>
+            <value>
+                <fullName>8.1 Domain Expertise</fullName>
+                <default>false</default>
+                <label>8.1 Domain Expertise</label>
+            </value>
+            <value>
+                <fullName>8.2 Client Delight</fullName>
+                <default>false</default>
+                <label>8.2 Client Delight</label>
+            </value>
+            <value>
+                <fullName>8.3 Protect ACV</fullName>
+                <default>false</default>
+                <label>8.3 Protect ACV</label>
+            </value>
+            <value>
+                <fullName>8.4 Product Health</fullName>
+                <default>false</default>
+                <label>8.4 Product Health</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Account Management</controllingFieldValue>
+            <valueName>7.1 Account Management Outreach</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Account Management</controllingFieldValue>
+            <valueName>7.2 At-Risk Activity</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Account Management</controllingFieldValue>
+            <valueName>7.3 Follow Up</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Account Management</controllingFieldValue>
+            <valueName>7.9 Other Account Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Opportunity work</controllingFieldValue>
+            <valueName>3.0 Opportunity meetings</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Opportunity work</controllingFieldValue>
+            <valueName>3.1 Gathering deal data points</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Opportunity work</controllingFieldValue>
+            <valueName>3.2 Providing ranges for budget</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Opportunity work</controllingFieldValue>
+            <valueName>3.3 Draft Discussion document</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Opportunity work</controllingFieldValue>
+            <valueName>3.4 Full/Technical demonstration</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Opportunity work</controllingFieldValue>
+            <valueName>3.5 Proposal/RFP response</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Opportunity work</controllingFieldValue>
+            <valueName>3.6 References</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Opportunity work</controllingFieldValue>
+            <valueName>3.7 Competitive evaluation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Opportunity work</controllingFieldValue>
+            <valueName>3.8 Closed - no decision</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Opportunity work</controllingFieldValue>
+            <valueName>3.9 Lost to competitor</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Opportunity work</controllingFieldValue>
+            <valueName>4.0 Selected</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Opportunity work</controllingFieldValue>
+            <valueName>4.1 Negotiating price, package and terms</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Opportunity work</controllingFieldValue>
+            <valueName>4.2 Closed - won</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Opportunity work</controllingFieldValue>
+            <valueName>4.3 Right of Return</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Opportunity work</controllingFieldValue>
+            <valueName>4.9 Other Opportunity work</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <valueName>1.0 Marketing outreach</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <valueName>1.1 Suspect attends IntApp event</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <valueName>1.2 Prospect self-id&apos;s to IntApp</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <valueName>1.9 Other Marketing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Territory Development</controllingFieldValue>
+            <valueName>2.0 Outreach</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Territory Development</controllingFieldValue>
+            <valueName>2.1 Negative response</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Territory Development</controllingFieldValue>
+            <valueName>2.2 Receptive exchange</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Territory Development</controllingFieldValue>
+            <valueName>2.3 On-site first meeting</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Territory Development</controllingFieldValue>
+            <valueName>2.4 Account/Product Profiling</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Territory Development</controllingFieldValue>
+            <valueName>2.9 Other Territory Development</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Services</controllingFieldValue>
+            <valueName>5.0 Kick off meeting</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Services</controllingFieldValue>
+            <valueName>5.9 Other Services</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Support</controllingFieldValue>
+            <valueName>6.1 Support Outreach</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CRD__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Please pick the appropriate CRD for this account</description>
+    <label>Account Mgr</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Accounts1</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Lookup</type>
+</CustomField>

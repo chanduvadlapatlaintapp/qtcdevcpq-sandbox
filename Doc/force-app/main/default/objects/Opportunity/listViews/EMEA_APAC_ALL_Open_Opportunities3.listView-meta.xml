@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EMEA_APAC_ALL_Open_Opportunities3</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.PROBABILITY</columns>
+    <columns>OPPORTUNITY.NEXT_STEP</columns>
+    <columns>Primary_Business_Problem__c</columns>
+    <columns>Incumbent_Solution__c</columns>
+    <columns>Primary_Competitor__c</columns>
+    <columns>Urgency_Driver_for_Q4_2006__c</columns>
+    <columns>Firm_Procurement_Team__c</columns>
+    <columns>Received_IS_security_questionnaire__c</columns>
+    <columns>Does_firm_monitor_DMS__c</columns>
+    <columns>Does_firm_process_PHIHIPAA_information__c</columns>
+    <columns>Contract_Signer__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.RECORDTYPE</field>
+        <operation>notEqual</operation>
+        <value>,Opportunity.Legal_Renewal,Opportunity.Quota_Credit_Adjustment,Opportunity.Legal_Annual_End_User_License</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Sales_Territory__c</field>
+        <operation>contains</operation>
+        <value>APAC</value>
+    </filters>
+    <label>APAC - ALL Open Opportunities</label>
+    <language>en_US</language>
+</ListView>

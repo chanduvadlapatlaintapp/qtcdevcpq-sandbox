@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Invoice__c$Name</field>
+    </columns>
+    <columns>
+        <field>Invoice__c$Date_Paid_new__c</field>
+    </columns>
+    <columns>
+        <field>Invoice__c$Related_OSA__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Invoice__c$Amt_Paid__c.CONVERT</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Invoice__c$Sales_Order_Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>New license sale</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Invoice__c$Invoice_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Paid in Full</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Invoice__c$Date_Paid_new__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>New License Sales Invoices Paid</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Invoices__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Invoice__c$Date_Paid_new__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Invoice__c$Date_Paid_new__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

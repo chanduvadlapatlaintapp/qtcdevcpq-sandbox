@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Current_MSFT_365_adoption__c</fullName>
+    <label>Current MSFT 365 adoption?</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Teams</fullName>
+                <default>false</default>
+                <label>Teams</label>
+            </value>
+            <value>
+                <fullName>Sharepoint as DMS</fullName>
+                <default>false</default>
+                <label>Sharepoint as DMS</label>
+            </value>
+            <value>
+                <fullName>Sharepoint for anything else</fullName>
+                <default>false</default>
+                <label>Sharepoint for anything else</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Country_color__c</fullName>
+    <externalId>false</externalId>
+    <formula>IMAGE(
+IF(NOT(Move_country_to_green__c),
+CASE(Account.BillingCountry,
+&quot;China&quot;, &quot;/img/samples/light_red.gif&quot;,
+&quot;Cuba&quot;, &quot;/img/samples/light_red.gif&quot;,
+&quot;Iran&quot;, &quot;/img/samples/light_red.gif&quot;,
+&quot;Korea, North&quot;, &quot;/img/samples/light_red.gif&quot;,
+&quot;Russia&quot;, &quot;/img/samples/light_red.gif&quot;,
+&quot;South Sudan&quot;, &quot;/img/samples/light_red.gif&quot;,
+&quot;Syria&quot;, &quot;/img/samples/light_red.gif&quot;,
+&quot;Venezuela&quot;, &quot;/img/samples/light_red.gif&quot;, 
+&quot;Australia&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Austria&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Belgium&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Canada&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Croatia&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Czech Republic&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Denmark&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Finland&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;France&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Germany&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Greece&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Hungary&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Iceland&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Ireland&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Italy&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Japan&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Mexico&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Netherlands&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;New Zealand&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Norway&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Poland&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Portugal&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Singapore&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Spain&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Sweden&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Switzerland&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;Turkey&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;UK&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;USA&quot;, &quot;/img/samples/light_green.gif&quot;,
+&quot;/img/samples/light_yellow.gif&quot;),
+&quot;/img/samples/light_green.gif&quot;),
+ &quot;status color&quot;)</formula>
+    <label>Country color</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

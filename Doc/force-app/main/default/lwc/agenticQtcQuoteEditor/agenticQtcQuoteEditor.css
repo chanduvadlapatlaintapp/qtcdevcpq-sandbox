@@ -1,0 +1,1007 @@
+:host {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    --sds-c-input-color-background: var(--color-input-bg, #40414f);
+    --slds-c-input-color-background: var(--color-input-bg, #40414f);
+    --sds-c-input-color-border: var(--color-border, #4a4b5a);
+    --slds-c-input-color-border: var(--color-border, #4a4b5a);
+    --sds-c-input-color-text: var(--color-text, #ececf1);
+    --slds-c-input-text-color: var(--color-text, #ececf1);
+    --slds-c-input-color-text: var(--color-text, #ececf1);
+    --sds-c-input-color-text-placeholder: var(--color-text-secondary, #a1a1aa);
+    --slds-c-input-color-text-placeholder: var(--color-text-secondary, #a1a1aa);
+    --sds-c-input-shadow: none;
+    --slds-c-input-shadow: none;
+}
+
+.editor-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.header-left-section {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.editor-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+    color: var(--color-text, #fff);
+}
+
+.header-title-link,
+.header-title-link:visited,
+.header-title-link:focus {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.header-title-link:hover {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.header-title-separator {
+    color: inherit;
+    opacity: 0.6;
+    margin: 0 4px;
+}
+
+.editor-header p {
+    font-size: 13px;
+    color: var(--color-text-secondary, #8eafd4);
+    margin-top: 4px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 8px;
+    /* Disabled lightning-button styling — reuses the same disabled palette as the
+       read-only setting fields below so the Save button blends in cleanly when
+       there are no unsaved changes. Light/dark variants come from the parent
+       (--color-disabled-bg / --color-text-disabled). */
+    --sds-c-button-color-background-disabled: var(--color-disabled-bg, #f3f4f6);
+    --sds-c-button-color-border-disabled: var(--color-disabled-bg, #f3f4f6);
+    --sds-c-button-text-color-disabled: var(--color-text-disabled, #9ca3af);
+    --slds-c-button-color-background-disabled: var(--color-disabled-bg, #f3f4f6);
+    --slds-c-button-color-border-disabled: var(--color-disabled-bg, #f3f4f6);
+    --slds-c-button-text-color-disabled: var(--color-text-disabled, #9ca3af);
+}
+
+.header-actions lightning-button[disabled],
+.header-actions lightning-button.slds-is-disabled {
+    cursor: not-allowed;
+    opacity: 0.85;
+}
+
+/* ── Metrics bar ── */
+
+.metrics-bar {
+    display: flex;
+    gap: 0;
+    padding: 0;
+    background: var(--color-surface, #1e2a3a);
+    border: 1px solid var(--color-border, #2d3e54);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.metric-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 12px;
+    border-right: 1px solid var(--color-border, #2d3e54);
+}
+
+.metric-item:last-child {
+    border-right: none;
+}
+
+.metric-label {
+    font-size: 11px;
+    color: var(--color-text-secondary, #8eafd4);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.metric-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-text, #fff);
+}
+
+.metric-value.positive {
+    color: #4ade80;
+}
+
+.metric-value.negative {
+    color: #f87171;
+}
+
+/* ── Approvals bar ──
+   Theme tokens come from the parent app shell (agenticQtcApp.css) so both
+   light and dark modes share one rule set. The amber palette signals
+   "attention required" without dropping a peach light-mode block into the
+   dark UI. */
+
+.approvals-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    background: var(--color-approvals-bg, rgba(254, 147, 57, 0.1));
+    border: 1px solid var(--color-approvals-border, rgba(254, 147, 57, 0.3));
+    border-radius: 8px;
+    margin-bottom: 12px;
+    transition: border-radius 0.15s ease;
+}
+
+/* When the reasons panel is open we sit directly above it — flatten the
+   shared edge so they read as a single connected card. */
+.approvals-bar.is-expanded {
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 0;
+    border-bottom-color: transparent;
+}
+
+.approvals-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.approvals-left lightning-icon {
+    --slds-c-icon-color-foreground: var(--color-approvals-accent, #fe9339);
+    --slds-c-icon-color-foreground-default: var(--color-approvals-accent, #fe9339);
+}
+
+.approvals-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-text, #181818);
+    letter-spacing: 0.1px;
+}
+
+.approver-count {
+    --slds-c-badge-color-background: var(--color-approvals-accent, #fe9339);
+    --slds-c-badge-text-color: var(--color-approvals-accent-text, #fff);
+    font-weight: 700;
+}
+
+.show-reasons-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--color-approvals-accent, #fe9339);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 4px 10px;
+    border-radius: 6px;
+    transition: background 0.12s ease, border-color 0.12s ease;
+}
+
+.show-reasons-btn:hover,
+.show-reasons-btn:focus-visible {
+    background: var(--color-approvals-bg-hover, rgba(254, 147, 57, 0.18));
+    border-color: var(--color-approvals-border, rgba(254, 147, 57, 0.4));
+    outline: none;
+}
+
+.reasons-chevron-icon {
+    --slds-c-icon-color-foreground: var(--color-approvals-accent, #fe9339);
+    --slds-c-icon-color-foreground-default: var(--color-approvals-accent, #fe9339);
+}
+
+/* ── Reasons panel ── */
+
+.reasons-panel {
+    background: var(--color-surface, #1e2a3a);
+    border: 1px solid var(--color-approvals-border, rgba(254, 147, 57, 0.25));
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    margin-bottom: 12px;
+    /* No overflow:hidden — the condition popover must be allowed to render
+       above the panel without being clipped. Rounded corners on the bottom
+       are preserved by .reasons-tip's own border-radius below. */
+}
+
+/* Three-column grid keeps the reason text visually centered regardless of
+   approver name length. Side columns are fixed-width so the middle column
+   is symmetric across rows; long names fall back to ellipsis with the full
+   name surfaced via the native title tooltip. */
+.reason-row {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr) 240px;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 20px;
+    /* Lock a consistent row height so the middle column stays in line across
+       rows where the approver has a title and rows where it doesn't. */
+    min-height: 62px;
+    border-bottom: 1px solid var(--color-border, #2d3e54);
+    transition: background 0.12s ease;
+}
+
+.reason-row:last-of-type {
+    border-bottom: none;
+}
+
+.reason-row:nth-child(even) {
+    background: var(--color-row-stripe, transparent);
+}
+
+.reason-row:hover {
+    background: var(--color-row-hover, rgba(255, 255, 255, 0.04));
+}
+
+.reason-row-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* Width is provided by the parent grid column. min-width:0 lets the
+       inner ellipsis kick in instead of stretching the cell. */
+    min-width: 0;
+}
+
+/* Avatar base — color comes from the .approver-color-N modifier below
+   so every approver gets a stable, distinct hue across chip + row. */
+.reason-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    letter-spacing: 0.3px;
+}
+
+.reason-approver-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.reason-approver-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text, #fff);
+    /* Ellipsis truncation — full name is surfaced via the title attribute on
+       hover so layout never shifts when an approver has a longer name. */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: default;
+}
+
+.reason-approver-title {
+    font-size: 11px;
+    color: var(--color-text-secondary, #8eafd4);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Middle column — pinned to row center by the parent grid. The wrapper
+   anchors the absolutely-positioned condition popover below. */
+.reason-text-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+}
+
+.reason-text-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+}
+
+.reason-text {
+    font-size: 13px;
+    color: var(--color-text-secondary, #c8d6e8);
+    line-height: 1.4;
+    text-align: center;
+    padding: 0 12px;
+}
+
+/* Subtle hint that the reason cell carries a hover popover describing why
+   this rule fires. Only applied when a description is available. */
+.reason-text-wrapper.has-description .reason-text {
+    cursor: help;
+    text-decoration: underline dotted;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--color-text-tertiary, rgba(200, 214, 232, 0.45));
+}
+
+/* ── Description popover ──
+   Plain-language explanation of why this approval rule fires, sourced from
+   sbaa__ApprovalRule__c.Approval_Description__c. Renders below the reason
+   text on hover or keyboard focus. Theming is driven entirely by the parent
+   shell's --color-* tokens so light and dark modes share one rule set. */
+.description-popover {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-4px);
+    width: max-content;
+    min-width: 320px;
+    max-width: 440px;
+    background: var(--color-surface, #1e2a3a);
+    border: 1px solid var(--color-border, #2d3e54);
+    border-radius: 10px;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+    z-index: 60;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    overflow: hidden;
+    text-align: left;
+}
+
+.reason-text-wrapper.has-description:hover .description-popover,
+.reason-text-wrapper.has-description:focus-within .description-popover {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Transparent hover bridge — extends the popover's pointer-events region
+   UP to the reason text so the popover doesn't flicker closed when the
+   cursor moves across the visual gap between them. */
+.description-popover::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    height: 14px;
+    background: transparent;
+}
+
+/* Caret pointing up at the reason text. */
+.description-popover::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border: 7px solid transparent;
+    border-bottom-color: var(--color-surface, #1e2a3a);
+    filter: drop-shadow(0 -1px 0 var(--color-border, #2d3e54));
+}
+
+.description-popover-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: var(--color-approvals-bg, rgba(254, 147, 57, 0.10));
+    border-bottom: 1px solid var(--color-border, #2d3e54);
+}
+
+.description-popover-icon {
+    --slds-c-icon-color-foreground: var(--color-approvals-accent, #fe9339);
+    --slds-c-icon-color-foreground-default: var(--color-approvals-accent, #fe9339);
+    flex-shrink: 0;
+}
+
+.description-popover-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-approvals-accent, #fe9339);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.description-popover-text {
+    margin: 0;
+    padding: 14px 16px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--color-text, #fff);
+    /* Preserve author-entered line breaks but still wrap long lines. */
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+/* Right column wrapper — right-aligns the rule chip inside the fixed-width
+   grid track so name length on the left can never push it. */
+.reason-rule-cell {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 0;
+}
+
+.reason-rule-chip {
+    padding: 4px 12px;
+    background: var(--color-rule-chip-bg, rgba(145, 116, 208, 0.15));
+    color: var(--color-rule-chip-text, #c3aef0);
+    border: 1px solid var(--color-rule-chip-border, rgba(145, 116, 208, 0.3));
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+    letter-spacing: 0.2px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.reasons-tip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--color-approvals-tip-bg, rgba(254, 147, 57, 0.06));
+    font-size: 12px;
+    color: var(--color-text-secondary, #8eafd4);
+    border-top: 1px solid var(--color-border, #2d3e54);
+    /* The panel no longer uses overflow:hidden, so round the tip's bottom
+       corners directly to keep the panel-bottom rounded. */
+    border-radius: 0 0 8px 8px;
+}
+
+.tip-icon {
+    --slds-c-icon-color-foreground: var(--color-approvals-accent, #fe9339);
+    --slds-c-icon-color-foreground-default: var(--color-approvals-accent, #fe9339);
+    flex-shrink: 0;
+}
+
+/* ── Avatar / chip color palette (7 slots, hashed in JS) ──
+   Same hues for chip dots and expanded-row avatars so the eye links them. */
+.approver-color-1 { background: #4a90e2; }  /* blue */
+.approver-color-2 { background: #27ae60; }  /* green */
+.approver-color-3 { background: #f2994a; }  /* orange */
+.approver-color-4 { background: #eb5757; }  /* red */
+.approver-color-5 { background: #9b59b6; }  /* purple */
+.approver-color-6 { background: #e91e63; }  /* magenta */
+.approver-color-7 { background: #00bcd4; }  /* teal */
+
+/* ── Settings bar ── */
+
+.settings-bar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--color-surface, #1e2a3a);
+    border: 1px solid var(--color-border, #2d3e54);
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.setting-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.setting-item-checkbox {
+    align-items: flex-start;
+}
+
+.setting-item label {
+    font-size: 11px;
+    color: var(--color-text-secondary, #8eafd4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.date-input {
+    width: 100%;
+}
+
+/* ── Disabled field inputs ── */
+
+.field-disabled {
+    border: 1px solid var(--color-border, #d8dde6);
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 14px;
+    color: var(--color-text-disabled, #9ca3af);
+    background: var(--color-disabled-bg, #f3f4f6);
+    width: 100%;
+    cursor: not-allowed;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+.discount-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+}
+
+.field-discount {
+    flex: 1;
+    min-width: 0;
+}
+
+.pct-sign {
+    font-size: 14px;
+    color: var(--color-text-disabled, #9ca3af);
+    font-weight: 500;
+}
+
+.field-select-disabled {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    border: 1px solid var(--color-border, #d8dde6);
+    border-radius: 4px;
+    padding: 6px 10px;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: not-allowed;
+    background: var(--color-disabled-bg, #f3f4f6);
+    user-select: none;
+}
+
+.field-select-value {
+    font-size: 14px;
+    color: var(--color-text-disabled, #9ca3af);
+    white-space: nowrap;
+}
+
+.select-chevron {
+    --slds-c-icon-color-foreground: var(--color-text-secondary, #8eafd4);
+    flex-shrink: 0;
+}
+
+.special-terms-check {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    margin-top: 2px;
+    accent-color: #0176d3;
+    /* Force a white checkbox background in dark mode (the parent sets
+       color-scheme: dark for other form controls). Light mode is unchanged
+       because the browser was already rendering it light. */
+    color-scheme: light;
+}
+
+/* ── Contacts card ── */
+
+.contacts-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 16px 20px;
+    background: var(--color-surface, #1e2a3a);
+    border: 1px solid var(--color-border, #2d3e54);
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.contact-card-section {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.contact-card-right {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.contact-label-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.contact-label {
+    font-size: 11px;
+    color: var(--color-text-secondary, #8eafd4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.contact-search-icon {
+    --slds-c-icon-color-foreground: var(--color-text-secondary, #8eafd4);
+    pointer-events: none;
+}
+
+.contact-search-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 2px;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.contact-search-btn:hover,
+.contact-search-btn:focus-visible {
+    background: var(--color-hover-bg, rgba(126, 184, 240, 0.12));
+    border-color: var(--color-border, #2d3e54);
+    outline: none;
+}
+
+.contact-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text, #fff);
+}
+
+.contact-account {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-text-secondary, #8eafd4);
+}
+
+.contact-detail {
+    font-size: 12px;
+    color: var(--color-text-secondary, #8eafd4);
+}
+
+.contact-title {
+    font-size: 11px;
+    color: var(--color-text-secondary, #8eafd4);
+    opacity: 0.85;
+}
+
+.contact-empty {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--color-text-secondary, #8eafd4);
+}
+
+/* ── Select Contact modal ── */
+
+.contact-picker-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    animation: contactPickerFade 0.15s ease;
+}
+
+.contact-picker-modal {
+    width: min(440px, calc(100vw - 32px));
+    max-height: min(560px, calc(100vh - 64px));
+    background: var(--color-surface, #1e2a3a);
+    border: 1px solid var(--color-border, #2d3e54);
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.contact-picker-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px 12px;
+}
+
+.contact-picker-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-text, #fff);
+}
+
+.contact-picker-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: transparent;
+    border: 1px solid var(--color-border, #2d3e54);
+    border-radius: 50%;
+    color: var(--color-text-secondary, #8eafd4);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.contact-picker-close:hover,
+.contact-picker-close:focus-visible {
+    background: var(--color-hover-bg, rgba(126, 184, 240, 0.12));
+    color: var(--color-text, #fff);
+    outline: none;
+}
+
+.contact-picker-search {
+    position: relative;
+    margin: 0 20px 12px;
+}
+
+.contact-picker-search-icon {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    --slds-c-icon-color-foreground: var(--color-text-secondary, #8eafd4);
+    pointer-events: none;
+}
+
+.contact-picker-search-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px 10px 34px;
+    font-size: 13px;
+    color: var(--color-text, #fff);
+    background: var(--color-input-bg, #40414f);
+    border: 1px solid var(--color-border, #2d3e54);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.contact-picker-search-input::placeholder {
+    color: var(--color-text-secondary, #a1a1aa);
+}
+
+.contact-picker-search-input:focus {
+    border-color: #2680eb;
+    box-shadow: 0 0 0 2px rgba(38, 128, 235, 0.25);
+}
+
+.contact-picker-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 4px 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.contact-picker-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.contact-picker-item:hover,
+.contact-picker-item:focus-visible {
+    background: var(--color-hover-bg, rgba(126, 184, 240, 0.10));
+    outline: none;
+}
+
+.contact-picker-item--selected {
+    background: rgba(38, 128, 235, 0.10);
+    border-color: rgba(38, 128, 235, 0.55);
+}
+
+.contact-picker-item--selected:hover,
+.contact-picker-item--selected:focus-visible {
+    background: rgba(38, 128, 235, 0.16);
+}
+
+.contact-picker-avatar {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(38, 128, 235, 0.15);
+    color: #2680eb;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.5px;
+}
+
+.contact-picker-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.contact-picker-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text, #fff);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.contact-picker-meta {
+    font-size: 12px;
+    color: var(--color-text-secondary, #8eafd4);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.contact-picker-dot {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #2680eb;
+}
+
+.contact-picker-empty {
+    padding: 24px 12px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--color-text-secondary, #8eafd4);
+}
+
+@keyframes contactPickerFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ── Approvals bar chips (inline) ──
+   Each chip carries a tiny dot in the approver's avatar color so users can
+   visually link a chip to its row in the expanded reasons panel. */
+
+.approvals-chips-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    flex: 1;
+    padding: 0 12px;
+    min-width: 0;
+}
+
+.approver-chip-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 12px 5px 10px;
+    background: var(--color-chip-bg, #fff);
+    color: var(--color-text, #1e2a3a);
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 16px;
+    border: 1px solid var(--color-chip-border, #d8dde6);
+    white-space: nowrap;
+    transition: background 0.12s ease, border-color 0.12s ease, transform 0.12s ease;
+}
+
+.approver-chip-inline:hover {
+    background: var(--color-chip-hover-bg, #fffbf2);
+    border-color: var(--color-approvals-border, rgba(254, 147, 57, 0.4));
+    transform: translateY(-1px);
+}
+
+.approver-chip-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    /* Color comes from .approver-color-N modifier added by JS. */
+}
+
+.approver-chip-name {
+    line-height: 1;
+}
+
+/* ── Loading ── */
+
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+
+/* ── Lines section ── */
+
+.lines-section {
+    margin-top: 8px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.lines-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.lines-header h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-text, #fff);
+}
+
+.lines-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+}
+
+/* ── Toast ── */
+
+.toast-container {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 10001;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    animation: toastSlideDown 0.25s ease;
+}
+
+.toast-container.success {
+    background: #2e844a;
+    color: white;
+}
+
+.toast-container.error {
+    background: #ea001e;
+    color: white;
+}
+
+@keyframes toastSlideDown {
+    from { transform: translateX(-50%) translateY(-20px); opacity: 0; }
+    to { transform: translateX(-50%) translateY(0); opacity: 1; }
+}

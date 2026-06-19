@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Intapp_Terms_Early_Adopter_Status__c</fullName>
+    <inlineHelpText>Does this account have interest in Intapp Terms? If so, what is the status of interest?</inlineHelpText>
+    <label>Intapp Terms Target Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>We reached out</fullName>
+                <default>false</default>
+                <label>We reached out</label>
+            </value>
+            <value>
+                <fullName>Firm or sales expressed interest</fullName>
+                <default>false</default>
+                <label>Firm or sales expressed interest</label>
+            </value>
+            <value>
+                <fullName>Scheduled or completed meeting/demo</fullName>
+                <default>false</default>
+                <label>Scheduled or completed meeting/demo</label>
+            </value>
+            <value>
+                <fullName>EA target (or willing to provide feedback)</fullName>
+                <default>false</default>
+                <label>EA target (or willing to provide feedback)</label>
+            </value>
+            <value>
+                <fullName>GA release target – early</fullName>
+                <default>false</default>
+                <label>GA release target – early</label>
+            </value>
+            <value>
+                <fullName>GA release target – later</fullName>
+                <default>false</default>
+                <label>GA release target – later</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

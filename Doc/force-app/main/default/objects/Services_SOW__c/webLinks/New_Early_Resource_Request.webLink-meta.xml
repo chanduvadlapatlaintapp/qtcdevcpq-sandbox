@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_Early_Resource_Request</fullName>
+    <availability>online</availability>
+    <description>SC-000057</description>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>New Early Resource Request</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url>/a45/e?retURL=/{!Opportunity.Id}
+&amp;aid={!Opportunity.Id}
+&amp;RecordType=012500000006raq
+&amp;00N500000031HbH=Early+Resource+Request+-+{!Opportunity.Name}
+&amp;CF00N500000030m64={!Opportunity.Account}
+&amp;CF00N500000030m64_lkid={!Opportunity.AccountId}
+&amp;CF00N500000030u1R={!Opportunity.Name}
+&amp;CF00N500000030u1R_lkid={!Opportunity.Id}
+&amp;CF00N500000030m7g={!$User.FirstName}+{!$User.LastName}
+&amp;00N500000030m7g_lkid={!$User.Id}</url>
+</WebLink>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Regular_Signature__c</fullName>
+    <formula>IF(
+(Include_Counter_Signature__c = TRUE)&amp;&amp; (Authorize_Signature__c = FALSE) ||
+(Include_Counter_Signature__c = FALSE)&amp;&amp; (Authorize_Signature__c = TRUE),
+FALSE,
+TRUE
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Regular Signature</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

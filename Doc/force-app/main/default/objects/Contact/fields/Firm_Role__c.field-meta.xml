@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Firm_Role__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+OR(
+
+CONTAINS((LOWER(Title)), &quot;vp&quot;),
+CONTAINS(Title, &quot;EVP&quot;),
+CONTAINS(Title, &quot;SVP&quot;), 
+CONTAINS((LOWER(Title)), &quot;vicepresident&quot;), 
+CONTAINS((LOWER(Title)), &quot;vice president&quot;), 
+CONTAINS((LOWER(Title)), &quot;general counsel&quot;), 
+CONTAINS(Title, &quot;AVP&quot;)),
+&quot;VP-level&quot;,
+
+IF(
+OR(
+(AND(
+CONTAINS((LOWER(Title)), &quot;president&quot;),NOT(CONTAINS((LOWER(Title)), &quot;vice&quot;)))),
+
+CONTAINS(Title, &quot;Managing Partner&quot;), 
+CONTAINS((LOWER(Title)), &quot;co-director&quot;), 
+CONTAINS(Title, &quot;Chair&quot;), 
+CONTAINS(Title, &quot;President&quot;), 
+CONTAINS(Title, &quot;Principal&quot;), 
+CONTAINS(Title, &quot;Senior Partner&quot;), 
+CONTAINS(Title, &quot;Executive Partner&quot;), 
+CONTAINS(Title, &quot;Founding Partner&quot;), 
+CONTAINS(Title, &quot;Managing Director&quot;), 
+CONTAINS(Title, &quot;Managing Principal&quot;), 
+CONTAINS(Title, &quot;Shareholder&quot;), 
+CONTAINS(Title, &quot;Board&quot;), 
+CONTAINS(Title, &quot;Executive Director&quot;)),
+&quot;Firm Management&quot;,
+
+IF(
+OR(
+CONTAINS((LOWER(Title)), &quot;co-founder&quot;), 
+CONTAINS(Title, &quot;Founder&quot;), 
+CONTAINS(Title, &quot;Officer&quot;), 
+CONTAINS(Title, &quot;Owner&quot;), 
+CONTAINS(Title, &quot;Chief&quot;), 
+CONTAINS(Title, &quot;Head&quot;), 
+CONTAINS((LOWER(Title)), &quot;co-head&quot;), 
+CONTAINS((LOWER(Title)), &quot;co head&quot;), 
+CONTAINS(Title, &quot;CXO&quot;), 
+CONTAINS(Title, &quot;CFO&quot;), 
+CONTAINS(Title, &quot;COO&quot;), 
+CONTAINS(Title, &quot;CTO&quot;), 
+CONTAINS(Title, &quot;CISO&quot;), 
+CONTAINS((LOWER(Title)), &quot;partner&quot;),
+CONTAINS(Title, &quot;General Counsel&quot;), 
+CONTAINS((LOWER(Title)), &quot;officer&quot;),
+AND(BEGINS((LOWER(Title)), &quot;c&quot;),(LEN(Title)=3))),
+&quot;CxO&quot;,
+
+IF(
+OR(
+(AND(
+CONTAINS((LOWER(Title)), &quot;director&quot;),NOT(CONTAINS((LOWER(Title)), &quot;managing&quot;)))),
+(AND(
+CONTAINS((LOWER(Title)), &quot;dir&quot;),NOT(CONTAINS((LOWER(Title)), &quot;managing&quot;)))),
+CONTAINS(Title, &quot;Dir.&quot;),
+CONTAINS((LOWER(Title)), &quot;senior lead&quot;)), 
+&quot;Director&quot;,
+
+IF(
+OR(
+CONTAINS((LOWER(Title)), &quot;manager&quot;),
+CONTAINS((LOWER(Title)), &quot;lead&quot;),
+CONTAINS(Title, &quot;Mgr&quot;), 
+CONTAINS(Title, &quot;Mgr.&quot;), 
+CONTAINS(Title, &quot;Sr.&quot;), 
+CONTAINS(Title, &quot;Senior&quot;), 
+CONTAINS(Title, &quot;Supervisor&quot;), 
+CONTAINS((LOWER(Title)), &quot;management&quot;)), 
+&quot;Manager&quot;,
+
+&quot;Non-Manager&quot;)
+
+)
+)
+)
+)</formula>
+    <label>Firm Role</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

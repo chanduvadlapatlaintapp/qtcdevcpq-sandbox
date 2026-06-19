@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Usage_Type__c</fullName>
+    <label>Usage Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Category__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Timekeepers - Journal Usage</fullName>
+                <default>false</default>
+                <label>Timekeepers - Journal Usage</label>
+            </value>
+            <value>
+                <fullName>Timekeepers - Web Application Usage</fullName>
+                <default>false</default>
+                <label>Timekeepers - Web Application Usage</label>
+            </value>
+            <value>
+                <fullName>Timekeepers - Printable View Usage</fullName>
+                <default>false</default>
+                <label>Timekeepers - Printable View Usage</label>
+            </value>
+            <value>
+                <fullName>Timekeepers - Quick Note Usage</fullName>
+                <default>false</default>
+                <label>Timekeepers - Quick Note Usage</label>
+            </value>
+            <value>
+                <fullName>Total Timekeeper Usage</fullName>
+                <default>false</default>
+                <label>Total Timekeeper Usage</label>
+            </value>
+            <value>
+                <fullName>Assistants - Web Application  Usage</fullName>
+                <default>false</default>
+                <label>Assistants - Web Application  Usage</label>
+            </value>
+            <value>
+                <fullName>Number of User Administrators Enabled</fullName>
+                <default>false</default>
+                <label>Number of User Administrators Enabled</label>
+            </value>
+            <value>
+                <fullName>Total Enabled Users</fullName>
+                <default>false</default>
+                <label>Total Enabled Users</label>
+            </value>
+            <value>
+                <fullName>Timekeepers</fullName>
+                <default>false</default>
+                <label>Timekeepers</label>
+            </value>
+            <value>
+                <fullName>Assistants</fullName>
+                <default>false</default>
+                <label>Assistants</label>
+            </value>
+            <value>
+                <fullName>Total</fullName>
+                <default>false</default>
+                <label>Total</label>
+            </value>
+            <value>
+                <fullName>Number of Timekeepers</fullName>
+                <default>false</default>
+                <label>Number of Timekeepers</label>
+            </value>
+            <value>
+                <fullName>Total Timekeepers Receiving Journal</fullName>
+                <default>false</default>
+                <label>Total Timekeepers Receiving Journal</label>
+            </value>
+            <value>
+                <fullName>Mobile App Usage</fullName>
+                <default>false</default>
+                <label>Mobile App Usage</label>
+            </value>
+            <value>
+                <fullName>Timers Usage</fullName>
+                <default>false</default>
+                <label>Timers Usage</label>
+            </value>
+            <value>
+                <fullName>Number of Timekeepers Enabled</fullName>
+                <default>false</default>
+                <label>Number of Timekeepers Enabled</label>
+            </value>
+            <value>
+                <fullName>Number of Assistants Enabled</fullName>
+                <default>false</default>
+                <label>Number of Assistants Enabled</label>
+            </value>
+            <value>
+                <fullName>Number of Administrators Enabled</fullName>
+                <default>false</default>
+                <label>Number of Administrators Enabled</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Timekeeper Usage Summary</controllingFieldValue>
+            <valueName>Timekeepers - Journal Usage</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Timekeeper Usage Summary</controllingFieldValue>
+            <valueName>Timekeepers - Web Application Usage</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Timekeeper Usage Summary</controllingFieldValue>
+            <valueName>Timekeepers - Printable View Usage</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Timekeeper Usage Summary</controllingFieldValue>
+            <valueName>Timekeepers - Quick Note Usage</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Timekeeper Usage Summary</controllingFieldValue>
+            <valueName>Total Timekeeper Usage</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Assistant Usage Summary</controllingFieldValue>
+            <valueName>Assistants - Web Application  Usage</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

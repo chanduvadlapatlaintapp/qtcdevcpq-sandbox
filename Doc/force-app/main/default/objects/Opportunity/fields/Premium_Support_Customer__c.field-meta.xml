@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Premium_Support_Customer__c</fullName>
+    <description>SC-000028</description>
+    <formula>IF(
+  OR(
+    CONTAINS(TEXT(Account.Support_Level_Integration_Builder__c), &quot;Premium&quot;),
+    CONTAINS(TEXT(Account.Support_Level_Intapp_Open_Conflicts__c), &quot;Premium&quot;),
+    CONTAINS(TEXT(Account.Support_Level_Intapp_Open_Intake__c), &quot;Premium&quot;),
+    CONTAINS(TEXT(Account.Support_Level_Intapp_Open_Terms__c), &quot;Premium&quot;),
+    CONTAINS(TEXT(Account.Support_Level_Intapp_Time__c), &quot;Premium&quot;),
+    CONTAINS(TEXT(Account.Support_Level_Wall_Builder__c), &quot;Premium&quot;),
+    CONTAINS(TEXT(Account.Support_Level_Rekoop__c), &quot;Premium&quot;)
+   ),
+   TRUE,
+   FALSE
+)</formula>
+    <label>Premium Support Customer</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

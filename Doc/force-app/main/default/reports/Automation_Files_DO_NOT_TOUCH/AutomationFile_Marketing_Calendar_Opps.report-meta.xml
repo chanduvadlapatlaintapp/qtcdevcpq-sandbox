@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Campaign.Intapp_Campaign_Number__c</field>
+    </columns>
+    <columns>
+        <field>CAMPAIGN_NAME</field>
+    </columns>
+    <columns>
+        <field>Campaign.Value_of_Target_Account_opportunities__c.CONVERT</field>
+    </columns>
+    <columns>
+        <field>Campaign.Value_of_Open_opportunities__c.CONVERT</field>
+    </columns>
+    <columns>
+        <field>Campaign.Value_of_Closed_Won_opportunities__c.CONVERT</field>
+    </columns>
+    <columns>
+        <field>NUM_CONTACTS</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Automation report for Marketing Calendar for pulling in Campaign Effectiveness</description>
+    <filter>
+        <criteriaItems>
+            <column>START_DATE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>greaterThan</operator>
+            <value>7/1/2017</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>AutomationFile:Marketing Calendar Opps</name>
+    <params>
+        <name>scopeid</name>
+        <value></value>
+    </params>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CampaignList</reportType>
+    <scope>orgAll</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Campaign.Intapp_Campaign_Number__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+</Report>

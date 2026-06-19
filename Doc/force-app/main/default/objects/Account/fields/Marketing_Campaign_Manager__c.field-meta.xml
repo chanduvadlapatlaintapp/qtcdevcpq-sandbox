@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Marketing_Campaign_Manager__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Field created based on the request in FreshDesk #19313</description>
+    <inlineHelpText>Marketing Campaign Manager for each account.</inlineHelpText>
+    <label>Marketing Campaign Manager (Exp Dec 20)</label>
+    <lookupFilter>
+        <active>false</active>
+        <filterItems>
+            <field>User.Id</field>
+            <operation>equals</operation>
+            <value>00550000005CkG4</value>
+        </filterItems>
+        <filterItems>
+            <field>User.Id</field>
+            <operation>equals</operation>
+            <value>00550000006SLEi</value>
+        </filterItems>
+        <filterItems>
+            <field>User.Id</field>
+            <operation>equals</operation>
+            <value>00550000007gZS1</value>
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Marketing_Campaign_Manager</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

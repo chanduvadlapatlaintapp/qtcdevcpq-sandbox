@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSCaseTB_Select_desktop_email_software__c</fullName>
+    <inlineHelpText>Select the desktop email software used in your organization from the drop-down list.</inlineHelpText>
+    <label>Select desktop email software</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Outlook 2010 (32-bit)</fullName>
+                <default>false</default>
+                <label>Outlook 2010 (32-bit)</label>
+            </value>
+            <value>
+                <fullName>Outlook 2010 (64-bit)</fullName>
+                <default>false</default>
+                <label>Outlook 2010 (64-bit)</label>
+            </value>
+            <value>
+                <fullName>Outlook 2007</fullName>
+                <default>false</default>
+                <label>Outlook 2007</label>
+            </value>
+            <value>
+                <fullName>Outlook 2003</fullName>
+                <default>false</default>
+                <label>Outlook 2003</label>
+            </value>
+            <value>
+                <fullName>Other desktop email software</fullName>
+                <default>false</default>
+                <label>Other desktop email software</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

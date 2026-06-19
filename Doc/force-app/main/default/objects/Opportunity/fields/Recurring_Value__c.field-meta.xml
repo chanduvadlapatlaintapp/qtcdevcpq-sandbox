@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recurring_Value__c</fullName>
+    <label>Subscription Total Recurring Value</label>
+    <summarizedField>OpportunityLineItem.Net_Amount2__c</summarizedField>
+    <summaryFilterItems>
+        <field>OpportunityLineItem.Recurring_or_Onetime_subscription_credit__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>OpportunityLineItem.Product_Code_Text__c</field>
+        <operation>notEqual</operation>
+        <value>GE-01554</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>OpportunityLineItem.Total_Price_Book_Amount__c</field>
+        <operation>notEqual</operation>
+        <value>0</value>
+    </summaryFilterItems>
+    <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

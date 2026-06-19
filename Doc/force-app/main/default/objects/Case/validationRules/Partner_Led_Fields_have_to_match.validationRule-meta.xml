@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Partner_Led_Fields_have_to_match</fullName>
+    <active>true</active>
+    <description>The &quot;Partner Engagement&quot; and &quot;Services Revenue Model&quot; fields have to match if it&apos;s a partner led project.</description>
+    <errorConditionFormula>OR(
+  AND(
+    ISPICKVAL(Services_Revenue_Model__c,&quot;Partner Prime&quot;),
+    NOT(ISPICKVAL(Partner_Engagement__c,&quot;Prime (led)&quot;))
+  ),
+  AND(
+    NOT(ISPICKVAL(Services_Revenue_Model__c,&quot;Partner Prime&quot;)),
+    ISPICKVAL(Partner_Engagement__c,&quot;Prime (led)&quot;)
+  )
+)</errorConditionFormula>
+    <errorMessage>Please make sure that both the &quot;Services Revenue Model&quot; and the &quot;Partner Engagement&quot; fields match for partner led cases.</errorMessage>
+</ValidationRule>

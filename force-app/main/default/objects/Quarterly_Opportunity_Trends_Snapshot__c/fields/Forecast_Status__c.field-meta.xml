@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Forecast_Status__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  Won__c,
+  &quot;4. Closed Won&quot;,
+  IF(
+    In_Manager_Forecast__c,
+    &quot;3. In Manager Forecast&quot;,
+    IF(
+      Upside__c,
+      &quot;2. Upside&quot;,
+      &quot;1. Not in Forecast&quot;
+    )
+  )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Forecast Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

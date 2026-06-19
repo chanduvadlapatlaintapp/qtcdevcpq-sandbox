@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IntApp_Product_Role__c</fullName>
+    <inlineHelpText>Technical Owner = Primary technical lead (e.g. CIO) 
+Technical Resource = Technical administrator (e.g. DBA) 
+Business Owner = Buyer of the solution (e.g. GC, CFO) 
+Business User = End user (e.g. Records Clerk)</inlineHelpText>
+    <label>Intapp Product Role</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>WB: IT Owner</fullName>
+                <default>false</default>
+                <label>WB: IT Owner</label>
+            </value>
+            <value>
+                <fullName>WB: IT Administrator</fullName>
+                <default>false</default>
+                <label>WB: IT Administrator</label>
+            </value>
+            <value>
+                <fullName>WB: Business Owner</fullName>
+                <default>false</default>
+                <label>WB: Business Owner</label>
+            </value>
+            <value>
+                <fullName>WB: Business User</fullName>
+                <default>false</default>
+                <label>WB: Business User</label>
+            </value>
+            <value>
+                <fullName>AT: IT Owner</fullName>
+                <default>false</default>
+                <label>AT: IT Owner</label>
+            </value>
+            <value>
+                <fullName>AT: IT Administrator</fullName>
+                <default>false</default>
+                <label>AT: IT Administrator</label>
+            </value>
+            <value>
+                <fullName>AT: Business Owner</fullName>
+                <default>false</default>
+                <label>AT: Business Owner</label>
+            </value>
+            <value>
+                <fullName>AT: Business User</fullName>
+                <default>false</default>
+                <label>AT: Business User</label>
+            </value>
+            <value>
+                <fullName>TB: IT Owner</fullName>
+                <default>false</default>
+                <label>TB: IT Owner</label>
+            </value>
+            <value>
+                <fullName>TB: IT Administrator</fullName>
+                <default>false</default>
+                <label>TB: IT Administrator</label>
+            </value>
+            <value>
+                <fullName>TB: Business Owner</fullName>
+                <default>false</default>
+                <label>TB: Business Owner</label>
+            </value>
+            <value>
+                <fullName>IB: IT Administrator</fullName>
+                <default>false</default>
+                <label>IB: IT Administrator</label>
+            </value>
+            <value>
+                <fullName>IB: IT Owner</fullName>
+                <default>false</default>
+                <label>IB: IT Owner</label>
+            </value>
+            <value>
+                <fullName>DTE: IT Owner</fullName>
+                <default>false</default>
+                <label>DTE: IT Owner</label>
+            </value>
+            <value>
+                <fullName>DTE: IT Administrator</fullName>
+                <default>false</default>
+                <label>DTE: IT Administrator</label>
+            </value>
+            <value>
+                <fullName>DTE: Business Owner</fullName>
+                <default>false</default>
+                <label>DTE: Business Owner</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>6</visibleLines>
+</CustomField>

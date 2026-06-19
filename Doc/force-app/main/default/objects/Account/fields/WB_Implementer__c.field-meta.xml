@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WB_Implementer__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Lead Wall Builder implementer</description>
+    <inlineHelpText>Lead Wall Builder implementer</inlineHelpText>
+    <label>WB Implementer</label>
+    <referenceTo>Contact</referenceTo>
+    <relationshipLabel>Accounts</relationshipLabel>
+    <relationshipName>Accounts</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

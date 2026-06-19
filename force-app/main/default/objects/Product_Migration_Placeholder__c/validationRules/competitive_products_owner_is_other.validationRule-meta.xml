@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>competitive_products_owner_is_other</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+INCLUDES(Current_competitive_products_owned__c,&quot;Other adjacent competitor&quot;),
+ISBLANK(Other_adjacent_competitor__c)
+)</errorConditionFormula>
+    <errorDisplayField>Other_adjacent_competitor__c</errorDisplayField>
+    <errorMessage>Please fill &quot;Other adjacent competitor &quot; field to move on</errorMessage>
+</ValidationRule>

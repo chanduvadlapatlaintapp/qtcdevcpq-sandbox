@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PPP_Segmentation__c</fullName>
+    <description>Each of the ALM 200 firms should either be labeled – Premium, Competitive, or Majority.</description>
+    <inlineHelpText>Each of the ALM 200 firms should either be labeled – Premium, Competitive, or Majority.</inlineHelpText>
+    <label>PPP Segmentation</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Premium</fullName>
+                <default>false</default>
+                <label>Premium</label>
+            </value>
+            <value>
+                <fullName>Competitive</fullName>
+                <default>false</default>
+                <label>Competitive</label>
+            </value>
+            <value>
+                <fullName>Majority</fullName>
+                <default>false</default>
+                <label>Majority</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

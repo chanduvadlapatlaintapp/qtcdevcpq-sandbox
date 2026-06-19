@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_License_Type__c</fullName>
+    <description>If software, is this an Annual or Perpetual software license?</description>
+    <inlineHelpText>If software, is this an Annual or Perpetual software license?</inlineHelpText>
+    <label>Software License Term</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Product_Type__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Annual</fullName>
+                <default>false</default>
+                <label>Annual</label>
+            </value>
+            <value>
+                <fullName>Perpetual</fullName>
+                <default>false</default>
+                <label>Perpetual</label>
+            </value>
+            <value>
+                <fullName>Services</fullName>
+                <default>false</default>
+                <label>Services</label>
+            </value>
+            <value>
+                <fullName>Early Adopter</fullName>
+                <default>false</default>
+                <label>Early Adopter</label>
+            </value>
+            <value>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+                <label>Monthly</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Early Adopter</controllingFieldValue>
+            <controllingFieldValue>Software</controllingFieldValue>
+            <controllingFieldValue>Services</controllingFieldValue>
+            <valueName>Early Adopter</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Software</controllingFieldValue>
+            <controllingFieldValue>Support</controllingFieldValue>
+            <valueName>Annual</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Software</controllingFieldValue>
+            <valueName>Perpetual</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Software</controllingFieldValue>
+            <controllingFieldValue>Support</controllingFieldValue>
+            <valueName>Monthly</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Services</controllingFieldValue>
+            <valueName>Services</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

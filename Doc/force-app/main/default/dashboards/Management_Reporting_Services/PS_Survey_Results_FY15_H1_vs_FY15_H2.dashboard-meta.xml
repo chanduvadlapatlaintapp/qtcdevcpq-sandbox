@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dashboard xmlns="http://soap.sforce.com/2006/04/metadata">
+    <backgroundEndColor>#FFFFFF</backgroundEndColor>
+    <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
+    <backgroundStartColor>#FFFFFF</backgroundStartColor>
+    <dashboardType>SpecifiedUser</dashboardType>
+    <isGridLayout>false</isGridLayout>
+    <leftSection>
+        <columnSize>Wide</columnSize>
+        <components>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <chartSummary>
+                <aggregate>Average</aggregate>
+                <axisBinding>y2</axisBinding>
+                <column>Case.Survey_OverallScore_Number__c</column>
+            </chartSummary>
+            <componentType>Column</componentType>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>false</enableHover>
+            <expandOthers>false</expandOthers>
+            <groupingColumn>Account.Geography__c</groupingColumn>
+            <groupingSortProperties/>
+            <header>Professional Services Project Survey Results</header>
+            <legendPosition>Bottom</legendPosition>
+            <report>Customer_Success_Management/PS_Survey_Results_FY15_H1</report>
+            <showPercentage>false</showPercentage>
+            <showValues>true</showValues>
+            <sortBy>RowLabelAscending</sortBy>
+            <sortLegendValues>false</sortLegendValues>
+            <title>FY2015 - H1</title>
+            <useReportChart>false</useReportChart>
+        </components>
+    </leftSection>
+    <owner>sig.lackner@intapp.com</owner>
+    <rightSection>
+        <columnSize>Wide</columnSize>
+        <components>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <chartSummary>
+                <aggregate>Average</aggregate>
+                <axisBinding>y2</axisBinding>
+                <column>Case.Survey_OverallScore_Number__c</column>
+            </chartSummary>
+            <componentType>Column</componentType>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>false</enableHover>
+            <expandOthers>false</expandOthers>
+            <groupingColumn>Account.Geography__c</groupingColumn>
+            <groupingSortProperties/>
+            <header>Professional Services Project Survey Results</header>
+            <legendPosition>Bottom</legendPosition>
+            <report>Customer_Success_Management/PS_Survey_Results_FY15_H2</report>
+            <showPercentage>false</showPercentage>
+            <showValues>true</showValues>
+            <sortBy>RowLabelAscending</sortBy>
+            <sortLegendValues>false</sortLegendValues>
+            <title>FY2015 - H2</title>
+            <useReportChart>false</useReportChart>
+        </components>
+    </rightSection>
+    <runningUser>sig.lackner@intapp.com</runningUser>
+    <textColor>#000000</textColor>
+    <title>PS Survey Results - FY15/H1 vs FY15/H2</title>
+    <titleColor>#000000</titleColor>
+    <titleSize>12</titleSize>
+</Dashboard>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Entered_Shopping_Period__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(MONTH(First_Entered_Shopping_Date__c), 
+1,TEXT(YEAR(First_Entered_Shopping_Date__c)) &amp; &quot; - &quot;&amp;&quot;Q3&quot;, 
+2,TEXT(YEAR(First_Entered_Shopping_Date__c)) &amp; &quot; - &quot;&amp;&quot;Q3&quot;, 
+3,TEXT(YEAR(First_Entered_Shopping_Date__c)) &amp; &quot; - &quot;&amp;&quot;Q3&quot;, 
+4,TEXT(YEAR(First_Entered_Shopping_Date__c)) &amp; &quot; - &quot;&amp;&quot;Q4&quot;, 
+5,TEXT(YEAR(First_Entered_Shopping_Date__c)) &amp; &quot; - &quot;&amp;&quot;Q4&quot;, 
+6,TEXT(YEAR(First_Entered_Shopping_Date__c)) &amp; &quot; - &quot;&amp;&quot;Q4&quot;, 
+7,TEXT(YEAR(First_Entered_Shopping_Date__c)+1) &amp; &quot; - &quot;&amp;&quot;Q1&quot;, 
+8,TEXT(YEAR(First_Entered_Shopping_Date__c)+1) &amp; &quot; - &quot;&amp;&quot;Q1&quot;, 
+9,TEXT(YEAR(First_Entered_Shopping_Date__c)+1) &amp; &quot; - &quot;&amp;&quot;Q1&quot;, 
+10,TEXT(YEAR(First_Entered_Shopping_Date__c)+1) &amp; &quot; - &quot;&amp;&quot;Q2&quot;, 
+11,TEXT(YEAR(First_Entered_Shopping_Date__c)+1) &amp; &quot; - &quot;&amp;&quot;Q2&quot;, 
+12,TEXT(YEAR(First_Entered_Shopping_Date__c)+1) &amp; &quot; - &quot;&amp;&quot;Q2&quot;, 
+&quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Entered Shopping Period</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

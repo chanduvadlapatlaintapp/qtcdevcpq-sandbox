@@ -1,0 +1,37 @@
+<apex:page standardController="SBQQ__Quote__c" extensions="QuoteApproveAllExtController">
+    <apex:actionStatus id="pageStatus">
+    <apex:facet name="start">
+        <apex:outputPanel >
+            <img src="/img/loading32.gif" width="25" height="25" />
+            <apex:outputLabel value="Processing..."/>
+        </apex:outputPanel>            
+    </apex:facet>
+    </apex:actionStatus>
+    <apex:outputPanel rendered="{!!bHasApproveAllPermission}" >
+        <apex:form >
+            <apex:pageMessage id="AccessDeniedMessage" severity="error" strength="3" title="Access Denied" summary="You do not  have permission to use this feature"/>
+            <apex:commandButton value="Back to Quote" action="{!messageConfirmed}"/>
+        </apex:form>
+    </apex:outputPanel>
+    <apex:form rendered="{!bHasApproveAllPermission}">
+        <h4 class="modal-title">Enter comments</h4>
+        <div >
+            <apex:inputTextarea value="{!commentValue}" style="margin-top:.5rem;width: 40rem;height: 8rem;"/>
+            <apex:outputPanel id="errorSection">
+                <apex:outputPanel rendered="{!showError}">
+                    <div style="color:red;">Enter the comments.</div>
+                </apex:outputPanel>
+            </apex:outputPanel>
+        </div>
+        <div>
+            <apex:commandButton value="Submit" action="{!submit}" status="pageStatus" rerender="outputSection,errorSection" style="margin-top:.5rem;"/>
+        </div>
+    </apex:form>
+    
+    <apex:outputPanel rendered="{!submitted}" id="outputSection">
+        <flow:interview name="QTC_GreenboxApproveAll" finishLocation="{!URLFOR('/'+SBQQ__Quote__c.Id)}">
+        	<apex:param name="quoteId" value="{!flowParams}"/>
+        </flow:interview>        
+    </apex:outputPanel>
+    <apex:pageMessages />
+</apex:page>

@@ -1,0 +1,133 @@
+:host {
+    display: block;
+    font-family: 'Manrope', Arial, sans-serif;
+}
+
+/* ===== Page Header ===== */
+.page-header {
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 1.25rem;
+    background: linear-gradient(135deg, #f0f4f8 0%, #e8ecf2 100%);
+    border-radius: 0.5rem;
+    border-left: 4px solid #501AFF;
+}
+
+.header-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    background: linear-gradient(135deg, #501AFF 0%, #3D14BF 100%);
+    border-radius: 0.5rem;
+    margin-right: 0.875rem;
+    flex-shrink: 0;
+}
+
+.header-icon lightning-icon {
+    --lwc-colorTextIconDefault: #ffffff;
+}
+
+.header-title {
+    color: #073C7D;
+    font-weight: 700;
+    font-size: 1.0625rem;
+}
+
+.header-subtitle {
+    color: #536E8D;
+    font-size: 0.8125rem;
+    margin-top: 0.125rem;
+}
+
+/* ===== Filter Card ===== */
+.filter-card {
+    padding: 1rem 1.25rem;
+    background-color: #ffffff;
+    border: 1px solid #E6E6E6;
+    border-radius: 0.5rem;
+}
+
+/* ===== Product Banner ===== */
+.product-banner {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.25rem;
+    background: linear-gradient(135deg, #F5F2FF 0%, #EDE8FF 100%);
+    border: 1px solid #C4B5FD;
+    border-left: 4px solid #501AFF;
+    border-radius: 0.5rem;
+}
+
+.product-banner__name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #073C7D;
+    margin-right: 0.75rem;
+}
+
+.product-banner__line {
+    font-size: 0.8125rem;
+    color: #536E8D;
+    background-color: #E6E6E6;
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.25rem;
+}
+
+/* ===== Save Bar ===== */
+.save-bar {
+    display: flex;
+    align-items: center;
+    padding: 0.625rem 1rem;
+    background-color: #fff9e6;
+    border: 1px solid #F3B400;
+    border-left: 4px solid #F3B400;
+    border-radius: 0.375rem;
+}
+
+.save-bar-text {
+    font-size: 0.8125rem;
+    color: #536E8D;
+    font-weight: 500;
+}
+
+/* ===== Empty States ===== */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.empty-state-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    background-color: #F4F7FA;
+    border-radius: 50%;
+    margin-bottom: 0.75rem;
+}
+
+.empty-state-heading {
+    color: #073C7D;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.empty-state-text {
+    color: #A4B9D7;
+    font-size: 0.875rem;
+}
+
+/* ===== Form Field Styling ===== */
+.slds-grid lightning-input,
+.slds-grid lightning-combobox {
+    --sds-c-input-color-border: transparent;
+    --slds-c-input-color-border: transparent;
+    --sds-c-input-color-background: #f4f6f9;
+    --slds-c-input-color-background: #f4f6f9;
+    --sds-c-input-shadow: none;
+    --slds-c-input-shadow: none;
+}

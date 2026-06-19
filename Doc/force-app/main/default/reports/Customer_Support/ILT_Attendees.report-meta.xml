@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>ILT__c.Product__c</field>
+    </columns>
+    <columns>
+        <field>ILT__c.Start_Date__c</field>
+    </columns>
+    <columns>
+        <field>ILT__c.Location__c</field>
+    </columns>
+    <columns>
+        <field>FK_$Contact.Full_Name__c</field>
+    </columns>
+    <columns>
+        <field>ILT_Attendee__c.Status__c</field>
+    </columns>
+    <columns>
+        <field>ILT__c.Number_of_Seats__c</field>
+    </columns>
+    <columns>
+        <field>ILT__c.Seats_Available__c</field>
+    </columns>
+    <columns>
+        <field>ILT__c.Seats_Taken__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>List of attendees for ILT courses</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>CUST_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>ILT Attendees</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntityCustomEntity$ILT__c$ILT_Attendee__c@ILT_Attendee__c.Person__c</reportType>
+    <scope>user</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>ILT__c.Cancel_By_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

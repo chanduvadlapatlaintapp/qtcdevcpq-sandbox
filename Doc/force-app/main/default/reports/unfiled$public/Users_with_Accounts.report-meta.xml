@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>User$Name</field>
+    </columns>
+    <columns>
+        <field>User.Account$OwnerId$Name</field>
+    </columns>
+    <columns>
+        <field>User.Account$OwnerId.Opportunities$Name</field>
+    </columns>
+    <columns>
+        <field>User.Account$OwnerId$Id</field>
+    </columns>
+    <columns>
+        <field>User$Id</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Users with Accounts and Opportunities</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>User$Username</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Users with Accounts</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Users_with_Accounts_and_Opportunities__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>User$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

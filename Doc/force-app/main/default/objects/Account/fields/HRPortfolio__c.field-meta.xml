@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HRPortfolio__c</fullName>
+    <description>This is to designate what time tracking application is in use at the account. This replaced the old checkbox system.</description>
+    <inlineHelpText>What HR system does this account use?</inlineHelpText>
+    <label>HR</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Access SelectHR</fullName>
+                <default>false</default>
+                <label>Access SelectHR</label>
+            </value>
+            <value>
+                <fullName>ADP</fullName>
+                <default>false</default>
+                <label>ADP</label>
+            </value>
+            <value>
+                <fullName>Cascade HR</fullName>
+                <default>false</default>
+                <label>Cascade HR</label>
+            </value>
+            <value>
+                <fullName>Ceridian</fullName>
+                <default>false</default>
+                <label>Ceridian</label>
+            </value>
+            <value>
+                <fullName>Chris21</fullName>
+                <default>false</default>
+                <label>Chris21</label>
+            </value>
+            <value>
+                <fullName>Custom</fullName>
+                <default>false</default>
+                <label>Custom</label>
+            </value>
+            <value>
+                <fullName>Entre</fullName>
+                <default>false</default>
+                <label>Entre</label>
+            </value>
+            <value>
+                <fullName>HR Pro</fullName>
+                <default>false</default>
+                <label>HR Pro</label>
+            </value>
+            <value>
+                <fullName>Humanic</fullName>
+                <default>false</default>
+                <label>Humanic</label>
+            </value>
+            <value>
+                <fullName>iVantage</fullName>
+                <default>false</default>
+                <label>iVantage</label>
+            </value>
+            <value>
+                <fullName>Kronos</fullName>
+                <default>false</default>
+                <label>Kronos</label>
+            </value>
+            <value>
+                <fullName>Lawson</fullName>
+                <default>false</default>
+                <label>Lawson</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Northgate</fullName>
+                <default>false</default>
+                <label>Northgate</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Paychex</fullName>
+                <default>false</default>
+                <label>Paychex</label>
+            </value>
+            <value>
+                <fullName>PeopleSoft</fullName>
+                <default>false</default>
+                <label>PeopleSoft</label>
+            </value>
+            <value>
+                <fullName>Ultipro</fullName>
+                <default>false</default>
+                <label>Ultipro</label>
+            </value>
+            <value>
+                <fullName>viDesktop</fullName>
+                <default>false</default>
+                <label>viDesktop</label>
+            </value>
+            <value>
+                <fullName>Workday</fullName>
+                <default>false</default>
+                <label>Workday</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

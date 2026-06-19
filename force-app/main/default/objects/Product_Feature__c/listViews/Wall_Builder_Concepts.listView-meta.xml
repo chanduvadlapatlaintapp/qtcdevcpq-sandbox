@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Wall_Builder_Concepts</fullName>
+    <columns>NAME</columns>
+    <columns>Description__c</columns>
+    <columns>Investment_Justification__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Product_Line__c</field>
+        <operation>equals</operation>
+        <value>Wall Builder</value>
+    </filters>
+    <filters>
+        <field>Stage__c</field>
+        <operation>equals</operation>
+        <value>Concept</value>
+    </filters>
+    <label>Wall Builder Concepts</label>
+</ListView>

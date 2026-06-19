@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Annex_email_sent__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>We use this field to prevent duplicate emails. Workflow evaluation criteria&quot;Evaluate the rule when a record is created, and any time it&apos;s edited to subsequently meet criteria&quot; does not work for &quot;Request OSA&quot; field.
+Related to Ticket# 31384</description>
+    <label>Annex/Cloud email sent</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

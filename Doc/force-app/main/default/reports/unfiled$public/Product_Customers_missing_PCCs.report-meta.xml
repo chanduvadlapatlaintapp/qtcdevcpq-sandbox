@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>Subscription__c.Product_LineNew__c</field>
+    </columns>
+    <columns>
+        <field>CUST_CREATED_DATE</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <currency>GBP</currency>
+    <filter>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <column>CUST_NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>S-0002215,S-0006511,S-0001827,S-0005319,S-0006241,S-0006509,S-0006508,S-0006697,S-0006505,S-0001753,S-0006514,S-0006707,S-0006847,S-0006772,S-0006773,S-0006774,S-0006775,S-0006776,S-0006777,S-0006778,S-0006779,S-0006780,S-0006278,S-0005100,S-0006093,S-0006094,S-0006095,S-0002518,S-0005894,S-0005874,S-0005878,S-0005876,S-0005873,S-0005877,S-0006015,S-0006012,S-0006016,S-0006014,S-0006017,S-0006013,S-0006419,S-0006746,S-0006747,S-0006748,S-0006240,S-0006312,S-0006534,S-0006767,S-0006301,S-0005966,S-0006069,S-0002555,S-0005765,S-0006658,S-0006689,S-0006690,S-0006691,S-0005978,S-0006695,S-0005696,S-0005061,S-0005281,S-0005282,S-0006739,S-0006540,S-0003558,S-0004203,S-0003427,S-0006541,S-0005697,S-0006769,S-0006701,S-0006310,S-0006653,S-0006809,S-0001162,S-0005850,S-0006655,S-0006306,S-0006703,S-0004006,S-0004007,S-0006845,S-0006846,S-0002519,S-0006668,S-0006660,S-0005823,S-0006811,S-0006682,S-0006683</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>CUST_NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>S-0006548,S-0006645,S-0006574,S-0006271,S-0005225,S-0006494,S-0005983,S-0005982,S-0006698,S-0006490,S-0006702,S-0002858,S-0006857,S-0006861,S-0006754,S-0006646,S-0006800,S-0006801,S-0006802,S-0006482,S-0006581,S-0006283,S-0006817,S-0006818,S-0006819,S-0006476,S-0006816,S-0006815,S-0006473,S-0006110,S-0006726,S-0006727,S-0006728,S-0000791,S-0006859,S-0003877,S-0006118,S-0006119,S-0006117,S-0006115,S-0006116,S-0005243,S-0006693,S-0006565,S-0005506,S-0006650,S-0003790,S-0006639,S-0005098,S-0006785,S-0006786,S-0006787,S-0006665,S-0006666,S-0006667,S-0005812</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.CRD__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Product Customers missing PCCs</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountCustomEntity$Subscription__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>ACCOUNT.NAME</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>DUE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

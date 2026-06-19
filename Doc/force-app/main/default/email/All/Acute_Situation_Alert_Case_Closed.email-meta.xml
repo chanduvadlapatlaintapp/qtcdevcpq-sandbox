@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notifies closure of Acute Situation Alert Case</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>CS_Critical_Case_Letterhead</letterhead>
+    <name>Acute Situation Alert Case Closed</name>
+    <style>freeForm</style>
+    <subject>An Acute Situation Alert Case is Closed for {!Account.Name}!</subject>
+    <textOnly>This is to inform that an acute situation alert case for {!Account.Name} is now closed and this Account is no more considered on Hot List!
+
+Current Status: {!Case.Status}
+Date/Time Closed: {!Case.ClosedDate}
+Description: {!Case.Description}
+Category of Issue: {!Case.Category_of_Issue__c}
+Potential Risks: {!Case.Potential_Risks__c}
+
+=================================
+Account Details:
+
+Account Owner: {!Account.OwnerFullName}
+CSM Engagment Model: {!Account.CSM_Engagement_Model__c}
+Intapp 750# {!Account.Intapp_Legal_750__c}
+
+For more details please navigate to Case Link: {!Case.Link}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

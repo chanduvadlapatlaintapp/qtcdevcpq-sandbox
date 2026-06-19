@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AutoResponseRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <autoResponseRule>
+        <fullName>Event Registration Auto-Response Rules</fullName>
+        <active>true</active>
+        <ruleEntry>
+            <criteriaItems>
+                <field>Campaign.Name</field>
+                <operation>equals</operation>
+                <value>2016-07 -- July16 Flow HBR Webinar</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Lead.CampaignMemberStatus</field>
+                <operation>equals</operation>
+                <value>Registered DNA</value>
+            </criteriaItems>
+            <senderEmail>webinars@intapp.com</senderEmail>
+            <senderName>Intapp Webinars</senderName>
+            <template>CustomerCommunication/Webinar_Response_Jul16_HBR_Flow_Webinar</template>
+        </ruleEntry>
+        <ruleEntry>
+            <criteriaItems>
+                <field>Campaign.Name</field>
+                <operation>equals</operation>
+                <value>2016-07 -- July16 Flow HBR Webinar</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Lead.CampaignMemberStatus</field>
+                <operation>equals</operation>
+                <value>Registered HBR</value>
+            </criteriaItems>
+            <senderEmail>webinars@intapp.com</senderEmail>
+            <senderName>Intapp Webinars</senderName>
+            <template>CustomerCommunication/Webinar_Response_Jul16_HBR_Flow_Webinar_HBR_Use</template>
+        </ruleEntry>
+        <ruleEntry>
+            <criteriaItems>
+                <field>Campaign.Name</field>
+                <operation>equals</operation>
+                <value>2016-10-25 -- ILTA Flow Webinar</value>
+            </criteriaItems>
+            <senderEmail>webinars@intapp.com</senderEmail>
+            <senderName>Intapp Webinars</senderName>
+            <template>CustomerCommunication/Webinar_Auto_Response_Oct16_ILTA_Flow_Webinar</template>
+        </ruleEntry>
+        <ruleEntry>
+            <criteriaItems>
+                <field>Campaign.Name</field>
+                <operation>equals</operation>
+                <value>2016-11-09 -- Flow Webinar</value>
+            </criteriaItems>
+            <senderEmail>webinars@intapp.com</senderEmail>
+            <senderName>Intapp Webinars</senderName>
+            <template>CustomerCommunication/Webinar_Auto_Response_Nov16_Flow_Webinar</template>
+        </ruleEntry>
+        <ruleEntry>
+            <criteriaItems>
+                <field>Campaign.Name</field>
+                <operation>equals</operation>
+                <value>2016-03 -- Mar16 Terms Release Webinar</value>
+            </criteriaItems>
+            <senderEmail>webinars@intapp.com</senderEmail>
+            <senderName>Intapp Webinars</senderName>
+            <template>CustomerCommunication/Webinar_Response_Mar16_Terms_Webinar</template>
+        </ruleEntry>
+    </autoResponseRule>
+</AutoResponseRules>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DTE_Axiom_Legacy_Customers</fullName>
+    <booleanFilter>(1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 8) AND 7</booleanFilter>
+    <columns>Account_Owner_Name__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>DTE_Axiom__c</columns>
+    <columns>DTE_Legacy__c</columns>
+    <columns>Intapp_Time_Core__c</columns>
+    <columns>Intapp_Time_Core_Management__c</columns>
+    <columns>Intapp_Time_Mobile__c</columns>
+    <columns>Intapp_Time_Total_Management__c</columns>
+    <columns>DTE_Axiom_Mobile__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>DTE_Axiom__c</field>
+        <operation>equals</operation>
+        <value>Own it,Converted</value>
+    </filters>
+    <filters>
+        <field>DTE_Legacy__c</field>
+        <operation>equals</operation>
+        <value>Own it,Converted</value>
+    </filters>
+    <filters>
+        <field>Intapp_Time_Core_Management__c</field>
+        <operation>equals</operation>
+        <value>Own it,Own it - Cloud</value>
+    </filters>
+    <filters>
+        <field>Intapp_Time_Total_Management__c</field>
+        <operation>equals</operation>
+        <value>Own it,Own it - Cloud</value>
+    </filters>
+    <filters>
+        <field>Intapp_Time_Mobile__c</field>
+        <operation>equals</operation>
+        <value>Own it,Own it - Cloud</value>
+    </filters>
+    <filters>
+        <field>Intapp_Time_Core__c</field>
+        <operation>equals</operation>
+        <value>Own it,Own it - Cloud</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.TYPE</field>
+        <operation>equals</operation>
+        <value>Customer</value>
+    </filters>
+    <filters>
+        <field>DTE_Axiom_Mobile__c</field>
+        <operation>equals</operation>
+        <value>Own it,Converted</value>
+    </filters>
+    <label>DTE Axiom &amp; Legacy Customers</label>
+    <language>en_US</language>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

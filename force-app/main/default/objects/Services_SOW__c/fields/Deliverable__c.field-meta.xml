@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deliverable__c</fullName>
+    <label>Deliverable</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Executive Solution Story</fullName>
+                <default>false</default>
+                <label>Executive Solution Story</label>
+            </value>
+            <value>
+                <fullName>Standard Demo</fullName>
+                <default>false</default>
+                <label>Standard Demo</label>
+            </value>
+            <value>
+                <fullName>Tailored Demo</fullName>
+                <default>false</default>
+                <label>Tailored Demo</label>
+            </value>
+            <value>
+                <fullName>Hands-on Workshop</fullName>
+                <default>false</default>
+                <label>Hands-on Workshop</label>
+            </value>
+            <value>
+                <fullName>PoC / Pilot</fullName>
+                <default>false</default>
+                <label>PoC / Pilot</label>
+            </value>
+            <value>
+                <fullName>Other (description below)</fullName>
+                <default>false</default>
+                <label>Other (description below)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Check_if_Approval_Rejected</name>
+        <label>Check if Approval Status</label>
+        <locationX>471</locationX>
+        <locationY>503</locationY>
+        <defaultConnector>
+            <targetReference>update_comments_on_Quote</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Approval_Rejection_Check</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.sbaa__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Rejected</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>update_rejection_comment_on_quote</targetReference>
+            </connector>
+            <label>Approval Rejection Check</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_the_field_Change</name>
+        <label>Check the field Change</label>
+        <locationX>669</locationX>
+        <locationY>383</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Check_if_the_status_Changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.sbaa__Status__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record__Prior.sbaa__Status__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_if_Approval_Rejected</targetReference>
+            </connector>
+            <label>Check if the status Changed</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Update Approval Comment on Quote {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update Approval Comment on Quote</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>update_comments_on_Quote</name>
+        <label>update comments on Quote</label>
+        <locationX>665</locationX>
+        <locationY>642</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Quote__c</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Approver_Comments__c</field>
+            <value>
+                <elementReference>UpdatedApprovalComment</elementReference>
+            </value>
+        </inputAssignments>
+        <object>SBQQ__Quote__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>update_rejection_comment_on_quote</name>
+        <label>update rejection comment on quote</label>
+        <locationX>267</locationX>
+        <locationY>622</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Quote__c</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Approver_Comments__c</field>
+            <value>
+                <elementReference>UpdateApprovercommentforrejection</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Rejection_Comments__c</field>
+            <value>
+                <elementReference>updated_rejection_comment</elementReference>
+            </value>
+        </inputAssignments>
+        <object>SBQQ__Quote__c</object>
+    </recordUpdates>
+    <start>
+        <locationX>543</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>Check_the_field_Change</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>sbaa__Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Approved</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>sbaa__Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Rejected</stringValue>
+            </value>
+        </filters>
+        <object>sbaa__Approval__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Draft</status>
+    <textTemplates>
+        <name>UpdateApprovercommentforrejection</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>{!$Record.sbaa__Status__c} by {!$Record.sbaa__RejectedBy__r.FirstName} {!$Record.sbaa__RejectedBy__r.LastName}. {!$Record.sbaa__CommentsLong__c} : {!$Flow.CurrentDateTime}
+{!$Record.Quote__r.Approver_Comments__c}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>updated_rejection_comment</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>{!$Record.sbaa__Status__c} by {!$Record.sbaa__RejectedBy__r.FirstName} {!$Record.sbaa__RejectedBy__r.LastName}. {!$Record.sbaa__CommentsLong__c}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>UpdatedApprovalComment</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>{!$Record.sbaa__Status__c} by {!$Record.sbaa__ApprovedBy__r.FirstName} {!$Record.sbaa__ApprovedBy__r.LastName}. {!$Record.sbaa__CommentsLong__c} : {!$Flow.CurrentDateTime}
+{!$Record.Quote__r.Approver_Comments__c}</text>
+    </textTemplates>
+    <variables>
+        <name>ExistingComment</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>PreviousStatus</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <elementReference>$Record__Prior.sbaa__Status__c</elementReference>
+        </value>
+    </variables>
+</Flow>

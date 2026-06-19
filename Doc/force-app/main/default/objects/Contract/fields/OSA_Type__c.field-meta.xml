@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OSA_Type__c</fullName>
+    <description>We use OSA documents for both master contracts, and for addenda or revisions to those contracts. This field tells you what type this OSA is.</description>
+    <inlineHelpText>We use OSA documents for both master contracts, and for addenda or revisions to those contracts. This field tells you what type this OSA is.</inlineHelpText>
+    <label>OSA Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Master Contract</fullName>
+                <default>true</default>
+                <label>Master Contract</label>
+            </value>
+            <value>
+                <fullName>Addendum or Revision</fullName>
+                <default>false</default>
+                <label>Addendum or Revision</label>
+            </value>
+            <value>
+                <fullName>Services Change Order</fullName>
+                <default>false</default>
+                <label>Services Change Order</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Services Change Order (Internal)</fullName>
+                <default>false</default>
+                <label>Services Change Order (Internal)</label>
+            </value>
+            <value>
+                <fullName>Legacy Rekoop Paper</fullName>
+                <default>false</default>
+                <label>Legacy Rekoop Paper</label>
+            </value>
+            <value>
+                <fullName>OnePlace Legacy Agreement</fullName>
+                <default>false</default>
+                <label>OnePlace Legacy Agreement</label>
+            </value>
+            <value>
+                <fullName>Repstor Legacy Agreement</fullName>
+                <default>false</default>
+                <label>Repstor Legacy Agreement</label>
+            </value>
+            <value>
+                <fullName>DealCloud Legacy</fullName>
+                <default>false</default>
+                <label>DealCloud Legacy</label>
+            </value>
+            <value>
+                <fullName>Billstream Legacy Agreement</fullName>
+                <default>false</default>
+                <label>Billstream Legacy Agreement</label>
+            </value>
+            <value>
+                <fullName>Legacy Polar Agreement</fullName>
+                <default>false</default>
+                <label>Legacy Polar Agreement</label>
+            </value>
+            <value>
+                <fullName>Legacy Delphai Agreement</fullName>
+                <default>false</default>
+                <label>Legacy Delphai Agreement</label>
+            </value>
+            <value>
+                <fullName>Legacy TDI Agreement</fullName>
+                <default>false</default>
+                <label>Legacy TDI Agreement</label>
+            </value>
+            <value>
+                <fullName>Legacy TermSheet Agreement</fullName>
+                <default>false</default>
+                <label>Legacy TermSheet Agreement</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

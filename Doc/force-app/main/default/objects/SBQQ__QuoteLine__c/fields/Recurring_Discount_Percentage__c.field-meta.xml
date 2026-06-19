@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recurring_Discount_Percentage__c</fullName>
+    <description>Created as part of BIZ-50204</description>
+    <formula>IF(
+    OR(
+        VALUE(RIGHT(TEXT((SBQQ__CustomerTotal__c / (SBQQ__EffectiveQuantity__c * Segment_Months__c)) * 10000), 1)) &gt; 0,
+        VALUE(RIGHT(TEXT((SBQQ__CustomerTotal__c / (SBQQ__EffectiveQuantity__c * Segment_Months__c)) * 1000), 1)) &gt; 0
+    ),
+    TRUE,
+    FALSE
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Recurring Discount Percentage</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

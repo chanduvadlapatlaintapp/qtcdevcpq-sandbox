@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tax_Percentage_Applied_For_NS__c</fullName>
+    <description>display Tax Percentage as 0, if the tax amount from Avalara is 0</description>
+    <formula>0</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Tax Percentage Applied For NS</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>4</scale>
+    <trackHistory>false</trackHistory>
+    <type>Percent</type>
+</CustomField>

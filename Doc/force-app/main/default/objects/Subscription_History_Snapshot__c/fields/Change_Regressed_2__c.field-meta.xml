@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Change_Regressed_2__c</fullName>
+    <formula>OR(
+  CSM_Health_Change_Code__c=&quot;C to D&quot;,
+  CSM_Health_Change_Code__c=&quot;C to F&quot;,
+  CSM_Health_Change_Code__c=&quot;D to F&quot;,
+  CSM_Health_Change_Code__c=&quot;E to C&quot;,
+  CSM_Health_Change_Code__c=&quot;E to D&quot;,
+  CSM_Health_Change_Code__c=&quot;E to F&quot;,
+  CSM_Health_Change_Code__c=&quot;New to C&quot;,
+  CSM_Health_Change_Code__c=&quot;New to D&quot;,
+  CSM_Health_Change_Code__c=&quot;New to F&quot;
+)</formula>
+    <label>Change Regressed (2)?</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

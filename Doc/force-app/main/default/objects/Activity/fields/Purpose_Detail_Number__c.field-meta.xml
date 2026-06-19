@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Purpose_Detail_Number__c</fullName>
+    <description>This creates a numerical value for each Purpose picklist value.</description>
+    <externalId>false</externalId>
+    <formula>CASE( Purpose_Detail__c , 
+&quot;1.0 Marketing outreach&quot; , 1.0, 
+&quot;1.1 Suspect attends IntApp event&quot; , 1.1,
+&quot;1.2 Prospect self-id&apos;s to IntApp&quot;, 1.2,
+&quot;1.9 Other Marketing&quot;, 1.9,
+&quot;2.0 Outreach&quot;, 2.0,
+&quot;2.1 Negative response&quot;, 2.1,
+&quot;2.2 Receptive exchange&quot;, 2.2,
+&quot;2.3 On-site first meeting&quot;, 2.3,
+&quot;2.4 Account/Product Profiling&quot;, 2.4,
+&quot;2.9 Other Territory Development&quot;, 2.9,
+&quot;3.0 Opportunity meetings&quot;, 3.0,
+&quot;3.1 Gathering deal data points&quot;, 3.1,
+&quot;3.2 Providing ranges for budget&quot;, 3.2,
+&quot;3.3 Draft Discussion document&quot;, 3.3,
+&quot;3.4 Full/Technical demonstration&quot;, 3.4,
+&quot;3.5 Proposal/RFP response&quot;, 3.5,
+&quot;3.6 References&quot;, 3.6,
+&quot;3.7 Competitive evaluation&quot;, 3.7,
+&quot;3.8 Closed - no decision&quot;, 3.8,
+&quot;3.9 Lost to competitor&quot;, 3.9,
+&quot;4.0 Selected&quot;, 4.0,
+&quot;4.1 Negotiating price, package and terms&quot;, 4.1,
+&quot;4.2 Closed - won&quot;, 4.2,
+&quot;4.3 Right of Return&quot;, 4.3,
+&quot;4.9 Other Opportunity work&quot;, 4.9,
+&quot;5.0 Kick off meeting&quot;, 5.0,
+&quot;5.9 Other Services&quot;, 5.9,
+&quot;6.1 Support Outreach&quot;, 6.1,
+&quot;7.1 Account Management Outreach&quot;, 7.1,
+&quot;7.2 At-Risk Activity&quot;, 7.2,
+&quot;7.9 Other Account Management&quot;, 7.9,
+9999)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Purpose Detail Number</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

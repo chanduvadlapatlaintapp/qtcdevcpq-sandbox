@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pricing_Proposal_Approval__c</fullName>
+    <description>Picklist field to display the stages of approval for pricing proposals.
+Built according to user story BIZ-45143.
+Updated for story BIZ-49730..</description>
+    <label>Pricing Proposal Approval</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Pending Submission</fullName>
+                <default>true</default>
+                <label>Pending Submission</label>
+            </value>
+            <value>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+                <label>In Progress</label>
+            </value>
+            <value>
+                <fullName>Approved</fullName>
+                <default>false</default>
+                <label>Approved</label>
+            </value>
+            <value>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+                <label>Rejected</label>
+            </value>
+            <value>
+                <fullName>Recalled</fullName>
+                <default>false</default>
+                <label>Recalled</label>
+            </value>
+            <value>
+                <fullName>Draft</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Draft</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

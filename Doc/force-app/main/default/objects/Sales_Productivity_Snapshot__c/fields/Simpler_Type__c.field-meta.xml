@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Simpler_Type__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+   OR(CONTAINS(&quot;Legal - New Customer&quot;, Type__c),CONTAINS(&quot;Legal - Recovered Customer&quot;, Type__c)),
+   &quot;New or Recovered Customer&quot;,
+   IF(
+      OR(CONTAINS(&quot;Legal - New Product&quot;, Type__c),CONTAINS(&quot;Legal - Recovered Product&quot;, Type__c)),
+      &quot;New or Recovered Product&quot;,
+      &quot;Other&quot;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Simpler Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

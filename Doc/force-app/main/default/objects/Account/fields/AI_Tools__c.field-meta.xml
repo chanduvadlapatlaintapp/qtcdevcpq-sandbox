@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AI_Tools__c</fullName>
+    <label>AI Tools</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Kira</fullName>
+                <default>false</default>
+                <label>Kira</label>
+            </value>
+            <value>
+                <fullName>RAVN</fullName>
+                <default>false</default>
+                <label>RAVN</label>
+            </value>
+            <value>
+                <fullName>Luminance</fullName>
+                <default>false</default>
+                <label>Luminance</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

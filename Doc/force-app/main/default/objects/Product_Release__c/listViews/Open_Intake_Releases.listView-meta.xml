@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Open_Intake_Releases</fullName>
+    <columns>NAME</columns>
+    <columns>Description__c</columns>
+    <columns>Actual_Release_Date__c</columns>
+    <columns>Limited_Support_Date__c</columns>
+    <columns>Retired_Date__c</columns>
+    <columns>Support_Level__c</columns>
+    <columns>Build__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Product_Line__c</field>
+        <operation>equals</operation>
+        <value>IntApp Open - Intake</value>
+    </filters>
+    <label>Open Releases</label>
+    <language>en_US</language>
+</ListView>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Discount_Template__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(Monthly_List_Unit_Price__c=&apos;NULL&apos;, NULL, Text( ROUND(((Original_List_Unit_Price__c-List_Price_Text__c)/Original_List_Unit_Price__c * 100),2)))</formula>
+    <label>Discount template</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

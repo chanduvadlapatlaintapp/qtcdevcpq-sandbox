@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_SRT</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>SRT_Time_Entry_Installed__c</columns>
+    <columns>SRT_Time_Frequency__c</columns>
+    <columns>SRT_Time_Entry_Last_Check_In__c</columns>
+    <columns>SRT_Time_Entry_Status__c</columns>
+    <columns>TE_Desktop_Version__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>SRT_Time_Entry_Installed__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>SRT_Time_Entry_Status__c</field>
+        <operation>notContain</operation>
+        <value>Installed - Stopped checking in</value>
+    </filters>
+    <label>SRT Time Entry</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Finance_AR</group>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_78469722</developerName>
+        <masterLabel>Pricing Leader</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>Contact.Standard_Title__c</sourceColumnName>
+        <useOther>false</useOther>
+    </buckets>
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_76380772</developerName>
+        <masterLabel>Pricing Leaders</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>Contact.Standard_Title__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <value>Pricing Leaders</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>ADDRESS2_COUNTRY</field>
+    </columns>
+    <currency>GBP</currency>
+    <description>Report that was designed to assess how many of our Strategic - Tier C accounts do not have a contact listed under the Pricing Leader standard title</description>
+    <filter>
+        <criteriaItems>
+            <column>ACCOUNT.NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Intapp,Detached Contacts,Independent Contacts</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>INDUSTRY</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Legal</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Legal_Tier_Split__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>STRATEGIC,A,B,C</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Contact.Standard_Title__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Legal_Tier_Split__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>ACCOUNT.NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Intapp_Legal_750__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Standard Title by account</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>ContactList</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

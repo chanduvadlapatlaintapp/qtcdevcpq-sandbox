@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Require_Ops_Support__c</fullName>
+    <description>Created as part of BIZ-45145. Modified as part of BIZ-49348, to include Existing Client.
+Modified as part of BIZ-50639 , to remove reference of SOW Document Attatched.</description>
+    <formula>OR(
+   Existing_Client__c,
+   ISPICKVAL(Software_Payment_Terms__c, &apos;Other&apos;),
+   ISPICKVAL(SBQQ__BillingFrequency__c, &apos;Invoice Plan&apos;),
+   ISPICKVAL(SBQQ__BillingFrequency__c, &apos;Other&apos;),
+   MSSA_Document_Attached__c,
+   Cloud_Addendum_Document_Attached__c,
+   Liability_Annex_Document_Attached__c,
+   SBQQ__Account__r.Pre_9_4_1_Liability_Annex_Executed__c,
+   ISPICKVAL(SBQQ__Account__r.Contract_Term_Version__c, &apos;10.1.1&apos;),
+   ISPICKVAL(SBQQ__Account__r.Contract_Term_Version__c, &apos;10.2&apos;),
+   ISPICKVAL(SBQQ__Account__r.Contract_Term_Version__c, &apos;10.2.1&apos;),
+   ISPICKVAL(SBQQ__Account__r.Contract_Term_Version__c, &apos;10.2.2&apos;),
+   ISPICKVAL(SBQQ__Account__r.Contract_Term_Version__c, &apos;8.5&apos;),
+   ISPICKVAL(SBQQ__Account__r.Contract_Term_Version__c, &apos;8.8&apos;),
+   ISPICKVAL(SBQQ__Account__r.Contract_Term_Version__c, &apos;8.9&apos;),
+   ISPICKVAL(SBQQ__Account__r.Contract_Term_Version__c, &apos;9.0&apos;),
+   ISPICKVAL(SBQQ__Account__r.Contract_Term_Version__c, &apos;9.1&apos;),
+   ISPICKVAL(SBQQ__Account__r.Contract_Term_Version__c, &apos;9.2&apos;),
+   ISPICKVAL(SBQQ__Account__r.Contract_Term_Version__c, &apos;9.3&apos;),
+   ISPICKVAL(SBQQ__Account__r.Contract_Term_Version__c, &apos;9.4&apos;),
+   ISPICKVAL(SBQQ__Account__r.Contract_Term_Version__c, &apos;9.4v3&apos;),
+   AND(
+       OR(
+           ISPICKVAL(SBQQ__Account__r.Contract_Term_Version__c, &apos;10.6 excluding Cloud Terms&apos;),
+           ISPICKVAL(SBQQ__Account__r.Contract_Term_Version__c, &apos;10.7 excluding Cloud Terms&apos;),
+           ISPICKVAL(SBQQ__Account__r.Contract_Term_Version__c, &apos;10.8 Excluding Cloud Terms&apos;),
+           ISPICKVAL(SBQQ__Account__r.Contract_Term_Version__c, &apos;10.9 Excluding Cloud Terms&apos;),
+           ISPICKVAL(SBQQ__Account__r.Contract_Term_Version__c, &apos;11 Excluding Cloud Terms&apos;)
+       ),
+       ISBLANK(SBQQ__Account__r.Cloud_Addendum__c)
+   ),
+   ISPICKVAL(Contract_Master_Terms__c, &apos;New Intapp MSSA Attached&apos;),
+   ISPICKVAL(Contract_Master_Terms__c, &apos;Existing Intapp MSSA Plus Cloud&apos;),
+   ISPICKVAL(Contract_Master_Terms__c, &apos;Existing Intapp MSSA plus Annex&apos;),
+   ISPICKVAL(Contract_Master_Terms__c, &apos;Repstor Legacy&apos;),
+   ISPICKVAL(Contract_Master_Terms__c, &apos;OnePlace Legacy&apos;),
+   ISPICKVAL(Contract_Master_Terms__c, &apos;Existing Intapp MSSA signed by Customer Affiliate&apos;),
+   ISPICKVAL(Contract_Master_Terms__c, &apos;Trial&apos;),
+   ISPICKVAL(Contract_Master_Terms__c, &apos;New MSSA Signed Separate&apos;),
+			NOT(ISPICKVAL(SBQQ__Account__r.Status__c,&apos;Verification Approved&apos;)),
+			NOT(ISPICKVAL(Ship_To_Account__r.Status__c,&apos;Verification Approved&apos;)),
+			NOT(ISPICKVAL(Bill_To_Account__r.Status__c,&apos;Verification Approved&apos;)),
+			NOT(ISPICKVAL(Ship_To_Address__r.Status__c,&apos;Verification Approved&apos;)),
+			NOT(ISPICKVAL(Bill_To_Address__r.Status__c,&apos;Verification Approved&apos;)),
+   AND(
+       ISPICKVAL(SBQQ__Account__r.Contract_Term_Version__c, &apos;Legacy DealCloud MSA&apos;),
+       SBQQ__NetAmount__c - DealCloud_Total_Year1__c &gt;= 0,
+       SBQQ__NetAmount__c - DealCloud_Total_Year1__c &lt;&gt; Services_Net_Total__c
+   ),
+			ISPICKVAL(Contract_Master_Terms__c, &apos;Custom Master Term from Account&apos;)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Require Ops Support</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

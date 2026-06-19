@@ -1,0 +1,23 @@
+<p>
+<b>Number:</b> {!Case.CaseNumber}  --  <a href="https://na1.salesforce.com/{!Case.Id}">https://na1.salesforce.com/{!Case.Id}</a><br>
+<b>Account:</b>  {!Case.Account}<br>
+<b>Contact: </b>  {!Case.Contact}
+</p>
+<p>
+<hr width="75%" height="1">
+</p>
+<p>
+<b>Current Queue/Owner: </b>{!Case.OwnerFullName}
+</p>
+ <hr width="75%" height="1">
+<p>
+<b>Solution Owner:</b> {!Case.Solution_Owner__c}<br>
+<b>Solution Hours:</b> {!Case_Solution_Hours}<br>
+<b>Developers:</b> {!Case_Developer_Consulted}<br>
+<b>Status:</b> {!Case.Status}<br>
+
+<b>Bug Number (if applicable):</b> {!Case.Bug_Number__c}<br><p>
+<b>Problem:</b> {!Case.Problem__c}<br><p>
+<b>Description:</b>{!Case.Description}<br><p>
+<b>Resolution:</b> {!Case.Resolution__c}<br><p>
+</p>

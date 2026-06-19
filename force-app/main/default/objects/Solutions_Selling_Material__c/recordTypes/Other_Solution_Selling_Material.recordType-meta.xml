@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Other_Solution_Selling_Material</fullName>
+    <active>true</active>
+    <description>Use this record type for any ISM Materials that are not the Power Sponsor or Sponsor Confirmation Email.</description>
+    <label>Other ISM Material</label>
+    <picklistValues>
+        <picklist>Agreement_to_Explore__c</picklist>
+        <values>
+            <fullName>0 %3D not present</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2 %3D agree on importance%2C not exploration</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4 %3D agree to explore%2C no access requested</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5 %3D agree to explore%2C ask for access to others</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Buying_Vision__c</picklist>
+        <values>
+            <fullName>0 %3D not present</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2 %3D  written in product terms or does not connect to reasons</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4 %3D written in usage terms%2C no value</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5 %3D written in usage terms with value</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Pain__c</picklist>
+        <values>
+            <fullName>0 %3D not present</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2 %3D pain expressed as a goal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4 %3D pain expressed%2C no %24%24 value</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5 %3D pain expressed w%2F %24%24 value</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Power_Sponsor_Mutual_Evaluation_Plan__c</picklist>
+        <values>
+            <fullName>0 %3D not present</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1 %3D not agreed to by PS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2 %3D missing 1 or more of 3 major sales components</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4 %3D contains operational%2Ftransitional%2F %26 mutually agreed to financial steps</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5 %3D contains all 3 major components%2C mutually agree to and all buying processes are represented %28eg%2E Legal%2C technical%2C admin%2C etc%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Power_Sponsor_Organizational_Impact__c</picklist>
+        <values>
+            <fullName>0 %3D not present</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2 %3D titles%2C no names%2C no tie to Plan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4 %3D titles and names%2C does not tie to Plan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5 %3D titles and names%2C and ties to Plan</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Reasons_for_Pain__c</picklist>
+        <values>
+            <fullName>0 %3D not present</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2 %3D reasons do not connect to pain</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4 %3D reasons connect but no %24%24 value attached</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5 %3D reasons connect to pains and %24%24 value attached</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Sponsor_Access_to_Power__c</picklist>
+        <values>
+            <fullName>0 %3D not present</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2 %3D indicated in Next Steps</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4 %3D asked for in email%2C not in interview</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5 %3D clearly documented %28Access or QPQ%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Sponsor_Proposed_Proof_Next_Steps__c</picklist>
+        <values>
+            <fullName>0 %3D not present</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1 %3D agreed to send a proposal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2 %3D agreed to %28expensive%29 proof%2C no QPQ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4 %3D agreed to %28cheap%29 proof in the interview</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5 %3D proposed %28cheap%29 proof%2C asks for agreement</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>Delivered Business Case %2F ROI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Draft Evaluation Plan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Final Evaluation Plan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Go%2FNo-Go Confirmation Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Handover Confirmation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lead Confirmation Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Next Steps Confirmation Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pain Chain</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Power Sponsor Confirmation Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Proposal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sponsor Confirmation Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transition%2FImplementation Plan Email</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

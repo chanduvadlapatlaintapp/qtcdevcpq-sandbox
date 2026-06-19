@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Premium_Support_Ineligible_Product</fullName>
+    <active>false</active>
+    <description>Restrict users to prevent updating the Support Level to Premium for ineligible products, BIZ-47579</description>
+    <errorConditionFormula>OR(
+		AND(ISNEW(),ISPICKVAL(Support_Level__c,&apos;Premium&apos;),
+		ISBLANK(Lookup_Data_Id__c),SBQQ__Markup__c = 0
+			)
+		,AND(ISCHANGED(Support_Level__c),ISPICKVAL(Support_Level__c,&apos;Premium&apos;), 
+		 ISBLANK(Lookup_Data_Id__c), SBQQ__Markup__c = 0
+			)
+		)</errorConditionFormula>
+    <errorMessage>This Product is Not Eligible for Premium Support</errorMessage>
+</ValidationRule>

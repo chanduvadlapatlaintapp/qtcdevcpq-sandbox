@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Year5_Subscription_Exists__c</fullName>
+    <formula>IF(SegmentIndex_Max__c&gt;4,TRUE,FALSE)</formula>
+    <label>Year5 Subscription Exists?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

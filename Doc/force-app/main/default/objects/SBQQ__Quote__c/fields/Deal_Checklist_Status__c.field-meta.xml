@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deal_Checklist_Status__c</fullName>
+    <description>Field to show the status of the deal closure checklist , edited as per BIZ-48431
+Edited as per BIZ-49979</description>
+    <externalId>false</externalId>
+    <formula>IF( OR(ISBLANK( Validation_Checklist__c ), ( Validation_Checklist__r.Contract_Verified__c = false))  , &apos;Not Started&apos;, &apos;Completed&apos;)</formula>
+    <label>Deal Checklist Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

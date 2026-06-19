@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Archived_Campaigns</fullName>
+    <active>true</active>
+    <description>For Marketing Operations Use only</description>
+    <label>Archived Campaigns</label>
+    <picklistValues>
+        <picklist>Status</picklist>
+        <values>
+            <fullName>Aborted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Planned</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Advertising</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Blog %2F Byline</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer Care %28CSM only%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Direct Interaction</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Direct Mail</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inbound</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp University</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intapp-led Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>List Import</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Multi-touch Campaign</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nurture</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Operational</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Campaign</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Social</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Telemarketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Third Party Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Thought Leadership</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tradeshow%2FConference</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Virtual Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Webinar</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

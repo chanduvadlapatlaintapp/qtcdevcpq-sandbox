@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r$Name</field>
+    </columns>
+    <columns>
+        <field>Account$Account_Owner_Name__c</field>
+    </columns>
+    <columns>
+        <field>Account$CRD__c</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r.Subscription_Contact__r$Contact__c</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r.Subscription_Contact__r$Role__c</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r.Subscription_Contact__r$Contact__c.Phone</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r.Subscription_Contact__r$Contact_Email__c</field>
+    </columns>
+    <columns>
+        <field>Account$BillingCity</field>
+    </columns>
+    <columns>
+        <field>Account.Subscriptions__r$Product_Line__c</field>
+    </columns>
+    <currency>USD</currency>
+    <filter>
+        <criteriaItems>
+            <column>Account.Subscriptions__r$Product_Line__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>Intapp Open - Conflicts,Intapp Open - Intake,Intapp Open - Workflow</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Subscriptions__r.Subscription_Contact__r$Role__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Trainer,Reference Only</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$BillingCity</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>New York,Newark,Philadelphia</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>New York Open User Group Invite List</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_w_Subscriptions_Subscription_Contacts__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Account$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

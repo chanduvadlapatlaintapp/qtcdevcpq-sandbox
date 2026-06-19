@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Role__c</fullName>
+    <label>Role</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Business Owner</fullName>
+                <default>false</default>
+                <label>Business Owner</label>
+            </value>
+            <value>
+                <fullName>Budget Holder</fullName>
+                <default>false</default>
+                <label>Budget Holder</label>
+            </value>
+            <value>
+                <fullName>IT Administrator</fullName>
+                <default>false</default>
+                <label>IT Administrator</label>
+            </value>
+            <value>
+                <fullName>Lead User</fullName>
+                <default>false</default>
+                <label>Lead User</label>
+            </value>
+            <value>
+                <fullName>Trainer</fullName>
+                <default>false</default>
+                <label>Trainer</label>
+            </value>
+            <value>
+                <fullName>IT Owner</fullName>
+                <default>false</default>
+                <label>IT Owner</label>
+            </value>
+            <value>
+                <fullName>Reference Only</fullName>
+                <default>false</default>
+                <label>Reference Only</label>
+            </value>
+            <value>
+                <fullName>Engaged with Product</fullName>
+                <default>false</default>
+                <label>Engaged with Product</label>
+            </value>
+            <value>
+                <fullName>CoS Attendee</fullName>
+                <default>false</default>
+                <label>CoS Attendee</label>
+            </value>
+            <value>
+                <fullName>Support Stakeholder</fullName>
+                <default>false</default>
+                <label>Support Stakeholder</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

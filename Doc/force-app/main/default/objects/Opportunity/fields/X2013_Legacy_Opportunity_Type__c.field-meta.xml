@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X2013_Legacy_Opportunity_Type__c</fullName>
+    <description>This field was created to take a snapshot of the 2013 Opportunity types. We are re-coding the Intapp Time offerings and as such are changing this field. We want to keep the legacy data in here in case alternative reporting is needed.</description>
+    <label>2013 Legacy Opportunity Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Legal - New Customer</fullName>
+                <default>false</default>
+                <label>Legal - New Customer</label>
+            </value>
+            <value>
+                <fullName>Legal - New Product</fullName>
+                <default>false</default>
+                <label>Legal - New Product</label>
+            </value>
+            <value>
+                <fullName>Legal - Add-on module</fullName>
+                <default>false</default>
+                <label>Legal - Add-on module</label>
+            </value>
+            <value>
+                <fullName>Legal - Additional Services</fullName>
+                <default>false</default>
+                <label>Legal - Additional Services</label>
+            </value>
+            <value>
+                <fullName>Legal - Lawyer Count Uplift</fullName>
+                <default>false</default>
+                <label>Legal - Lawyer Count Uplift</label>
+            </value>
+            <value>
+                <fullName>Legal - User Count Uplift</fullName>
+                <default>false</default>
+                <label>Legal - User Count Uplift</label>
+            </value>
+            <value>
+                <fullName>Legal - Version License</fullName>
+                <default>false</default>
+                <label>Legal - Version License</label>
+            </value>
+            <value>
+                <fullName>Legal - Assessment/POC</fullName>
+                <default>false</default>
+                <label>Legal - Assessment/POC</label>
+            </value>
+            <value>
+                <fullName>Legal - Thomson Elite</fullName>
+                <default>false</default>
+                <label>Legal - Thomson Elite</label>
+            </value>
+            <value>
+                <fullName>Legal - CPI / Recurring Increase</fullName>
+                <default>false</default>
+                <label>Legal - CPI / Recurring Increase</label>
+            </value>
+            <value>
+                <fullName>Legal - Price Increase</fullName>
+                <default>false</default>
+                <label>Legal - Price Increase</label>
+            </value>
+            <value>
+                <fullName>Bridgeway - New</fullName>
+                <default>false</default>
+                <label>Bridgeway - New</label>
+            </value>
+            <value>
+                <fullName>Bridgeway - Upgrade</fullName>
+                <default>false</default>
+                <label>Bridgeway - Upgrade</label>
+            </value>
+            <value>
+                <fullName>Direct - Other</fullName>
+                <default>false</default>
+                <label>Direct - Other</label>
+            </value>
+            <value>
+                <fullName>OEM - Other</fullName>
+                <default>false</default>
+                <label>OEM - Other</label>
+            </value>
+            <value>
+                <fullName>Reseller - Other</fullName>
+                <default>false</default>
+                <label>Reseller - Other</label>
+            </value>
+            <value>
+                <fullName>Cancellation - Customer</fullName>
+                <default>false</default>
+                <label>Cancellation - Customer</label>
+            </value>
+            <value>
+                <fullName>Cancellation - Product</fullName>
+                <default>false</default>
+                <label>Cancellation - Product</label>
+            </value>
+            <value>
+                <fullName>Downgrade - Product</fullName>
+                <default>false</default>
+                <label>Downgrade - Product</label>
+            </value>
+            <value>
+                <fullName>Legal - Recovered Customer</fullName>
+                <default>false</default>
+                <label>Legal - Recovered Customer</label>
+            </value>
+            <value>
+                <fullName>Legal - Recovered Product</fullName>
+                <default>false</default>
+                <label>Legal - Recovered Product</label>
+            </value>
+            <value>
+                <fullName>Legal - Billing Paused - Customer</fullName>
+                <default>false</default>
+                <label>Legal - Billing Paused - Customer</label>
+            </value>
+            <value>
+                <fullName>Legal - Billing Paused - Product</fullName>
+                <default>false</default>
+                <label>Legal - Billing Paused - Product</label>
+            </value>
+            <value>
+                <fullName>Legal - Billing Restarted - Customer</fullName>
+                <default>false</default>
+                <label>Legal - Billing Restarted - Customer</label>
+            </value>
+            <value>
+                <fullName>Legal - Billing Restarted - Product</fullName>
+                <default>false</default>
+                <label>Legal - Billing Restarted - Product</label>
+            </value>
+            <value>
+                <fullName>Legal - Renewal</fullName>
+                <default>false</default>
+                <label>Legal - Renewal</label>
+            </value>
+            <value>
+                <fullName>Quota Credit Adjustment</fullName>
+                <default>false</default>
+                <label>Quota Credit Adjustment</label>
+            </value>
+            <value>
+                <fullName>Practice Credit Adjustment</fullName>
+                <default>false</default>
+                <label>Practice Credit Adjustment</label>
+            </value>
+            <value>
+                <fullName>Unsuccessful Sales Conversion - Product</fullName>
+                <default>false</default>
+                <label>Unsuccessful Sales Conversion - Product</label>
+            </value>
+            <value>
+                <fullName>Unsuccessful Sales Conversion - Module</fullName>
+                <default>false</default>
+                <label>Unsuccessful Sales Conversion - Module</label>
+            </value>
+            <value>
+                <fullName>Cancellation - Module</fullName>
+                <default>false</default>
+                <label>Cancellation - Module</label>
+            </value>
+            <value>
+                <fullName>Cancellation - Recurring Adjustment</fullName>
+                <default>false</default>
+                <label>Cancellation - Recurring Adjustment</label>
+            </value>
+            <value>
+                <fullName>Unsuccessful Sales Conversion - Customer</fullName>
+                <default>false</default>
+                <label>Unsuccessful Sales Conversion - Customer</label>
+            </value>
+            <value>
+                <fullName>Legal - User Count Decrease</fullName>
+                <default>false</default>
+                <label>Legal - User Count Decrease</label>
+            </value>
+            <value>
+                <fullName>Legal - Recurring Adjustment</fullName>
+                <default>false</default>
+                <label>Legal - Recurring Adjustment</label>
+            </value>
+            <value>
+                <fullName>Legal - Acquired New Customer</fullName>
+                <default>false</default>
+                <label>Legal - Acquired New Customer</label>
+            </value>
+            <value>
+                <fullName>Legal - Acquired New Product</fullName>
+                <default>false</default>
+                <label>Legal - Acquired New Product</label>
+            </value>
+            <value>
+                <fullName>Legal - Acquired Add-on Module</fullName>
+                <default>false</default>
+                <label>Legal - Acquired Add-on Module</label>
+            </value>
+            <value>
+                <fullName>License Conversion - Recurring Increase</fullName>
+                <default>false</default>
+                <label>License Conversion - Recurring Increase</label>
+            </value>
+            <value>
+                <fullName>License Conversion - Recurring Decrease</fullName>
+                <default>false</default>
+                <label>License Conversion - Recurring Decrease</label>
+            </value>
+            <value>
+                <fullName>Legal - New Converted Customer</fullName>
+                <default>false</default>
+                <label>Legal - New Converted Customer</label>
+            </value>
+            <value>
+                <fullName>Legal - New Converted Product</fullName>
+                <default>false</default>
+                <label>Legal - New Converted Product</label>
+            </value>
+            <value>
+                <fullName>Unsuccessful Trial - Product Downgrade</fullName>
+                <default>false</default>
+                <label>Unsuccessful Trial - Product Downgrade</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notifies creation of Acute Situation Alert Case</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>CS_Critical_Case_Letterhead</letterhead>
+    <name>Acute Situation Alert Case Created</name>
+    <style>freeForm</style>
+    <subject>ATTENTION: An Acute Situation Alert Case is created for {!Account.Name}!</subject>
+    <textOnly>This is to inform that an acute situation alert case was created for {!Account.Name} and this is Account is considered as on Hot List!
+
+Current Status: {!Case.Status}
+Description: {!Case.Description}
+Priority: {!Case.Priority}
+Created By: {!Case.CreatedBy}
+Category of Issue: {!Case.Category_of_Issue__c}
+Potential Risks: {!Case.Potential_Risks__c}
+
+=================================
+Account Details:
+
+Account Owner: {!Account.OwnerFullName}
+CSM Engagment Model: {!Account.CSM_Engagement_Model__c}
+Intapp 750# {!Account.Intapp_Legal_750__c}
+
+For more details please navigate to Case Link: {!Case.Link}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

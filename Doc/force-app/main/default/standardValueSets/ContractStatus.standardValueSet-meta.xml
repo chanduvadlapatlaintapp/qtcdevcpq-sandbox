@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <groupingStringEnum>ContractStatusCode</groupingStringEnum>
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>Draft quote by salesperson</fullName>
+        <default>false</default>
+        <label>Draft quote by salesperson</label>
+        <groupingString>Draft</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Specialist Approval Needed</fullName>
+        <default>false</default>
+        <label>Specialist Approval Needed</label>
+        <groupingString>Draft</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Expired Draft (Never Sent to Customer)</fullName>
+        <default>false</default>
+        <label>Expired Draft (Never Sent to Customer)</label>
+        <groupingString>Draft</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Waiting for Specialist approval to send</fullName>
+        <default>false</default>
+        <label>Waiting for Specialist approval to send</label>
+        <groupingString>InApproval</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Quote approved to send to customer</fullName>
+        <default>false</default>
+        <label>Quote approved to send to customer</label>
+        <groupingString>InApproval</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Sent to customer for signature</fullName>
+        <default>false</default>
+        <label>Sent to customer for signature</label>
+        <groupingString>InApproval</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Expired Draft (Never Signed)</fullName>
+        <default>false</default>
+        <label>Expired Draft (Never Signed)</label>
+        <groupingString>InApproval</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Contract Executed</fullName>
+        <default>false</default>
+        <label>Contract Executed</label>
+        <groupingString>InApproval</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>In Force</fullName>
+        <default>false</default>
+        <label>In Force</label>
+        <groupingString>Activated</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Superseded by Newer Contract</fullName>
+        <default>false</default>
+        <label>Superseded by Newer Contract</label>
+        <groupingString>Activated</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Cancelled / Lapsed</fullName>
+        <default>false</default>
+        <label>Cancelled / Lapsed</label>
+        <groupingString>Activated</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+        <groupingString>Activated</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Partially Cancelled or superseded</fullName>
+        <default>false</default>
+        <label>Partially Cancelled or superseded</label>
+        <groupingString>Activated</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>In Force/ Billing under separate Contract#</fullName>
+        <default>false</default>
+        <label>In Force/ Billing under separate Contract#</label>
+        <groupingString>Activated</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Recalled/Rejected</fullName>
+        <default>false</default>
+        <label>Rejected</label>
+        <groupingString>Draft</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Recalled</fullName>
+        <default>false</default>
+        <label>Recalled</label>
+        <groupingString>Draft</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Contract Ops Closing</fullName>
+        <default>false</default>
+        <label>Contract Ops Closing</label>
+        <groupingString>InApproval</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Contract Issues for Closure</fullName>
+        <default>false</default>
+        <label>Contract Issues for Closure</label>
+        <groupingString>InApproval</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Activated</fullName>
+        <default>false</default>
+        <label>Activated</label>
+        <groupingString>Activated</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Closed Migrated</fullName>
+        <default>false</default>
+        <label>Closed Migrated</label>
+        <groupingString>Activated</groupingString>
+    </standardValue>
+</StandardValueSet>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>When_Creating_Contact_Populate_Title</fullName>
+    <active>false</active>
+    <errorConditionFormula>AND(
+  NOT($Profile.Id=&quot;00e30000000bvR3&quot;),
+  ISNEW(),
+  OR(
+    LOWER(Title)=&quot;mr.&quot;,
+    LOWER(Title)=&quot;mr&quot;,
+    LOWER(Title)=&quot;mrs.&quot;,
+    LOWER(Title)=&quot;mrs&quot;,
+    LOWER(Title)=&quot;ms.&quot;,
+    LOWER(Title)=&quot;ms&quot;,
+    LOWER(Title)=&quot;dr.&quot;,
+    LOWER(Title)=&quot;dr&quot;,
+    LOWER(Title)=&quot;prof.&quot;,
+    LOWER(Title)=&quot;prof&quot;,
+    ISBLANK(Title)
+  )
+)</errorConditionFormula>
+    <errorDisplayField>Title</errorDisplayField>
+    <errorMessage>Please enter Job Titles (eg.: CEO, CFO, etc.) instead of salutation (eg.: Mr., Mrs., etc.) 
+If unknown, search LinkedIn, or reach out to the customer.</errorMessage>
+</ValidationRule>

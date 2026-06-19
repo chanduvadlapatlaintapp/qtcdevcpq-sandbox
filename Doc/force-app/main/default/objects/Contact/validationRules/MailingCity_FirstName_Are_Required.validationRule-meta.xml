@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MailingCity_FirstName_Are_Required</fullName>
+    <active>false</active>
+    <description>MailingCity &amp; First Name on the Contacts record are required while saving the new records</description>
+    <errorConditionFormula>AND(
+  NOT($Profile.Id=&quot;00e30000000bvR3&quot;), /*System Administrator*/
+  ISNEW(),  
+  OR(
+   /* ISBLANK(MailingCity),*/
+    ISBLANK(FirstName),
+  /*  NOT (REGEX(MailingCity, &quot;[a-zA-Z&apos; -.]+&quot;)), *//*Fields do not allow numbers and special characters other than hyphen, space, period and apostrophe*/
+    NOT (REGEX(FirstName, &quot;[a-zA-Z&apos; -]+&quot;)),
+    NOT (REGEX(LastName, &quot;[a-zA-Z&apos; -]+&quot;)) 
+  )
+)</errorConditionFormula>
+    <errorMessage>First Name and Last Name are required fields and cannot contain numbers OR special characters other than hyphen, space, period and apostrophe.
+Please verify if these fields are populated correctly.</errorMessage>
+</ValidationRule>

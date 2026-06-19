@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Response for user provisioning webinar</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Response - Oct08 User Provisioning Webinar</name>
+    <style>none</style>
+    <subject>IntApp user provisioning webinar</subject>
+    <textOnly>{!Lead.FirstName} {!Lead.LastName}: 
+
+Thank you for registering for the IntApp user provisioning webinar.
+Date: Friday, October 31
+Time: 12 pm (Eastern) / 9 am (Pacific)
+
+
+Video:
+
+Conference URL: http://e-meetings.mci.com/nc/join.php?i=SV56561&amp;p=user&amp;t=c
+Conference/Meeting Number: SV56561
+Conference/Meeting Passcode: user
+
+
+Audio:
+
+Conference Audio Dial In: 888-810-4937 (give operator the passcode: &quot;USER&quot; and conference leader&apos;s name: &quot;Neal Vora&quot;)
+
+
+
+Please log in and dial the conference audio line 10 minutes prior to the start time.
+
+
+If you would like to receive Halloween candy for the event, please email Lea.Simon@intapp.com with your mailing address by October 24th.
+
+
+http://www.intapp.com
+All information Copyright 2008 IntApp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Unengaged_Status_Time__c</fullName>
+    <description>This field says &quot;Unengaged&quot; if the account does not own Time Builder, and there is no New Customer or New Product Time Builder opportunity open.</description>
+    <externalId>false</externalId>
+    <formula>IF(CONTAINS( New_Intapp_Time_Prospect__c , &quot;Unengaged&quot;),&quot;Unengaged on Time Builder&quot;,&quot;Other&quot;)</formula>
+    <inlineHelpText>This field says &quot;Unengaged&quot; if the account does not own Time Builder, and there is no New Customer or New Product Time Builder opportunity open.</inlineHelpText>
+    <label>Unengaged Status (Time)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

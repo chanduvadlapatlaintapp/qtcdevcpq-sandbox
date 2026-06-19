@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PS_Open_OSA_Requests_Services_Only_WIP</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7</booleanFilter>
+    <columns>OP4I_Sales_Segment__c</columns>
+    <columns>SBQQ__Status__c</columns>
+    <columns>OWNER.ALIAS</columns>
+    <columns>SBQQ__Account__c</columns>
+    <columns>NAME</columns>
+    <columns>SBQQ__MasterContract__c</columns>
+    <columns>SBQQ__Opportunity2__c</columns>
+    <columns>OP4I_Deal_Owner__c</columns>
+    <columns>SBQQ__StartDate__c</columns>
+    <columns>SBQQ__ExpirationDate__c</columns>
+    <columns>SBQQ__SubscriptionTerm__c</columns>
+    <columns>Services_Net_Total__c</columns>
+    <columns>Special_Comments__c</columns>
+    <columns>Special_Comments_Sellers__c</columns>
+    <columns>OSA_Requested_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Software_Products__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Has_Services_Products__c</field>
+        <operation>notEqual</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>LAST_UPDATE</field>
+        <operation>greaterOrEqual</operation>
+        <value>4/9/2020 12:00 AM</value>
+    </filters>
+    <filters>
+        <field>SBQQ__Status__c</field>
+        <operation>notContain</operation>
+        <value>,Draft,Processed,Quote needs Review,Approval Rejected,Submitted</value>
+    </filters>
+    <filters>
+        <field>SBQQ__ExpirationDate__c</field>
+        <operation>greaterThan</operation>
+        <value>5/1/2020</value>
+    </filters>
+    <filters>
+        <field>OP4I_Sales_Segment__c</field>
+        <operation>notContain</operation>
+        <value>9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24</value>
+    </filters>
+    <filters>
+        <field>Services_Products__c</field>
+        <operation>greaterThan</operation>
+        <value>0</value>
+    </filters>
+    <label>PS_Open OSA Requests_Services Only</label>
+    <language>en_US</language>
+</ListView>

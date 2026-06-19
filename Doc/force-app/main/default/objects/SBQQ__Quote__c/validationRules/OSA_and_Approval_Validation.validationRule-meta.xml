@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OSA_and_Approval_Validation</fullName>
+    <active>true</active>
+    <description>created as part of BIZ-48776. BIZ-46111,BIZ-61614</description>
+    <errorConditionFormula>(ISPICKVAL( Quote_Stage__c , &apos;Contract Executed&apos;)) &amp;&amp; (NOT(ISPICKVAL(ApprovalStatus__c ,&apos;Approved&apos;))) &amp;&amp;
+(NOT(ISPICKVAL(ApprovalStatus__c ,&apos;Not Required&apos;))) &amp;&amp;
+(NOT(ISPICKVAL( Renewal_Quote_Type__c ,&apos;Auto-Renewal&apos;))) &amp;&amp;
+(NOT(ISPICKVAL( Deal_Type__c ,&apos;Other&apos;)))&amp;&amp;
+(NOT(ISPICKVAL( Deal_Type__c ,&apos;Amendment_to_Supercede&apos;)))&amp;&amp;
+(NOT(ISPICKVAL( Deal_Type__c ,&apos;Cancellation&apos;)))
+&amp;&amp; $User.Email != &quot;manuela.lorenzi-kayser@intapp.com&quot;</errorConditionFormula>
+    <errorMessage>This quote requires a signed OSA. Please submit for Approvals and generate OSA.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Solution_Selling_Material__c</fullName>
+    <description>&quot;ISM Material&quot; is the new naming convention being used for &quot;Solution Selling&quot;</description>
+    <externalId>false</externalId>
+    <formula>HYPERLINK(&quot;https://intapp.my.salesforce.com/&quot;&amp;Id&amp;&quot;#&quot;&amp;Id&amp;&quot;_00N50000008Ezzg_target&quot;,&quot;Solution Selling Material&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>ISM Material</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

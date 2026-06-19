@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Check_if_deliverable_is_blank</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISBLANK(TEXT(Deliverable__c)), ISPICKVAL(Type_of_Support_Required__c,&apos;Sales Engineer&apos;),
+ $Profile.Id &lt;&gt;&apos;00e30000000bvR3&apos;
+)</errorConditionFormula>
+    <errorDisplayField>Deliverable__c</errorDisplayField>
+    <errorMessage>Fill out deliverable field</errorMessage>
+</ValidationRule>

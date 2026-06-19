@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_Segment_Subscription__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Last Segment Subscription</label>
+    <referenceTo>SBQQ__Subscription__c</referenceTo>
+    <relationshipLabel>Subscriptions (Last Segment Subscription)</relationshipLabel>
+    <relationshipName>Subscriptions</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

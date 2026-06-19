@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Webinar Reminder - Mar16 Terms</name>
+    <style>none</style>
+    <subject>Intapp Webinar: Login Information</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+Thank you for registering for the &quot;Intapp Open for Terms of Business Management&quot; webinar. It will start in 30 minutes, at 9:00am Pacific / 12:00pm Eastern / 5:00pm GMT. Video and audio access instructions are below.
+
+If you have any trouble logging into the webinar, please email Lea.Schweitzer@intapp.com for technical support.
+
+Webinar Title: Intapp Open for Terms of Business Management
+
+Video:
+
+Conference URL: https://intappinc.webex.com/intappinc/j.php?J=923119692
+Audio:
+
+US/Canada Toll-Free: (877) 817-7103
+UK Toll-Free: 0 800 032 3836
+International Toll: (813) 337-6188
+
+Conference Code: 45720458 (if you use the international toll number, an operator may ask for this)
+Please note that you must dial in to one of the above numbers to connect to the audio. Audio is not available through the WebEx client.
+
+The webinar will start right on time, we recommend joining 5-10 minutes early.
+
+| http://www.intapp.com | Contact |
+
+All information Copyright 2016 Intapp, Inc. All rights reserved.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

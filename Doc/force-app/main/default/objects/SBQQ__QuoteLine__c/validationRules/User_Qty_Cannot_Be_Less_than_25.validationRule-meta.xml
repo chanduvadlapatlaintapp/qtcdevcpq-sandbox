@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>User_Qty_Cannot_Be_Less_than_25</fullName>
+    <active>false</active>
+    <description>The quantity entered must be at least 25 for Named User Meter Type.</description>
+    <errorConditionFormula>AND( (TEXT(Meter_Type__c) =&quot;Named Users&quot;),
+License_Product__c = TRUE,
+SBQQ__Quantity__c&lt;25, 
+$Profile.Name&lt;&gt;&quot;Standard User - Sales Operations&quot;,
+$User.Id &lt;&gt; &quot;00550000002q64G&quot; /*Jennifer Richard*/,
+$Profile.Name&lt;&gt;&quot;System Administrator&quot;)</errorConditionFormula>
+    <errorMessage>The quantity entered must be at least 25 for Named User Meter Type.</errorMessage>
+</ValidationRule>

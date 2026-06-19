@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recurring_Amount_Change_Required</fullName>
+    <active>false</active>
+    <description>Requires Recurring Amount Change to be entered for Software SKUs</description>
+    <errorConditionFormula>AND( 
+  ISBLANK(Recurring_Amount_Change__c), 
+  ISPICKVAL(Product_Type__c, &quot;Software&quot;),
+  NOT(ISPICKVAL(SBQQ__Product__r.Product_Group__c, &quot;Solutions &amp; Bundles&quot;)) 
+)</errorConditionFormula>
+    <errorMessage>Please enter Recurring Amount Change for all Software products.</errorMessage>
+</ValidationRule>
