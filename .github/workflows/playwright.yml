@@ -36,6 +36,22 @@ on:
         description: 'Target Account name (provided by the LWC account search). Blank → spec uses its hard-coded default.'
         required: false
         default: ''
+      contract_id:
+        description: 'Salesforce Contract Id (optional, provided when a contract is scoped)'
+        required: false
+        default: ''
+      contract_number:
+        description: 'Contract Number (optional, for display/env purposes)'
+        required: false
+        default: ''
+      quote_name:
+        description: 'Quote Name (optional, provided when a quote is scoped)'
+        required: false
+        default: ''
+      accounts_json:
+        description: 'Multi-account JSON array (optional, for multi-account suite runs)'
+        required: false
+        default: ''
 
   # ── 2. Auto: push to main ──────────────────────────────────────────────────
   push:
@@ -58,11 +74,16 @@ on:
   #   - cron: '0 2 * * 1-5'   # 2 AM UTC, Mon–Fri (nightly regression)
   #   - cron: '0 */4 * * *'   # Every 4 hours (continuous monitoring)
 
-# Cancel any in-progress run for the same branch/PR when a new one starts.
-# This prevents a pile-up of queued runs after rapid pushes.
+# For workflow_dispatch (LWC-triggered) runs, use the test_run_id as the
+# concurrency key so each Salesforce run is independent and cannot be cancelled
+# by a subsequent dispatch. For push/PR auto-triggers, keep the old per-branch
+# behaviour so rapid pushes don't pile up.
 concurrency:
-  group: playwright-${{ github.ref }}
-  cancel-in-progress: true
+  group: >-
+    ${{ github.event_name == 'workflow_dispatch'
+        && format('playwright-dispatch-{0}', github.event.inputs.test_run_id)
+        || format('playwright-{0}', github.ref) }}
+  cancel-in-progress: ${{ github.event_name != 'workflow_dispatch' }}
 
 jobs:
   run-tests:
