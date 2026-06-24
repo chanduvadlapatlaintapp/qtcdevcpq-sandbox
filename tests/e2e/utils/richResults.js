@@ -33,7 +33,7 @@ const path = require('path');
  * @property {Array<{severity:string, type?:string, detail?:string}>}       [dbAnomalies]
  * @property {Array<Object>}       [uiDbCrossCheck]
  * @property {number}              [crossCheckMismatches]
- * @property {Array<Object>}       [osaComparison]   Field-by-field UI↔Backend rows for the OSA datatable
+ * @property {Array<Object>}       [osaComparison]       OSA datatable UI↔Backend field rows
  * @property {number}              testStartMs
  * @property {boolean}             passed
  * @property {Object}              [extra]           Suite-specific payload not covered above
@@ -78,7 +78,7 @@ function buildRichResults(input) {
     dbHighCount:    dbAnomalies.filter(a => a.severity === 'HIGH').length,
     uiDbCrossCheck:       input.uiDbCrossCheck       || [],
     crossCheckMismatches: input.crossCheckMismatches ?? 0,
-    osaComparison:        input.osaComparison        || [],
+    osaComparison:        input.osaComparison         || [],
     extra:          input.extra || null,
   };
 

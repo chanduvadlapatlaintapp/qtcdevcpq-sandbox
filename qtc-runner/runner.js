@@ -39,15 +39,13 @@ const RESULTS_DIR  = path.join(PROJECT_ROOT, 'test-results');
  *
  * @param {string} suiteName  - Test suite name (maps to tests/e2e/{suiteName}.spec.js)
  * @param {string} testRunId  - Salesforce Test_Run__c Id (used for result folder naming)
- * @param {string} [accountName]    - Target Account name chosen on the dashboard.
- *                                   Passed via QTC_ACCOUNT_* env vars; when blank
- *                                   the spec uses its hard-coded fallback.
- * @param {string} [contractId]     - Salesforce Contract record ID (optional).
- *                                   Passed via QTC_CONTRACT_ID; used for reliable contract matching.
- * @param {string} [contractNumber] - Contract number to scope the run (optional).
- *                                   Passed via QTC_CONTRACT_NUMBER; blank → spec picks first contract.
- * @param {string} [quoteName]      - Draft quote name to target (optional).
- *                                   Passed via QTC_QUOTE_NAME; blank → spec picks first draft.
+ * @param {string} [accountName]  - Target Account name chosen on the dashboard.
+ *                                  Passed to the spec via QTC_ACCOUNT_* env vars;
+ *                                  when blank the spec uses its hard-coded fallback.
+ * @param {string} [accountsJson] - JSON array of {id, search, fullName} objects for
+ *                                  multi-account runs. When present, QTC_ACCOUNTS is set
+ *                                  to this value so agenticQtcFullRegressionE2E iterates
+ *                                  over every account in the list.
  * @returns {{
  *   status       : 'PASSED'|'FAILED'|'ERROR',
  *   passed       : number,
@@ -60,7 +58,7 @@ const RESULTS_DIR  = path.join(PROJECT_ROOT, 'test-results');
  *   videoPath    : string|null,
  * }}
  */
-async function runSuite(suiteName, testRunId, accountName, contractId, contractNumber, quoteName) {
+async function runSuite(suiteName, testRunId, accountName, accountsJson, contractId, quoteName) {
     // Build the spec file path from suite name
     const specFile = `tests/e2e/${suiteName}.spec.js`;
     const specPath = path.join(PROJECT_ROOT, specFile);
@@ -83,32 +81,55 @@ async function runSuite(suiteName, testRunId, accountName, contractId, contractN
 
     const env = {
         ...process.env,
-        PLAYWRIGHT_JSON_OUTPUT_NAME : jsonReporter,
+        PLAYWRIGHT_JSON_OUTPUT_FILE : jsonReporter,
         // Headed Chrome: never run headless
         HEADED: '1',
     };
 
-    // Target account chosen on the dashboard. Specs read these three env vars
-    // (QTC_ACCOUNT_NAME / _SEARCH / _FULL_NAME) and fall back to their own
-    // hard-coded default only when unset, so we add them only when provided.
-    if (accountName && String(accountName).trim()) {
+    // Multi-account mode: accountsJson is a JSON array of {id, search, fullName} objects
+    // stored in Test_Run__c.Multiple_Accounts__c. Pass the full JSON to QTC_ACCOUNTS so
+    // agenticQtcFullRegressionE2E's resolveAccounts() iterates over every account.
+    // Also seed the singular QTC_ACCOUNT_* vars from the first entry so other specs
+    // that only read those vars still get a sensible default.
+    if (accountsJson && String(accountsJson).trim()) {
+        const json = String(accountsJson).trim();
+        env.QTC_ACCOUNTS = json;
+        try {
+            const arr = JSON.parse(json);
+            if (Array.isArray(arr) && arr.length > 0) {
+                const first = arr[0];
+                const firstName = first.fullName || first.search || first.name || '';
+                if (firstName) {
+                    env.QTC_ACCOUNT_NAME      = firstName;
+                    env.QTC_ACCOUNT_SEARCH    = first.search || firstName;
+                    env.QTC_ACCOUNT_FULL_NAME = first.fullName || firstName;
+                }
+            }
+        } catch (e) {
+            console.warn(`[runner] Could not parse accountsJson: ${e.message}`);
+        }
+        console.log(`[runner] Multi-account mode: ${json}`);
+    } else if (accountName && String(accountName).trim()) {
+        // Single-account mode: spec reads QTC_ACCOUNTS (plural) or QTC_ACCOUNT_* (singular)
         const acct = String(accountName).trim();
         env.QTC_ACCOUNT_NAME      = acct;
         env.QTC_ACCOUNT_SEARCH    = acct;
         env.QTC_ACCOUNT_FULL_NAME = acct;
+        env.QTC_ACCOUNTS          = acct;
         console.log(`[runner] Target account: "${acct}"`);
     }
+
+    // Contract scoping — tells the spec which contract to use (skips SOQL discovery).
     if (contractId && String(contractId).trim()) {
         env.QTC_CONTRACT_ID = String(contractId).trim();
-        console.log(`[runner] Target contract ID: "${env.QTC_CONTRACT_ID}"`);
+        console.log(`[runner] Contract: "${env.QTC_CONTRACT_ID}"`);
     }
-    if (contractNumber && String(contractNumber).trim()) {
-        env.QTC_CONTRACT_NUMBER = String(contractNumber).trim();
-        console.log(`[runner] Target contract number: "${env.QTC_CONTRACT_NUMBER}"`);
-    }
+
+    // Quote scoping — tells the spec an existing QTC draft quote to open (Mode 2).
+    // When set, QTC opens this draft and updates qty; SF Standard creates a new amendment.
     if (quoteName && String(quoteName).trim()) {
         env.QTC_QUOTE_NAME = String(quoteName).trim();
-        console.log(`[runner] Target quote: "${env.QTC_QUOTE_NAME}"`);
+        console.log(`[runner] Existing QTC quote: "${env.QTC_QUOTE_NAME}"`);
     }
 
     console.log(`[runner] Starting Playwright: npx ${args.join(' ')}`);
@@ -118,12 +139,20 @@ async function runSuite(suiteName, testRunId, accountName, contractId, contractN
     // Without it: spawnSync('npx', ...) throws ENOENT because Node refuses to
     // spawn .cmd files via the direct execve path. Harmless on Linux/Mac.
     const isWin = process.platform === 'win32';
+    // Per-suite timeout: most suites finish well within 10 min; multi-scenario
+    // regression suites (e.g. agenticQtcFullRegressionE2E) need up to 30 min
+    // because they drive 3 contracts sequentially with a 10-min per-test cap.
+    const LONG_SUITES  = new Set(['agenticQtcFullRegressionE2E', 'agenticQtcAmendmentUIComparison']);
+    const processTimeout = LONG_SUITES.has(suiteName)
+        ? 30 * 60 * 1000   // 30 min for multi-scenario regression
+        : 10 * 60 * 1000;  // 10 min for all other suites
+
     const result = spawnSync('npx', args, {
         cwd   : PROJECT_ROOT,
         env,
         stdio : 'pipe',
         shell : isWin,
-        timeout: 10 * 60 * 1000, // 10 min hard cap
+        timeout: processTimeout,
     });
 
     const durationMs = Date.now() - start;
@@ -141,19 +170,25 @@ async function runSuite(suiteName, testRunId, accountName, contractId, contractN
         try {
             const raw  = JSON.parse(fs.readFileSync(jsonReporter, 'utf8'));
             tests      = _parsePlaywrightJson(raw);
+            const p = tests.filter(t => t.status === 'PASSED').length;
+            const f = tests.filter(t => t.status === 'FAILED').length;
+            const s = tests.filter(t => t.status === 'SKIPPED').length;
+            console.log(`[runner] JSON reporter parsed: ${tests.length} test(s) — ${p} passed, ${f} failed, ${s} skipped`);
         } catch (e) {
             console.error('[runner] Could not parse Playwright JSON:', e);
         }
+    } else {
+        console.warn(`[runner] JSON reporter file not found — Test_Result__c records will not be created. Expected: ${jsonReporter}`);
     }
 
     const passed = tests.filter(t => t.status === 'PASSED').length;
     const failed = tests.filter(t => t.status === 'FAILED').length;
     // Status must reflect BOTH the process exit code and the per-test failure
-    // count. Trusting exit code alone (was: `result.status === 0 ? 'PASSED' : 'FAILED'`)
-    // produced a "PASSED" badge with failed=1 when Playwright exits 0 despite
-    // a failure in its JSON output — observed on TR-0742 with a skipped+failed
-    // mix. Counting any failure as a failure keeps the badge honest.
-    const status = (result.status === 0 && failed === 0) ? 'PASSED' : 'FAILED';
+    // count. Trusting exit code alone produced a "PASSED" badge with failed=1
+    // when Playwright exits 0 despite a failure in its JSON output.
+    // An all-skipped run (beforeAll returned early) also exits 0 with failed=0 —
+    // treat that as FAILED so the dashboard doesn't show "PASSED" with 0 tests.
+    const status = (result.status === 0 && failed === 0 && passed > 0) ? 'PASSED' : 'FAILED';
 
     // Collect richResults + spec screenshots from the spec's run directory
     // The spec writes to tests/e2e/results/runs/<timestamp>/ — pick the newest.
@@ -172,31 +207,27 @@ async function runSuite(suiteName, testRunId, accountName, contractId, contractN
                 })
                 .sort((a, b) => b.mtime - a.mtime); // newest first
 
-            // Walk newest-first; use the most recent folder that has a results.json.
-            // A multi-test spec (e.g. osaSelector) creates one folder per test —
-            // the last test to run always produces the newest folder. If that test
-            // skips or fails before writing results.json, the absolute-newest dir
-            // has no file, so we fall through to the next-newest that does.
-            const richEntry = entries.find(e =>
-                fs.existsSync(path.join(e.full, 'results.json')));
+            // Pick the newest folder that actually contains a results.json —
+            // a skipped final test creates the run folder but never writes the file.
+            const targetEntry = entries.find(e =>
+                fs.existsSync(path.join(e.full, 'results.json'))
+            );
 
-            // Screenshots: newest folder overall (may have spec shots even without results.json).
-            const screenshotDir = entries.length > 0 ? entries[0].full : null;
+            if (targetEntry) {
+                const newestDir = targetEntry.full;
 
-            if (richEntry) {
-                const richPath = path.join(richEntry.full, 'results.json');
+                // Load richResults JSON
+                const richPath = path.join(newestDir, 'results.json');
                 richResultsPath = richPath;
                 try {
                     richResults = JSON.parse(fs.readFileSync(richPath, 'utf8'));
-                    console.log(`[runner] Loaded richResults from ${path.basename(richEntry.full)}`);
+                    console.log(`[runner] Loaded richResults from ${path.basename(newestDir)}`);
                 } catch (e) {
                     console.warn('[runner] Could not parse spec results.json:', e.message);
                 }
-            }
 
-            if (screenshotDir) {
                 // Prefer spec screenshots (higher quality, named) over Playwright artifacts
-                const specShots = _collectScreenshots(screenshotDir);
+                const specShots = _collectScreenshots(newestDir);
                 if (specShots.length > 0) {
                     screenshots = specShots;
                     console.log(`[runner] Using ${specShots.length} spec screenshot(s) from run dir`);

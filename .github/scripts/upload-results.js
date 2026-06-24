@@ -193,20 +193,10 @@ async function main() {
     // Secondary guard: if we parsed any failures from the JSON, mark FAILED even
     // if the exit code is somehow 0 (defensive — shouldn't happen in practice).
     const playwrightExitCode = parseInt(process.env.PLAYWRIGHT_EXIT_CODE || '0', 10);
-    const skipped = tests.filter(t => t.status === 'SKIPPED').length;
-    let finalStatus = playwrightExitCode === 0 && failed === 0 ? 'PASSED' : 'FAILED';
-
-    // Full-suite gate: agenticQtcFullSuite is not all-or-nothing. Its SUITE
-    // SUMMARY test computes a pass rate (passed / (passed+failed), skips
-    // excluded) and writes richResults.passed = (rate >= 75%). Individual
-    // scenario failures legitimately show red in Playwright, but the Test_Run's
-    // overall status follows that 75% gate — so a 93%-pass run is PASSED even
-    // though one scenario failed. Detected via richResults.kind === 'fullSuite'.
-    if (richResults && richResults.kind === 'fullSuite' && typeof richResults.passed === 'boolean') {
-        finalStatus = richResults.passed ? 'PASSED' : 'FAILED';
-        log(`Full-suite 75% gate: richResults.passed=${richResults.passed} → ${finalStatus} (overrides raw exit code ${playwrightExitCode})`);
-    }
-    log(`Exit code: ${playwrightExitCode} | parsed: ${passed}✓ ${failed}✗ ${skipped}⏭ → ${finalStatus} (${durationMs}ms)`);
+    // An all-skipped run (e.g. beforeAll returned early) exits 0 with failed=0 but
+    // also passed=0 — don't report that as PASSED, it means the spec didn't run.
+    const finalStatus = playwrightExitCode === 0 && failed === 0 && passed > 0 ? 'PASSED' : 'FAILED';
+    log(`Exit code: ${playwrightExitCode} | parsed: ${passed}✓ ${failed}✗ → ${finalStatus} (${durationMs}ms)`);
 
     // ── 4. Insert Test_Result__c records ──────────────────────────────────────
     if (tests.length > 0) {
