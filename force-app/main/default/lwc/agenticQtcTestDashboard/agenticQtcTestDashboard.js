@@ -297,6 +297,9 @@ export default class AgenticQtcTestDashboard extends LightningElement {
         if (this.isRunning || this.isCreating || !this.activeRun) return true;
         return !this.activeRun.accountName && !this.activeRun.accountsJson;
     }
+    get newRunDisabled() {
+        return this.isCreating;
+    }
 
     // ── account search getters ──────────────────────────────────────────────
     get hasSelectedAccount() { return !!this.selectedAccountId; }
@@ -632,6 +635,10 @@ export default class AgenticQtcTestDashboard extends LightningElement {
         if (this.hasRichResults) {
             tabs.push(makeTab('metrics', 'Metrics', '💰', null, null));
         }
+        if (this.hasOsaComparison) {
+            const osaDiffs = this.richOsaRows.filter(r => !r.match).length;
+            tabs.push(makeTab('osa', 'OSA Data', '🗂', osaDiffs === 0 ? '✅' : osaDiffs + '❌', osaDiffs === 0));
+        }
         if (this.hasRichAnomalies) {
             tabs.push(makeTab('anomalies', 'Anomalies', '⚠️', this.richAnomalyRows.length, false));
         }
@@ -648,9 +655,13 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     get activeTabIsCrosscheck()  { return this.activeTab === 'crosscheck'; }
     get activeTabIsDb()          { return this.activeTab === 'db'; }
     get activeTabIsMetrics()     { return this.activeTab === 'metrics'; }
+    get activeTabIsOsa()         { return this.activeTab === 'osa'; }
     get activeTabIsAnomalies()   { return this.activeTab === 'anomalies'; }
     get activeTabIsSpec()        { return this.activeTab === 'spec'; }
     get activeTabIsLog()         { return this.activeTab === 'log'; }
+
+    get richOsaRows()      { return this._richView.osaRows; }
+    get hasOsaComparison() { return this.richOsaRows.length > 0; }
 
     // ── Pass-rate widget ──────────────────────────────────────────────────────
 
@@ -1252,6 +1263,16 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     async handleRunTests() {
         if (this.isRunning || this.isCreating) return;
 
+        const activeCount = this.recentRuns.filter(r => IN_PROGRESS_STATUSES.has(r.status)).length;
+        if (activeCount >= 20) {
+            this._showToast(
+                'Too many parallel runs',
+                `You already have ${activeCount} test runs in progress. Wait for some to complete before starting another.`,
+                'error'
+            );
+            return;
+        }
+
         // Determine account payload (single vs multi mode)
         const isMulti      = this.isMultiAccountMode;
         const accountsJson = isMulti
@@ -1384,6 +1405,21 @@ export default class AgenticQtcTestDashboard extends LightningElement {
             this.selectedAccountName = run.accountName || null;
         }
         this.handleRunTests();
+    }
+
+    // Deselect the current run so the user can immediately trigger a new parallel run.
+    // Form selections (account, spec, contract, quote, runner) are intentionally kept
+    // so the user can click Run right away — each dispatch gets a unique test_run_id
+    // concurrency group in GitHub Actions and runs independently.
+    handleNewRun() {
+        if (this.isCreating) return;
+        this.activeRunId        = null;
+        this.activeRun          = null;
+        this.activeSidebarRunId = null;
+        this.activeRunFiles     = [];
+        this.parsedRichResults  = null;
+        this._logFromFile       = null;
+        this.lightboxIndex      = null;
     }
 
     async handleCancel() {
@@ -1812,6 +1848,7 @@ export default class AgenticQtcTestDashboard extends LightningElement {
         else if (this.hasMismatchRows)                        this.activeTab = 'crosscheck';
         else if (this.hasRichDbValues)                        this.activeTab = 'db';
         else if (this.hasRichMetrics || this.hasRichLineRows) this.activeTab = 'metrics';
+        else if (this.hasOsaComparison)                       this.activeTab = 'osa';
         else if (this.hasRichAnomalies)                       this.activeTab = 'anomalies';
         else if (this.hasTestResults)                         this.activeTab = 'spec';
         else if (this.hasLogOutput)                           this.activeTab = 'log';
@@ -1820,7 +1857,7 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     // Build the memoized view of all parsedRichResults-derived arrays (#31)
     _buildRichView(rich) {
         if (!rich) {
-            return { dbRows: [], lineRows: [], anomalyRows: [], mismatchRows: [], mismatchCount: 0, hasDbValues: false };
+            return { dbRows: [], lineRows: [], anomalyRows: [], mismatchRows: [], mismatchCount: 0, hasDbValues: false, osaRows: [] };
         }
 
         // DB comparison rows
@@ -1861,7 +1898,13 @@ export default class AgenticQtcTestDashboard extends LightningElement {
             ? rich.crossCheckMismatches
             : mismatchRows.filter(row => !row.match && row.hasData).length;
 
-        return { dbRows, lineRows, anomalyRows, mismatchRows, mismatchCount, hasDbValues };
+        // OSA datatable UI↔Backend comparison rows
+        const osaRows = (rich.osaComparison || []).map(row => ({
+            ...row,
+            statusIcon: row.match ? '✅' : '❌',
+        }));
+
+        return { dbRows, lineRows, anomalyRows, mismatchRows, mismatchCount, hasDbValues, osaRows };
     }
 
     _showToast(title, message, variant) {
@@ -1972,7 +2015,11 @@ function passRateTone(percent) {
 function formatDurationMs(ms) {
     if (ms == null) return '—';
     if (ms < 1000)  return `${ms}ms`;
-    return `${(ms / 1000).toFixed(1)}s`;
+    const totalSec = ms / 1000;
+    if (totalSec < 60) return `${totalSec.toFixed(1)}s`;
+    const mins = Math.floor(totalSec / 60);
+    const secs = Math.round(totalSec % 60);
+    return secs > 0 ? `${mins}m ${secs}s` : `${mins}m`;
 }
 
 /**

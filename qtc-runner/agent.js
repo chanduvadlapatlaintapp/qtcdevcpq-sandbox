@@ -121,7 +121,7 @@ async function pollOnce() {
 
     // Query for the oldest PENDING run
     const query = encodeURIComponent(
-        `SELECT Id, Name, Test_Suite__c, Account_Name__c, Multiple_Accounts__c FROM Test_Run__c ` +
+        `SELECT Id, Name, Test_Suite__c, Account_Name__c, Multiple_Accounts__c, Contract__c, Quote_Name__c FROM Test_Run__c ` +
         `WHERE Status__c = 'PENDING' ORDER BY CreatedDate ASC LIMIT 1`
     );
     const result = await sfGet(`/services/data/v${SF_API_VER}/query?q=${query}`);
@@ -130,7 +130,9 @@ async function pollOnce() {
 
     const run = result.records[0];
     log(`Found PENDING run: ${run.Name} (${run.Id}) suite="${run.Test_Suite__c}"` +
-        (run.Account_Name__c ? ` account="${run.Account_Name__c}"` : '') +
+        (run.Account_Name__c  ? ` account="${run.Account_Name__c}"` : '') +
+        (run.Contract__c      ? ` contract="${run.Contract__c}"`    : '') +
+        (run.Quote_Name__c    ? ` quote="${run.Quote_Name__c}"`     : '') +
         (run.Multiple_Accounts__c ? ` multiAcct=true` : ''));
 
     // ── Step 1: Claim the run (PENDING → CLAIMED) ────────────────────────
@@ -170,7 +172,7 @@ async function pollOnce() {
     // ── Step 3: Run Playwright ───────────────────────────────────────────
     let playwrightResult;
     try {
-        playwrightResult = await runSuite(run.Test_Suite__c, run.Id, run.Account_Name__c, run.Multiple_Accounts__c);
+        playwrightResult = await runSuite(run.Test_Suite__c, run.Id, run.Account_Name__c, run.Multiple_Accounts__c, run.Contract__c, run.Quote_Name__c);
     } catch (e) {
         playwrightResult = {
             status       : 'ERROR',
@@ -247,15 +249,22 @@ async function pollOnce() {
         });
         log(`Run ${run.Id} complete → ${playwrightResult.status}`);
     } catch (e) {
-        log(`ERROR: final patchTestRun for ${run.Id} failed — dashboard will stay on RUNNING. Cause: ${e.message}`);
-        // Last-ditch: try once more with only the status field so at least the
-        // dashboard moves off RUNNING. Body size limits / field-level security
-        // could be the cause of the original failure.
+        // Surface the real failure reason instead of the generic fallback message.
+        // Common causes: Log_Output__c too large, transient SF outage, expired token.
+        const cause = e.message || String(e);
+        log(`ERROR: final patchTestRun failed for ${run.Id}. Cause: ${cause}`);
+        // Last-ditch: drop Log_Output__c (the likely culprit) and retry with
+        // just the status fields so the dashboard moves off RUNNING.
         try {
             await patchTestRun(run.Id, {
                 status      : playwrightResult.status,
+                passed      : playwrightResult.passed,
+                failed      : playwrightResult.failed,
+                durationMs  : playwrightResult.durationMs,
                 completedAt : new Date().toISOString(),
-                errorMessage: 'Result upload partially failed — see agent log',
+                errorMessage: playwrightResult.errorMessage
+                    ? `${playwrightResult.errorMessage} (log upload failed: ${cause.slice(0, 200)})`
+                    : `Log upload failed: ${cause.slice(0, 200)}`,
             });
             log(`Fallback patch succeeded — ${run.Id} marked ${playwrightResult.status}`);
         } catch (e2) {

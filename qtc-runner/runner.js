@@ -58,7 +58,7 @@ const RESULTS_DIR  = path.join(PROJECT_ROOT, 'test-results');
  *   videoPath    : string|null,
  * }}
  */
-async function runSuite(suiteName, testRunId, accountName, accountsJson) {
+async function runSuite(suiteName, testRunId, accountName, accountsJson, contractId, quoteName) {
     // Build the spec file path from suite name
     const specFile = `tests/e2e/${suiteName}.spec.js`;
     const specPath = path.join(PROJECT_ROOT, specFile);
@@ -119,6 +119,19 @@ async function runSuite(suiteName, testRunId, accountName, accountsJson) {
         console.log(`[runner] Target account: "${acct}"`);
     }
 
+    // Contract scoping — tells the spec which contract to use (skips SOQL discovery).
+    if (contractId && String(contractId).trim()) {
+        env.QTC_CONTRACT_ID = String(contractId).trim();
+        console.log(`[runner] Contract: "${env.QTC_CONTRACT_ID}"`);
+    }
+
+    // Quote scoping — tells the spec an existing QTC draft quote to open (Mode 2).
+    // When set, QTC opens this draft and updates qty; SF Standard creates a new amendment.
+    if (quoteName && String(quoteName).trim()) {
+        env.QTC_QUOTE_NAME = String(quoteName).trim();
+        console.log(`[runner] Existing QTC quote: "${env.QTC_QUOTE_NAME}"`);
+    }
+
     console.log(`[runner] Starting Playwright: npx ${args.join(' ')}`);
     const start   = Date.now();
 
@@ -129,7 +142,7 @@ async function runSuite(suiteName, testRunId, accountName, accountsJson) {
     // Per-suite timeout: most suites finish well within 10 min; multi-scenario
     // regression suites (e.g. agenticQtcFullRegressionE2E) need up to 30 min
     // because they drive 3 contracts sequentially with a 10-min per-test cap.
-    const LONG_SUITES  = new Set(['agenticQtcFullRegressionE2E']);
+    const LONG_SUITES  = new Set(['agenticQtcFullRegressionE2E', 'agenticQtcAmendmentUIComparison']);
     const processTimeout = LONG_SUITES.has(suiteName)
         ? 30 * 60 * 1000   // 30 min for multi-scenario regression
         : 10 * 60 * 1000;  // 10 min for all other suites
@@ -171,11 +184,11 @@ async function runSuite(suiteName, testRunId, accountName, accountsJson) {
     const passed = tests.filter(t => t.status === 'PASSED').length;
     const failed = tests.filter(t => t.status === 'FAILED').length;
     // Status must reflect BOTH the process exit code and the per-test failure
-    // count. Trusting exit code alone (was: `result.status === 0 ? 'PASSED' : 'FAILED'`)
-    // produced a "PASSED" badge with failed=1 when Playwright exits 0 despite
-    // a failure in its JSON output — observed on TR-0742 with a skipped+failed
-    // mix. Counting any failure as a failure keeps the badge honest.
-    const status = (result.status === 0 && failed === 0) ? 'PASSED' : 'FAILED';
+    // count. Trusting exit code alone produced a "PASSED" badge with failed=1
+    // when Playwright exits 0 despite a failure in its JSON output.
+    // An all-skipped run (beforeAll returned early) also exits 0 with failed=0 —
+    // treat that as FAILED so the dashboard doesn't show "PASSED" with 0 tests.
+    const status = (result.status === 0 && failed === 0 && passed > 0) ? 'PASSED' : 'FAILED';
 
     // Collect richResults + spec screenshots from the spec's run directory
     // The spec writes to tests/e2e/results/runs/<timestamp>/ — pick the newest.
@@ -194,19 +207,23 @@ async function runSuite(suiteName, testRunId, accountName, accountsJson) {
                 })
                 .sort((a, b) => b.mtime - a.mtime); // newest first
 
-            if (entries.length > 0) {
-                const newestDir = entries[0].full;
+            // Pick the newest folder that actually contains a results.json —
+            // a skipped final test creates the run folder but never writes the file.
+            const targetEntry = entries.find(e =>
+                fs.existsSync(path.join(e.full, 'results.json'))
+            );
+
+            if (targetEntry) {
+                const newestDir = targetEntry.full;
 
                 // Load richResults JSON
                 const richPath = path.join(newestDir, 'results.json');
-                if (fs.existsSync(richPath)) {
-                    richResultsPath = richPath;
-                    try {
-                        richResults = JSON.parse(fs.readFileSync(richPath, 'utf8'));
-                        console.log(`[runner] Loaded richResults from ${path.basename(newestDir)}`);
-                    } catch (e) {
-                        console.warn('[runner] Could not parse spec results.json:', e.message);
-                    }
+                richResultsPath = richPath;
+                try {
+                    richResults = JSON.parse(fs.readFileSync(richPath, 'utf8'));
+                    console.log(`[runner] Loaded richResults from ${path.basename(newestDir)}`);
+                } catch (e) {
+                    console.warn('[runner] Could not parse spec results.json:', e.message);
                 }
 
                 // Prefer spec screenshots (higher quality, named) over Playwright artifacts

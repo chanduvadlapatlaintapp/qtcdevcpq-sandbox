@@ -57,11 +57,16 @@ on:
   push:
     branches:
       - main
-    # Optional: only trigger when test-relevant paths change
-    # paths:
-    #   - 'tests/e2e/**'
-    #   - 'force-app/**'
-    #   - '.github/workflows/playwright.yml'
+    # Only fire when test specs, runner code, or the workflow itself change.
+    # Metadata-only commits (force-app/**) and dashboard LWC changes do not
+    # need an automatic Playwright run — avoids the "loop" of a new PENDING
+    # run appearing for every routine commit.
+    paths:
+      - 'tests/e2e/**'
+      - 'qtc-runner/**'
+      - 'playwright.config.js'
+      - '.github/workflows/playwright.yml'
+      - '.github/scripts/**'
 
   # ── 3. Auto: PR merged into main ──────────────────────────────────────────
   pull_request:

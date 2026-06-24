@@ -30,6 +30,166 @@ const u = require('./utils/playwrightUtils');
 const { buildRichResults } = require('./utils/richResults');
 
 const KIND              = 'osaSelector';
+
+// ── OSA datatable helpers (shared with fullRegressionE2E) ─────────────────────
+
+/** Mirror the LWC's formatDate(). @param {string|null|undefined} s */
+function fmtDate(s) {
+  if (!s) return '—';
+  return new Date(s + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
+/** Mirror the LWC's formatCurrency(). @param {number|null|undefined} val @param {string|null|undefined} code */
+function fmtCurrency(val, code) {
+  if (val == null) return '—';
+  const n = Number(val);
+  if (!Number.isFinite(n)) return '—';
+  const c = code || 'USD';
+  if (Math.abs(n) >= 1_000_000) return `${c} ${(n / 1_000_000).toFixed(2)}M`;
+  return `${c} ${n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+}
+
+/**
+ * Register Aura request+response listeners that resolve with the
+ * getActiveContracts return value the first time Salesforce sends it.
+ * Must be called BEFORE the navigation that triggers the Apex call.
+ *
+ * WHY two listeners: Salesforce Aura puts the action descriptor in the
+ * REQUEST body (URL-encoded `message=<JSON>`), NOT the response. The
+ * response only has an action `id` and `returnValue`. We track the ID
+ * from the request and match it in the response.
+ *
+ * @param {import('@playwright/test').Page} page
+ * @returns {Promise<any[]|null>}
+ */
+function captureGetActiveContracts(page) {
+  return new Promise(resolve => {
+    let done = false;
+    /** @type {Set<string>} action IDs confirmed to be getActiveContracts */
+    const targetIds = new Set();
+
+    // ── Step 1: parse outgoing /aura POST to capture the action ID ────────────
+    /** @param {import('@playwright/test').Request} request */
+    const reqHandler = request => {
+      if (done || !request.url().includes('/aura')) return;
+      try {
+        const raw = request.postData() || '';
+        // Aura body: message=<URL-encoded-JSON>&aura.context=...
+        const m = raw.match(/(?:^|&)message=([^&]+)/);
+        if (!m) return;
+        const msg = JSON.parse(decodeURIComponent(m[1]));
+        for (const a of (msg?.actions || [])) {
+          if (typeof a.descriptor === 'string' &&
+              a.descriptor.includes('getActiveContracts') && a.id) {
+            targetIds.add(String(a.id));
+          }
+        }
+      } catch { /* non-Aura or bad encoding — ignore */ }
+    };
+
+    // ── Step 2: match the response by the tracked action ID ──────────────────
+    /** @param {import('@playwright/test').Response} response */
+    const respHandler = async response => {
+      if (done || !response.url().includes('/aura')) return;
+      try {
+        const body = await response.json().catch(() => null);
+        if (!body?.actions) return;
+        for (const action of body.actions) {
+          if (action.state !== 'SUCCESS') continue;
+          const raw = action.returnValue?.returnValue ?? action.returnValue;
+          if (!Array.isArray(raw)) continue;
+          // Prefer ID match; fall back to shape-check if request parsing failed
+          const isTarget = targetIds.size > 0
+            ? targetIds.has(String(action.id || ''))
+            : (raw.length > 0 && raw[0].contractNumber !== undefined);
+          if (!isTarget) continue;
+          done = true;
+          page.off('request', reqHandler);
+          page.off('response', respHandler);
+          resolve(raw);
+          return;
+        }
+      } catch { /* parse error — ignore */ }
+    };
+
+    page.on('request', reqHandler);
+    page.on('response', respHandler);
+    setTimeout(() => {
+      if (!done) {
+        done = true;
+        page.off('request', reqHandler);
+        page.off('response', respHandler);
+        resolve(null);
+      }
+    }, 25_000);
+  });
+}
+
+/**
+ * Read every visible contract row from the OSA datatable.
+ * Products cell: reads the .product-names-text span and .product-more-btn button separately.
+ * @param {import('@playwright/test').Page} page
+ */
+async function readOsaDatatableRows(page) {
+  const rows  = page.locator('tr.contract-row');
+  const count = await rows.count();
+  const out   = [];
+  for (let i = 0; i < count; i++) {
+    const row   = rows.nth(i);
+    const cells = row.locator('td');
+    const id    = await row.getAttribute('data-id');
+    const [osaNbr, contractName, contractNum, startDate, endDate, acv] = await Promise.all(
+      [0, 1, 2, 3, 4, 5].map(j => cells.nth(j).innerText().then(t => t.trim()).catch(() => ''))
+    );
+    const productNames = await cells.nth(6).locator('.product-names-text').innerText()
+      .then(t => t.trim()).catch(() => '');
+    const moreBtnVisible = await cells.nth(6).locator('.product-more-btn').isVisible().catch(() => false);
+    const moreBtn = moreBtnVisible
+      ? await cells.nth(6).locator('.product-more-btn').innerText().then(t => t.trim()).catch(() => null)
+      : null;
+    out.push({ id, osaNbr, contractName, contractNum, startDate, endDate, acv, productNames, moreBtn });
+  }
+  return out;
+}
+
+/**
+ * Build a full field-by-field comparison table (ALL rows, ALL fields, match=true/false).
+ * Returned rows are the canonical shape for richResults.osaComparison consumed by the dashboard.
+ * @param {any[]} uiRows  from readOsaDatatableRows()
+ * @param {any[]} backend from captureGetActiveContracts()
+ * @returns {Array<{keyId:string, row:number, contractNum:string, field:string, ui:string, expected:string, match:boolean, rowClass:string}>}
+ */
+function compareOsaRows(uiRows, backend) {
+  const rows = [];
+  for (let i = 0; i < uiRows.length; i++) {
+    const ui = uiRows[i];
+    const be = backend.find(b => b.id === ui.id) || backend.find(b => b.contractNumber === ui.contractNum);
+    if (!be) {
+      rows.push({ keyId: `osa-${i}-match`, row: i + 1, contractNum: ui.contractNum, field: '(row match)', ui: ui.id || '?', expected: '(not in Apex response)', match: false, rowClass: 'osa-row-fail' });
+      continue;
+    }
+    const allNames    = Array.isArray(be.productNames) ? be.productNames : [];
+    const expProdText = allNames.length > 0 ? allNames.slice(0, 3).join(', ') : (be.productSummary || '—');
+    const expMoreBtn  = allNames.length > 3 ? `+${allNames.length - 3} more` : null;
+    const checks = [
+      { field: 'OSA Number',      ui: ui.osaNbr,       expected: be.osaNumber      || '—' },
+      { field: 'Contract Name',   ui: ui.contractName, expected: be.contractName   || '—' },
+      { field: 'Contract Number', ui: ui.contractNum,  expected: be.contractNumber || '—' },
+      { field: 'Start Date',      ui: ui.startDate,    expected: fmtDate(be.startDate) },
+      { field: 'End Date',        ui: ui.endDate,      expected: fmtDate(be.endDate) },
+      { field: 'ACV',             ui: ui.acv,          expected: fmtCurrency(be.currentYearAcv, be.currencyIsoCode) },
+      { field: 'Products',        ui: ui.productNames, expected: expProdText },
+      ...(expMoreBtn || ui.moreBtn
+        ? [{ field: '+N more', ui: ui.moreBtn || '(none)', expected: expMoreBtn || '(none)' }]
+        : []),
+    ];
+    checks.forEach((c, j) => {
+      const match = c.ui === c.expected;
+      rows.push({ keyId: `osa-${i}-${j}`, row: i + 1, contractNum: ui.contractNum, field: c.field, ui: c.ui, expected: c.expected, match, rowClass: match ? 'osa-row-ok' : 'osa-row-fail' });
+    });
+  }
+  return rows;
+}
 // Default account chosen because it has a grid-visible contract with both >3
 // products AND ≥2 add-on amendment drafts, so all four tests actively run on a
 // direct `npx playwright test`. Overridden by QTC_ACCOUNT_* when launched from
@@ -189,4 +349,55 @@ test('Draft-quotes modal: open, click-inside keeps it, backdrop/X close, row ope
   const quoteName = await qtc.getQuoteName();
   expect(quoteName, 'Picking a draft should open the editor on a Q-NNNNN quote').toMatch(/^Q-\d+$/);
   await u.screenshot(page, runDir, '02-editor-open');
+});
+
+test('Contracts grid — UI datatable fields match Apex backend data', async ({ page }) => {
+  const testStartMs       = Date.now();
+  const { runTs, runDir } = u.createRunFolder(RESULTS_DIR);
+
+  // Register the Aura interceptor BEFORE navigation — openContracts triggers the Apex call.
+  const backendPromise = captureGetActiveContracts(page);
+
+  await openContracts(page);
+  await u.screenshot(page, runDir, '01-datatable');
+
+  const backendContracts = await backendPromise;
+
+  if (!backendContracts) {
+    console.warn(`[${KIND}] Could not capture getActiveContracts Aura response — skipping datatable check`);
+    test.skip(true, 'Could not capture getActiveContracts Apex response within 20 s');
+    return;
+  }
+
+  const uiRows = await readOsaDatatableRows(page);
+  expect(uiRows.length, `Account "${ACCOUNT_FULL_NAME}" should have at least one row`).toBeGreaterThan(0);
+
+  const osaComparison = compareOsaRows(uiRows, backendContracts);
+  const diffs         = osaComparison.filter(r => !r.match);
+
+  await u.screenshot(page, runDir, '02-check-done');
+
+  const passed = diffs.length === 0;
+
+  if (!passed) {
+    console.log(`[${KIND}] Datatable mismatches:\n` +
+      diffs.map(d => `  Row ${d.row} [${d.contractNum}] ${d.field}:\n    UI:      "${d.ui}"\n    Backend: "${d.expected}"`).join('\n'));
+  }
+
+  buildRichResults({
+    kind: KIND, runTs, runDir, testStartMs,
+    accountName: ACCOUNT_FULL_NAME,
+    scenarioNumber: 5,
+    scenarioLabel: `OSA datatable UI↔Backend — ${uiRows.length} row(s) · ${diffs.length} diff(s)`,
+    dbLineCount: uiRows.length,
+    passed,
+    osaComparison,
+  });
+
+  expect(
+    diffs.length,
+    diffs.length > 0
+      ? `Datatable mismatches:\n${diffs.map(d => `Row ${d.row} [${d.contractNum}] ${d.field}: UI="${d.ui}" ≠ Backend="${d.expected}"`).join('\n')}`
+      : 'All datatable fields match backend data'
+  ).toBe(0);
 });

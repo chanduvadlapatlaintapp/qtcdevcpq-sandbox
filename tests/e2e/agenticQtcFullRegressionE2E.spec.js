@@ -32,7 +32,7 @@
  */
 const { test, expect } = require('@playwright/test');
 const path = require('path');
-const { getSfCredentials } = require('./helpers/sfAuth');
+const { getSfCredentials, loginViaCookie } = require('./helpers/sfAuth');
 const { AgenticQtcPage }   = require('./utils/agenticQtcPage');
 const { openEditorByScenario } = require('./utils/scenarioContracts');
 const u = require('./utils/playwrightUtils');
@@ -115,7 +115,6 @@ async function discoverAllScenarioContracts(browser, ctx) {
   try {
     const qtc = new AgenticQtcPage(setupPage, ctx);
     // openEditorByScenario logs in per-test; discovery uses its own context, so log in here.
-    const { loginViaCookie } = require('./helpers/sfAuth');
     await loginViaCookie(setupPage, ctx.lightningUrl, ctx.accessToken);
     await qtc.goto();
     await qtc.searchAndSelectAccount(ctx.accountSearch, ctx.accountFullName);
@@ -517,6 +516,155 @@ function buildMetricResults(metricsBeforeSave, metricsAfterSave) {
     { metric: 'YoY Uplift',        before: metricsBeforeSave.yoyUplift,  after: metricsAfterSave.yoyUplift,  pass: true,             note: 'Directional — informational' },
     { metric: 'Deal Quality Score',before: metricsBeforeSave.dealQuality,after: metricsAfterSave.dealQuality,pass: true,             note: 'Approval logic driven — informational' },
   ];
+}
+
+// ── OSA datatable helpers (mirrors agenticQtcOsaSelector.spec.js) ────────────────
+
+/** @param {string|null|undefined} s */
+function fmtDate(s) {
+  if (!s) return '—';
+  return new Date(s + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
+/** @param {number|null|undefined} val @param {string|null|undefined} code */
+function fmtCurrency(val, code) {
+  if (val == null) return '—';
+  const n = Number(val);
+  if (!Number.isFinite(n)) return '—';
+  const c = code || 'USD';
+  if (Math.abs(n) >= 1_000_000) return `${c} ${(n / 1_000_000).toFixed(2)}M`;
+  return `${c} ${n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+}
+
+/**
+ * One-shot Aura request+response interceptor for getActiveContracts.
+ * Call BEFORE the navigation that triggers the Apex call.
+ *
+ * WHY two listeners: Salesforce Aura puts the action descriptor in the
+ * REQUEST body (URL-encoded `message=<JSON>`), NOT the response. The
+ * response only has an action `id` and `returnValue`. We track the ID
+ * from the request and match it in the response.
+ *
+ * @param {import('@playwright/test').Page} page
+ * @returns {Promise<any[]|null>}
+ */
+function captureGetActiveContracts(page) {
+  return new Promise(resolve => {
+    let done = false;
+    /** @type {Set<string>} action IDs confirmed to be getActiveContracts */
+    const targetIds = new Set();
+
+    // ── Step 1: parse outgoing /aura POST to capture the action ID ────────────
+    /** @param {import('@playwright/test').Request} request */
+    const reqHandler = request => {
+      if (done || !request.url().includes('/aura')) return;
+      try {
+        const raw = request.postData() || '';
+        // Aura body: message=<URL-encoded-JSON>&aura.context=...
+        const m = raw.match(/(?:^|&)message=([^&]+)/);
+        if (!m) return;
+        const msg = JSON.parse(decodeURIComponent(m[1]));
+        for (const a of (msg?.actions || [])) {
+          if (typeof a.descriptor === 'string' &&
+              a.descriptor.includes('getActiveContracts') && a.id) {
+            targetIds.add(String(a.id));
+          }
+        }
+      } catch { /* non-Aura or bad encoding — ignore */ }
+    };
+
+    // ── Step 2: match the response by the tracked action ID ──────────────────
+    /** @param {import('@playwright/test').Response} response */
+    const respHandler = async response => {
+      if (done || !response.url().includes('/aura')) return;
+      try {
+        const body = await response.json().catch(() => null);
+        if (!body?.actions) return;
+        for (const action of body.actions) {
+          if (action.state !== 'SUCCESS') continue;
+          const raw = action.returnValue?.returnValue ?? action.returnValue;
+          if (!Array.isArray(raw)) continue;
+          // Prefer ID match; fall back to shape-check if request parsing failed
+          const isTarget = targetIds.size > 0
+            ? targetIds.has(String(action.id || ''))
+            : (raw.length > 0 && raw[0].contractNumber !== undefined);
+          if (!isTarget) continue;
+          done = true;
+          page.off('request', reqHandler);
+          page.off('response', respHandler);
+          resolve(raw);
+          return;
+        }
+      } catch { /* parse error — ignore */ }
+    };
+
+    page.on('request', reqHandler);
+    page.on('response', respHandler);
+    setTimeout(() => {
+      if (!done) {
+        done = true;
+        page.off('request', reqHandler);
+        page.off('response', respHandler);
+        resolve(null);
+      }
+    }, 25_000);
+  });
+}
+
+/** @param {import('@playwright/test').Page} page */
+async function readOsaDatatableRows(page) {
+  const rows  = page.locator('tr.contract-row');
+  const count = await rows.count();
+  const out   = [];
+  for (let i = 0; i < count; i++) {
+    const row   = rows.nth(i);
+    const cells = row.locator('td');
+    const id    = await row.getAttribute('data-id');
+    const [osaNbr, contractName, contractNum, startDate, endDate, acv] = await Promise.all(
+      [0, 1, 2, 3, 4, 5].map(j => cells.nth(j).innerText().then(t => t.trim()).catch(() => ''))
+    );
+    const productNames = await cells.nth(6).locator('.product-names-text').innerText()
+      .then(t => t.trim()).catch(() => '');
+    const moreBtnVisible = await cells.nth(6).locator('.product-more-btn').isVisible().catch(() => false);
+    const moreBtn = moreBtnVisible
+      ? await cells.nth(6).locator('.product-more-btn').innerText().then(t => t.trim()).catch(() => null)
+      : null;
+    out.push({ id, osaNbr, contractName, contractNum, startDate, endDate, acv, productNames, moreBtn });
+  }
+  return out;
+}
+
+/** @param {any[]} uiRows @param {any[]} backend */
+function compareOsaRows(uiRows, backend) {
+  const rows = [];
+  for (let i = 0; i < uiRows.length; i++) {
+    const ui = uiRows[i];
+    const be = backend.find(b => b.id === ui.id) || backend.find(b => b.contractNumber === ui.contractNum);
+    if (!be) {
+      rows.push({ keyId: `osa-${i}-match`, row: i + 1, contractNum: ui.contractNum, field: '(row match)', ui: ui.id || '?', expected: '(not in Apex response)', match: false, rowClass: 'osa-row-fail' });
+      continue;
+    }
+    const allNames    = Array.isArray(be.productNames) ? be.productNames : [];
+    const expProdText = allNames.length > 0 ? allNames.slice(0, 3).join(', ') : (be.productSummary || '—');
+    const expMoreBtn  = allNames.length > 3 ? `+${allNames.length - 3} more` : null;
+    const checks = [
+      { field: 'OSA Number',      ui: ui.osaNbr,       expected: be.osaNumber      || '—' },
+      { field: 'Contract Name',   ui: ui.contractName, expected: be.contractName   || '—' },
+      { field: 'Contract Number', ui: ui.contractNum,  expected: be.contractNumber || '—' },
+      { field: 'Start Date',      ui: ui.startDate,    expected: fmtDate(be.startDate) },
+      { field: 'End Date',        ui: ui.endDate,      expected: fmtDate(be.endDate) },
+      { field: 'ACV',             ui: ui.acv,          expected: fmtCurrency(be.currentYearAcv, be.currencyIsoCode) },
+      { field: 'Products',        ui: ui.productNames, expected: expProdText },
+      ...(expMoreBtn || ui.moreBtn
+        ? [{ field: '+N more', ui: ui.moreBtn || '(none)', expected: expMoreBtn || '(none)' }]
+        : []),
+    ];
+    checks.forEach((c, j) => {
+      const match = c.ui === c.expected;
+      rows.push({ keyId: `osa-${i}-${j}`, row: i + 1, contractNum: ui.contractNum, field: c.field, ui: c.ui, expected: c.expected, match, rowClass: match ? 'osa-row-ok' : 'osa-row-fail' });
+    });
+  }
+  return rows;
 }
 
 // ── Combined results writer ────────────────────────────────────────────────────
@@ -967,6 +1115,65 @@ test.describe('Full Regression — All Accounts', () => {
       test.beforeAll(async ({ browser }) => {
         sfCtx   = sfCtxFor(account);
         buckets = await discoverAllScenarioContracts(browser, sfCtx);
+      });
+
+      test(`OSA datatable — UI fields match Apex backend data`, async ({ page }) => {
+        const testStartMs       = Date.now();
+        const { runTs, runDir } = u.createRunFolder(RESULTS_DIR);
+
+        // Register interceptor BEFORE navigation — the Apex call fires during account selection
+        const backendPromise = captureGetActiveContracts(page);
+
+        await loginViaCookie(page, sfCtx.lightningUrl, sfCtx.accessToken).catch(() => {});
+        const qtc = new AgenticQtcPage(page, sfCtx);
+        await qtc.goto();
+        await qtc.searchAndSelectAccount(sfCtx.accountSearch, sfCtx.accountFullName);
+        await qtc.contractRows().first().waitFor({ state: 'visible', timeout: 30_000 }).catch(() => {});
+
+        const backendContracts = await backendPromise;
+        if (!backendContracts) {
+          console.warn(`[${KIND}] ${account.fullName}: could not capture getActiveContracts response`);
+          test.skip(true, `${account.fullName}: could not capture getActiveContracts Apex response within 20 s`);
+          return;
+        }
+
+        const uiRows        = await readOsaDatatableRows(page);
+        const osaComparison = compareOsaRows(uiRows, backendContracts);
+        const diffs         = osaComparison.filter(r => !r.match);
+        const passed        = diffs.length === 0;
+
+        if (!passed) {
+          console.log(
+            `[${KIND}] ${account.fullName} datatable mismatches:\n` +
+            diffs.map(d => `  Row ${d.row} [${d.contractNum}] ${d.field}: UI="${d.ui}" ≠ Backend="${d.expected}"`).join('\n')
+          );
+        }
+
+        _allScenarioResults.push({
+          accountName:    account.fullName,
+          scenarioNumber: 0,
+          scenarioLabel:  `OSA datatable UI↔Backend — ${uiRows.length} row(s) · ${diffs.length} diff(s)`,
+          passed,
+          dbLineCount: uiRows.length,
+          osaComparison,
+        });
+
+        buildRichResults({
+          kind: KIND, runTs, runDir, testStartMs,
+          accountName: account.fullName,
+          scenarioNumber: 0,
+          scenarioLabel:  `OSA datatable UI↔Backend — ${uiRows.length} row(s) · ${diffs.length} diff(s)`,
+          dbLineCount: uiRows.length,
+          passed,
+          osaComparison,
+        });
+
+        expect(
+          diffs.length,
+          diffs.length > 0
+            ? `Datatable mismatches:\n${diffs.map(d => `Row ${d.row} [${d.contractNum}] ${d.field}: UI="${d.ui}" ≠ Backend="${d.expected}"`).join('\n')}`
+            : 'All datatable fields match backend data'
+        ).toBe(0);
       });
 
       test(`S1 · 0 amendments → fresh amendment · all products`, async ({ page }) => {

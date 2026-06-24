@@ -193,7 +193,9 @@ async function main() {
     // Secondary guard: if we parsed any failures from the JSON, mark FAILED even
     // if the exit code is somehow 0 (defensive — shouldn't happen in practice).
     const playwrightExitCode = parseInt(process.env.PLAYWRIGHT_EXIT_CODE || '0', 10);
-    const finalStatus = playwrightExitCode === 0 && failed === 0 ? 'PASSED' : 'FAILED';
+    // An all-skipped run (e.g. beforeAll returned early) exits 0 with failed=0 but
+    // also passed=0 — don't report that as PASSED, it means the spec didn't run.
+    const finalStatus = playwrightExitCode === 0 && failed === 0 && passed > 0 ? 'PASSED' : 'FAILED';
     log(`Exit code: ${playwrightExitCode} | parsed: ${passed}✓ ${failed}✗ → ${finalStatus} (${durationMs}ms)`);
 
     // ── 4. Insert Test_Result__c records ──────────────────────────────────────
