@@ -459,6 +459,7 @@ test('Contracts grid — UI datatable fields match Apex backend data', async ({ 
       osaComparison: [],
     });
     test.skip(true, `No contracts returned from REST API for "${ACCOUNT_FULL_NAME}"`);
+
     return;
   }
 

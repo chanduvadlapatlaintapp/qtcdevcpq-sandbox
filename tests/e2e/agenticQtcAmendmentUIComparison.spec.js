@@ -254,6 +254,7 @@ test.beforeAll(async ({ browser }) => {
     }
   }
 
+
   sharedStdLines = await getQuoteLines(sharedStdQuoteId);
   sharedQtcLines = await getQuoteLines(sharedQtcQuoteId);
   console.log(`[${KIND}] SF Std:  ${Object.keys(sharedStdQuote).length} fields, ${sharedStdLines.length} lines`);
@@ -907,6 +908,7 @@ async function deleteDraftAmendments(contractId) {
     }
   }
 }
+
 
 /** @param {string} objectName */
 async function describeQueryableFields(objectName) {

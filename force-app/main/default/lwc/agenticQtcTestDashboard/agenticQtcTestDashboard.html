@@ -253,7 +253,7 @@
                 </div>
             </div>
 
-            <!-- Re-run + Export (beside the Recent Runs picker) -->
+            <!-- Re-run + New Run + Export (beside the Recent Runs picker) -->
             <template if:true={activeRunId}>
                 <button class="btn btn-ghost cb-rerun-btn" onclick={handleReRun} disabled={reRunDisabled} title="Re-run this suite on the same account">
                     <svg class="btn-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -261,6 +261,14 @@
                         <path d="M8 .5L11 3 8 5.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     Re-run
+                </button>
+                <button class="btn btn-new-run" onclick={handleNewRun} disabled={newRunDisabled} title="Deselect this run and start a new parallel run with the same configuration">
+                    <svg class="btn-icon-svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="8" cy="8" r="6.5"/>
+                        <line x1="8" y1="5" x2="8" y2="11" stroke-linecap="round"/>
+                        <line x1="5" y1="8" x2="11" y2="8" stroke-linecap="round"/>
+                    </svg>
+                    New Run
                 </button>
             </template>
             <template if:true={hasRichResults}>
@@ -676,6 +684,41 @@
                         </template>
                         <template if:false={hasRichResults}>
                             <div class="tab-empty"><span>💰</span><p>No metrics data for this run.</p></div>
+                        </template>
+                    </template>
+
+                    <!-- ── OSA Datatable UI↔Backend ─────────────────────── -->
+                    <template if:true={activeTabIsOsa}>
+                        <template if:true={hasOsaComparison}>
+                            <div class="tbl-wrap">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-sev">Row</th>
+                                            <th class="col-type">Contract #</th>
+                                            <th class="col-product">Field</th>
+                                            <th>UI Value</th>
+                                            <th>Backend Value</th>
+                                            <th class="col-status">Match</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template for:each={richOsaRows} for:item="row">
+                                            <tr key={row.keyId} class={row.rowClass}>
+                                                <td class="td-mono">{row.row}</td>
+                                                <td class="td-type">{row.contractNum}</td>
+                                                <td class="td-product">{row.field}</td>
+                                                <td class="td-detail">{row.ui}</td>
+                                                <td class="td-detail">{row.expected}</td>
+                                                <td class="td-center">{row.statusIcon}</td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </template>
+                        <template if:false={hasOsaComparison}>
+                            <div class="tab-empty tab-empty-ok"><span>🗂</span><p>No OSA datatable comparison data for this run.</p></div>
                         </template>
                     </template>
 

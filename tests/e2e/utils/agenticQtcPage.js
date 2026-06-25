@@ -259,16 +259,30 @@ class AgenticQtcPage {
   }
 
   /**
+   * Click the Nth contract row (0-based) without any post-click handling.
+   * Waits for the list to load first, then clicks by index.
+   * Caller calls waitForContractClickOutcome() separately.
+   * @param {number} index
+   * @param {number} [timeout=60000]
+   */
+  async clickContractByIndex(index, timeout = 60_000) {
+    await this.contractRows().first().waitFor({ state: 'visible', timeout });
+    await this.contractRows().nth(index).click();
+  }
+
+  /**
    * Click a contract row identified by its SF Contract Id (data-id).
    * Does NOT branch on what happens afterwards — caller decides.
    * @param {string} contractId
    */
-  async clickContractById(contractId) {
+  async clickContractById(contractId, timeout = 60_000) {
+    // Wait for the list to load (any row in DOM), then click by ID.
+    // state:'attached' is used so rows below the fold don't fail the check —
+    // Playwright auto-scrolls the element into view when .click() is called.
+    await this.contractRows().first().waitFor({ state: 'attached', timeout });
     const row = this.contractRows().filter({ has: this.page.locator(`[data-id="${contractId}"]`) }).first();
-    // Fallback to attribute selector on the row itself if filter didn't match
     const fallback = this.page.locator(`tr.contract-row[data-id="${contractId}"]`).first();
     const candidate = (await row.count().catch(() => 0)) > 0 ? row : fallback;
-    await candidate.waitFor({ state: 'visible', timeout: 10_000 });
     await candidate.click();
   }
 
@@ -361,8 +375,11 @@ class AgenticQtcPage {
    * @param {number} [timeout=60000]
    */
   async openContractByNumber(number, timeout = 60_000) {
+    // Wait for the list to load (first row visible = data arrived), then click
+    // the target row. Playwright auto-scrolls before clicking so off-screen
+    // rows below the fold are handled correctly without a separate waitFor.
+    await this.contractRows().first().waitFor({ state: 'visible', timeout });
     const row = this.contractRows().filter({ hasText: String(number) }).first();
-    await row.waitFor({ state: 'visible', timeout: 10_000 });
     await row.click();
     return this._afterContractClick(timeout);
   }
