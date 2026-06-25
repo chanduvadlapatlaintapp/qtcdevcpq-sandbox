@@ -207,27 +207,31 @@ async function runSuite(suiteName, testRunId, accountName, accountsJson, contrac
                 })
                 .sort((a, b) => b.mtime - a.mtime); // newest first
 
-            // Pick the newest folder that actually contains a results.json —
-            // a skipped final test creates the run folder but never writes the file.
-            const targetEntry = entries.find(e =>
-                fs.existsSync(path.join(e.full, 'results.json'))
-            );
+            // Walk newest-first; use the most recent folder that has a results.json.
+            // A multi-test spec (e.g. osaSelector) creates one folder per test —
+            // the last test to run always produces the newest folder. If that test
+            // skips or fails before writing results.json, the absolute-newest dir
+            // has no file, so we fall through to the next-newest that does.
+            const richEntry = entries.find(e =>
+                fs.existsSync(path.join(e.full, 'results.json')));
 
-            if (targetEntry) {
-                const newestDir = targetEntry.full;
+            // Screenshots: newest folder overall (may have spec shots even without results.json).
+            const screenshotDir = entries.length > 0 ? entries[0].full : null;
 
-                // Load richResults JSON
-                const richPath = path.join(newestDir, 'results.json');
+            if (richEntry) {
+                const richPath = path.join(richEntry.full, 'results.json');
                 richResultsPath = richPath;
                 try {
                     richResults = JSON.parse(fs.readFileSync(richPath, 'utf8'));
-                    console.log(`[runner] Loaded richResults from ${path.basename(newestDir)}`);
+                    console.log(`[runner] Loaded richResults from ${path.basename(richEntry.full)}`);
                 } catch (e) {
                     console.warn('[runner] Could not parse spec results.json:', e.message);
                 }
+            }
 
+            if (screenshotDir) {
                 // Prefer spec screenshots (higher quality, named) over Playwright artifacts
-                const specShots = _collectScreenshots(newestDir);
+                const specShots = _collectScreenshots(screenshotDir);
                 if (specShots.length > 0) {
                     screenshots = specShots;
                     console.log(`[runner] Using ${specShots.length} spec screenshot(s) from run dir`);

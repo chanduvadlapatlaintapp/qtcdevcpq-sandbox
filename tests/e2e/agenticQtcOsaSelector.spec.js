@@ -49,79 +49,155 @@ function fmtCurrency(val, code) {
   return `${c} ${n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
 
+// ── REST API helpers — replicate getActiveContracts without Aura interception ──
+// Aura network interception (request+response correlation) was unreliable across
+// runs — the browser sometimes batched/reused the Aura action before our listener
+// was ready.  Direct REST API calls from Node are synchronous-style and always work.
+
 /**
- * Register Aura request+response listeners that resolve with the
- * getActiveContracts return value the first time Salesforce sends it.
- * Must be called BEFORE the navigation that triggers the Apex call.
- *
- * WHY two listeners: Salesforce Aura puts the action descriptor in the
- * REQUEST body (URL-encoded `message=<JSON>`), NOT the response. The
- * response only has an action `id` and `returnValue`. We track the ID
- * from the request and match it in the response.
- *
- * @param {import('@playwright/test').Page} page
- * @returns {Promise<any[]|null>}
+ * Look up an Account Id by its exact Name.
+ * @param {string} instanceUrl
+ * @param {string} accessToken
+ * @param {string} accountName
+ * @returns {Promise<string|null>}
  */
-function captureGetActiveContracts(page) {
-  return new Promise(resolve => {
-    let done = false;
-    /** @type {Set<string>} action IDs confirmed to be getActiveContracts */
-    const targetIds = new Set();
+async function fetchAccountIdFromName(instanceUrl, accessToken, accountName) {
+  const soql = `SELECT Id FROM Account WHERE Name = '${accountName.replace(/'/g, "\\'")}' LIMIT 1`;
+  try {
+    const result = await u.sfQueryNode(instanceUrl, accessToken, soql);
+    return result.records[0]?.Id || null;
+  } catch { return null; }
+}
 
-    // ── Step 1: parse outgoing /aura POST to capture the action ID ────────────
-    /** @param {import('@playwright/test').Request} request */
-    const reqHandler = request => {
-      if (done || !request.url().includes('/aura')) return;
-      try {
-        const raw = request.postData() || '';
-        // Aura body: message=<URL-encoded-JSON>&aura.context=...
-        const m = raw.match(/(?:^|&)message=([^&]+)/);
-        if (!m) return;
-        const msg = JSON.parse(decodeURIComponent(m[1]));
-        for (const a of (msg?.actions || [])) {
-          if (typeof a.descriptor === 'string' &&
-              a.descriptor.includes('getActiveContracts') && a.id) {
-            targetIds.add(String(a.id));
-          }
-        }
-      } catch { /* non-Aura or bad encoding — ignore */ }
-    };
+/** Replicates AgenticQTC_ContractService.isMoreCurrent(). @param {any} candidate @param {any} incumbent */
+function _isMoreCurrent(candidate, incumbent) {
+  const cStart = candidate.SBQQ__SegmentStartDate__c;
+  const iStart = incumbent.SBQQ__SegmentStartDate__c;
+  if (cStart !== iStart) {
+    if (cStart == null) return false;
+    if (iStart == null) return true;
+    return cStart > iStart;
+  }
+  return (candidate.SBQQ__SegmentQuantity__c || 0) > (incumbent.SBQQ__SegmentQuantity__c || 0);
+}
 
-    // ── Step 2: match the response by the tracked action ID ──────────────────
-    /** @param {import('@playwright/test').Response} response */
-    const respHandler = async response => {
-      if (done || !response.url().includes('/aura')) return;
-      try {
-        const body = await response.json().catch(() => null);
-        if (!body?.actions) return;
-        for (const action of body.actions) {
-          if (action.state !== 'SUCCESS') continue;
-          const raw = action.returnValue?.returnValue ?? action.returnValue;
-          if (!Array.isArray(raw)) continue;
-          // Prefer ID match; fall back to shape-check if request parsing failed
-          const isTarget = targetIds.size > 0
-            ? targetIds.has(String(action.id || ''))
-            : (raw.length > 0 && raw[0].contractNumber !== undefined);
-          if (!isTarget) continue;
-          done = true;
-          page.off('request', reqHandler);
-          page.off('response', respHandler);
-          resolve(raw);
-          return;
-        }
-      } catch { /* parse error — ignore */ }
-    };
+/** Replicates AgenticQTC_ContractService.formatQuantity(). @param {number|null} qty */
+function _formatQty(qty) {
+  if (qty == null) return '0';
+  return qty === Math.floor(qty) ? String(Math.floor(qty)) : String(qty);
+}
 
-    page.on('request', reqHandler);
-    page.on('response', respHandler);
-    setTimeout(() => {
-      if (!done) {
-        done = true;
-        page.off('request', reqHandler);
-        page.off('response', respHandler);
-        resolve(null);
+/**
+ * Fetch active contracts for an account via the Salesforce REST API, replicating
+ * the exact logic of AgenticQTC_ContractService.getActiveContracts().
+ *
+ * Contract filters: Status IN ('In Force', 'Partially Cancelled or superseded'),
+ * EndDate >= TODAY, has at least one Software subscription.
+ * ACV: per product, use the current-segment line with the latest SegmentStartDate
+ * (tie-broken by highest SegmentQuantity), compute (NetPrice/ProrateMultiplier)*12*SegmentQty.
+ * productNames: sorted "{qty}x {name}" for all current-year Software segments.
+ *
+ * @param {string} instanceUrl
+ * @param {string} accessToken
+ * @param {string} accountId
+ * @returns {Promise<any[]>}  Array of ContractResult-shaped objects
+ */
+async function fetchActiveContractsFromApi(instanceUrl, accessToken, accountId) {
+  const contractSoql = [
+    'SELECT Id, Name, ContractNumber, OSA_Number__c, Status, StartDate, EndDate,',
+    'CurrencyIsoCode, Account.Name, Owner.Name',
+    'FROM Contract',
+    `WHERE AccountId = '${accountId}'`,
+    "AND Status IN ('In Force', 'Partially Cancelled or superseded')",
+    'AND EndDate >= TODAY',
+    'AND Id IN (',
+    '  SELECT SBQQ__Contract__c FROM SBQQ__Subscription__c',
+    '  WHERE SBQQ__Contract__c != null',
+    "  AND SBQQ__Product__r.Product_Type__c = 'Software'",
+    ')',
+    'ORDER BY ContractNumber ASC NULLS LAST',
+    'LIMIT 100',
+  ].join(' ');
+
+  const contractResult = await u.sfQueryNode(instanceUrl, accessToken, contractSoql);
+  const contracts = contractResult.records || [];
+  if (contracts.length === 0) return [];
+
+  const idList = contracts.map(c => `'${c.Id}'`).join(', ');
+  const subSoql = [
+    'SELECT Id, SBQQ__Contract__c, SBQQ__Product__c, SBQQ__ProductName__c,',
+    'SBQQ__Quantity__c, SBQQ__SegmentQuantity__c,',
+    'SBQQ__NetPrice__c, SBQQ__ProrateMultiplier__c,',
+    'SBQQ__SegmentStartDate__c, SBQQ__SegmentEndDate__c',
+    'FROM SBQQ__Subscription__c',
+    `WHERE SBQQ__Contract__c IN (${idList})`,
+    "AND SBQQ__Product__r.Product_Type__c = 'Software'",
+  ].join(' ');
+
+  const subResult = await u.sfQueryNode(instanceUrl, accessToken, subSoql);
+  const subs = subResult.records || [];
+
+  // Initialise per-contract aggregates
+  /** @type {Record<string, {lineCount:number, pnq:Record<string,number>, currentYearAcv:number|null, acvBest:Record<string,any>}>} */
+  const agg = {};
+  for (const c of contracts) {
+    agg[c.Id] = { lineCount: 0, pnq: {}, currentYearAcv: null, acvBest: {} };
+  }
+
+  const today = new Date().toISOString().slice(0, 10); // 'YYYY-MM-DD'
+  for (const sub of subs) {
+    const a = agg[sub.SBQQ__Contract__c];
+    if (!a) continue;
+    a.lineCount++;
+
+    const segStart = sub.SBQQ__SegmentStartDate__c;
+    const segEnd   = sub.SBQQ__SegmentEndDate__c;
+    const isCurrent = (segStart == null || segStart <= today) && (segEnd == null || segEnd >= today);
+
+    if (isCurrent && sub.SBQQ__ProductName__c) {
+      const qty = sub.SBQQ__Quantity__c ?? 0;
+      a.pnq[sub.SBQQ__ProductName__c] = (a.pnq[sub.SBQQ__ProductName__c] || 0) + qty;
+    }
+
+    if (isCurrent && sub.SBQQ__Product__c) {
+      const key = sub.SBQQ__Contract__c + '|' + sub.SBQQ__Product__c;
+      if (!a.acvBest[key] || _isMoreCurrent(sub, a.acvBest[key])) {
+        a.acvBest[key] = sub;
       }
-    }, 25_000);
+    }
+  }
+
+  // Compute ACV from best current-segment lines (same formula as Apex)
+  for (const a of Object.values(agg)) {
+    for (const line of Object.values(a.acvBest)) {
+      const segQty = line.SBQQ__SegmentQuantity__c ?? line.SBQQ__Quantity__c;
+      if (line.SBQQ__NetPrice__c == null || segQty == null) continue;
+      const pm = line.SBQQ__ProrateMultiplier__c;
+      const annual = (pm != null && pm !== 0) ? (line.SBQQ__NetPrice__c / pm) * 12 : line.SBQQ__NetPrice__c;
+      a.currentYearAcv = (a.currentYearAcv ?? 0) + annual * segQty;
+    }
+  }
+
+  return contracts.map(c => {
+    const a = agg[c.Id];
+    const productNames = Object.keys(a.pnq).sort()
+      .map(name => `${_formatQty(a.pnq[name])}x ${name}`);
+    return {
+      id:              c.Id,
+      contractName:    c.Name,
+      contractNumber:  c.ContractNumber,
+      osaNumber:       c.OSA_Number__c,
+      status:          c.Status,
+      startDate:       c.StartDate,
+      endDate:         c.EndDate,
+      currencyIsoCode: c.CurrencyIsoCode,
+      accountName:     c.Account?.Name ?? null,
+      currentYearAcv:  a.currentYearAcv,
+      productNames,
+      productSummary:  productNames.length > 0
+        ? productNames.slice(0, 3).join(', ') + (productNames.length > 3 ? ` (+${productNames.length - 3} more)` : '')
+        : '',
+    };
   });
 }
 
@@ -355,17 +431,35 @@ test('Contracts grid — UI datatable fields match Apex backend data', async ({ 
   const testStartMs       = Date.now();
   const { runTs, runDir } = u.createRunFolder(RESULTS_DIR);
 
-  // Register the Aura interceptor BEFORE navigation — openContracts triggers the Apex call.
-  const backendPromise = captureGetActiveContracts(page);
-
+  // Navigate first — the REST API fetch runs in parallel without needing the page.
   await openContracts(page);
   await u.screenshot(page, runDir, '01-datatable');
 
-  const backendContracts = await backendPromise;
+  // Fetch backend data directly via REST API — no Aura interception needed.
+  let backendContracts = null;
+  try {
+    const accountId = await fetchAccountIdFromName(sfCtx.instanceUrl, sfCtx.accessToken, sfCtx.accountFullName);
+    if (accountId) {
+      backendContracts = await fetchActiveContractsFromApi(sfCtx.instanceUrl, sfCtx.accessToken, accountId);
+    } else {
+      console.warn(`[${KIND}] Account "${sfCtx.accountFullName}" not found via REST API`);
+    }
+  } catch (err) {
+    console.warn(`[${KIND}] REST API fetch failed: ${err instanceof Error ? err.message : String(err)}`);
+  }
 
-  if (!backendContracts) {
-    console.warn(`[${KIND}] Could not capture getActiveContracts Aura response — skipping datatable check`);
-    test.skip(true, 'Could not capture getActiveContracts Apex response within 20 s');
+  if (!backendContracts || backendContracts.length === 0) {
+    buildRichResults({
+      kind: KIND, runTs, runDir, testStartMs,
+      accountName: ACCOUNT_FULL_NAME,
+      scenarioNumber: 5,
+      scenarioLabel: 'OSA datatable UI↔Backend — backend fetch returned no contracts',
+      dbLineCount: 0,
+      passed: false,
+      osaComparison: [],
+    });
+    test.skip(true, `No contracts returned from REST API for "${ACCOUNT_FULL_NAME}"`);
+
     return;
   }
 

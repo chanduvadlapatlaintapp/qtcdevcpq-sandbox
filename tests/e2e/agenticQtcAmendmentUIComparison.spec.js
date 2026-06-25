@@ -139,6 +139,9 @@ test.beforeAll(async ({ browser }) => {
       console.log(`\n⚠️  Contract ${CONTRACT_ID} not found in Salesforce. Tests will skip.`);
       return;
     }
+    // Remove any leftover draft amendments so QTC always auto-creates fresh
+    // (the LWC shows a picker modal with no "Create New" when drafts exist).
+    await deleteDraftAmendments(sharedContract.Id);
   } else {
     const candidates = await getActivatedContracts();
     if (!candidates.length) {
@@ -231,6 +234,27 @@ test.beforeAll(async ({ browser }) => {
   // ── Fetch every queryable field for both quotes ───────────────────────────
   sharedStdQuote = await getQuoteRecord(sharedStdQuoteId);
   sharedQtcQuote = await getQuoteRecord(sharedQtcQuoteId);
+
+  // CPQ computes header pricing fields (SBQQ__NetAmount__c etc.) asynchronously
+  // after Save & Forecast. Poll until the value is non-zero so the pricing parity
+  // test doesn't compare a fully-calculated QTC quote against an unpopulated one.
+  {
+    const POLL_INTERVAL_MS = 3_000;
+    const POLL_TIMEOUT_MS  = 60_000;
+    const deadline = Date.now() + POLL_TIMEOUT_MS;
+    while (
+      !sharedStdQuote['SBQQ__NetAmount__c'] &&
+      Date.now() < deadline
+    ) {
+      await new Promise(r => setTimeout(r, POLL_INTERVAL_MS));
+      sharedStdQuote = await getQuoteRecord(sharedStdQuoteId);
+    }
+    if (!sharedStdQuote['SBQQ__NetAmount__c']) {
+      console.log(`[${KIND}] ⚠️  SF Std quote SBQQ__NetAmount__c still 0 after ${POLL_TIMEOUT_MS / 1000}s — CPQ may not have finished calculating`);
+    }
+  }
+
+
   sharedStdLines = await getQuoteLines(sharedStdQuoteId);
   sharedQtcLines = await getQuoteLines(sharedQtcQuoteId);
   console.log(`[${KIND}] SF Std:  ${Object.keys(sharedStdQuote).length} fields, ${sharedStdLines.length} lines`);
@@ -665,12 +689,18 @@ async function createQtcAmendmentAndUpdateQty(page, contract) {
   }
 
   if (outcome === 'modal') {
-    // Existing drafts are present — "Create New" is only rendered when there are
-    // NO rows; with rows it is absent from the DOM. Pick the first row instead.
-    // DOM confirmed: tr.quote-row > td.quote-name-cell (lwc synthetic shadow, flat DOM).
-    await page.locator('tr.quote-row').first().waitFor({ state: 'visible', timeout: 20_000 });
-    await page.locator('tr.quote-row').first().click();
-    await u.screenshot(page, runDir, 'qtc-04-modal-actioned');
+    // The pre-flight cleanup in beforeAll should have deleted all stale drafts so
+    // QTC never reaches this branch in normal operation. If we land here anyway
+    // (e.g. another process created a draft after cleanup), abort rather than
+    // silently opening a stale draft — that would bake the wrong qty into the
+    // comparison and produce a misleading failure.
+    anomalies.push({
+      severity: 'HIGH',
+      type: 'qtc-modal-stale-drafts',
+      detail: 'Draft picker modal appeared despite pre-flight cleanup — stale draft amendments still present on contract',
+    });
+    console.log(`[${KIND}] ⚠️  Draft picker modal appeared unexpectedly — aborting QTC flow`);
+    return null;
   }
 
   // Wait for lines (spinbuttons) to appear in the editor
@@ -850,6 +880,35 @@ async function getActivatedContracts() {
   const all = contractRes.records || [];
   return all.filter(/** @param {any} c */ c => ['Activated', 'In Force'].includes(c.Status));
 }
+
+/**
+ * Delete all draft amendment quotes for a contract so the QTC flow always
+ * starts clean. The LWC shows a picker modal (no "Create New" option) when
+ * drafts exist — deleting them beforehand ensures outcome is always 'editor'.
+ * @param {string} contractId
+ */
+async function deleteDraftAmendments(contractId) {
+  const res = await u.sfQueryNode(
+    sfCtx.instanceUrl, sfCtx.accessToken,
+    `SELECT Id, Name FROM SBQQ__Quote__c
+       WHERE SBQQ__MasterContract__c = '${contractId}'
+         AND SBQQ__Type__c = 'Amendment'
+         AND SBQQ__Status__c = 'Draft'`,
+    SF_API_VER
+  );
+  for (const rec of res.records ?? []) {
+    const resp = await fetch(
+      `${sfCtx.instanceUrl}/services/data/${SF_API_VER}/sobjects/SBQQ__Quote__c/${rec.Id}`,
+      { method: 'DELETE', headers: { Authorization: `Bearer ${sfCtx.accessToken}` } }
+    );
+    if (resp.status === 204) {
+      console.log(`[${KIND}] Deleted stale draft amendment ${rec.Name} (${rec.Id})`);
+    } else {
+      console.log(`[${KIND}] ⚠️  Could not delete draft ${rec.Id} — HTTP ${resp.status}`);
+    }
+  }
+}
+
 
 /** @param {string} objectName */
 async function describeQueryableFields(objectName) {
