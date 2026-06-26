@@ -29,6 +29,16 @@ const ACCOUNT_SEARCH  = process.env.QTC_ACCOUNT_SEARCH || 'Bates';
 const RESULTS_DIR     = path.join(__dirname, 'results');
 const SF_API_VER      = 'v62.0';
 
+// Optional scoping params passed from the dashboard.
+// CONTRACT_ID: SF Contract Id — if set, both flows use this contract (skips SOQL discovery).
+// QUOTE_NAME:  existing QTC draft quote name — if set, triggers Mode 2:
+//   Mode 1 (no QUOTE_NAME): QTC creates NEW amendment + updates qty inline;
+//                           SF Standard creates NEW amendment + updates qty inline.
+//   Mode 2 (QUOTE_NAME set): QTC opens EXISTING draft + updates qty inline;
+//                            SF Standard creates NEW amendment + updates same qty inline.
+const CONTRACT_ID  = process.env.QTC_CONTRACT_ID  || '';
+const QUOTE_NAME   = process.env.QTC_QUOTE_NAME   || '';
+
 // ── Fields naturally different between any two distinct records ───────────────
 const ALWAYS_SKIP_FIELDS = new Set([
   'attributes',
@@ -83,6 +93,15 @@ let sharedContract = null;
 
 /** @type {string | null} */ let stdFlowSkipReason = null;
 
+// ── Quantity-update shared state ──────────────────────────────────────────────
+/** @type {string | null} */ let qtyUpdateProductId   = null;
+/** @type {string | null} */ let qtyUpdateProductName = null;
+/** @type {number | null} */ let qtyUpdateOldQty      = null;
+/** @type {number | null} */ let qtyUpdateNewQty      = null;
+/** @type {Array<Record<string, any>>} */ let stdLinesAfterQtyUpdate = [];
+/** @type {Array<Record<string, any>>} */ let qtcLinesAfterQtyUpdate = [];
+let qtyUpdateDone = false;
+
 /** @type {Array<{severity: 'HIGH'|'MEDIUM'|'LOW', type: string, detail: string}>} */
 let anomalies = [];
 /** @type {Array<{testName: string, passed: boolean, diffCount: number}>} */
@@ -103,60 +122,169 @@ test.beforeAll(async ({ browser }) => {
 
   ({ runTs, runDir } = u.createRunFolder(RESULTS_DIR));
   console.log(`\n[${KIND}] runDir=${runDir}`);
+  console.log(`[${KIND}] Mode: ${QUOTE_NAME ? `2 — open existing QTC draft "${QUOTE_NAME}"` : '1 — create new amendment in both flows'}`);
 
-  sharedContract = await getActivatedContract();
-  if (!sharedContract) {
-    console.log(`\n⚠️  No activated contracts found for "${ACCOUNT_NAME}". Tests will skip.`);
+  // ── Resolve the contract to use ───────────────────────────────────────────
+  // CONTRACT_ID is passed from the dashboard and is always set when the user
+  // selected a contract before running. If absent (local dev without runner),
+  // fall back to the first activated contract for the account.
+  if (CONTRACT_ID) {
+    const res = await u.sfQueryNode(
+      sfCtx.instanceUrl, sfCtx.accessToken,
+      `SELECT Id, ContractNumber FROM Contract WHERE Id = '${CONTRACT_ID}' LIMIT 1`,
+      SF_API_VER
+    );
+    sharedContract = res.records?.[0] ?? null;
+    if (!sharedContract) {
+      console.log(`\n⚠️  Contract ${CONTRACT_ID} not found in Salesforce. Tests will skip.`);
+      return;
+    }
+    // Remove any leftover draft amendments so QTC always auto-creates fresh
+    // (the LWC shows a picker modal with no "Create New" when drafts exist).
+    await deleteDraftAmendments(sharedContract.Id);
+  } else {
+    const candidates = await getActivatedContracts();
+    if (!candidates.length) {
+      console.log(`\n⚠️  No activated contracts found for "${ACCOUNT_NAME}". Tests will skip.`);
+      return;
+    }
+    // No CONTRACT_ID → Mode 1 only; QTC will pick the first contract in its list
+    // and sharedContract is resolved below from the created quote.
+  }
+
+  if (QUOTE_NAME && !CONTRACT_ID) {
+    console.log(`\n⚠️  QUOTE_NAME requires CONTRACT_ID (Mode 2). Tests will skip.`);
+    return;
+  }
+
+  // ── QTC flow — runs first ─────────────────────────────────────────────────
+  const qtcCtx  = await browser.newContext();
+  const qtcPage = await qtcCtx.newPage();
+  try {
+    if (QUOTE_NAME) {
+      // Mode 2: open existing draft, update qty
+      sharedQtcQuoteId = await openExistingQtcQuoteAndUpdateQty(
+        qtcPage,
+        /** @type {{Id: string, ContractNumber: string}} */ (sharedContract),
+        QUOTE_NAME
+      );
+    } else {
+      // Mode 1: create new amendment, update qty inline, save
+      sharedQtcQuoteId = await createQtcAmendmentAndUpdateQty(qtcPage, sharedContract);
+      // If no CONTRACT_ID, resolve sharedContract from the quote's master contract
+      if (!sharedContract && sharedQtcQuoteId) {
+        const quoteRes = await u.sfQueryNode(
+          sfCtx.instanceUrl, sfCtx.accessToken,
+          `SELECT SBQQ__MasterContract__c FROM SBQQ__Quote__c WHERE Id = '${sharedQtcQuoteId}' LIMIT 1`,
+          SF_API_VER
+        );
+        const masterContractId = quoteRes.records?.[0]?.SBQQ__MasterContract__c;
+        if (masterContractId) {
+          const contractRes = await u.sfQueryNode(
+            sfCtx.instanceUrl, sfCtx.accessToken,
+            `SELECT Id, ContractNumber FROM Contract WHERE Id = '${masterContractId}' LIMIT 1`,
+            SF_API_VER
+          );
+          sharedContract = contractRes.records?.[0] ?? null;
+        }
+      }
+    }
+    if (sharedQtcQuoteId && sharedContract) {
+      console.log(
+        `[${KIND}] QTC quote: ${sharedQtcQuoteId} via contract ${sharedContract.ContractNumber}` +
+        (QUOTE_NAME ? ' (existing draft)' : ' (new amendment)')
+      );
+    }
+  } catch (/** @type {any} */ err) {
+    console.log(`[${KIND}] QTC flow failed: ${err?.message || String(err)}`);
+    anomalies.push({ severity: 'HIGH', type: 'qtc-flow-error', detail: String(err?.message || err) });
+  } finally {
+    await qtcCtx.close();
+  }
+
+  if (!sharedQtcQuoteId || !sharedContract) {
+    console.log(`\n⚠️  QTC flow failed or no contract resolved. Tests will skip.`);
     return;
   }
   console.log(`[${KIND}] Contract: ${sharedContract.ContractNumber} (${sharedContract.Id})`);
 
-  // ── SF Standard amendment via UI ─────────────────────────────────────────
+  // ── SF Standard flow — always creates a fresh amendment ──────────────────
   const stdCtx  = await browser.newContext();
   const stdPage = await stdCtx.newPage();
   try {
     sharedStdQuoteId = await createStdAmendmentViaUI(stdPage, sharedContract);
-    console.log(`[${KIND}] SF Std quote (UI): ${sharedStdQuoteId}`);
+    if (sharedStdQuoteId) {
+      console.log(`[${KIND}] SF Std quote: ${sharedStdQuoteId}`);
+    } else if (stdFlowSkipReason) {
+      console.log(`[${KIND}] SF Std blocked: ${stdFlowSkipReason}`);
+      anomalies.push({ severity: 'HIGH', type: 'std-ui-flow-blocked', detail: stdFlowSkipReason || '' });
+    }
   } catch (/** @type {any} */ err) {
-    console.log(`[${KIND}] SF Std UI flow failed: ${err?.message || String(err)}`);
+    console.log(`[${KIND}] SF Std flow failed: ${err?.message || String(err)}`);
     anomalies.push({ severity: 'HIGH', type: 'std-ui-flow-error', detail: String(err?.message || err) });
   } finally {
     await stdCtx.close();
   }
 
-  // If the std flow detected a blocking condition (e.g. "Services Only contracts cannot be
-  // amended"), stop immediately — no point running the QTC flow against the same contract.
-  if (stdFlowSkipReason) {
-    console.log(`\n[${KIND}] ⚠️  Stopping setup — ${stdFlowSkipReason}`);
-    return;
-  }
-
-  // ── AgenticQTC amendment via UI ───────────────────────────────────────────
-  const qtcCtx  = await browser.newContext();
-  const qtcPage = await qtcCtx.newPage();
-  try {
-    sharedQtcQuoteId = await createQtcAmendmentViaUI(qtcPage, sharedContract);
-    console.log(`[${KIND}] AgenticQTC quote (UI): ${sharedQtcQuoteId}`);
-  } catch (/** @type {any} */ err) {
-    console.log(`[${KIND}] AgenticQTC UI flow failed: ${err?.message || String(err)}`);
-    anomalies.push({ severity: 'HIGH', type: 'qtc-ui-flow-error', detail: String(err?.message || err) });
-  } finally {
-    await qtcCtx.close();
-  }
-
-  if (!sharedStdQuoteId || !sharedQtcQuoteId) {
-    console.log(`\n⚠️  One or both UI amendment flows failed to produce a quote. Tests will skip.`);
+  if (!sharedStdQuoteId) {
+    console.log(`\n⚠️  SF Standard flow failed. Tests will skip.`);
     return;
   }
 
   // ── Fetch every queryable field for both quotes ───────────────────────────
-  sharedStdQuote  = await getQuoteRecord(sharedStdQuoteId);
-  sharedQtcQuote  = await getQuoteRecord(sharedQtcQuoteId);
-  sharedStdLines  = await getQuoteLines(sharedStdQuoteId);
-  sharedQtcLines  = await getQuoteLines(sharedQtcQuoteId);
+  sharedStdQuote = await getQuoteRecord(sharedStdQuoteId);
+  sharedQtcQuote = await getQuoteRecord(sharedQtcQuoteId);
 
-  console.log(`[${KIND}] SF Std:    ${Object.keys(sharedStdQuote).length} fields, ${sharedStdLines.length} lines`);
-  console.log(`[${KIND}] AgentQTC: ${Object.keys(sharedQtcQuote).length} fields, ${sharedQtcLines.length} lines`);
+  // CPQ computes header pricing fields (SBQQ__NetAmount__c etc.) asynchronously
+  // after Save & Forecast. Poll until the value is non-zero so the pricing parity
+  // test doesn't compare a fully-calculated QTC quote against an unpopulated one.
+  {
+    const POLL_INTERVAL_MS = 3_000;
+    const POLL_TIMEOUT_MS  = 60_000;
+    const deadline = Date.now() + POLL_TIMEOUT_MS;
+    while (
+      !sharedStdQuote['SBQQ__NetAmount__c'] &&
+      Date.now() < deadline
+    ) {
+      await new Promise(r => setTimeout(r, POLL_INTERVAL_MS));
+      sharedStdQuote = await getQuoteRecord(sharedStdQuoteId);
+    }
+    if (!sharedStdQuote['SBQQ__NetAmount__c']) {
+      console.log(`[${KIND}] ⚠️  SF Std quote SBQQ__NetAmount__c still 0 after ${POLL_TIMEOUT_MS / 1000}s — CPQ may not have finished calculating`);
+    }
+  }
+
+
+  sharedStdLines = await getQuoteLines(sharedStdQuoteId);
+  sharedQtcLines = await getQuoteLines(sharedQtcQuoteId);
+  console.log(`[${KIND}] SF Std:  ${Object.keys(sharedStdQuote).length} fields, ${sharedStdLines.length} lines`);
+  console.log(`[${KIND}] QTC:     ${Object.keys(sharedQtcQuote).length} fields, ${sharedQtcLines.length} lines`);
+
+  // ── Qty update tracking ────────────────────────────────────────────────────
+  // Both flows set qtyUpdateOldQty / qtyUpdateNewQty as side effects (SF Standard
+  // runs last so its value is canonical). Resolve the product by matching the new
+  // qty in the SF Standard lines.
+  if (qtyUpdateNewQty != null) {
+    const _newQty = qtyUpdateNewQty;
+    const targetLine =
+      sharedStdLines.find(l => l.SBQQ__Product__c && Math.abs(Number(l.SBQQ__Quantity__c) - _newQty) < 0.001) ||
+      sharedStdLines.find(l => l.SBQQ__Product__c && Number(l.SBQQ__Quantity__c) > 0);
+    if (targetLine) {
+      qtyUpdateProductId = targetLine.SBQQ__Product__c;
+      const prodRes = await u.sfQueryNode(
+        sfCtx.instanceUrl, sfCtx.accessToken,
+        `SELECT Name FROM Product2 WHERE Id = '${qtyUpdateProductId}' LIMIT 1`,
+        SF_API_VER
+      );
+      qtyUpdateProductName = prodRes.records?.[0]?.Name ?? qtyUpdateProductId;
+      qtyUpdateDone = true;
+      console.log(`[${KIND}] Qty update: "${qtyUpdateProductName}" ${qtyUpdateOldQty} → ${qtyUpdateNewQty}`);
+    }
+  }
+
+  stdLinesAfterQtyUpdate = await getQuoteLines(sharedStdQuoteId);
+  qtcLinesAfterQtyUpdate = await getQuoteLines(sharedQtcQuoteId);
+  console.log(`[${KIND}] Lines after qty update — SF Std=${stdLinesAfterQtyUpdate.length}, QTC=${qtcLinesAfterQtyUpdate.length}`);
 });
 
 // ── afterAll ──────────────────────────────────────────────────────────────────
@@ -243,6 +371,15 @@ test.afterAll(async () => {
       qtcLineCount:           sharedQtcLines.length,
       fieldsComparedPerQuote: Object.keys(sharedStdQuote).length,
       testFindings,
+      qtyUpdate: {
+        productId:          qtyUpdateProductId,
+        productName:        qtyUpdateProductName,
+        oldQty:             qtyUpdateOldQty,
+        newQty:             qtyUpdateNewQty,
+        done:               qtyUpdateDone,
+        stdLinesAfterCount: stdLinesAfterQtyUpdate.length,
+        qtcLinesAfterCount: qtcLinesAfterQtyUpdate.length,
+      },
     },
   });
 
@@ -297,11 +434,18 @@ async function createStdAmendmentViaUI(page, contract) {
   if (blockerVisible) {
     stdFlowSkipReason =
       `Contract ${contract.ContractNumber} (${contract.Id}): ` +
-      `"Services Only Contracts cannot be Amended." — ` +
-      `this contract type cannot be amended via the SF standard UI flow. ` +
-      `Use QTC_ACCOUNT_NAME to point at an account with an amendable contract.`;
+      `"Services Only Contracts cannot be Amended."`;
     console.log(`\n[${KIND}] ⚠️  SKIP — ${stdFlowSkipReason}`);
-    await u.screenshot(page, runDir, 'std-02-amend-blocked');
+    await u.screenshot(page, runDir, `std-02-amend-blocked-${contract.ContractNumber}`);
+
+    // Dismiss the modal so the browser is in a clean state for the next attempt.
+    const cancelBtn = page.getByRole('button', { name: /cancel/i }).first();
+    const closeBtn  = page.locator('[title="Close"], button.slds-modal__close').first();
+    if (await u.isVisibleSafe(cancelBtn, 2_000)) {
+      await cancelBtn.click();
+    } else if (await u.isVisibleSafe(closeBtn, 2_000)) {
+      await closeBtn.click();
+    }
     return null;
   }
 
@@ -334,38 +478,115 @@ async function createStdAmendmentViaUI(page, contract) {
   await vfFrame.locator('input.sbBtn[value="Amend"]').click();
   await u.screenshot(page, runDir, 'std-05-subscription-amend-clicked');
 
-  // ── Step 4: Save & Forecast on the new amendment quote ───────────────────
-  // Determine which page/tab CPQ opened the quote editor in, then click
-  // "Save & Forecast" to fully complete the CPQ amendment calculation.
+  // ── Step 4: Update quantity then Save & Forecast ─────────────────────────
+  // CPQ may open the QLE in a new tab (standalone VF page) or embedded inside
+  // the Lightning shell as iframe[name^="vfFrameId_"]. Race both contexts for
+  // the "Save & Forecast" button so we handle whichever variant loads.
   const newTab = await newTabPromise.catch(() => null);
   /** @type {import('@playwright/test').Page} */
   const editorPage = newTab || page;
 
   if (newTab) {
-    await newTab.waitForLoadState('domcontentloaded', { timeout: 90000 }).catch(() => {});
+    await newTab.waitForLoadState('domcontentloaded', { timeout: 90_000 }).catch(() => {});
     await u.screenshot(newTab, runDir, 'std-06-editor-newtab');
   } else {
-    // Wait for the current tab to navigate away from the subscription-selection page
-    try {
-      await page.waitForFunction(
-        () => !window.location.href.includes('AmendContract') && !window.location.href.includes('one.app'),
-        { timeout: 90000 }
-      );
-    } catch (_) { /* fall through */ }
     await u.screenshot(page, runDir, 'std-06-editor-sametab');
   }
 
-  // Click "Save & Forecast" — the button label CPQ uses to finalize an amendment quote.
-  // Try both label variants ("Save & Forecast" and "Save and Forecast").
-  const saveAndForecastBtn = editorPage.getByRole('button', { name: /save\s*[&and]+\s*forecast/i });
-  if (await u.isVisibleSafe(saveAndForecastBtn, 30000)) {
+  // Race: VF iframe (Lightning-embedded) vs main frame (standalone VF page).
+  const vfCtx       = editorPage.frameLocator('iframe[name^="vfFrameId_"]');
+  const vfSaveBtn   = vfCtx.getByRole('button', { name: /save\s*[&and]+\s*forecast/i });
+  const mainSaveBtn = editorPage.getByRole('button', { name: /save\s*[&and]+\s*forecast/i });
+  const whichSave   = await u.waitForAny([vfSaveBtn, mainSaveBtn], 60_000);
+  const inIframe    = whichSave === 0;
+  const editorRoot  = inIframe ? vfCtx : editorPage;
+  const saveAndForecastBtn = whichSave === 0 ? vfSaveBtn : (whichSave === 1 ? mainSaveBtn : null);
+
+  if (saveAndForecastBtn) {
+    await u.screenshot(editorPage, runDir, 'std-07-editor-ready');
+
+    // ── Update a product quantity BEFORE Save & Forecast ──────────────────
+    // Strategy: try MDQ path first (sf-le-table-row + expand), then fall back
+    // to non-MDQ path (direct editable cell click). Both paths write to the
+    // same #myinput / textbox once the cell is in edit mode.
+    try {
+      let qtyInputFound = false;
+
+      // ── Path A: MDQ product (sf-le-table-row with expand icon) ───────────
+      const firstRow = editorRoot.locator('sf-le-table-row').first();
+      if (await u.isVisibleSafe(firstRow, 5_000)) {
+        await firstRow.locator('#expandCollapseIcon').click();
+        await editorPage.waitForTimeout(1_000);
+
+        // sb-le-table-cell is the MDQ cell component; .editable.numericField is the
+        // fallback for non-component VF cells.
+        const qtyCell    = editorRoot.locator('sb-le-table-cell').filter({ hasText: /^Quantity$/i }).locator('#formatted').first();
+        const editableNf = editorRoot.locator('.editable.numericField').first();
+
+        if (await u.isVisibleSafe(qtyCell, 3_000)) {
+          await qtyCell.click();
+          await editorPage.waitForTimeout(500);
+        } else if (await u.isVisibleSafe(editableNf, 3_000)) {
+          await editableNf.click();
+          await editorPage.waitForTimeout(500);
+        }
+
+        const qtyInput = editorRoot.locator('#tableContainer #myinput')
+          .or(editorRoot.locator('#tableContainer').getByRole('textbox'))
+          .or(editorRoot.locator('#tableContainer input[type="text"]'));
+        if (await u.isVisibleSafe(qtyInput, 5_000)) {
+          const raw = await qtyInput.inputValue().catch(() => '1');
+          qtyUpdateOldQty = parseFloat(raw) || 1;
+          qtyUpdateNewQty = qtyUpdateOldQty + 5;
+          await qtyInput.fill(String(qtyUpdateNewQty));
+          await editorRoot.locator('#mainPanel').click();
+          await editorPage.waitForLoadState('networkidle', { timeout: 30_000 }).catch(() => {});
+          await editorPage.waitForTimeout(800);
+          qtyInputFound = true;
+          console.log(`[${KIND}] CPQ qty (MDQ path): ${qtyUpdateOldQty} → ${qtyUpdateNewQty}`);
+          await u.screenshot(editorPage, runDir, 'std-08-qty-updated');
+        }
+      }
+
+      // ── Path B: Non-MDQ product (direct editable cell, no expand needed) ─
+      if (!qtyInputFound) {
+        console.log(`[${KIND}] MDQ path skipped — trying non-MDQ editable cell`);
+        const directCell = editorRoot.locator('td.editable').first();
+        if (await u.isVisibleSafe(directCell, 3_000)) {
+          await directCell.click();
+          await editorPage.waitForTimeout(500);
+        }
+        const qtyInput2 = editorRoot.locator('#myinput')
+          .or(editorRoot.getByRole('textbox').first());
+        if (await u.isVisibleSafe(qtyInput2, 5_000)) {
+          const raw2 = await qtyInput2.inputValue().catch(() => '1');
+          qtyUpdateOldQty = parseFloat(raw2) || 1;
+          qtyUpdateNewQty = qtyUpdateOldQty + 5;
+          await qtyInput2.fill(String(qtyUpdateNewQty));
+          const mainPanel = editorRoot.locator('#mainPanel, #container, .container').first();
+          await u.clickIfVisible(mainPanel, 2_000);
+          await editorPage.waitForLoadState('networkidle', { timeout: 30_000 }).catch(() => {});
+          await editorPage.waitForTimeout(800);
+          qtyInputFound = true;
+          console.log(`[${KIND}] CPQ qty (non-MDQ path): ${qtyUpdateOldQty} → ${qtyUpdateNewQty}`);
+          await u.screenshot(editorPage, runDir, 'std-08-qty-updated');
+        }
+      }
+
+      if (!qtyInputFound) {
+        console.log(`[${KIND}] qty input not found in MDQ or non-MDQ path — proceeding to Save & Forecast`);
+      }
+    } catch (/** @type {any} */ qtyErr) {
+      console.log(`[${KIND}] Pre-save qty update error (will still save): ${qtyErr?.message || qtyErr}`);
+    }
+
+    // ── Save & Forecast ────────────────────────────────────────────────────
     await saveAndForecastBtn.click();
-    await u.screenshot(editorPage, runDir, 'std-07-save-forecast-clicked');
-    // Wait for CPQ to finish saving (spinner disappears / success state)
-    await editorPage.waitForLoadState('networkidle', { timeout: 120000 }).catch(() => {});
-    await u.screenshot(editorPage, runDir, 'std-08-save-complete');
+    await u.screenshot(editorPage, runDir, 'std-09-save-forecast-clicked');
+    await editorPage.waitForLoadState('domcontentloaded', { timeout: 30_000 }).catch(() => {});
+    await u.screenshot(editorPage, runDir, 'std-10-save-complete');
   } else {
-    console.log(`[${KIND}] "Save & Forecast" button not found — amendment quote may already be saved`);
+    console.log(`[${KIND}] "Save & Forecast" button not found in VF iframe or main frame`);
     await u.screenshot(editorPage, runDir, 'std-07-no-save-btn');
   }
 
@@ -428,29 +649,33 @@ function extractQuoteIdFromUrl(url) {
 }
 
 /**
- * Navigate to the agenticQtcApp LWC, select the account and contract,
- * trigger a new amendment, and return the resulting quote ID.
+ * Mode 1: Navigate to QTC, create a NEW amendment quote for the given contract
+ * (or the first contract in QTC's own list when contract is null), update the
+ * first product's quantity by +5 inline, save, and return the new quote ID.
+ *
+ * Sets `qtyUpdateOldQty` and `qtyUpdateNewQty` as side effects.
  *
  * @param {import('@playwright/test').Page} page
- * @param {{Id: string, ContractNumber: string}} contract
+ * @param {{Id: string, ContractNumber: string} | null} contract
  * @returns {Promise<string | null>}
  */
-async function createQtcAmendmentViaUI(page, contract) {
-  // loginViaCookie's internal waitForURL can time out in a cold browser context
-  // (App Launcher load event > 60 s). Swallow it — qtc.goto() uses 'commit' +
-  // waitFor(accountSearchInput) as its own readiness gate.
+async function createQtcAmendmentAndUpdateQty(page, contract) {
   await loginViaCookie(page, sfCtx.lightningUrl, sfCtx.accessToken).catch(() => {});
   const qtc = new AgenticQtcPage(page, sfCtx);
   await qtc.goto();
   await u.screenshot(page, runDir, 'qtc-01-home');
 
-  // Select the account
   await qtc.searchAndSelectAccount(ACCOUNT_SEARCH, ACCOUNT_NAME);
   await u.screenshot(page, runDir, 'qtc-02-account-selected');
 
-  // Click the contract
-  await qtc.openContractByNumber(contract.ContractNumber, 30000);
-  const outcome = await qtc.waitForContractClickOutcome(60000);
+  // If a specific contract ID was provided, click it by ID; otherwise let QTC
+  // pick the first contract from its own "Active Contracts" list.
+  if (contract && CONTRACT_ID) {
+    await qtc.clickContractById(contract.Id, 60_000);
+  } else {
+    await qtc.clickContractByIndex(0, 60_000);
+  }
+  const outcome = await qtc.waitForContractClickOutcome(60_000);
   console.log(`[${KIND}] QTC contract click outcome: ${outcome}`);
   await u.screenshot(page, runDir, 'qtc-03-after-contract-click');
 
@@ -458,35 +683,64 @@ async function createQtcAmendmentViaUI(page, contract) {
     anomalies.push({
       severity: 'HIGH',
       type: 'qtc-contract-click-timeout',
-      detail: `AgenticQTC did not open an editor or modal after clicking contract ${contract.ContractNumber}`,
+      detail: 'QTC did not open an editor or modal after clicking the contract',
     });
     return null;
   }
 
   if (outcome === 'modal') {
-    // Draft quotes modal — create a fresh amendment rather than reopening an existing draft
-    const createBtn = qtc.createNewAmendmentButton();
-    await createBtn.waitFor({ state: 'visible', timeout: 15000 });
-    await createBtn.click();
-    await u.screenshot(page, runDir, 'qtc-04-create-new-clicked');
+    // The pre-flight cleanup in beforeAll should have deleted all stale drafts so
+    // QTC never reaches this branch in normal operation. If we land here anyway
+    // (e.g. another process created a draft after cleanup), abort rather than
+    // silently opening a stale draft — that would bake the wrong qty into the
+    // comparison and produce a misleading failure.
+    anomalies.push({
+      severity: 'HIGH',
+      type: 'qtc-modal-stale-drafts',
+      detail: 'Draft picker modal appeared despite pre-flight cleanup — stale draft amendments still present on contract',
+    });
+    console.log(`[${KIND}] ⚠️  Draft picker modal appeared unexpectedly — aborting QTC flow`);
+    return null;
   }
-  // 'editor' outcome: editor already open, proceed directly
 
-  // Wait for the quote name to appear in the editor header
-  const quoteName = await qtc.getQuoteName(90000);
+  // Wait for lines (spinbuttons) to appear in the editor
+  const lineCount = await qtc.waitForLines(90_000);
   await u.screenshot(page, runDir, 'qtc-05-editor-ready');
+  if (lineCount === 0) {
+    anomalies.push({
+      severity: 'HIGH',
+      type: 'qtc-no-lines',
+      detail: 'QTC editor opened but no quantity spinbuttons were found within 90s',
+    });
+    return null;
+  }
 
+  // Read the first spinbutton qty, add 5, fill and commit
+  const sb = page.getByRole('spinbutton').first();
+  const rawQty = await sb.inputValue().catch(() => '1');
+  qtyUpdateOldQty = parseFloat(rawQty) || 1;
+  qtyUpdateNewQty = qtyUpdateOldQty + 5;
+  await sb.click({ clickCount: 3 });
+  await sb.fill(String(qtyUpdateNewQty));
+  await sb.press('Tab');
+  await page.waitForTimeout(1_500);
+  console.log(`[${KIND}] QTC qty update: ${qtyUpdateOldQty} → ${qtyUpdateNewQty}`);
+  await u.screenshot(page, runDir, 'qtc-06-qty-updated');
+
+  await qtc.save(90_000, 2_000);
+  await u.screenshot(page, runDir, 'qtc-07-saved');
+
+  const quoteName = await qtc.getQuoteName(30_000);
   if (!quoteName) {
     anomalies.push({
       severity: 'HIGH',
       type: 'qtc-quote-name-not-found',
-      detail: 'AgenticQTC editor opened but the quote name was not found in the header within 90s',
+      detail: 'QTC editor saved but the quote name was not found in the header within 30s',
     });
     return null;
   }
-  console.log(`[${KIND}] AgenticQTC quote name: ${quoteName}`);
+  console.log(`[${KIND}] QTC new quote name: ${quoteName}`);
 
-  // Resolve the quote record ID from its name
   const res = await u.sfQueryNode(
     sfCtx.instanceUrl, sfCtx.accessToken,
     `SELECT Id FROM SBQQ__Quote__c WHERE Name = '${escapeSoql(quoteName)}' LIMIT 1`,
@@ -503,10 +757,110 @@ async function createQtcAmendmentViaUI(page, contract) {
   return quoteId;
 }
 
+/**
+ * Mode 2: Navigate to QTC, open the EXISTING draft quote identified by
+ * `quoteName` for the given contract, update the first product's quantity
+ * by +5 inline, save, and return the quote ID.
+ *
+ * Sets `qtyUpdateOldQty` and `qtyUpdateNewQty` as side effects.
+ *
+ * @param {import('@playwright/test').Page} page
+ * @param {{Id: string, ContractNumber: string}} contract
+ * @param {string} quoteName  Q-NNNNN label of the existing draft quote to open.
+ * @returns {Promise<string | null>}
+ */
+async function openExistingQtcQuoteAndUpdateQty(page, contract, quoteName) {
+  await loginViaCookie(page, sfCtx.lightningUrl, sfCtx.accessToken).catch(() => {});
+  const qtc = new AgenticQtcPage(page, sfCtx);
+  await qtc.goto();
+  await u.screenshot(page, runDir, 'qtc-01-home');
+
+  await qtc.searchAndSelectAccount(ACCOUNT_SEARCH, ACCOUNT_NAME);
+  await u.screenshot(page, runDir, 'qtc-02-account-selected');
+
+  await qtc.clickContractById(contract.Id, 60_000);
+  const outcome = await qtc.waitForContractClickOutcome(60_000);
+  console.log(`[${KIND}] QTC contract click outcome: ${outcome}`);
+  await u.screenshot(page, runDir, 'qtc-03-after-contract-click');
+
+  if (outcome === 'timeout') {
+    throw new Error(
+      `QTC did not open an editor or modal after clicking contract ${contract.ContractNumber}`
+    );
+  }
+
+  if (outcome === 'modal') {
+    // DOM confirmed: tr.quote-row > td.quote-name-cell (lwc synthetic shadow, flat DOM).
+    // Wait for at least one row to appear, then find the named one by its name cell.
+    await page.locator('tr.quote-row').first().waitFor({ state: 'visible', timeout: 20_000 });
+    const targetRow = page.locator('tr.quote-row').filter({
+      has: page.locator('td.quote-name-cell').filter({ hasText: quoteName }),
+    }).first();
+    await targetRow.waitFor({ state: 'visible', timeout: 10_000 }).catch(async () => {
+      const allNames = await page.locator('td.quote-name-cell').allTextContents().catch(() => []);
+      throw new Error(
+        `Draft quote "${quoteName}" not found in modal. Available: ${JSON.stringify(allNames)}`
+      );
+    });
+    await targetRow.click();
+    await u.screenshot(page, runDir, 'qtc-04-modal-actioned');
+  }
+
+  if (outcome === 'editor') {
+    const openedName = await qtc.getQuoteName(15_000);
+    if (openedName && openedName !== quoteName) {
+      throw new Error(
+        `QTC opened quote "${openedName}" but expected "${quoteName}".`
+      );
+    }
+  }
+
+  const lineCount = await qtc.waitForLines(90_000);
+  await u.screenshot(page, runDir, 'qtc-05-editor-ready');
+  if (lineCount === 0) {
+    throw new Error('QTC editor opened but no quantity spinbuttons were found within 90s');
+  }
+
+  // Read the first spinbutton qty, add 5, fill and commit
+  const sb = page.getByRole('spinbutton').first();
+  const rawQty = await sb.inputValue().catch(() => '1');
+  qtyUpdateOldQty = parseFloat(rawQty) || 1;
+  qtyUpdateNewQty = qtyUpdateOldQty + 5;
+  await sb.click({ clickCount: 3 });
+  await sb.fill(String(qtyUpdateNewQty));
+  await sb.press('Tab');
+  await page.waitForTimeout(1_500);
+  console.log(`[${KIND}] QTC qty update: ${qtyUpdateOldQty} → ${qtyUpdateNewQty}`);
+  await u.screenshot(page, runDir, 'qtc-06-qty-updated');
+
+  await qtc.save(90_000, 2_000);
+  await u.screenshot(page, runDir, 'qtc-07-saved');
+
+  // Resolve the quote ID by name (name is already known)
+  const res = await u.sfQueryNode(
+    sfCtx.instanceUrl, sfCtx.accessToken,
+    `SELECT Id FROM SBQQ__Quote__c WHERE Name = '${escapeSoql(quoteName)}' LIMIT 1`,
+    SF_API_VER
+  );
+  const quoteId = res.records?.[0]?.Id ?? null;
+  if (!quoteId) {
+    throw new Error(`SOQL found no SBQQ__Quote__c with Name = '${quoteName}'`);
+  }
+  console.log(`[${KIND}] QTC existing quote ID: ${quoteId}`);
+  return quoteId;
+}
+
 // ── Discovery + SOQL helpers ──────────────────────────────────────────────────
 
-/** @returns {Promise<{Id: string, ContractNumber: string} | null>} */
-async function getActivatedContract() {
+/**
+ * Return all Activated / In-Force contracts for the configured account,
+ * ordered newest-first so callers can iterate and pick the first one that
+ * the SF Standard CPQ "Amend" flow accepts (some contracts are Services-Only
+ * and cannot be amended via the standard UI).
+ *
+ * @returns {Promise<Array<{Id: string, ContractNumber: string}>>}
+ */
+async function getActivatedContracts() {
   const accRes = await u.sfQueryNode(
     sfCtx.instanceUrl, sfCtx.accessToken,
     `SELECT Id FROM Account WHERE Name = '${escapeSoql(ACCOUNT_NAME)}' LIMIT 1`,
@@ -524,8 +878,37 @@ async function getActivatedContract() {
     SF_API_VER
   );
   const all = contractRes.records || [];
-  return all.find(/** @param {any} c */ c => ['Activated', 'In Force'].includes(c.Status)) || null;
+  return all.filter(/** @param {any} c */ c => ['Activated', 'In Force'].includes(c.Status));
 }
+
+/**
+ * Delete all draft amendment quotes for a contract so the QTC flow always
+ * starts clean. The LWC shows a picker modal (no "Create New" option) when
+ * drafts exist — deleting them beforehand ensures outcome is always 'editor'.
+ * @param {string} contractId
+ */
+async function deleteDraftAmendments(contractId) {
+  const res = await u.sfQueryNode(
+    sfCtx.instanceUrl, sfCtx.accessToken,
+    `SELECT Id, Name FROM SBQQ__Quote__c
+       WHERE SBQQ__MasterContract__c = '${contractId}'
+         AND SBQQ__Type__c = 'Amendment'
+         AND SBQQ__Status__c = 'Draft'`,
+    SF_API_VER
+  );
+  for (const rec of res.records ?? []) {
+    const resp = await fetch(
+      `${sfCtx.instanceUrl}/services/data/${SF_API_VER}/sobjects/SBQQ__Quote__c/${rec.Id}`,
+      { method: 'DELETE', headers: { Authorization: `Bearer ${sfCtx.accessToken}` } }
+    );
+    if (resp.status === 204) {
+      console.log(`[${KIND}] Deleted stale draft amendment ${rec.Name} (${rec.Id})`);
+    } else {
+      console.log(`[${KIND}] ⚠️  Could not delete draft ${rec.Id} — HTTP ${resp.status}`);
+    }
+  }
+}
+
 
 /** @param {string} objectName */
 async function describeQueryableFields(objectName) {
@@ -712,6 +1095,11 @@ function recordDiffs(testName, diffs, opts = {}) {
 /** @returns {boolean} */
 function fixtureReady() {
   return !!(sharedContract && sharedStdQuoteId && sharedQtcQuoteId);
+}
+
+/** @returns {boolean} */
+function qtyUpdateReady() {
+  return fixtureReady() && qtyUpdateDone && qtyUpdateProductId != null;
 }
 
 // ── Tests ─────────────────────────────────────────────────────────────────────
@@ -935,6 +1323,66 @@ test('Subscription linkage parity', async () => {
   console.log(`Subscription linkage — ${issues.length} issue(s)`);
   testFindings.push({
     testName:  'Subscription linkage parity',
+    passed:    issues.length === 0,
+    diffCount: issues.length,
+  });
+  expect(issues, issues.join('\n')).toHaveLength(0);
+});
+
+test('Quantity update parity — SF Standard CPQ vs AgenticQTC', async () => {
+  test.skip(!qtyUpdateReady(), 'quantity update fixture unavailable');
+  test.slow();
+
+  /** @type {string[]} */
+  const issues = [];
+
+  // Locate the updated line by product ID in both result sets.
+  const stdLine = stdLinesAfterQtyUpdate.find(l => l.SBQQ__Product__c === qtyUpdateProductId);
+  const qtcLine = qtcLinesAfterQtyUpdate.find(l => l.SBQQ__Product__c === qtyUpdateProductId);
+
+  if (!stdLine) {
+    issues.push(`SF Std: no line found for product "${qtyUpdateProductName}" after quantity update`);
+  }
+  if (!qtcLine) {
+    issues.push(`AgenticQTC: no line found for product "${qtyUpdateProductName}" after quantity update`);
+  }
+
+  if (stdLine && qtcLine) {
+    const stdQty = stdLine.SBQQ__Quantity__c;
+    const qtcQty = qtcLine.SBQQ__Quantity__c;
+
+    console.log(
+      `Qty update — product: "${qtyUpdateProductName}" | ` +
+      `old=${qtyUpdateOldQty}, target=${qtyUpdateNewQty} | ` +
+      `SF Std qty=${stdQty}, AgenticQTC qty=${qtcQty}`
+    );
+
+    // Both should reflect the new quantity that was entered in each UI.
+    if (stdQty == null || Math.abs(Number(stdQty) - (qtyUpdateNewQty || 0)) > 0.001) {
+      issues.push(`SF Std quantity: expected ${qtyUpdateNewQty}, got ${stdQty ?? '(null)'}`);
+    }
+    if (qtcQty == null || Math.abs(Number(qtcQty) - (qtyUpdateNewQty || 0)) > 0.001) {
+      issues.push(`AgenticQTC quantity: expected ${qtyUpdateNewQty}, got ${qtcQty ?? '(null)'}`);
+    }
+    if (stdQty != null && qtcQty != null && Math.abs(Number(stdQty) - Number(qtcQty)) > 0.001) {
+      issues.push(`Quantity mismatch after update: SF Std=${stdQty}, AgenticQTC=${qtcQty}`);
+    }
+
+    // Compare pricing fields on the updated line between the two systems.
+    const priceDiffs = compareFields(stdLine, qtcLine, { onlyFields: PRICING_FIELDS });
+    recordDiffs('qty-update pricing', priceDiffs, { structuralSeverity: 'HIGH', valueSeverity: 'HIGH' });
+    for (const d of priceDiffs) {
+      issues.push(`${d.field}: SF Std=${formatVal(d.std)}, AgenticQTC=${formatVal(d.qtc)}`);
+    }
+  }
+
+  for (const issue of issues) {
+    anomalies.push({ severity: 'HIGH', type: 'qty-update-parity', detail: issue });
+  }
+
+  console.log(`Quantity update parity — ${issues.length} issue(s)`);
+  testFindings.push({
+    testName:  'Quantity update parity — SF Standard CPQ vs AgenticQTC',
     passed:    issues.length === 0,
     diffCount: issues.length,
   });

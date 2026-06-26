@@ -1,11 +1,15 @@
 import { LightningElement, track } from 'lwc';
-import createTestRun        from '@salesforce/apex/AgenticQTC_TestRunnerController.createTestRun';
+import createTestRunScoped  from '@salesforce/apex/AgenticQTC_TestRunnerController.createTestRunScoped';
 import getTestRun           from '@salesforce/apex/AgenticQTC_TestRunnerController.getTestRun';
 import getRecentTestRuns    from '@salesforce/apex/AgenticQTC_TestRunnerController.getRecentTestRuns';
+import searchTestRuns       from '@salesforce/apex/AgenticQTC_TestRunnerController.searchTestRuns';
 import cancelTestRun        from '@salesforce/apex/AgenticQTC_TestRunnerController.cancelTestRun';
 import getTestRunFiles      from '@salesforce/apex/AgenticQTC_TestRunnerController.getTestRunFiles';
 import searchAccounts       from '@salesforce/apex/AgenticQTC_TestRunnerController.searchAccounts';
-import getSuiteOptions      from '@salesforce/apex/AgenticQTC_TestRunnerController.getSuiteOptions';
+import getSuiteOptions          from '@salesforce/apex/AgenticQTC_TestRunnerController.getSuiteOptions';
+import getModuleOptions         from '@salesforce/apex/AgenticQTC_TestRunnerController.getModuleOptions';
+import getContractsForAccount   from '@salesforce/apex/AgenticQTC_TestRunnerController.getContractsForAccount';
+import getQuotesForContract     from '@salesforce/apex/AgenticQTC_TestRunnerController.getQuotesForContract';
 import { ShowToastEvent }   from 'lightning/platformShowToastEvent';
 import LightningConfirm     from 'lightning/confirm';
 
@@ -33,10 +37,15 @@ const PASS_RATE_WARN_PCT      = 50;          // >= yellow, otherwise red
 const QTY_MATCH_TOLERANCE     = 0.01;        // UI vs DB qty treated as equal within this
 const DEFAULT_QTY_DELTA       = 5;           // fallback delta when the spec didn't record one
 
+// ── Multi-account selection ──────────────────────────────────────────────────
+const MULTI_ACCT_MAX = 5;
+const MULTI_ACCT_MIN = 2;
+
 // ── localStorage keys ────────────────────────────────────────────────────────
 const LS_DARK_MODE = 'agenticqtc_dark_mode';
 const LS_RUNNER    = 'agenticqtc_runner';
 const LS_SUITE     = 'agenticqtc_suite';
+const LS_MODULE    = 'agenticqtc_module';
 
 // Inline placeholder shown when a screenshot fails to load (#29)
 const BROKEN_IMAGE_DATA_URI = 'data:image/svg+xml;utf8,' + encodeURIComponent(
@@ -55,7 +64,9 @@ export default class AgenticQtcTestDashboard extends LightningElement {
 
     // ── reactive state ──────────────────────────────────────────────────────
 
-    @track _suiteOptions      = [];     // populated from agenticQTC_TestSuite__mdt
+    @track _suiteOptions      = [];     // populated from agenticQTC_TestSuite__mdt (label/value/moduleName/description)
+    @track _moduleOptions     = [];     // populated from Module__mdt
+    @track selectedModule     = null;   // null → the "Select Module" placeholder is shown
     @track selectedSuite      = null;   // null → the "Select Spec" placeholder is shown
     @track selectedRunner     = 'github';
     @track activeRunId        = null;
@@ -71,8 +82,16 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     @track lightboxIndex      = null;       // null = closed, number = open
     @track activeTab          = 'screenshots';
     @track activeSidebarRunId = null;
-    @track showRunDropdown    = false;      // Recent Runs picker in the control bar
-    @track historyFilter      = '';         // text filter for the Recent Runs list
+    @track _contractDropdownOpen = false;    // custom Contract picker
+    @track _quoteDropdownOpen    = false;    // custom Quote picker
+    @track _moduleDropdownOpen  = false;     // custom Module picker
+    @track _specDropdownOpen    = false;     // custom Spec picker
+    @track showRunDropdown      = false;     // Recent Runs picker in the control bar
+    @track _dropdownStyle       = '';        // inline style for the fixed-position dropdown panel
+    @track historyFilter        = '';        // text filter for the Recent Runs list
+    @track _historySearchResults = null;     // null = show recentRuns; array = server search results
+    @track _isSearchingHistory   = false;    // true while server search is in flight
+    _historySearchTimeout = null;
     @track videoLoadError     = false;      // true if the run recording fails to load
     @track showVideoModal     = false;      // true while the recording plays in a popup
 
@@ -85,10 +104,31 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     @track selectedAccountName   = null;
     @track accountHighlightIndex = -1;      // keyboard-highlighted result (#30)
 
+    // ── contract scoping (optional) ─────────────────────────────────────────
+    @track _contractOptions      = [];      // ContractOption[] from Apex
+    @track selectedContractId    = null;
+    @track selectedContractNumber = null;
+
+    // ── quote scoping (optional) ─────────────────────────────────────────────
+    @track _quoteOptions         = [];      // QuoteOption[] from Apex
+    @track selectedQuoteId       = null;
+    @track selectedQuoteName     = null;
+
+    // ── multi-account mode ───────────────────────────────────────────────────
+    @track accountMode           = 'single';  // 'single' | 'multi'
+    @track selectedAccounts      = [];         // [{id, name}] max 5, min 2
+    @track multiAcctSearchTerm   = '';
+    @track multiAcctResults      = [];         // AccountResult[] from Apex
+    @track isSearchingMultiAcct  = false;
+    @track hasSearchedMultiAcct  = false;
+    @track multiAcctHighlight    = -1;
+
     // ── private (non-reactive) fields ────────────────────────────────────────
-    _historyTimer      = null;
-    _acctSearchTimeout = null;
-    _acctBlurTimeout   = null;
+    _historyTimer           = null;
+    _acctSearchTimeout      = null;
+    _acctBlurTimeout        = null;
+    _multiAcctSearchTimeout = null;
+    _multiAcctBlurTimeout   = null;
     _pollTimer         = null;
     _pollStartTime     = null;
     _lightboxFocused   = false;             // focus the lightbox overlay only once per open
@@ -100,10 +140,18 @@ export default class AgenticQtcTestDashboard extends LightningElement {
 
     // ── lifecycle ───────────────────────────────────────────────────────────
 
-    // Close the Recent Runs dropdown on any click that isn't stopped by the
-    // dropdown's own elements (toggle button / panel call stopPropagation).
+    // Close all dropdowns on any click not stopped by their own elements.
     _onDocumentClick = () => {
-        if (this.showRunDropdown) this.showRunDropdown = false;
+        if (this.showRunDropdown) {
+            this.showRunDropdown        = false;
+            this.historyFilter          = '';
+            this._historySearchResults  = null;
+            this._isSearchingHistory    = false;
+        }
+        if (this._contractDropdownOpen) this._contractDropdownOpen = false;
+        if (this._quoteDropdownOpen)    this._quoteDropdownOpen    = false;
+        if (this._moduleDropdownOpen)   this._moduleDropdownOpen   = false;
+        if (this._specDropdownOpen)     this._specDropdownOpen     = false;
     };
 
     connectedCallback() {
@@ -115,6 +163,7 @@ export default class AgenticQtcTestDashboard extends LightningElement {
             }
         } catch (e) { /* localStorage unavailable */ }
 
+        this._loadModuleOptions();
         this._loadSuiteOptions();
         this._loadHistory();
         window.addEventListener('click', this._onDocumentClick);
@@ -129,6 +178,8 @@ export default class AgenticQtcTestDashboard extends LightningElement {
         this._stopPolling();
         clearTimeout(this._acctSearchTimeout);
         clearTimeout(this._acctBlurTimeout);
+        clearTimeout(this._multiAcctSearchTimeout);
+        clearTimeout(this._multiAcctBlurTimeout);
         clearInterval(this._historyTimer);
         window.removeEventListener('click', this._onDocumentClick);
     }
@@ -149,13 +200,68 @@ export default class AgenticQtcTestDashboard extends LightningElement {
 
     // ── computed getters: layout ────────────────────────────────────────────
 
-    get suiteOptions() {
-        return this._suiteOptions.map(option => ({
+    // Module dropdown options (from Module__mdt).
+    get moduleOptions() {
+        return this._moduleOptions.map(option => ({
             ...option,
-            selected: option.value === this.selectedSuite,
+            selected:  option.value === this.selectedModule,
+            itemClass: 'custom-dd-item' + (option.value === this.selectedModule ? ' custom-dd-item-sel' : ''),
         }));
     }
+    get noModuleSelected() { return !this.selectedModule; }
+
+    get selectedModuleLabel() {
+        if (!this.selectedModule) return 'Select Module';
+        const match = this._moduleOptions.find(o => o.value === this.selectedModule);
+        return match ? match.label : this.selectedModule;
+    }
+
+    get moduleDropdownClass() {
+        return ['custom-dd-outer',
+            this._moduleDropdownOpen ? 'custom-dd-open' : '',
+            this.isRunning ? 'custom-dd-disabled' : '',
+        ].filter(Boolean).join(' ');
+    }
+
+    // Spec dropdown is disabled until a module is chosen.
+    get specSelectDisabled() { return this.isRunning || !this.selectedModule; }
+
+    // Spec options filtered to the selected module. With no module selected the
+    // list is empty so the user must pick a module first.
+    get suiteOptions() {
+        if (!this.selectedModule) return [];
+        return this._suiteOptions
+            .filter(option => option.moduleName === this.selectedModule)
+            .map(option => ({
+                label:     option.label,
+                value:     option.value,
+                selected:  option.value === this.selectedSuite,
+                itemClass: 'custom-dd-item' + (option.value === this.selectedSuite ? ' custom-dd-item-sel' : ''),
+            }));
+    }
     get noSpecSelected() { return !this.selectedSuite; }
+
+    get selectedSpecLabel() {
+        if (!this.selectedSuite) return 'Select Spec';
+        const match = this._suiteOptions.find(o => o.value === this.selectedSuite);
+        return match ? match.label : this.selectedSuite;
+    }
+
+    get specDropdownClass() {
+        return ['custom-dd-outer',
+            this._specDropdownOpen ? 'custom-dd-open' : '',
+            this.specSelectDisabled ? 'custom-dd-disabled' : '',
+        ].filter(Boolean).join(' ');
+    }
+
+    // Description of the currently-selected spec (shown beside the Spec dropdown).
+    // Empty when no spec is selected → the description block stays hidden.
+    get selectedSpecDescription() {
+        if (!this.selectedSuite) return '';
+        const match = this._suiteOptions.find(o => o.value === this.selectedSuite);
+        return (match && match.description) ? match.description : '';
+    }
+    get hasSelectedSpecDescription() { return !!this.selectedSpecDescription; }
 
     get runnerOptions() {
         return RUNNER_OPTIONS.map(option => ({
@@ -183,14 +289,143 @@ export default class AgenticQtcTestDashboard extends LightningElement {
         return this.selectedRunner === 'github' ? 'Run on GitHub' : 'Run Local';
     }
     get runButtonDisabled() {
-        return this.isRunning || this.isCreating || !this.selectedSuite || !this.selectedAccountId;
+        if (this.isRunning || this.isCreating || !this.selectedSuite) return true;
+        if (this.isMultiAccountMode) return this.selectedAccounts.length < MULTI_ACCT_MIN;
+        return !this.selectedAccountId;
     }
     get reRunDisabled() {
-        return this.isRunning || this.isCreating || !this.activeRun || !this.activeRun.accountName;
+        if (this.isRunning || this.isCreating || !this.activeRun) return true;
+        return !this.activeRun.accountName && !this.activeRun.accountsJson;
+    }
+    get newRunDisabled() {
+        return this.isCreating;
     }
 
     // ── account search getters ──────────────────────────────────────────────
     get hasSelectedAccount() { return !!this.selectedAccountId; }
+
+    // ── multi-account mode getters ──────────────────────────────────────────
+
+    // The suite metadata entry for the currently-selected spec.
+    get selectedSuiteMeta() {
+        if (!this.selectedSuite) return null;
+        return this._suiteOptions.find(o => o.value === this.selectedSuite) || null;
+    }
+
+    // Show the Single / Multi toggle only when the selected spec has Allow_Multiple_Account__c = true.
+    get showAccountModeToggle() {
+        const suite = this.selectedSuiteMeta;
+        return !!(suite && suite.allowMultipleAccount);
+    }
+
+    // True when the toggle is set to multi mode.
+    get isMultiAccountMode() {
+        return this.showAccountModeToggle && this.accountMode === 'multi';
+    }
+
+    get singleModeBtnClass() {
+        return this.accountMode === 'single' ? 'runner-btn runner-btn-active' : 'runner-btn';
+    }
+    get multiModeBtnClass() {
+        return this.accountMode === 'multi' ? 'runner-btn runner-btn-active' : 'runner-btn';
+    }
+
+    // Whether another account can be added (cap not yet reached).
+    get canAddMoreAccounts() {
+        return !this.isRunning && this.selectedAccounts.length < MULTI_ACCT_MAX;
+    }
+
+    // "2 / 5" badge shown next to the label.
+    get multiAcctCountLabel() {
+        return `${this.selectedAccounts.length} / ${MULTI_ACCT_MAX}`;
+    }
+
+    // True when fewer than the minimum accounts are selected.
+    get multiAcctMinNotMet() {
+        return this.selectedAccounts.length < MULTI_ACCT_MIN;
+    }
+
+    // Show the count badge only once at least one account is selected.
+    get showMultiAcctCount() {
+        return this.selectedAccounts.length > 0;
+    }
+
+    // Show the typeahead results list (filters out already-selected accounts).
+    get showMultiAcctResults() {
+        return this.hasSearchedMultiAcct &&
+               !this.isSearchingMultiAcct &&
+               this.multiAcctFilteredResults.length > 0;
+    }
+
+    // Typeahead results minus already-selected accounts, decorated with highlight class.
+    get multiAcctFilteredResults() {
+        const selectedIds = new Set(this.selectedAccounts.map(a => a.id));
+        return this.multiAcctResults
+            .filter(a => !selectedIds.has(a.id))
+            .map((a, idx) => ({
+                ...a,
+                itemClass: idx === this.multiAcctHighlight
+                    ? 'acct-result-item acct-result-active'
+                    : 'acct-result-item',
+            }));
+    }
+
+    get showMultiAcctNoResults() {
+        const selectedIds = new Set(this.selectedAccounts.map(a => a.id));
+        const unselected  = this.multiAcctResults.filter(a => !selectedIds.has(a.id));
+        return this.hasSearchedMultiAcct &&
+               !this.isSearchingMultiAcct &&
+               unselected.length === 0 &&
+               this.multiAcctSearchTerm.trim().length >= ACCT_MIN_SEARCH_LEN;
+    }
+
+    // ── contract getters ─────────────────────────────────────────────────────
+    get contractOptions() {
+        return this._contractOptions.map(c => ({
+            ...c,
+            selected:  c.value === this.selectedContractId,
+            itemClass: 'custom-dd-item' + (c.value === this.selectedContractId ? ' custom-dd-item-sel' : ''),
+        }));
+    }
+    get noContractSelected()      { return !this.selectedContractId; }
+    get contractSelectDisabled()  { return this.isRunning || !this.selectedAccountId || this._contractOptions.length === 0; }
+
+    get selectedContractLabel() {
+        if (!this.selectedContractId) return 'Select Contract';
+        const match = this._contractOptions.find(c => c.value === this.selectedContractId);
+        return match ? match.label : this.selectedContractId;
+    }
+
+    get contractDropdownClass() {
+        return ['custom-dd-outer',
+            this._contractDropdownOpen ? 'custom-dd-open' : '',
+            this.contractSelectDisabled ? 'custom-dd-disabled' : '',
+        ].filter(Boolean).join(' ');
+    }
+
+    // ── quote getters ────────────────────────────────────────────────────────
+    get quoteOptions() {
+        return this._quoteOptions.map(q => ({
+            ...q,
+            selected:  q.value === this.selectedQuoteId,
+            itemClass: 'custom-dd-item' + (q.value === this.selectedQuoteId ? ' custom-dd-item-sel' : ''),
+        }));
+    }
+    get noQuoteSelected()      { return !this.selectedQuoteId; }
+    get quoteSelectDisabled()  { return this.isRunning || !this.selectedContractId || this._quoteOptions.length === 0; }
+
+    get selectedQuoteLabel() {
+        if (!this.selectedQuoteId) return 'Select Quote';
+        const match = this._quoteOptions.find(q => q.value === this.selectedQuoteId);
+        return match ? match.label : this.selectedQuoteId;
+    }
+
+    get quoteDropdownClass() {
+        return ['custom-dd-outer',
+            this._quoteDropdownOpen ? 'custom-dd-open' : '',
+            this.quoteSelectDisabled ? 'custom-dd-disabled' : '',
+        ].filter(Boolean).join(' ');
+    }
 
     // Grey out the account control while a run is in progress / being created
     get acctSelectWrapClass() {
@@ -239,8 +474,12 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     }
 
     get hasHistory()      { return this.recentRuns.length > 0; }
-    get hasFilteredRuns() { return this.sidebarRuns.length > 0; }
-    get noRunsMessage()   { return this.hasHistory ? 'No matching runs' : 'No runs yet'; }
+    get hasFilteredRuns() { return this._isSearchingHistory || this.sidebarRuns.length > 0; }
+    get noRunsMessage() {
+        if (this._isSearchingHistory) return 'Searching…';
+        if (this._historySearchResults !== null) return 'No runs matched your search';
+        return this.hasHistory ? 'No matching runs' : 'No runs yet';
+    }
 
     get runDropdownLabel() {
         if (this.activeRun && this.activeRun.name) return this.activeRun.name;
@@ -396,6 +635,10 @@ export default class AgenticQtcTestDashboard extends LightningElement {
         if (this.hasRichResults) {
             tabs.push(makeTab('metrics', 'Metrics', '💰', null, null));
         }
+        if (this.hasOsaComparison) {
+            const osaDiffs = this.richOsaRows.filter(r => !r.match).length;
+            tabs.push(makeTab('osa', 'OSA Data', '🗂', osaDiffs === 0 ? '✅' : osaDiffs + '❌', osaDiffs === 0));
+        }
         if (this.hasRichAnomalies) {
             tabs.push(makeTab('anomalies', 'Anomalies', '⚠️', this.richAnomalyRows.length, false));
         }
@@ -412,9 +655,13 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     get activeTabIsCrosscheck()  { return this.activeTab === 'crosscheck'; }
     get activeTabIsDb()          { return this.activeTab === 'db'; }
     get activeTabIsMetrics()     { return this.activeTab === 'metrics'; }
+    get activeTabIsOsa()         { return this.activeTab === 'osa'; }
     get activeTabIsAnomalies()   { return this.activeTab === 'anomalies'; }
     get activeTabIsSpec()        { return this.activeTab === 'spec'; }
     get activeTabIsLog()         { return this.activeTab === 'log'; }
+
+    get richOsaRows()      { return this._richView.osaRows; }
+    get hasOsaComparison() { return this.richOsaRows.length > 0; }
 
     // ── Pass-rate widget ──────────────────────────────────────────────────────
 
@@ -463,18 +710,9 @@ export default class AgenticQtcTestDashboard extends LightningElement {
         const specLabelByValue = {};
         this._suiteOptions.forEach(option => { specLabelByValue[option.value] = option.label; });
 
-        const query = this.historyFilter.trim().toLowerCase();
-        const runs = query
-            ? (this.recentRuns || []).filter(run => {
-                const fields = [
-                    run.name,                          // test name, e.g. TR-1367
-                    run.accountName,                   // account
-                    run.testSuite,                     // spec value
-                    specLabelByValue[run.testSuite],   // spec label
-                    run.status,
-                ];
-                return fields.some(field => (field || '').toLowerCase().includes(query));
-            })
+        // Use server search results when a query is active; fall back to local recent runs.
+        const runs = this._historySearchResults !== null
+            ? this._historySearchResults
             : (this.recentRuns || []);
 
         return runs.map(run => ({
@@ -482,6 +720,7 @@ export default class AgenticQtcTestDashboard extends LightningElement {
             dotClass: dotByStatus[run.status] || 'hi-dot',
             statusTextClass: statusTextByStatus[run.status] || 'hi-status',
             statusLabel: run.status ? run.status.charAt(0) + run.status.slice(1).toLowerCase() : '',
+            specLabel: specLabelByValue[run.testSuite] || '',
             historyItemClass: [
                 'history-item',
                 run.id === this.activeSidebarRunId ? 'history-item-active' : '',
@@ -685,13 +924,42 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     }
 
     handleToggleRunDropdown(event) {
-        // Stop the click from reaching the window listener that closes the dropdown.
         event.stopPropagation();
-        this.showRunDropdown = !this.showRunDropdown;
+        const opening = !this.showRunDropdown;
+        this.showRunDropdown = opening;
+        if (opening) {
+            const rect = event.currentTarget.getBoundingClientRect();
+            // If the button's right edge is less than the panel width from the left edge
+            // of the viewport, there isn't enough space to extend left — open rightward.
+            this._dropdownStyle = rect.right >= 308 ? '' : 'right:auto;left:0;';
+        }
     }
 
     handleHistoryFilterChange(event) {
-        this.historyFilter = event.target.value || '';
+        const val = (event.target.value || '').trim();
+        this.historyFilter = val;
+
+        clearTimeout(this._historySearchTimeout);
+
+        if (!val) {
+            this._historySearchResults = null;
+            this._isSearchingHistory   = false;
+            return;
+        }
+
+        this._isSearchingHistory = true;
+        this._historySearchTimeout = setTimeout(() => {
+            searchTestRuns({ searchTerm: val, limitCount: 50 })
+                .then(runs => {
+                    if (this.historyFilter.trim() === val) {
+                        this._historySearchResults = runs.map(decorateRun);
+                        this._isSearchingHistory   = false;
+                    }
+                })
+                .catch(() => {
+                    this._isSearchingHistory = false;
+                });
+        }, 350);
     }
 
     // Clicks inside the dropdown panel shouldn't close it (run-item clicks close
@@ -700,9 +968,71 @@ export default class AgenticQtcTestDashboard extends LightningElement {
         event.stopPropagation();
     }
 
+    handleModuleChange(event) {
+        this.selectedModule = event.target.value || null;
+        this.selectedSuite  = null;
+        // Changing module clears the suite, so multi mode can no longer be valid — reset.
+        this.accountMode = 'single';
+        this._resetMultiAccounts();
+        try { localStorage.setItem(LS_MODULE, this.selectedModule || ''); } catch (e) { /* no-op */ }
+    }
+
     handleSuiteChange(event) {
         this.selectedSuite = event.target.value;
+        // If the new spec doesn't support multi-account, fall back to single.
+        const suite = this._suiteOptions.find(o => o.value === this.selectedSuite);
+        if (this.accountMode === 'multi' && !(suite && suite.allowMultipleAccount)) {
+            this.accountMode = 'single';
+            this._resetMultiAccounts();
+        } else if (this.accountMode === 'multi') {
+            // Suite changed while in multi mode — apply new suite's defaults if list is empty
+            this._applyDefaultAccounts();
+        }
         try { localStorage.setItem(LS_SUITE, this.selectedSuite); } catch (e) { /* no-op */ }
+    }
+
+    // ── custom Module / Spec dropdown handlers ──────────────────────────────
+
+    handleToggleModuleDropdown(event) {
+        event.stopPropagation();
+        if (this.isRunning) return;
+        this._moduleDropdownOpen = !this._moduleDropdownOpen;
+        this._specDropdownOpen   = false;
+    }
+
+    handleToggleSpecDropdown(event) {
+        event.stopPropagation();
+        if (this.specSelectDisabled) return;
+        this._specDropdownOpen   = !this._specDropdownOpen;
+        this._moduleDropdownOpen = false;
+    }
+
+    handleModuleItemSelect(event) {
+        event.stopPropagation();
+        const value = event.currentTarget.dataset.value;
+        if (!value || value === this.selectedModule) { this._moduleDropdownOpen = false; return; }
+        this.selectedModule      = value;
+        this.selectedSuite       = null;
+        this.accountMode         = 'single';
+        this._moduleDropdownOpen = false;
+        this._resetMultiAccounts();
+        try { localStorage.setItem(LS_MODULE, value); } catch (e) { /* no-op */ }
+    }
+
+    handleSpecItemSelect(event) {
+        event.stopPropagation();
+        const value = event.currentTarget.dataset.value;
+        if (!value) { this._specDropdownOpen = false; return; }
+        this.selectedSuite     = value;
+        this._specDropdownOpen = false;
+        const suite = this._suiteOptions.find(o => o.value === value);
+        if (this.accountMode === 'multi' && !(suite && suite.allowMultipleAccount)) {
+            this.accountMode = 'single';
+            this._resetMultiAccounts();
+        } else if (this.accountMode === 'multi') {
+            this._applyDefaultAccounts();
+        }
+        try { localStorage.setItem(LS_SUITE, value); } catch (e) { /* no-op */ }
     }
 
     // ── account search handlers ─────────────────────────────────────────────
@@ -750,12 +1080,15 @@ export default class AgenticQtcTestDashboard extends LightningElement {
 
     _selectAccount(id, name) {
         if (!id) return;
-        this.selectedAccountId     = id;
-        this.selectedAccountName   = name;
-        this.accountResults        = [];
-        this.hasSearchedAccounts   = false;
-        this.accountSearchTerm     = '';
-        this.accountHighlightIndex = -1;
+        this.selectedAccountId      = id;
+        this.selectedAccountName    = name;
+        this.accountResults         = [];
+        this.hasSearchedAccounts    = false;
+        this.accountSearchTerm      = '';
+        this.accountHighlightIndex  = -1;
+        // Reset contract + quote whenever account changes
+        this._resetContract();
+        this._loadContracts(id);
     }
 
     // Keyboard navigation for the account typeahead (#30)
@@ -805,6 +1138,58 @@ export default class AgenticQtcTestDashboard extends LightningElement {
         this.accountResults        = [];
         this.hasSearchedAccounts   = false;
         this.accountHighlightIndex = -1;
+        this._resetContract();
+        this._contractOptions      = [];
+    }
+
+    handleToggleContractDropdown(event) {
+        event.stopPropagation();
+        if (this.contractSelectDisabled) return;
+        this._contractDropdownOpen = !this._contractDropdownOpen;
+        this._quoteDropdownOpen    = false;
+    }
+
+    handleToggleQuoteDropdown(event) {
+        event.stopPropagation();
+        if (this.quoteSelectDisabled) return;
+        this._quoteDropdownOpen    = !this._quoteDropdownOpen;
+        this._contractDropdownOpen = false;
+    }
+
+    handleContractItemSelect(event) {
+        event.stopPropagation();
+        const contractId           = event.currentTarget.dataset.value || null;
+        this._contractDropdownOpen = false;
+        const match                = contractId ? this._contractOptions.find(c => c.value === contractId) : null;
+        this.selectedContractId     = contractId;
+        this.selectedContractNumber = match ? match.contractNumber : null;
+        this._resetQuote();
+        if (contractId) this._loadQuotes(contractId);
+    }
+
+    handleQuoteItemSelect(event) {
+        event.stopPropagation();
+        const quoteId           = event.currentTarget.dataset.value || null;
+        this._quoteDropdownOpen = false;
+        const match             = quoteId ? this._quoteOptions.find(q => q.value === quoteId) : null;
+        this.selectedQuoteId    = quoteId;
+        this.selectedQuoteName  = match ? match.name : null;
+    }
+
+    handleContractChange(event) {
+        const contractId = event.target.value || null;
+        const match      = contractId ? this._contractOptions.find(c => c.value === contractId) : null;
+        this.selectedContractId     = contractId;
+        this.selectedContractNumber = match ? match.contractNumber : null;
+        this._resetQuote();
+        if (contractId) this._loadQuotes(contractId);
+    }
+
+    handleQuoteChange(event) {
+        const quoteId = event.target.value || null;
+        const match   = quoteId ? this._quoteOptions.find(q => q.value === quoteId) : null;
+        this.selectedQuoteId   = quoteId;
+        this.selectedQuoteName = match ? match.name : null;
     }
 
     handleRunnerChange(event) {
@@ -878,6 +1263,26 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     async handleRunTests() {
         if (this.isRunning || this.isCreating) return;
 
+        const activeCount = this.recentRuns.filter(r => IN_PROGRESS_STATUSES.has(r.status)).length;
+        if (activeCount >= 20) {
+            this._showToast(
+                'Too many parallel runs',
+                `You already have ${activeCount} test runs in progress. Wait for some to complete before starting another.`,
+                'error'
+            );
+            return;
+        }
+
+        // Determine account payload (single vs multi mode)
+        const isMulti      = this.isMultiAccountMode;
+        const accountsJson = isMulti
+            ? JSON.stringify(this.selectedAccounts.map(a => ({ id: a.id, search: a.name, fullName: a.name })))
+            : null;
+        const acctName = isMulti
+            ? this.selectedAccounts.map(a => a.name).join(', ')
+            : this.selectedAccountName;
+        const acctId   = isMulti ? null : this.selectedAccountId;
+
         // ── Step 1: instant feedback — spinner on button + placeholder row ──
         this.isCreating        = true;
         this.activeRunFiles    = [];
@@ -891,7 +1296,7 @@ export default class AgenticQtcTestDashboard extends LightningElement {
             name:           '…',
             status:         this.selectedRunner === 'github' ? 'CLAIMED' : 'PENDING',
             testSuite:      suiteLabel,
-            accountName:    this.selectedAccountName,
+            accountName:    acctName,
             testsPassed:    null,
             testsFailed:    null,
             durationMs:     null,
@@ -908,11 +1313,16 @@ export default class AgenticQtcTestDashboard extends LightningElement {
 
         try {
             // ── Step 2: create the SF record (takes ~1-2s) ──────────────────
-            const runId = await createTestRun({
-                testSuite:   this.selectedSuite,
-                runner:      this.selectedRunner,
-                accountId:   this.selectedAccountId,
-                accountName: this.selectedAccountName,
+            const runId = await createTestRunScoped({
+                testSuite:      this.selectedSuite,
+                runner:         this.selectedRunner,
+                accountId:      acctId,
+                accountName:    acctName,
+                contractId:     (!isMulti && this.selectedContractId)     ? this.selectedContractId     : null,
+                contractNumber: (!isMulti && this.selectedContractNumber) ? this.selectedContractNumber : null,
+                quoteId:        (!isMulti && this.selectedQuoteId)         ? this.selectedQuoteId         : null,
+                quoteName:      (!isMulti && this.selectedQuoteName)       ? this.selectedQuoteName       : null,
+                accountsJson,
             });
             this.activeRunId        = runId;
             this.activeSidebarRunId = runId;
@@ -970,16 +1380,46 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     handleReRun() {
         if (this.isRunning || this.isCreating || !this.activeRun) return;
         const run = this.activeRun;
-        if (!run.accountName) {
+        if (!run.accountName && !run.accountsJson) {
             this._showToast('Cannot re-run', 'This run has no account on record.', 'warning');
             return;
         }
-        if (run.testSuite && this._suiteOptions.find(o => o.value === run.testSuite)) {
+        const reRunSuite = run.testSuite && this._suiteOptions.find(o => o.value === run.testSuite);
+        if (reRunSuite) {
             this.selectedSuite = run.testSuite;
+            if (reRunSuite.moduleName) this.selectedModule = reRunSuite.moduleName;
         }
-        this.selectedAccountId   = run.accountId || null;
-        this.selectedAccountName = run.accountName;
+        if (run.accountsJson) {
+            this.accountMode = 'multi';
+            try {
+                const accts = JSON.parse(run.accountsJson);
+                this.selectedAccounts = accts.map(a => ({
+                    id:   a.id   || a.search || '',
+                    name: a.fullName || a.search || a.name || '',
+                }));
+            } catch { /* ignore corrupt JSON — user can adjust manually */ }
+        } else {
+            this.accountMode         = 'single';
+            this._resetMultiAccounts();
+            this.selectedAccountId   = run.accountId   || null;
+            this.selectedAccountName = run.accountName || null;
+        }
         this.handleRunTests();
+    }
+
+    // Deselect the current run so the user can immediately trigger a new parallel run.
+    // Form selections (account, spec, contract, quote, runner) are intentionally kept
+    // so the user can click Run right away — each dispatch gets a unique test_run_id
+    // concurrency group in GitHub Actions and runs independently.
+    handleNewRun() {
+        if (this.isCreating) return;
+        this.activeRunId        = null;
+        this.activeRun          = null;
+        this.activeSidebarRunId = null;
+        this.activeRunFiles     = [];
+        this.parsedRichResults  = null;
+        this._logFromFile       = null;
+        this.lightboxIndex      = null;
     }
 
     async handleCancel() {
@@ -1010,9 +1450,12 @@ export default class AgenticQtcTestDashboard extends LightningElement {
 
     handleHistoryRowClick(event) {
         const runId = event.currentTarget.dataset.id;
-        this.activeSidebarRunId = runId;
-        this.showRunDropdown    = false;   // collapse the Recent Runs picker
-        this.isStuck            = false;   // clear any stale stuck warning
+        this.activeSidebarRunId    = runId;
+        this.showRunDropdown       = false;
+        this.historyFilter         = '';
+        this._historySearchResults = null;
+        this._isSearchingHistory   = false;
+        this.isStuck               = false;
         this.activeRunFiles     = [];
         this.parsedRichResults  = null;
         this._logFromFile       = null;
@@ -1098,23 +1541,221 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     // dashboard shows what was run (and what a Re-run / Run would use).
     _syncFormToRun(run) {
         if (!run) return;
-        if (run.testSuite) this.selectedSuite = run.testSuite;
+        if (run.testSuite) {
+            this.selectedSuite = run.testSuite;
+            const su = this._suiteOptions.find(o => o.value === run.testSuite);
+            if (su && su.moduleName) this.selectedModule = su.moduleName;
+        }
+        // Multi-account run: restore chip list, leave single-account fields blank.
+        if (run.accountsJson) {
+            this.accountMode = 'multi';
+            try {
+                const accts = JSON.parse(run.accountsJson);
+                this.selectedAccounts = accts.map(a => ({
+                    id:   a.id   || a.search || '',
+                    name: a.fullName || a.search || a.name || '',
+                }));
+            } catch { /* ignore */ }
+            this.selectedAccountId   = null;
+            this.selectedAccountName = null;
+            return;
+        }
+        // Single-account run.
+        this.accountMode = 'single';
+        this._resetMultiAccounts();
         if (run.accountId) {
             this.selectedAccountId   = run.accountId;
             this.selectedAccountName = run.accountName || this.selectedAccountName;
+            this._loadContracts(run.accountId);
         }
+        if (run.contractId) {
+            this.selectedContractId     = run.contractId;
+            this.selectedContractNumber = run.contractNumber || null;
+            this._loadQuotes(run.contractId);
+        }
+        if (run.quoteId || run.quoteName) {
+            this.selectedQuoteId   = run.quoteId   || null;
+            this.selectedQuoteName = run.quoteName || null;
+        }
+    }
+
+    _resetContract() {
+        this.selectedContractId     = null;
+        this.selectedContractNumber = null;
+        this._contractOptions       = [];
+        // A contract reset always invalidates any quote scoped to it.
+        this._resetQuote();
+    }
+
+    _resetQuote() {
+        this.selectedQuoteId   = null;
+        this.selectedQuoteName = null;
+        this._quoteOptions     = [];
+    }
+
+    // Pre-fill the chip picker with the suite's Default_Accounts__c names.
+    // Only applied when the list is currently empty (doesn't override manual selections).
+    _applyDefaultAccounts() {
+        if (this.selectedAccounts.length > 0) return;
+        const suite = this.selectedSuiteMeta;
+        if (!suite || !suite.defaultAccounts) return;
+        const names = suite.defaultAccounts
+            .split(/[\n,]/)
+            .map(s => s.trim())
+            .filter(Boolean)
+            .slice(0, MULTI_ACCT_MAX);
+        if (names.length > 0) {
+            this.selectedAccounts = names.map(name => ({ id: name, name }));
+        }
+    }
+
+    _resetMultiAccounts() {
+        this.selectedAccounts     = [];
+        this.multiAcctSearchTerm  = '';
+        this.multiAcctResults     = [];
+        this.hasSearchedMultiAcct = false;
+        this.isSearchingMultiAcct = false;
+        this.multiAcctHighlight   = -1;
+    }
+
+    // ── Multi-account mode handlers ────────────────────────────────────────────
+
+    handleAccountModeChange(event) {
+        const mode = event.currentTarget.dataset.mode;
+        if (mode === this.accountMode) return;
+        this.accountMode = mode;
+        if (mode === 'single') {
+            this._resetMultiAccounts();
+        } else {
+            // Switching to multi: clear single-account selections, then apply suite defaults
+            this.selectedAccountId   = null;
+            this.selectedAccountName = null;
+            this._resetContract();
+            this._contractOptions    = [];
+            this._applyDefaultAccounts();
+        }
+    }
+
+    handleMultiAcctSearchChange(event) {
+        this.multiAcctSearchTerm = event.target.value;
+        clearTimeout(this._multiAcctSearchTimeout);
+        const term = this.multiAcctSearchTerm.trim();
+        if (term.length < ACCT_MIN_SEARCH_LEN) {
+            this.multiAcctResults     = [];
+            this.hasSearchedMultiAcct = false;
+            return;
+        }
+        // eslint-disable-next-line @lwc/lwc/no-async-operation
+        this._multiAcctSearchTimeout = setTimeout(() => this._doMultiAcctSearch(term), ACCT_SEARCH_DEBOUNCE_MS);
+    }
+
+    handleMultiAcctSelect(event) {
+        event.preventDefault();
+        const id   = event.currentTarget.dataset.id;
+        const name = event.currentTarget.dataset.name;
+        if (!id || this.selectedAccounts.length >= MULTI_ACCT_MAX) return;
+        if (this.selectedAccounts.some(a => a.id === id)) return;
+        this.selectedAccounts     = [...this.selectedAccounts, { id, name }];
+        this.multiAcctSearchTerm  = '';
+        this.multiAcctResults     = [];
+        this.hasSearchedMultiAcct = false;
+        this.multiAcctHighlight   = -1;
+    }
+
+    handleRemoveMultiAcct(event) {
+        if (this.isRunning) return;
+        const id = event.currentTarget.dataset.id;
+        this.selectedAccounts = this.selectedAccounts.filter(a => a.id !== id);
+    }
+
+    handleMultiAcctFocus() {
+        clearTimeout(this._multiAcctBlurTimeout);
+        if (this.multiAcctResults.length > 0) this.hasSearchedMultiAcct = true;
+    }
+
+    handleMultiAcctBlur() {
+        clearTimeout(this._multiAcctBlurTimeout);
+        // eslint-disable-next-line @lwc/lwc/no-async-operation
+        this._multiAcctBlurTimeout = setTimeout(() => {
+            this.hasSearchedMultiAcct = false;
+            this.multiAcctHighlight   = -1;
+        }, ACCT_BLUR_CLOSE_MS);
+    }
+
+    async _doMultiAcctSearch(term) {
+        this.isSearchingMultiAcct = true;
+        try {
+            const results = await searchAccounts({ searchTerm: term });
+            if (this.multiAcctSearchTerm.trim() === term) {
+                this.multiAcctResults     = results || [];
+                this.hasSearchedMultiAcct = true;
+            }
+        } catch {
+            if (this.multiAcctSearchTerm.trim() === term) {
+                this.multiAcctResults = [];
+            }
+        } finally {
+            if (this.multiAcctSearchTerm.trim() === term) {
+                this.isSearchingMultiAcct = false;
+            }
+        }
+    }
+
+    _loadContracts(accountId) {
+        if (!accountId) { this._contractOptions = []; return; }
+        getContractsForAccount({ accountId })
+            .then(opts => {
+                this._contractOptions = opts || [];
+            })
+            .catch(err => {
+                console.error('Failed to load contracts:', err);
+                this._contractOptions = [];
+            });
+    }
+
+    _loadQuotes(contractId) {
+        if (!contractId) { this._quoteOptions = []; return; }
+        getQuotesForContract({ contractId })
+            .then(opts => {
+                this._quoteOptions = opts || [];
+            })
+            .catch(err => {
+                console.error('Failed to load quotes:', err);
+                this._quoteOptions = [];
+            });
     }
 
     _loadSuiteOptions() {
         getSuiteOptions()
             .then(opts => {
-                this._suiteOptions = (opts || []).map(o => ({ label: o.label, value: o.value }));
+                this._suiteOptions = (opts || []).map(o => ({
+                    label:                o.label,
+                    value:                o.value,
+                    moduleName:           o.moduleName || null,
+                    description:          o.description || '',
+                    allowMultipleAccount: o.allowMultipleAccount ?? false,
+                    defaultAccounts:      o.defaultAccounts      || '',
+                }));
                 // No auto-default: when idle the dropdown shows the "Select Spec"
                 // placeholder. selectedSuite is only set when a run is opened/started.
             })
             .catch(err => {
                 console.error('Failed to load suite options:', err);
                 this._showToast('Error loading suites', toErrorMessage(err), 'error');
+            });
+    }
+
+    _loadModuleOptions() {
+        getModuleOptions()
+            .then(opts => {
+                this._moduleOptions = (opts || []).map(o => ({
+                    label: o.label,
+                    value: o.value,
+                }));
+            })
+            .catch(err => {
+                console.error('Failed to load module options:', err);
+                this._showToast('Error loading modules', toErrorMessage(err), 'error');
             });
     }
 
@@ -1207,6 +1848,7 @@ export default class AgenticQtcTestDashboard extends LightningElement {
         else if (this.hasMismatchRows)                        this.activeTab = 'crosscheck';
         else if (this.hasRichDbValues)                        this.activeTab = 'db';
         else if (this.hasRichMetrics || this.hasRichLineRows) this.activeTab = 'metrics';
+        else if (this.hasOsaComparison)                       this.activeTab = 'osa';
         else if (this.hasRichAnomalies)                       this.activeTab = 'anomalies';
         else if (this.hasTestResults)                         this.activeTab = 'spec';
         else if (this.hasLogOutput)                           this.activeTab = 'log';
@@ -1215,7 +1857,7 @@ export default class AgenticQtcTestDashboard extends LightningElement {
     // Build the memoized view of all parsedRichResults-derived arrays (#31)
     _buildRichView(rich) {
         if (!rich) {
-            return { dbRows: [], lineRows: [], anomalyRows: [], mismatchRows: [], mismatchCount: 0, hasDbValues: false };
+            return { dbRows: [], lineRows: [], anomalyRows: [], mismatchRows: [], mismatchCount: 0, hasDbValues: false, osaRows: [] };
         }
 
         // DB comparison rows
@@ -1256,7 +1898,13 @@ export default class AgenticQtcTestDashboard extends LightningElement {
             ? rich.crossCheckMismatches
             : mismatchRows.filter(row => !row.match && row.hasData).length;
 
-        return { dbRows, lineRows, anomalyRows, mismatchRows, mismatchCount, hasDbValues };
+        // OSA datatable UI↔Backend comparison rows
+        const osaRows = (rich.osaComparison || []).map(row => ({
+            ...row,
+            statusIcon: row.match ? '✅' : '❌',
+        }));
+
+        return { dbRows, lineRows, anomalyRows, mismatchRows, mismatchCount, hasDbValues, osaRows };
     }
 
     _showToast(title, message, variant) {
@@ -1283,6 +1931,8 @@ function buildMismatchRows(rich) {
             uiAfter:    row.uiAfter  != null ? row.uiAfter  : '—',
             dbPrior:    row.dbPrior  != null ? row.dbPrior  : '—',
             dbAfter:    row.dbAfter  != null ? row.dbAfter  : '—',
+            costBefore: row.costBefore != null ? row.costBefore : '—',
+            costAfter:  row.costAfter  != null ? row.costAfter  : '—',
             match:      row.match,
             hasData:    row.hasData,
             rowClass:   !row.hasData ? '' : row.match ? 'mx-row-ok' : 'mx-row-fail',
@@ -1310,6 +1960,8 @@ function buildMismatchRows(rich) {
             uiAfter:    uiQty != null ? uiQty : '—',
             dbPrior:    db.priorQty != null ? db.priorQty : '—',
             dbAfter:    dbQty != null ? dbQty : '—',
+            costBefore: line.costBefore != null ? line.costBefore : '—',
+            costAfter:  line.costAfter  != null ? line.costAfter  : '—',
             match, hasData,
             rowClass:   !hasData ? '' : match ? 'mx-row-ok' : 'mx-row-fail',
             statusIcon: !hasData ? '—' : match ? '✅' : '❌ MISMATCH',
@@ -1363,7 +2015,11 @@ function passRateTone(percent) {
 function formatDurationMs(ms) {
     if (ms == null) return '—';
     if (ms < 1000)  return `${ms}ms`;
-    return `${(ms / 1000).toFixed(1)}s`;
+    const totalSec = ms / 1000;
+    if (totalSec < 60) return `${totalSec.toFixed(1)}s`;
+    const mins = Math.floor(totalSec / 60);
+    const secs = Math.round(totalSec % 60);
+    return secs > 0 ? `${mins}m ${secs}s` : `${mins}m`;
 }
 
 /**
