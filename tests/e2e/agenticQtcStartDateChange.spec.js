@@ -67,6 +67,17 @@ async function runStartDateChange(ctx) {
   expect(dbHeader, `SBQQ__Quote__c '${quoteName}' should be queryable via REST`).not.toBeNull();
   const dbStartDate = dbHeader?.SBQQ__StartDate__c ?? null;
 
+  // A start-date change can re-derive the contract term boundaries, so the
+  // editor recomputes Total Contract Months (SBQQ__SubscriptionTerm__c) and
+  // First Segment Months (First_Segment_Months__c) on save. Read both UI fields
+  // and confirm they match the freshly-persisted quote-header values.
+  const uiTotalMonths    = await qtc.getTotalContractMonths();
+  const uiFirstSegMonths = await qtc.getFirstSegmentMonths();
+  const dbTotalMonths    = dbHeader?.SBQQ__SubscriptionTerm__c ?? null;
+  const dbFirstSegMonths = dbHeader?.First_Segment_Months__c ?? null;
+  const totalMonthsMatch = dbTotalMonths != null && Number(dbTotalMonths) === uiTotalMonths;
+  const firstSegMatch    = dbFirstSegMonths != null && Number(dbFirstSegMonths) === uiFirstSegMonths;
+
   // Poll until Year-1 anchors catch up — CPQ regenerates segments async after
   // header save commits.
   const lineSoql = `SELECT Id, Name, SBQQ__ProductName__c,
@@ -117,6 +128,8 @@ async function runStartDateChange(ctx) {
 
   expect(uiISOAfter, 'UI Start Date should have changed from the initial value').not.toBe(initialISO);
   expect(dbStartDate, 'SBQQ__Quote__c.SBQQ__StartDate__c should match new UI Start Date').toBe(uiISOAfter);
+  expect(uiTotalMonths, 'UI Total Contract Months should match SBQQ__SubscriptionTerm__c after save').toBe(Number(dbTotalMonths));
+  expect(uiFirstSegMonths, 'UI First Segment Months should match First_Segment_Months__c after save').toBe(Number(dbFirstSegMonths));
 
   const yearOneRows = lineComparison.filter(r => r.isYearOne);
   const yearOneBad  = yearOneRows.filter(r => !r.match);
@@ -162,7 +175,7 @@ async function runStartDateChange(ctx) {
     quoteName, quoteId: dbHeader?.Id || null,
     dbLineCount: dbLines.length,
     dbComparison, uiDbCrossCheck, crossCheckMismatches,
-    passed: allYearOnePass && crossCheckMismatches === 0,
+    passed: allYearOnePass && crossCheckMismatches === 0 && totalMonthsMatch && firstSegMatch,
     extra: {
       daysDelta: DATE_DELTA_DAYS,
       oldUIDateDisplay: initialDisplay,
@@ -170,6 +183,9 @@ async function runStartDateChange(ctx) {
       newUIDateDisplay: uiDisplayAfter,
       newUIDateISO:     uiISOAfter,
       dbQuoteStartDate: dbStartDate,
+      // Term-boundary fields re-derived on save — verified against the DB.
+      totalContractMonths: { ui: uiTotalMonths, db: dbTotalMonths, match: totalMonthsMatch },
+      firstSegmentMonths:  { ui: uiFirstSegMonths, db: dbFirstSegMonths, match: firstSegMatch },
       pollAttempts:     attempts,
       yearOneLagged:    yearOneBad.length,
       yearOneTotal:     yearOneRows.length,
