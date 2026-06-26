@@ -542,6 +542,42 @@ class AgenticQtcPage {
   }
 
   /**
+   * Read a disabled text field from the editor's settings bar by its visible
+   * label (e.g. "Total Contract Months", "First Segment Months"). The settings
+   * bar renders each as `<div class="setting-item"><label>…</label><input …/></div>`,
+   * so we anchor on the setting-item whose label matches, then read its input.
+   * Returns the raw input string ('' if not found / empty).
+   * @param {string} label
+   * @returns {Promise<string>}
+   */
+  async readSettingField(label) {
+    const item = this.page.locator('.settings-bar .setting-item')
+      .filter({ has: this.page.locator('label', { hasText: label }) })
+      .first();
+    return item.locator('input').first().inputValue().catch(() => '');
+  }
+
+  /**
+   * Parse a settings-field string to a number, tolerating stray formatting
+   * (e.g. "36", "36.0", "12 months"). Returns NaN for blank/unparseable input.
+   * @param {string} raw
+   */
+  _parseSettingNumber(raw) {
+    const cleaned = String(raw ?? '').replace(/[^0-9.\-]/g, '');
+    return cleaned === '' ? NaN : Number(cleaned);
+  }
+
+  /** Numeric value of the "Total Contract Months" settings field (NaN if blank). */
+  async getTotalContractMonths() {
+    return this._parseSettingNumber(await this.readSettingField('Total Contract Months'));
+  }
+
+  /** Numeric value of the "First Segment Months" settings field (NaN if blank). */
+  async getFirstSegmentMonths() {
+    return this._parseSettingNumber(await this.readSettingField('First Segment Months'));
+  }
+
+  /**
    * Set the Quote Start Date by typing into the input.
    *
    * Critical detail: clicking the input auto-opens the SLDS calendar
@@ -806,7 +842,7 @@ class AgenticQtcPage {
    */
   async fetchQuoteFromDb(quoteName) {
     const soql = `SELECT Id, Name, SBQQ__Status__c, SBQQ__StartDate__c, SBQQ__EndDate__c,
-                         SBQQ__SubscriptionTerm__c, SBQQ__NetAmount__c
+                         SBQQ__SubscriptionTerm__c, First_Segment_Months__c, SBQQ__NetAmount__c
                   FROM SBQQ__Quote__c
                   WHERE Name = '${quoteName}'
                   LIMIT 1`;

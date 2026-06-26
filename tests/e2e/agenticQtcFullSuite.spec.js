@@ -909,6 +909,25 @@ async function runStartDateChange(page, contract, branch) {
     dbAfter:  dbHeader?.SBQQ__StartDate__c ?? null,
   });
   expect(dbHeader?.SBQQ__StartDate__c, 'DB start date should match UI').toBe(uiAfterISO);
+
+  // A start-date change can re-derive the term boundaries, so the editor
+  // recomputes Total Contract Months (SBQQ__SubscriptionTerm__c) and First
+  // Segment Months (First_Segment_Months__c) on save — both UI fields must
+  // match the freshly-persisted quote-header values.
+  const uiTotalMonths    = await qtc.getTotalContractMonths();
+  const uiFirstSegMonths = await qtc.getFirstSegmentMonths();
+  const dbTotalMonths    = dbHeader?.SBQQ__SubscriptionTerm__c ?? null;
+  const dbFirstSegMonths = dbHeader?.First_Segment_Months__c ?? null;
+  pushCrossRow(currentLabel, 'Total Contract Months', {
+    uiAfter: uiTotalMonths, dbAfter: dbTotalMonths,
+    match: dbTotalMonths != null && Number(dbTotalMonths) === uiTotalMonths,
+  });
+  pushCrossRow(currentLabel, 'First Segment Months', {
+    uiAfter: uiFirstSegMonths, dbAfter: dbFirstSegMonths,
+    match: dbFirstSegMonths != null && Number(dbFirstSegMonths) === uiFirstSegMonths,
+  });
+  expect(uiTotalMonths, 'UI Total Contract Months should match SBQQ__SubscriptionTerm__c').toBe(Number(dbTotalMonths));
+  expect(uiFirstSegMonths, 'UI First Segment Months should match First_Segment_Months__c').toBe(Number(dbFirstSegMonths));
 }
 
 test('[7.1] Start Date Change: 0 draft amendments', async ({ page }) => {
