@@ -2,7 +2,7 @@
 /**
  * agenticQtcFullSuite.spec.js
  *
- * Unified suite — runs all 57 scenarios from the 19 standard specs in a single
+ * Unified suite — runs all 58 scenarios from the 19 standard specs in a single
  * browser session with ONE shared beforeAll (one login, one contract discovery).
  *
  * Groups: 1 Account Search · 2 OSA Selector · 3 App Nav · 4 Editor Core ·
@@ -1165,7 +1165,7 @@ test('[10.3] Qty Decrease: 2+ draft amendments', async ({ page }) => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// GROUP 11 — Qty Increase Segments / MDQ (3 scenarios)
+// GROUP 11 — Qty Increase Segments / MDQ (3 scenarios + 1 validation)
 // ─────────────────────────────────────────────────────────────────────────────
 
 const MDQ_DELTA   = 20;
@@ -1234,6 +1234,54 @@ test('[11.3] Qty Increase Segments (MDQ): 2+ draft amendments', async ({ page })
   const c = contractCache?.byScenario.many;
   if (!c) { record('[11.3] Qty Increase Segments: 2+ amendments', 'SKIP', 'No many-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[11.3] Qty Increase Segments: 2+ amendments', () => runQtyIncreaseSegments(page, c, 'many'));
+});
+
+test('[11.4] Qty Validation: decimal value in MDQ input triggers error popup (no save)', async ({ page }) => {
+  // Pick any available contract — we only need to open the editor, not save.
+  const c = contractCache?.byScenario.zero || contractCache?.byScenario.one || contractCache?.byScenario.many;
+  if (!c) { record('[11.4] Qty Validation: decimal input', 'SKIP', 'No contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
+  const branch = contractCache?.byScenario.zero ? 'zero' : contractCache?.byScenario.one ? 'one' : /** @type {'many'} */('many');
+  await runSafe('[11.4] Qty Validation: decimal input rejects with error popup', async () => {
+    const { qtc } = await openEditorByScenario(page, sfCtx, c, branch);
+    await qtc.waitForLines(120_000);
+
+    // Decimal validation fires ONLY on MDQ inputs (input.qty-input, step="1").
+    // agenticQtcMdqTermGroup.handleQuantityChange checks !Number.isInteger(qty),
+    // resets the input, and dispatches mdqvalidationerror →
+    // agenticQtcQuoteEditor.handleMdqValidationError → showToast(..., 'error').
+    // Non-segment spinbuttons (agenticQtcQuoteLineCard) have no such guard.
+    const mdqInputs = page.locator('input.qty-input');
+    if (await mdqInputs.count() === 0) {
+      skipScenario('No MDQ inputs on this contract — decimal validation requires MDQ products (input.qty-input)');
+    }
+
+    const mdqInput  = mdqInputs.first();
+    const cur       = parseFloat(await mdqInput.inputValue().catch(() => '1')) || 1;
+    const decimalVal = cur + 0.5;
+
+    await mdqInput.click({ clickCount: 3 });
+    await mdqInput.fill(String(decimalVal));
+    await mdqInput.press('Tab');
+
+    const DECIMAL_ERR_RE = /Quantity must be a whole number/i;
+    const toastLoc = page.locator('div.toast-container').filter({ hasText: DECIMAL_ERR_RE }).first();
+    const toastVisible = await u.isVisibleSafe(toastLoc, 5_000);
+    const toastText    = toastVisible ? (await toastLoc.innerText().catch(() => '')) : '';
+    const resetVal     = parseFloat(await mdqInput.inputValue().catch(() => String(cur))) || cur;
+
+    pushCrossRow(currentLabel, `Decimal "${decimalVal}" triggers error popup`, {
+      uiAfter: toastVisible ? `"${toastText.trim().slice(0, 80)}"` : '(no popup appeared)',
+      dbAfter: 'expected: "Quantity must be a whole number" error popup',
+      match: DECIMAL_ERR_RE.test(toastText),
+    });
+    pushCrossRow(currentLabel, 'MDQ input reset to original value after rejection', {
+      uiAfter: resetVal, dbAfter: cur, match: Math.abs(resetVal - cur) < 0.001,
+    });
+
+    expect(toastVisible, 'Error popup must appear within 5 s of entering a decimal quantity').toBe(true);
+    expect(DECIMAL_ERR_RE.test(toastText), 'Popup must contain "Quantity must be a whole number"').toBe(true);
+    expect(Math.abs(resetVal - cur), `MDQ input must reset to ${cur} after decimal rejection`).toBeLessThan(0.001);
+  });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

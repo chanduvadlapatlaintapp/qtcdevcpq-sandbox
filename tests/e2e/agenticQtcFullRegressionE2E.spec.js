@@ -1220,6 +1220,51 @@ test.describe('Full Regression — All Accounts', () => {
         test.skip(!c, `${account.fullName}: no contract with 2+ draft amendments`);
         await runScenario(page, sfCtx, /** @type {any} */ (c), 'many', 3, `${account.fullName} · 2+ amendments → modal pick`);
       });
+
+      test(`Decimal qty: MDQ input rejects decimal value with error popup (no save)`, async ({ page }) => {
+        // Pick any available contract — we only need to reach the editor.
+        const pick = buckets?.zero ? { c: buckets.zero, branch: /** @type {'zero'} */('zero') }
+          : buckets?.one  ? { c: buckets.one,  branch: /** @type {'one'} */('one')  }
+          : buckets?.many ? { c: buckets.many, branch: /** @type {'many'} */('many') }
+          : null;
+        test.skip(!pick, `${account.fullName}: no contract available for decimal validation test`);
+        if (!pick) return;
+
+        const { qtc } = await openEditorByScenario(page, sfCtx, /** @type {any} */ (pick.c), pick.branch);
+        await qtc.waitForLines(120_000);
+
+        // Decimal validation fires only on MDQ inputs (input.qty-input, step="1").
+        // agenticQtcMdqTermGroup.handleQuantityChange checks !Number.isInteger(qty),
+        // resets the input, and dispatches mdqvalidationerror →
+        // agenticQtcQuoteEditor.handleMdqValidationError → showToast(..., 'error').
+        // Non-segment spinbuttons (agenticQtcQuoteLineCard) have no such guard.
+        const mdqInputs = page.locator('input.qty-input');
+        if (await mdqInputs.count() === 0) {
+          test.skip(true, `${account.fullName}: no MDQ inputs on this quote — decimal validation requires MDQ products`);
+          return;
+        }
+
+        const mdqInput   = mdqInputs.first();
+        const cur        = parseFloat(await mdqInput.inputValue().catch(() => '1')) || 1;
+        const decimalVal = cur + 0.5;
+
+        await mdqInput.click({ clickCount: 3 });
+        await mdqInput.fill(String(decimalVal));
+        await mdqInput.press('Tab');
+
+        const DECIMAL_ERR_RE = /Quantity must be a whole number/i;
+        const toastLoc = page.locator('div.toast-container').filter({ hasText: DECIMAL_ERR_RE }).first();
+        await expect(
+          toastLoc,
+          `${account.fullName}: decimal "${decimalVal}" must trigger "Quantity must be a whole number" error popup`,
+        ).toBeVisible({ timeout: 5_000 });
+
+        const resetVal = parseFloat(await mdqInput.inputValue().catch(() => String(cur))) || cur;
+        expect(
+          Math.abs(resetVal - cur),
+          `${account.fullName}: MDQ input must reset to ${cur} after decimal rejection (got ${resetVal})`,
+        ).toBeLessThan(0.001);
+      });
     });
   }
 });
