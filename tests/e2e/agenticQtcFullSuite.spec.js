@@ -2,7 +2,7 @@
 /**
  * agenticQtcFullSuite.spec.js
  *
- * Unified suite — runs all 56 scenarios from the 19 standard specs in a single
+ * Unified suite — runs all 57 scenarios from the 19 standard specs in a single
  * browser session with ONE shared beforeAll (one login, one contract discovery).
  *
  * Groups: 1 Account Search · 2 OSA Selector · 3 App Nav · 4 Editor Core ·
@@ -539,7 +539,7 @@ function within(/** @type {number|null} */ a, /** @type {number|null} */ b, /** 
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// GROUP 1 — Account Search (3 tests)
+// GROUP 1 — Account Search (4 tests)
 // ─────────────────────────────────────────────────────────────────────────────
 
 test('[1.1] Account Search: min-length gate (1 char shows no dropdown)', async ({ page }) => {
@@ -582,6 +582,24 @@ test('[1.3] Account Search: known term returns cards and navigates to contracts'
     expect(matchByName).toBe(true);
     await qtc.accountCards().first().click();
     await qtc.activeContractsHeading().waitFor({ state: 'visible', timeout: 30_000 });
+  });
+});
+
+test('[1.4] Account Search: SOSL metacharacter in term returns no results (BIZ-84073)', async ({ page }) => {
+  await runSafe('[1.4] Account Search: metacharacter gate (BIZ-84073)', async () => {
+    const qtc = await openApp(page);
+    // Inject “ into the middle of the known account name — the term passes the
+    // 2-char minimum but hits the BIZ-84073 Apex guard before SOSL runs, so
+    // the server returns [] and the LWC shows the no-results empty-state.
+    const mid = Math.ceil(ACCOUNT_SEARCH.length / 2);
+    const metacharTerm = ACCOUNT_SEARCH.slice(0, mid) + '”' + ACCOUNT_SEARCH.slice(mid);
+    await qtc.typeAccountSearch(metacharTerm);
+    const cardCount = await qtc.accountCards().count();
+    const noResults = await u.isVisibleSafe(qtc.noResultsDropdown(), 3_000);
+    pushCrossRow(currentLabel, `Cards for metachar term “${metacharTerm}”`, { uiAfter: cardCount, dbAfter: 'expected 0', match: cardCount === 0 });
+    pushCrossRow(currentLabel, 'No-results dropdown shown (metachar gate)', { uiAfter: String(noResults), dbAfter: 'expected true', match: noResults === true });
+    expect(cardCount).toBe(0);
+    expect(noResults, 'No-results empty-state must appear for metacharacter-injected term').toBe(true);
   });
 });
 
