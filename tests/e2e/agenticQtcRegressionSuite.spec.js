@@ -479,6 +479,7 @@ function within(/** @type {number|null} */ a, /** @type {number|null} */ b, /** 
 // GROUP 1 — Account Search (3 tests)
 // ─────────────────────────────────────────────────────────────────────────────
 
+test.describe('agenticQtcAccountSearch', () => {
 test('[1.1] Account Search: min-length gate (1 char shows no dropdown)', async ({ page }) => {
   await runSafe('[1.1] Account Search: min-length gate', async () => {
     const qtc = await openApp(page);
@@ -521,11 +522,13 @@ test('[1.3] Account Search: known term returns cards and navigates to contracts'
     await qtc.activeContractsHeading().waitFor({ state: 'visible', timeout: 30_000 });
   });
 });
+}); // agenticQtcAccountSearch
 
 // ─────────────────────────────────────────────────────────────────────────────
 // GROUP 2 — OSA Selector (4 tests)
 // ─────────────────────────────────────────────────────────────────────────────
 
+test.describe('agenticQtcOsaSelector', () => {
 test('[2.1] OSA Selector: contracts grid renders with correct count badge', async ({ page }) => {
   await runSafe('[2.1] OSA Selector: contracts grid', async () => {
     const qtc = await openContracts(page);
@@ -600,11 +603,13 @@ test('[2.4] OSA Selector: draft-quotes modal open / close / pick row', async ({ 
     await qtc.saveButton().waitFor({ state: 'visible', timeout: 120_000 });
   });
 });
+}); // agenticQtcOsaSelector
 
 // ─────────────────────────────────────────────────────────────────────────────
 // GROUP 3 — App Navigation (1 test)
 // ─────────────────────────────────────────────────────────────────────────────
 
+test.describe('agenticQtcAppNavigation', () => {
 test('[3.1] App Navigation: theme toggles + record links + breadcrumb nav', async ({ page }) => {
   await runSafe('[3.1] App Navigation', async () => {
     await loginViaCookie(page, sfCtx.lightningUrl, sfCtx.accessToken);
@@ -648,11 +653,13 @@ test('[3.1] App Navigation: theme toggles + record links + breadcrumb nav', asyn
     await qtc.accountSearchInput().waitFor({ state: 'visible', timeout: 30_000 });
   });
 });
+}); // agenticQtcAppNavigation
 
 // ─────────────────────────────────────────────────────────────────────────────
 // GROUP 4 — Quote Editor Core (3 scenarios)
 // ─────────────────────────────────────────────────────────────────────────────
 
+test.describe('agenticQtcQuoteEditorCore', () => {
 /** @param {import('@playwright/test').Page} page @param {any} contract @param {'zero'|'one'|'many'} branch */
 async function runEditorCore(page, contract, branch) {
   const { qtc } = await openEditorByScenario(page, sfCtx, contract, branch);
@@ -684,11 +691,13 @@ test('[4.2] Editor Core: 1 draft amendment', async ({ page }) => {
   if (!c) { record('[4.2] Editor Core: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[4.2] Editor Core: 1 amendment', () => runEditorCore(page, c, 'one'));
 });
+}); // agenticQtcQuoteEditorCore
 
 // ─────────────────────────────────────────────────────────────────────────────
 // GROUP 5 — Editor Buttons (3 scenarios)
 // ─────────────────────────────────────────────────────────────────────────────
 
+test.describe('agenticQtcEditorButtons', () => {
 /** @param {import('@playwright/test').Page} page @param {any} contract @param {'zero'|'one'|'many'} branch */
 async function runEditorButtons(page, contract, branch) {
   const { qtc, quoteName } = await openEditorByScenario(page, sfCtx, contract, branch);
@@ -697,8 +706,8 @@ async function runEditorButtons(page, contract, branch) {
   const submitBtn = page.getByRole('button', { name: 'Submit for Approval' });
   const prevBtn   = page.getByRole('button', { name: 'Preview and Send OSA' });
   const approvalPresent = await u.isVisibleSafe(submitBtn, 5_000);
-  const delivery        = await qtc.readContactDisplay('delivery').catch(() => ({ name: '', email: '' }));
-  const deliveryPresent = !!(delivery.name && delivery.email);
+  const dbCt            = quoteName ? await qtc.fetchContactsFromDb(quoteName).catch(() => null) : null;
+  const deliveryPresent = !!(dbCt?.delivery?.id && dbCt?.delivery?.email);
   const approvalStatus  = quoteName
     ? await page.evaluate(async (/** @type {any} */ args) => {
         const h = { Authorization: 'Bearer ' + args.token, 'Content-Type': 'application/json' };
@@ -757,11 +766,13 @@ test('[5.2] Editor Buttons: 1 draft amendment', async ({ page }) => {
   if (!c) { record('[5.2] Editor Buttons: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[5.2] Editor Buttons: 1 amendment', () => runEditorButtons(page, c, 'one'));
 });
+}); // agenticQtcEditorButtons
 
 // ─────────────────────────────────────────────────────────────────────────────
 // GROUP 6 — Contact Update (3 scenarios)
 // ─────────────────────────────────────────────────────────────────────────────
 
+test.describe('agenticQtcContactUpdate', () => {
 /** @param {import('@playwright/test').Page} page @param {any} contract @param {'zero'|'one'|'many'} branch */
 async function runContactUpdate(page, contract, branch) {
   const { qtc, quoteName } = await openEditorByScenario(page, sfCtx, contract, branch);
@@ -790,11 +801,13 @@ test('[6.2] Contact Update: 1 draft amendment', async ({ page }) => {
   if (!c) { record('[6.2] Contact Update: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[6.2] Contact Update: 1 amendment', () => runContactUpdate(page, c, 'one'));
 });
+}); // agenticQtcContactUpdate
 
 // ─────────────────────────────────────────────────────────────────────────────
 // GROUP 7 — Start Date Change (3 scenarios)
 // ─────────────────────────────────────────────────────────────────────────────
 
+test.describe('agenticQtcStartDateChange', () => {
 /** @param {import('@playwright/test').Page} page @param {any} contract @param {'zero'|'one'|'many'} branch */
 async function runStartDateChange(page, contract, branch) {
   const { qtc, quoteName } = await openEditorByScenario(page, sfCtx, contract, branch);
@@ -817,11 +830,13 @@ test('[7.2] Start Date Change: 1 draft amendment', async ({ page }) => {
   if (!c) { record('[7.2] Start Date Change: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[7.2] Start Date Change: 1 amendment', () => runStartDateChange(page, c, 'one'));
 });
+}); // agenticQtcStartDateChange
 
 // ─────────────────────────────────────────────────────────────────────────────
 // GROUP 8 — Start Date Boundary (3 scenarios)
 // ─────────────────────────────────────────────────────────────────────────────
 
+test.describe('agenticQtcStartDateBoundary', () => {
 const UPPER_TOAST_RE = /Invalid date:\s*quote start date cannot be after the end date of the first term/i;
 const LOWER_TOAST_RE = /Invalid date:\s*quote start date cannot be earlier than the start date of the first term/i;
 
@@ -882,6 +897,7 @@ test('[8.2] Start Date Boundary: 1 draft amendment', async ({ page }) => {
   if (!c) { record('[8.2] Start Date Boundary: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[8.2] Start Date Boundary: 1 amendment', () => runStartDateBoundary(page, c, 'one'));
 });
+}); // agenticQtcStartDateBoundary
 
 // ─────────────────────────────────────────────────────────────────────────────
 // GROUP 9 — Quantity Increase (3 scenarios)
@@ -889,6 +905,7 @@ test('[8.2] Start Date Boundary: 1 draft amendment', async ({ page }) => {
 
 const QTY_INC = 5;
 
+test.describe('agenticQtcQuantityIncrease', () => {
 /** @param {import('@playwright/test').Page} page @param {any} contract @param {'zero'|'one'|'many'} branch */
 async function runQuantityIncrease(page, contract, branch) {
   const { qtc } = await openEditorByScenario(page, sfCtx, contract, branch);
@@ -922,6 +939,7 @@ test('[9.2] Qty Increase: 1 draft amendment', async ({ page }) => {
   if (!c) { record('[9.2] Qty Increase: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[9.2] Qty Increase: 1 amendment', () => runQuantityIncrease(page, c, 'one'));
 });
+}); // agenticQtcQuantityIncrease
 
 // ─────────────────────────────────────────────────────────────────────────────
 // GROUP 10 — Quantity Decrease (3 scenarios)
@@ -929,6 +947,7 @@ test('[9.2] Qty Increase: 1 draft amendment', async ({ page }) => {
 
 const QTY_DEC = 5;
 
+test.describe('agenticQtcQuantityDecrease', () => {
 /** @param {import('@playwright/test').Page} page @param {any} contract @param {'zero'|'one'|'many'} branch */
 async function runQuantityDecrease(page, contract, branch) {
   const { qtc } = await openEditorByScenario(page, sfCtx, contract, branch);
@@ -975,6 +994,7 @@ test('[10.2] Qty Decrease: 1 draft amendment', async ({ page }) => {
   if (!c) { record('[10.2] Qty Decrease: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[10.2] Qty Decrease: 1 amendment', () => runQuantityDecrease(page, c, 'one'));
 });
+}); // agenticQtcQuantityDecrease
 
 // ─────────────────────────────────────────────────────────────────────────────
 // GROUP 11 — Qty Increase Segments / MDQ (3 scenarios)
@@ -984,6 +1004,7 @@ const MDQ_DELTA   = 20;
 const MDQ_SEG_IDX = 2; // 0-based = Year 3 (1-based index 3)
 const MDQ_QUIESCE = 1_500;
 
+test.describe('agenticQtcQuantityIncreaseSegments', () => {
 /** @param {import('@playwright/test').Page} page @param {any} contract @param {'zero'|'one'|'many'} branch */
 async function runQtyIncreaseSegments(page, contract, branch) {
   const { qtc } = await openEditorByScenario(page, sfCtx, contract, branch);
@@ -1034,11 +1055,13 @@ test('[11.2] Qty Increase Segments (MDQ): 1 draft amendment', async ({ page }) =
   if (!c) { record('[11.2] Qty Increase Segments: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[11.2] Qty Increase Segments: 1 amendment', () => runQtyIncreaseSegments(page, c, 'one'));
 });
+}); // agenticQtcQuantityIncreaseSegments
 
 // ─────────────────────────────────────────────────────────────────────────────
 // GROUP 12 — Qty Decrease Segments / MDQ (3 scenarios)
 // ─────────────────────────────────────────────────────────────────────────────
 
+test.describe('agenticQtcQuantityDecreaseSegments', () => {
 /** @param {import('@playwright/test').Page} page @param {any} contract @param {'zero'|'one'|'many'} branch */
 async function runQtyDecreaseSegments(page, contract, branch) {
   const { qtc } = await openEditorByScenario(page, sfCtx, contract, branch);
@@ -1095,11 +1118,13 @@ test('[12.2] Qty Decrease Segments (MDQ): 1 draft amendment', async ({ page }) =
   if (!c) { record('[12.2] Qty Decrease Segments: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[12.2] Qty Decrease Segments: 1 amendment', () => runQtyDecreaseSegments(page, c, 'one'));
 });
+}); // agenticQtcQuantityDecreaseSegments
 
 // ─────────────────────────────────────────────────────────────────────────────
 // GROUP 13 — Metrics Verification (3 scenarios)
 // ─────────────────────────────────────────────────────────────────────────────
 
+test.describe('agenticQtcMetricsVerification', () => {
 const CURRENCY_TOL = 1.0;
 const PCT_TOL      = 0.01;
 
@@ -1137,6 +1162,7 @@ test('[13.2] Metrics Verification: 1 draft amendment', async ({ page }) => {
   if (!c) { record('[13.2] Metrics Verification: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[13.2] Metrics Verification: 1 amendment', () => runMetricsVerification(page, c, 'one'));
 });
+}); // agenticQtcMetricsVerification
 
 // ─────────────────────────────────────────────────────────────────────────────
 // GROUP 14 — Qty Increase: Non-Segment products (3 scenarios)
@@ -1158,11 +1184,13 @@ async function runNonSegmentQty(page, contract, branch, delta) {
   expect(allPass, `All ${lines.length} non-segment quantities should ${delta >= 0 ? 'increase' : 'decrease'} by ${Math.abs(delta)}`).toBe(true);
 }
 
+test.describe('agenticQtcQuantityIncreaseNonSegment', () => {
 test('[14.2] Qty Increase Non-Segment: 1 draft amendment', async ({ page }) => {
   const c = contractCache?.byScenario.one;
   if (!c) { record('[14.2] Qty Increase Non-Segment: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[14.2] Qty Increase Non-Segment: 1 amendment', () => runNonSegmentQty(page, c, 'one', QTY_INC));
 });
+}); // agenticQtcQuantityIncreaseNonSegment
 
 // ─────────────────────────────────────────────────────────────────────────────
 // GROUP 15 — Qty Increase: Bundle Segments / MDQ (3 scenarios)
@@ -1230,11 +1258,13 @@ async function runBundleSegmentQty(page, contract, branch, delta) {
   await captureSegmentCross(currentLabel, bundle, beforeA);
 }
 
+test.describe('agenticQtcQuantityIncreaseBundleSegments', () => {
 test('[15.2] Qty Increase Bundle Segments: 1 draft amendment', async ({ page }) => {
   const c = contractCache?.byScenario.one;
   if (!c) { record('[15.2] Qty Increase Bundle Segments: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[15.2] Qty Increase Bundle Segments: 1 amendment', () => runBundleSegmentQty(page, c, 'one', MDQ_DELTA));
 });
+}); // agenticQtcQuantityIncreaseBundleSegments
 
 // ─────────────────────────────────────────────────────────────────────────────
 // GROUP 16 — REMOVED. Non-segment Static Bundle products are not used in the
@@ -1246,11 +1276,13 @@ test('[15.2] Qty Increase Bundle Segments: 1 draft amendment', async ({ page }) 
 // GROUP 17 — Qty Decrease: Non-Segment products (3 scenarios)
 // ─────────────────────────────────────────────────────────────────────────────
 
+test.describe('agenticQtcQuantityDecreaseNonSegment', () => {
 test('[17.2] Qty Decrease Non-Segment: 1 draft amendment', async ({ page }) => {
   const c = contractCache?.byScenario.one;
   if (!c) { record('[17.2] Qty Decrease Non-Segment: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[17.2] Qty Decrease Non-Segment: 1 amendment', () => runNonSegmentQty(page, c, 'one', -QTY_DEC));
 });
+}); // agenticQtcQuantityDecreaseNonSegment
 
 // ─────────────────────────────────────────────────────────────────────────────
 // GROUP 18 — REMOVED. Non-segment Static Bundle products are not used in the
@@ -1261,11 +1293,13 @@ test('[17.2] Qty Decrease Non-Segment: 1 draft amendment', async ({ page }) => {
 // GROUP 19 — Qty Decrease: Bundle Segments / MDQ (3 scenarios)
 // ─────────────────────────────────────────────────────────────────────────────
 
+test.describe('agenticQtcQuantityDecreaseBundleSegments', () => {
 test('[19.2] Qty Decrease Bundle Segments: 1 draft amendment', async ({ page }) => {
   const c = contractCache?.byScenario.one;
   if (!c) { record('[19.2] Qty Decrease Bundle Segments: 1 amendment', 'SKIP', 'No 1-draft contract found'); test.skip(true, 'Contract precondition not met — see suite report'); }
   await runSafe('[19.2] Qty Decrease Bundle Segments: 1 amendment', () => runBundleSegmentQty(page, c, 'one', -MDQ_DELTA));
 });
+}); // agenticQtcQuantityDecreaseBundleSegments
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SUITE SUMMARY — requires a 100% pass rate (any failure fails the suite)
