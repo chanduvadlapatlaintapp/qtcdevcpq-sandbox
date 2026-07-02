@@ -82,6 +82,30 @@ test('No results: a nonsense term shows the empty-state', async ({ page }) => {
   expect(await qtc.accountCards().count(), 'Zero cards for a nonsense term').toBe(0);
 });
 
+test('Special characters: SOSL metacharacter in search term returns no results', async ({ page }) => {
+  const { runDir } = u.createRunFolder(RESULTS_DIR);
+  const qtc = await openAccountSearch(page);
+
+  // BIZ-84073: Apex rejects any search term containing a SOSL metacharacter
+  // (? " ! ^ ~ * : + { } | [ ] \) and returns [] before SOSL ever runs.
+  // We inject " into the middle of the known ACCOUNT_SEARCH so the term would
+  // otherwise return results — confirming the guard fires on the character, not
+  // on a nonsense string that simply has no DB matches.
+  const mid = Math.ceil(ACCOUNT_SEARCH.length / 2);
+  const metacharTerm = ACCOUNT_SEARCH.slice(0, mid) + '"' + ACCOUNT_SEARCH.slice(mid);
+  await qtc.typeAccountSearch(metacharTerm);
+  await u.screenshot(page, runDir, '01-metachar-term');
+
+  expect(
+    await qtc.accountCards().count(),
+    `BIZ-84073: metachar term "${metacharTerm}" must return zero account cards`,
+  ).toBe(0);
+  await expect(
+    qtc.noResultsDropdown(),
+    'No-results empty-state should appear when the Apex metacharacter gate fires',
+  ).toBeVisible();
+});
+
 test('Results: known account returns eligible cards and navigates to contracts', async ({ page }) => {
   const testStartMs       = Date.now();
   const { runTs, runDir } = u.createRunFolder(RESULTS_DIR);

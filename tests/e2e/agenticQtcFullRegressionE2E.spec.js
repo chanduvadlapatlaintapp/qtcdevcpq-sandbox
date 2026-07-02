@@ -1105,6 +1105,33 @@ test.describe('Full Regression — All Accounts', () => {
 
   test.afterAll(() => { _writeCombinedResults(); });
 
+  // ── Account-search metacharacter gate ────────────────────────────────────────
+  // Runs once per suite — not per account. The Apex guard (BIZ-84073) is
+  // service-level behaviour: it fires regardless of which account is targeted.
+  test('Account Search: SOSL metacharacter in term returns no results (BIZ-84073)', async ({ page }) => {
+    const { runDir } = u.createRunFolder(RESULTS_DIR);
+    await loginViaCookie(page, creds.lightningUrl, creds.accessToken);
+    const qtc = new AgenticQtcPage(page, /** @type {any} */ (creds));
+    await qtc.goto();
+
+    // Inject " into the first account's search term. Without the metacharacter
+    // filter the term would return results; with it, Apex returns [] immediately.
+    const baseSearch = ACCOUNTS[0].search;
+    const mid = Math.ceil(baseSearch.length / 2);
+    const metacharTerm = baseSearch.slice(0, mid) + '"' + baseSearch.slice(mid);
+    await qtc.typeAccountSearch(metacharTerm);
+    await u.screenshot(page, runDir, '01-metachar-gate');
+
+    expect(
+      await qtc.accountCards().count(),
+      `BIZ-84073: metachar term "${metacharTerm}" must return zero account cards`,
+    ).toBe(0);
+    await expect(
+      qtc.noResultsDropdown(),
+      'No-results empty-state must appear when the Apex metacharacter gate fires',
+    ).toBeVisible();
+  });
+
   for (const account of ACCOUNTS) {
     test.describe(`Account: ${account.fullName}`, () => {
       /** @type {import('./utils/scenarioContracts').SfCtx & { accountSearch:string, accountFullName:string }} */
